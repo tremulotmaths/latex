@@ -1,0 +1,131 @@
+\documentclass[10pt,french]{book}
+
+\input philippe2013
+\RegleEntete
+
+
+\newcommand\competences{
+\setcounter{exo}{0}
+\begin{tabular}{ll} Nom : \\[5pt] Prénom : \end{tabular}
+\hfill
+\textbf{Note :}\renewcommand\arraystretch{2.3}
+\begin{tabularx}{0.18\linewidth}{|X|}
+\hline
+\slashbox{\Huge\bfseries\phantom{10}}{\Huge\bfseries 10}\\
+\hline
+\end{tabularx}\renewcommand\arraystretch{1}\medskip
+}
+
+\entete{\premiere \sti}{Cercle trigonométrique}{A}
+\pieddepage{}{}{}
+
+\newcommand{\Droite}[5]{
+  \coordinate (ATemp) at ($(#2)!{-#4}!(#3)$);
+  \coordinate (BTemp) at ($(#2)!{1+#5}!(#3)$);
+  \draw[#1] (ATemp)--(BTemp);
+}
+
+\begin{document}
+\competences
+
+\exo Compléter le tableau suivant en donnant des valeurs exactes :
+\begin{center}
+\renewcommand\arraystretch{2.5}
+    \begin{tabular}{|c|*{6}{>{\centering\arraybackslash} p{2em}|}}
+        \hline
+            $\alpha$ en radian & $0$ & $\frac \pi 2$ & $\pi$ & $\frac\pi4$ & $\frac \pi6$ & $\frac \pi3$ \\
+        \hline
+            $\cos(\alpha)$ &&&&&& \\
+        \hline
+    \end{tabular}
+\renewcommand\arraystretch{1}
+\end{center}
+
+\exo Le cercle trigonométrique ci-dessous a été partagé régulièrement. Placer les points suivants sur le cercle en respectant l'angle écrit entre parenthèse.\par\medskip
+Par exemple, $D\left(\rad{\frac\pi2}\right)$ signifie : placer le point $D$ tel que $\widehat{IOD} = \rad{\frac\pi2}$.
+
+\[A(\ang{45}) \qq B(\ang{225}) \qq C(\ang{-60})\]
+
+\[D\left(\rad{\frac\pi2}\right) \qq E\left(\rad{-\frac\pi6}\right) \qq F\left(\rad{\frac{2\pi}{3}}\right)\]
+
+\begin{center}
+    \begin{tikzpicture}[>=latex,scale=4]
+        \coordinate (O) at (0,0); \draw (O) node[below left] {$O$};
+        \coordinate (I) at (1,0); \draw (I) node[below right=-2pt] {$I$};
+        \coordinate (J) at (0,1);
+        \Droite{->}{O}{I}{1.1}{0.1};
+        \Droite{->}{O}{J}{1.1}{0.1};
+        \draw (O) circle (1);
+        \foreach \x in {0,15,...,345} \draw (\x:1) node {+};
+    \end{tikzpicture}
+\end{center}
+
+\exo La mesure principale d'un angle est la seule mesure de l'angle appartenant à l'intervalle $\intervalleof{-\pi}{\pi}$.
+\begin{enumerate}
+    \item Répondre aux questions suivantes par OUI ou NON :
+    \begin{enumerate}
+        \item $\frac{8\pi}{5}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{2\pi}{7}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{-3\pi}{2}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{-13\pi}{12}$ peut être considérée comme la mesure principale d'un angle ? \ldots
+    \end{enumerate}
+    \item Donner la mesure principale des angles suivants dont une mesure est donnée :
+    \[\alpha = \dfrac{33\pi}{2} \qq \beta = \dfrac{76\pi}{6}\]
+\end{enumerate}
+
+
+\clearpage
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%                           SUJET B
+%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\entete{\premiere \sti}{Cercle trigonométrique}{B}
+\competences
+
+\exo Compléter le tableau suivant en donnant des valeurs exactes :
+\begin{center}
+\renewcommand\arraystretch{2.5}
+    \begin{tabular}{|c|*{6}{>{\centering\arraybackslash} p{2em}|}}
+        \hline
+            $\alpha$ en radian & $0$ & $\pi$ & $\frac \pi 2$ & $\frac\pi3$ & $\frac \pi6$ & $\frac \pi4$ \\
+        \hline
+            $\sin(\alpha)$ &&&&&& \\
+        \hline
+    \end{tabular}
+\renewcommand\arraystretch{1}
+\end{center}
+
+\exo Le cercle trigonométrique ci-dessous a été partagé régulièrement. Placer les points suivants sur le cercle en respectant l'angle écrit entre parenthèse.\par\medskip
+Par exemple, $D\left(\rad{\pi}\right)$ signifie : placer le point $D$ tel que $\widehat{IOD} = \rad{\pi}$.
+
+\[A(\ang{60}) \qq B(\ang{270}) \qq C(\ang{-45})\]
+
+\[D\left(\rad{\pi}\right) \qq E\left(\rad{-\frac\pi3}\right) \qq F\left(\rad{\frac{5\pi}{6}}\right)\]
+
+\begin{center}
+    \begin{tikzpicture}[>=latex,scale=4]
+        \coordinate (O) at (0,0); \draw (O) node[below left] {$O$};
+        \coordinate (I) at (1,0); \draw (I) node[below right=-2pt] {$I$};
+        \coordinate (J) at (0,1);
+        \Droite{->}{O}{I}{1.1}{0.1};
+        \Droite{->}{O}{J}{1.1}{0.1};
+        \draw (O) circle (1);
+        \foreach \x in {0,15,...,345} \draw (\x:1) node {+};
+    \end{tikzpicture}
+\end{center}
+
+\exo La mesure principale d'un angle est la seule mesure de l'angle appartenant à l'intervalle $\intervalleof{-\pi}{\pi}$.
+\begin{enumerate}
+    \item Répondre aux questions suivantes par OUI ou NON :
+    \begin{enumerate}
+        \item $\frac{4\pi}{5}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{8\pi}{7}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{-3\pi}{4}$ peut être considérée comme la mesure principale d'un angle ? \ldots\smallskip
+        \item $\frac{-21\pi}{22}$ peut être considérée comme la mesure principale d'un angle ? \ldots
+    \end{enumerate}
+    \item Donner la mesure principale des angles suivants dont une mesure est donnée :
+    \[\alpha = \dfrac{37\pi}{2} \qq \beta = \dfrac{80\pi}{6}\]
+\end{enumerate}
+
+\end{document} 

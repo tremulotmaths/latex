@@ -1,0 +1,514 @@
+\documentclass[12pt,french,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2015}
+\input{perso_dom_2015_2016}
+\input{section_dom_2015_2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Petit aide-mémoire pour \LaTeX}
+
+\noindent 
+\vspace{-24pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{txfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\LaTeX}{\thepage / \pageref{LastPage}}{Aide-mémoire}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Présentation d'un document}
+
+\subsection{Différent type de documents}
+
+-book (pour taper un livre)\\
+-report (rapport, un peu plus petit qu'un livre)\\
+-article (encore plus petit, exemple ce document)\\
+-slides (transparents)\\
+-letter (lettres)
+
+\subsection{En vrac}
+
+\begin{verbatim}
+\title{titre} (définit le titre)
+\maketitle (génère le titre s'il y en a un)
+\tableofcontents (génère la table des matières pour les book et report)
+\newpage (pour passer à une autre page, pratique pour insérer une page blanche)
+\marginpar{truc ds la marge} (pour écrire un truc dans la marge à l'endroit voulu)
+\footnote{truc en bas de la page} (note de bas de page)
+\documentclass[twocolumn]{article} (pour écrire sur deux colonnes).
+On peut aussi faire \begin{twocolumn} \end{twocolumn} 
+\end{verbatim}
+
+\subsection{Découpage d'un document}
+
+\begin{verbatim}
+\part{}
+\section{}
+\subsection{}
+\subsubsection{}
+\paragraph{}
+\subparagraph{}
+\appendix
+\end{verbatim}
+
+Dans les classes report et book, on peut aussi mettre chapter{} (entre part et section)
+
+\subsection{Tableaux-listes}
+
+\subsubsection{Listes}
+
+\begin{center}
+\begin{itemize}
+\item Premier truc
+\item Deuxième truc
+\item Troisième truc
+\end{itemize}
+\end{center}
+
+\begin{verbatim}
+\begin{itemize}
+\item Premier truc
+\item Deuxième truc
+\item Troisième truc
+\end{itemize}
+\end{verbatim}
+
+On peut remplacer i\textbf{temize} par \textbf{enumerate} (numérote les listes) ou \textbf{description} (liste seule)
+
+\subsubsection{Tableau}
+
+\paragraph{Tableau usuel}
+
+\begin{center}
+\begin{tabular}{ll}
+Premier truc & Deuxième truc \\
+Troisième truc & Quatrième truc
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+\begin{tabular}{ll}
+Premier truc & Deuxième truc \\
+Troisième truc & Quatrième truc
+\end{tabular}
+\end{verbatim}
+
+\paragraph{Tableau pour les maths} 
+
+\begin{center}
+$
+\begin{array}{ll}
+f(x) & e^{x} \\
+x_{1} & \ln x
+\end{array}
+$
+\end{center}
+
+\begin{verbatim}
+$\begin{array}{ll}
+f(x) & e^{x} \\
+x_{1} & \ln x
+\end{array}$
+\end{verbatim}
+
+On peut remplacer \textbf{l} (left) par \textbf{r} (right) ou \textbf{c} (center)\\
+Pour rajouter des "trait" au tableau : commande hline (à la fin de la ligne) pour ajouter des "traits" horizontaux; pour les "traits" verticaux, on met des "$\vert$" où il faut:\\ 
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Premier truc & Deuxième truc\\ 
+\hline
+Troisième truc & Quatrième truc\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+\hline
+\begin{tabular}{|l|l|}
+Premier truc & Deuxième truc \\
+\hline
+Troisième truc & Quatrième truc \\
+\hline
+\end{tabular}
+\end{verbatim}
+
+On peut aussi mettre des $\Vert$ pour faire joli...
+
+\section{Mathématiques}
+
+\subsection{Ecrire des maths}
+
+\begin{verbatim}
+on met des $...$ (idem : \(...\) ou \begin{math}...\end{math})
+ou $$...$$ (idem : \[...\] ou \begin{displaymath}...\end{displaymath})
+\end{verbatim}
+
+\subsection{Usage courant}
+
+\begin{center}
+$\dfrac{5}{2}$, $\frac{7}{2}$, $\sqrt{3}$, $\ln 2$, $2^{x+y}$, $3_{x-y}$, $(x_{1},...,x_{n})$\\
+$\calig{A}, \calig{P}$, $\R, \N, \Q, \R_{+}^{*}$\\
+$\Rightarrow,\Leftarrow,\mapsto,\longrightarrow, \Longleftrightarrow$\\
+$\vert, \Vert, \o{}, \O{}$\\
+$\alpha, \beta, \gamma, \varepsilon, \varphi, \lambda, \mu$\\
+$\forall, \exists, \in$\\
+$\sum, \bigcap, \prod, \int, \neq, \leqslant, \geqslant$\\
+\end{center}
+
+\begin{verbatim} 
+\dfrac{5}{2}, \frac{7}{2}, \sqrt{3}, \ln 2, 2^{x+y}, 3_{x-y}, (x_{1},...,x_{n})
+\calig{A}, \calig{P}, \R, \N, \Q, \R_{+}^{*}
+\Rightarrow,\Leftarrow,\mapsto,\longrightarrow, \Longleftrightarrow
+\vert, \Vert, \o{}, \O{}
+\alpha, \beta, \gamma, \varepsilon, \varphi, \lambda, \mu
+\forall, \exists, \in
+\sum, \bigcap, \prod, \int, \neq, \leqslant, \geqslant
+\end{verbatim}
+
+\subsection{Fonctions}
+
+\begin{center}
+Soit $f$:
+\begin{tabular}[t]{rlc}
+$]0,+\infty[$ & $\to$ & $\R$ \\
+$x$ & $\mapsto$ & $\ln x -x$\\
+\end{tabular}
+\end{center}
+
+\begin{verbatim}
+Soit $f$:
+\begin{tabular}[t]{rlc}
+$]0,+\infty[$ & $\to$ & $\R$ \\
+$x$ & $\mapsto$ & $\ln x -x$\\
+\end{tabular}
+\end{verbatim}
+
+\subsection{Matrices}
+
+\begin{center}
+$\left(\begin{array}{cc}
+1 & 2 \\0 & 1
+      \end{array}\right)$
+\end{center}
+
+\begin{verbatim}
+\left(\begin{array}{cc}
+1 & 2 \\0 & 1
+      \end{array}\right)
+\end{verbatim}  
+
+\subsection{Système d'équations}
+
+\begin{center}
+$y=\left\{ \begin{array}{ll}
+a & \textrm{si d$>$c}\\
+b+x & \textrm{sinon}
+\end{array} \right.$
+\end{center}
+
+\begin{verbatim}
+y=\left\{ \begin{array}{ll}
+a & \textrm{si d>c}\\
+b+x & \textrm{sinon}
+\end{array} \right.
+\end{verbatim}
+
+\subsection{Numérotation des équations}
+
+\begin{verbatim} 
+\begin{equation}\label{eq}
+2x+3
+\end{equation}
+L'equation (\ref{eq}) implique que...
+\end{verbatim}
+
+\textbf{nous donne} : \\
+
+\begin{equation}\label{eq}
+2x+3=0
+\end{equation}
+L'equation (\ref{eq}) implique que...
+
+\subsection{Somme, limite}
+
+Formule pas joli, mais pas de retour à la ligne (ex : $\sum_{n=0}^{+\infty} v_{n}$)
+
+\begin{verbatim}
+$\sum_{n=0}^{+\infty} v_(n)$
+\end{verbatim}
+
+Belles formules, mais retour à la ligne : $$\lim_{x \to \infty}f(x)=3$$
+
+\begin{verbatim}
+$$\lim_{x \to 0+}x^{x}$$
+\end{verbatim}
+
+$$\sum_{\substack{
+0\leqslant i \leqslant m\\
+0<j<n}}
+P(i,j)$$
+
+\begin{verbatim}
+$$\sum_{\substack{
+0\leqslant i \leqslant m\\
+0<j<n}}
+P(i,j)$$
+\end{verbatim}
+
+Pour rester sur la même ligne avec une belle formule (ex :$\displaystyle\sum_{n=0}^{\infty} u_{n}$) :
+
+\begin{verbatim}
+$\displaystyle\sum_{n=0}^{\infty} u_{n}$)
+\end{verbatim}
+
+\subsection{Encadrer un truc en maths}
+
+\begin{center}
+$\boxed{\sum_{n=0}^{+\infty}u_{n}}$
+\end{center}
+
+\begin{verbatim}
+$\boxed{\sum_{n=0}^{+\infty}u_{n}}$
+\end{verbatim}
+
+\section{Graphiques}
+
+Introduire un graphique, un dessin : 
+
+\begin{verbatim}
+\begin{center}
+\includegraphics[width=5cm]{dessin_1.eps}
+\end{center}
+\end{verbatim}
+
+width="truc" en cm redimensionne le dessin selon sa largeur (largeur imposée)\\
+height="truc" en cm redimensionne le dessin selon sa longueur\\
+scale="truc" redimensionne le dessin en le zoomant de rapport truc\\
+%rotatebox \{angle\} \{dessin\} permet de faire tourner le dessin (ou le texte) d'un angle\\
+%\begin{center}
+%\includegraphics[width=5cm]{\rotatebox{45}{dessin_1.eps}}
+%\end{center}%
+%\begin{verbatim}
+%\begin{center}
+%\rotatebox{45}{dessin_1.eps}
+%\includegraphics[width=5cm]{dessin_1.eps}
+%\end{center}
+%\end{verbatim}
+\section{Divers}
+
+Caractères invisibles : \begin{verbatim}${}$ et \Quad{} et \quad \end{verbatim}
+
+P $\nequiv 0$ avec $\setminus$ nequiv et le package  $\setminus$ usepackage\{txfonts\}\\
+
+$\llbracket 0,n-1 \Rbracket$ avec $\setminus$ llbracket 0,n-1 $\setminus$ rrbracket \\
+
+Pour ne pas afficher la date : $\setminus$ date{} dans le préambule du document\\
+
+Pour faire des parenthèses plus grandes comme par exemple exemple : $ \left( \dfrac{3}{4}-\dfrac{2}{4} \right)$
+
+\begin{verbatim}
+$ \left( \dfrac{3}{4}-\dfrac{2}{4} \right)$
+\end{verbatim}
+
+Pour Baptiste : $\underleftarrow{\calig{A}}$ avec :
+
+\begin{verbatim}
+\underleftarrow{\calig{A}} ou \xleftarrow{A} 
+\end{verbatim}
+
+Pour Vincent : ${}_{r}\Q_{p}$ avec :
+
+\begin{verbatim}
+${}_{r}\Q_{p}$$
+\end{verbatim}
+
+Pratique : $f(x)\nequiv 0$
+\begin{verbatim}
+$f(x)\nequiv 0$
+\end{verbatim}
+
+Parallèles : $(AA') \sslash(BB')$ avec : 
+\begin{verbatim}
+$$(AA') \sslash(BB')$$
+\end{verbatim}
+
+
+%Pour faire un petit carré de fin de démonstration : $\setminus$qed \qed
+
+\section{Pour faire un diagramme commutatif}
+
+Il faut d'abord rajouter le package : $\setminus$ usepackage[all]\{xy\}. Puis :\\
+
+
+\begin{center}
+$\xymatrix{
+A \ar[d] \ar[r] & B \ar[l] \\
+C \ar[ur] & }
+$
+\end{center}
+
+\begin{verbatim}
+$\xymatrix{
+A \ar[d] \ar[r] & B \ar[l] \\
+C \ar[ur] & }
+$
+\end{verbatim}
+
+La commande ar[ur] sert à faire la flèche, dans les crochets, le r représente "right", d représente "down", u représente "up", l représente "left". On peut aussi écrire ar@{=}[truc, truc] pour faire un signe différent de la flèche usuelle.
+
+\section{Fin de démonstration}
+
+Deux solution s'offrent à nous : 
+
+\begin{moyen}{Solution 1}
+Pour produire en fin de la ligne le symbole voulu, il suffit d'uliliser le package amsthm 
+\end{moyen}
+
+\begin{moyen}{Solution 2}
+Pour produire en fin de la ligne le symbole voulu sans le pckage ci-dessus, il faut mettre dans le préambule :\qed 
+\end{moyen}
+%
+\begin{verbatim}
+\def\myhfill{
+\parfillskip=0pt
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\finalhyphendemerits=0
+\unskip\nobreak\null\hfil\penalty50
+\hskip2em\null\hfill
+}
+\def\qedsymbol{\ensuremath\square}
+\def\qed{\myhfill\qedsymbol\par}
+\end{verbatim}
+
+Dans les deux cas, taper le symbole $\setminus$ qed (sans les "dollars" mathématiques) dans un paragraphe bien délémité (par un begin-end).
+
+\section{Changer la taille des caractères mathématiques}
+
+Dans le préambule : 
+
+\begin{verbatim}
+\def\mathtitre#1{
+\font\tenrm=cmr10 scaled \magstep#1
+\font\sevenrm=cmr7 scaled \magstep#1
+\font\fiverm=cmr5 scaled \magstep#1
+\font\teni=cmmi10 scaled \magstep#1
+\font\seveni=cmmi7 scaled \magstep#1
+\font\fivei=cmmi5 scaled \magstep#1
+\font\tensy=cmsy10 scaled \magstep#1
+\font\sevensy=cmsy7 scaled \magstep#1
+\font\fivesy=cmsy5 scaled \magstep#1
+\font\tenex=cmex10 scaled \magstep#1
+\textfont0=\tenrm \scriptfont0=\sevenrm
+\scriptscriptfont0=\fiverm
+\textfont1=\teni \scriptfont1=\seveni
+\scriptscriptfont1=\fivei
+\textfont2=\tensy \scriptfont2=\sevensy
+\scriptscriptfont2=\fivesy
+\textfont3=\tenex \scriptfont3=\tenex
+\scriptscriptfont3=\tenex
+}
+\end{verbatim}
+
+Exemples : 
+
+\begin{verbatim}
+{\mathtitre0 $$A+B=C^{B^A}$$}
+{\mathtitre3 $$A+B=C^{B^A}$$}
+{\mathtitre5 $$A+B=C^{B^A}$$}
+\end{verbatim}
+
+{\mathtitre0 $$A+B=C^{B^A}$$}
+{\mathtitre3 $$A+B=C^{B^A}$$}
+{\mathtitre5 $$A+B=C^{B^A}$$}
+
+\section{Guillemets}
+
+\subsection{guillemets de base}
+
+``ces guillemets" sont produits avec les touches `` (en dessous du 7) et du " (en dessous du 3)
+
+\subsection{texcomp}
+
+Avec le package textcomp : \textgravedbl essai \textacutedbl 
+
+\begin{verbatim}
+\textgravedbl
+\textacutedbl
+\end{verbatim}
+
+\subsection{fontenc}
+
+Avec le package fontenc : \guillemotleft essai 1 \guillemotright
+
+\begin{verbatim}
+\guillemotleft
+\guillemotright
+\end{verbatim}
+
+\section{Symbole de contradiction}
+
+Avec le package marvosym : $\vert$Lightning est obtenue avec la commande $\setminus$ Lightning\\
+Eviter ce package : conflit pour certains symboles mathématiques.
+
+\section{Utilisation de parindent}
+
+\settowidth{\parindent}
+{\textbf{Remarques}~:\ }
+\makebox[0pt][r]
+{\textbf{Remarques}~:\ }(1) $\overrightarrow{u}=\overrightarrow{0}$ 
+
+(2) $\overrightarrow{u}$.$\overrightarrow{u}\geq 0$
+
+\begin{verbatim} 
+\settowidth{\parindent}
+{\textbf{Remarques}~:\ }
+\makebox[0pt][r]
+{\textbf{Remarques}~:\ }(1) $\overrightarrow{u}=\overrightarrow{0}$
+
+(2) $\overrightarrow{u}$.$\overrightarrow{u}\geq 0$
+\end{verbatim} 
+
+\section{Pas de numéro de page}
+
+\begin{verbatim}
+\thispagestyle{empty}
+\end{verbatim} avant le begin document
+ % pas de numéro de page, etc.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

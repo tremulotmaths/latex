@@ -1,0 +1,56 @@
+\documentclass[fleqn,a4paper,12pt]{article}
+\usepackage[dvipsnames]{xcolor} %% Farben sind im Dokument xcolor.pdf definiert
+%\usepackage[distiller]{pstricks}
+\usepackage{pstricks-add}
+
+\usepackage{arrayjob}
+
+
+
+
+\begin{document}
+
+
+\savedata{\dataMitKernBindEn}[(1 1.113)(2 2.573)(3 7.074)(7 5.606)(10 6.475)(12 7.680)(16 7.976)(19 7.779)(23 8.111)(30 8.52)(35 8.520)(41 8.576)(46 8.669)(52 8.776)(57 8.77)(58 8.792)(62 8.795)(89 8.617)(94 8.422)(107 8.554)(139 8.367)(144 8.265)(176 8.059)(208 7.868)(235 7.591)(236 7.586)(239 7.559)]
+
+\psframebox[fillstyle=solid,fillcolor=blue!20!green!30,opacity=0.3]{%
+\begin{pspicture}(-1.4,-1.2)(13,10.3)
+  \psset{yunit=1,xunit=0.05}
+  \psframe[linestyle=none,unit=0.5,fillstyle=solid,fillcolor=white](0,0)(25,20)
+  \psgrid[unit=0.5,subgriddiv=2,gridlabels=0,gridwidth=0.6pt,gridcolor=gray!80,subgridwidth=0.5pt,subgridcolor=gray!60](0,0)(25,20)
+  \psaxes[Ox=0,dy=1,Dy=1,dx=20,Dx=20,arrowsize=0.175,arrowinset=0.04,arrowlength=1.7,labelFontSize=\scriptstyle,tickwidth=0.8pt,ticksize=-4pt 0pt]
+  {->}(250,10)
+  \uput{0.8}[-90](220,0){\small Masssenzahl}%
+  \uput{0.8}[180]{90}(0,5){\small Bindungsenergie je Nukleon in MeV}%
+  \dataplot[showpoints=true,yunit=1,linecolor=blue]{\dataMitKernBindEn}
+  \uput{0.15}[0]{0}(1,1.113){$\scriptstyle\mathsf{^{2}H}$}
+  \uput{0.15}[0]{0}(2,2.573){$\scriptstyle\mathsf{^{3}He}$}
+  \uput{0.15}[75]{0}(3,7.074){$\scriptstyle\mathsf{^{4}He}$}
+  \uput{0.15}[-75]{0}(7,5.606){$\scriptstyle\mathsf{^{7}Li}$}
+  \uput{0.15}[-15]{0}(10,6.475){$\scriptstyle\mathsf{^{10}B}$}
+  \uput{0.15}[125]{0}(12,7.680){$\scriptstyle\mathsf{^{12}C}$}
+  \uput{0.13}[115]{0}(16,7.976){$\scriptstyle\mathsf{^{16}O}$}
+  \uput{0.15}[-80]{0}(19,7.779){$\scriptstyle\mathsf{^{19}F}$}
+  \uput{0.17}[110]{0}(23,8.111){$\scriptstyle\mathsf{^{23}Na}$}
+  \uput{0.12}[145]{0}(30,8.52){$\scriptstyle\mathsf{^{30}Si}$}
+  \uput{0.15}[110]{0}(35,8.520){$\scriptstyle\mathsf{^{35}Cl}$}
+  \uput{0.15}[-80]{0}(41,8.576){$\scriptstyle\mathsf{^{41}K}$}
+  \uput{0.15}[110]{0}(46,8.669){$\scriptstyle\mathsf{^{46}Ca}$}
+  \uput{0.15}[-80]{0}(52,8.776){$\scriptstyle\mathsf{^{52}Cr}$}
+  \uput{0.45}[110]{0}(57,8.77){$\scriptstyle\mathsf{^{57}Fe}$}
+  \uput{0.15}[80]{0}(58,8.792){$\scriptstyle\mathsf{^{58}Fe}$}
+  \uput{0.15}[-40]{0}(62,8.795){$\scriptstyle\mathsf{^{62}Ni}$}
+  \uput{0.15}[110]{0}(89,8.617){$\scriptstyle\mathsf{^{89}Kr}$}
+  \uput{0.15}[-90]{0}(94,8.422){$\scriptstyle\mathsf{^{94}Kr}$}
+  \uput{0.15}[110]{0}(107,8.554){$\scriptstyle\mathsf{^{107}Ag}$}
+  \uput{0.15}[110]{0}(139,8.367){$\scriptstyle\mathsf{^{139}Ba}$}
+  \uput{0.15}[-80]{0}(144,8.265){$\scriptstyle\mathsf{^{144}Ba}$}
+  \uput{0.15}[110]{0}(176,8.059){$\scriptstyle\mathsf{^{176}Lu}$}
+  \uput{0.15}[110]{0}(208,7.868){$\scriptstyle\mathsf{^{208}Pb}$}
+  \uput{0.15}[220]{0}(235,7.591){$\scriptstyle\mathsf{^{235}U}$}
+  \uput{0.15}[110]{0}(236,7.586){$\scriptstyle\mathsf{^{236}U}$}
+  \uput{0.15}[-60]{0}(239,7.559){$\scriptstyle\mathsf{^{239}U}$}
+\end{pspicture}
+}
+
+\end{document}

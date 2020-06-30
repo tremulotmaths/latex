@@ -1,0 +1,5623 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-geometrie}[07/03/2010]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-geometrie.sty.
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsgeometrie}
+\setboolean{windowsgeometrie}{false}
+\newboolean{xcasgeometrie}
+\setboolean{xcasgeometrie}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasgeometrie}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsgeometrie}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsgeometrie}}
+{%
+\ifthenelse{\boolean{xcasgeometrie}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasgeometrie}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+
+\RequirePackage{color}
+\RequirePackage{amsmath}
+\RequirePackage{stmaryrd}
+
+
+%%% pour les largeurs des minipages
+\newlength{\largeurcercle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem   enteteTEX.cfg   enteteMP.cfg   *.user   *.mpx   *.giac  XCAS*.mp   mptextmp.mp   XCAS*.tex   XCAS*.cxx }}
+     
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Triangle rectangle et cercle circonscrit
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScerclecirt.cxx}
+Cerclecirt(L):={
+local A,B,C,ang,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ang:=L[3];
+typdes:=L[4];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_cerclecirf\\ccir.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+$"+C+"$ est un point du cercle de diam\\`etre $["+A+""+B+"]$.\\\\\\ 
+
+Alors, le triangle $"+A+""+B+""+C+"$ est rectangle en $"+C+"$.
+
+\\end{minipage}
+
+
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScerclecirt.giac}
+maple_mode(0);
+read("XCAScerclecirt.cxx");
+Sortie:=fopen("XCAScerclecirt.tex");
+donnees:=read("XCAScerclecir.user");
+Resultat:=string("Cerclecirt(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCAScerclecirf.cxx}
+Cerclecirf(L):={
+local A,B,C,ang,typdes;
+local pos;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ang:=L[3];
+typdes:=L[4];
+
+if ((ang >0) and (ang<90)) then
+{
+  pos:="urt";
+}
+if (ang==90) then
+{
+  pos:="top";
+}
+if ((ang >90) and (ang<180)) then
+{
+  pos:="ulft";
+}
+if (ang==180) then
+{
+  pos:="lft";
+}
+if ((ang >180) and (ang<270)) then
+{
+  pos:="llft";
+}
+if (ang==270) then
+{
+  pos:="bot";
+}
+if (ang >270) and (ang<360) then
+{
+  pos:="lrt";
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp ;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+beginfig(0);
+pair A,B,O,C;
+
+A:=(-2.5u,0);
+O:=(0,0);
+B:=symetrie(A,O);
+C:=rotation(B,O,"+ang+");
+
+trace triangle(A,B,C);
+
+trace arccercle(B,C,O) withcolor red withpen pencircle scaled 1pt;
+trace arccercle(C,A,O) withcolor red withpen pencircle scaled 1pt;
+trace arccercle(A,B,O) withcolor red withpen pencircle scaled 1pt;
+
+trace codesegments(A,O,O,B,2);
+trace codeperp(A,C,B,5);
+
+label.lft(TEX(\" $"+A+"$ \"),A);
+label.rt(TEX(\" $"+B+"$ \"),B);
+%label.bot(TEX(\" $O$\"),O);
+label."+pos+"(TEX(\" $"+C+"$ \"),C);
+
+
+marque\_p:=\"croix\";
+pointe(O);
+marque\_p:=\"rien\";
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScerclecirf.giac}
+maple_mode(0);
+read("XCAScerclecirf.cxx");
+Sortie:=fopen("XCAScerclecirf.mp");
+donnees:=read("XCAScerclecir.user");
+Resultat:=string("Cerclecirf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptcerclecir}
+\newcommand{\ccir}{\theCptcerclecir}
+%% \ccir change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cerclecir}[1]
+{\setcounter{Cptcerclecir}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScerclecir.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScerclecirf.mp}
+\executGiacmp{XCAScerclecirf.giac}
+\IfFileExists{\nomtravail_cerclecirf\ccir.mp}{\immediate\write18{\rem \nomtravail_cerclecirf\ccir.mp}}{}
+\immediate\write18{\cat XCAScerclecirf.mp >> \nomtravail_cerclecirf\ccir.mp}
+\immediate\write18{mpost \nomtravail_cerclecirf\ccir.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cerclecirf\ccir.mp}{\immediate\write18{mpost \nomtravail_cerclecirf\ccir.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_cerclecirf\ccir.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScerclecirt.tex}
+\executGiacmp{XCAScerclecirt.giac}
+\IfFileExists{\nomtravail_cerclecirt\ccir.tex}{\immediate\write18{\rem \nomtravail_cerclecirt\ccir.tex}}{}
+\immediate\write18{\cat XCAScerclecirt.tex >> \nomtravail_cerclecirt\ccir.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cerclecirt\ccir.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_cerclecirt\ccir.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_cerclecirt\ccir.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cerclecir*}[1]
+{\setcounter{Cptcerclecir}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScerclecir.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_cerclecirt\ccir.tex}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Deux angles inscrits
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASanginscritt.cxx}
+Anginscritt(L):={
+local A,B,E,F,anga,angb,ange,angf,typdes;
+
+A:=L[0];
+B:=L[1];
+E:=L[2];
+F:=L[3];
+anga:=L[4];
+angb:=L[5];
+ange:=L[6];
+angf:=L[7];
+typdes:=L[8];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_anginscritf\\cain.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+Les angles inscrits $\\widehat{"+A+""+E+""+B+"}$ et $\\widehat{"+A+""+F+""+B+"}$
+interceptent le m\\^eme arc \\textcolor{red}{{\\textbf{
+    $\\overset{\\frown}{"+A+""+B+"}$}}}.\\\\\\
+
+Alors, \\quad $\\widehat{"+A+""+E+""+B+"} = \\widehat{"+A+""+F+""+B+"}$.
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASanginscritt.giac}
+maple_mode(0);
+read("XCASanginscritt.cxx");
+Sortie:=fopen("XCASanginscritt.tex");
+donnees:=read("XCASanginscrit.user");
+Resultat:=string("Anginscritt(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASanginscritf.cxx}
+Anginscritf(L):={
+local A,B,E,F,anga,angb,ange,angf,typdes;
+local posa,posb,pose,posf;
+
+A:=L[0];
+B:=L[1];
+E:=L[2];
+F:=L[3];
+anga:=L[4];
+angb:=L[5];
+ange:=L[6];
+angf:=L[7];
+typdes:=L[8];
+
+// position du point A
+if (anga==0) then
+{
+  posa:="rt";
+}
+if ((anga >0) and (anga<90)) then
+{
+  posa:="urt";
+}
+if (anga==90) then
+{
+  posa:="top";
+}
+if ((anga >90) and (anga<180)) then
+{
+  posa:="ulft";
+}
+if (anga==180) then
+{
+  posa:="lft";
+}
+if ((anga >180) and (anga<270)) then
+{
+  posa:="llft";
+}
+if (anga==270) then
+{
+  posa:="bot";
+}
+if (anga >270) and (anga<360) then
+{
+  posa:="lrt";
+}
+
+// position du point B
+if (angb==0) then
+{
+  posb:="rt";
+}
+if ((angb >0) and (angb<90)) then
+{
+  posb:="urt";
+}
+if (angb==90) then
+{
+  posb:="top";
+}
+if ((angb >90) and (angb<180)) then
+{
+  posb:="ulft";
+}
+if (angb==180) then
+{
+  posb:="lft";
+}
+if ((angb >180) and (angb<270)) then
+{
+  posb:="llft";
+}
+if (angb==270) then
+{
+  posb:="bot";
+}
+if (angb >270) and (angb<360) then
+{
+  posb:="lrt";
+}
+
+// position du point E
+if (ange==0) then
+{
+  pose:="rt";
+}
+if ((ange >0) and (ange<90)) then
+{
+  pose:="urt";
+}
+if (ange==90) then
+{
+  pose:="top";
+}
+if ((ange >90) and (ange<180)) then
+{
+  pose:="ulft";
+}
+if (ange==180) then
+{
+  pose:="lft";
+}
+if ((ange >180) and (ange<270)) then
+{
+  pose:="llft";
+}
+if (ange==270) then
+{
+  pose:="bot";
+}
+if (ange >270) and (ange<360) then
+{
+  pose:="lrt";
+}
+
+// position du point F
+if (angf==0) then
+{
+  posf:="rt";
+}
+if ((angf >0) and (angf<90)) then
+{
+  posf:="urt";
+}
+if (angf==90) then
+{
+  posf:="top";
+}
+if ((angf >90) and (angf<180)) then
+{
+  posf:="ulft";
+}
+if (angf==180) then
+{
+  posf:="lft";
+}
+if ((angf >180) and (angf<270)) then
+{
+  posf:="llft";
+}
+if (angf==270) then
+{
+  posf:="bot";
+}
+if (angf >270) and (angf<360) then
+{
+  posf:="lrt";
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair D,A,B,O,E,F;
+numeric r;
+r:=3;
+
+O:=(0,0);
+D:=(r*u,0); %Point a droite du cercle.
+
+A:=rotation(D,O,"+anga+");
+B:=rotation(D,O,"+angb+");
+E:=rotation(D,O,"+ange+");
+F:=rotation(D,O,"+angf+");
+
+trace chemin(A,E,B);
+trace chemin(A,F,B);
+
+%trace codeangle.urt(B,E,A,1,btex $52^{\circ}$ etex);
+trace marqueangle(A,E,B,1) withcolor red withpen pencircle scaled 1.5pt;
+trace marqueangle(A,F,B,1) withcolor red withpen pencircle scaled 1.5pt;
+
+label."+posa+"(TEX(\" $"+A+"$ \"),A);
+label."+posb+"(TEX(\" $"+B+"$ \"),B);
+label."+pose+"(TEX(\" $"+E+"$ \"),E);
+label."+posf+"(TEX(\" $"+F+"$ \"),F);
+
+trace arccercle(A,B,O) withcolor red withpen pencircle scaled 1.5pt;
+trace arccercle(B,E,O);
+trace arccercle(E,F,O);
+trace arccercle(F,A,O);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASanginscritf.giac}
+maple_mode(0);
+read("XCASanginscritf.cxx");
+Sortie:=fopen("XCASanginscritf.mp");
+donnees:=read("XCASanginscrit.user");
+Resultat:=string("Anginscritf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptanginscrit}
+\newcommand{\cain}{\theCptanginscrit}
+%% \cain change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-anginscrit}[1]
+{\setcounter{Cptanginscrit}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASanginscrit.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASanginscritf.mp}
+\executGiacmp{XCASanginscritf.giac}
+\IfFileExists{\nomtravail_anginscritf\cain.mp}{\immediate\write18{\rem \nomtravail_anginscritf\cain.mp}}{}
+\immediate\write18{\cat XCASanginscritf.mp >> \nomtravail_anginscritf\cain.mp}
+\immediate\write18{mpost \nomtravail_anginscritf\cain.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_anginscritf\cain.mp}{\immediate\write18{mpost \nomtravail_anginscritf\cain.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_anginscritf\cain.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASanginscritt.tex}
+\executGiacmp{XCASanginscritt.giac}
+\IfFileExists{\nomtravail_anginscritt\cain.tex}{\immediate\write18{\rem \nomtravail_anginscritt\cain.tex}}{}
+\immediate\write18{\cat XCASanginscritt.tex >> \nomtravail_anginscritt\cain.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_anginscritt\cain.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_anginscritt\cain.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_anginscritt\cain.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-anginscrit*}[1]
+{\setcounter{Cptanginscrit}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASanginscritf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_anginscritt\cain.tex}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Angle inscrit et angle au centre
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcentret.cxx}
+Angcentret(L):={
+local A,B,E,O,anga,angb,ange,typdes;
+
+A:=L[0];
+B:=L[1];
+E:=L[2];
+O:=L[3];
+anga:=L[4];
+angb:=L[5];
+ange:=L[6];
+typdes:=L[7];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_angcentref\\caic.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+L'angle inscrit $\\widehat{"+A+""+E+""+B+"}$ et l'angle au centre $\\widehat{"+A+""+O+""+B+"}$
+interceptent le m\\^eme arc \\textcolor{red}{{\\textbf{
+    $\\overset{\\frown}{"+A+""+B+"}$}}}.\\\\\\
+
+Alors, \\quad $\\widehat{"+A+""+E+""+B+"} = \\dfrac{1}{2} \\widehat{"+A+""+F+""+B+"}$.
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcentret.giac}
+maple_mode(0);
+read("XCASangcentret.cxx");
+Sortie:=fopen("XCASangcentret.tex");
+donnees:=read("XCASangcentre.user");
+Resultat:=string("Angcentret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASangcentref.cxx}
+Angcentref(L):={
+local A,B,E,O,anga,angb,ange,typdes;
+local posa,posb,pose,posf;
+
+A:=L[0];
+B:=L[1];
+E:=L[2];
+O:=L[3];
+anga:=L[4];
+angb:=L[5];
+ange:=L[6];
+typdes:=L[7];
+
+// position du point A
+if (anga==0) then
+{
+  posa:="rt";
+}
+if ((anga >0) and (anga<90)) then
+{
+  posa:="urt";
+}
+if (anga==90) then
+{
+  posa:="top";
+}
+if ((anga >90) and (anga<180)) then
+{
+  posa:="ulft";
+}
+if (anga==180) then
+{
+  posa:="lft";
+}
+if ((anga >180) and (anga<270)) then
+{
+  posa:="llft";
+}
+if (anga==270) then
+{
+  posa:="bot";
+}
+if (anga >270) and (anga<360) then
+{
+  posa:="lrt";
+}
+
+// position du point B
+if (angb==0) then
+{
+  posb:="rt";
+}
+if ((angb >0) and (angb<90)) then
+{
+  posb:="urt";
+}
+if (angb==90) then
+{
+  posb:="top";
+}
+if ((angb >90) and (angb<180)) then
+{
+  posb:="ulft";
+}
+if (angb==180) then
+{
+  posb:="lft";
+}
+if ((angb >180) and (angb<270)) then
+{
+  posb:="llft";
+}
+if (angb==270) then
+{
+  posb:="bot";
+}
+if (angb >270) and (angb<360) then
+{
+  posb:="lrt";
+}
+
+// position du point E
+if (ange==0) then
+{
+  pose:="rt";
+}
+if ((ange >0) and (ange<90)) then
+{
+  pose:="urt";
+}
+if (ange==90) then
+{
+  pose:="top";
+}
+if ((ange >90) and (ange<180)) then
+{
+  pose:="ulft";
+}
+if (ange==180) then
+{
+  pose:="lft";
+}
+if ((ange >180) and (ange<270)) then
+{
+  pose:="llft";
+}
+if (ange==270) then
+{
+  pose:="bot";
+}
+if (ange >270) and (ange<360) then
+{
+  pose:="lrt";
+}
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair D,A,B,O,E;
+numeric r;
+r:=3;
+
+O:=(0,0);
+D:=(r*u,0); %Point a droite du cercle.
+
+A:=rotation(D,O,"+anga+");
+B:=rotation(D,O,"+angb+");
+E:=rotation(D,O,"+ange+");
+
+trace chemin(A,E,B);
+trace chemin(A,O,B);
+
+%trace codeangle.urt(B,E,A,1,btex $52^{\circ}$ etex);
+trace marqueangle(A,E,B,1) withcolor red withpen pencircle scaled 1.5pt;
+trace marqueangle(A,O,B,2) withcolor red withpen pencircle scaled 1.5pt;
+
+label."+posa+"(TEX(\" $"+A+"$ \"),A);
+label."+posb+"(TEX(\" $"+B+"$ \"),B);
+label."+pose+"(TEX(\" $"+E+"$ \"),E);
+label."+pose+"(TEX(\" $"+O+"$ \"),O);
+
+trace arccercle(A,B,O) withcolor red withpen pencircle scaled 1.5pt;
+trace arccercle(B,E,O);
+trace arccercle(E,A,O);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcentref.giac}
+maple_mode(0);
+read("XCASangcentref.cxx");
+Sortie:=fopen("XCASangcentref.mp");
+donnees:=read("XCASangcentre.user");
+Resultat:=string("Angcentref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptangcentre}
+\newcommand{\caic}{\theCptangcentre}
+%% \caic change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angcentre}[1]
+{\setcounter{Cptangcentre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASangcentre.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangcentref.mp}
+\executGiacmp{XCASangcentref.giac}
+\IfFileExists{\nomtravail_angcentref\caic.mp}{\immediate\write18{\rem \nomtravail_angcentref\caic.mp}}{}
+\immediate\write18{\cat XCASangcentref.mp >> \nomtravail_angcentref\caic.mp}
+\immediate\write18{mpost \nomtravail_angcentref\caic.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angcentref\caic.mp}{\immediate\write18{mpost \nomtravail_angcentref\caic.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_angcentref\caic.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangcentret.tex}
+\executGiacmp{XCASangcentret.giac}
+\IfFileExists{\nomtravail_angcentret\caic.tex}{\immediate\write18{\rem \nomtravail_angcentret\caic.tex}}{}
+\immediate\write18{\cat XCASangcentret.tex >> \nomtravail_angcentret\caic.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angcentret\caic.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_angcentret\caic.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_angcentret\caic.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angcentre*}[1]
+{\setcounter{Cptangcentre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASangcentref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_angcentret\caic.tex}
+
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Theoreme de Pythagore
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpythagoret.cxx}
+Pythagoret(L):={
+local A,B,C,ab,bc,ca,typdes;
+local textc;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ab:=L[3];
+bc:=L[4];
+ca:=L[5];
+typdes:=L[6];
+
+if (ab==0) then
+{
+  textc:="
+$"+A+""+B+"^2 + \\left("+latex(ca)+"\\right)^2 = \\left("+latex(bc)+"\\right)^2$\\\\\\
+
+$"+A+""+B+"^2 + "+latex(ca^2)+" = "+latex(bc^2)+"$\\\\\\
+
+$"+A+""+B+"^2  = "+latex(bc^2)+" - "+latex(ca^2)+"$\\\\\\
+
+$"+A+""+B+"^2 = "+latex(bc^2-ca^2)+"$\\\\\\
+
+$"+A+""+B+"= \\sqrt{"+latex(bc^2-ca^2)+"}$\\\\\\
+
+$"+A+""+B+"= "+latex(sqrt(bc^2-ca^2))+"$\\\\\\
+
+$"+A+""+B+" \\approx "+latex(evalf(sqrt(bc^2-ca^2)))+"$\\\\\\
+
+";
+
+}
+if (bc==0) then
+{
+  textc:="
+$\\left("+latex(ab)+"\\right)^2+\\left("+latex(ca)+"\\right)^2="+B+""+C+"^2$\\\\\\
+
+$"+latex(ab^2)+" + "+latex(ca^2)+" ="+B+""+C+"^2$\\\\\\
+
+$"+latex(ab^2+ca^2)+" ="+B+""+C+"^2$\\\\\\
+
+$"+B+""+C+"= \\sqrt{"+latex(ab^2+ca^2)+"}$\\\\\\
+
+$"+B+""+C+"= "+latex(sqrt(ab^2+ca^2))+"$\\\\\\
+
+$"+B+""+C+" \\approx "+latex(evalf(sqrt(ab^2+ca^2)))+"$\\\\\\
+
+";
+}
+
+
+if (ca==0) then
+{
+  textc:="
+$\\left("+latex(ab)+"\\right)^2+ "+A+""+C+"^2 = \\left("+latex(bc)+"\\right)^2$\\\\\\
+
+$"+latex(ab^2)+" + "+A+""+C+"^2 = "+latex(bc^2)+"$\\\\\\
+
+$"+A+""+C+"^2  = "+latex(bc^2)+" - "+latex(ab^2)+"$\\\\\\
+
+$"+A+""+C+"^2 = "+latex(bc^2-ab^2)+"$\\\\\\
+
+$"+A+""+C+"= \\sqrt{"+latex(bc^2-ab^2)+"}$\\\\\\
+
+$"+A+""+C+"= "+latex(sqrt(bc^2-ab^2))+"$\\\\\\
+
+$"+A+""+C+" \\approx "+latex(evalf(sqrt(bc^2-ab^2)))+"$\\\\\\
+
+";
+
+}
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>4.5cm}}{\\addtolength{\\largeurcercle}{4.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_pythagoref\\ctpy.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+Dans le triangle $"+A+""+B+""+C+"$ rectangle en ${\\color{red}{"+A+"}}$,
+
+d'apr\\`es le th\\'eor\\`eme de Pythagore,\\\\\\
+
+$"+B+"{\\color{red}{"+A+"}}^2 + {\\color{red}{"+A+"}}"+C+"^2 ="+B+""+C+"^2$\\\\\\
+
+"+textc+"
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpythagoret.giac}
+maple_mode(0);
+read("XCASpythagoret.cxx");
+Sortie:=fopen("XCASpythagoret.tex");
+donnees:=read("XCASpythagore.user");
+Resultat:=string("Pythagoret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASpythagoref.cxx}
+Pythagoref(L):={
+local A,B,C,ab,bc,ca,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ab:=L[3];
+bc:=L[4];
+ca:=L[5];
+typdes:=L[6];
+
+if (ab==0) then
+{
+  ab:="?";
+}
+if (bc==0) then
+{
+  bc:="?";
+}
+if (ca==0) then
+{
+  ca:="?";
+}
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C;
+numeric AB,AC,BC;
+
+AB:=4;    %choisir les longueurs
+AC:=3;
+
+A:=(0,0);
+B:=(AB*u,0);
+C:=(0,AC*u);
+
+trace polygone(A,B,C);
+
+label.llft(TEX(\" $"+A+"$ \"),A) withcolor red; 
+label.lrt(TEX(\" $"+B+"$ \"),B);
+label.top(TEX(\" $"+C+"$ \"),C);
+
+trace codeperp(B,A,C,5);
+
+label.bot(TEX(\" $"+latex(ab)+"$ \"),0.5[A,B]); 
+label.lft(TEX(\" $"+latex(ca)+"$ \"),0.5[A,C]);
+label.urt(TEX(\" $"+latex(bc)+"$ \"),0.5[B,C]);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpythagoref.giac}
+maple_mode(0);
+read("XCASpythagoref.cxx");
+Sortie:=fopen("XCASpythagoref.mp");
+donnees:=read("XCASpythagore.user");
+Resultat:=string("Pythagoref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptpythagore}
+\newcommand{\ctpy}{\theCptpythagore}
+%% \ctpy change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-pythagore}[1]
+{\setcounter{Cptpythagore}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASpythagore.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASpythagoref.mp}
+\executGiacmp{XCASpythagoref.giac}
+\IfFileExists{\nomtravail_pythagoref\ctpy.mp}{\immediate\write18{\rem \nomtravail_pythagoref\ctpy.mp}}{}
+\immediate\write18{\cat XCASpythagoref.mp >> \nomtravail_pythagoref\ctpy.mp}
+\immediate\write18{mpost \nomtravail_pythagoref\ctpy.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_pythagoref\ctpy.mp}{\immediate\write18{mpost \nomtravail_pythagoref\ctpy.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_pythagoref\ctpy.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASpythagoret.tex}
+\executGiacmp{XCASpythagoret.giac}
+\IfFileExists{\nomtravail_pythagoret\ctpy.tex}{\immediate\write18{\rem \nomtravail_pythagoret\ctpy.tex}}{}
+\immediate\write18{\cat XCASpythagoret.tex >> \nomtravail_pythagoret\ctpy.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_pythagoret\ctpy.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_pythagoret\ctpy.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_pythagoret\ctpy.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-pythagore*}[1]
+{\setcounter{Cptpythagore}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASpythagoref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_pythagoret\ctpy.tex}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Reciproque du theoreme de Pythagore
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecpythagoret.cxx}
+Recpythagoret(L):={
+local A,B,C,ab,bc,ca,typdes;
+local textc;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ab:=L[3];
+bc:=L[4];
+ca:=L[5];
+typdes:=L[6];
+
+if ((ab^2+ca^2)==bc^2) then
+{
+  textc:="
+Comme, $"+B+"{\\color{red}{"+A+"}}^2 + {\\color{red}{"+A+"}}"+C+"^2 ="+B+""+C+"^2$,
+d'apr\\`es la r\\'eciproque du th\\'eor\\`eme de Pythagore, le triangle $"+A+""+B+""+C+"$ est rectangle en ${\\color{red}{"+A+"}}$.
+
+";
+
+}
+else
+{
+  textc:="
+Comme, $"+B+"{\\color{red}{\\textbf{"+A+"}}}^2 + {\\color{red}{\\textbf{"+A+"}}}"+C+"^2 \\neq "+B+""+C+"^2$,
+d'apr\\`es le th\\'eor\\`eme de Pythagore, le triangle $"+A+""+B+""+C+"$ n'est pas rectangle.
+
+
+";
+}
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_recpythagoref\\crpy.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+Dans le triangle $"+A+""+B+""+C+"$, $["+B+""+C+"]$ est le plus grand c\\^ot\\'e.\\\\\\
+
+$"+B+""+C+"^2 = \\left("+latex(bc)+"\\right)^2 = "+latex(bc^2)+"$\\\\\\
+
+$"+B+"{\\color{red}{"+A+"}}^2 + {\\color{red}{"+A+"}}"+C+"^2 
+= \\left("+latex(ab)+"\\right)^2 + \\left("+latex(ca)+"\\right)^2 
+= "+latex(ab^2)+" + "+latex(ca^2)+" = "+latex(ab^2+ca^2)+"$\\\\\\
+
+"+textc+"
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecpythagoret.giac}
+maple_mode(0);
+read("XCASrecpythagoret.cxx");
+Sortie:=fopen("XCASrecpythagoret.tex");
+donnees:=read("XCASrecpythagore.user");
+Resultat:=string("Recpythagoret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASrecpythagoref.cxx}
+Recpythagoref(L):={
+local A,B,C,ab,bc,ca,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ab:=L[3];
+bc:=L[4];
+ca:=L[5];
+typdes:=L[6];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C;
+numeric AB,AC,BC;
+
+BC:=5;    %choisir les longueurs
+AB:=3;
+AC:=4;
+
+B:=(0,0);
+C:=(BC*u,0);
+
+path cc,cb;
+cc:=arccercle((xpart(C) +AC*u,ypart(C)),(xpart(C)-AC*u,ypart(C)),C);
+cb:=arccercle((xpart(B)+AB*u,ypart(B)),(xpart(B)-AB*u,ypart(B)),B);
+A= cc intersectionpoint cb;
+
+trace polygone(A,B,C);
+
+label.llft(TEX(\" $"+B+"$ \"),B); 
+label.lrt(TEX(\" $"+C+"$ \"),C);
+label.top(TEX(\" $"+A+"$ \"),A) withcolor red;
+
+trace codeperp(B,A,C,5);
+label.bot(TEX(\" ? \"),A shifted (0,-0.3u));
+
+
+label.ulft(TEX(\" $"+latex(ab)+"$ \"),0.5[A,B]); 
+label.urt(TEX(\" $"+latex(ca)+"$ \"),0.5[A,C]);
+label.bot(TEX(\" $"+latex(bc)+"$ \"),0.5[B,C]);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecpythagoref.giac}
+maple_mode(0);
+read("XCASrecpythagoref.cxx");
+Sortie:=fopen("XCASrecpythagoref.mp");
+donnees:=read("XCASrecpythagore.user");
+Resultat:=string("Recpythagoref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptrecpythagore}
+\newcommand{\crpy}{\theCptrecpythagore}
+%% \crpy change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-recpythagore}[1]
+{\setcounter{Cptrecpythagore}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASrecpythagore.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASrecpythagoref.mp}
+\executGiacmp{XCASrecpythagoref.giac}
+\IfFileExists{\nomtravail_recpythagoref\crpy.mp}{\immediate\write18{\rem \nomtravail_recpythagoref\crpy.mp}}{}
+\immediate\write18{\cat XCASrecpythagoref.mp >> \nomtravail_recpythagoref\crpy.mp}
+\immediate\write18{mpost \nomtravail_recpythagoref\crpy.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_recpythagoref\crpy.mp}{\immediate\write18{mpost \nomtravail_recpythagoref\crpy.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_recpythagoref\crpy.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASrecpythagoret.tex}
+\executGiacmp{XCASrecpythagoret.giac}
+\IfFileExists{\nomtravail_recpythagoret\crpy.tex}{\immediate\write18{\rem \nomtravail_recpythagoret\crpy.tex}}{}
+\immediate\write18{\cat XCASrecpythagoret.tex >> \nomtravail_recpythagoret\crpy.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_recpythagoret\crpy.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_recpythagoret\crpy.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_recpythagoret\crpy.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-recpythagore*}[1]
+{\setcounter{Cptrecpythagore}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASrecpythagoref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_recpythagoret\crpy.tex}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Theoreme de Thales
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASthalest.cxx}
+Thalest(L):={
+local A,B,C,M,N,typet,typdes,largeu;
+local textc;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+M:=L[3];
+N:=L[4];
+typet:=L[5]
+typdes:=L[6];
+largeu:=if(L[5]=="papillon"){5.4}else{4.2};
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>"+largeu+"cm}}{\\addtolength{\\largeurcercle}{"+largeu+"cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_thalesf\\ctth.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+$"+M+"$ est sur $(\\textcolor{red}{"+A+"}"+B+")$\\\\\\
+
+$"+N+"$ est sur $(\\textcolor{red}{"+A+"}"+C+")$\\\\\\
+
+$("+M+""+N+") \\sslash ("+B+""+C+")$\\\\\\
+
+D'apr\\`es le th\\'eor\\`eme de Thal\\`es,\\\\\\
+
+$\\dfrac{\\textcolor{red}{"+A+"}"+M+"}{\\textcolor{red}{"+A+"}"+B+"}
+=\\dfrac{\\textcolor{red}{"+A+"}"+N+"}{\\textcolor{red}{"+A+"}"+C+"}
+=\\dfrac{"+M+""+N+"}{"+B+""+C+"}$\\\\\\
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASthalest.giac}
+maple_mode(0);
+read("XCASthalest.cxx");
+Sortie:=fopen("XCASthalest.tex");
+donnees:=read("XCASthales.user");
+Resultat:=string("Thalest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASthalesf.cxx}
+Thalesf(L):={
+local A,B,C,M,N,typet,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+M:=L[3];
+N:=L[4];
+typet:=L[5];
+typdes:=L[6];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+if (typet=="normal") then
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,M,N;
+
+C:=(0,0);
+A:=(4u,0);
+B:=(u,3u);
+
+numeric cr;
+cr:=0.3;
+
+M:=cr[A,B];
+N:=cr[A,C];
+
+trace segment (B,A);
+trace segment (A,C);
+trace segment(M,N) withcolor red withpen pencircle scaled 1.5pt;
+trace segment(B,C) withcolor red withpen pencircle scaled 1.5pt;
+
+label.bot(TEX(\" \\textbf{$"+A+"$} \"),A) withcolor red;
+label.top(TEX(\" $"+B+"$ \"),B);
+label.bot(TEX(\" $"+C+"$ \"),C);
+label.urt(TEX(\" $"+M+"$ \"),M);
+label.bot(TEX(\" $"+N+"$ \"),N);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+else
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,M,N;
+
+C:=(0,0);
+A:=(4u,0);
+B:=(u,3u);
+
+numeric cr;
+cr:=-0.3;
+
+M:=cr[A,B];
+N:=cr[A,C];
+
+trace segment (B,A);
+trace segment (A,C);
+trace segment(M,N) withcolor red withpen pencircle scaled 1.5pt;
+trace segment(B,C) withcolor red withpen pencircle scaled 1.5pt;
+trace segment (M,A);
+trace segment (A,N);
+
+label.bot(TEX(\" \\textbf{$"+A+"$} \"),A) withcolor red;
+label.top(TEX(\" $"+B+"$ \"),B);
+label.bot(TEX(\" $"+C+"$ \"),C);
+label.llft(TEX(\" $"+M+"$ \"),M);
+label.top(TEX(\" $"+N+"$ \"),N);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASthalesf.giac}
+maple_mode(0);
+read("XCASthalesf.cxx");
+Sortie:=fopen("XCASthalesf.mp");
+donnees:=read("XCASthales.user");
+Resultat:=string("Thalesf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptthales}
+\newcommand{\ctth}{\theCptthales}
+%% \ctth change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-thales}[1]
+{\setcounter{Cptthales}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASthales.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASthalesf.mp}
+\executGiacmp{XCASthalesf.giac}
+\IfFileExists{\nomtravail_thalesf\ctth.mp}{\immediate\write18{\rem \nomtravail_thalesf\ctth.mp}}{}
+\immediate\write18{\cat XCASthalesf.mp >> \nomtravail_thalesf\ctth.mp}
+\immediate\write18{mpost \nomtravail_thalesf\ctth.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_thalesf\ctth.mp}{\immediate\write18{mpost \nomtravail_thalesf\ctth.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_thalesf\ctth.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASthalest.tex}
+\executGiacmp{XCASthalest.giac}
+\IfFileExists{\nomtravail_thalest\ctth.tex}{\immediate\write18{\rem \nomtravail_thalest\ctth.tex}}{}
+\immediate\write18{\cat XCASthalest.tex >> \nomtravail_thalest\ctth.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_thalest\ctth.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_thalest\ctth.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_thalest\ctth.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-thales*}[1]
+{\setcounter{Cptthales}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASthalesf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_thalest\ctth.tex}
+
+}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Reciproque du theoreme de Thales
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecthalest.cxx}
+Recthalest(L):={
+local A,B,C,M,N,typet;
+local am,ab,an,ac,typdes,largeu;
+local textc;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+M:=L[3];
+N:=L[4];
+typet:=L[5];
+am:=L[6];
+ab:=L[7];
+an:=L[8];
+ac:=L[9];
+typdes:=L[10];
+
+largeu:=if(L[5]=="papillon"){5.4}else{4.2};
+
+if (am*ac==an*ab) then
+{
+  textc:="
+Les produits en croix sont \\'egaux.\\\\\\
+
+\\vspace{5mm}
+
+Comme $\\dfrac{"+A+""+M+"}{"+A+""+B+"}=\\dfrac{"+A+""+N+"}{"+A+""+C+"}$,
+les droites $("+M+""+N+")$ et $("+B+""+C+")$ sont parall\\`eles.
+";
+}
+else
+{
+  textc:="
+Les produits en croix sont diff\\'erents.\\\\\\
+
+\\vspace{5mm}
+
+Comme $\\dfrac{"+A+""+M+"}{"+A+""+B+"} \\neq \\dfrac{"+A+""+N+"}{"+A+""+C+"}$,
+les droites $("+M+""+N+")$ et $("+B+""+C+")$ ne sont pas parall\\`eles.
+";
+}
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>"+largeu+"cm}}{\\addtolength{\\largeurcercle}{"+largeu+"cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_recthalesf\\crth.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+
+$"+M+"$ est sur $(\\textcolor{red}{"+A+"}"+B+")$\\\\\\
+
+$"+N+"$ est sur $(\\textcolor{red}{"+A+"}"+C+")$\\\\\\
+
+L'ordre des points est respect\\'e.\\\\\\
+
+D'apr\\`es  la r\\'eciproque du th\\'eor\\`eme de Thal\\`es,\\\\\\
+Si 
+$\\dfrac{\\textcolor{red}{"+A+"}"+M+"}{\\textcolor{red}{"+A+"}"+B+"}
+=\\dfrac{\\textcolor{red}{"+A+"}"+N+"}{\\textcolor{red}{"+A+"}"+C+"}$,  les droites $("+M+""+N+")$ et $("+B+""+C+")$ sont parall\\`eles.
+
+\\vspace{5mm}
+
+V\\'erifions :
+
+$"+A+""+M+" \\times "+A+""+C+"= "+latex(am)+" \\times "+latex(ac)+" = "+latex(am*ac)+"$\\\\\\
+
+$"+A+""+N+" \\times "+A+""+B+"= "+latex(an)+" \\times "+latex(ab)+" = "+latex(an*ab)+"$
+
+"+textc+"
+
+\\end{minipage}
+";
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecthalest.giac}
+maple_mode(0);
+read("XCASrecthalest.cxx");
+Sortie:=fopen("XCASrecthalest.tex");
+donnees:=read("XCASrecthales.user");
+Resultat:=string("Recthalest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASrecthalesf.cxx}
+Recthalesf(L):={
+local A,B,C,M,N,typet;
+local am,ab,an,ac,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+M:=L[3];
+N:=L[4];
+typet:=L[5];
+am:=L[6];
+ab:=L[7];
+an:=L[8];
+ac:=L[9];
+typdes:=L[10];
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+if (typet=="normal") then
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,M,N;
+
+C:=(0,0);
+A:=(4u,0);
+B:=(u,3u);
+
+numeric cr;
+cr:=0.3;
+
+M:=cr[A,B];
+N:=cr[A,C];
+
+trace segment (B,A);
+trace segment (A,C);
+trace segment(M,N) withcolor red withpen pencircle scaled 1.5pt;
+trace segment(B,C) withcolor red withpen pencircle scaled 1.5pt;
+
+label.bot(TEX(\" \\textbf{$"+A+"$} \"),A) withcolor red;
+label.top(TEX(\" $"+B+"$ \"),B);
+label.bot(TEX(\" $"+C+"$ \"),C);
+label.urt(TEX(\" $"+M+"$ \"),M);
+label.bot(TEX(\" $"+N+"$ \"),N);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+else
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,M,N;
+
+C:=(0,0);
+A:=(4u,0);
+B:=(u,3u);
+
+numeric cr;
+cr:=-0.3;
+
+M:=cr[A,B];
+N:=cr[A,C];
+
+trace segment (B,A);
+trace segment (A,C);
+trace segment(M,N) withcolor red withpen pencircle scaled 1.5pt;
+trace segment(B,C) withcolor red withpen pencircle scaled 1.5pt;
+trace segment (M,A);
+trace segment (A,N);
+
+label.bot(TEX(\" \\textbf{$"+A+"$} \"),A) withcolor red;
+label.top(TEX(\" $"+B+"$ \"),B);
+label.bot(TEX(\" $"+C+"$ \"),C);
+label.llft(TEX(\" $"+M+"$ \"),M);
+label.top(TEX(\" $"+N+"$ \"),N);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrecthalesf.giac}
+maple_mode(0);
+read("XCASrecthalesf.cxx");
+Sortie:=fopen("XCASrecthalesf.mp");
+donnees:=read("XCASrecthales.user");
+Resultat:=string("Recthalesf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptrecthales}
+\newcommand{\crth}{\theCptrecthales}
+%% \crth change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-recthales}[1]
+{\setcounter{Cptrecthales}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASrecthales.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASrecthalesf.mp}
+\executGiacmp{XCASrecthalesf.giac}
+\IfFileExists{\nomtravail_recthalesf\crth.mp}{\immediate\write18{\rem \nomtravail_recthalesf\crth.mp}}{}
+\immediate\write18{\cat XCASrecthalesf.mp >> \nomtravail_recthalesf\crth.mp}
+\immediate\write18{mpost \nomtravail_recthalesf\crth.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_recthalesf\crth.mp}{\immediate\write18{mpost \nomtravail_recthalesf\crth.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_recthalesf\crth.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASrecthalest.tex}
+\executGiacmp{XCASrecthalest.giac}
+\IfFileExists{\nomtravail_recthalest\crth.tex}{\immediate\write18{\rem \nomtravail_recthalest\crth.tex}}{}
+\immediate\write18{\cat XCASrecthalest.tex >> \nomtravail_recthalest\crth.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_recthalest\crth.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_recthalest\crth.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_recthalest\crth.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-recthales*}[1]
+{\setcounter{Cptrecthales}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASrecthalesf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_recthalest\crth.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Trigonometrie
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStrigot.cxx}
+Trigot(L):={
+local A,B,C,ang,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ang:=L[3];
+typdes:=L[4];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+if (ang==2) then
+{
+  Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>5.5cm}}{\\addtolength{\\largeurcercle}{5.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}[width=\\largeurcercle]{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics{\\nomtravail_trigof\\ctri.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$ rectangle en ${\\textcolor{red}{"+A+"}}$,
+
+$\\cos (\\widehat{"+A+""+C+""+B+"})=\\dfrac{"+A+""+C+"}{"+B+""+C+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e adjacent}}{\\text{hypot\\'enuse}} \\right)$\\\\\\
+
+
+$\\sin (\\widehat{"+A+""+C+""+B+"})=\\dfrac{"+A+""+B+"}{"+B+""+C+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e oppos\\'e}}{\\text{hypot\\'enuse}} \\right)$ \\\\\\
+
+
+$\\tan (\\widehat{"+A+""+C+""+B+"})=\\dfrac{"+A+""+B+"}{"+A+""+C+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e oppos\\'e}}{\\text{c\\^ot\\'e adjacent}} \\right)$\\\\\\
+
+\\end{minipage}
+";
+}
+else
+{
+  Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}[width=\\largeurcercle]{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics{\\nomtravail_trigof\\ctri.0}
+\\end{center}
+
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$ rectangle en ${\\textcolor{red}{"+A+"}}$,
+
+$\\cos (\\widehat{"+A+""+B+""+C+"})=\\dfrac{"+A+""+B+"}{"+B+""+C+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e adjacent}}{\\text{hypot\\'enuse}} \\right)$\\\\\\
+
+
+$\\sin (\\widehat{"+A+""+B+""+C+"})=\\dfrac{"+A+""+C+"}{"+B+""+C+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e oppos\\'e}}{\\text{hypot\\'enuse}} \\right)$ \\\\\\
+
+
+$\\tan (\\widehat{"+A+""+B+""+C+"})=\\dfrac{"+A+""+C+"}{"+A+""+B+"} 
+\\left( = \\dfrac{\\text{c\\^ot\\'e oppos\\'e}}{\\text{c\\^ot\\'e adjacent}} \\right)$\\\\\\
+
+\\end{minipage}
+";
+}
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStrigot.giac}
+maple_mode(0);
+read("XCAStrigot.cxx");
+Sortie:=fopen("XCAStrigot.tex");
+donnees:=read("XCAStrigo.user");
+Resultat:=string("Trigot(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCAStrigof.cxx}
+Trigof(L):={
+local A,B,C,ang,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+ang:=L[3];
+typdes:=L[4];
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+if (ang==2) then
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C;
+
+A=(0,0);
+B=(5u,0);
+C=(0,4u);
+
+trace triangle(A,B,C);
+trace codeperp(B,A,C,6);
+trace marqueangle(A,C,B,2) withcolor blue withpen pencircle scaled 1.5pt;
+
+label.bot(TEX(\" $"+A+"$ \"),A) withcolor red;
+label.bot(TEX(\" $"+B+"$ \"),B);
+label.top(TEX(\" $"+C+"$ \"),C);
+
+
+label.bot(TEX(\" c\\^ot\\'e oppos\\'e \"), 0.5[A,B]) withcolor blue;
+label.lft(TEX(\" c\\^ot\\'e adjacent\") , 0.5[A,C]) withcolor blue;
+label.urt(TEX(\" hypot\\'enuse \"), 0.5[C,B]) withcolor red;
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+else
+{
+  Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C;
+
+A=(0,0);
+B=(5u,0);
+C=(0,4u);
+
+trace triangle(A,B,C);
+trace codeperp(B,A,C,6);
+trace marqueangle(C,B,A,2) withcolor blue withpen pencircle scaled 1.5pt;
+
+label.bot(TEX(\" $"+A+"$ \"),A) withcolor red;
+label.bot(TEX(\" $"+B+"$ \"),B);
+label.top(TEX(\" $"+C+"$ \"),C);
+
+
+label.lft(TEX(\" c\\^ot\\'e oppos\\'e \"), 0.5[A,C]) withcolor blue;
+label.bot(TEX(\" c\\^ot\\'e adjacent\") , 0.5[A,B]) withcolor blue;
+label.urt(TEX(\" hypot\\'enuse \"), 0.5[C,B]) withcolor red;
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+}
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStrigof.giac}
+maple_mode(0);
+read("XCAStrigof.cxx");
+Sortie:=fopen("XCAStrigof.mp");
+donnees:=read("XCAStrigo.user");
+Resultat:=string("Trigof(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cpttrigo}
+\newcommand{\ctri}{\theCpttrigo}
+%% \ctri change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-trigo}[1]
+{\setcounter{Cpttrigo}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAStrigo.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAStrigof.mp}
+\executGiacmp{XCAStrigof.giac}
+\IfFileExists{\nomtravail_trigof\ctri.mp}{\immediate\write18{\rem \nomtravail_trigof\ctri.mp}}{}
+\immediate\write18{\cat XCAStrigof.mp >> \nomtravail_trigof\ctri.mp}
+\immediate\write18{mpost \nomtravail_trigof\ctri.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_trigof\ctri.mp}{\immediate\write18{mpost \nomtravail_trigof\ctri.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_trigof\ctri.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAStrigot.tex}
+\executGiacmp{XCAStrigot.giac}
+\IfFileExists{\nomtravail_trigot\ctri.tex}{\immediate\write18{\rem \nomtravail_trigot\ctri.tex}}{}
+\immediate\write18{\cat XCAStrigot.tex >> \nomtravail_trigot\ctri.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_trigot\ctri.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_trigot\ctri.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_trigot\ctri.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-trigo*}[1]
+{\setcounter{Cpttrigo}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStrigof.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_trigot\ctri.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Angles opposes par le sommet
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangopposet.cxx}
+Angopposet(L):={
+local O,anga,angb,typdes;
+
+O:=L[0];
+anga:=L[1];
+angb:=L[2];
+typdes:=L[3];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_angopposef\\caop.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Les angles $\\widehat{"+anga+"}$ et $\\widehat{"+angb+"}$ sont oppos\\'es par le sommet $"+O+"$ :
+
+\\[ \\widehat{"+anga+"}=\\widehat{"+angb+"} \\]
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangopposet.giac}
+maple_mode(0);
+read("XCASangopposet.cxx");
+Sortie:=fopen("XCASangopposet.tex");
+donnees:=read("XCASangoppose.user");
+Resultat:=string("Angopposet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASangopposef.cxx}
+Angopposef(L):={
+local O,anga,angb,typdes;
+
+O:=L[0];
+anga:=L[1];
+angb:=L[2];
+typdes:=L[3];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,D,O;
+
+O:=(0,0);
+A:=(-3u,-u);
+B:=(-3u,u);
+C:=-A;
+D:=-B;
+
+trace segment(A,O);
+trace segment(B,O);
+trace segment(C,O);
+trace segment(D,O);
+trace marqueangle(D,O,C,2) withcolor blue withpen pencircle scaled 1.5pt;
+trace marqueangle(B,O,A,2) withcolor blue withpen pencircle scaled 1.5pt;
+
+label.bot(TEX(\" $"+O+"$ \"),O) withcolor blue;
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangopposef.giac}
+maple_mode(0);
+read("XCASangopposef.cxx");
+Sortie:=fopen("XCASangopposef.mp");
+donnees:=read("XCASangoppose.user");
+Resultat:=string("Angopposef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptangoppose}
+\newcommand{\caop}{\theCptangoppose}
+%% \caop change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angoppose}[1]
+{\setcounter{Cptangoppose}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASangoppose.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangopposef.mp}
+\executGiacmp{XCASangopposef.giac}
+\IfFileExists{\nomtravail_angopposef\caop.mp}{\immediate\write18{\rem \nomtravail_angopposef\caop.mp}}{}
+\immediate\write18{\cat XCASangopposef.mp >> \nomtravail_angopposef\caop.mp}
+\immediate\write18{mpost \nomtravail_angopposef\caop.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angopposef\caop.mp}{\immediate\write18{mpost \nomtravail_angopposef\caop.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_angopposef\caop.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangopposet.tex}
+\executGiacmp{XCASangopposet.giac}
+\IfFileExists{\nomtravail_angopposet\caop.tex}{\immediate\write18{\rem \nomtravail_angopposet\caop.tex}}{}
+\immediate\write18{\cat XCASangopposet.tex >> \nomtravail_angopposet\caop.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angopposet\caop.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_angopposet\caop.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_angopposet\caop.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angoppose*}[1]
+{\setcounter{Cptangoppose}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASangopposef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_angopposet\caop.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Angles alternes-internes 
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangaltintt.cxx}
+Angaltintt(L):={
+local anga,angb,typdes;
+
+anga:=L[0];
+angb:=L[1];
+typdes:=L[2];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_angaltintf\\caai.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Les angles $\\widehat{"+anga+"}$ et $\\widehat{"+angb+"}$ sont alternes-internes.\\\\\\
+
+Les droites \\'etant parall\\`eles,
+
+\\[ \\widehat{"+anga+"}=\\widehat{"+angb+"} \\]
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangaltintt.giac}
+maple_mode(0);
+read("XCASangaltintt.cxx");
+Sortie:=fopen("XCASangaltintt.tex");
+donnees:=read("XCASangaltint.user");
+Resultat:=string("Angaltintt(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASangaltintf.cxx}
+Angaltintf(L):={
+local anga,angb,typdes;
+
+anga:=L[0];
+angb:=L[1];
+typdes:=L[2];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,D,E,F,G,H;
+
+A:=(-3u,-u);
+B:=(2u,-u);
+C:=A shifted(u,2u);
+D:=B shifted(u,2u);
+E:=(-1u,-u);
+F:=E shifted(u,2u);
+G:=1.2[F,E];
+H:=1.2[E,F];
+
+
+trace segment(A,B);
+trace segment(C,D);
+trace segment(G,E);
+trace segment(E,F);
+trace segment(F,H);
+trace marqueangle(B,E,F,2) withcolor blue withpen pencircle scaled 1.5pt;
+trace marqueangle(C,F,E,2) withcolor blue withpen pencircle scaled 1.5pt;
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangaltintf.giac}
+maple_mode(0);
+read("XCASangaltintf.cxx");
+Sortie:=fopen("XCASangaltintf.mp");
+donnees:=read("XCASangaltint.user");
+Resultat:=string("Angaltintf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptangaltint}
+\newcommand{\caai}{\theCptangaltint}
+%% \caai change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angaltint}[1]
+{\setcounter{Cptangaltint}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASangaltint.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangaltintf.mp}
+\executGiacmp{XCASangaltintf.giac}
+\IfFileExists{\nomtravail_angaltintf\caai.mp}{\immediate\write18{\rem \nomtravail_angaltintf\caai.mp}}{}
+\immediate\write18{\cat XCASangaltintf.mp >> \nomtravail_angaltintf\caai.mp}
+\immediate\write18{mpost \nomtravail_angaltintf\caai.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angaltintf\caai.mp}{\immediate\write18{mpost \nomtravail_angaltintf\caai.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_angaltintf\caai.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangaltintt.tex}
+\executGiacmp{XCASangaltintt.giac}
+\IfFileExists{\nomtravail_angaltintt\caai.tex}{\immediate\write18{\rem \nomtravail_angaltintt\caai.tex}}{}
+\immediate\write18{\cat XCASangaltintt.tex >> \nomtravail_angaltintt\caai.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angaltintt\caai.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_angaltintt\caai.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_angaltintt\caai.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angaltint*}[1]
+{\setcounter{Cptangaltint}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASangaltintf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_angaltintt\caai.tex}
+
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Angles correspondants
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcorrest.cxx}
+Angcorrest(L):={
+local anga,angb,typdes;
+
+anga:=L[0];
+angb:=L[1];
+typdes:=L[2];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_angcorresf\\caco.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Les angles $\\widehat{"+anga+"}$ et $\\widehat{"+angb+"}$ sont correspondants.\\\\\\
+
+Les droites \\'etant parall\\`eles,
+
+\\[ \\widehat{"+anga+"}=\\widehat{"+angb+"} \\]
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcorrest.giac}
+maple_mode(0);
+read("XCASangcorrest.cxx");
+Sortie:=fopen("XCASangcorrest.tex");
+donnees:=read("XCASangcorres.user");
+Resultat:=string("Angcorrest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASangcorresf.cxx}
+Angcorresf(L):={
+local anga,angb,typdes;
+
+anga:=L[0];
+angb:=L[1];
+typdes:=L[2];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,D,E,F,G,H;
+
+A:=(-3u,-u);
+B:=(2u,-u);
+C:=A shifted(u,2u);
+D:=B shifted(u,2u);
+E:=(-1u,-u);
+F:=E shifted(u,2u);
+G:=1.2[F,E];
+H:=1.5[E,F];
+
+
+trace segment(A,B);
+trace segment(C,D);
+trace segment(G,E);
+trace segment(E,F);
+trace segment(F,H);
+trace marqueangle(B,E,F,2) withcolor blue withpen pencircle scaled 1.5pt;
+trace marqueangle(D,F,H,2) withcolor blue withpen pencircle scaled 1.5pt;
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASangcorresf.giac}
+maple_mode(0);
+read("XCASangcorresf.cxx");
+Sortie:=fopen("XCASangcorresf.mp");
+donnees:=read("XCASangcorres.user");
+Resultat:=string("Angcorresf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptangcorres}
+\newcommand{\caco}{\theCptangcorres}
+%% \caco change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angcorres}[1]
+{\setcounter{Cptangcorres}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASangcorres.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangcorresf.mp}
+\executGiacmp{XCASangcorresf.giac}
+\IfFileExists{\nomtravail_angcorresf\caco.mp}{\immediate\write18{\rem \nomtravail_angcorresf\caco.mp}}{}
+\immediate\write18{\cat XCASangcorresf.mp >> \nomtravail_angcorresf\caco.mp}
+\immediate\write18{mpost \nomtravail_angcorresf\caco.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angcorresf\caco.mp}{\immediate\write18{mpost \nomtravail_angcorresf\caco.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_angcorresf\caco.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASangcorrest.tex}
+\executGiacmp{XCASangcorrest.giac}
+\IfFileExists{\nomtravail_angcorrest\caco.tex}{\immediate\write18{\rem \nomtravail_angcorrest\caco.tex}}{}
+\immediate\write18{\cat XCASangcorrest.tex >> \nomtravail_angcorrest\caco.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_angcorrest\caco.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_angcorrest\caco.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_angcorrest\caco.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-angcorres*}[1]
+{\setcounter{Cptangcorres}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASangcorresf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_angcorrest\caco.tex}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Medianes d'un triangle
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmedianest.cxx}
+Medianest(L):={
+local A,B,C,I,J,K,G,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+G:=L[6];
+typdes:=L[7];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_medianesf\\cdmg.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$, les m\\'edianes  $("+A+""+I+")$, $("+B+""+J+")$ et $("+C+""+K+")$ se coupent en  $"+G+"$, centre de gravit\\'e du triangle.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmedianest.giac}
+maple_mode(0);
+read("XCASmedianest.cxx");
+Sortie:=fopen("XCASmedianest.tex");
+donnees:=read("XCASmedianes.user");
+Resultat:=string("Medianest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASmedianesf.cxx}
+Medianesf(L):={
+local A,B,C,I,J,K,G,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+G:=L[6];
+typdes:=L[7];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+
+pair A,B,C,I,J,K,G;
+pair AA,II,BB,JJ,CC,KK;
+
+A=(0,0);
+B=(2u,4u);
+C=(5u,-u);
+I=0.5[B,C];
+%I:=milieu(B,C);
+J=0.5[A,C];
+K=0.5[B,A];
+
+AA:=1.2[I,A];
+II:=1.2[A,I];
+BB:=1.2[J,B];
+JJ:=1.2[B,J];
+CC:=1.2[K,C];
+KK:=1.2[C,K];
+
+
+G=whatever[A,I]=whatever[B,J];   %centre de gravite
+%G:=(A+B+C)/3;
+%G:=iso(A,B,C);
+
+
+trace triangle(A,B,C);
+trace chemin(AA,A,,G,I,II) withcolor red;
+trace chemin(BB,B,G,J,JJ) withcolor red;
+trace chemin(CC,C,G,K,KK) withcolor red;
+
+
+trace codesegments(B,I,I,C,2);
+trace codesegments(A,J,J,C,1);
+trace codesegments(B,K,K,A,3);
+
+
+
+
+marque_p:=\"rien\";
+label.ulft(TEX(\" $ "+A+" $ \"),A);
+label.urt(TEX(\" $ "+B+" $ \"),B);
+label.bot(TEX(\" $ "+C+" $ \"),C);
+label.top(TEX(\" $ "+I+" $ \"),I);
+label.llft(TEX(\" $ "+J+" $ \"),J);
+label.llft(TEX(\" $ "+K+" $ \"),K);
+label.urt(TEX(\" $ "+G+" $ \"),G);
+
+%label.lrt(btex $(d_1)$ etex, 1.6[G,I]);
+%label.llft(btex $(d_2)$ etex, 1.4[G,J]);
+%label.urt(btex $(d_3)$ etex, 1.6[G,K]);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmedianesf.giac}
+maple_mode(0);
+read("XCASmedianesf.cxx");
+Sortie:=fopen("XCASmedianesf.mp");
+donnees:=read("XCASmedianes.user");
+Resultat:=string("Medianesf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptmedianes}
+\newcommand{\cdmg}{\theCptmedianes}
+%% \cdmg change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-medianes}[1]
+{\setcounter{Cptmedianes}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASmedianes.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASmedianesf.mp}
+\executGiacmp{XCASmedianesf.giac}
+\IfFileExists{\nomtravail_medianesf\cdmg.mp}{\immediate\write18{\rem \nomtravail_medianesf\cdmg.mp}}{}
+\immediate\write18{\cat XCASmedianesf.mp >> \nomtravail_medianesf\cdmg.mp}
+\immediate\write18{mpost \nomtravail_medianesf\cdmg.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_medianesf\cdmg.mp}{\immediate\write18{mpost \nomtravail_medianesf\cdmg.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_medianesf\cdmg.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASmedianest.tex}
+\executGiacmp{XCASmedianest.giac}
+\IfFileExists{\nomtravail_medianest\cdmg.tex}{\immediate\write18{\rem \nomtravail_medianest\cdmg.tex}}{}
+\immediate\write18{\cat XCASmedianest.tex >> \nomtravail_medianest\cdmg.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_medianest\cdmg.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_medianest\cdmg.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_medianest\cdmg.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-medianes*}[1]
+{\setcounter{Cptmedianes}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASmedianesf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_medianest\cdmg.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Mediatrices d'un triangle
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmediatricest.cxx}
+Mediatricest(L):={
+local A,B,C,I,J,K,O,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+O:=L[6];
+typdes:=L[7];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_mediatricesf\\cdmc.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$, les m\\'ediatrices  se coupent en  $"+O+"$, centre du cercle circonscrit du triangle.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmediatricest.giac}
+maple_mode(0);
+read("XCASmediatricest.cxx");
+Sortie:=fopen("XCASmediatricest.tex");
+donnees:=read("XCASmediatrices.user");
+Resultat:=string("Mediatricest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASmediatricesf.cxx}
+Mediatricesf(L):={
+local A,B,C,I,J,K,O,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+O:=L[6];
+typdes:=L[7];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+
+pair A,B,C,I,J,K,O;
+pair AA,II,BB,JJ,CC,KK;
+
+A=(0,0);
+B=(2u,4u);
+C=(5u,-u);
+I=0.5[B,C];
+%I:=milieu(B,C);
+J=0.5[A,C];
+K=0.5[B,A];
+
+O=CentreCercleC(A,B,C);   %centre du cercle circonscrit
+
+AA:=5.5[I,O];
+II:=4.0[O,I];
+BB:=3.0[J,O];
+JJ:=2.0[O,J];
+CC:=2.7[K,O];
+KK:=1.7[O,K];
+
+
+trace triangle(A,B,C);
+trace chemin(AA,O,I,II) withcolor red;
+trace chemin(BB,O,J,JJ) withcolor red;
+trace chemin(CC,O,K,KK) withcolor red;
+
+
+trace codesegments(B,I,I,C,2);
+trace codesegments(A,J,J,C,1);
+trace codesegments(B,K,K,A,3);
+
+trace codeperp(O,I,C,5) withcolor red;
+trace codeperp(A,J,O,5) withcolor red;
+trace codeperp(O,K,A,5) withcolor red;
+
+
+trace arccercle(C,B,O) withcolor blue withpen pencircle scaled 1pt;
+trace arccercle(B,A,O) withcolor blue withpen pencircle scaled 1pt;
+trace arccercle(A,C,O) withcolor blue withpen pencircle scaled 1pt;
+
+marque_p:=\"rien\";
+label.llft(TEX(\" $ "+A+" $ \"),A);
+label.urt(TEX(\" $ "+B+" $ \"),B);
+label.bot(TEX(\" $ "+C+" $ \"),C);
+label.top(TEX(\" $ "+I+" $ \"),I);
+label.llft(TEX(\" $ "+J+" $ \"),J);
+label.top(TEX(\" $ "+K+" $ \"),K);
+label.lrt(TEX(\" $ "+O+" $ \"),O);
+
+%label.lrt(btex $(d_1)$ etex, 1.6[G,I]);
+%label.llft(btex $(d_2)$ etex, 1.4[G,J]);
+%label.urt(btex $(d_3)$ etex, 1.6[G,K]);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASmediatricesf.giac}
+maple_mode(0);
+read("XCASmediatricesf.cxx");
+Sortie:=fopen("XCASmediatricesf.mp");
+donnees:=read("XCASmediatrices.user");
+Resultat:=string("Mediatricesf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptmediatrices}
+\newcommand{\cdmc}{\theCptmediatrices}
+%% \cdmc change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-mediatrices}[1]
+{\setcounter{Cptmediatrices}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASmediatrices.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASmediatricesf.mp}
+\executGiacmp{XCASmediatricesf.giac}
+\IfFileExists{\nomtravail_mediatricesf\cdmc.mp}{\immediate\write18{\rem \nomtravail_mediatricesf\cdmc.mp}}{}
+\immediate\write18{\cat XCASmediatricesf.mp >> \nomtravail_mediatricesf\cdmc.mp}
+\immediate\write18{mpost \nomtravail_mediatricesf\cdmc.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_mediatricesf\cdmc.mp}{\immediate\write18{mpost \nomtravail_mediatricesf\cdmc.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_mediatricesf\cdmc.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASmediatricest.tex}
+\executGiacmp{XCASmediatricest.giac}
+\IfFileExists{\nomtravail_mediatricest\cdmc.tex}{\immediate\write18{\rem \nomtravail_mediatricest\cdmc.tex}}{}
+\immediate\write18{\cat XCASmediatricest.tex >> \nomtravail_mediatricest\cdmc.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_mediatricest\cdmc.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_mediatricest\cdmc.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_mediatricest\cdmc.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-mediatrices*}[1]
+{\setcounter{Cptmediatrices}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASmediatricesf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_mediatricest\cdmc.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Hauteurs d'un triangle
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAShauteurst.cxx}
+Hauteurst(L):={
+local A,B,C,I,J,K,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+H:=L[6];
+typdes:=L[7];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_hauteursf\\cdho.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$, les hauteurs  $("+A+""+I+")$, $("+B+""+J+")$ et $("+C+""+K+")$ se coupent en  $"+H+"$, orthocentre du triangle.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAShauteurst.giac}
+maple_mode(0);
+read("XCAShauteurst.cxx");
+Sortie:=fopen("XCAShauteurst.tex");
+donnees:=read("XCAShauteurs.user");
+Resultat:=string("Hauteurst(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCAShauteursf.cxx}
+Hauteursf(L):={
+local A,B,C,I,J,K,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+H:=L[6];
+typdes:=L[7];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+
+pair A,B,C,I,J,K,H;
+pair AA,II,BB,JJ,CC,KK;
+
+A=(0,0);
+B=(2u,4u);
+C=(5u,-u);
+I=projection(A,B,C);
+J=projection(B,A,C);
+K=projection(C,B,A);
+
+H=Orthocentre(A,B,C);     % orthocentre
+
+AA:=1.2[I,A];
+II:=1.2[A,I];
+BB:=1.2[J,B];
+JJ:=1.2[B,J];
+CC:=1.2[K,C];
+KK:=1.2[C,K];
+
+
+trace triangle(A,B,C);
+trace chemin(AA,A,H,I,II) withcolor red;
+trace chemin(BB,B,H,J,JJ) withcolor red;
+trace chemin(CC,C,H,K,KK) withcolor red;
+
+
+trace codeperp(H,I,C,5) withcolor red;
+trace codeperp(H,J,C,5) withcolor red;
+trace codeperp(H,K,A,5) withcolor red;
+
+
+marque_p:=\"rien\";
+label.bot(TEX(\" $ "+A+" $ \"),A);
+label.urt(TEX(\" $ "+B+" $ \"),B);
+label.bot(TEX(\" $ "+C+" $ \"),C);
+label.rt(TEX(\" $ "+I+" $ \"),I);
+label.llft(TEX(\" $ "+J+" $ \"),J);
+label.ulft(TEX(\" $ "+K+" $ \"),K);
+label.lrt(TEX(\" $ "+H+" $ \"),H);
+
+
+%label.ulft(btex $(d_1)$ etex, 3.2[A,H]);
+%label.urt(btex $(d_2)$ etex, 1.6[B,H]);
+%label.urt(btex $(d_3)$ etex, 1.4[C,H]);
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAShauteursf.giac}
+maple_mode(0);
+read("XCAShauteursf.cxx");
+Sortie:=fopen("XCAShauteursf.mp");
+donnees:=read("XCAShauteurs.user");
+Resultat:=string("Hauteursf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cpthauteurs}
+\newcommand{\cdho}{\theCpthauteurs}
+%% \cdho change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-hauteurs}[1]
+{\setcounter{Cpthauteurs}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAShauteurs.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAShauteursf.mp}
+\executGiacmp{XCAShauteursf.giac}
+\IfFileExists{\nomtravail_hauteursf\cdho.mp}{\immediate\write18{\rem \nomtravail_hauteursf\cdho.mp}}{}
+\immediate\write18{\cat XCAShauteursf.mp >> \nomtravail_hauteursf\cdho.mp}
+\immediate\write18{mpost \nomtravail_hauteursf\cdho.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_hauteursf\cdho.mp}{\immediate\write18{mpost \nomtravail_hauteursf\cdho.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_hauteursf\cdho.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAShauteurst.tex}
+\executGiacmp{XCAShauteurst.giac}
+\IfFileExists{\nomtravail_hauteurst\cdho.tex}{\immediate\write18{\rem \nomtravail_hauteurst\cdho.tex}}{}
+\immediate\write18{\cat XCAShauteurst.tex >> \nomtravail_hauteurst\cdho.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_hauteurst\cdho.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_hauteurst\cdho.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_hauteurst\cdho.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-hauteurs*}[1]
+{\setcounter{Cpthauteurs}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAShauteursf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_hauteurst\cdho.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Bissectrices d'un triangle
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASbissectricest.cxx}
+Bissectricest(L):={
+local A,B,C,I,J,K,O,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+O:=L[6];
+typdes:=L[7];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_bissectricesf\\cdbc.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Dans le triangle $"+A+""+B+""+C+"$, les bissectrices  se coupent en  $"+O+"$, centre du cercle inscrit du triangle.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASbissectricest.giac}
+maple_mode(0);
+read("XCASbissectricest.cxx");
+Sortie:=fopen("XCASbissectricest.tex");
+donnees:=read("XCASbissectrices.user");
+Resultat:=string("Bissectricest(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASbissectricesf.cxx}
+Bissectricesf(L):={
+local A,B,C,I,J,K,O,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+I:=L[3];
+J:=L[4];
+K:=L[5];
+O:=L[6];
+typdes:=L[7];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+
+pair A,B,C,I,J,K,O;
+pair AA,II,BB,JJ,CC,KK;
+
+A=(0,0);
+B=(2u,4u);
+C=(5u,-u);
+
+O=CentreCercleI(A,B,C);   % centre du cercle inscrit
+
+I=projection(O,B,C);
+J=projection(O,A,C);
+K=projection(O,B,A);
+
+
+AA:=1.2[O,A];
+II:=2.2[A,O];
+BB:=1.2[O,B];
+JJ:=1.8[B,O];
+CC:=1.2[O,C];
+KK:=1.8[C,O];
+
+
+trace triangle(A,B,C);
+trace chemin(AA,A,O,II) withcolor red;
+trace chemin(BB,B,O,JJ) withcolor red;
+trace chemin(CC,C,O,KK) withcolor red;
+
+trace segment(O,I) dashed evenly;;
+trace segment(O,J) dashed evenly;;
+trace segment(O,K) dashed evenly;;
+
+
+trace codeperp(O,I,B,5) withcolor red;
+trace codeperp(O,J,C,5) withcolor red;
+trace codeperp(O,K,A,5) withcolor red;
+
+trace marqueangle(C,A,O,1);
+trace marqueangle(O,A,B,1);
+
+trace marqueangle(B,C,O,2);
+trace marqueangle(O,C,A,2);
+
+trace marqueangle(A,B,O,3);
+trace marqueangle(O,B,C,3);
+
+
+trace arccercle(I,K,O) withcolor blue withpen pencircle scaled 1pt;
+trace arccercle(K,J,O) withcolor blue withpen pencircle scaled 1pt;
+trace arccercle(J,I,O) withcolor blue withpen pencircle scaled 1pt;
+
+
+
+marque_p:=\"rien\";
+label.bot(TEX(\" $ "+A+" $ \"),A);
+label.urt(TEX(\" $ "+B+" $ \"),B);
+label.bot(TEX(\" $ "+C+" $ \"),C);
+label.rt(TEX(\" $ "+I+" $ \"),I);
+label.llft(TEX(\" $ "+J+" $ \"),J);
+label.ulft(TEX(\" $ "+K+" $ \"),K);
+label.lrt(TEX(\" $ "+O+" $ \"),O);
+
+
+%label.ulft(btex $(d_1)$ etex, 3.2[A,H]);
+%label.urt(btex $(d_2)$ etex, 1.6[B,H]);
+%label.urt(btex $(d_3)$ etex, 1.4[C,H]);
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASbissectricesf.giac}
+maple_mode(0);
+read("XCASbissectricesf.cxx");
+Sortie:=fopen("XCASbissectricesf.mp");
+donnees:=read("XCASbissectrices.user");
+Resultat:=string("Bissectricesf(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptbissectrices}
+\newcommand{\cdbc}{\theCptbissectrices}
+%% \cdbc change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-bissectrices}[1]
+{\setcounter{Cptbissectrices}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASbissectrices.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASbissectricesf.mp}
+\executGiacmp{XCASbissectricesf.giac}
+\IfFileExists{\nomtravail_bissectricesf\cdbc.mp}{\immediate\write18{\rem \nomtravail_bissectricesf\cdbc.mp}}{}
+\immediate\write18{\cat XCASbissectricesf.mp >> \nomtravail_bissectricesf\cdbc.mp}
+\immediate\write18{mpost \nomtravail_bissectricesf\cdbc.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_bissectricesf\cdbc.mp}{\immediate\write18{mpost \nomtravail_bissectricesf\cdbc.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_bissectricesf\cdbc.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASbissectricest.tex}
+\executGiacmp{XCASbissectricest.giac}
+\IfFileExists{\nomtravail_bissectricest\cdbc.tex}{\immediate\write18{\rem \nomtravail_bissectricest\cdbc.tex}}{}
+\immediate\write18{\cat XCASbissectricest.tex >> \nomtravail_bissectricest\cdbc.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_bissectricest\cdbc.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_bissectricest\cdbc.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_bissectricest\cdbc.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-bissectrices*}[1]
+{\setcounter{Cptbissectrices}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASbissectricesf.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_bissectricest\cdbc.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Cube
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScubet.cxx}
+Cubet(L):={
+local A,B,C,D,E,F,G,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+E:=L[4];
+F:=L[5];
+G:=L[6];
+H:=L[7];
+typdes:=L[8];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_cubef\\ctcu.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le volume du cube $"+A+""+B+""+C+""+D+""+E+""+F+""+G+""+H+"$ est donn\\'e par la formule :
+\\[ {\\cal V}=c^3 \\]
+
+o\\`u $c$ d\\'esigne le c\\^ot\\'e du cube.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScubet.giac}
+maple_mode(0);
+read("XCAScubet.cxx");
+Sortie:=fopen("XCAScubet.tex");
+donnees:=read("XCAScube.user");
+Resultat:=string("Cubet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCAScubef.cxx}
+Cubef(L):={
+local A,B,C,D,E,F,G,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+E:=L[4];
+F:=L[5];
+G:=L[6];
+H:=L[7];
+typdes:=L[8];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,D,E,F,G,H;
+pair V;
+
+numeric c;
+c:=4;   %cote du cube
+
+A=(0,0);
+B=(c*u,0);
+C=(c*u,c*u);
+D=(0,c*u);
+
+V=(2u,u);  % vecteur pour la perspective
+
+E= A shifted V;
+F= B shifted V;
+G= C shifted V;
+H= D shifted V;
+
+trace polygone(A,B,C,D);
+trace chemin(B,F,G,C);
+trace chemin(G,H,D);
+
+trace chemin(A,E,F) dashed evenly;
+trace chemin(H,E) dashed evenly;
+
+label.llft(TEX(\" $"+A+"$ \"),A);
+label.lrt(TEX(\" $"+B+"$ \"),B);
+label.lrt(TEX(\" $"+C+"$ \"),C);
+label.ulft(TEX(\" $"+D+"$ \"),D);
+label.lrt(TEX(\" $"+E+"$ \"),E);
+label.rt(TEX(\" $"+F+"$ \"),F);
+label.top(TEX(\" $"+G+"$ \"),G);
+label.top(TEX(\" $"+H+"$ \"),H);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScubef.giac}
+maple_mode(0);
+read("XCAScubef.cxx");
+Sortie:=fopen("XCAScubef.mp");
+donnees:=read("XCAScube.user");
+Resultat:=string("Cubef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptcube}
+\newcommand{\ctcu}{\theCptcube}
+%% \ctcu change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cube}[1]
+{\setcounter{Cptcube}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScube.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScubef.mp}
+\executGiacmp{XCAScubef.giac}
+\IfFileExists{\nomtravail_cubef\ctcu.mp}{\immediate\write18{\rem \nomtravail_cubef\ctcu.mp}}{}
+\immediate\write18{\cat XCAScubef.mp >> \nomtravail_cubef\ctcu.mp}
+\immediate\write18{mpost \nomtravail_cubef\ctcu.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cubef\ctcu.mp}{\immediate\write18{mpost \nomtravail_cubef\ctcu.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_cubef\ctcu.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScubet.tex}
+\executGiacmp{XCAScubet.giac}
+\IfFileExists{\nomtravail_cubet\ctcu.tex}{\immediate\write18{\rem \nomtravail_cubet\ctcu.tex}}{}
+\immediate\write18{\cat XCAScubet.tex >> \nomtravail_cubet\ctcu.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cubet\ctcu.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_cubet\ctcu.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_cubet\ctcu.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cube*}[1]
+{\setcounter{Cptcube}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScubef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_cubet\ctcu.tex}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Parallelepipede
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASparallelepipedet.cxx}
+Parallelepipedet(L):={
+local A,B,C,D,E,F,G,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+E:=L[4];
+F:=L[5];
+G:=L[6];
+H:=L[7];
+typdes:=L[8];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_parallelepipedef\\ctpa.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le volume du parall\\'el\\'epip\\`ede $"+A+""+B+""+C+""+D+""+E+""+F+""+G+""+H+"$ est donn\\'e par la formule :
+\\[ {\\cal V}=L \\times l \\times h \\]
+
+o\\`u $L$, $l$ et $h$  d\\'esignent les dimensions du parall\\'el\\'epip\\`ede.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASparallelepipedet.giac}
+maple_mode(0);
+read("XCASparallelepipedet.cxx");
+Sortie:=fopen("XCASparallelepipedet.tex");
+donnees:=read("XCASparallelepipede.user");
+Resultat:=string("Parallelepipedet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASparallelepipedef.cxx}
+Parallelepipedef(L):={
+local A,B,C,D,E,F,G,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+E:=L[4];
+F:=L[5];
+G:=L[6];
+H:=L[7];
+typdes:=L[8];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,C,D,E,F,G,H;
+pair V;
+
+numeric AB,AD;
+AB:=4;  %dimensions de la face avant
+AD:=2;
+
+A=(0,0);
+B=(AB*u,0);
+C=(AB*u,AD*u);
+D=(0,AD*u);
+
+V=(2u,u);  % vecteur pour la perspective
+
+E= A shifted V;
+F= B shifted V;
+G= C shifted V;
+H= D shifted V;
+
+
+trace polygone(A,B,C,D);
+trace chemin(B,F,G,C);
+trace chemin(G,H,D);
+
+trace chemin(A,E,F) dashed evenly;
+trace chemin(H,E) dashed evenly;
+
+label.llft(TEX(\" $"+A+"$ \"),A);
+label.lrt(TEX(\" $"+B+"$ \"),B);
+label.lrt(TEX(\" $"+C+"$ \"),C);
+label.ulft(TEX(\" $"+D+"$ \"),D);
+label.lrt(TEX(\" $"+E+"$ \"),E);
+label.rt(TEX(\" $"+F+"$ \"),F);
+label.top(TEX(\" $"+G+"$ \"),G);
+label.top(TEX(\" $"+H+"$ \"),H);
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASparallelepipedef.giac}
+maple_mode(0);
+read("XCASparallelepipedef.cxx");
+Sortie:=fopen("XCASparallelepipedef.mp");
+donnees:=read("XCASparallelepipede.user");
+Resultat:=string("Parallelepipedef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptparallelepipede}
+\newcommand{\ctpa}{\theCptparallelepipede}
+%% \ctpa change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-parallelepipede}[1]
+{\setcounter{Cptparallelepipede}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASparallelepipede.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASparallelepipedef.mp}
+\executGiacmp{XCASparallelepipedef.giac}
+\IfFileExists{\nomtravail_parallelepipedef\ctpa.mp}{\immediate\write18{\rem \nomtravail_parallelepipedef\ctpa.mp}}{}
+\immediate\write18{\cat XCASparallelepipedef.mp >> \nomtravail_parallelepipedef\ctpa.mp}
+\immediate\write18{mpost \nomtravail_parallelepipedef\ctpa.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_parallelepipedef\ctpa.mp}{\immediate\write18{mpost \nomtravail_parallelepipedef\ctpa.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_parallelepipedef\ctpa.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASparallelepipedet.tex}
+\executGiacmp{XCASparallelepipedet.giac}
+\IfFileExists{\nomtravail_parallelepipedet\ctpa.tex}{\immediate\write18{\rem \nomtravail_parallelepipedet\ctpa.tex}}{}
+\immediate\write18{\cat XCASparallelepipedet.tex >> \nomtravail_parallelepipedet\ctpa.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_parallelepipedet\ctpa.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_parallelepipedet\ctpa.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_parallelepipedet\ctpa.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-parallelepipede*}[1]
+{\setcounter{Cptparallelepipede}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASparallelepipedef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_parallelepipedet\ctpa.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Pyramide reguliere a base carree
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpyramidet.cxx}
+Pyramidet(L):={
+local A,B,C,D,S,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+S:=L[4];
+H:=L[5];
+typdes:=L[6];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_pyramidef\\ctpyra.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le volume de la pyramide $"+S+""+A+""+B+""+C+""+D+"$ r\\'eguli\\`ere \\`a base carr\\'ee $"+A+""+B+""+C+""+D+"$ est donn\\'e par la formule :
+\\[ {\\cal V}=\\dfrac{1}{3}~c^2 \\times h \\]
+
+o\\`u $c$ et $h$  d\\'esignent respectivement le c\\^ot\\'e de la base et la hauteur de la pyramide.
+
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpyramidet.giac}
+maple_mode(0);
+read("XCASpyramidet.cxx");
+Sortie:=fopen("XCASpyramidet.tex");
+donnees:=read("XCASpyramide.user");
+Resultat:=string("Pyramidet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASpyramidef.cxx}
+Pyramidef(L):={
+local A,B,C,D,S,H,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+S:=L[4];
+H:=L[5];
+typdes:=L[6];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair S,A,B,C,D,H;
+pair V;
+
+numeric h;
+h:=5;   %hauteur
+
+A=(0,0);
+B=(4u,0);
+
+V=(1.5u,1.5u);
+
+
+C=B shifted V;
+D=A shifted V;
+
+
+H=0.5[A,C];
+S=H shifted (0,h*u);
+
+trace chemin(S,A);
+trace chemin(S,B);
+trace chemin(S,C);
+trace chemin(S,D) dashed evenly;
+
+
+trace chemin(A,B,C);
+trace chemin(C,D,A) dashed evenly;
+trace chemin(S,H) dashed evenly;
+trace chemin(C,A) dashed withdots;
+trace chemin(D,B) dashed withdots;
+
+trace codeperp(S,H,A,6);
+trace codeperp(S,H,B,6);
+
+
+label.llft(TEX(\" $"+A+"$ \"),A);
+label.lrt(TEX(\" $"+B+"$ \"),B);
+label.lrt(TEX(\" $"+C+"$ \"),C);
+label.ulft(TEX(\" $"+D+"$ \"),D);
+label.top(TEX(\" $"+S+"$ \"),S);
+label.rt(TEX(\" $"+H+"$ \"),H);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASpyramidef.giac}
+maple_mode(0);
+read("XCASpyramidef.cxx");
+Sortie:=fopen("XCASpyramidef.mp");
+donnees:=read("XCASpyramide.user");
+Resultat:=string("Pyramidef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptpyramide}
+\newcommand{\ctpyra}{\theCptpyramide}
+%% \ctpyra change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-pyramide}[1]
+{\setcounter{Cptpyramide}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASpyramide.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASpyramidef.mp}
+\executGiacmp{XCASpyramidef.giac}
+\IfFileExists{\nomtravail_pyramidef\ctpyra.mp}{\immediate\write18{\rem \nomtravail_pyramidef\ctpyra.mp}}{}
+\immediate\write18{\cat XCASpyramidef.mp >> \nomtravail_pyramidef\ctpyra.mp}
+\immediate\write18{mpost \nomtravail_pyramidef\ctpyra.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_pyramidef\ctpyra.mp}{\immediate\write18{mpost \nomtravail_pyramidef\ctpyra.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier XCASpyramidef.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASpyramidet.tex}
+\executGiacmp{XCASpyramidet.giac}
+\IfFileExists{\nomtravail_pyramidet\ctpyra.tex}{\immediate\write18{\rem \nomtravail_pyramidet\ctpyra.tex}}{}
+\immediate\write18{\cat XCASpyramidet.tex >> \nomtravail_pyramidet\ctpyra.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_pyramidet\ctpyra.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_pyramidet\ctpyra.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_pyramidet\ctpyra.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-pyramide*}[1]
+{\setcounter{Cptpyramide}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASpyramidef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_pyramidet\ctpyra.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Section d'une pyramide reguliere a base carree
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecpyramidet.cxx}
+Secpyramidet(L):={
+local A,B,C,D,S,H,,AA,BB,CC,DD,HH,cr,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+S:=L[4];
+H:=L[5];
+cr:=L[6];
+AA:=L[7];
+BB:=L[8];
+CC:=L[9];
+DD:=L[10];
+HH:=L[11];
+typdes:=L[12];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>6.5cm}}{\\addtolength{\\largeurcercle}{6.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_secpyramidef\\ctsecpyra.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+La pyramide $"+S+""+AA+""+BB+""+CC+""+DD+"$ est une r\\'eduction de la pyramide $"+S+""+A+""+B+""+C+""+D+"$ de coefficient 
+$"+latex(cr)+"$.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecpyramidet.giac}
+maple_mode(0);
+read("XCASsecpyramidet.cxx");
+Sortie:=fopen("XCASsecpyramidet.tex");
+donnees:=read("XCASsecpyramide.user");
+Resultat:=string("Secpyramidet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASsecpyramidef.cxx}
+Secpyramidef(L):={
+local A,B,C,D,S,H,,AA,BB,CC,DD,HH,cr,typdes;
+
+A:=L[0];
+B:=L[1];
+C:=L[2];
+D:=L[3];
+S:=L[4];
+H:=L[5];
+cr:=L[6];
+AA:=L[7];
+BB:=L[8];
+CC:=L[9];
+DD:=L[10];
+HH:=L[11];
+typdes:=L[12];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair S,A,B,C,D,H;
+pair V;
+
+numeric h;
+h:=5;   %hauteur
+
+A=(0,0);
+B=(4u,0);
+
+V=(1.5u,1.5u);
+
+
+C=B shifted V;
+D=A shifted V;
+
+
+H=0.5[A,C];
+S=H shifted (0,h*u);
+
+trace chemin(S,A);
+trace chemin(S,B);
+trace chemin(S,C);
+trace chemin(S,D) dashed evenly;
+
+
+trace chemin(A,B,C);
+trace chemin(C,D,A) dashed evenly;
+trace chemin(S,H) dashed evenly;
+trace chemin(C,A) dashed withdots;
+trace chemin(D,B) dashed withdots;
+
+trace codeperp(S,H,A,6);
+trace codeperp(S,H,B,6);
+
+
+label.llft(TEX(\" $"+A+"$ \"),A);
+label.lrt(TEX(\" $"+B+"$ \"),B);
+label.lrt(TEX(\" $"+C+"$ \"),C);
+label.ulft(TEX(\" $"+D+"$ \"),D);
+label.top(TEX(\" $"+S+"$ \"),S);
+label.rt(TEX(\" $"+H+"$ \"),H);
+
+
+pair AA,BB,CC,DD,HH;
+numeric cr;
+cr:="+cr+";     %coefficient de reduction
+
+AA:=cr[S,A];
+BB:=cr[S,B];
+CC:=cr[S,C];
+DD:=cr[S,D];
+HH:=cr[S,H];
+
+trace chemin(AA,BB,CC);
+trace chemin(CC,DD,AA) dashed evenly;
+trace chemin(AA,CC) dashed withdots;
+trace chemin(BB,DD) dashed withdots;
+
+
+label.lft(TEX(\" $"+AA+"$ \"),AA);
+label.rt(TEX(\" $"+BB+"$ \"),BB);
+label.urt(TEX(\" $"+CC+"$ \"),CC);
+label.ulft(TEX(\" $"+DD+"$ \"),DD);
+label.rt(TEX(\" $"+HH+"$ \"),HH);
+
+
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecpyramidef.giac}
+maple_mode(0);
+read("XCASsecpyramidef.cxx");
+Sortie:=fopen("XCASsecpyramidef.mp");
+donnees:=read("XCASsecpyramide.user");
+Resultat:=string("Secpyramidef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptsecpyramide}
+\newcommand{\ctsecpyra}{\theCptsecpyramide}
+%% \ctsecpyra change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-secpyramide}[1]
+{\setcounter{Cptsecpyramide}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASsecpyramide.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecpyramidef.mp}
+\executGiacmp{XCASsecpyramidef.giac}
+\IfFileExists{\nomtravail_secpyramidef\ctsecpyra.mp}{\immediate\write18{\rem \nomtravail_secpyramidef\ctsecpyra.mp}}{}
+\immediate\write18{\cat XCASsecpyramidef.mp >> \nomtravail_secpyramidef\ctsecpyra.mp}
+\immediate\write18{mpost \nomtravail_secpyramidef\ctsecpyra.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secpyramidef\ctsecpyra.mp}{\immediate\write18{mpost \nomtravail_secpyramidef\ctsecpyra.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_secpyramidef\ctsecpyra.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecpyramidet.tex}
+\executGiacmp{XCASsecpyramidet.giac}
+\IfFileExists{\nomtravail_secpyramidet\ctsecpyra.tex}{\immediate\write18{\rem \nomtravail_secpyramidet\ctsecpyra.tex}}{}
+\immediate\write18{\cat XCASsecpyramidet.tex >> \nomtravail_secpyramidet\ctsecpyra.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secpyramidet\ctsecpyra.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_secpyramidet\ctsecpyra.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_secpyramidet\ctsecpyra.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-secpyramide*}[1]
+{\setcounter{Cptsecpyramide}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASsecpyramidef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_secpyramidet\ctsecpyra.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Cone de revolution
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASconet.cxx}
+Conet(L):={
+local S,O,M,typdes;
+
+S:=L[0];
+O:=L[1];
+M:=L[2];
+typdes:=L[3];
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>4.5cm}}{\\addtolength{\\largeurcercle}{4.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_conef\\ctcone.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le c\\^one de r\\'evolution a pour volume
+\\[ {\\cal V}=\\dfrac{1}{3}\\pi~r^2~h\\]
+o\\`u $r$ est le rayon de base et $h$ la hauteur du c\\^one.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASconet.giac}
+maple_mode(0);
+read("XCASconet.cxx");
+Sortie:=fopen("XCASconet.tex");
+donnees:=read("XCAScone.user");
+Resultat:=string("Conet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASconef.cxx}
+Conef(L):={
+local S,O,M,typdes;
+
+S:=L[0];
+O:=L[1];
+M:=L[2];
+typdes:=L[3];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,S,M,MM;
+
+numeric rb,h;
+rb:=2;     % rayon de base
+h:=4;      % hauteur
+
+A=(-rb*u,0);
+O=(0,0);
+B=(rb*u,0);
+S=(0,h*u);
+
+
+draw A--S--B;
+
+draw S--O dashed evenly;
+
+numeric ang;
+
+ang:=300;  % angle servant a placer M
+
+M:= B rotatedaround(O,ang);
+MM:=M yscaled 0.2;
+
+
+trace arccercle(B,A,O) yscaled 0.2 dashed evenly;
+trace arccercle(A,M,O) yscaled 0.2;
+trace arccercle(M,B,O) yscaled 0.2;
+
+trace chemin(O,MM) dashed evenly;
+trace chemin(S,MM);
+
+trace codeperp(S,O,MM,6);
+
+label.top(TEX(\" $"+S+"$ \"),S);
+label.llft(TEX(\" $"+O+"$ \"),O);
+label.lrt(TEX(\" $"+M+"$ \"),MM);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASconef.giac}
+maple_mode(0);
+read("XCASconef.cxx");
+Sortie:=fopen("XCASconef.mp");
+donnees:=read("XCAScone.user");
+Resultat:=string("Conef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptcone}
+\newcommand{\ctcone}{\theCptcone}
+%% \ctcone change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cone}[1]
+{\setcounter{Cptcone}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScone.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASconef.mp}
+\executGiacmp{XCASconef.giac}
+\IfFileExists{\nomtravail_conef\ctcone.mp}{\immediate\write18{\rem \nomtravail_conef\ctcone.mp}}{}
+\immediate\write18{\cat XCASconef.mp >> \nomtravail_conef\ctcone.mp}
+\immediate\write18{mpost \nomtravail_conef\ctcone.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_conef\ctcone.mp}{\immediate\write18{mpost \nomtravail_conef\ctcone.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_conef\ctcone.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASconet.tex}
+\executGiacmp{XCASconet.giac}
+\IfFileExists{\nomtravail_conet\ctcone.tex}{\immediate\write18{\rem \nomtravail_conet\ctcone.tex}}{}
+\immediate\write18{\cat XCASconet.tex >> \nomtravail_conet\ctcone.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_conet\ctcone.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_conet\ctcone.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_conet\ctcone.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cone*}[1]
+{\setcounter{Cptcone}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASconef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_conet\ctcone.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Section d'un cone de revolution
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecconet.cxx}
+Secconet(L):={
+local S,O,M,cr,OO,MM,typdes;
+
+S:=L[0];
+O:=L[1];
+M:=L[2];
+cr:=L[3];
+OO:=L[4];
+MM:=L[5];
+typdes:=L[6];
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>4.5cm}}{\\addtolength{\\largeurcercle}{4.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_secconef\\ctseccone.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le petit c\\^one de r\\'evolution est une r\\'eduction du grand c\\^one de coefficient $"+latex(cr)+"$.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecconet.giac}
+maple_mode(0);
+read("XCASsecconet.cxx");
+Sortie:=fopen("XCASsecconet.tex");
+donnees:=read("XCASseccone.user");
+Resultat:=string("Secconet(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASsecconef.cxx}
+Secconef(L):={
+local S,O,M,cr,OO,MM,typdes;
+
+S:=L[0];
+O:=L[1];
+M:=L[2];
+cr:=L[3];
+OO:=L[4];
+MM:=L[5];
+typdes:=L[6];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,S,M,MM;
+
+numeric rb,h;
+rb:=2;     % rayon de base
+h:=4;      % hauteur
+
+A=(-rb*u,0);
+O=(0,0);
+B=(rb*u,0);
+S=(0,h*u);
+
+
+draw A--S--B;
+
+draw S--O dashed evenly;
+
+numeric ang;
+
+ang:=300;  % angle servant a placer M
+
+M:= B rotatedaround(O,ang);
+MM:=M yscaled 0.2;
+
+
+trace arccercle(B,A,O) yscaled 0.2 dashed evenly;
+trace arccercle(A,M,O) yscaled 0.2;
+trace arccercle(M,B,O) yscaled 0.2;
+
+trace chemin(O,MM) dashed evenly;
+trace chemin(S,MM);
+
+trace codeperp(S,O,MM,6);
+
+label.top(TEX(\" $"+S+"$ \"),S);
+label.lft(TEX(\" $"+O+"$ \"),O);
+label.lrt(TEX(\" $"+M+"$ \"),MM);
+
+
+pair OO,AA,BB,N,NN;
+numeric cr;
+cr:=0.4;
+
+BB:=(cr*rb*u,0);
+AA:=-BB;
+
+N:= BB rotatedaround(O,ang);
+NN:=N yscaled 0.2;
+
+trace arccercle(BB,AA,O) yscaled 0.2 shifted cr[S,O] dashed evenly;
+trace arccercle(AA,N,O) yscaled 0.2 shifted cr[S,O];
+trace arccercle(N,BB,O) yscaled 0.2 shifted cr[S,O];
+
+OO:=O shifted cr[S,O];
+
+MM:= cr[S,MM];
+
+label.lft(TEX(\" $"+OO+"$ \"),OO);
+label.lrt(TEX(\" $"+MM+"$ \"),MM);
+
+
+trace chemin(OO,MM) dashed evenly;
+
+trace codeperp(S,OO,MM,6);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecconef.giac}
+maple_mode(0);
+read("XCASsecconef.cxx");
+Sortie:=fopen("XCASsecconef.mp");
+donnees:=read("XCASseccone.user");
+Resultat:=string("Secconef(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptseccone}
+\newcommand{\ctseccone}{\theCptseccone}
+%% \ctseccone change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-seccone}[1]
+{\setcounter{Cptseccone}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASseccone.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecconef.mp}
+\executGiacmp{XCASsecconef.giac}
+\IfFileExists{\nomtravail_secconef\ctseccone.mp}{\immediate\write18{\rem \nomtravail_secconef\ctseccone.mp}}{}
+\immediate\write18{\cat XCASsecconef.mp >> \nomtravail_secconef\ctseccone.mp}
+\immediate\write18{mpost \nomtravail_secconef\ctseccone.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secconef\ctseccone.mp}{\immediate\write18{mpost \nomtravail_secconef\ctseccone.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_secconef\ctseccone.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecconet.tex}
+\executGiacmp{XCASsecconet.giac}
+\IfFileExists{\nomtravail_secconet\ctseccone.tex}{\immediate\write18{\rem \nomtravail_secconet\ctseccone.tex}}{}
+\immediate\write18{\cat XCASsecconet.tex >> \nomtravail_secconet\ctseccone.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secconet\ctseccone.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_secconet\ctseccone.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_secconet\ctseccone.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-seccone*}[1]
+{\setcounter{Cptseccone}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASsecconef.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_secconet\ctseccone.tex}
+
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Sphere boule
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASspheret.cxx}
+Spheret(L):={
+local O,M,typdes;
+
+O:=L[0];
+M:=L[1];
+typdes:=L[2];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>4.5cm}}{\\addtolength{\\largeurcercle}{4.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_spheref\\ctsphere.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+La sph\\`ere a pour volume
+\\[ {\\cal V}=\\dfrac{4}{3}\\pi~r^3\\]
+o\\`u $r$ est son rayon.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASspheret.giac}
+maple_mode(0);
+read("XCASspheret.cxx");
+Sortie:=fopen("XCASspheret.tex");
+donnees:=read("XCASsphere.user");
+Resultat:=string("Spheret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASspheref.cxx}
+Spheref(L):={
+local O,M,typdes;
+
+O:=L[0];
+M:=L[1];
+typdes:=L[2];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,S,M,MM;
+
+numeric rb;
+rb:=2;   % rayon
+
+A=(-rb*u,0);
+O=(0,0);
+B=(rb*u,0);
+
+numeric ang;
+
+ang:=300;  % angle servant a placer M
+
+M:= B rotatedaround(O,ang);
+MM:=M yscaled 0.2;
+
+
+trace arccercle(B,A,O);
+trace arccercle(A,B,O);
+
+trace arccercle(B,A,O) yscaled 0.2 dashed evenly;
+trace arccercle(A,M,O) yscaled 0.2;
+trace arccercle(M,B,O) yscaled 0.2;
+
+trace chemin(O,MM) dashed evenly;
+
+marque_p := \"croix\";
+MarquePoint(O);
+marque_p := \"rien\";
+
+
+label.lft(TEX(\" $"+O+"$ \"),O);
+label.lrt(TEX(\" $"+M+"$ \"),MM);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASspheref.giac}
+maple_mode(0);
+read("XCASspheref.cxx");
+Sortie:=fopen("XCASspheref.mp");
+donnees:=read("XCASsphere.user");
+Resultat:=string("Spheref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptsphere}
+\newcommand{\ctsphere}{\theCptsphere}
+%% \ctsphere change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-sphere}[1]
+{\setcounter{Cptsphere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASsphere.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASspheref.mp}
+\executGiacmp{XCASspheref.giac}
+\IfFileExists{\nomtravail_spheref\ctsphere.mp}{\immediate\write18{\rem \nomtravail_spheref\ctsphere.mp}}{}
+\immediate\write18{\cat XCASspheref.mp >> \nomtravail_spheref\ctsphere.mp}
+\immediate\write18{mpost \nomtravail_spheref\ctsphere.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_spheref\ctsphere.mp}{\immediate\write18{mpost \nomtravail_spheref\ctsphere.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_spheref\ctsphere.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASspheret.tex}
+\executGiacmp{XCASspheret.giac}
+\IfFileExists{\nomtravail_spheret\ctsphere.tex}{\immediate\write18{\rem \nomtravail_spheret\ctsphere.tex}}{}
+\immediate\write18{\cat XCASspheret.tex >> \nomtravail_spheret\ctsphere.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_spheret\ctsphere.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_spheret\ctsphere.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_spheret\ctsphere.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-sphere*}[1]
+{\setcounter{Cptsphere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASspheref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_spheret\ctsphere.tex}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Section de sphere boule
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecspheret.cxx}
+Secspheret(L):={
+local O,OO,cr,M,typdes;
+
+O:=L[0];
+cr:=L[1];
+OO:=L[2];
+M:=L[3];
+typdes:=L[4];
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>4.5cm}}{\\addtolength{\\largeurcercle}{4.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_secspheref\\ctsecsphere.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+La sph\\`ere a pour volume
+\\[ {\\cal V}=\\dfrac{4}{3}\\pi~r^3\\]
+o\\`u $r$ est son rayon.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecspheret.giac}
+maple_mode(0);
+read("XCASsecspheret.cxx");
+Sortie:=fopen("XCASsecspheret.tex");
+donnees:=read("XCASsecsphere.user");
+Resultat:=string("Secspheret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASsecspheref.cxx}
+Secspheref(L):={
+local O,OO,cr,M,typdes;
+
+O:=L[0];
+cr:=L[1];
+OO:=L[2];
+M:=L[3];
+typdes:=L[4];
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+
+Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,S,M,MM;
+
+numeric rb;
+rb:=2;   % rayon
+
+A=(-rb*u,0);
+O=(0,0);
+B=(rb*u,0);
+
+numeric ang;
+
+ang:=300;  % angle servant a placer M
+
+M:= B rotatedaround(O,ang);
+MM:=M yscaled 0.2;
+
+
+trace arccercle(B,A,O);
+trace arccercle(A,B,O);
+
+trace arccercle(B,A,O) yscaled 0.2 dashed evenly;
+trace arccercle(A,B,O) yscaled 0.2;
+
+marque_p := \"croix\";
+MarquePoint(O);
+marque_p := \"rien\";
+
+
+label.lft(TEX(\" $"+O+"$ \"),O);
+
+pair OO,AA,BB,M,MM;
+numeric cr,rr;
+cr:="+cr+";    %coefficient servant a placer O'
+rr:=rb*sqrt(1-cr*cr);
+
+OO=(0,cr*rb*u);
+BB:=(rr*u,0);
+AA:=-BB;
+
+M:= BB rotatedaround(O,ang);
+MM:=M yscaled 0.2 shifted OO;
+
+trace arccercle(BB,AA,O) yscaled 0.2 shifted OO dashed evenly;
+trace arccercle(AA,M,O) yscaled 0.2 shifted OO;
+trace arccercle(M,BB,O) yscaled 0.2 shifted OO;
+
+trace polygone(O,OO,MM) dashed evenly;
+trace codeperp(O,OO,MM,5);
+
+label.lft(TEX(\" $"+OO+"$ \"),OO);
+label.lrt(TEX(\" $"+M+"$ \"),MM);
+
+
+endfig;
+typetrace:=\"normal\";
+
+
+end
+";
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASsecspheref.giac}
+maple_mode(0);
+read("XCASsecspheref.cxx");
+Sortie:=fopen("XCASsecspheref.mp");
+donnees:=read("XCASsecsphere.user");
+Resultat:=string("Secspheref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptsecsphere}
+\newcommand{\ctsecsphere}{\theCptsecsphere}
+%% \ctsecsphere change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-secsphere}[1]
+{\setcounter{Cptsecsphere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASsecsphere.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecspheref.mp}
+\executGiacmp{XCASsecspheref.giac}
+\IfFileExists{\nomtravail_secspheref\ctsecsphere.mp}{\immediate\write18{\rem \nomtravail_secspheref\ctsecsphere.mp}}{}
+\immediate\write18{\cat XCASsecspheref.mp >> \nomtravail_secspheref\ctsecsphere.mp}
+\immediate\write18{mpost \nomtravail_secspheref\ctsecsphere.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secspheref\ctsecsphere.mp}{\immediate\write18{mpost \nomtravail_secspheref\ctsecsphere.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_secspheref\ctsecsphere.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASsecspheret.tex}
+\executGiacmp{XCASsecspheret.giac}
+\IfFileExists{\nomtravail_secspheret\ctsecsphere.tex}{\immediate\write18{\rem \nomtravail_secspheret\ctsecsphere.tex}}{}
+\immediate\write18{\cat XCASsecspheret.tex >> \nomtravail_secspheret\ctsecsphere.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_secspheret\ctsecsphere.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_secspheret\ctsecsphere.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_secspheret\ctsecsphere.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-secsphere*}[1]
+{\setcounter{Cptsecsphere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASsecspheref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_secspheret\ctsecsphere.tex}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Cylindre
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScylindret.cxx}
+Cylindret(L):={
+local O,OO,M,MM,,couche,typdes;
+
+O:=L[0];
+M:=L[1];
+OO:=L[2];
+MM:=L[3];
+couche:=L[4];
+typdes:=L[5]; 
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier latex
+Texte:="
+\\setlength{\\largeurcercle}{0pt}
+\\ifthenelse{\\lengthtest{0.4\\linewidth>3.5cm}}{\\addtolength{\\largeurcercle}{3.5cm}}{\\addtolength{\\largeurcercle}{0.4\\linewidth}}
+\\begin{minipage}{0.4\\linewidth}
+\\begin{center}
+  \\includegraphics[width=\\largeurcercle]{\\nomtravail_cylindref\\ctcylindre.0}
+\\end{center}
+\\end{minipage}
+\\hfill
+\\begin{minipage}{0.55\\linewidth}
+Le cylindre a pour volume
+\\[ {\\cal V}=\\pi~r^2~h\\]
+o\\`u $r$ est son rayon de base et $h$ sa hauteur.
+\\end{minipage}
+";
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScylindret.giac}
+maple_mode(0);
+read("XCAScylindret.cxx");
+Sortie:=fopen("XCAScylindret.tex");
+donnees:=read("XCAScylindre.user");
+Resultat:=string("Cylindret(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCAScylindref.cxx}
+Cylindref(L):={
+local O,OO,M,MM,,couche,typdes;
+
+O:=L[0];
+M:=L[1];
+OO:=L[2];
+MM:=L[3];
+couche:=L[4];
+typdes:=L[5];
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+if(couche=="couche") then
+{
+   Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,AA,BB,OO,M,MM,I;
+
+numeric rb;
+rb:=1.5;     % rayon de base
+pair V;
+V:=(3u,1u);      % vecteur
+
+O=(0,0);
+OO:= O shifted V;
+
+path cc;
+cc= fullcircle scaled (2*rb*u);
+
+
+path d;
+d:=O--OO;
+I := d intersectionpoint cc;
+A:= I rotatedaround(O,270);
+AA:= A shifted V;
+
+B= -A;
+BB:= B shifted V;
+
+numeric ang;
+
+ang:=340;  % angle servant a placer M
+
+M:=point (length cc *ang/360) of cc;
+MM:= M shifted V;
+
+
+trace arccercle(B,A,O);
+trace arccercle(A,M,O);
+trace arccercle(M,B,O);
+
+
+trace arccercle(BB,AA,OO) dashed evenly;
+trace arccercle(AA,MM,OO);
+trace arccercle(MM,BB,OO);
+
+trace chemin(A,AA);
+trace chemin(B,BB);
+trace chemin(O,OO) dashed evenly;
+
+
+trace chemin(O,M);
+trace codeperp(M,O,OO,5);
+
+
+trace chemin(OO,MM);
+trace chemin(M,MM);
+trace codeperp(O,OO,MM,5);
+
+label.lft(TEX(\" $"+O+"$ \"),O);
+label.top(TEX(\" $"+OO+"$ \"),OO);
+label.lrt(TEX(\" $"+M+"$ \"),M);
+label.lrt(TEX(\" $"+MM+"$ \"),MM);
+
+
+endfig;
+typetrace:=\"normal\";
+
+end
+";
+}
+else
+{
+   Dessin:="
+input dlf\_tex.mp;
+input geometriesyr16.mp;
+
+u:=1cm;
+typetrace:=\""+typdes+"\";
+_tfig:=12cm;
+beginfig(0);
+pair A,B,O,AA,BB,OO,M,MM;
+
+numeric rb,h;
+rb:=1.5;     % rayon de base
+h:=3;      % hauteur
+
+O=(0,0);
+OO:= O shifted (0,h*u);
+A=(-rb*u,0);
+AA:= A shifted (0,h*u);
+B=(rb*u,0);
+BB:= B shifted (0,h*u);
+
+
+numeric ang;
+
+ang:=300;  % angle servant a placer M
+
+M:=B rotatedaround(O,ang);
+
+
+trace arccercle(B,A,O) yscaled 0.2 dashed evenly;
+trace arccercle(A,M,O) yscaled 0.2;
+trace arccercle(M,B,O) yscaled 0.2;
+
+trace arccercle(B,A,O) yscaled 0.2 shifted (0,h*u);
+trace arccercle(A,M,O) yscaled 0.2 shifted (0,h*u);
+trace arccercle(M,B,O) yscaled 0.2 shifted (0,h*u);
+
+
+
+trace chemin(A,AA);
+trace chemin(B,BB);
+trace chemin(O,OO) dashed evenly;
+
+M:=M yscaled 0.2;
+
+trace chemin(O,M) dashed evenly;
+trace codeperp(M,O,OO,5);
+
+MM:= M shifted(0,h*u);
+trace chemin(OO,MM);
+trace chemin(M,MM);
+trace codeperp(O,OO,MM,5);
+
+label.lft(TEX(\" $"+O+"$ \"),O);
+label.lft(TEX(\" $"+OO+"$ \"),OO);
+label.lrt(TEX(\" $"+M+"$ \"),M);
+label.top(TEX(\" $"+MM+"$ \"),MM);
+
+
+endfig;
+typetrace:=\"normal\";
+
+end
+";
+}
+
+
+
+
+}:;
+
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScylindref.giac}
+maple_mode(0);
+read("XCAScylindref.cxx");
+Sortie:=fopen("XCAScylindref.mp");
+donnees:=read("XCAScylindre.user");
+Resultat:=string("Cylindref(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptcylindre}
+\newcommand{\ctcylindre}{\theCptcylindre}
+%% \ctcylindre change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cylindre}[1]
+{\setcounter{Cptcylindre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScylindre.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScylindref.mp}
+\executGiacmp{XCAScylindref.giac}
+\IfFileExists{\nomtravail_cylindref\ctcylindre.mp}{\immediate\write18{\rem \nomtravail_cylindref\ctcylindre.mp}}{}
+\immediate\write18{\cat XCAScylindref.mp >> \nomtravail_cylindref\ctcylindre.mp}
+\immediate\write18{mpost \nomtravail_cylindref\ctcylindre.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cylindref\ctcylindre.mp}{\immediate\write18{mpost \nomtravail_cylindref\ctcylindre.mp}}{% 
+\PackageError{pro-geometrie}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_cylindref\ctcylindre.mp ou bien disposer de XCas.}}}
+
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScylindret.tex}
+\executGiacmp{XCAScylindret.giac}
+\IfFileExists{\nomtravail_cylindret\ctcylindre.tex}{\immediate\write18{\rem \nomtravail_cylindret\ctcylindre.tex}}{}
+\immediate\write18{\cat XCAScylindret.tex >> \nomtravail_cylindret\ctcylindre.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_cylindret\ctcylindre.tex}{}{% 
+\PackageError{pro-geometrie}{Fichier \nomtravail_cylindret\ctcylindre.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+
+\input{\nomtravail_cylindret\ctcylindre.tex}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-cylindre*}[1]
+{\setcounter{Cptcylindre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScylindref.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_cylindret\ctcylindre.tex}
+
+}
+
+
+

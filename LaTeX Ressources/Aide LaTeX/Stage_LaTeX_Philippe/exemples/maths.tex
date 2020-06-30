@@ -1,0 +1,153 @@
+\documentclass[10pt,french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage{kpfonts}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mathtools,amssymb}
+\usepackage[autolanguage,np]{numprint}
+\usepackage{xlop}
+\usepackage{cancel}
+\renewcommand\CancelColor{\color{red}}
+\usepackage{dsfont}
+\usepackage{babel}
+\DecimalMathComma
+
+\begin{document}
+\section{En sixième}
+\opset{decimalsepsymbol={,},voperator=bottom,voperation=top}
+
+\opadd{45,05}{78,4}\quad ou encore \opadd[style=text]{45.05}{78.4}\medskip
+
+\opsub[carrysub,lastcarry,columnwidth=2.5ex,offsetcarry=-0.4,decimalsepoffset=-3pt,deletezero=false]
+{12.34}{5.67} \quad ou encore \opsub[style=text]{12.34}{5.67}\medskip
+
+\opmul[shiftintermediarysymbol={$0$},displayshiftintermediary=all]{35684}{7.9}\quad
+ou encore \opmul[style=text]{35684}{7.9}\medskip
+
+\opidiv{25}{7} \quad ou encore \opidiv[style=text]{25}{7} \medskip
+
+\opdiv[maxdivstep=3]{25}{7} \quad ou encore \opdiv[style=text,maxdivstep=3]{25}{7}\medskip
+
+$\np{35684} \times 7,9 = \np{281903,6}$.\medskip
+
+$25 \div 7 \approx 3,57 \neq 4$.\medskip
+
+Les segments $[AB]$ et $[CD]$ ont la même longueur.
+De plus, les droites $(AB)$ et $(CD)$ sont parallèles, on note $(AB) \varparallel (CD)$.\par
+Et on notera $(d) \bot (d')$ si les droites $(d)$ et $(d')$ sont perpendiculaires.\medskip
+
+$C \in (AB)$ mais $C \notin [AB)$.
+
+\section{En cinquième}
+
+Si $c \neq 0$, $\frac{a}{c} + \frac{b}{c} = \frac{a+b}{c}$ et, si de plus
+$b \neq 0$, $\dfrac{a}{c} \times \dfrac{c}{b} = \dfrac{a \times c}{c \times b}
+=\dfrac{a \times \cancel{c}}{\cancel{c}\times b} = \dfrac a b.$\medskip
+
+On peut alors calculer : $3 \times \left(\dfrac 3 2 + 2\right) - 1$.\medskip
+
+Dans un triangle, la somme des angles est égale à $180\degres$ :
+$\widehat{ABC} + \widehat{BAC} + \widehat{ACB}= 180\degres$.\par
+Ou encore : $\widehat A + \widehat B + \widehat C = 180\degres$.
+
+\section{En quatrième}
+
+$\left(\dfrac a b\right)^n = \dfrac{a^n}{b^n}$ \quad et \quad
+$\dfrac{\dfrac a b}{\dfrac c d} = \dfrac a b \times \dfrac d c$
+\quad et \quad $\left(a^m\right)^n = a^{mn}$.\medskip
+
+$\dfrac{\frac 32 + 1}{\frac 5 2} = \left(\dfrac 32 + 1\right) \times \dfrac 25$.\medskip
+
+$10^n = \overbrace{10 \times 10 \times \dots \times 10}^{n\ \text{fois}}
+    = 1\underbrace{00\dots0}_{n \text{ zéros}}.$\par\medskip
+Exemple : $10^{12} = \np{1000000000000}$.\medskip
+
+$3x + 2 = 5x - 1 \quad \Leftrightarrow \quad 3x - 5x = -1 -2
+\quad \Leftrightarrow \quad -2x = -3
+\quad \Leftrightarrow \quad  x = \dfrac 32$ \quad
+$\mathcal S = \left\{\dfrac 32\right\}.$\medskip
+
+$\cos\left(\widehat{ABC}\right) = \dfrac{AB}{BC}$.
+
+\section{En troisième}
+
+$\sqrt{\dfrac a b} = \dfrac{\sqrt a}{\sqrt b}$\medskip
+
+$(a + b)^2 = a^2 + 2ab + b^2\dots$\medskip
+
+Si $f(x) = 3x -2$ alors $f(-4) = 3 \times (-4) - 2 = -14$.\medskip
+
+$3x + 2 \leqslant 5x - 1 \quad \Leftrightarrow \quad 3x - 5x \leqslant -1 -2
+\quad \Leftrightarrow \quad -2x \leqslant -3
+\quad \Leftrightarrow \quad  x \geqslant \dfrac 32$\medskip
+
+$\mathcal V = \frac4 3 \pi R^3$.\medskip
+
+Si l'angle au centre $\widehat{BOA}$ intercepte le même arc $\wideparen{AB}$
+que l'angle inscrit $\widehat{BCA}$ alors $\widehat{BOA} = 2\widehat{BCA}$.
+
+\section{En seconde}
+
+$\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}$\medskip
+
+$\overrightarrow{AB}\binom{x_B - x_A}{y_B - y_A}$ \quad donc \quad
+$\overrightarrow{AB}\dbinom{x_B - x_A}{y_B - y_A}$\par\medskip
+$\left\lVert \overrightarrow{AB} \right\rVert = AB = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$\par\medskip
+$\left\lVert \lambda \overrightarrow{AB}\right\rVert =
+\left\lvert \lambda \right\rvert \times \left\lVert \overrightarrow{AB}\right\rVert$\par\medskip
+Cela est évidemment valable dans un repère
+$\left(O ; \overrightarrow\imath, \overrightarrow\jmath\right)$.\medskip
+
+$\varnothing = \emptyset \subset \mathds N \subset \mathds Z \subset
+\mathds D \subset \mathds Q\subset \mathds R \subset \mathds C$ \medskip
+
+$\mathds R^*=]-\infty ; 0[ \cup ]0 ; +\infty[ = \mathds R \setminus \{0\}$.\medskip
+
+$]-\infty ; 4] \cap ]-2 ; +\infty[ = ]-2 ; 4]$.\medskip
+
+$\frac 1 2 \in \mathds Q$ mais $\frac 1 2 \notin \mathds Z$\medskip
+
+$f\colon x \mapsto f(x)$ est définie sur $\mathcal D_f$.
+On note $\mathcal C$ sa courbe représentative.
+
+\section{En première}
+
+\'Equation de la tangente en $x_0$ :
+$y = f'(x_0) \left(x - x_0\right) + f(x_0)$ avec
+$f' = \left(\dfrac u v\right)' = \dfrac{u'v - uv'}{v^2}$.\medskip
+
+$\Delta = b^2 - 4ac$. Si $\Delta > 0$ alors
+$x = \dfrac{-b \pm \sqrt \Delta}{2a}$.\medskip
+
+$\overrightarrow{AB} \cdot \overrightarrow{CD} = xx' + yy'$.\medskip
+
+$u_{n + 1} = q\times u_n = u_0 \times q^{n+1}$.\medskip
+
+$1 + q + q^2 + \dots + q^n = \sum_{i = 0}^n q^i$\medskip
+
+$\mathds P(X = k) = \binom n k \times p^k \times (1-p)^{n-k}$.\medskip
+
+$X$ suit la loi binomiale de paramètres $n=10$ et $p=0,2$ :
+$X \hookrightarrow \mathcal B(10 ; 0,2)$.
+
+\section{En terminale}
+
+$\int_0^1 x^2 \mathrm{dx} = \left[\frac{x^3}{3}\right]_0^1 = \frac 13$.\medskip
+
+$\lim_{x \to +\infty} e^x= +\infty$. On parle de la fonction $x \mapsto \exp(x)$.\medskip
+
+$\lim_{x \to 0^+}\ln(x) = -\infty$ ou encore $\lim_{\substack{x \to 0 \\ x > 0}}\ln(x) = -\infty$.\medskip
+
+$a \equiv b [n] \Leftrightarrow \exists k \in \mathds Z, a - b = kn$.
+
+\section{En licence}
+\textbf{Définition.} Soient $f$ une fonction définie sur une partie $A$ de $\mathds{R}$
+et un élément $a$ de $A$.\par
+On dit que $f$ est \textbf{continue} au point $a$ lorsque :
+\[\forall \varepsilon > 0,\quad
+\exists \eta > 0,\quad
+\forall x \in A,\qquad
+\left\vert x- a \right\vert < \eta \quad \Rightarrow \quad
+\left\vert f(x) - f(a) \right\vert < \varepsilon\]
+\end{document} 

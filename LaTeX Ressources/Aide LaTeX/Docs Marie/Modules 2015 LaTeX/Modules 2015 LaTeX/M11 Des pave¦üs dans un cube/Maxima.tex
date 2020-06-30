@@ -1,0 +1,151 @@
+
+% Insérer une page de calculs Maxima
+
+
+%% Created with wxMaxima 15.04.0
+%\documentclass{article}
+%\setlength{\parskip}{\medskipamount}
+%\setlength{\parindent}{0pt}
+%\usepackage[utf8]{inputenc}
+%\DeclareUnicodeCharacter{00B5}{\ensuremath{\mu}}
+%\usepackage{graphicx}
+%\usepackage{color}
+%\usepackage{amsmath}
+%\usepackage{ifthen}
+\newsavebox{\picturebox}
+\newlength{\pictureboxwidth}
+\newlength{\pictureboxheight}
+\newcommand{\includeimage}[1]{
+    \savebox{\picturebox}{\includegraphics{#1}}
+    \settoheight{\pictureboxheight}{\usebox{\picturebox}}
+    \settowidth{\pictureboxwidth}{\usebox{\picturebox}}
+    \ifthenelse{\lengthtest{\pictureboxwidth > .95\linewidth}}
+    {
+        \includegraphics[width=.95\linewidth,height=.80\textheight,keepaspectratio]{#1}
+    }
+    {
+        \ifthenelse{\lengthtest{\pictureboxheight>.80\textheight}}
+        {
+            \includegraphics[width=.95\linewidth,height=.80\textheight,keepaspectratio]{#1}
+            
+        }
+        {
+            \includegraphics{#1}
+        }
+    }
+}
+%\DeclareMathOperator{\abs}{abs}
+%\usepackage{animate} % This package is required because the wxMaxima configuration option
+%                      % "Export animations to TeX" was enabled when this file was generated.
+%
+%\definecolor{labelcolor}{RGB}{100,0,0}
+
+%\begin{document}
+%
+%\noindent
+%%%%%%%%%%%%%%%%
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%(%i1) 
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%V(x):=x^2*(6-x);
+%\end{verbatim}}
+%\end{minipage}
+%%%% OUTPUT:
+%
+%
+%\begin{math}\displaystyle
+%\parbox{8ex}{\color{labelcolor}(\%o1) }
+%\mathrm{V}\left( x\right) :={{x}^{2}}\cdot \left( 6-x\right) \mbox{}
+%\end{math}
+%%%%%%%%%%%%%%%%
+%
+%
+%\noindent
+%%%%%%%%%%%%%%%%
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%(%i2) 
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%V(x)-V(4);
+%\end{verbatim}}
+%\end{minipage}
+%%%% OUTPUT:
+%
+%
+%\begin{math}\displaystyle
+%\parbox{8ex}{\color{labelcolor}(\%o2) }
+%\left( 6-x\right) \cdot {{x}^{2}}-32\mbox{}
+%\end{math}
+%%%%%%%%%%%%%%%%
+%
+%
+%\noindent
+%%%%%%%%%%%%%%%%
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%-->  
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%V(x)-V(4)
+%\end{verbatim}}
+%\end{minipage}
+%
+%
+%\noindent
+%%%%%%%%%%%%%%%%
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%(%i3) 
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%expand(V(x)-V(4));
+%\end{verbatim}}
+%\end{minipage}
+%%%% OUTPUT:
+%
+%
+%\begin{math}\displaystyle
+%\parbox{8ex}{\color{labelcolor}(\%o3) }
+%-{{x}^{3}}+6\cdot {{x}^{2}}-32\mbox{}
+%\end{math}
+%%%%%%%%%%%%%%%%
+%
+%
+%\noindent
+%%%%%%%%%%%%%%%%
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%(%i4) 
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%factor(%);
+%\end{verbatim}}
+%\end{minipage}
+%%%% OUTPUT:
+%
+%
+%\begin{math}\displaystyle
+%\parbox{8ex}{\color{labelcolor}(\%o4) }
+%-{{\left( x-4\right) }^{2}}\cdot \left( x+2\right) \mbox{}
+%\end{math}
+%%%%%%%%%%%%%%%%
+%
+%\end{document}

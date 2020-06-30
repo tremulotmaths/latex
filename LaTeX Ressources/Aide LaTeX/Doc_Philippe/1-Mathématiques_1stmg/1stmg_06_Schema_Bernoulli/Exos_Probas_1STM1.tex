@@ -1,0 +1,62 @@
+\documentclass[10pt,french]{book}
+\input philippe2013
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=3pt,%
+framearc=0.3,%
+fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!60!yellow!40,gradend= white]{%
+\parbox{0.5\linewidth}{%
+\begin{center}
+\Large\bfseries
+Exercices de \par Probabilités
+\end{center}}}
+\end{center}\bigskip
+
+\exo Dans une classe de seconde de 25 élèves, chaque élève possède une calculatrice, et une seule, de marque $M_1$, $M_2$ ou $M_3$. Deux filles et trois garçons ont une calculatrice de marque $M_1$. $32\%$ des élèves de la classe ont une calculatrice de marque $M_2$. $56\%$ des élèves de la classe sont des filles. La moitié des fille de la classe ont une calculatrice de la marque $M_3$.
+
+\begin{enumerate}
+    \item \begin{enumerate}
+                \item Calculer le nombre d'élèves de la classe qui possèdent une calculatrice de marque $M_2$.
+                \item Calculer le nombre de filles de la classe.
+                \item Reproduire et compléter le tableau suivant :
+                \begin{center}
+                    \begin{tabular}{*{5}{|>{\centering\arraybackslash}m{2.25cm}}|}
+                        \hline
+                            & Nombre de calculatrices de marque $M_1$ & Nombre de calculatrices de marque $M_2$ & Nombre de calculatrices de marque $M_3$ & Total \\
+                        \hline
+                            Nombre de filles & & & & \\
+                        \hline
+                            Nombre de garçons & & & & \\
+                        \hline
+                            Total & & & & \\
+                        \hline
+                    \end{tabular}
+                \end{center}
+            \end{enumerate}
+    \item On choisit au hasard un élève de la classe. Calculer la probabilité de chacun des événements suivants :\par
+        $A$ : << L'élève est un garçon >> ; \par $B$ : << L'élève possède une calculatrice de marque $M_2$ ;\par
+        $C = A \cap B$ \qq $D = A \cup B$.
+    \item Les deux filles et les trois garçons qui possèdent une calculatrice de la marque $M_1$ se prénomment : Paulette, Paula, Paul, Paulo, Paulito.\par On écrit chaque prénom sur un carton et on place les cinq cartons (identiques et indiscernables au toucher) dans une urne opaque. On tire alors au hasard un premier carton de l'urne puis, sans le remettre, un deuxième carton. On obtient ainsi un couple de prénoms différents.
+        \begin{enumerate}
+            \item Déterminer le nombre de couples de prénoms qu'il est possible d'obtenir de cette manière.
+            \item Déterminer la probabilité de l'événement $F$ : << Obtenir deux prénoms féminins >>.
+            \item Déterminer la probabilité de l'événement $G$ : << Obtenir deux prénoms masculins >>.
+        \end{enumerate}
+\end{enumerate}\[*\]
+
+\exo On tire au hasard une carte d'un jeu de $32$ cartes. On considère les événements suivants :\par
+    $A$ : << La carte obtenue est un Carreau >> ;\par
+    $B$ : << La carte obtenue est une Figure >>.
+    
+    \begin{enumerate}
+        \item Calculer les probabilités $p(A)$ et $p(B)$.
+        \item Définir, à l'aide d'une phrase en français, l'événement $\overline A$, contraire de $A$, et calculer $p\left(\overline A\right)$.
+        \item Définir, à l'aide d'une phrase en français, l'événement $A \cap B$ et calculer $p\left(A \cap B\right)$.
+        \item Les événements $A$ et $B$ sont-ils incompatibles ? Donner une justification mathématique.
+        \item Calculer $p(A\cup B)$.
+    \end{enumerate}
+
+\end{document}

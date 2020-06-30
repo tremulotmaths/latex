@@ -1,0 +1,260 @@
+%\documentclass[french,10pt]{book}
+%\input preambule_2014
+
+\usepackage{xargs}
+\usepackage{environ}
+%___________________________
+%===    Redéfinition des marges
+%------------------------------------------------------
+%
+%\usepackage[textwidth=18.6cm]{geometry}
+\usepackage{geometry}
+%\geometry{textwidth=18.6cm}
+
+%\geometry{margin=1.5cm}
+%\pagestyle{fancy}
+%\fancyhf{}
+%___________________________
+%===    Redéfinition de la commande \chapter{•}
+%------------------------------------------------------
+%
+\makeatletter
+
+\renewcommand{\@makechapterhead}[1]{
+\begin{tikzpicture}
+\node[draw, color=blue,fill=white,rectangle,rounded corners=5pt]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\textcolor{blue}{\Large \textsc{\textbf{Chapitre \thechapter \ :}}} \par
+\textcolor{blue}{\Large \textsc{\textbf{ \ #1}}}
+\vspace*{7pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+}
+
+%___________________________
+%===    Redéfinition des sections
+%------------------------------------------------------
+%
+
+        \makeatletter
+        \newcommand{\sectioncolor}{blue} %Couleur titre de section
+        \newcommand{\ssectioncolor}{MidnightBlue} %Couleur titre de sous-section
+        \newcommand{\sssectioncolor}{RoyalBlue} %Couleur titre de sous-sous-section
+        %
+        %Coloration des titres
+        %---------------------
+        \renewcommand{\section}{%Commande définie dans le fichier article.cls
+            \@startsection%
+            {section}%
+            {1}%
+            {0pt}%
+            {-3.5ex plus -1ex minus -.2ex}%
+            {2.3ex plus.2ex}%
+            {\color{\sectioncolor}\normalfont\Large\bfseries}} %Aspect du titre
+        \renewcommand\subsection{%
+            \@startsection{subsection}{2}
+            {0.5cm}% %décalage horizontal
+            {-3.5ex\@plus -1ex \@minus -.2ex}%
+            {1ex \@plus .2ex}%
+            {\color{\ssectioncolor}\normalfont\large\bfseries}}
+        \renewcommand\subsubsection{%
+            \@startsection{subsubsection}{3}
+            {1cm}% %décalage horizontal
+            {-3.25ex\@plus -1ex \@minus -.2ex}%
+            {1ex \@plus .2ex}%
+            {\color{\sssectioncolor}\normalfont\normalsize\bfseries}}
+        %
+
+\setcounter{secnumdepth}{3}
+
+
+ %___________________________
+%===    Redéfinition des numérotation des paragraphes
+%------------------------------------------------------
+%
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\arabic{subsection}.}
+\renewcommand\thesubsubsection{\alph{subsubsection}.}
+%
+
+%_________________________
+%===    Environnements de cours
+%------------------------------------------------------
+
+
+
+%___________________________
+%===    Définitions
+%------------------------------------------------------
+
+%\newcounter{defi}[chapter]
+\NewEnviron{Defi}[2][]%
+{\medskip
+\begin{tikzpicture}
+\node[draw,color=red,fill=white,rectangle,rounded corners=5pt ]
+{\black\parbox{\linewidth}{\textcolor{red}{Définition#1 :} \textit{#2}\par \BODY}};
+\end{tikzpicture}
+}%
+%ou différrence ? ... ds tous les cas pb si texte avt def cadre sort de la page
+
+%\NewEnviron{Defi}[2][]%
+%{\medskip
+%\begin{tikzpicture}
+%\node[draw, color=red,fill=white,rectangle,rounded corners=5pt]{%
+%\begin{minipage}{\linewidth}
+%\textcolor{red}{Définition#1 :} \textit{#2}\par \BODY
+%
+%\end{minipage}
+%};\end{tikzpicture}
+%}%
+%___________________________
+%===    Propriétés
+%------------------------------------------------------
+%\newcounter{propri}[chapter]
+\NewEnviron{Prop}[2][]%
+{
+%\refstepcounter{propri}
+\medskip
+\begin{tikzpicture}
+\node[draw,color=red,fill=white,rectangle,rounded corners=5pt ]
+{\black\parbox{\linewidth}{\textcolor{red}{Propriété#1 :} \textit{#2}\par \BODY}};
+\end{tikzpicture}
+}%
+
+
+%___________________________
+%===    Théorèmes
+%------------------------------------------------------
+%\newcounter{thm}[chapter]
+\NewEnviron{Thm}[2][]%
+{
+%\refstepcounter{thm}
+\medskip
+\begin{tikzpicture}
+\node[draw,color=red,fill=white,rectangle,rounded corners=5pt ]
+{\black\parbox{\linewidth}{\textcolor{red}{Théorème#1 :} \textit{#2}\par \BODY}};
+\end{tikzpicture}
+}%
+
+%___________________________
+%===    Démonstration
+%------------------------------------------------------
+\NewEnviron{Demo}[1][]%
+{\begin{tikzpicture}
+\node[fill=gray!10,rounded corners=2pt,anchor=south west] (illus) at (0,0)
+{\hfill \textbf{\textcolor{ForestGreen!50}{Démonstration#1}}};
+\node[fill=gray!10,rounded corners=2pt,anchor=north west]at(0,0)
+{\parbox{\linewidth}{\BODY \par 
+\hfill$\square$}};
+\end{tikzpicture}
+\medskip
+}
+
+%___________________________
+%===    Exemples
+%------------------------------------------------------
+\newcounter{exemple}[chapter]
+\NewEnviron{Exemple}%
+{
+\refstepcounter{exemple}
+\psframebox[fillstyle=solid,fillcolor=Yellow!30,linewidth=0.4pt,linecolor=Yellow!30,linearc=0.05,cornersize=absolute]{
+
+    \begin{minipage}{\linewidth}
+\textit{Exemple~\theexemple~:} \par 
+\BODY
+\end{minipage}
+\medskip
+}
+}
+
+
+
+\NewEnviron{Exemple*}[1][]%
+{
+\psframebox[fillstyle=solid,fillcolor=Yellow!30,linewidth=0.4pt,linecolor=Yellow!30,linearc=0.05,cornersize=absolute]{
+
+    \begin{minipage}{\linewidth}
+\textit{Exemple#1:} \par 
+\BODY
+\end{minipage}
+\medskip
+}
+}
+
+%___________________________
+%===    Méthodes
+%------------------------------------
+\NewEnviron{Methode}[1] []%
+{\begin{bclogo}[noborder=true, arrondi = 0.1, logo = \bccrayon, barre = snake, tailleOndu=2,marge=0]{\normalsize Méthode#1}
+   \BODY
+\end{bclogo}
+\medskip
+}%
+
+%___________________________
+%===    Remarques
+%------------------------------------------------------
+
+\NewEnviron{Rmq}[1] []%
+{\begin{bclogo}[noborder=true, arrondi = 0.1, logo = , barre = snake, tailleOndu = 2 ,marge=0]{\normalsize Remarque#1 :}
+   \BODY
+\end{bclogo}
+\medskip
+}%
+
+%___________________________
+%===   Exercices
+%------------------------------------------------------
+\NewEnviron{Exo}[1][]
+{\textbf{Exercice~#1 :} \par
+\BODY
+\medskip
+}
+\newcounter{exos}[chapter]
+\NewEnviron{Exercice}[1][]
+{
+\refstepcounter{exos}
+\textbf{Exercice~\theexos :} ~#1 \par
+\BODY
+\medskip
+}
+
+%===   Commandes
+%------------------------------------------------------
+
+\newcommand{\Fiche}[2]{%
+\begin{tikzpicture}
+	\node[draw, color=blue,fill=white,rectangle,rounded corners=5pt]{%
+	\begin{minipage}{\linewidth}
+		\begin{center}
+			\vspace*{9pt}
+			\textcolor{blue}{\Large \textsc{\textbf{Fiche~#1 :}}}\par
+			\textcolor{blue}{\Large \textsc{\textbf{#2}}}
+			\vspace*{7pt}
+		\end{center}
+	\end{minipage}
+	};
+\end{tikzpicture}
+}%
+
+\newcommand{\Livre}[1]{%
+\begin{bclogo}[noborder=true, arrondi = 0.1, logo =\bcbook , barre = none , tailleOndu = 2 ,marge=0]{\normalsize Dans le livre :}
+   #1
+\end{bclogo}
+\medskip
+}%
+
+%Dans un repère
+\newcommand{\Dsrepere}[1]{%
+\begin{bclogo}[noborder=true, arrondi = 0.1, logo =\bccrayon , barre = line , tailleOndu = 0 ,marge=0]{\normalsize Dans un repère :}
+   #1
+\end{bclogo}
+\medskip
+}%
+%\dominitoc %pour pouvoir créer un sommaire du chapitre en cours avec \minitoc
+
+%produit saclaire 
+\newcommand{\Pdtscalaire}[2]{$\vect{#1} \cdot \vect{#2}$}

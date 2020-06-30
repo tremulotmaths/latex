@@ -1,0 +1,96 @@
+\titlepage{
+\begin{center}
+{\Large\bfseries\color{\MaCouleur} Philippe \bsc{De Sousa}}
+
+\vspace*{\stretch{1}}
+
+
+\begin{tikzpicture}
+\begin{scope}[scale=2.5,cap=round,xshift=-3cm,yshift=1.5cm]
+    % Local definitions
+    \def\costhirty{0.8660256}
+    % Colors
+    \colorlet{anglecolor}{green!50!black}
+    \colorlet{sincolor}{red}
+    \colorlet{tancolor}{orange!80!black}
+    \colorlet{coscolor}{blue}
+    % Styles
+    \tikzstyle{axes}=[]
+    \tikzstyle{important line}=[very thick]
+    \tikzstyle{information text}=
+    [rounded corners,fill=red!10,inner sep=1ex]
+    % The graphic
+    \draw[style=help lines,step=0.5cm] (-1.4,-1.4) grid (1.4,1.4);
+    \draw (0,0) circle (1cm);
+    \begin{scope}[style=axes]
+        \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$} coordinate(x axis);
+        \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$} coordinate(y axis);
+        \foreach \x/\xtext in {-1, -.5/-\frac{1}{2}, 1} \draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$\xtext$};
+        \foreach \y/\ytext in {-1, -.5/-\frac{1}{2}, .5/\frac{1}{2}, 1} \draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$\ytext$};
+    \end{scope}
+    \filldraw[fill=green!20,draw=anglecolor] (0,0) -- (3mm,0pt) arc(0:30:3mm);
+    \draw (15:2mm) node[anglecolor] {$\alpha$};
+    \draw[style=important line,sincolor] (0,0) -- node[left,fill=white] {\footnotesize$\sin \alpha$} (0,0.5);
+    \draw[style=important line,coscolor] (30:1cm |- x axis) -- node[below=1pt,fill=white] {\footnotesize$\cos \alpha$} (0,0);
+    \draw[dashed] (30:1cm |- x axis) -- (30:1cm) -- (30:1cm -| y axis);
+    \draw[style=important line,tancolor] (1,0) -- node[right,fill=white] {\footnotesize\rotatebox{-90}{$\tan \alpha$}} (intersection of 0,0--30:1cm and 1,0--1,1) coordinate (t);
+    \draw (0,0) -- (t);
+\end{scope}
+
+\begin{scope}[scale=1.5,yshift=-5cm,xshift=-3cm]
+\shorthandoff{:}
+%\draw[black,fill=gray!20](.445,0)node[below] {$\alpha$}--++(0,.434)node[above] {$f(\alpha)$}--plot[domain=.445:2/pi](\x,{\x*abs(sin(2/(rad(\x))))})--cycle;
+\draw[blue,thick,domain=-0.5:3.2,samples=200]plot(\x,{exp(\x-2)}) node[right]{$\calig C$};
+\draw[red,thick,domain=1.2:3.2,samples=200]plot(\x,{\x-1}) node[right]{$T$};
+\draw[gray] (2,1) node {$\bullet$};
+\draw[dashed,very thin, gray] (2,-0.5) node[below] {\tiny $x_0$} |- (2,1) -| +(1,1);
+\draw[color=orange] (3,1) -- +(0,1) node[midway,fill=white,right] {\tiny\rotatebox{-90}{$f'(x_0)$}};
+\draw[color=gray] (2.5,1) node[fill=white] {\tiny 1};
+\draw[thick,->](-0.5,-0.5)--(4,-0.5)node[below]{$x$};%axe x
+\draw[thick,->](1,-1)--(1,{exp(1.25)})node[left]{$y$};%axe y
+\end{scope}
+
+\begin{scope}[scale=1.75,>=latex,yshift=6cm,xshift=0.5cm]
+    \coordinate (O) at (0,0); \draw[fill=black] (O) circle (1.5pt);
+    \draw (0,0) -- ++(50:2cm);
+    \coordinate (A) at (1.5,1.32); \draw[ball color=blue!25] (A) circle (0.3cm);
+    \draw (1.8,1.32) -- ++ (0,-1.52cm);
+    \draw[shade] (1.5,-0.2) rectangle ++(0.6,-0.2);
+    \draw (0,0) -- ++(150:1.75cm);
+    \coordinate (B) at (-1.67,0.62); \draw[ball color=blue!25] (B) circle (0.3cm);
+    \draw (-1.97,0.62) -- ++ (0,-2.32cm);
+    \draw[shade] (-2.27,-1.7) rectangle ++(0.6,-0.4);
+    \draw (O) -- ++(0,-1.5cm);
+    \draw[shade] (-0.3,-1.5) rectangle ++(0.6,-0.25);
+    \draw (0,-0.25) arc (-90:50:0.25cm);
+    \draw[double] (50:0.25cm) arc (50:150:0.25cm);
+    \draw[dashed] (150:0.25cm) arc (150:270:0.25cm);
+    \begin{tiny}
+        \draw[->,thick,red](50:1.5pt) -- ++(50:0.75cm) node[midway,right] {$\vect u$};
+        \draw[->,thick,green](150:1.5pt) -- ++(150:0.75cm) node[near end,below] {$\vect v$};
+        \draw[->,thick,blue](-90:1.5pt) -- ++(-90:0.75cm) node[near end,right] {$\vect w$};
+        \draw (-20:0.32cm) node {$\gamma$};
+        \draw (90:0.32cm) node {$\alpha$};
+        \draw (210:0.32cm) node {$\beta$};
+    \end{tiny}
+\end{scope}
+\end{tikzpicture}
+\vspace*{\stretch{1}}
+
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}
+\node [rotate=45,scale=8,text opacity=0.2]
+at (current page.center) {\color{\MaCouleur}\scshape Mathématiques};
+\end{scope}
+
+\begin{scope}[xshift=5cm,yshift=10.5cm,overlay]
+\draw[\MaCouleur] (0,0) node[scale=8] {\premiere};
+\draw[\MaCouleur] (-0.2,-0.15) node[below,scale=6] {\sti};
+\draw[\MaCouleur] (-9.5cm,10cm) node[scale=4] {Algorithmes};
+\end{scope}
+\end{tikzpicture}
+
+
+D'après le programme $\NP{2012}$
+\end{center}
+} 

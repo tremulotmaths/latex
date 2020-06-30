@@ -1,0 +1,95 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\portrait
+%\paysage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{\dots}
+\newcommand{\anneescol}{Année \dots}
+
+%entête contrôle
+\nocolor
+\fancypagestyle{garde_controle}{% 
+\fancyhead[C]{\textbf{Nom,  Prénom : }\makebox[5cm]{\dotfill}\hfill \textbf{\classe}}
+\renewcommand{\headrulewidth}{0cm}}
+
+
+\newcommand{\controle}{
+\thispagestyle{garde_controle}
+
+\chapitre{
+INTERROGATION DE MATH\'EMATIQUES N\degres 1\\[6pt]
+\normalsize\textit{Sujet A}
+}
+\vspace*{-24pt}
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\textit{L'usage de la calculatrice est autorisé.\\
+La qualité de la rédaction, la clarté et la précision des raisonnements seront prises en compte dans l'appréciation de la copie.
+%Le barème est indicatif.
+}
+\end{center}
+\end{minipage}
+\end{center}
+
+\noindent
+\vspace{1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\controle		%entête contrôle
+
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\classe}{\thepage / \pageref{LastPage}}{\anneescol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% exercice 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exo1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{Exercice}%[(points)]%
+
+
+\end{Exercice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% exercice 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exo2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+\medskip
+\begin{Exercice}%[(points)]%
+
+
+\end{Exercice}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,77 @@
+%===
+%===    Mise en forme des sections "philippe2014_sections" version du 04.01.2015
+%===
+
+
+%%% FORMAT SECTIONS DE mathbook.cls de Stéphane PASQUET
+
+% couleurs section
+\definecolor{section@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{subsection@title@color}{cmyk}{0,0.6,0.9,0}
+\definecolor{shadow@color}{cmyk}{.07,0,0,0.49}
+% fontes section
+\def\sectiontitle@font{\fontfamily{ugq}\selectfont}
+\def\subsectiontitle@font{\fontfamily{ugq}\selectfont}
+% Décalages numéro de sections / titres des sections
+\newlength\decalnumsec
+\newlength\decalnumsubsec
+\setlength{\decalnumsec}{-0.5em}
+\setlength{\decalnumsubsec}{-0.5em}
+\newlength\decalxtitlesubsec
+\setlength{\decalxtitlesubsec}{\parindent}
+% Espace entre le numéro de section et le titre
+\newlength\spacetitlesec
+\newlength\spacetitlesubsec
+\setlength{\spacetitlesec}{0.5em}
+\setlength{\spacetitlesubsec}{0.2em}
+
+%%%%%%%%%%%%% Titre de section
+
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}[block]
+{%
+	\bfseries\Large
+	\color{section@title@color}
+	\sectiontitle@font
+}
+{
+\raisebox{\decalnumsec}
+{%
+\begin{tikzpicture}
+\node (numsec) {\sectiontitle@font\thesection};
+\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+\fill[rounded corners=2pt,fill=section@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+\node[white] at (numsec) {\sectiontitle@font\thesection};
+\end{tikzpicture}
+}
+}
+{\spacetitlesec}
+{}
+
+%%%%%%%%%%%%% Titre de subsection
+
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\titleformat{\subsection}[block]
+{%
+	\hspace*{\decalxtitlesubsec}
+	\bfseries\large
+	\color{subsection@title@color}
+	\subsectiontitle@font
+}
+{
+	\raisebox{\decalnumsubsec}
+	{%
+	\begin{tikzpicture}
+	\node (numsec) {\subsectiontitle@font\thesubsection};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subsection@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsec) {\subsectiontitle@font\thesubsection};
+	\end{tikzpicture}
+	}
+}
+{%
+	\spacetitlesubsec
+}
+{%
+	%\itemclass{subsection@title@color}{\subsection@font}
+} 

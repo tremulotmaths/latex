@@ -1,0 +1,289 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table,svgnames]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-math}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+% --- Propre à cette doc
+
+\usepackage{cellspace}
+\setlength{\cellspacetoplimit}{4pt}
+\setlength{\cellspacebottomlimit}{4pt}
+\usepackage{longtable}
+
+% ----------------------
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-math} }\\[3mm]
+{\large Version 1.07 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+J'ai souhaité écrire cette extension dans le but de simplifier la saisie des documents mathématiques, mais surtout harmoniser l'écriture d'un même ouvrage. J'ai donc voulu créer des commandes qui permettent d'écrire des objets mathématiques de façon rapide et efficace sans que l'on se demande la façon dont on a écrit telle ou telle chose au début du document. 
+
+\medskip
+
+Le package \texttt{pas-math} charge automatiquement les extensions suivantes :
+
+\begin{quote}
+amsmath\\
+amssymb\\
+amsfonts\\
+esvect\\
+ifthen\\
+kpfonts si \texttt{pas-math} est appelé avec l'option \texttt{[kpfonts]}.
+\end{quote}
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-math.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-math/latex/pas-math.sty
+./texlive/texmf-local/tex/latex/pas-math/doc/pas-math.tex
+./texlive/texmf-local/tex/latex/pas-math/doc/pas-math.pdf
+./texlive/texmf-local/tex/latex/pas-math/doc/doc.codes.tex
+./texlive/texmf-local/tex/latex/pas-math/doc/doc.styles.tex
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+\section{Les commandes}
+
+Les commandes suivantes peuvent être utilisées hors mode mathématique, sauf celles qui sont mentionnées comme ne fonctionnant uniquement qu'en mode mathématique.
+
+Il va de soit que ces commandes sont intéressantes quand on utilise un éditeur avec auto-complétion (comme, par exemple, TexMaker).
+
+\arrayrulecolor{DarkRed}
+
+\subsection{Les ensembles}
+
+\begin{center}
+\begin{tabular}{|>{\ttfamily}Sc|Sc|}
+\hline
+\normalfont\bfseries Commandes & \bfseries Résultats\\
+\hline
+\textbackslash N & \N\\
+\hline
+\textbackslash D & \D\\
+\hline
+\textbackslash Z & \Z\\
+\hline
+\textbackslash Q & \Q\\
+\hline
+\textbackslash R & \R\\
+\hline
+\textbackslash C & \C\\
+\hline
+\textbackslash intervFF\{3\}\{5\} & \intervFF{3}{5}\\
+\hline
+\textbackslash intervFO\{3\}\{+\textbackslash infty\} & \intervFO{3}{+\infty} \\
+\hline
+\textbackslash intervOF\{\textbackslash dfrac\{3\}\{2\}\}\{5\} & \intervOF{\dfrac{3}{2}}{5}\\
+\hline
+\textbackslash intervOO\{\textbackslash dfrac\{3\}\{2\}\}\{5\} & \intervOO{\dfrac{3}{2}}{5}\\
+\hline
+\textbackslash entInterv\{a\}\{b\} & \entInterv{a}{b}\\
+\hline
+\end{tabular}
+\end{center}
+
+\emph{Les intervalles sont mis dans une boîte ; ainsi, l'intervalle affiché ne peut pas être coupé en fin de ligne.}
+
+\newpage
+
+\subsection{Les repères et analyse fonctionnelle}
+
+\begin{center}
+\begin{longtable}{|>{\ttfamily}Sc|Sc|}
+\hline
+\normalfont\bfseries Commandes & \bfseries Résultats\\
+\hline
+\textbackslash Rij & \Rij\\
+\hline
+\textbackslash Ruv & \Ruv \\
+\hline
+\textbackslash Rijk & \Rijk \\
+\hline
+\multicolumn{2}{|Sl|}{Ces trois commandes peuvent recevoir un argument : le nom de l'origine :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash Rij[\$\textbackslash Omega\$] & \Rij[\Omega]\\
+\hline\rowcolor{Moccasin}
+\textbackslash Rijk[A] & \Rijk[A] \\
+\hline
+\textbackslash coord\{-1\}\{2\} & \coord{-1}{2}\\
+\hline
+\textbackslash coordEsp\{-1\}\{2\}\{5\} & \coordEsp{-1}{2}{5}\\
+\hline
+\textbackslash fonction\{\textbackslash R\}\{\textbackslash R\}\{x\}\{\textbackslash dfrac\{3x\verb+^+2+1\}\{6x\verb+^+2+1\}\} & \fonction{\R}{\R}{x}{\dfrac{3x^2+1}{6x^2+1}}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande peut recevoir un argument : le nom de la fonction :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash fonction[g]\{\textbackslash C\textbackslash setminus\{-1\} \}\{\textbackslash C\}\{z\}\{\textbackslash dfrac\{z-1\}\{z+1\}\} & \fonction[g]{\C\setminus\{-1\}}{\C}{z}{\dfrac{z-1}{z+1}}\\
+\hline
+\textbackslash dx (à mettre dans une intégrale) & \dx\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet un argument : le nom de la variable d'intégration :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash dx[t] & \dx[t]\\
+\hline
+\textcolor{red}{\textbackslash dint} (uniquement en mode mathématique) & $\textcolor{red}{\dint_{\textcolor{black}{a}}^{\textcolor{black}{b}}} f(x)\dx$\\
+\hline
+\textbackslash limite\{x\}\{0\}\{f(x)=0\} & \limite{x}{0}{f(x)=0}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet un argument optionnel :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash limite[x>0\textbackslash\textbackslash y>0]\{x\}\{0\}\{f(x,y)=0\} & \limite[x>0\\y>0]{x}{0}{f(x,y)=0}\\
+\hline
+\end{longtable}
+\end{center}
+
+\subsection{Notations géométriques}
+
+\begin{center}
+\begin{tabular}{|>{\ttfamily}Sc|Sc|}
+\hline
+\normalfont\bfseries Commandes & \bfseries Résultats\\
+\hline
+\textbackslash angle\{ABC\} & \angle{ABC}\\
+\hline
+\textbackslash angleor\{OA\}\{OB\} & \angleor{OA}{OB}\\
+\hline
+\textbackslash arc\{AB\} & \arc{AB}\\
+\hline
+\textbackslash pythagore\{BC\}\{AB\}\{AC\} & \pythagore{BC}{AB}{AC}\\
+\hline
+\textbackslash thales\{AB\}\{AM\}\{AC\}\{AN\}\{BC\}\{MN\} & \thales{AB}{AM}{AC}{AN}{BC}{MN}\\
+\hline
+\textbackslash thalesShort\{AB\}\{AM\}\{AC\}\{AN\} & \thalesShort{AB}{AM}{AC}{AN}\\
+\hline
+\textbackslash barycentre\{A\}\{B\}\{C\} & \barycentre{A}{B}{C}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet une option : le nom du barycentre.}\\
+\hline\rowcolor{Moccasin}
+\textbackslash barycentre[\$\textbackslash Omega\$]\{A\}\{B\}\{C\} & \barycentre[\Omega]{A}{B}{C}\\
+\hline
+\textbackslash norme\{AB\} & \norme{AB}\\
+\hline
+\textbackslash prodscal\{AB\}\{\textbackslash\$Omega\$C\} & \prodscal{AB}{\Omega C}\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Probabilités}
+
+\begin{center}
+\begin{tabular}{|>{\ttfamily}Sc|Sc|}
+\hline
+\normalfont\bfseries Commandes & \bfseries Résultats\\
+\hline
+\textbackslash evcont\{A\} & \evcont{A}\\
+\hline
+\textbackslash union\{A\}\{\textbackslash evcont\{B\}\} & \union{A}{\evcont{B}}\\
+\hline
+\textbackslash inter\{A\}\{B\} & \inter{A}{B}\\
+\hline
+\textbackslash proba\{A\} & \proba{A}\\
+\hline
+\textbackslash probamin\{A\$\_1\$\} & \probamin{A_1}\\
+\hline
+\textbackslash esp\{X\} & \esp{X}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet un argument optionnel :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash esp[\textbackslash text\{E\}]\{X\} & \esp[\text{E}]{X}\\
+\hline
+\textbackslash var\{X\} & \var{X}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet un argument optionnel :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash var[\textbackslash text\{V\}]\{X\} & \var[\text{V}]{X}\\
+\hline
+\textbackslash ectype\{X\} & \ectype{X}\\
+\hline
+\textbackslash probavar\{X\}\{-2\} & \probavar{X}{-2}\\
+\hline
+\multicolumn{2}{|Sl|}{Cette commande admet un argument optionnel :}\\
+\hline\rowcolor{Moccasin}
+\textbackslash probavar[\textbackslash geqslant]\{X\}\{-2\} & \probavar[\geqslant]{X}{-2}\\
+\hline
+\textbackslash probacond\{A\}\{B\} & \probacond{A}{B}\\
+\hline
+\textbackslash probacond\{X\$geqslant 2\$\}\{(X\$leqslant 3\$)\} & \probacond{X\geqslant 2}{(X\leqslant 3)}\\
+\hline
+\textbackslash probacondmin\{A\}\{B\} & \probacondmin{A}{B}\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Divers}
+
+\begin{center}
+\begin{tabular}{|>{\ttfamily}Sc|Sc|}
+\hline
+\normalfont\bfseries Commandes & \bfseries Résultats\\
+\hline
+\textbackslash pourcent\{x\} ; \textbackslash pourcent\{30,5\} & \pourcent{x} ; \pourcent{30,5}\\
+\hline
+\textbackslash fact\{n\} & \fact{n}\\
+\hline
+\textbackslash suite\{u\}\{n\}\{n\textbackslash geqslant 0\} & \suite{u}{n}{n\geqslant 0}\\
+\hline
+\textbackslash e,\ \$\textbackslash e\verb+^+x\$ & \e  (le nombre),\ $\e^x$ (la fonction)\\
+\hline
+\textbackslash i,\ \textbackslash j & \i,\ \j\\
+\hline
+\textbackslash jexp,\ \textbackslash jalg & \jexp,\ \jalg\\
+\hline
+\textbackslash pgcd\{a\}\{b\},\ \textbackslash pgcd*\{a\}\{b\} & \pgcd{a}{b},\ \pgcd*{a}{b}\\
+\hline
+\textbackslash ppcm\{a\}\{b\},\ \textbackslash ppcm*\{a\}\{b\} & \ppcm{a}{b},\ \ppcm*{a}{b}\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ajout de commandes}
+
+Bien entendu, je n'ai pas pensé à toutes les simplifications possibles. Aussi, si vous voulez contribuer à cette extension, vous pouvez m'envoyer vos suggestions.
+\end{document}

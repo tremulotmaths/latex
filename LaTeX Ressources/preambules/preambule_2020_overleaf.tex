@@ -1,0 +1,1589 @@
+%%%%%%%%%%%%%%%%
+%%%Modifications par rapport au précédent
+%Suppression du package eurosym incompatible avec le package marvosym (pour certains symboles) à cause de \EUR{}
+%Ajout du package marvosym
+%voir le fichier des symboles utiles.
+%Ajout du package tikzsymbols
+%a nécessité la mise à jour du package l3kernel
+%Ajout de la commande \pfr{} pour encadrer un résultat en rouge
+%Modification de \pv
+
+
+%___________________________
+%===    Configurations 09.06.2016
+%------------------------------------------------------
+%packages permettant d'augmenter le nombre de registres de dimension et donc d'éviter les erreurs de compilation dûs aux packages tikz, pstricks and compagnie
+\usepackage{etex}
+%___________________________
+%===    Pour le français
+%------------------------------------------------------
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\FrenchFootnotes
+\usepackage{tipa}%alphabet phonétique internationnal
+%___________________________
+%===    Polices d'écriture
+%------------------------------------------------------
+%\usepackage{mathpazo}
+\usepackage{frcursive} % Pour l'écriture cursive
+\usepackage[upright]{fourier}% l'option permet d'avoir les majuscules droites dans les formules mathématiques
+\usepackage[scaled=0.875]{helvet}
+
+%___________________________
+%===    Les couleurs
+%------------------------------------------------------
+\usepackage[dvipsnames,table]{xcolor}
+%
+\newcommand{\rouge}[1]{{\color{red} #1}}
+\definecolor{midblue}{rgb}{0.145,0.490,0.882}
+\newcommand\MaCouleur{midblue}
+
+%___________________________
+%===   Entête, pied de page
+%------------------------------------------------------
+
+\usepackage{lscape} %permet le format paysage du document
+\usepackage{xspace} % création automatique d'espaces dans les commandes
+\setlength{\parindent}{0pt}
+
+\usepackage{fancyhdr}
+%
+\renewcommand{\headrulewidth}{0pt}% pas de trait en entête
+\newcommand\RegleEntete[1][0.4pt]{\renewcommand{\headrulewidth}{#1}}%commande pour ajouter un trait horizontal en entête
+
+\newcommand{\entete}[3]{\lhead{#1} \chead{#2} \rhead{#3}}
+\newcommand{\pieddepage}[3]{\lfoot{#1} \cfoot{#2} \rfoot{#3}}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % enregistre le titre courant du chapitre 
+%en-tete droite page [paire] et {impaire}
+\rhead[]{\textbf{\leftmark.}}
+%en-tete gauche page [paire] et {impaire}
+\lhead[\textbf{\chaptername~\thechapter.}]{}
+
+
+\usepackage{enumerate} %permet la modif de la numérotation et de poursuivre une numérotation en cours avec \begin{enumerate}[resume]
+\usepackage{enumitem}
+\frenchbsetup{StandardLists=true}%frenchb ne s'occupera pas des listes
+\setenumerate[1]{font=\bfseries,label=\arabic*.} % numérotation 1. 2. ...
+%\setenumerate[2]{font=\itshape,label=(\alph*)} % sous-numérotation (a) (b) ...
+\setenumerate[2]{font=\bfseries,label=\alph*)} % sous-numérotation a) b) ...
+
+\usepackage{lastpage} % permet d'afficher le nombre total de pages après DEUX compilations.
+
+%___________________________
+%===    Raccourcis classe
+%------------------------------------------------------
+\newcommand\seconde{2\up{nde}\xspace}
+\newcommand\premiere{1\up{ère}\xspace}
+\newcommand\terminale{T\up{le}\xspace}
+\newcommand\stmg{\bsc{Stmg}}
+\newcommand\sti{\bsc{Sti2d}}
+\newcommand\bat{BAT 1\xspace}
+\newcommand\BAT{BAT 2\xspace}
+\newcommand\tesspe{TES Spécialité\xspace}
+
+
+%___________________________
+%===    Réglages et Commandes Maths
+%------------------------------------------------------
+%les commandes suivantes évitent le message "too many math alphabets"...
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+%redéfinition de fractions, limites, sommes, intégrales, coefficients binomiaux en displaystyle, limites de suites
+\usepackage{amssymb,mathtools}
+\let\binomOld\binom
+\renewcommand{\binom}{\displaystyle\binomOld}
+\let\limOld\lim
+\renewcommand{\lim}{\displaystyle\limOld}
+\newcommand{\limn}{\lim_{n\to +\infty}} %limite lorsque n tend vers + infini
+\newcommand{\limm}{\lim_{x\to -\infty}} %limite lorsque x tend vers - infini
+\newcommand{\limp}{\lim_{x\to +\infty}} %limite lorsque x tend vers + infini
+\newcommand{\limz}{\lim_{x\to 0}} %limite lorsque x tend vers 0
+\newcommand{\limzm}{\lim_{\substack{x \to 0\\ x < 0}}} %limite lorsque x tend vers 0-
+\newcommand{\limzp}{\lim_{\substack{x \to 0\\ x > 0}}} %limite lorsque x tend vers 0+
+\let\sumOld\sum
+\renewcommand{\sum}{\displaystyle\sumOld}
+\let\intOld\int
+\renewcommand{\int}{\displaystyle\intOld}
+
+%\usepackage{yhmath}%permet les arcs de cercles
+%\usepackage[euler-digits]{eulervm} %-> police maths
+%
+\usepackage{stmaryrd}%\llbracket et \rrbracket % crochets doubles pour intervalles d'entier
+%symbole parallèle avec \sslash
+
+\newcommand{\crochets}[2]{\ensuremath{\llbracket #1 ; #2 \rrbracket}}
+
+\newcommand{\intervalleff}[2]{\left[#1\,;#2\right]}
+\newcommand{\intervallefo}[2]{\left[#1\,;#2\right[}
+\newcommand{\intervalleof}[2]{\left]#1\,;#2\right]}
+\newcommand{\intervalleoo}[2]{\left]#1\,;#2\right[}
+
+\usepackage{xlop}%pour écrire des opérations posées (LaTeX effectue les calculs lui-même)
+
+\usepackage{bm} % pour l'écriture en gras des formules mathématiques avec \bm
+
+\usepackage{cancel} % pour les simplifications de fractions
+\renewcommand\CancelColor{\color{red}}
+%\usepackage{siunitx} % écriture de nombres et d'unités
+%\sisetup{output-decimal-marker={,},detect-all}
+\usepackage[autolanguage,np]{numprint}
+%permet les espacement pour les nombres décimaux avec \np{3,12456} en environnement maths ou pas
+\DecimalMathComma %supprime l'espace après la virgule dans un nombre
+
+%
+\usepackage{dsfont} %écriture des ensemble N, R, C ...
+\newcommand{\C}{\mathds C}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\D}{\mathds D}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+\newcommand{\K}{\mathds K}
+\newcommand{\U}{\mathds U}
+\newcommand\Ind{\mathds 1} %= fonction indicatrice
+\newcommand\p{\mathds P} %= probabilité
+\newcommand\E{\mathds E} % Espérance
+\newcommand\V{\mathds V} % Variance
+\newcommand{\e}{\text{e}}
+\newcommand{\dd}{\,\text{d}}
+\newcommand{\pgcd}{\text{pgcd}}
+%\newcommand{\si}{\,\text{si}\,}
+\newcommand{\sinon}{\,\text{sinon}\,}
+\newcommand{\Id}{\text{Id}}
+\newcommand{\Vect}{\text{Vect}}
+
+%Nombres complexes
+\let\Reold\Re
+\renewcommand{\Re}{~\text{Re}~}
+\let\Imold\Im
+\renewcommand{\Im}{~\text{Im}~}
+\newcommand{\ii}{\,\text{i}}
+% Exponentielle complexe
+\newcommand{\ei}[2]{\,\e^{\dfrac{#1\ii\pi}{#2}}}
+
+
+%
+\usepackage{mathrsfs}   % Police de maths jolie caligraphie
+\newcommand{\calig}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand\mtc[1]{\ensuremath{\mathcal{#1}}}
+
+
+%Gestion des espaces
+%
+%\newcommand{\pv}{\ensuremath{\: ; \,}}
+\newcommand{\pv}{\ensuremath{\: ;}}
+\newlength{\EspacePV}
+\setlength{\EspacePV}{1em plus 0.5em minus 0.5em}
+\newcommand{\qq}{\hspace{\EspacePV} ; \hspace{\EspacePV}}
+\newcommand{\qetq}{\hspace{\EspacePV} \text{et} \hspace{\EspacePV}}
+\newcommand{\qouq}{\hspace{\EspacePV} \text{ou} \hspace{\EspacePV}}
+\newcommand{\qLq}{\hspace{\EspacePV} \Leftarrow \hspace{\EspacePV}}
+\newcommand{\qRq}{\hspace{\EspacePV} \Rightarrow \hspace{\EspacePV}}
+\newcommand{\qLRq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+
+
+%Repères
+\def\Oij{$\left(\text{O}\pv\vect{\imath},~\vect{\jmath}\right)$\xspace}
+\def\Oijk{$\left(\text{O}\pv\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$\xspace}
+\def\Ouv{$\left(\text{O}\pv\vect{u},~\vect{v}\right)$\xspace}
+\def\OIJ{$\left(O\pv I\:,\,J\right)$\xspace}
+
+\newcommand\abs[1]{\ensuremath{\left\vert #1 \right\vert}}%valeur absolue
+\newcommand\Arc[1]{\ensuremath{\wideparen{#1}}}%arc de cercle
+
+
+%symbole pour variable aléatoire qui suit une loi
+\newcommand{\suit}{\hookrightarrow}
+
+%encadrer un résultat en rouge
+\newcommand\pfr[1]{\fcolorbox{red}{white}{#1}}
+
+%Présentation fonctions prépas
+\newcommand\fonction[4]{\left\{\begin{array}{ccl}
+#1&\longrightarrow&#2\\#3&\longmapsto&#4
+\end{array}\right.}
+
+
+%___________________________
+%===    Pour les tableauxDans l'espace, une unité de longueur étant choisie,
+%------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx,tabulary}
+\usepackage{multirow}
+\usepackage{multicol}
+%exemple
+%\begin{multicols}{3}[Titre sur une seule colonne.]
+%   3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées
+%\end{multicols}
+%\begin{multicols}{2}[\section{Titre numéroté.}]
+%   blabla sur deux colonnes, c'est plus sérieux. C'est le style qui est généralement utilisé pour écrire des articles.
+%saut de colonne forcé :
+%\columnbreak
+%djhskjdhjsq
+%sdkksqjhd
+%\end{multicols}
+%Pour ajouter un titre numéroté qui apparaisse sur toute la largeur de la page, il faut utiliser l'option [\section{Titre.}] juste après \begin{multicols}{nb-col}.
+%Remarques :
+%Pour qu'une ligne de séparation apparaisse entre les colonnes, il faut utiliser : \setlength{\columnseprule}{1pt}.
+
+%Pour redéfinir la largeur de l'espace inter-colonnes, il faut utiliser \setlength{\columnsep}{30pt}.
+
+%Pour remonter le texte, dans chaque colonne vers le haut : \raggedcolumns qui se tape :\begin{multicols}{2}\raggedcolumns...\columnbreak...\columnbreak\end{multicols}
+
+%Pour supprimer les traits verticaux : \setlength{\columnseprule}{0pt} avant \begin{multicols}{3}...\end{multicols}
+\setlength\columnseprule{0.4pt}
+\renewcommand{\arraystretch}{1.5}%augmente la hauteur des lignes des tableaux
+%colonnes centrées verticalement et horizontalement permettant d'écrire des paragraphes de largeur fixée du type M{3cm}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}%cellule centrée horizontalement et verticalement
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}%cellule alignée à droite et centrée verticalement
+%\arraybackslash permet de continuer à utiliser \\ pour le changement de ligne
+
+\usepackage{arydshln}% permet des filets horizontaux ou verticaux en pointillés avec
+%pour les filets horizontaux \hdashline ou \cdashline qui s'utilisent comme \hline ou \cline
+% pour les filets verticaux les deux points :
+
+
+%___________________________
+%===    Divers packages
+%------------------------------------------------------
+\usepackage{textcomp}
+
+\usepackage{soul} % Pour souligner : \ul
+\usepackage{ulem} % Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+\usepackage{tikz,tikz-3dplot}
+\usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing,patterns,positioning,decorations.text}
+\usetikzlibrary{shadows,trees}
+\usepackage{pstricks,pst-plot,pst-text,pstricks-add,pst-eucl,pst-all}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+
+\usepackage{tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-graph}
+\usetkzobj{all}
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   []
+%\end{spacing}
+
+%Pointillés sur toute la ligne
+\usepackage{multido}
+\newcommand{\Pointilles}[1][1]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[1.5\parskip]
+}}
+%commandes : \Pointilles ou \Pointilles[4] pour 4 lignes
+
+
+%textes à trous
+\newlength\lgtrou
+\newcommand*\trou[1]{%
+\settowidth\lgtrou{#1}%
+\makebox[2\lgtrou]{\dotfill}
+\setlength\baselineskip{1.2\baselineskip}}
+%Commande à utiliser : \trou{texte qui sera remplacé par des pointillés}
+
+%divers cadres
+\usepackage{fancybox} % par exemple \ovalbox{}
+
+%caractères spéciaux avec la commande \ding{230} par exemple
+\usepackage{pifont}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%autres symboles
+%\usepackage{marvosym}
+\usepackage{bclogo}
+\usepackage{tikzsymbols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{bbding}
+%permet d'utiliser \Checkmark et \XSolidBrush
+%problème avec le package marvosym pour la commande \Cross
+
+
+%___________________________
+%===    Quelques raccourcis perso
+%------------------------------------------------------
+
+%checked box
+\newcommand{\checkbox}{
+\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{0.1em}$\checkmark$}
+}
+
+%QCM
+%\dingsquare %carré avant V ou F
+%\dingchecksquare %carré validé devant V ou F
+
+
+%QRcode généré par le package qrcode
+\usepackage{qrcode}
+
+
+%Texte en filigrane
+\usepackage{watermark}
+%On utilise ensuite les commandes \watermark, \leftwatermark, \rightwatermark ou \thiswatermark qui permettent de définir un filigrane sur toutes les pages, les pages paires, les pages impaires ou juste une page
+%Exemple : \thiswatermark {
+%\begin{minipage}{0.95\linewidth}
+%\vspace{25cm}
+%\begin{center}
+%\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}\LaTeX}}
+%\end{center}
+%\end{minipage}
+%}
+
+%Rond entourant une lettre avec pour arguments la couleur de fond, puis la lettre
+\newcommand\rond[2][red!20]{\tikz[baseline]{\node[fill=#1,anchor=base,circle]{\bf #2};}}
+
+
+%Ecrire card en écriture normale :
+\newcommand{\card}{\text{Card}\xspace}
+
+
+%___________________________
+%===    Packages posant pb sur Overleaf
+%------------------------------------------------------
+%\usepackage{slashbox}
+%\usepackage{pas-algo}%package de Stéphane Pasquet
+
+
+
+%___________________________
+%===    HYPERLIENS
+%------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue,bookmarksnumbered]{hyperref} 
+
+
+%___________________________
+%===    SOMMAIRE DANS LES CHAPITRES
+%------------------------------------------------------
+
+%\usepackage{minitoc}
+%À mettre directement dans les documents
+
+%___________________________
+%===    TABLEUR
+%------------------------------------------------------
+\usepackage{pas-tableur}%package de Stéphane Pasquet
+\usepackage{xstring}
+\usepackage{xkeyval}
+
+
+%___________________________
+%===    touches calculatrices
+%------------------------------------------------------
+
+\newcommand{\touche}[1]{\begin{pspicture}(0,0)(0.9,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(0.8,0.45)\rput[cc](0.4,
+0.225){#1}\end{pspicture}} %touche calculatrice
+\newcommand{\gtouche}[1]{\begin{pspicture}(0,0)(1.8,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(1.6,0.45)\rput[cc](0.8,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+\newcommand{\ggtouche}[1]{\begin{pspicture}(0,0)(2.4,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(2.4,0.45)\rput[cc](1.2,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+
+%\usepackage{tipfr}
+
+
+%___________________________
+%===   Redéfinition des marges par défaut
+%------------------------------------------------------
+%\usepackage[textwidth=18.6cm]{geometry}%à mettre dans le preambule perso
+%\pagestyle{fancy}%à mettre dans le preambule perso
+
+\newcommand{\portrait}{
+\setlength\paperheight{297mm}
+\setlength\paperwidth{210mm}
+\setlength{\evensidemargin}{0cm}% Marge gauche sur pages paires
+\setlength{\oddsidemargin}%{0cm}%
+{-0.5cm}% Marge gauche sur pages impaires
+\setlength{\topmargin}{-2cm}% Marge en haut
+\setlength{\headsep}{0.5cm}% Entre le haut de page et le texte
+\setlength{\headheight}{0.7cm}% Haut de page
+\setlength{\textheight}{25.2cm}% Hauteur de la zone de texte
+\setlength{\textwidth}{17cm}% Largeur de la zone de texte
+}
+
+\newcommand{\paysage}{
+\setlength\paperheight{210mm}
+\setlength\paperwidth{297mm}
+\setlength{\evensidemargin}{0cm}% Marge gauche sur pages paires
+\setlength{\oddsidemargin}%{0cm}%
+{-0.5cm}% Marge gauche sur pages impaires
+\setlength{\topmargin}{-2cm}% Marge en haut
+\setlength{\headsep}{0.5cm}% Entre le haut de page et le texte
+\setlength{\headheight}{0.7cm}% Haut de page
+\setlength{\textheight}{16.5cm}% Hauteur de la zone de texte
+\setlength{\textwidth}{25.7cm}% Largeur de la zone de texte
+}
+
+
+% Environnement enumerate
+\renewcommand{\theenumi}{\bf\textsf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\bf\textsf{\theenumi.}}
+\renewcommand{\theenumii}{\bf\textsf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\bf\textsf{\theenumii.}}
+\renewcommand{\theenumiii}{\bf\textsf{\roman{enumiii}}}
+\renewcommand{\labelenumiii}{\bf\textsf{\theenumiii.}}
+
+
+%definition des couleurs
+\definecolor{fondpaille}{cmyk}{0,0,0.1,0}%\pagecolor{fondpaille}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{1,0,0}
+\definecolor{bleu}{rgb}{0,0,1}
+\definecolor{vert}{rgb}{0,1,0}
+\definecolor{deficolor}{HTML}{2D9AFF}
+\definecolor{backdeficolor}{HTML}{EDEDED}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{C10CC7}%{HTML}{036DD0}%F4404D%rouge
+\definecolor{backtheocolor}{HTML}{D3D3D3}
+\definecolor{methcolor}{HTML}{008800}%12BB05}
+\definecolor{backmethcolor}{HTML}{FFFACD}
+\definecolor{backilluscolor}{HTML}{EDEDED}
+\definecolor{sectioncolor}{HTML}{C10CC7}%{B2B2B2}%vert : {HTML}{008800}%{HTML}{2D9AFF}
+\definecolor{subsectioncolor}{HTML}{C10CC7}%{B2B2B2}%vert : {HTML}{008800}%{rgb}{0.5,0,0}
+\definecolor{subsubsectioncolor}{HTML}{C10CC7}
+\definecolor{engcolor}{HTML}{D4D7FE}
+\definecolor{exocolor}{rgb}{0,0.6,0}
+\definecolor{exosoltitlecolor}{rgb}{0,0.6,0}
+\definecolor{titlecolor}{rgb}{1,1,1}
+
+%commande pour enlever les couleurs avant impression
+\newcommand{\nocolor}
+{\pagecolor{white}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{0,0,0}
+\definecolor{bleu}{rgb}{0,0,0}
+\definecolor{vert}{rgb}{0,0,0}
+\definecolor{deficolor}{HTML}{B2B2B2}
+\definecolor{backdeficolor}{HTML}{EEEEEE}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{B2B2B2}
+\definecolor{backtheocolor}{HTML}{EEEEEE}
+\definecolor{methcolor}{HTML}{B2B2B2}
+\definecolor{backmethcolor}{HTML}{EEEEEE}
+\definecolor{backilluscolor}{HTML}{EEEEEE}
+\definecolor{sectioncolor}{HTML}{B2B2B2}
+\definecolor{subsectioncolor}{HTML}{B2B2B2}
+\definecolor{subsubsectioncolor}{HTML}{B2B2B2}
+\definecolor{engcolor}{HTML}{EEEEEE}
+\definecolor{exocolor}{HTML}{3B3838}
+\definecolor{exosoltitlecolor}{rgb}{0,0,0}
+\definecolor{titlecolor}{rgb}{0,0,0}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Encadrés pour Propriétés, Théorème, Définitions, exemples, exercices
+
+\usepackage{environ}%pour pouvoir utiliser la commande \NewEnviron
+
+%___________________________
+%===    Propriété avec ou sans s et avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{prop}
+\NewEnviron{Prop}[2][]{
+\smallskip
+\refstepcounter{prop}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Propriété#1~\theprop~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backtheocolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+%___________________________
+%===    Notation avec ou sans s et avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{notation}
+\NewEnviron{Notation}[2][]{
+\smallskip
+\refstepcounter{notation}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=red,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Notation#1~\thenotation~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=red!50,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+
+%___________________________
+%===    Conséquence avec ou sans s et avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{cons}
+\NewEnviron{Cons}[2][]{
+\smallskip
+\refstepcounter{cons}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Conséquence#1~\thecons~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backtheocolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+%___________________________
+%===    Corolaire avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{cor}
+\NewEnviron{Cor}[1][]{
+\smallskip
+\refstepcounter{cor}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Corollaire~\thecor~:~#1}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backtheocolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+%___________________________
+%===    Théorème avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{thm}
+\NewEnviron{Thm}[1][]{
+\smallskip
+\refstepcounter{thm}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Théorème~\thethm~:~#1}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backtheocolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+%___________________________
+%===    Cadre arrondi coloré
+%------------------------------------------------------
+%
+\NewEnviron{CadreColor}{
+\medskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\linewidth-12pt}{\BODY}};
+\end{tikzpicture}
+%\medskip
+}
+
+
+%___________________________
+%===    Cadre arrondi blanc
+%------------------------------------------------------
+%
+\NewEnviron{Cadre}{
+\medskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[draw,very thick,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\linewidth-12pt}{\BODY}};
+\end{tikzpicture}
+%\medskip
+}
+
+
+
+
+%___________________________
+%===    Règle(s) avec ou sans s et avec sans titre
+%------------------------------------------------------
+%
+\newcounter{regle}
+\NewEnviron{Regle}[2][]{
+\smallskip
+\refstepcounter{regle}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Règle#1~\theregle~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backdeficolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+%___________________________
+%===    Vocabulaire avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{vocab}
+\NewEnviron{Vocab}[1][]{
+\smallskip
+\refstepcounter{vocab}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Vocabulaire~\thevocab~:~#1}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backdeficolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+%___________________________
+%===    Définition avec ou sans s et avec sans titre
+%------------------------------------------------------
+%
+\newcounter{defi}
+\NewEnviron{Defi}[2][]{
+\smallskip
+\refstepcounter{defi}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Définition#1~\thedefi~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backdeficolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+%___________________________
+%===    Méthode avec ou sans s et avec sans titre
+%------------------------------------------------------
+%
+\newcounter{methode}
+\NewEnviron{Methode}[2][]{
+\smallskip
+\refstepcounter{methode}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,%rounded corners=5pt,
+anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Méthode#1~\themethode~:~#2}};
+\node[%draw,
+drop shadow,%color=deficolor,very thick,
+fill=backmethcolor,%rounded corners=5pt,
+anchor=north west] at(0,-0.02)
+{\black%\parbox
+\begin{minipage}{\columnwidth-12pt}%{
+\BODY%}
+\end{minipage}};
+\end{tikzpicture}
+\smallskip
+}
+
+
+%___________________________
+%===    Redéfinition de la commande \chapter{•}
+%------------------------------------------------------
+%
+\makeatletter
+
+\renewcommand{\@makechapterhead}[1]{
+\begin{tikzpicture}
+\node[fill=theocolor,rectangle,rounded corners=5pt]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\textcolor{titlecolor}{\Large \textsc{\textbf{Chapitre \thechapter \ : \ #1}}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+}
+
+\makeatother
+
+
+%___________________________
+%===    Exemple avec ou sans s et avec ou sans titre
+%------------------------------------------------------
+%
+\newcounter{exemple}
+\NewEnviron{Exemple}[2][]{
+\smallskip
+\refstepcounter{exemple}
+\textbf{\large{Exemple#1~\theexemple~:~#2}}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Remarque avec ou sans s
+%------------------------------------------------------
+%
+\newcounter{rmq}
+\NewEnviron{Rmq}[1][]{
+\smallskip
+\refstepcounter{rmq}
+\textbf{\large{Remarque#1~\thermq~:}}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Remarques numérotées R1, R2, etc...
+%------------------------------------------------------
+%
+\newcounter{rem}\newcommand{\rem}{\refstepcounter{rem}\textbf{R \therem \ :}\xspace}
+
+%___________________________
+%===    Exercices du contrôle numérotés
+%------------------------------------------------------
+%
+\newcounter{exercice}
+\NewEnviron{Exercice}[1][]{
+\smallskip
+\refstepcounter{exercice}\textbf{\large{Exercice \theexercice \ :}}\hfill \textbf{#1}\par
+\BODY
+\smallskip
+}
+
+
+%___________________________
+%===    Environnements CNED
+%------------------------------------------------------
+%
+\newcounter{propcned}
+\NewEnviron{PropCNED}[2][]{\refstepcounter{propcned}
+\smallskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Propriété#1 \thepropcned ~:~#2}};
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\smallskip
+}
+
+\newcounter{defcned}
+\NewEnviron{DefCNED}[2][]{\refstepcounter{defcned}
+\smallskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Définition#1 \thedefcned ~:~#2}};
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\smallskip
+}
+
+\newcounter{thmcned}
+\NewEnviron{ThmCNED}[2][]{\refstepcounter{thmcned}
+\smallskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{\bfseries Théorème#1 \thethmcned ~:~#2}};
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\smallskip
+}
+
+\newcounter{exemplecned}
+\NewEnviron{ExempleCNED}[2][]{\refstepcounter{exemplecned}
+\smallskip
+\textbf{\large{Exemple#1 \theexemplecned~:~#2}}\par
+\BODY
+\smallskip
+}
+
+\newcounter{rmqcned}
+\NewEnviron{RmqCNED}[2][]{\refstepcounter{rmqcned}
+\smallskip
+\textbf{\large{Remarque#1 \thermqcned~:~#2}}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Exercices du contrôle numérotés en Anglais
+%------------------------------------------------------
+%
+\newcounter{exercise}
+\NewEnviron{Exercise}[1][]{
+\smallskip
+\refstepcounter{exercise}\textbf{\large{Exercise \#\theexercise:}}\hfill \textbf{#1}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Exercices non numérotés
+%------------------------------------------------------
+%
+\NewEnviron{Exo}[1][]{
+\smallskip
+\textbf{\large{Exercice #1 \ :}}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Exercices non numérotés en Anglais
+%------------------------------------------------------
+%
+\NewEnviron{Exoa}[1][]{
+\smallskip
+\textbf{\large{Exercise #1 \ :}}\par
+\BODY
+\smallskip
+}
+
+%___________________________
+%===    Démonstration
+%------------------------------------------------------
+\newcounter{demo}
+\NewEnviron{Demo}[1][]{%
+\smallskip
+\refstepcounter{demo}
+\textit{\textbf{Démonstration \thedemo #1}}\par
+\BODY
+\strut\hfill$\square$
+\smallskip
+}
+
+%___________________________
+%===    Commandes perso
+%------------------------------------------------------
+
+
+
+
+%Commande chapitre
+\newcommand{\chapitre}[1]{
+\begin{tcolorbox}[colframe=sectioncolor,colback=sectioncolor]
+\begin{center}
+\vspace*{0.5em}
+\textcolor{titlecolor}{\Large \textsc{\textbf{#1}}}
+\vspace*{0.5em}
+\end{center}
+\end{tcolorbox}
+\bigskip
+}
+
+%Pour les fiches : commande de Cécile
+\newcommand{\Fiche}[2]{%
+\begin{tcolorbox}[colframe=sectioncolor,colback=sectioncolor]
+\begin{center}
+\vspace*{0.5em}
+\textcolor{blue}{\Large \textsc{\textbf{Fiche~#1\ :\ #2}}}
+\vspace*{0.5em}
+\end{center}
+\end{tcolorbox}
+}%
+
+\pagecolor{white}%couleur du fond de page
+
+
+%centrer du texte ou une formule avec moins d'espace autour
+\newcommand{\centrer}[1]
+{
+\vspace*{-12pt}
+\begin{center}
+#1
+\end{center}
+\vspace*{-12pt}
+}
+
+%Pour pouvoir utiliser l'environnement verbatim
+\usepackage{verbatim}
+
+%Panneau danger (nécessite le package pstricks)
+\def\danger{\begingroup
+\psset{unit=1ex}%
+\begin{pspicture}(0,0)(3,3)
+\pspolygon[linearc=0.2,linewidth=0.12,linecolor=red](0,0)(1.5,2.6)(3,0)
+\psellipse*(1.5,1.33)(0.14,0.75)\pscircle*(1.5,0.3){0.15}\end{pspicture}
+\endgroup}%
+
+\newcommand{\cad}{c'est-à-dire }
+
+
+%Fonctions hyperboliques
+
+\newcommand{\ch}{\text{ch}}
+\newcommand{\sh}{\text{sh}}
+\renewcommand{\th}{\text{th}}
+\newcommand{\argch}{\text{argch}}
+\newcommand{\argsh}{\text{argsh}}
+\newcommand{\argth}{\text{argth}}
+
+
+%___________________________
+%===    Nouvelles commandes pour documents venant de Sesamath
+%------------------------------------------------------
+%
+\definecolor{CyanTikz40}{cmyk}{.4,0,0,0}
+\definecolor{CyanTikz20}{cmyk}{.2,0,0,0}
+
+\definecolor{B1prime}                {cmyk}{0.00, 1.00, 0.00, 0.50}
+\definecolor{H1prime}                {cmyk}{0.50, 0.00, 1.00, 0.00}
+
+\definecolor{FootFonctionColor}{cmyk}{0.50, 0.00, 0.00, 0.00}
+\definecolor{FootGeometrieColor}{cmyk}{0.40, 0.40, 0.00, 0.00}
+\definecolor{FootStatistiqueColor}{cmyk}{0.30, 0.48, 0.00, 0.10}
+\definecolor{FootStatistiqueOLDColor}{cmyk}{0.48, 0.30, 0.10, 0.00}
+\definecolor{FootStatistique*Color}{cmyk}{0.20, 0.00, 0.00, 0.00}
+\definecolor{ActiviteFootColor}{cmyk}{0.50, 0.00, 0.25, 0.00}
+\definecolor{CoursFootColor}{cmyk}{0.15, 0.00, 0.00, 0.03}
+\definecolor{ExoBaseFootColor}{cmyk}{0.00, 0.25, 0.50, 0.00}
+\definecolor{ExoApprFootColor}{cmyk}{0.00, 0.25, 0.50, 0.00}
+%\colorlet{ConnFootColor}{F2}
+\definecolor{TPFootColor}{cmyk}{0.00, 0.30, 0.00, 0.10}
+\definecolor{RecreationFootColor}{cmyk}{0.20, 0.00, 0.50, 0.05}
+
+\definecolor{Blanc}             {cmyk}{0.00, 0.00, 0.00, 0.00}
+\definecolor{Gris1}             {cmyk}{0.00, 0.00, 0.00, 0.20}
+\definecolor{Gris2}             {cmyk}{0.00, 0.00, 0.00, 0.40}
+\definecolor{Gris3}             {cmyk}{0.00, 0.00, 0.00, 0.50}
+\definecolor{Noir}              {cmyk}{0.00, 0.00, 0.00, 1.00}
+\definecolor{A1}              {cmyk}{0.33, 1.00, 0.00, 0.40}
+\definecolor{F1}              {cmyk}{0.00, 1.00, 1.00, 0.00}
+\definecolor{C1}              {cmyk}{0.00, 1.00, 0.00, 0.50}
+\definecolor{G1}              {cmyk}{0.00, 0.00, 0.00, 0.20}
+\definecolor{D1}              {cmyk}{0.00, 0.22, 0.49, 0.69}%bitume
+\definecolor{J1}              {cmyk}{0.00, 0.34, 1.00, 0.02}%orangé
+
+
+\tikzstyle{general}=[line width=0.3mm, x=1cm, y=1cm,line cap=round, line join=round]
+\tikzstyle{quadrillage}=[line width=0.3mm, color=CyanTikz40]
+\tikzstyle{quadrillageNIV2}=[line width=0.3mm, color=CyanTikz20]
+\tikzstyle{quadrillage55}=[line width=0.3mm, color=CyanTikz40, xstep=0.5, ystep=0.5]
+\tikzstyle{cote}=[line width=0.3mm, <->,>=stealth]
+\tikzstyle{epais}=[line width=0.5mm, line cap=butt]
+\tikzstyle{tres epais}=[line width=0.8mm, line cap=butt]
+\tikzstyle{axe}=[line width=0.6mm, ->,>=stealth, color=blue, line cap=rect]
+\newcommand{\quadrillageSeyes}[2]{\draw[line width=0.3mm, color=A1!10, ystep=0.2, xstep=0.8] #1 grid #2;
+\draw[line width=0.3mm, color=A1!30, xstep=0.8, ystep=0.8] #1 grid #2; }
+\newcommand{\axeX}[4][0]{\draw[axe] (#2,#1)--(#3,#1); \foreach \x in {#4} {\draw (\x,#1) node {\small $+$}; \draw (\x,#1) node[below] {\small $\x$};}}
+\newcommand{\axeY}[4][0]{\draw[axe] (#1,#2)--(#1,#3); \foreach \y in {#4} {\draw (#1, \y) node {\small $+$}; \draw (#1, \y) node[left] {\small $\y$};}}
+\newcommand{\axeOI}[3][0]{\draw[axe] (#2,#1)--(#3,#1);  \draw (1,#1) node {\small $+$}; \draw (1,#1) node[below] {\small $I$};}
+\newcommand{\axeOJ}[3][0]{\draw[axe] (#1,#2)--(#1,#3); \draw (#1, 1) node {\small $+$}; \draw (#1, 1) node[left] {\small $J$};}
+\newcommand{\axeXgraduation}[2][0]{\foreach \x in {#2} {\draw (\x,#1) node {\small $+$};}}
+\newcommand{\axeYgraduation}[2][0]{\foreach \y in {#2} {\draw (#1, \y) node {\small $+$}; }}
+\newcommand{\origine}{\draw (0,0) node[below left] {\small $0$};}
+\newcommand{\origineO}{\draw (0,0) node[below left] {$O$};}
+\newcommand{\point}[4]{\draw (#1,#2) node[#4] {$#3$};}
+\newcommand{\pointGraphique}[4]{\draw (#1,#2) node[#4] {$#3$};
+\draw (#1,#2) node[scale=1.5] {$\times$};}
+\newcommand{\pointFigure}[4]{\draw (#1,#2) node[#4] {$#3$};
+\draw (#1,#2) node[scale=1.5] {$\times$};}
+\newcommand{\pointC}[3]{\draw (#1) node[#3] {$#2$};}
+\newcommand{\pointCGraphique}[3]{\draw (#1) node[#3] {$#2$};
+\draw (#1) node[scale=1.5] {$\times$};}
+\newcommand{\pointCFigure}[3]{\draw (#1) node[#3] {$#2$};
+\draw (#1) node[scale=1.5] {$\times$};}
+
+
+\newcommand{\expco}[1]{\e^{#1}}
+\newcommand{\expcopi}[2]{\e^{\ii \frac{{#1\pi}}{#2}}}
+\newcommand{\expcopim}[2]{\e^{-\ii \frac{{#1\pi}}{#2}}}
+\newcommand{\expcopimul}[3]{\e^{{ #1\ii} \frac{{#2\pi}}{#3}}}
+\newcommand{\cj}{\mathrm{j}}
+\newcommand{\ci}{\ii}
+
+
+%augmenter l'espace au-dessus ou en-dessous d'une fraction
+\makeatletter
+\newcommand*\Strut[1][1]{%
+  \leavevmode
+  \vrule \@height #1\ht\strutbox
+         \@depth #1\dp\strutbox
+         \@width\z@
+}
+\newcommand*\TopStrut[1][1]{%
+  \leavevmode
+  \vrule \@height #1\ht\strutbox
+         \@depth \z@
+         \@width \z@
+}
+\newcommand*\BotStrut[1][1]{%
+  \leavevmode
+  \vrule \@height \z@
+         \@depth #1\dp\strutbox
+         \@width \z@
+}
+\makeatother
+
+%exemple
+%Résoudre: $  \dfrac{ \TopStrut 3 x -1} { \BotStrut x + 2} < 3$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%--------------------- PRESENTATION SECTIONS
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\makeatletter
+
+% couleurs section
+\definecolor{section@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{subsection@title@color}{cmyk}{0,0.6,0.9,0}
+\definecolor{subsubsection@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{shadow@color}{cmyk}{.07,0,0,0.49}
+
+% fontes section
+\def\sectiontitle@font{\fontfamily{ppl}\fontseries{bx}\selectfont}
+%\def\subsectiontitle@font{\fontfamily{ppl}\fontseries{bx}\selectfont}
+%\def\subsubsectiontitle@font{\fontfamily{ppl}\fontseries{bx}\selectfont}
+
+% Décalages numéro de sections / titres des sections
+\newlength\decalnumsec
+\newlength\decalnumsubsec
+\newlength\decalnumsubsubsec
+\setlength{\decalnumsec}{-0.5em}
+\setlength{\decalnumsubsec}{-0.5em}
+\setlength{\decalnumsubsubsec}{-0.5em}
+\newlength\decalxtitlesec
+\newlength\decalxtitlesubsec
+\newlength\decalxtitlesubsubsec
+\setlength{\decalxtitlesec}{-2.45em}
+\setlength{\decalxtitlesubsec}{-1em}
+\setlength{\decalxtitlesubsubsec}{0.45em}
+
+% Espace entre le numéro de section et le titre
+\newlength\spacetitlesec
+\newlength\spacetitlesubsec
+\newlength\spacetitlesubsubsec
+\setlength{\spacetitlesec}{0.2em}
+\setlength{\spacetitlesubsec}{0.2em}
+\setlength{\spacetitlesubsubsec}{0.2em}
+
+%%%%%%%%%%%%% Titre de section
+
+\renewcommand{\thesection}{\Roman{section}}
+\titleformat{\section}[block]
+{%
+	\hspace*{\decalxtitlesec}
+	\bfseries\large
+	\color{section@title@color}
+	\sectiontitle@font
+}
+{
+\raisebox{\decalnumsec}
+{%
+\begin{tikzpicture}
+\node (numsec) {\sectiontitle@font\thesection};
+\fill[rounded corners=2pt,fill=shadow@color] ($(numsec.north west)+(2pt,-2pt)$) -- ($(numsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsec.south east)+(2pt,-2pt)$) -- ($(numsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+\fill[rounded corners=2pt,fill=section@title@color] (numsec.north west) -- ($(numsec.north east)+(1mm,0mm)$) -- (numsec.south east) -- ($(numsec.south west)+(-1mm,0)$) -- cycle;
+\node[white] at (numsec) {\sectiontitle@font\thesection};
+\end{tikzpicture}
+}
+}
+{\spacetitlesec}
+{}
+
+%%%%%%%%%%%%% Titre de subsection
+
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\titleformat{\subsection}[block]
+{%
+	\hspace*{\decalxtitlesubsec}
+	\bfseries
+	\color{subsection@title@color}
+	\sectiontitle@font
+}
+{
+	\raisebox{\decalnumsubsec}
+	{%
+	\begin{tikzpicture}
+	\node (numsubsec) {\sectiontitle@font\thesubsection};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsubsec.north west)+(2pt,-2pt)$) -- ($(numsubsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsubsec.south east)+(2pt,-2pt)$) -- ($(numsubsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subsection@title@color] (numsubsec.north west) -- ($(numsubsec.north east)+(1mm,0mm)$) -- (numsubsec.south east) -- ($(numsubsec.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsubsec) {\sectiontitle@font\thesubsection};
+	\end{tikzpicture}
+	}
+}
+{%
+	\spacetitlesubsec
+}
+{} 
+
+%%%%%%%%%%%%% Titre de subsubsection
+
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\titleformat{\subsubsection}[block]
+{%
+	\hspace*{\decalxtitlesubsubsec}
+	\bfseries
+	\color{section@title@color}
+	\sectiontitle@font
+}
+{
+	\raisebox{\decalnumsubsubsec}
+	{%
+	\begin{tikzpicture}
+	\node (numsubsubsec) {\sectiontitle@font\thesubsubsection};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsubsubsec.north west)+(2pt,-2pt)$) -- ($(numsubsubsec.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsubsubsec.south east)+(2pt,-2pt)$) -- ($(numsubsubsec.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subsubsection@title@color] (numsubsubsec.north west) -- ($(numsubsubsec.north east)+(1mm,0mm)$) -- (numsubsubsec.south east) -- ($(numsubsubsec.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsubsubsec) {\sectiontitle@font\thesubsubsection};
+	\end{tikzpicture}
+	}
+}
+{\spacetitlesubsubsec}
+{} 
+
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Symbole pour les probabilités
+\DeclareMathOperator{\Prob}{\mathbb{P}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%___________________________
+%===    ALGORITHMES
+%------------------------------------------------------
+
+\usepackage{tcolorbox}
+
+%exemple :
+%\begin{center}
+%\textbf{À compiler en pdfLaTeX}
+%\end{center}
+%
+%
+%\begin{center}
+%\begin{algo}[somsuitar]{Calcul d'une somme}
+%\begin{algovar}
+%r est un nombre réel \\
+%u est un nombre réel \\
+%n est un entier naturel \\
+%i est un entier naturel \\
+%S est un nombre réel
+%\end{algovar}
+%\begin{algoentries}
+%r est un nombre réel \\
+%u est un nombre réel \\
+%n est un entier naturel \\
+%i est un entier naturel \\
+%S est un nombre réel
+%\end{algoentries}
+%\begin{algoinit}
+%Affecter à S la valeur u\\
+%Entrer la valeur de r ( raison de la suite arithmétique )\\
+%Entrer la valeur de u ( premier terme de la somme )\\
+%Entrer la valeur de n ( nombre de termes dans la somme )
+%\end{algoinit}
+%\begin{algobody}
+%\begin{algofor}{i}{1}{n-1}
+%Affecter à S la valeur S+(u+i*r)
+%\end{algofor}
+%\end{algobody}
+%\begin{algoend}
+%Afficher S
+%\end{algoend}
+%\end{algo}
+%\end{center}
+%
+%
+%
+%L'algorithme \ref{algo:somsuitar} permet de calculer la somme 
+%$u_p+u_{p +1}+ u_{p +2}+\cdots +u_{p+n -1}$ , où $(u)$ est une suite
+%arithmétique de raison $r$. La valeur de $u$ saisie lors de l'initialisation est la valeur de $u_p$.
+
+%_______________________________________________
+%===    Cadre présentation algo et modules
+%------------------------------------------------------
+%
+
+%utilise le package tcolorbox
+\newtcolorbox{mybox}[2][]{%enhanced,
+colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,
+%attach boxed title to top left={xshift=2mm,yshift=-2mm},
+title=#2,#1}
+
+\newtcolorbox{module}[2][]{%enhanced,
+colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,
+%attach boxed title to bottom right={xshift=-5mm,yshift=+2mm},
+title=#2,#1}
+
+\NewEnviron{CadreAlgo}[2]{
+\begin{minipage}{#1} %largeur de la minipage
+\begin{mybox}[colback=blue!10]{#2} %Titre du cadre
+\BODY
+\end{mybox}
+\end{minipage}
+}
+
+\NewEnviron{CadreModule}[1]{
+\begin{module}[colback=blue!10]{#1}%Catégorie du module
+\BODY %Titre de module
+\end{module}
+}
+
+
+%Algorithme sur Casio
+\newcommand{\RetourChariot}{\Pisymbol{psy}{191}}
+\newcommand{\triangleCasio}{
+\begin{tikzpicture}[scale=0.2]
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(1,0){B}
+\tkzDefPoint(1,1){C}
+\tkzDrawPolygon[fill](A,B,C)
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Scratch %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{scratch3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Python %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%nécessite l'image correspondante
+\newcommand{\python}{\raisebox{-0.8em}{\includegraphics[scale=0.3]{python-logo}}}
+
+%Nécessaire pour l'environnement lstlisting
+\usepackage{listings}
+
+%\begin{lstlisting}[language=Python]
+%# Calcul de la factorielle
+%def factorielle(x):
+%	if x < 2:
+%		return 1
+%	else:
+%		return x * factorielle(x-1)
+%str(5) + "! = " + str(factorielle(5))
+%\end{lstlisting}
+
+
+\definecolor{purple2}{RGB}{153,0,153} % there's actually no standard purple
+\definecolor{green2}{RGB}{0,153,0} % a darker green
+\lstset{%
+language=Python, % the language
+basicstyle=\normalsize\ttfamily, % size of the fonts for the code
+% Color settings to match IDLE style
+keywordstyle=\color{red}, % core keywords
+keywordstyle={[2]\color{purple2}}, % built-ins
+stringstyle=\color{green2},
+commentstyle=\color{blue},
+upquote=true, % requires textcomp
+literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1,
+frame=single,% style du cadre - none pour ne pas encadrer
+frameround=fttt,
+numbers=none,%left,% numéros des lignes à gauche - none pour ne pas numéroter
+numberstyle=\small,% on peut mettre \tiny ou \normalsize (taille par défaut)
+firstnumber=0,% numéro de la première ligne
+tabsize=6,% largeur des tabulations, 8 par défaut
+showtabs=false,% permet de voir les tabulations quand true
+xleftmargin=5pt,% marge gauche
+xrightmargin=5pt,% marge droite qui peut rester à 0
+framexleftmargin=0pt,% pour inclure les numéros dans le cadre : mettre 20pt
+showspaces=false,% n'affiche pas de caractères pour remplacer les espaces
+showstringspaces=false,% n'affiche pas de caractères pour remplacer les espaces dans les string
+breaklines=true,%passage à ligne automatique
+}
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% ~ Arduino Language - Arduino IDE Colors ~                                  %%%
+%%%                                                                            %%%
+%%% Kyle Rocha-Brownell | 10/2/2017 | No Licence                               %%%
+%%% -------------------------------------------------------------------------- %%%
+%%%                                                                            %%%
+%%% Place this file in your working directory (next to the latex file you're   %%%
+%%% working on).  To add it to your project, place:                            %%%
+%%%    \input{arduinoLanguage.tex}                                             %%%
+%%% somewhere before \begin{document} in your latex file.                      %%%
+%%%                                                                            %%%
+%%% In your document, place your arduino code between:                         %%%
+%%%   \begin{lstlisting}[language=Arduino]                                     %%%
+%%% and:                                                                       %%%
+%%%   \end{lstlisting}                                                         %%%
+%%%                                                                            %%%
+%%% Or create your own style to add non-built-in functions and variables.      %%%
+%%%                                                                            %%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\usepackage{color}
+\usepackage{courier}
+
+%%% Define Custom IDE Colors %%%
+\definecolor{arduinoGreen}    {rgb} {0.17, 0.43, 0.01}
+\definecolor{arduinoGrey}     {rgb} {0.47, 0.47, 0.33}
+\definecolor{arduinoOrange}   {rgb} {0.8 , 0.4 , 0   }
+\definecolor{arduinoBlue}     {rgb} {0.01, 0.61, 0.98}
+\definecolor{arduinoDarkBlue} {rgb} {0.0 , 0.2 , 0.5 }
+
+%%% Define Arduino Language %%%
+\lstdefinelanguage{Arduino}{
+  language=C++, % begin with default C++ settings 
+%
+%
+  %%% Keyword Color Group 1 %%%  (called KEYWORD3 by arduino)
+  keywordstyle=\bfseries\color{arduinoGreen},   
+  deletekeywords={  % remove all arduino keywords that might be in c++
+                break, case, override, final, continue, default, do, else, for, 
+                if, return, goto, switch, throw, try, while, setup, loop, export, 
+                not, or, and, xor, include, define, elif, else, error, if, ifdef, 
+                ifndef, pragma, warning,
+                HIGH, LOW, INPUT, INPUT_PULLUP, OUTPUT, DEC, BIN, HEX, OCT, PI, 
+                HALF_PI, TWO_PI, LSBFIRST, MSBFIRST, CHANGE, FALLING, RISING, 
+                DEFAULT, EXTERNAL, INTERNAL, INTERNAL1V1, INTERNAL2V56, LED_BUILTIN, 
+                LED_BUILTIN_RX, LED_BUILTIN_TX, DIGITAL_MESSAGE, FIRMATA_STRING, 
+                ANALOG_MESSAGE, REPORT_DIGITAL, REPORT_ANALOG, SET_PIN_MODE, 
+                SYSTEM_RESET, SYSEX_START, auto, int8_t, int16_t, int32_t, int64_t, 
+                uint8_t, uint16_t, uint32_t, uint64_t, char16_t, char32_t, operator, 
+                enum, delete, bool, boolean, byte, char, const, false, float, double, 
+                null, NULL, int, long, new, private, protected, public, short, 
+                signed, static, volatile, String, void, true, unsigned, word, array, 
+                sizeof, dynamic_cast, typedef, const_cast, struct, static_cast, union, 
+                friend, extern, class, reinterpret_cast, register, explicit, inline, 
+                _Bool, complex, _Complex, _Imaginary, atomic_bool, atomic_char, 
+                atomic_schar, atomic_uchar, atomic_short, atomic_ushort, atomic_int, 
+                atomic_uint, atomic_long, atomic_ulong, atomic_llong, atomic_ullong, 
+                virtual, PROGMEM,
+                Serial, Serial1, Serial2, Serial3, SerialUSB, Keyboard, Mouse,
+                abs, acos, asin, atan, atan2, ceil, constrain, cos, degrees, exp, 
+                floor, log, map, max, min, radians, random, randomSeed, round, sin, 
+                sq, sqrt, tan, pow, bitRead, bitWrite, bitSet, bitClear, bit, 
+                highByte, lowByte, analogReference, analogRead, 
+                analogReadResolution, analogWrite, analogWriteResolution, 
+                attachInterrupt, detachInterrupt, digitalPinToInterrupt, delay, 
+                delayMicroseconds, digitalWrite, digitalRead, interrupts, millis, 
+                micros, noInterrupts, noTone, pinMode, pulseIn, pulseInLong, shiftIn, 
+                shiftOut, tone, yield, Stream, begin, end, peek, read, print, 
+                println, available, availableForWrite, flush, setTimeout, find, 
+                findUntil, parseInt, parseFloat, readBytes, readBytesUntil, readString, 
+                readStringUntil, trim, toUpperCase, toLowerCase, charAt, compareTo, 
+                concat, endsWith, startsWith, equals, equalsIgnoreCase, getBytes, 
+                indexOf, lastIndexOf, length, replace, setCharAt, substring, 
+                toCharArray, toInt, press, release, releaseAll, accept, click, move, 
+                isPressed, isAlphaNumeric, isAlpha, isAscii, isWhitespace, isControl, 
+                isDigit, isGraph, isLowerCase, isPrintable, isPunct, isSpace, 
+                isUpperCase, isHexadecimalDigit, 
+                }, 
+  morekeywords={   % add arduino structures to group 1
+                break, case, override, final, continue, default, do, else, for, 
+                if, return, goto, switch, throw, try, while, setup, loop, export, 
+                not, or, and, xor, include, define, elif, else, error, if, ifdef, 
+                ifndef, pragma, warning,
+                }, 
+% 
+%
+  %%% Keyword Color Group 2 %%%  (called LITERAL1 by arduino)
+  keywordstyle=[2]\bfseries\color{arduinoBlue},   
+  keywords=[2]{   % add variables and dataTypes as 2nd group  
+                HIGH, LOW, INPUT, INPUT_PULLUP, OUTPUT, DEC, BIN, HEX, OCT, PI, 
+                HALF_PI, TWO_PI, LSBFIRST, MSBFIRST, CHANGE, FALLING, RISING, 
+                DEFAULT, EXTERNAL, INTERNAL, INTERNAL1V1, INTERNAL2V56, LED_BUILTIN, 
+                LED_BUILTIN_RX, LED_BUILTIN_TX, DIGITAL_MESSAGE, FIRMATA_STRING, 
+                ANALOG_MESSAGE, REPORT_DIGITAL, REPORT_ANALOG, SET_PIN_MODE, 
+                SYSTEM_RESET, SYSEX_START, auto, int8_t, int16_t, int32_t, int64_t, 
+                uint8_t, uint16_t, uint32_t, uint64_t, char16_t, char32_t, operator, 
+                enum, delete, bool, boolean, byte, char, const, false, float, double, 
+                null, NULL, int, long, new, private, protected, public, short, 
+                signed, static, volatile, String, void, true, unsigned, word, array, 
+                sizeof, dynamic_cast, typedef, const_cast, struct, static_cast, union, 
+                friend, extern, class, reinterpret_cast, register, explicit, inline, 
+                _Bool, complex, _Complex, _Imaginary, atomic_bool, atomic_char, 
+                atomic_schar, atomic_uchar, atomic_short, atomic_ushort, atomic_int, 
+                atomic_uint, atomic_long, atomic_ulong, atomic_llong, atomic_ullong, 
+                virtual, PROGMEM,
+                },  
+% 
+%
+  %%% Keyword Color Group 3 %%%  (called KEYWORD1 by arduino)
+  keywordstyle=[3]\bfseries\color{arduinoOrange},
+  keywords=[3]{  % add built-in functions as a 3rd group
+                Serial, Serial1, Serial2, Serial3, SerialUSB, Keyboard, Mouse,
+                },      
+%
+%
+  %%% Keyword Color Group 4 %%%  (called KEYWORD2 by arduino)
+  keywordstyle=[4]\bfseries\color{arduinoOrange},
+  keywords=[4]{  % add more built-in functions as a 4th group
+                abs, acos, asin, atan, atan2, ceil, constrain, cos, degrees, exp, 
+                floor, log, map, max, min, radians, random, randomSeed, round, sin, 
+                sq, sqrt, tan, pow, bitRead, bitWrite, bitSet, bitClear, bit, 
+                highByte, lowByte, analogReference, analogRead, 
+                analogReadResolution, analogWrite, analogWriteResolution, 
+                attachInterrupt, detachInterrupt, digitalPinToInterrupt, delay, 
+                delayMicroseconds, digitalWrite, digitalRead, interrupts, millis, 
+                micros, noInterrupts, noTone, pinMode, pulseIn, pulseInLong, shiftIn, 
+                shiftOut, tone, yield, Stream, begin, end, peek, read, print, 
+                println, available, availableForWrite, flush, setTimeout, find, 
+                findUntil, parseInt, parseFloat, readBytes, readBytesUntil, readString, 
+                readStringUntil, trim, toUpperCase, toLowerCase, charAt, compareTo, 
+                concat, endsWith, startsWith, equals, equalsIgnoreCase, getBytes, 
+                indexOf, lastIndexOf, length, replace, setCharAt, substring, 
+                toCharArray, toInt, press, release, releaseAll, accept, click, move, 
+                isPressed, isAlphaNumeric, isAlpha, isAscii, isWhitespace, isControl, 
+                isDigit, isGraph, isLowerCase, isPrintable, isPunct, isSpace, 
+                isUpperCase, isHexadecimalDigit, 
+                },      
+%
+%
+  %%% Set Other Colors %%%
+  stringstyle=\bfseries\color{arduinoDarkBlue},    
+  commentstyle=\color{arduinoGrey},    
+%          
+%   
+  %%%% Line Numbering %%%%
+  numbers=none,%left,                    
+  numbersep=5pt,                   
+  numberstyle=\color{arduinoGrey},    
+  %stepnumber=2,                      % show every 2 line numbers
+%
+%
+  %%%% Code Box Style %%%%
+  breaklines=true,                    % wordwrapping
+  tabsize=2,
+  basicstyle=\ttfamily  
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%algorithmes en langage courant
+\usepackage[linesnumbered,french]{algorithm2e}
+%exemple :
+%\normalem %%%% disable auto underline
+%\DontPrintSemicolon %n'affiche pas les ; en fin de ligne
+%%\SetAlgoNoLine %Enlève des filets verticaux et met les blocs de "fin"
+%\SetAlgoVlined %Conserve les filets verticaux avec crochet retour et enlève les blocs de "fin" 
+%%\SetAlgoLined  %Conserve les filets verticaux et met les blocs de "fin"
+%%\RestyleAlgo{ruled} %boxed, boxruled, ruled and algoruled.
+%
+%\hspace*{2em}\textbf{Algorithme MaxCompatible(S)}
+%
+%\hspace*{3em}\begin{algorithm}[H]
+%$S' \leftarrow \varnothing$\;
+%Trier les activités de S par durée croissante\;
+%\Pour{$i$ de 1 à $\abs{S}$}{
+%\Si{l'activité $i$ est compatible avec les activités de $S'$}{
+%Ajouter l'activité $i$ à $S'$
+%}
+%}
+%Afficher $S'$
+%\end{algorithm}
+%\ULforem %%%% enable auto underline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{cclicenses}
+%exemple : Licence : \cc - \ccby - \ccnc}
+
+\usepackage[scale=1.3]{ccicons}
+%Licence : \ccbyncsaeu
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fontawesome}
+
+%\faYoutubePlay
+%\newcommand{\videoyoutube}[1]{
+%\raisebox{-3pt}{\includegraphics[scale=0.1]{youtube}}\,\url{#1}
+%}
+\newcommand{\videoyoutube}[1]{\faYoutubePlay\ \url{#1}}
+
+
+\newcommand{\voir}[1]{\textcolor{purple}{\faBook\ voir #1}}
+
+\newcommand{\exoschoisis}[1]{\faBook\ Exercices associés~:\ #1}
+
+\newcommand{\augustin}[1]{\includegraphics[width=#1\linewidth]{Logo_augustin_thierry}}
+\newcommand{\acad}[1]{\includegraphics[width=#1\linewidth]{logo_acad}}

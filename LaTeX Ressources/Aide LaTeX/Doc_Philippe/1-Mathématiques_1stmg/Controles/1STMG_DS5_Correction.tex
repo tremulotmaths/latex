@@ -1,0 +1,84 @@
+\documentclass[10pt,french]{article}
+\input preambule_2013
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\footnotesize\textbf{(#1)}}\par
+  \medskip}%
+{\medskip}
+
+\pagestyle{fancy}
+\pieddepage{}{\thepage}{}
+
+\setlength{\textheight}{26cm}% Hauteur de la zone de texte
+
+\begin{document}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|>\centering m{2.5cm}|>\centering X|>{\centering\arraybackslash} m{2.5cm}|}
+	\hline
+		1\iere \bsc{s.t.m.g.} &  Mercredi 9 avril \np{2014} & \textbf{Proportions Probabilités} \\
+	\hline
+		\multicolumn{3}{|c|}{\bsc{Correction}} \\
+	\hline
+\end{tabularx}
+\end{center}\bigskip
+
+\begin{exoc}{5 points}
+\begin{enumerate}
+		\item
+			\begin{itemize}[label=$\star$] 
+				\item D'après le texte, il y a $100$ femmes sur un total  de $250$ personnes donc $p(F) = \dfrac{100}{250} = 0,4$.
+				\item $120$ des personnes du groupe sont des chefs d'entreprise donc $p(C) = \dfrac{120}{250} = 0,48$.
+				\item $\overline F$ est l'événement contraire de $F$. On sait que $p(F) + p\left(\overline{F}\right) = 1$ donc $p\left(\overline{F}\right) = 0,6$.
+			\end{itemize}
+		\item
+			\begin{itemize}[label =$\star$]
+				\item $C \cap F$ est l'événement : << la personne est une femme \textbf{et} un chef d'entreprise >>. D'après le texte, il y a $30$ femmes chef d'entreprise donc $p(C\cap F) = \dfrac{30}{250} = 0,12$.
+				\item $C \cup F$ est l'événement : << la personne est une femme \textbf{ou} un chef d'entreprise >>. D'après la formule,
+				\[p(C \cup F) = p(C) + p(F) - p(C \cap F) = 0,48 + 0,4 - 0,12 = 0,76.\]
+				\item $\overline C \cap F$ est l'événement : << la personne est une femme \textbf{et} n'est pas chef d'entreprise. Il y en a $70$ ($100 - 30$) donc $p(\overline C\cap F) = \dfrac{70}{250} = 0,28$.
+			\end{itemize}
+	\end{enumerate}
+\end{exoc}\[*\]
+
+\begin{exoc}{5 points}
+	\begin{enumerate}
+		\item On répète trois fois de façon identique et indépendante l'épreuve de Bernoulli de succès $S$ : << le ticket est sorti à la bonne hauteur >> tel que $p(S) = 0,9$. Il s'agit donc d'un schéma de Bernoulli de paramètres $n = 3$ et $p = 0,9$.
+		\item $p(A) = p(SSS) = p(S) \times p(S) \times p(S) = 0,9³ = 0,729$.
+		\item $p(B) = p(\overline SSS) + p(S\overline S S) + p(SS\overline S) = 3 \times 0,1 \times 0,9 \times 0,9 = 0,243.$
+		\item << Au moins un >> est le contraire de << aucun >> donc $A$ et $C$ sont deux événements contraires donc : \[p(C) = 1 - p(A) = 0,271 = 27,1\% > 25\%.\] La borne doit être changée.
+	\end{enumerate}
+\end{exoc}
+\[*\]
+
+\begin{exoc}{10 points}
+	\begin{enumerate}
+		\item\strut 
+	\begin{center}
+	\renewcommand\arraystretch{2.5}
+		\begin{tabular}{|c|c|c|c|>{\centering\arraybackslash}p{2cm}|}
+		\hline
+			& moins de $35$ ans & entre $35$ et $50$ ans & plus de $50$ ans & Total \\
+		\hline
+			Réponse Oui & énoncé : $120$ & $300 - 120 - 45 = 135$ & $150 - 105 = 45$ & énoncé : $300$ \\
+		\hline
+			Réponse Non & $150 - 120 = 30$ & $200 - 105 - 30 = 65$ & $70\% \times 150 = 105$ & $500 - 300 = 200$ \\
+		\hline
+			Total & $30\% \times 500 = 150$ & $40\% \times 500 = 200$ & $500 - 150 - 200 = 150$ & énoncé : $500$\\
+		\hline
+		\end{tabular}
+	\renewcommand\arraystretch{1}
+	\end{center}
+	\item \begin{enumerate}
+	      	\item $p_1 = \dfrac{200}{500} = 40\%$
+	      	\item $p_2 = \dfrac{65}{500} = 13\%$
+	      	\item $p_3 = \dfrac{135+120}{500} = 51\%$
+	      \end{enumerate}
+	 \item $p_4 = \dfrac{120}{300} = 40\%$.
+	 \item $p_{T\cup N} = p_T + p_N - p_{T\cap N} = \dfrac{200 + 200 - 65}{500} = 67\%$.
+	 \item On utilise la formule du cours : $48\% \times 30\% = \dfrac{48}{100} \times \dfrac{30}{100} = 0,144 = 14,4\%$.
+	\end{enumerate}
+\end{exoc}
+
+\end{document} 

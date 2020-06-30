@@ -1,0 +1,199 @@
+\documentclass[12pt, french]{book}
+\input preambule_2016
+\input{commandes_2016}
+
+\pagestyle{empty}
+
+\usepackage{varwidth}
+\usepackage[breakable, skins, raster]{tcolorbox}
+
+
+
+\newcounter{NumThm}
+\setcounter{NumThm}{0}
+\newcommand{\Nthm}{\refstepcounter{NumThm}\ \theNumThm}
+	
+\newtcolorbox{Thm}[2][]{
+	enhanced,
+	breakable,
+	title=Théorème \Nthm\ : #2 #1,
+	after={\par\bigskip},
+	colframe=black!75,
+	colback=black!5,
+	arc=1mm,
+	colbacktitle=black!50,
+	fonttitle=\bfseries,
+	coltitle=black,
+	attach boxed title to top left=
+	{xshift=2mm,yshift=-0.50mm},
+	boxed title style={skin=enhancedfirst jigsaw,
+		size=small,
+		arc=1mm,
+		bottom=-1mm,
+		interior style={fill=none,
+			top color=black!20,
+			bottom color=black!5}}
+	}
+
+
+
+\newtcolorbox{Demo}{
+	breakable,
+	enhanced,
+	attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},
+	fonttitle=\bfseries,
+	varwidth boxed title=0.7\linewidth,
+	colbacktitle=blue!45!white,
+	colframe=white,
+	interior style={color=white},
+	boxed title style={empty, arc=0pt, outer arc=0pt, boxrule=0pt},
+	underlay boxed title={
+		\fill[blue!45!white] (title.north west) -- (title.north east)
+			-- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)
+			-- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)
+			-- (title.south west) -- cycle;
+		\fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north west)
+			-- +(-0.4,0) -- +(0,-0.3) -- cycle;
+%		\fill[blue!45!white!50!black] ([yshift=-0.5mm]frame.north east)
+%			-- +(0,-0.3) -- +(0.4,0) -- cycle;
+		},
+	after={\par\vspace*{-5mm}
+			\hspace*{-5mm}\begin{tikzpicture}
+				\fill[color={blue!45!white}] (0,0) rectangle ({\linewidth+0.4cm},0.1);
+				\fill[blue!45!white!50!black] (\linewidth,0.1) -- +(0.4,0.3) -- +(0.4,0) -- cycle;
+			\end{tikzpicture}\par\bigskip},
+	title=Démonstration}
+
+
+
+
+
+\parindent=15pt
+
+\begin{document}
+
+
+%----------------------------------------------
+%------- Théorème Caractérisation des points d'un plan de l'espace
+%----------------------------------------------
+
+\begin{Thm}{(Capacités attendues)}
+	L'espace est muni d'un repère orthonormé.
+	
+	$\bullet$ Un plan de vecteur normal $\vect{n}(a\pv b\pv c)$ admet une équation , dite cartésienne, de la forme $ax + by +cz + d = 0$ où $d$ est un réel.
+	
+	$\bullet$ Réciproquement, si $a, b, c, d$ sont quatre réels avec $a, b, c$ non tous nuls, l'ensemble des points $M(x \pv y \pv z)$ de l'espace tels que $ax + by +cz + d = 0$ est un plan de vecteur normal $\vect{n}(a \pv b \pv c)$.
+\end{Thm}
+
+
+\begin{Demo}
+	Théorème du cours : Un point $M$ appartient à un plan $P$ de vecteur normal $\vect n$ et contenant un point $A$ si, et seulement si, $\vect{AM} \cdot \vect n = 0$.\medskip
+	
+	On appelle $\calig E$ l'ensemble des points $M(x \pv y \pv z)$ tel que $ax + by + cz + d = 0$ où $a$, $b$ et $c$ sont des réels non tous nuls et $d$ est un réel et soit $P$ le plan de vecteur normal $\vect n(a \pv b \pv c)$ ($\neq \vect 0$).\medskip
+	
+	$\bullet$  Supposons que $A(x_A \pv y_A \pv z_A) \in P$.
+	
+	Alors pour tout $M(x \pv y \pv z) \in P$,
+	\[\begin{array}{rcl}
+	\vect{AM} \cdot \vect n = 0 & \qLRq & (x - x_A)a + (y - y_A)b + (z - z_A)c = 0 \\
+	& \qLRq & ax + by + cz - ax_A - by_A  - cz_A = 0 \\
+	& \qLRq & ax + by + cz + d = 0 \quad \text{où} \quad d = - ax_A - by_A  - cz_A
+	\end{array}\]
+	
+	
+	$\bullet$ Supposons que $M(x \pv y \pv z) \in \calig E$. Puisque l'un des trois paramètres $a$, $b$ ou $c$ est différent de $0$, supposons $a \neq 0$ (démonstration analogue avec $b \neq 0$ ou $c \neq 0$).
+	
+	En posant $x_A = \frac{-d}{a}$, $y_A = 0$ et $z_A = 0$, le point $A(x_A \pv y_A \pv z_A) \in \calig E$ et donc $ax_A + by_A + cz_A + d = 0$. Ainsi :
+	
+	\[\begin{array}{r@{\quad\Rightarrow\quad}l}
+	M \in \calig E & ax + by + cz + d = 0 \\
+	& ax + by + cz + d = ax_A + by_A + cz_A + d \\
+	& a(x-x_A) + b(y - y_A) + c(z - z_A) = 0 \\
+	& \vect{AM} \cdot \vect n = 0 \\
+	& M \in P
+	\end{array}\]
+	
+	
+\end{Demo}
+
+
+
+
+
+
+%----------------------------------------------
+%------- Théorème Intervalle de fluctuation asymptotique au seuil de 1 - \alpha
+%----------------------------------------------
+
+\begin{Thm}{(Capacités attendues)}
+	Si la variable aléatoire $X_n$ suit la loi {\cursive B}$(n \pv p)$, alors, pour tout $\alpha$ dans $\intervalleoo 0 1$, on a,
+	\[\lim_{n\to +\infty} P\left(\dfrac{X_n}{n}\in I_n\right)=1-\alpha\]
+	où $I_n$ désigne l'intervalle $\intervalleff{p-u_{\alpha}\dfrac{\sqrt{p(1-p)}}{\sqrt{n}}}{p+u_{\alpha}\dfrac{\sqrt{p(1-p)}}{\sqrt{n}}}$.
+	
+\end{Thm}
+
+
+
+
+\begin{Demo}
+	\[\begin{array}{r@{\quad = \quad}l}
+		\lim_{n \to + \infty} P\left(\frac{X_n}{n} \in I_n\right) & \lim_{n \to + \infty} P\left(p-u_{\alpha}\dfrac{\sqrt{p(1-p)}}{\sqrt{n}} \leq \frac{X_n}{n} \leq p+u_{\alpha}\dfrac{\sqrt{p(1-p)}}{\sqrt{n}}\right) \\[12pt]
+		
+		& \lim_{n \to + \infty} P\left(np - u_{\alpha} \times \sqrt{p(1-p)} \times \sqrt{n} \leq X_n \leq np + u_{\alpha} \times \sqrt{p(1-p)} \times \sqrt{n}\right) \\[12pt]
+		
+		& \lim_{n \to + \infty} P\left(- u_{\alpha} \times \sqrt{np(1-p)} \leq X_n - np \leq u_{\alpha} \times \sqrt{np(1-p)}\right) \\[12pt]
+		
+		& \lim_{n \to + \infty} P\left(- u_{\alpha}\leq \frac{X_n - np}{\sqrt{np(1-p)}} \leq u_{\alpha}\right) \\[12pt]
+	
+		& \lim_{n \to + \infty} P\left(- u_{\alpha}\leq Z_n \leq u_{\alpha}\right) \\[12pt]
+		
+		& P\left(- u_{\alpha}\leq Z \leq u_{\alpha}\right) \\[12pt]
+		
+		& 1 - \alpha
+	\end{array}\]
+\end{Demo}
+
+
+
+
+
+
+%----------------------------------------------
+%------- Théorème intervalle niveau de confiance
+%----------------------------------------------
+
+\begin{Thm}{(Commentaires)}
+	Pour une valeur de $p$ fixée, l'intervalle $\intervalleff{F_n-\dfrac{1}{\sqrt{n}}}{F_n+\dfrac{1}{\sqrt{n}}}$ contient, pour $n$ assez grand, la proportion $p$ avec une probabilité au moins égale à 0,95.
+\end{Thm}
+
+
+
+
+\begin{Demo}
+	On déduit du théorème précédent $P\left(p - \frac{1}{\sqrt n} \leq \frac{X_n}{n} \leq p + \frac{1}{\sqrt n}\right) \geq 0,95$. Ainsi :
+	
+	\[\begin{array}{r@{\quad \Leftrightarrow \quad}l}
+		p - \frac{1}{\sqrt n} \leq \frac{X_n}{n} \leq p + \frac{1}{\sqrt n} & p - \frac{1}{\sqrt n} \leq F_n \leq p + \frac{1}{\sqrt n} \\[12pt]
+		
+		& - \frac{1}{\sqrt n} \leq F_n - p \leq \frac{1}{\sqrt n} \\[12pt]
+		
+		& - \frac{1}{\sqrt n} - F_n \leq - p \leq \frac{1}{\sqrt n} - F_n\\[12pt]
+		
+		& \frac{1}{\sqrt n} + F_n \geq p \geq -\frac{1}{\sqrt n}+F_n \\[12pt]
+		
+		& F_n - \frac{1}{\sqrt n} \leq p \leq  F_n + \frac{1}{\sqrt n}
+	\end{array}\]
+	
+	On en déduit alors $P\left(F_n - \frac{1}{\sqrt n} \leq p \leq  F_n + \frac{1}{\sqrt n}\right) \geq 0,95$.
+\end{Demo}
+
+
+
+
+
+\end{document}
+
+
+
+
+

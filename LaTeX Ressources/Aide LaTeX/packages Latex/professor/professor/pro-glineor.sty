@@ -1,0 +1,308 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-glineor}[07/03/2010]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-glineor.sty.
+
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsglineor}
+\setboolean{windowsglineor}{false}
+\newboolean{xcasglineor}
+\setboolean{xcasglineor}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasglineor}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsglineor}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsglineor}}
+{%
+\ifthenelse{\boolean{xcasglineor}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasglineor}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+\RequirePackage{pstricks}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem entetecolor.cfg enteteTEX.cfg enteteMP.cfg *.user  *.mpx *.giac XCAS*.cxx  XCAS*.mp mptextmp.mp XCAS*.tex}}
+     
+
+\begin{filecontents*}{entetecolor.tex}
+\documentclass{article} 
+\usepackage{pst-plot,pst-eps,color} 
+\usepackage{graphicx} 
+\begin{document}
+\newrgbcolor{red}{0.9961 0 0}
+\newrgbcolor{green}{0 0.9961 0}
+\newrgbcolor{yellow}{0.9961 0.9961 0}
+\newrgbcolor{blue}{0 0 0.9961}
+\newrgbcolor{magenta}{0.9961 0 0.9961}
+\newrgbcolor{cyan}{0 0.9961 0.9961}
+\newrgbcolor{fltkcolor7}{0.9961 0.9961 0.9961}
+\newrgbcolor{fltkcolor8}{0.332 0.332 0.332}
+\newrgbcolor{fltkcolor9}{0.7734 0.4414 0.4414}
+\newrgbcolor{fltkcolor10}{0.4414 0.7734 0.4414}
+\newrgbcolor{fltkcolor11}{0.5547 0.5547 0.2188}
+\newrgbcolor{fltkcolor12}{0.4414 0.4414 0.7734}
+\newrgbcolor{fltkcolor13}{0.5547 0.2188 0.5547}
+\newrgbcolor{fltkcolor14}{0.2188 0.5547 0.5547}
+\newrgbcolor{fltkcolor15}{0 0 0.5}
+\begin{TeXtoEPS}
+
+\end{filecontents*}
+
+
+\begin{filecontents*}{queuepdf.tex}
+
+\end{TeXtoEPS}
+\end{document}
+\end{filecontents*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% proglin
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{proglin.cxx}
+proglin(L,S,X,XS):={
+n:=nops(L)-1;
+D:=NULL;DX:=NULL;
+P:=NULL;PX:=NULL;
+F:=[];
+Le:=NULL;
+Intx:=NULL;
+Inty:=NULL;
+W:=[0,0,0,0];
+
+for(k:=0;k<=n;k++){L[k]:=solve(L[k],y)[0]; if((size(solve(L[k],x))!=0) and (solve(L[k],x)!=[x])){Intx:=Intx,solve(L[k],x)[0]};
+                   F:=append(F,unapply(L[k],x));Inty:=Inty,F[k](0)}
+
+
+
+W[0]:=-0.1*maxnorm([Intx]); W[1]:=1.2*(max(maxnorm(X),maxnorm([Intx])));
+W[2]:=-0.1*maxnorm([Inty]); W[3]:=1.2*maxnorm([Inty]);
+
+
+
+if(nops(X)>0){
+nx:=nops(X)-1;
+for(k:=0;k<=nx;k++){
+ Le:=Le,legend(X[k]+i*(k+1)*W[3]/(k+5),"D"+(n+1+k));
+ DX:=DX,line(x=X[k]);
+ PX:=PX,if(XS[k]==p){display(polygon(1.2*W[0]+i*6*W[2],1.2*W[0]+1.2*W[3]*i,X[k]+1.2*W[3]*i,X[k]+i*6*W[2]),(k+6+nx)+filled);}
+              else{display(polygon(1.2*W[1]+i*6*W[2],1.2*W[1]+1.2*W[3]*i,X[k]+1.2*W[3]*i,X[k]+i*6*W[2]),(k+6+nx)+filled);}
+  }
+}
+
+ for(k:=0;k<=n;k++){
+ Le:=Le,legend(((5-k)*W[0]+(k+2)*W[1])/(7)+i*F[k](((5-k)*W[0]+(k+2)*W[1])/(7)),"D"+k);
+ D:=D,line(y=L[k]);
+ P:=P,if(S[k]==m){display(polygon(1.2*W[0]+i*F[k](1.2*W[0]),1.2*W[0]+1.2*W[3]*i,1.2*W[1]+1.2*W[3]*i,1.2*W[1]+i*F[k](1.2*W[1])),(k+2)+filled);}
+               else{display(polygon(1.2*W[0]+i*F[k](1.2*W[0]),1.2*W[0]+6*W[2]*i,1.2*W[1]+6*W[2]*i,1.2*W[1]+i*F[k](1.2*W[1])),(k+2)+filled);}
+  }
+xyztrange(W[0],W[1],W[2],W[3],-10,10,-1,6,W[0],W[1],W[2],W[3],1);
+//Be:=unapply(B,x,y):;
+//Bmax:=Be(maxnorm([Intx]),maxnorm([Inty]));
+D:=D,DX;
+P,PX,DX,D,Le;//display(line(B=R),line_width_4) 
+ 
+}:;
+\end{VerbatimOut}
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{proglin.giac}
+maple_mode(0);
+read("proglin.cxx");
+Sortie:=fopen("XCASproglin.tex");
+fprint(Sortie,Unquoted,latex(read("proglin.user")));
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptproglin}
+\newcommand{\plin}{\theCptproglin}
+%% \plin change a chaque figure
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{proglin}
+{\VerbatimEnvironment\begin{VerbatimOut}{proglin.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASproglin.tex}
+\executGiacmp{proglin.giac}
+\immediate\write18{\rem \nomtravail_proglin\plin.tex}
+\ifpdf
+  \ifthenelse{\boolean{windows}}
+  {
+     \immediate\write18{copy entetecolor.tex+XCASproglin.tex+queuepdf.tex \nomtravail_proglin\plin.tex}
+  }%
+  {
+     \immediate\write18{\cat entetecolor.tex >> \nomtravail_proglin\plin.tex}
+     \immediate\write18{\cat XCASproglin.tex >> \nomtravail_proglin\plin.tex}
+     \immediate\write18{\cat queuepdf.tex >> \nomtravail_proglin\plin.tex}
+  }
+  \immediate\write18{latex -shell-escape -interaction=nonstopmode \nomtravail_proglin\plin.tex}
+  \immediate\write18{dvips -o \nomtravail_proglin\plin.eps -E \nomtravail_proglin\plin.dvi}
+  \immediate\write18{epstopdf \nomtravail_proglin\plin.eps }
+\else
+  \immediate\write18{\cat XCASproglin.tex >> \nomtravail_proglin\plin.tex}
+\fi
+
+\begin{center}
+\ifpdf
+    \includegraphics{\nomtravail_proglin\plin.pdf}
+\else
+    \input{\nomtravail_proglin\plin}
+\fi
+\end{center}
+\stepcounter{Cptproglin}
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% proglinb
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{VerbatimOut}{proglinb.cxx}
+proglinb(L,S,X,XS,B,a,b):={
+n:=nops(L)-1;
+D:=NULL;DX:=NULL;
+P:=NULL;PX:=NULL;
+F:=[];
+Le:=NULL;
+Intx:=NULL;
+Inty:=NULL;
+W:=[0,0,0,0];
+
+for(k:=0;k<=n;k++){L[k]:=solve(L[k],y)[0]; if((size(solve(L[k],x))!=0) and (solve(L[k],x)!=[x])){Intx:=Intx,solve(L[k],x)[0]};
+                   F:=append(F,unapply(L[k],x));Inty:=Inty,F[k](0)}
+
+
+
+W[0]:=-0.1*maxnorm([Intx]); W[1]:=1.2*(max(maxnorm(X),maxnorm([Intx])));
+W[2]:=-0.1*maxnorm([Inty]); W[3]:=1.2*maxnorm([Inty]);
+
+
+
+if(nops(X)>0){
+nx:=nops(X)-1;
+for(k:=0;k<=nx;k++){
+ Le:=Le,legend(X[k]+i*(k+1)*W[3]/(k+5),"D"+(n+1+k));
+ DX:=DX,line(x=X[k]);
+ PX:=PX,if(XS[k]==p){display(polygon(1.2*W[0]+i*6*W[2],1.2*W[0]+1.2*W[3]*i,X[k]+1.2*W[3]*i,X[k]+i*6*W[2]),(k+6+nx)+filled);}
+              else{display(polygon(1.2*W[1]+i*6*W[2],1.2*W[1]+1.2*W[3]*i,X[k]+1.2*W[3]*i,X[k]+i*6*W[2]),(k+6+nx)+filled);}
+  }
+}
+
+ for(k:=0;k<=n;k++){
+ Le:=Le,legend(((5-k)*W[0]+(k+2)*W[1])/(7)+i*F[k](((5-k)*W[0]+(k+2)*W[1])/(7)),"D"+k);
+ D:=D,line(y=L[k]);
+ P:=P,if(S[k]==m){display(polygon(1.2*W[0]+i*F[k](1.2*W[0]),1.2*W[0]+1.2*W[3]*i,1.2*W[1]+1.2*W[3]*i,1.2*W[1]+i*F[k](1.2*W[1])),(k+2)+filled);}
+               else{display(polygon(1.2*W[0]+i*F[k](1.2*W[0]),1.2*W[0]+6*W[2]*i,1.2*W[1]+6*W[2]*i,1.2*W[1]+i*F[k](1.2*W[1])),(k+2)+filled);}
+  }
+xyztrange(W[0],W[1],W[2],W[3],-10,10,-1,6,W[0],W[1],W[2],W[3],1);
+Be:=unapply(B,x,y):;
+//Bmax:=Be(maxnorm([Intx]),maxnorm([Inty]));
+D:=D,DX;
+J:=single_inter(D[a],D[b]);
+Bmax:=Be(abscissa(J),ordinate(J));
+//title="Le point extreme a pour coordonnees ("+abscissa(J)+","+ordinate(J)+")";
+P,PX,DX,D,Le,display(line(B=Bmax),line_width_4),display(open_polygon(point(0,ordinate(J)),J,point(abscissa(J),0)),line_width_3+dot_line),legend(abscissa(J),exact(abscissa(J)),quadrant4),legend(i*ordinate(J),exact(ordinate(J)),quadrant2); 
+ 
+}:;
+\end{VerbatimOut}
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{proglinb.giac}
+maple_mode(0);
+read("proglinb.cxx");
+Sortie:=fopen("XCASproglinb.tex");
+fprint(Sortie,Unquoted,latex(read("proglinb.user")));
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptproglinb}
+\newcommand{\plinb}{\theCptproglinb}
+%% \plinb change a chaque figure
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{proglinb}
+{\VerbatimEnvironment\begin{VerbatimOut}{proglinb.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASproglinb.tex}
+\executGiacmp{proglinb.giac}
+\immediate\write18{\rem \nomtravail_proglinb\plinb.tex perso.tex}
+\ifpdf
+  \ifthenelse{\boolean{windows}}
+  {
+     \immediate\write18{copy entetecolor.tex+XCASproglinb.tex+queuepdf.tex \nomtravail_proglinb\plinb.tex}
+  }%
+  {
+     \immediate\write18{\cat entetecolor.tex >> \nomtravail_proglinb\plinb.tex}
+     \immediate\write18{\cat XCASproglinb.tex >> \nomtravail_proglinb\plinb.tex}
+     \immediate\write18{\cat queuepdf.tex >> \nomtravail_proglinb\plinb.tex}
+  }
+  \immediate\write18{latex -shell-escape -interaction=nonstopmode \nomtravail_proglinb\plinb.tex}
+  \immediate\write18{dvips -o \nomtravail_proglinb\plinb.eps -E \nomtravail_proglinb\plinb.dvi}
+  \immediate\write18{epstopdf \nomtravail_proglinb\plinb.eps }
+\else
+  \immediate\write18{\cat XCASproglinb.tex >> \nomtravail_proglinb\plinb.tex}
+\fi
+
+\begin{center}
+\ifpdf
+    \includegraphics{\nomtravail_proglinb\plinb.pdf}
+\else
+    \input{\nomtravail_proglinb\plinb}
+\fi
+\end{center}
+\stepcounter{Cptproglinb}
+}

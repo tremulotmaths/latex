@@ -1,0 +1,134 @@
+\documentclass[12pt, twoside, openright, french]{book}
+\input{preambule_17-18}
+\input{perso_cecile_2019}
+\input{commandes_cecile_2019}
+
+
+
+
+\begin{document}
+
+
+
+
+\definecolor{Bleu}{RGB}{0,0,160}
+\definecolor{Rouge}{RGB}{200,0,0}
+\definecolor{Orange}{RGB}{242,79,0}
+
+\renewcommand\CouleurChapitre{Orange}
+\renewcommand\CouleurDefi{Bleu}
+\renewcommand\CouleurProp{Rouge}
+\renewcommand\CouleurThm{Rouge}
+\renewcommand\CouleurDemo{CadetBlue}
+\renewcommand\CouleurExemple{teal}
+\renewcommand\CouleurSolExemple{lightgray}
+\renewcommand\CouleurExemple{darkgray}
+\renewcommand\CouleurTitreBoiteCrayon{black}
+
+
+\chapter{Chapitre }
+
+
+
+\textcolor{SeaGreen}{Couleur SeaGreen}
+
+\textcolor{teal}{Couleur teal}
+
+\textcolor{TealBlue}{Couleur TealBlue}
+
+\section{Paragraphe}
+\begin{Defi}{}
+Test
+\end{Defi}
+
+\subsection{Paragraphe}
+\begin{Thm}[]{}
+Test
+\end{Thm}
+
+\begin{Prop}[s]{Titre}
+test
+\end{Prop}
+
+\begin{Demo}[~titre]
+tEst
+\end{Demo}
+
+\begin{Exemple}[blabla]
+test
+\end{Exemple}
+
+\begin{SolExemple}[blabla]
+
+test
+\end{SolExemple}
+
+\begin{Exemple*}[~A]
+Pas de numerotation auto
+\end{Exemple*}
+
+
+
+\begin{Methode}[~s ou info]
+Environnement bclogo
+blablab
+\end{Methode}
+
+\begin{Rmq}[~s ou titre]
+Environnement bclogo
+test
+\end{Rmq}
+
+\begin{Crayon}[Titre]{info}
+blabla
+\end{Crayon}
+
+\begin{objectifs}
+
+\item blabla
+\item blablabla
+
+\end{objectifs}
+
+\medskip
+
+\begin{enligne}
+\item note1
+\item note 2
+\end{enligne}
+
+\medskip
+
+\begin{surEuler}
+inserer un tableau
+\end{surEuler}
+
+\medskip
+
+\begin{prerequis}
+\item PR1
+\item PR2
+\end{prerequis}
+
+\begin{Exercice}
+test
+\end{Exercice}
+
+\setcounter{exos}{10}
+\begin{Exercice}
+
+\end{Exercice}
+
+\begin{Exo}[A]
+
+\end{Exo}
+
+\Livre{rappels dans le livre\\ par exemple}
+
+\Renvoi{livre p 212}
+
+\Pdtscalaire{u}{v}
+
+\seconde 12
+
+\end{document}

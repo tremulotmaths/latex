@@ -1,0 +1,79 @@
+\documentclass[dvipsnames]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{pst-grad,pstricks}
+\usepackage[a4paper,margin=2cm]{geometry}
+% Expérience de Franck et Hertz
+\begin{document}
+%Geiger-M\"{u}ller-Z\"{a}hlrohr
+\definecolor{khaki}{HTML}{F0E68C}
+\psset{unit=0.75}
+\begin{center}
+\begin{pspicture}(-6.5,-4.5)(8,2)
+\psframe(-6.5,-4.5)(8,2)
+\psframe[fillstyle=gradient,gradbegin=Goldenrod,gradend=Yellow!35,gradmidpoint=0.75,linestyle=none](-4.5,-1)(3,1)
+%% Stromzuleitung
+\psline(0,-2.4)(0,-4)
+\psline{-o}(0,-4)(2.3,-4)
+\uput[90](2.3,-4){$-$}
+\psline{o-}(2.7,-4)(5,-4)
+\uput[90](2.7,-4){$+$}
+\psline(5,-4)(5,0)(4,0)
+\psframe[fillstyle=solid,fillcolor=white](4.8,-1.6)(5.2,-2.4)
+\psdot[linecolor=blue](5,-1.4)
+\psdot[linecolor=blue](5,-2.6)
+\psline[linecolor=blue]{->}(5,-1.4)(7.5,-1.4)
+\psline[linecolor=blue]{->}(5,-2.6)(7.5,-2.6)
+\uput[90](6.6,-2.6){\parbox{2cm}{\centering\small \textcolor{blue}{vers l'amplificateur}}}
+%% Isolator
+\psellipticwedge[fillstyle=solid,fillcolor=khaki](3.5,0)(1,1.7){30}{330}
+\psellipticwedge[fillstyle=solid,fillcolor=khaki](3,0)(1,1.7){30}{330}
+\psline(3,0)(3.5,0)
+\psline(3.85,0.85)(4.35,0.85)
+\psline(3.85,-0.85)(4.35,-0.85)
+%% Geh\"{a}use
+%% hinten oben
+\pscustom[fillstyle=gradient,gradbegin=OliveGreen,gradend=OliveGreen!20,gradmidpoint=0.8]{%
+\psellipticarcn(-3.8,0)(1,1.7){90}{52}
+\psline(-2.9,1)(4,1)
+\psellipticarc(3.6,0)(1,1.7){52}{90}
+\psline(3.6,1.7)(-3.4,1.7)
+}
+%% hinten unten
+\pscustom[fillstyle=gradient,gradbegin=OliveGreen,gradend=OliveGreen!20,gradmidpoint=.2]{%
+\psellipticarc(-3.8,0)(1,1.7){270}{308}
+\psline(-2.9,-1)(4,-1)
+\psellipticarcn(3.6,0)(1,1.7){308}{270}
+\psline(3.6,-1.7)(-3.4,-1.7)
+}
+%% vorne oben
+\pscustom[fillstyle=gradient,gradbegin=OliveGreen,gradend=OliveGreen!20,gradmidpoint=0.8]{%
+\psellipticarcn(-5,0)(1,1.8){90}{45}
+\psline(-4.1,0.8)(-2.8,0.8)
+\psellipticarc(-3.7,0)(1,1.8){45}{90}
+\psline(-3.7,1.8)(-5,1.8)
+}
+%% vorne unten
+\pscustom[fillstyle=gradient,gradbegin=OliveGreen,gradend=OliveGreen!20,gradmidpoint=0.2]{%
+\psellipticarc(-5,0)(1,1.8){270}{315}
+\psline(-4.1,-0.8)(-2.8,-0.8)
+\psellipticarcn(-3.7,0)(1,1.8){315}{270}
+\psline(-3.7,-1.8)(-5,-1.8)
+}
+%% Draht
+\psframe[fillstyle=gradient,gradbegin=gray,gradend=white,gradmidpoint=0.5,linestyle=none](2.8,-0.163)(4,0.163)
+\psellipse[fillstyle=solid,fillcolor=gray,linecolor=gray](2.8,0)(0.075,0.15)
+\psellipticarc[linewidth=1pt,linecolor=gray](3.95,0)(0.075,0.15){270}{90}
+\psframe[linecolor=BurntOrange,fillstyle=gradient,gradbegin=BurntOrange,gradend=BurntOrange!30,gradmidpoint=0.5,linewidth=0.3pt](-2.5,-0.1)(2.8,0.1)
+\psellipse[fillstyle=solid,fillcolor=BurntOrange,linestyle=none](-2.5,0)(0.06,0.1)
+\psellipticarc[linewidth=1pt,linecolor=BurntOrange](2.78,0)(0.05,0.1){270}{90}
+%% Anschluss unten
+\pscustom[fillstyle=gradient,gradbegin=OliveGreen,gradend=OliveGreen!20,gradmidpoint=0.25,gradangle=90]{
+\pscurve(-0.5,-1.4)(0,-1.25)(0.5,-1.4)
+\psline(0.5,-1.4)(0.5,-2.5)
+\pscurve(0.5,-2.5)(0,-2.54)(-0.5,-2.5)
+\psline(-0.5,-2.5)(-0.5,-1.4)
+}
+\psellipse[fillstyle=gradient,gradbegin=cyan!10,gradend=cyan!50,gradmidpoint=0.35,gradangle=-60,linewidth=3pt](-5,0)(1,1.85)
+\end{pspicture}
+\end{center}
+\end{document}

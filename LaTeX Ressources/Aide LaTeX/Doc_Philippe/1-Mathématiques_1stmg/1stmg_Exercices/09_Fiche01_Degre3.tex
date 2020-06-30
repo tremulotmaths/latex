@@ -1,0 +1,57 @@
+\documentclass[11pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreExo{\bsc{ix}.1}{Polynôme de degré 3}\bigskip
+
+\exo \textbf{\'Etude de la propagation d'une maladie.}\par\medskip
+Après l'apparition d'une maladie virale, les responsables de la santé publique ont estimé que le nombre de personnes frappées par la maladie au jour $t$ à partir du jour d'apparition du premier cas est :
+\[M(t) = 45t^2 - t^3, \quad \text{pour}\quad t \in \intervalleff{0}{25}.\]
+
+\begin{enumerate}
+    \item Calculer $M(0)$ et $M(10)$ et interpréter les résultats.
+\end{enumerate}
+
+La vitesse de propagation de la maladie est assimilée à la dérivée du nombre de personnes malades en fonction de $t$.
+
+\begin{enumerate}[resume]
+    \item \begin{enumerate}
+                    \item Calculer $M'(t)$.
+                    \item En déduire la vitesse de propagation le cinquième jour et le dixième jour.
+                    \item Déterminer le jour où la vitesse de propagation est maximale et calculer cette vitesse.
+                    \item Déterminer les jours où la vitesse de propagation est supérieure à $600$ personnes par jour.
+            \end{enumerate}
+    \item \begin{enumerate}
+                    \item \'Etudier le sens de variation de la fonction $M$ sur l'intervalle $\intervalleff{0}{25}$.
+                    \item Interpréter les variations de $M$.
+            \end{enumerate}
+\end{enumerate}\[*\]
+
+\exo \textbf{Rythme de production.}\par\medskip
+Le nombre d'objets produits par une entreprise dépend de la quantité de travail fournie : c'est l'une des théorie de l'économiste \textbf{Taylor} (1856 - 1915).\par
+On se propose d'étudier un modèle théorique, élaboré à partir de l'étude d'un grand nombre de chaînes de montage, pour connaître le temps de travail maximum que l'on peut demander aux ouvriers.\par
+Soit $t$ le temps de travail fourni en heure, $t$ appartenant à l'intervalle $\intervalleff 0 5$.\par
+La production, exprimée en nombre d'objets, est donnée en fonction de $t$ par :
+\[P(t) = 100(-t^3 + 6t^2).\]
+
+\begin{enumerate}
+    \item
+        \begin{enumerate}
+            \item Calculer le nombre d'objets produits pour une heure de travail.
+            \item Calculer $P(2)$ et interpréter le résultat.
+            \item La quantité d'objets fabriqués est-elle proportionnelle au temps de travail ? Justifier la réponse.
+        \end{enumerate}
+    \item La dérivée de la production est le \textbf{rythme de production}, ou aussi \textbf{vitesse de production} par heure.
+        \begin{enumerate}
+            \item Déterminer $P'$.
+            \item Calculer le rythme de production pour un temps de travail de $2$ heures.
+            \item Dresser le tableau de variations de $P$ sur l'intervalle $\intervalleff{0}{5}$.
+            \item Quel est le temps de travail qui engendre une production maximale ? Dans ces conditions, combien d'objets sont fabriqués ?
+        \end{enumerate}
+\end{enumerate}
+
+\end{document} 

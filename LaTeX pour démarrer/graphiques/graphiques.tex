@@ -1,0 +1,209 @@
+\chapter{Graphiques et géométrie}\label{graph}
+
+\section{Différentes méthodes }
+
+$\star$ Le package \jargon{pstricks} a été longtemps très largement utilisé pour réaliser des figures géométriques et graphiques.
+
+Il l'est toujours actuellement et offre de nombreuses possibilités pour créer des graphiques et figures géométriques.
+
+Cependant, on rencontre des problèmes de compatibilité lorsque l'on compile en PDF\LaTeX{}.
+
+$\star$ Le programme \jargon{metapost} est également très puissant et offre de nombreuses possibilités. 
+
+Cependant il génére des fichiers externes qu'il faut ensuite inclure au document.
+
+$\star$ Mon choix s'est donc porté sur le package \jargon{TikZ} qui possède un très grand nombre d'options et de possibilités, ainsi que sur un dérivé, le package \jargon{TkZ} qui utilise le premier et offre une syntaxe simplifié dans pas mal de cas de figures.
+
+\section{Présentation générale de TikZ et TkZ}
+
+Les packages \jargon{TikZ} et \jargon{TkZ} possèdent des librairies . 
+
+Pour les utiliser il faut ajouter dans le préambule :
+
+\verb!\usepackage{tikz,tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-graph,tikz-3dplot}!
+
+\begin{verbatim}
+\usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,
+decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing,patterns,positioning,decorations.text}
+\end{verbatim}!
+
+Pour utiliser les différents objets \jargon{TkZ}, on ajoute :
+
+\verb!\usetkzobj{all}!
+
+Certaines commandes \jargon{TkZ} nécessite d'effectuer des calculs pour obtenir les figures et graphiques et utilise le package \jargon{pgfplots}.
+
+On ajoute donc également la commande 
+\verb!\usepackage{pgfplots}!
+
+On ajoutera enfin l'appel au package \jargon{etex} qui augmente la capacité de mémoire de \LaTeX{}, ce qui peut s'avérer nécessaire lorsque le document contient pas mal de figures nécessitant beaucoup de calculs.
+
+Voici donc un préambule possible tenant compte de tous ces \jargon{packages} :
+
+\medskip
+
+\VerbatimInput[label={[Document TikZ]},gobble=0]{exemples/doctikz.tex}
+
+\medskip
+
+\section{Exemples de figures utilisant TikZ}
+
+\begin{info}
+Ces figures sont réalisables avec des commandes des \jargon{packages} \ordi{TkZ} que l'on voit juste après.
+\end{info}
+
+
+\medskip
+
+\VerbatimInput[label={[Axe gradué]},gobble=0]{exemples/tikzaxegradue.tex}
+
+\medskip
+\input{exemples/tikzaxegradue}
+\medskip
+
+\VerbatimInput[label={[Courbe passant par des points donnés]},gobble=0]{exemples/tikzcourbepoints.tex}
+
+\medskip
+\input{exemples/tikzcourbepoints}
+\medskip
+
+\VerbatimInput[label={[Diagrammes de Venn]},gobble=0]{exemples/tikzvenn.tex}
+
+\medskip
+\input{exemples/tikzvenn}
+\medskip
+
+Un arbre pondéré généré à partir du site \url{http://math.et.info.free.fr/}
+\VerbatimInput[label={[Arbre pondéré]},gobble=0]{exemples/tikzarbre.tex}
+
+\medskip
+\input{exemples/tikzarbre}
+\medskip
+
+\VerbatimInput[label={[Graphe probabiliste]},gobble=0]{exemples/tikzgrapheproba.tex}
+
+\medskip
+\input{exemples/tikzgrapheproba}
+
+\section{Exemples en ligne}
+
+\begin{info}
+On retrouve énormément de figures créées avec TikZ sur le site \href{http://www.texample.net/tikz/examples/}{texample.net}.
+\end{info}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Exemples de figures utilisant TkZ}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{info}
+Les \jargon{packages} \ordi{TikZ} et \ordi{TkZ} sont compatibles et leurs commandes peuvent donc être utilisées pour une même figure.
+\end{info}
+
+Voici une figure du plan toute simple avec des angles marqués.
+
+\VerbatimInput[label={[Avec des angles marqués]},gobble=0]{exemples/tkzanglesmarques.tex}
+
+\medskip
+\input{exemples/tkzanglesmarques}
+\medskip
+
+Voici une figure correspond au patron d'un prisme droit et sur laquelle on a marqué des angles droits, des segments de même longueur, des arcs de cercle.
+
+\VerbatimInput[label={[Avec des arcs de cercle]},gobble=0]{exemples/tkzarccercle.tex}
+
+\medskip
+\input{exemples/tkzarccercle}
+\medskip
+
+Voici une figure dans laquelle on définit des points comme intersection de droites et comme barycentre d'autres points.
+
+\VerbatimInput[label={[Intersection de droites, barycentre]},gobble=0]{exemples/tkzintersectionbarycentre.tex}
+
+\medskip
+\input{exemples/tkzintersectionbarycentre}
+\medskip
+
+Voici une figure avec des vecteurs.
+
+\VerbatimInput[label={[Avec des vecteurs]},gobble=0]{exemples/tkzvecteurs.tex}
+
+\medskip
+\input{exemples/tkzvecteurs}
+\medskip
+
+Voici un polygone d'effectifs cumulés croissants.
+
+\VerbatimInput[label={[Polygone d'E.C.C.]},gobble=0]{exemples/tkzecc.tex}
+
+\medskip
+\input{exemples/tkzecc}
+\medskip
+
+Voici une figure construite sur un quadrillage Seyes avec des vecteurs.
+
+Cette figure utilise une commande qui a été créée dans le preambule et qui est la suivante :
+
+\begin{verbatim}
+\newcommand{\quadrillageSeyes}[2]
+{\draw[line width=0.3mm, color=blue!10, ystep=0.2, xstep=0.8] #1 grid #2;
+\draw[line width=0.3mm, color=blue!30, xstep=0.8, ystep=0.8] #1 grid #2; }
+\end{verbatim}
+
+\VerbatimInput[label={[Quadrillage Seyes et vecteurs]},gobble=0]{exemples/tkzseyes.tex}
+
+\medskip
+\input{exemples/tkzseyes}
+\medskip
+
+
+Voici un graphique comportant des tangentes et un effet loupe.
+
+Pour l'effet loupe, la librairie \jargon{spy} de TikZ a besoin d'être chargée.
+
+\VerbatimInput[label={[Tangentes et effet loupe]},gobble=0]{exemples/tkztangenteloupe.tex}
+
+\medskip
+\input{exemples/tkztangenteloupe}
+\medskip
+
+\begin{info}
+Avec la commande \textbackslash\verb!tkzfct!, utilisée dans l'exemple précédent, on peut tracer des courbes de fonctions avec une syntaxe relativement simplifiée.
+\end{info}
+
+Voici d'autres exemples :
+
+\VerbatimInput[label={[Aire entre deux courbes]},gobble=0]{exemples/tkzaireentrecourbes.tex}
+
+\medskip
+\input{exemples/tkzaireentrecourbes}
+\medskip
+
+Visualisation d'une somme de Riemann.
+
+\VerbatimInput[label={[Une somme de Riemann]},gobble=0]{exemples/tkzsommeriemann.tex}
+
+\medskip
+\input{exemples/tkzsommeriemann}
+\medskip
+
+Une courbe paramétrée.
+
+\VerbatimInput[label={[Une courbe paramétrée]},gobble=0]{exemples/tkzcourbeparametree.tex}
+
+\medskip
+\input{exemples/tkzcourbeparametree}
+\medskip
+
+Des aires sous une courbe.
+
+\VerbatimInput[label={[Des aires sous une courbe]},gobble=0]{exemples/tkzairesouscourbe.tex}
+
+\medskip
+\input{exemples/tkzairesouscourbe}
+%\medskip
+

@@ -1,0 +1,148 @@
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[upright]{fourier}% l'option permet d'avoir les majuscules droites dans les formules mathématiques
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[scale=.9]{geometry}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{setspace}
+
+\usepackage{enumerate}
+\renewcommand{\theenumi}{\bf\textsf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\bf\textsf{\theenumi.}}
+\renewcommand{\theenumii}{\bf\textsf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\bf\textsf{\theenumii.}}
+\renewcommand{\theenumiii}{\bf\textsf{\roman{enumiii}}}
+\renewcommand{\labelenumiii}{\bf\textsf{\theenumiii.}}
+
+%les commandes suivantes évitent le message "too many math alphabets"...
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+%animaux
+\usepackage{tikzlings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Titre
+
+\title{QCM 1 - Fonction ln}
+\author{\tikz[scale=1]\coati[sideward];
+\includegraphics[width=0.2\linewidth]{Logo_augustin_thierry}
+\tikz[scale=1]\coati[sideward,xscale=-1];
+}
+\date{\today} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pour le QCM
+\usepackage{hyperref}
+\newcommand*{\mtcode}{123456}
+%notice en ligne 
+%http://www.tug.org/applications/hyperref/manual.html#x1-200006
+%http://www.les-mathematiques.net/phorum/read.php?10,1653900,1654548
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\begin{center}
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Form}
+\TextField[bordercolor=1 0 0,width=15em,charsize=0pt,name=box,bordercolor=black]{Prénom : }
+\TextField[bordercolor=1 0 0,width=15em,charsize=0pt,name=box,bordercolor=black]{NOM : }
+
+
+\begin{center}
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\end{center}
+
+
+\begin{enumerate}
+\item La fonction ln est
+
+\ChoiceMenu[radio,name=Q1,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{dérivable sur $]0;+\infty[$=1,
+\hspace{0.2\linewidth}dérivable sur $\mathbb{R}$=0}
+
+\item La fonction ln est
+
+\ChoiceMenu[radio,name=Q2,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{dérivable sur $]0;+\infty[$=1,
+\hspace{0.2\linewidth}dérivable sur $\mathbb{R}$=0}
+
+\item La fonction ln est
+
+\ChoiceMenu[radio,name=Q3,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{dérivable sur $]0;+\infty[$=1,
+\hspace{0.2\linewidth}dérivable sur $\mathbb{R}$=0}
+
+\end{enumerate}
+
+\begin{center}
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\tikz[scale=0.6]\owl;
+\end{center}
+
+\TextField[password,bordercolor=1 0 0,width=10em,charsize=0pt,name=boxcode,bordercolor=black]{code : }
+%
+%
+\PushButton[name=verificationcode,bordercolor=1 1 1,
+onclick=
+{
+if (this.getField("boxcode").value==\mtcode)
+{
+this.getField("obtenirscore").value=(
+this.getField("Q1").value
++this.getField("Q2").value
++this.getField("Q3").value
+);
+}
+else
+{
+this.getField("obtenirscore").value="Code incorrect";
+}
+this.getField("boxcode").value="";
+}
+]
+{\tikz\node[rounded corners, draw=black!80, fill=black!20]  {\bf score final :};}
+\TextField[name=obtenirscore,bordercolor=1 1 1,width=10em,charsize=0pt,readonly=true]{}
+\end{Form}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,44 @@
+\begin{center}
+\begin{tikzpicture}[scale=0.65,>=stealth]
+\tkzInit[xmin=14.90,xmax=15.10,xstep=0.01,ymin=0,ymax=500,ystep=50]
+\tkzGrid
+\tkzDrawX[line width=1.5pt,color=blue,below right,label=Diamètres,>=stealth]
+\tkzLabelX[label options={below=12pt,rotate=-45}]
+\tkzDrawY[line width=1.5pt,color=blue,above left,label=E.C.C.,>=stealth]
+\tkzLabelY[label options={left=6pt}]
+\tkzDefPoint(14.9,0){A}
+\tkzDefPoint(14.92,5){B}
+\tkzDefPoint(14.94,42){C}
+\tkzDefPoint(14.96,106){D}
+\tkzDefPoint(14.98,204){E}
+\tkzDefPoint(15,329){F}
+\tkzDefPoint(15.02,431){G}
+\tkzDefPoint(15.04,479){H}
+\tkzDefPoint(15.06,493){I}
+\tkzDefPoint(15.08,498){J}
+\tkzDefPoint(15.1,500){K}
+\tkzDrawPoints[color=red,size=4pt](B,C,D,E,F,G,H,I,J,K)
+\tkzDrawSegments[color=red,line width=1.5pt](A,B B,C C,D D,E E,F F,G G,H H,I I,J J,K)
+%Médiane
+\tkzDefPoint(14.9,250){L}
+\tkzDefPoint(14.9874,250){M}
+\tkzDefPoint(14.9874,0){N}
+\tkzDrawSegment[color=OliveGreen,line width=1.5pt,style=dashed](L,M)
+\tkzDrawSegment[->,>=stealth,color=OliveGreen,line width=1.5pt,style=dashed](M,N)
+\tkzText[below=30pt,color=OliveGreen](N){Med}
+%1er quartile
+\tkzDefPoint(14.9,125){R}
+\tkzDefPoint(14.9639,125){S}
+\tkzDefPoint(14.9639,0){T}
+\tkzDrawSegment[color=OliveGreen,line width=1.5pt,style=dashed](R,S)
+\tkzDrawSegment[->,>=stealth,color=OliveGreen,line width=1.5pt,style=dashed](S,T)
+\tkzText[below=30pt,color=OliveGreen](T){$Q_1$}
+%3eme quartile
+\tkzDefPoint(14.9,375){U}
+\tkzDefPoint(15.009,375){V}
+\tkzDefPoint(15.009,0){W}
+\tkzDrawSegment[color=OliveGreen,line width=1.5pt,style=dashed](U,V)
+\tkzDrawSegment[->,>=stealth,color=OliveGreen,line width=1.5pt,style=dashed](V,W)
+\tkzText[below=30pt,color=OliveGreen](W){$Q_3$}
+\end{tikzpicture}
+\end{center}

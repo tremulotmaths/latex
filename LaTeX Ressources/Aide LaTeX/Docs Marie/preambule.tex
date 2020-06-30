@@ -1,0 +1,286 @@
+\documentclass[11pt,dvips]{article} 
+\usepackage[cp1252]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[scaled=0.875]{helvet} 
+  \renewcommand{\ttdefault}{lmtt}
+\usepackage[colorlinks=true,urlcolor=blue, linkcolor=blue]{hyperref}
+\usepackage{geometry}
+\geometry{a4paper,hmargin=2.5cm,vmargin=2.5cm}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{epsfig}
+\usepackage[framed]{ntheorem}
+\usepackage[frenchb]{babel}
+
+%-----------------------------------------------------------------------------------------
+% Présentation et compléments
+%-----------------------------------------------------------------------------------------
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+
+%Changer la numerotation des listes_________________________ 
+\usepackage{enumerate}
+ \renewcommand{\labelenumi}{\theenumi.}
+ \renewcommand{\labelenumii}{\theenumii.}
+
+% Numérotation des sections_______________________________
+\renewcommand{\thesection}{\Roman{section}}  
+%\renewcommand{\thesubsection}{\qquad\arabic{subsection} } % chiffres arabes
+
+% Autres symboles et caractères_____________________________
+\usepackage{textcomp}
+    \newcommand{\euro}{\eurologo{}} 
+\usepackage{siunitx} 
+\usepackage{pifont,dingbat}
+
+% Images et figures________________________________________________
+\usepackage{graphicx}
+\usepackage{pstricks,pst-plot,pst-text,pstricks-add,pst-eucl,pst-tree} 
+\usepackage{pst-solides3d}                                               % pour créer différents solides de l'espace
+\usepackage{caption}
+
+% Tableaux_______________________________________________
+\usepackage{tabularx}
+\usepackage{colortbl} 
+\usepackage{array}
+
+%--------------------------------------------------------------------------------------------
+% Ecrire des mathématiques
+%--------------------------------------------------------------------------------------------
+\usepackage[fleqn]{amsmath}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}  
+\usepackage[np]{numprint} 
+\usepackage[upright]{fourier}  %!!!! change la police lorsqu'il est actif !!!  ???
+   \renewcommand{\rmdefault}{lmr}
+
+ 
+ %Figures tikz____________________________________________
+ \usepackage{tkz-base, tkz-euclide, tkz-fct, tkz-tab}  % tkz-tukey ?
+\usetikzlibrary{arrows, plotmarks}
+\usetkzobj{all}
+  
+% QCM___________________________________________________
+\usepackage{alterqcm}
+    %Exemple: %\begin{alterqcm}
+                       %\AQuestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+                       %\end{alterqcm}
+
+%--------------------------------------------------------------------------------------------
+% Raccourcis mathématiques 
+%--------------------------------------------------------------------------------------------
+
+%Ensembles de nombres____________________________________
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+%\newcommand{\P}{\mathbb{P}}
+
+%Repères________________________________________________
+\def\Oij{$\left(\text{O}\,;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}\,;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}\,;~\vect{u},~\vect{v}\right)\ $}
+
+%Arc de cercles____________________________________________
+\newlength{\longarc}
+\newcommand{\arc}[1]{\settowidth{%
+\longarc}{$#1$}
+\addtolength{\longarc}{-0.5em}%
+\unitlength \longarc \ensuremath{%
+\stackrel{\begin{picture}(1,0.2)
+\qbezier(0,0)(0.5,0.2)(1,0)   % commande \arc{AB}
+\end{picture}}{#1}}}
+
+%Système de deux équations________________________________
+\newcommand{\Syst}[2]{\left\{\begin{array}{lcr} #1\\ #2 \end{array}\right.}
+\newcommand{\Systt}[3]{\left\{\begin{array}{lcr} #1\\ #2\\ #3 \end{array}\right.}
+
+%Vecteurs________________________________________________
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+%Coordonnées____________________________________________
+\newcommand{\cp}[2]{\left( \,#1\, ;\,#2\,\right)}
+\newcommand{\ce}[3]{\left( \,#1\, ;\,#2\,;\, #3\,\right)}
+\newcommand{\cec}[3]{\left( \begin{array}{c}#1\\#2\\#3\end{array} \right)}
+
+%Opérations vecteurs_______________________________________
+\newcommand{\ps}[2]{\vect{#1}\cdot\vect{#2}}
+\newcommand{\pv}[2]{\vect{#1}\wedge\,\vect{#2}}
+\newcommand{\pmi}[3]{\vect{#1}\cdot \left(\pv{#2}{#3}\right)}
+\newcommand{\detv}[4]{\left| \begin{array}{c c}#1&#3\\#2&#4\end{array} \right|}
+
+%Intervalles_______________________________________________
+\newcommand{\Iff}[2]{\left[ \,#1\, ;\,#2\,\right]}
+\newcommand{\Ifo}[2]{\left[ \,#1\, ;\,#2\,\right[}
+\newcommand{\Ioo}[2]{\left] \,#1\, ;\,#2\,\right[}
+\newcommand{\Iof}[2]{\left] \,#1\, ;\,#2\,\right]}
+
+%Valeurs absolues, normes___________________________________
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+%\newcommand{\norme}[1]{\left\lVert#1\right\rVert}
+\newcommand{\norme}[1]{\|#1\|}
+
+%Calcul intégral______________________________________
+%\newcommand{\Int}[3]{\displaystyle{\int_#1^#2\,#3}}
+\newcommand{\Int}{\displaystyle\int_}
+\newcommand{\dx}{\;\text{d}x}
+\newcommand{\dt}{\;\text{d}t}
+
+%Limites__________________________________________________
+\newcommand{\limx}[2]{\displaystyle{\lim_{x\to#1}\, #2}}      % pour écrire une limite à l'intérieur d'un texte sans  \[   \]
+\newcommand{\limt}[2]{\displaystyle{\lim_{t\to#1}\, #2}}
+\newcommand{\limh}[2]{\displaystyle{\lim_{h\to#1}\, #2}}
+%Nombres complexes_______________________________________
+\def\i{\text{i}}
+
+%Probabilités
+\newcommand{\ev}[2]{$#1$\,:\,\og #2 \fg}  
+
+%Statistiques
+\newcommand{\cov}[2]{\text{cov}\,\left(#1\,;\,#2\right)}
+
+%Suites
+\newcommand{\un}{\left(u_n\right)}
+\newcommand{\vn}{\left(v_n\right)}
+
+%Trigonométrie sphérique____________________
+%\def\psPointSphere(#1,#2,#3)#4                                        % placer un point défini par ses coordonnées sphériques
+%{% #1 rayon  #2 longitude  #3 latitude
+%\pstVerb{ /xP #1 #2 cos #3 cos mul mul def  /yP #1 #2 sin #3 cos mul mul def /zP #1 #3 sin mul def}
+%\psPoint(xP,yP,zP){#4}}
+\newcommand{\psPSphere}[4]                                        % placer un point défini par ses coordonnées sphériques
+{% #1 rayon  #2 longitude  #3 latitude #4 nom du point
+\pstVerb{ /xP #1 #2 cos #3 cos mul mul def  /yP #1 #2 sin #3 cos mul mul def /zP #1 #3 sin mul def}
+\psPoint(xP,yP,zP){#4}}
+
+% Expressions______________________________________________
+\newcommand{\ssi}{si, et seulement si, }
+
+%----------------------------------------------------------------------------------------------
+%Insérer un algorithme avec Algobox
+%----------------------------------------------------------------------------------------------
+\usepackage{ucs}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{alltt}
+%%ALGO                                                  ____ Mis dans une macro_____
+%\definecolor{fond}{RGB}{136,136,136}
+%\definecolor{sicolor}{RGB}{128,0,128}
+%\definecolor{tantquecolor}{RGB}{221,111,6}
+%\definecolor{pourcolor}{RGB}{187,136,0}
+%\definecolor{bloccolor}{RGB}{128,0,0}
+%\newenvironment{cadrecode}{%
+%\def\FrameCommand{{\color{fond}\vrule width 5pt}\fcolorbox{fond}{white}}%
+%\MakeFramed {\hsize \linewidth \advance\hsize-\width \FrameRestore}\begin{footnotesize}}%
+%{\end{footnotesize}\endMakeFramed}
+%\makeatletter
+%\def\therule{\makebox[\algorithmicindent][l]{\hspace*{.5em}\color{fond} \vrule width 1pt height .75\baselineskip depth .25\baselineskip}}%
+%\newtoks\therules
+%\therules={}
+%\def\appendto#1#2{\expandafter#1\expandafter{\the#1#2}}
+%\def\gobblefirst#1{#1\expandafter\expandafter\expandafter{\expandafter\@gobble\the#1}}%
+%\def\Ligne{\State\unskip\the\therules}% 
+%\def\pushindent{\appendto\therules\therule}%
+%\def\popindent{\gobblefirst\therules}%
+%\def\printindent{\unskip\the\therules}%
+%\def\printandpush{\printindent\pushindent}%
+%\def\popandprint{\popindent\printindent}%
+%\def\Variables{\Ligne \textcolor{bloccolor}{\textbf{VARIABLES}}}
+%\def\Si#1{\Ligne \textcolor{sicolor}{\textbf{SI}} #1 \textcolor{sicolor}{\textbf{ALORS}}}%
+%\def\Sinon{\Ligne \textcolor{sicolor}{\textbf{SINON}}}%
+%\def\Pour#1#2#3{\Ligne \textcolor{pourcolor}{\textbf{POUR}} #1 \textcolor{pourcolor}{\textbf{ALLANT\_DE}} #2 \textcolor{pourcolor}{\textbf{A}} #3}%
+%\def\Tantque#1{\Ligne \textcolor{tantquecolor}{\textbf{TANT\_QUE}} #1 \textcolor{tantquecolor}{\textbf{FAIRE}}}%
+%\algdef{SE}[WHILE]{DebutTantQue}{FinTantQue}
+%  {\pushindent \printindent  \textcolor{tantquecolor}{\textbf{DEBUT\_TANT\_QUE}}}
+%  {\printindent \popindent  \textcolor{tantquecolor}{\textbf{FIN\_TANT\_QUE}}}%
+%\algdef{SE}[FOR]{DebutPour}{FinPour}
+%  {\pushindent \printindent \textcolor{pourcolor}{\textbf{DEBUT\_POUR}}}
+%  {\printindent \popindent  \textcolor{pourcolor}{\textbf{FIN\_POUR}}}%
+%\algdef{SE}[IF]{DebutSi}{FinSi}%
+%  {\pushindent \printindent \textcolor{sicolor}{\textbf{DEBUT\_SI}}}
+%  {\printindent \popindent \textcolor{sicolor}{\textbf{FIN\_SI}}}%
+%\algdef{SE}[IF]{DebutSinon}{FinSinon}
+%  {\pushindent \printindent \textcolor{sicolor}{\textbf{DEBUT\_SINON}}}
+%  {\printindent \popindent \textcolor{sicolor}{\textbf{FIN\_SINON}}}%
+%\algdef{SE}[PROCEDURE]{DebutAlgo}{FinAlgo}
+%   {\printandpush \textcolor{bloccolor}{\textbf{DEBUT\_ALGORITHME}}}%
+%   {\popandprint \textcolor{bloccolor}{\textbf{FIN\_ALGORITHME}}}%
+%\makeatother
+%\newenvironment{algobox}%
+%{%
+%\begin{ttfamily}
+%\begin{algorithmic}[1]
+%\begin{cadrecode}
+%}
+%{%
+%\end{cadrecode}
+%\end{algorithmic}
+%\end{ttfamily}
+%}
+
+%_____________________________________________________
+%Insérer des calculs réalisés avec maxima
+%__________________________________________________
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\DeclareUnicodeCharacter{00B5}{\ensuremath{\mu}}
+\usepackage{color}
+\usepackage{ifthen}
+%\DeclareMathOperator{\abs}{abs}
+\usepackage{animate} % This package is required because the wxMaxima configuration option
+                      % "Export animations to TeX" was enabled when this file was generated.
+
+\definecolor{labelcolor}{RGB}{100,0,0}
+
+%----------------------------------------------------------------------------------------------
+%Mise en forme des théorèmes
+%----------------------------------------------------------------------------------------------
+%\makeatletter
+%\def\ntheorem@breakstrut{\rule{0pt}{1\baselineskip}}
+%\renewtheoremstyle{break}%
+%  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+%          ##1\ ##2\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
+%  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont                      % th numérotés
+%          ##1\ ##2\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
+%
+%\def\ntheorem@nonumberbreakstrut{\rule{0pt}{0.9\baselineskip}}
+%\renewtheoremstyle{nonumberbreak}%
+%  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+%          ##1\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
+%  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont              % th non numérotés
+%          ##1\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
+%\makeatother
+%
+%\theoremstyle{break}
+%\theorembodyfont{\upshape}
+%\newframedtheorem{Th}{Théorème}
+%\newframedtheorem{Prop}{Propriété}
+%\theorembodyfont{\slshape}
+%\definecolor{azure}{rgb}{.88,.932,.932}
+%\shadecolor{azure}
+%\newshadedtheorem{Def}{Définition}
+%\theoremstyle{nonumberbreak}
+%\theorembodyfont{\rmfamily}
+%\newtheorem{Ex}{Exemple}
+%\newtheorem{Exo}{Exercice}
+%\theoremheaderfont{\scshape}
+%\newtheorem{Rem}{Remarque}
+
+
+\usepackage{boiboites}
+%_________________________________________________________
+
+\renewcommand{\arraystretch}{1.5} 

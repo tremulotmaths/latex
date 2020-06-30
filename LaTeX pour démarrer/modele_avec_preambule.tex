@@ -1,0 +1,209 @@
+\documentclass[12pt,oneside]{report}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% PRÉAMBULE %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{etex}%package permettant d'augmenter le nombre de registres de dimension et donc d'éviter les erreurs de compilation dûs aux packages tikz, pstricks and compagnie
+
+\usepackage[utf8x]{inputenc}%encodage permettant entre autres la reconnaissance des accents
+\usepackage[T1]{fontenc}
+
+\FrenchFootnotes
+\usepackage{tipa}%alphabet phonétique internationnal
+
+\usepackage{frcursive} % Pour l'écriture cursive
+\usepackage[upright]{fourier}% l'option permet d'avoir les majuscules droites dans les formules mathématiques
+\usepackage[scaled=0.875]{helvet}
+
+\usepackage[dvipsnames,table]{xcolor}%package pour les couleurs
+
+\usepackage{lscape} %permet le format paysage du document
+\usepackage{xspace} % création automatique d'espaces dans les commandes
+\setlength{\parindent}{0pt}
+
+\usepackage{fancyhdr}
+
+\usepackage{enumerate} %permet la modif de la numérotation et de poursuivre une numérotation en cours avec \begin{enumerate}[resume]
+\usepackage{enumitem}
+\frenchbsetup{StandardLists=true}%frenchb ne s'occupera pas des listes
+\setenumerate[1]{font=\bfseries,label=\arabic*.} % numérotation 1. 2. ...
+\setenumerate[2]{font=\bfseries,label=\alph*)} % sous-numérotation a) b) ...
+
+\usepackage{lastpage} % permet d'afficher le nombre total de pages après DEUX compilations.
+
+%___________________________
+%===    Réglages et Commandes Maths
+%------------------------------------------------------
+%les commandes suivantes évitent le message "too many math alphabets"...
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\usepackage{amssymb,mathtools}
+
+\usepackage{stmaryrd}%\llbracket et \rrbracket % crochets doubles pour intervalles d'entier
+%symbole parallèle avec \sslash
+
+\usepackage{xlop}%pour écrire des opérations posées (LaTeX effectue les calculs lui-même)
+
+\usepackage{bm} % pour l'écriture en gras des formules mathématiques avec \bm
+
+\usepackage{cancel} % pour les simplifications de fractions
+\usepackage[autolanguage,np]{numprint}%permet les espacement pour les nombres décimaux avec \np{3,12456} en environnement maths ou pas
+\DecimalMathComma %supprime l'espace après la virgule dans un nombre
+
+\usepackage{dsfont} %écriture des ensemble N, R, C ...
+\newcommand{\C}{\mathds C}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\D}{\mathds D}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+\newcommand{\e}{\text{e}}% e de l'exponentielle droit
+\newcommand{\dd}{\,\text{d}}% d des intégrales droit
+
+\usepackage{mathrsfs}   % Police de maths jolie caligraphie
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+%Repères
+\def\Oij{$\left(\text{O}\pv\vect{\imath},~\vect{\jmath}\right)$\xspace}
+\def\Oijk{$\left(\text{O}\pv\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$\xspace}
+\def\Ouv{$\left(\text{O}\pv\vect{u},~\vect{v}\right)$\xspace}
+\def\OIJ{$\left(O\pv I\:,\,J\right)$\xspace}
+
+\newcommand\abs[1]{\ensuremath{\left\vert #1 \right\vert}}%valeur absolue
+\newcommand\Arc[1]{\ensuremath{\wideparen{#1}}}%arc de cercle
+
+%symbole pour variable aléatoire qui suit une loi
+\newcommand{\suit}{\hookrightarrow}
+
+%___________________________
+%===    Pour les tableaux
+%------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx,tabulary}
+\usepackage{multirow}
+\usepackage{multicol}
+
+%Pour remonter le texte, dans chaque colonne vers le haut : \raggedcolumns qui se tape :\begin{multicols}{2}\raggedcolumns...\columnbreak...\columnbreak\end{multicols}
+
+%Pour supprimer les traits verticaux : \setlength{\columnseprule}{0pt} avant \begin{multicols}{3}...\end{multicols}
+\setlength\columnseprule{0.4pt}
+\renewcommand{\arraystretch}{1.5}%augmente la hauteur des lignes des tableaux
+%colonnes centrées verticalement et horizontalement permettant d'écrire des paragraphes de largeur fixée du type M{3cm}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}%cellule centrée horizontalement et verticalement
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}%cellule alignée à droite et centrée verticalement
+%\arraybackslash permet de continuer à utiliser \\ pour le changement de ligne
+
+\usepackage{arydshln}% permet des filets horizontaux ou verticaux en pointillés avec
+%pour les filets horizontaux \hdashline ou \cdashline qui s'utilisent comme \hline ou \cline
+% pour les filets verticaux les deux points :
+
+
+%___________________________
+%===    Divers packages
+%------------------------------------------------------
+\usepackage{textcomp}
+
+\usepackage{soul} % Pour souligner : \ul
+\usepackage{ulem} % Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+
+%___________________________
+%Pour les graphiques et figures
+%------------------------------------------------------
+\usepackage{tikz,tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-graph,tikz-3dplot}
+\usetkzobj{all}
+\usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing,patterns,positioning,decorations.text}
+\usetikzlibrary{shadows,trees}
+\usepackage{pstricks,pst-plot,pst-text,pstricks-add,pst-eucl,pst-all}
+
+\usepackage{pgfplots}
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   []
+%\end{spacing}
+
+%Pointillés sur toute la ligne
+\usepackage{multido}
+
+
+%divers cadres
+\usepackage{fancybox} % par exemple \ovalbox{}
+
+%caractères spéciaux avec la commande \ding{230} par exemple
+\usepackage{pifont}
+
+%autres symboles
+\usepackage{marvosym}
+\usepackage{bclogo}
+\usepackage{tikzsymbols}
+
+%QRcode généré par le package qrcode
+\usepackage{qrcode}
+
+
+%Texte en filigrane
+\usepackage{watermark}
+%On utilise ensuite les commandes \watermark, \leftwatermark, \rightwatermark ou \thiswatermark qui permettent de définir un filigrane sur toutes les pages, les pages paires, les pages impaires ou juste une page
+%Exemple : \thiswatermark {
+%\begin{minipage}{0.95\linewidth}
+%\vspace{25cm}
+%\begin{center}
+%\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}\LaTeX}}
+%\end{center}
+%\end{minipage}
+%}
+
+%___________________________
+%===    HYPERLIENS
+%------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue,bookmarksnumbered]{hyperref} 
+
+
+%___________________________
+%===    SOMMAIRE DANS LES CHAPITRES
+%------------------------------------------------------
+
+\usepackage{minitoc}
+
+%___________________________
+%===    TABLEUR
+%------------------------------------------------------
+\usepackage{pas-tableur}%package de Stéphane Pasquet
+\usepackage{xstring}
+\usepackage{xkeyval}
+
+%Pour pouvoir utiliser l'environnement verbatim
+\usepackage{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english,french]{babel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% CORPS DU DOCUMENT %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% FIN DU DOCUMENT %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

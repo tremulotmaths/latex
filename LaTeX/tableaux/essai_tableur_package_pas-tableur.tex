@@ -1,0 +1,66 @@
+\documentclass[12pt,french,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pas-tableur}
+\usepackage{xstring}
+\usepackage{xkeyval}
+\input{preambule_2014}
+\input{perso_dom_2014_2015}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2014-2015}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Correction de l'exercice 75 p 239}
+
+\noindent 
+\vspace{-6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2014-2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}
+%\tabcolwidth{2.5cm}
+\tableur[3]{A-D}
+\celtxt[c]{A}{1}{x}
+\celtxt[r]{A}{2}{0}
+\celtxt[r]{A}{3}{1}
+\celtxt[c]{B}{1}{f(x)}
+\celtxt{B}{2}{=A2*A2+4*A2-3}
+\selecCell{B}{2}
+\draw[<-,>=latex,line width=0.7pt] ($(cellB-2.south east)+(0,-0.1)$) to[bend right=30] ($(cellB-2)+(2,-1.7)$) node[right] {Cliquer et abaisser pour recopier la formule};
+\end{tikzpicture}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

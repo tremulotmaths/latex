@@ -1,0 +1,10 @@
+
+\usepackage{csquotes}
+\usepackage[backend=biber,defernumbers=true,style=authortitle,block=space]{biblatex}%block=nbpar
+\setlength\bibnamesep{10pt}
+\addbibresource{B_Bibliographie/Stage_LaTeX_Bib.bib}
+\nocite{*}
+\defbibheading{bibliography}[\bibname]{%
+\cleardoublepage{\vspace*{50\lineskip}
+\color{MarronLogo}\hfill\fontsize{50}{15}\bfseries\hminfamily{#1}\vspace*{50\lineskip}}}%
+

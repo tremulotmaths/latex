@@ -1,0 +1,66 @@
+\documentclass[10pt,french]{book}
+\input philippe2013
+
+\newcounter{exoc}
+\newenvironment{exoc}{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\par
+  \medskip}%
+{\medskip}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+\renewcommand\arraystretch{1.5}
+\begin{tabularx}{\textwidth}{|>\centering m{2.5cm}|>\centering X|>{\centering\arraybackslash} m{2.5cm}|}
+	\hline
+		\premiere \bsc{sti}2d &  À rendre \textbf{au plus tard} le Mardi 12 novembre \np{2013} & \textbf{Trigonométrie} \\
+	\hline
+		\multicolumn{3}{|c|}{\bsc{Devoir Maison de mathématiques}} \\
+	\hline
+        \multicolumn{1}{|r}{\bsc{Nom}:} & \multicolumn{2}{l|}{} \\
+		\multicolumn{1}{|r}{Prénom:} & \multicolumn{2}{l|}{} \\
+	\hline
+        \multicolumn{3}{|l|}{\bfseries Note et observations :} \\
+        \multicolumn{3}{|l|}{} \\
+        \multicolumn{3}{|l|}{} \\
+   \hline
+\end{tabularx}
+\end{center}\bigskip
+
+\begin{exoc}
+    \begin{enumerate}
+        \item En détaillant les calculs, transformer en radians les mesures des angles données en degrés :
+        \[a = \ang{30} \qq b = \ang{45} \qq c = \ang{75} \qq d = \ang{90} \qq e = \ang{120} \qq f = \ang{135}.\]
+        \item En détaillants les calculs, transformer en degrés les mesures des angles données en radians :
+        \[g = \frac \pi6 \qq h = \dfrac{5\pi}{4} \qq i = 2\pi \qq j = \dfrac{3\pi}{2}.\]
+        \item Dans un repère orthonormé, tracer le cercle trigonométrique et placez-y les points $K$, $L$, $M$ et $N$ correspondant respectivement aux angles $b$, $d$, $h$ et $j$.
+    \end{enumerate}
+\end{exoc}\[*\]
+
+\begin{exoc}
+    En détaillant les calculs, déterminer la mesure principale des angles dont des mesures sont données ci-dessous :
+    \[\alpha = 3\pi \qq \beta = -\dfrac{7\pi}{6} \qq \gamma = \dfrac{19\pi}{7} \qq \delta = \dfrac{24\pi}{5}.\]
+\end{exoc}\[*\]
+
+\begin{exoc}
+    On rappelle les formules suivantes :
+    \[\cos^2(x) + \sin^2(x) = 1 \qetq \tan(x) = \dfrac{\sin(x)}{\cos(x)} \quad \text{lorsque $\cos(x) \neq 0$.}\]
+    
+    \begin{enumerate}
+        \item Sachant que $a \in \intervallefo{\pi}{2\pi}$ et $\cos(a) = \dfrac 14$, calculer $\sin(a)$ et $\tan(a)$.
+        \item Sachant que $b \in \intervalleff{\dfrac\pi2}{\pi}$ et $\sin(b) = \dfrac 13$, calculer $\cos(b)$ et $\tan(b)$.
+    \end{enumerate}
+\end{exoc}\[*\]
+
+\begin{exoc}
+    \begin{enumerate}
+        \item Résoudre dans $\R$ les deux équations suivantes :
+            \[\cos(x) = \cos\left(\dfrac\pi 4\right) \qetq \sin(x) = \dfrac 12.\]
+        \item Résoudre dans l'intervalle $\intervalleof{-\pi}{\pi}$ les deux inéquations suivantes :
+            \[\cos(x) > \dfrac 12 \qetq \sin(x) \geqslant -\dfrac12.\]
+    \end{enumerate}
+\end{exoc}\[***\]
+
+\end{document} 

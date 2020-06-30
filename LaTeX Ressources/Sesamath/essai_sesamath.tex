@@ -1,0 +1,116 @@
+\documentclass[12pt,french,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2014}
+\input{perso_dom_2014_2015}
+%\input{section_dom_2014_2015}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2014-2015}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Correction de l'exercice 75 p 239}
+
+\noindent 
+\vspace{-6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\tableau}[1][c]{%
+%  \arrayrulecolor{gray!50}%
+%  \renewcommand\tabularxcolumn[1]{>{\centering\arraybackslash}m{##1}}%
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{english}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2014-2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Exercice}[]
+Afin de renouveler le mobilier d'un lycée, le
+proviseur demande d'effectuer une enquête sur la taille de 100~élèves. Voici le
+tableau obtenu, où les tailles sont exprimées en cm.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|c|*{9}{>{\centering\arraybackslash}X|}}
+\hline
+\rowcolor{yellow} 
+165000000000000000 & 159 & 158 & 185 & 168 & 170 & 154 &  166 & 159 & 156\\
+\hline 
+164 & 163 & 185 & 169 & 157 & 189 & 164 &  185 & 178 & 168 \\
+\hline
+\rowcolor{yellow}
+160 & 163 & 164 & 165 & 158 & 185 & 184 & 177 & 186 & 156\\
+\hline 
+170 & 155 & 190 & 187 & 157 & 173 & 158 & 155 & 156 & 150\\
+\hline
+\rowcolor{yellow}
+178 & 183 & 157 & 179 & 178 & 190 & 150 & 182 & 177 & 153\\
+\hline 
+182 & 159 & 150 & 160 & 178 & 176 & 167 & 164 & 189 & 188\\
+\hline
+\rowcolor{yellow}
+157 & 161 & 170 & 169 & 179 & 171 & 173 & 169 & 166 & 164\\
+\hline 
+187 & 187 & 165 & 154 & 189 & 159 & 156 & 158 & 171 & 189 \\
+\hline
+\rowcolor{yellow} 
+159 & 159 & 166 & 169 & 187 & 190 & 188& 168 & 158 & 161\\
+\hline 
+153 & 170 & 155 & 165 & 182 & 156 & 179& 169 & 176 & 168 \\
+\hline 
+\end{tabularx}
+\end{center} 
+
+\vspace{-1em}
+
+\begin{enumerate}
+\item \label{moyenneNonTriee}Regrouper ces données en classes de même \\amplitude en reproduisant et complétant le tableau
+suivant. Calculer la moyenne de cette série.
+
+\begin{tabularx}{\linewidth}{|*{3}{>{\centering\arraybackslash}X|}}
+\hline
+    Classe\par essai &  $[150;160[$ &  $\ldots$ \\
+\hline
+  Effectifs &            &            \\
+\hline
+\end{tabularx} 
+
+\item Le résultat du calcul de la moyenne à l'aide des données brutes a donné 169,3 cm. 
+Comparer cette valeur avec celle trouvée à partir des données triées. 
+
+\item Le proviseur souhaite inclure ces données dans un rapport. 
+Proposer plusieurs types
+de représentations de cette série. 
+Quelle représentation est la plus pertinente?
+Justifier.
+\end{enumerate}
+\end{Exercice}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

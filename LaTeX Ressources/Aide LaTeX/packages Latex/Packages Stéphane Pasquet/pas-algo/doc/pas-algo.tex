@@ -1,0 +1,657 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-algo}
+\usepackage{titlesec}
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-algo} }\\[3mm]
+{\large Version 2.02 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction}
+
+\subsection{De la version 1 à la version 2}
+
+Les versions 1.xx de \texttt{pas-algo} n'étant pas satisfaisantes et provoquant de multiples \og warnings \fg, j'ai décidé de faire une nouvelle version, bien plus conviviale.
+
+\medskip
+
+Pour les versions 2.xx, l'extension repose essentiellement sur \texttt{tcolorbox} qui, au m\^eme titre que \texttt{tikz}, repose sur \texttt{pgf}.
+
+Ainsi, \texttt{pas-algo V2.xx} ne charge que le package \texttt{tcolorbox}, avec les librairies \texttt{skins}, \texttt{theorems} et \texttt{breakable}.
+
+\subsection{Installation}
+
+Je vous conseille fortement de mettre à jour \texttt{pgf} car \texttt{tcolorbox} ne fonctionne pas correctement avec une version trop ancienne.
+
+Concernant l'installation de \texttt{pas-algo V2.xx}, je vous conseille de l'installer dans un répertoire personnel suivant la structure conventionnelle \LaTeX.
+
+\medskip
+
+Sous Ubuntu, on pourra donc décompresser \texttt{pas-algoV2.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-algo/pas-algo.sty
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-algo/algo.png
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-algo/pas-algo.pdf
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-algo/pas-algo.tex
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-algo/doc.codes.tex
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-algo/doc.styles.tex
+\end{verbatim}
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+\subsection{Paramètre général}
+
+Vous allez le constater dans les portions de codes, une variable \texttt{\textbackslash algoDecal} intervient pour décaler le corps de chaque environnement.
+
+Cette variable est une longueur, et peut \^etre changée comme ceci :
+
+\begin{tcblisting}{codeTEX,title={Changement de la longueur algoDecal}}
+\setlength\algoDecal{-1em} % valeur par défaut
+\end{tcblisting}
+
+En mettant une valeur supérieure à celle par défaut (donc à $-1$em), le décalage sera plus vers la droite.
+
+En mettant une valeur inférieure à $-1$em, le décalage se fera plus vers la gauche.
+
+\subsection{Remarque importante}
+
+J'ai tenté de conserver au maximum la m\^eme syntaxe pour les commandes, mais  il m'a tout de m\^eme fallu changer pas mal de choses. Ainsi, il faudra effectuer quelques modifications à vos documents qui utilisaient la version 1.
+
+J'en suis réellement désolé.
+
+
+\section{L'environnement principal \og algo \fg{} }
+
+\subsection{La structure générale}
+
+\begin{tcblisting}{listing,title={L'environnement algo}}
+\begin{algo}[label]{Titre de l'algorithme}
+Ici, l'algorithme \ref{algo:label}.
+\end{algo}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=Un algorithme sans titre}
+\begin{algo}[sstitre]{}
+Ici, l'algorithme \ref{algo:sstitre} n'a pas de titre.
+\end{algo}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=Un algorithme non numéroté}
+\begin{algo*}{}
+Ici, l'algorithme n'est pas numéroté.
+\end{algo*}
+\end{tcblisting}
+
+\enlargethispage*{3em}
+
+L'option \texttt{label} est facultative ; elle sert à faire référence à l'algorithme à l'aide de la commande \textbackslash\texttt{ref\{algo:<nom du label>\}}.
+
+
+\subsection{Dans le fichier sty}
+
+Tout ce qui se réfère à l'environnement \texttt{algo} est inscrit ainsi dans le fichier sty :
+
+\begin{tcblisting}{codeTEX,title=Les couleurs}
+\definecolor{algoTitleFont}{cmyk}{0,0,0,0}
+\definecolor{algoTitleBackLeft}{cmyk}{0.98,0.22,0,0.66}
+\definecolor{algoTitleBackRight}{cmyk}{0.89,0.20,0,0.43}
+\end{tcblisting}
+
+\enlargethispage*{3em}
+
+\begin{tcblisting}{codeTEX,title=Style de l'environnement}
+\tcbset{algorithme/.style={
+	sharp corners=south,
+	before skip=1em,
+	after skip=1em,
+	enhanced,
+	fuzzy shadow={1mm}{-1mm}{0mm}{0.3mm}{black},
+	frame style={	
+			left color=algoTitleBackLeft,
+			right color=algoTitleBackRight},
+	fontupper={\ttfamily},
+	boxrule=0.7pt,
+	fonttitle={\sffamily\bfseries\color{algoTitleFont}},
+	watermark graphics=algo.png,
+	watermark stretch=1.00,
+	watermark opacity=0.25,
+	breakable
+	}
+}
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Définition de l'environnement}
+\newtcbtheorem
+	{pas@algo} % nom de l'environnement
+	{\titleAlgo} % texte qui s'affiche
+	{algorithme} % style
+	{algo} % préfixe pour références éventuelles (label)
+
+\newenvironment{algo}[2][]{\begin{pas@algo}{#2}{#1}}{\end{pas@algo}}
+\newenvironment{algo*}[2][]
+{\begin{pas@algo*}{#2}{#1}}{\end{pas@algo*}}
+\end{tcblisting}
+
+\subsection{Changer le style de l'environnement}
+
+Comme on peut le voir dans le code, le style de l'environnement \texttt{algo} est défini à l'aide de la macro \textbackslash\texttt{tcbset} (du package \texttt{tcolorbox}).
+
+Ainsi, pour le changer, on mettra toutes les options souhaitées à l'intérieur des accolades :
+
+\begin{tcblisting}{codeTEX,title=Style de l'environnement}
+\tcbset{algorithme/.style={ ... }}
+\end{tcblisting}
+
+\section{Les environnements \og algoentries \fg, \og algoinit \fg, \og algobody \fg{} et \og algoend \fg{}   }
+
+\subsection{La structure générale}
+
+\begin{tcblisting}{listing,title=L'environnement algoentries}
+\begin{algo}{}
+\begin{algoentries}
+n est un entier
+\end{algoentries}
+\end{algo}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=L'environnement algoinit}
+\begin{algo}{}
+\begin{algoinit}
+n prend la valeur 1
+\end{algoinit}
+\end{algo}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=L'environnement algobody}
+\begin{algo}{}
+\begin{algobody}
+n prend la valeur n+1
+\end{algobody}
+\end{algo}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=L'environnement algoend}
+\begin{algo}{}
+\begin{algoend}
+Afficher n
+\end{algoend}
+\end{algo}
+\end{tcblisting}
+
+\subsection{Dans le fichier sty}
+
+Tout ce qui se réfère à ces environnements est inscrit ainsi dans le fichier sty :
+
+\begin{tcblisting}{codeTEX,title=La couleur des titres}
+\definecolor{algoEntriesTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoEntriesTextFont}{cmyk}{0,0,0,1}
+\definecolor{algoInitTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoInitTextFont}{cmyk}{0,0,0,1}
+\definecolor{algoBodyTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoBodyTextFont}{cmyk}{0,0,0,1}
+\definecolor{algoEndTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoEndTextFont}{cmyk}{0,0,0,1}
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Les titres}
+\def\titleEntry{Entr\'ees}
+\def\titleInit{Initialisation}
+\def\titleBody{Traitement}
+\def\titleEnd{Sortie}
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Le style des environnements}
+\tcbset{entries/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoEntriesTitleFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoEntriesTitleFont}}
+	}
+}
+
+\tcbset{init/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoInitTitleFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoInitTitleFont}}
+	}
+}
+
+\tcbset{body/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoBodyTitleFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoBodyTitleFont}}
+	}
+}
+
+\tcbset{end/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoEndTitleFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoEndTitleFont}}
+	}
+}
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Les environnements}
+\newenvironment{algoentries}
+	{\begin{tcolorbox}[entries,title=\titleEntry]\tcblower}
+	{\end{tcolorbox}}
+\newenvironment{algoinit}
+	{\begin{tcolorbox}[init,title=\titleInit]\tcblower}
+	{\end{tcolorbox}}
+\newenvironment{algobody}
+	{\begin{tcolorbox}[body,title=\titleBody]\tcblower}
+	{\end{tcolorbox}}
+\newenvironment{algoend}
+	{\begin{tcolorbox}[end,title=\titleEnd]\tcblower}
+	{\end{tcolorbox}}
+\end{tcblisting}
+
+\subsection{Changer un style}
+
+Comme on peut le voir dans le code, le style des environnements est défini à l'aide de la macro \textbackslash\texttt{tcbset} (du package \texttt{tcolorbox}).
+
+Ainsi, pour le changer, on mettra toutes les options souhaitées à l'intérieur des accolades :
+
+\begin{tcblisting}{codeTEX,title=Style de l'environnement}
+\tcbset{entries/.style={...}}
+\tcbset{init/.style={...}}
+\tcbset{body/.style={...}}
+\tcbset{end/.style={...}}
+\end{tcblisting}
+
+Si l'on ne souhaite changer que les couleurs, on redéfinira les couleurs par défaut à l'aide de la commande \textbackslash\texttt{definecolor}.
+
+\begin{tcblisting}{listing,title=Un exemple de changement de style}
+\definecolor{algoEntriesTitleFont}{cmyk}{0.1,0.87,0.98,1}
+\definecolor{algoEntriesTextFont}{cmyk}{0.1,0.87,0.98,1}
+\definecolor{algoInitTitleFont}{cmyk}{0.56,0.02,0.51,0.7}
+\definecolor{algoInitTextFont}{cmyk}{0.56,0.02,0.51,0.7}
+\definecolor{algoBodyTitleFont}{cmyk}{0.23,0.87,0.98,0.45}
+\definecolor{algoBodyTextFont}{cmyk}{0.23,0.87,0.98,0.45}
+\definecolor{algoEndTitleFont}{cmyk}{0.34,0.87,0.5,1}
+\definecolor{algoEndTextFont}{cmyk}{0.34,0.87,0.5,1}
+\tcbset{body/.style={
+	blanker,
+	left=2mm,
+	borderline west={1pt}{0pt}{algoBodyTitleFont,double},
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoBodyTextFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoBodyTitleFont}}
+	}
+}
+\begin{algo}{}
+\begin{algoentries}
+n est un entier\\
+i est un entier
+\end{algoentries}
+\begin{algoinit}
+n prend la valeur 10\\
+i prend la valeur 1
+\end{algoinit}
+\begin{algobody}
+n prend la valeur n\verb+^+2-i
+\end{algobody}
+\begin{algoend}
+Afficher n
+\end{algoend}
+\end{algo}
+\end{tcblisting}
+
+\section{Les boucles}
+
+\subsection{La boucle \og while \fg{} avec \og algowhile \fg}
+
+\subsubsection{La structure générale}
+
+\begin{tcblisting}{listing,title=L'environnement algowhile}
+\begin{algowhile}{N<50}
+i prend la valeur i/2-3
+\end{algowhile}
+\end{tcblisting}
+
+\subsubsection{Dans le fichier sty}
+
+Tout ce qui se réfère à l'environnement \texttt{algowhile} est inscrit ainsi dans le fichier sty :
+
+\begin{tcblisting}{codeTEX,title=Les couleurs}
+\definecolor{algoWhileTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoWhileTextFont}{cmyk}{0,0,0,1}
+\end{tcblisting}
+
+
+\begin{tcblisting}{codeTEX,title=Style de l'environnement}
+\tcbset{while/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoWhileTextFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoWhileTitleFont}}
+	}
+}
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Définition de l'environnement}
+\newenvironment{algowhile}[1]
+	{\begin{tcolorbox}[while,title=\titleWhile~#1]\tcblower}
+	{\end{tcolorbox}\begingroup\sffamily
+	\bfseries\color{algoWhileTitleFont}Fin du \titleWhile\endgroup}
+\end{tcblisting}
+
+\subsubsection{Changer le style}
+
+Pour changer une ou les couleurs, on redéfinira les couleurs \texttt{algoWhileTitleFont} et/ou \texttt{algoWhileTextFont} comme dans l'exemple ci-dessous :
+
+\begin{tcblisting}{listing,title=Changement de couleurs}
+\definecolor{algoWhileTitleFont}{cmyk}{0.2,0.3,0.4,0.5}
+\definecolor{algoWhileTextFont}{cmyk}{0.5,0.4,0.3,0.2}
+\begin{algowhile}{N<50}
+i prend la valeur i/2-3
+\end{algowhile}
+\end{tcblisting}
+
+\subsection{La boucle \og for \fg{} avec \og algofor \fg{}}
+
+\subsubsection{La structure générale}
+
+\begin{tcblisting}{listing,title=L'environnement algofor}
+\begin{algofor}{i}{1}{30}
+x prend la valeur x+i
+\end{algofor}
+\end{tcblisting}
+
+\subsubsection{Dans le fichier sty}
+
+Tout ce qui se réfère à l'environnement \texttt{algofor} est inscrit ainsi dans le fichier sty :
+
+\begin{tcblisting}{codeTEX,title=Les couleurs}
+\definecolor{algoForTitleFont}{cmyk}{0,0,0,1}
+\definecolor{algoForTextFont}{cmyk}{0,0,0,1}
+\end{tcblisting}
+
+
+\begin{tcblisting}{codeTEX,title=Style de l'environnement}
+\tcbset{for/.style={
+	blanker,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	before lower={\color{algoForTextFont}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{algoForTitleFont}}
+	}
+}
+
+\end{tcblisting}
+
+\begin{tcblisting}{codeTEX,title=Définition de l'environnement}
+\newenvironment{algofor}[3]
+{\begin{tcolorbox}[for,title=\titleForOne~#1~\titleForTwo~#2~\titleForThree~#3] \tcblower}
+	{\end{tcolorbox}\begingroup\sffamily\bfseries
+	\color{algoForTitleFont}Fin du \titleForOne\endgroup}
+\end{tcblisting}
+
+\subsubsection{Changer le style}
+
+Comme pour les autres environnements, on pourra modifier les couleurs avec la commande \textbackslash\texttt{definecolor} ou changer le style avec la commande \textbackslash\texttt{tbcset} (de l'environnement \texttt{tcolorbox}).
+
+\newpage
+
+\section{La condition \og Si ... alors ... \fg{} avec \og algoif \fg{} }
+
+\subsection{La structure générale}
+
+\begin{tcblisting}{listing,title=L'environnement algoif sans else}
+\begin{algoif}{i est pair}
+i prend la valeur i/2-3
+\end{algoif}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=L'environnement algoif avec else}
+\begin{algoif}{i est pair}
+i prend la valeur i/2-3
+\ifelse
+i prend la valeur 2*i
+\end{algoif}
+\end{tcblisting}
+
+\section{Exemples}
+
+\subsection{Exemple 1 : algorithme complet}
+
+\begin{tcblisting}{listing,title=Somme de termes d'une suite arithmétique}
+\begin{algo}[somsuitar]{Calcul d'une somme}
+\begin{algoentries}
+r est un nombre réel\\
+u est un nombre réel\\
+n est un entier naturel\\
+i est un entier naturel\\
+S est un nombre réel
+\end{algoentries}
+\begin{algoinit}
+Affecter à S la valeur u\\
+Entrer la valeur de r (raison de la suite arithmétique)\\
+Entrer la valeur de u (premier terme de la somme)\\
+Entrer la valeur de n (nombre de termes dans la somme)
+\end{algoinit}
+\begin{algobody}
+\begin{algofor}{i}{1}{n-1}
+Affecter à S la valeur S+(u+i*r)
+\end{algofor}
+\end{algobody}
+\begin{algoend}
+Afficher S
+\end{algoend}
+\end{algo}
+L'algorithme \ref{algo:somsuitar} permet de calculer la somme  $u_p+u_{p+1}+u_{p+2}+\cdots+u_{p+n-1}$, où $(u)$ est une suite arithmétique de raison $r$. La valeur de $u$ saisie lors de l'initialisation est la valeur de $u_p$.
+\end{tcblisting}
+
+\subsection{Exemple 2 : algorithme complet personnalisé}
+
+\begin{tcblisting}{listing,title=Somme de termes d'une suite géométrique}
+\tcbset{algorithme/.style={
+	sharp corners=all,
+	before skip=1em,
+	after skip=1em,
+	enhanced,
+	fuzzy shadow={1mm}{-1mm}{0mm}{0.3mm}{magenta!50},
+	frame style={
+			left color=magenta!50!purple,
+			right color=magenta!50!white},
+	fontupper={\ttfamily},
+	boxrule=0.7pt,
+	colback=magenta!20,
+	fonttitle={\sffamily\bfseries\color{white}},
+	breakable
+	}
+}
+\tcbset{
+body/.style={
+	enhanced,
+	sharp corners=all,
+	colback=red!10,
+	frame style={	
+			left color=red!20,
+			right color=red!20},
+	left=2mm,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	lower separated=false,
+	borderline={1pt}{0pt}{red},
+	before lower={\color{red}},
+	after lower={\vspace*{0.3em}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{red}\rule[-.2\baselineskip]{0pt}{\baselineskip}}
+	}
+}
+
+\tcbset{
+entries/.style={
+	enhanced,
+	sharp corners=all,
+	colback=green!10,
+	frame style={	
+			left color=green!20,
+			right color=green!20},
+	left=2mm,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	lower separated=false,
+	borderline={1pt}{0pt}{green!50!black},
+	before lower={\color{green!50!black}},
+	after lower={\vspace*{0.3em}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{green!50!black}\rule[-.2\baselineskip]{0pt}{\baselineskip}}
+	}
+}
+
+\tcbset{
+init/.style={
+	enhanced,
+	sharp corners=all,
+	colback=blue!10,
+	frame style={	
+			left color=blue!20,
+			right color=blue!20},
+	left=2mm,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	lower separated=false,
+	borderline={1pt}{0pt}{blue!50!black},
+	before lower={\color{blue!50!black}},
+	after lower={\vspace*{0.3em}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{blue!50!black}\rule[-.2\baselineskip]{0pt}{\baselineskip}}
+	}
+}
+
+\tcbset{
+end/.style={
+	enhanced,
+	sharp corners=all,
+	colback=purple!10,
+	frame style={	
+			left color=purple!20,
+			right color=purple!20},
+	left=2mm,
+	breakable,
+	sidebyside,
+	lefthand width=\algoDecal,
+	lower separated=false,
+	borderline={1pt}{0pt}{purple!50!black},
+	before lower={\color{purple!50!black}},
+	after lower={\vspace*{0.3em}},
+	fontlower={\ttfamily},
+	fonttitle={\sffamily\bfseries\color{purple!50!black}\rule[-.2\baselineskip]{0pt}{\baselineskip}}
+	}
+}
+
+\definecolor{algoForTitleFont}{cmyk}{0,1,1,0}
+\definecolor{algoForTextFont}{cmyk}{0,1,1,0}
+\begin{algo}[somsuitgeom]{Calcul d'une somme}
+\begin{algoentries}
+q est un nombre réel\\
+u est un nombre réel\\
+n est un entier naturel\\
+i est un entier naturel\\
+S est un nombre réel
+\end{algoentries}
+\begin{algoinit}
+Affecter à S la valeur u\\
+Entrer la valeur de q (raison de la suite géométrique)\\
+Entrer la valeur de u (premier terme de la somme)\\
+Entrer la valeur de n (nombre de termes dans la somme)
+\end{algoinit}
+\begin{algobody}
+\begin{algofor}{i}{1}{n-1}
+Affecter à S la valeur S+(u*q\verb+^+i)
+\end{algofor}
+\end{algobody}
+\begin{algoend}
+Afficher S
+\end{algoend}
+\end{algo}
+L'algorithme \ref{algo:somsuitgeom} permet de calculer la somme  $u_p+u_{p+1}+u_{p+2}+\cdots+u_{p+n-1}$, où $(u)$ est une suite géométrique de raison $q$. La valeur de $u$ saisie lors de l'initialisation est la valeur de $u_p$.
+\end{tcblisting}
+
+\section{Historique de l'extension}
+
+\begin{tcolorbox}[histo]
+2015/01/08\\
+2015/02/05\\[1em]
+2015/06/30\\
+~
+\tcblower
+Naissance de la version 2.00.\\
+v2.01 : correction d'un bug concernant la variable des environnements algoif et algowhile.\\
+v2.02 : ajout de l'environnement algo* (algorithme non numéroté).
+\end{tcolorbox}
+
+\end{document}

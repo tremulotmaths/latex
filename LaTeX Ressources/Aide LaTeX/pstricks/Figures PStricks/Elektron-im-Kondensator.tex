@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-3dplot}
+
+\begin{document}
+\begin{center}
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\def\x{\hbox{$\,$}}
+\newcommand{\D}{\displaystyle}
+\newcommand{\Nfrac}[2]{\frac{\sf #1}{\sf #2}}%
+\psset{unit=2cm}%
+\begin{pspicture}(-1,-3)(6.5,3)%
+\psset{Alpha=60,Beta=15}
+%\pstThreeDCoor[xMin=-1,xMax=3,yMin=-1,yMax=4,zMin=-1,zMax=3]%
+\pstThreeDLine[linecolor=black,linestyle=solid,linewidth=1.1pt](0,1.5,-1)(0,1.5,-2)%
+\pstThreeDDot[linewidth=1.2pt](0,1.5,-2)%
+\pstThreeDPut(0,1.8,-1.99){\tiny $(+)$}%
+{\psset{fillstyle=solid%
+%,drawCoor=true
+,dotstyle=*}%
+{\psset{arrows=->,arrowsize=0.2,linestyle=dashed}%
+%\pstThreeDLine[linecolor=blue](0,-2,0)(0,4.5,0)%
+\pstThreeDLine[linecolor=blue](0,0,-1.6)(0,0,2.2)%
+%\pstThreeDLine[linecolor=blue](-1,0,0)(4,0,0)%
+}%
+\pstThreeDSquare[fillcolor=white,opacity=0.75](-1,0,1)(2,0,0)(0,3,0)%
+\pstThreeDSquare[fillcolor=white,opacity=0.75](-1,0,-1)(2,0,0)(0,3,0)%
+}%
+\uput[0](3.8,-0.85){$x$}%
+\uput[0](0,1.9){$y$}%
+%\uput[0](-2,-2){$z$}%
+\pstThreeDLine[linecolor=black,linestyle=solid,linewidth=1.1pt](0,1.5,1)(0,1.5,2)%
+\pstThreeDDot[linewidth=1.2pt](0,1.5,2)%
+\pstThreeDPut(0,1.8,2.1){\tiny $(-)$}%
+\pstThreeDNode(-1.7,3,-1){A}%
+\pstThreeDNode(-1.7,3,1){B}%
+\pstThreeDLine[linestyle=dashed,linewidth=0.75pt](-1,3,-1)(-1.9,3,-1)%
+\pstThreeDLine[linestyle=dashed,linewidth=0.75pt](-1,3,1)(-1.9,3,1)%
+\pcline[linewidth=0.9pt,arrowsize=0.15]{<->}(A)(B)%
+\ncput*{$d$}
+\pstThreeDLine[linecolor=blue,arrows=->,arrowsize=0.2,linestyle=dashed](0,-2,0)(0,4.5,0)%
+\pstThreeDNode(1.9,0,-1){C}%
+\pstThreeDNode(1.9,3,-1){D}%
+\pstThreeDLine[linestyle=dashed,linewidth=0.75pt](1,0,-1)(2,0,-1)%
+\pstThreeDLine[linestyle=dashed,linewidth=0.75pt](1,3,-1)(2,3,-1)%
+\pcline[linewidth=0.9pt,arrowsize=0.15]{<->}(C)(D)%
+\ncput*{$l$}
+\pstThreeDLine[linecolor=black,linestyle=solid,linewidth=1.1pt,arrowsize=0.2]{->}(0,-2,0)(0,-.5,0)%
+\pstThreeDDot[linecolor=red,linewidth=1.2pt](0,-2,0)%
+\rput(-1.8,0.6){$(m, q)$}%
+\rput(-1.2,-0.2){$v_{0}\runter$}%
+\pstThreeDSquare(-1.5,5.5,1.0)(3,0,0)(0,0,-2.0)%
+{\psset{linestyle=dashed}%
+\pstThreeDLine[linecolor=blue](0,5.5,-1.0)(0,5.5,1.0)%
+\pstThreeDLine[linecolor=red](-1.5,5.5,0)(1.5,5.5,0)%
+}%
+%----- Schirm ----
+\pstThreeDLine[linestyle=dashed,linewidth=0.75pt](1,5.5,-1)(2,5.5,-1)%
+\pstThreeDNode(1.9,3,-1){E}%
+\pstThreeDNode(1.9,5.5,-1){F}%
+\pcline[linewidth=0.9pt,arrowsize=0.15]{<->}(E)(F)%
+\ncput*{$a$}
+\pstThreeDPut(-1.5,5.5,1.5){$S$}%
+\pstPlanePut[plane=yz](0,0,0){%
+\psplot[plotpoints=200,linewidth=1.5\pslinewidth, linecolor=blue!40!green]{0}{5}%
+{0.02 x 2 exp mul}%
+}
+\end{pspicture}
+\end{center}
+
+
+\end{document}

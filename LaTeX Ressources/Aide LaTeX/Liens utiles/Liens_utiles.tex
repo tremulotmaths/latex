@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+
+\usepackage{fourier}
+\usepackage[latin1]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{enumerate} % pour pouvoir changer la numérotation des listes
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+
+\usepackage{graphicx} %inclure des graphiques
+\usepackage{picins} %grahique avec texte entourant avec la commande \parpic[r]{\includegraphics[width=5cm]{ex41p218.eps}} par exemple
+
+%liens hypertexte
+\usepackage[colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue]{hyperref}
+
+
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{soul} %pour utiliser \ul pour souligner
+\usepackage{pifont}
+\usepackage{slashbox}
+\usepackage{textcomp}
+\usepackage{pst-plot}
+
+\usepackage[np]{numprint}
+\usepackage[top=1cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+
+
+%diminuer la taille des caractères dans un tableau
+\let\oldtabular=\tabular
+\def\tabular{\small\oldtabular}
+
+\newcommand{\euro}{\texteuro{}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+%Ensembles de nombres
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+
+%Repères
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+%\setlength{\voffset}{-1,5cm}
+%\setlength{\textheight}{23,5cm}
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\rhead{\small 19/07/12}
+\chead{\small Liens utiles pour \LaTeX}
+%\lhead{\small Préparation de l'année 2012-2013}
+%\lfoot{\small{Brétigny sur Orge}}
+%\rfoot{\small{06/03/12}}
+\renewcommand \footrulewidth{.2pt}%
+\pagestyle{fancy}
+
+%\thispagestyle{empty} %annuler le style pour la page en cours, soit la première page, ici
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Voici quelques liens utiles pour certaines fonctionnalitées de \LaTeX :
+
+
+\begin{enumerate}
+
+\item Un site à connaître : \url{http://fr.wikibooks.org/wiki/LaTeX}
+
+\item Pour insérer des figures (ou images), avec ou sans bord, avec ou sans légende, avec le texte entourant, etc... : 
+
+\url{http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions} 
+
+et \url{http://www.grappa.univ-lille3.fr/FAQ-LaTeX/8.17.html}.
+
+\item Package hyperref : \href{http://www-irem.univ-fcomte.fr/download/irem/document/stages/hyperref-intro.pdf}{http://www-irem.univ-fcomte.fr/...}
+
+\item Ecrire des QCM avec Alterqcm : \url{http://mathsp.tuxfamily.org/spip.php?article64}
+
+\item Installation manuelle d'un package sous MikTeX : \href{http://forum.mathematex.net/latex-f6/installation-manuelle-d-un-package-sous-miktex-t2121.html}{http://forum.mathematex.net/latex-f6/...}
+
+\item Autour des tableaux
+
+		\begin{itemize}
+		\item \url{http://latex.developpez.com/faq/?page=LATEX_TABLE#LATEX_TABLE_FONT}
+		\item \url{http://fr.wikibooks.org/wiki/LaTeX/Faire_des_tableaux}
+		\item \url{http://fr.wikibooks.org/wiki/Programmation_LaTeX/Tableaux}
+		\end{itemize}
+		
+\item Pour les tableaux de signes et de variations, utiliser le logiciel \href{http://www.xm1math.net/pstplus/index.html}{PstPlus} et exporter le résultat sous forme d'image.
+
+\item Paramétrages du style de pages avec \href{http://pfercour.free.fr/stock/fancyhdr_fr.pdf}{fancyhdr}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

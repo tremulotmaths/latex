@@ -1,0 +1,33 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{v.3}{Calcul de proportions \\ Inclusion}
+
+Dans une région, la \textbf{population active} correspond aux personnes qui ont un emploi (les actifs) et les chômeurs.\par
+Le reste de la population représente la \textbf{population inactive} : les retraités, les étudiants...
+
+Dans une ville, $\np{24000}$ habitants ont $15$ ans ou plus. On appelle $H$ cette population.\par
+Parmi eux, $\np{15000}$ personnes font partie de la population active, notée $A$.\par
+Il y a $\np{1200}$ chômeurs dans cette ville. On note cette sous-population $C$.
+
+\begin{enumerate}
+    \item Compléter le diagramme de Venn suivant modélisant la situation :
+    \begin{center}
+        \tikz{\draw (0,0) ellipse (5 and 3); \draw (3.25,2) node {$H$};}
+    \end{center}
+    \item Calculer sous forme de pourcentage :
+    \begin{enumerate}
+        \item la proportion $p_1$ de la population active parmi l'ensemble des habitants ;
+        \item la part (= proportion) $p_2$ de chômeurs parmi l'ensemble de la population active.
+    \end{enumerate}
+    \item On note $p$, la proportion de chômeur sur l'ensemble des habitants. Calculer $p$.
+    \item Calculer $p_1 \times p_2$. Que remarque-t-on ? Pourquoi cela arrive-t-il ?
+\end{enumerate}
+
+\end{document} 

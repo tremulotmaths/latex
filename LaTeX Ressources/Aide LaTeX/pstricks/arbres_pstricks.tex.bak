@@ -1,0 +1,298 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Arbres de probabilités avec PsTricks}
+\noindent 
+\vspace{-24pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------début de la fonction Bernoutree
+\makeatletter 
+ 
+\newcount\@Bernoudepth 
+\newcount\@Bernoumaxdepth 
+ 
+\newcommand\Bernoutree[8][treemode=R,nodesep=1ex,levelsep=12ex]{% 
+  % #2 = profondeur de l'arbre 
+  % #3 = nom de l'évènement réussite 
+  % #4 = nom de l'évènement échec 
+  % #5 = proba de l'événement réussite 
+  % #6 = placement de #5 
+  % #7 = proba de l'évènement échec 
+  % #8 = placement de #7 
+  \begingroup 
+  % initialise paramètres 
+  \psset{treemode=R,nodesep=1ex,levelsep=12ex}% 
+  \psset{#1}% 
+  \@Bernoumaxdepth #2\relax 
+  \def\@Reussite{#3}% 
+  \def\@Echec{#4}% 
+  \def\@probareussite{#5}% 
+  \def\@Argreussite{#6}% 
+  % Si pas de spécification de placement, 
+  % on place au centre 
+  \ifx\empty\@Argreussite 
+    \def\@Argreussite{0.5}% 
+  \fi 
+  \def\@probaechec{#7}% 
+  \def\@Argechec{#8} 
+  \ifx\empty\@Argechec 
+    \def\@Argechec{0.5}% 
+  \fi 
+  % Premier appel (racine vide, niveau 1) 
+  \pstree{\TR{}}{\@Bernoutree{1}} 
+  \endgroup 
+} 
+\newcommand\@Bernoutree[1]{% 
+  % #1 = profondeur récursive 
+  % initialise profondeur en cours 
+  \@Bernoudepth #1\relax 
+  \ifnum\@Bernoudepth=\@Bernoumaxdepth 
+    % si la profondeur max est atteinte 
+    % on place les deux noeuds terminaux 
+    \TR{\@Reussite}\taput[tpos=\@Argreussite]{\@probareussite} 
+    \TR{\@Echec}\tbput[tpos=\@Argechec]{\@probaechec} 
+    % et c'est tout 
+  \else 
+    % sinon on construit récursivement 
+    % les deux sous-arbres de niveau supérieur 
+    \advance\@Bernoudepth \@ne 
+    \pstree{\TR{\@Reussite}\taput[tpos=\@Argreussite] 
+           {\@probareussite}}{\@Bernoutree{\the\@Bernoudepth}} 
+    \pstree{\TR{\@Echec}\tbput[tpos=\@Argechec] 
+           {\@probaechec}}{\@Bernoutree{\the\@Bernoudepth}} 
+  \fi 
+} 
+\makeatother 
+%----------------------------------fin de la fonction Bernoutree
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{english}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2016-2017}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Arbre $2\times 2$}
+
+\psset{nodesep=3mm,levelsep=30mm,treesep=15mm}
+\begin{center}
+\pstree[treemode=R]{\TR{}}
+{
+   \pstree{\TR{$A$}\taput{$0,6$}}
+      {
+      \TR{$F$} \taput{$0,2$}
+      \TR{$\overline{F}$} \tbput{$0,8$}
+      }
+
+   \pstree{\TR{$B$} \tbput{$0,4$}}
+     {
+     \TR{$F$} \taput{$0,4$}
+     \TR{$\overline{F}$} \tbput{$0,6$}
+     }
+}
+\end{center}
+
+
+\section{Arbre $2\times 3$}
+
+
+\psset{nodesep=3mm,levelsep=30mm,treesep=15mm}
+\begin{center}
+\pstree[treemode=R]{\TR{}}
+{
+  \pstree{\TR{$G$}\taput{$0,3$}}
+     {
+     \TR{$A$} \taput{$0,1$}
+     \TR{$B$} \tbput{$0,3$}
+     \TR{$C$} \tbput{$0,6$}
+     }
+  \pstree{\TR{$\overline{G}$}\tbput{$0,7$}}
+     {
+     \TR{$A$} \taput{$0,1$}
+     \TR{$B$} \tbput{$0,3$}
+     \TR{$C$} \tbput{$0,6$}
+     }
+}
+\end{center}
+
+
+\section{Arbre $3\times 2$}
+
+
+\psset{nodesep=3mm,levelsep=30mm,treesep=15mm}
+\begin{center}
+\pstree[treemode=R]{\TR{}}
+{
+  \pstree{\TR{$A$}\taput{$0,6$}}
+     {
+     \TR{$F$} \taput{$0,2$}
+     \TR{$\overline{F}$} \tbput{$0,8$}
+     }
+  \pstree{\TR{$B$}\taput{$0,3$}}
+     {
+     \TR{$F$} \taput{$0,3$}
+     \TR{$\overline{F}$} \tbput{$0,7$}
+     }
+  \pstree{\TR{$C$} \tbput{$0,1$}}
+     {
+     \TR{$F$} \taput{$0,4$}
+     \TR{$\overline{F}$} \tbput{$0,6$}
+     }
+}
+\end{center}
+
+\section{Arbres non symétriques}
+
+\begin{center}
+\pstree[treemode=R]{\TR{}}
+{
+   \pstree{\TR{$C$}\taput{$0,3$}}
+      {
+      \TR{$B$} \taput{$0,2$}
+      \TR{$\overline{B}$} \tbput{$0,8$}
+      }
+   \TR{$\overline{C}$} \tbput{$0,7$}
+}
+\end{center}
+
+
+\begin{center}
+\pstree[treemode=R]{\TR{}}
+{
+   \TR{$\overline{A}$} \taput{$0,7$}   
+   \pstree{\TR{$B$}\tbput{$0,3$}}
+      {
+      \TR{$A$} \taput{$0,7$}
+      \pstree{\TR{$B$}\tbput{$0,3$}}
+         {
+         \TR{$A$} \taput{$0,7$}
+         \TR{$B$} \tbput{$0,3$}        
+         }
+      }
+}
+\end{center}
+
+\section{Arbre avec des points}
+
+ \psset{nodesep=0mm,levelsep=20mm,treesep=10mm}
+ \pstree[treemode=R]{\Tdot}
+ {
+ \pstree
+ {\Tdot~[tnpos=a]{$N$}\taput{\small ${\blue 0,64}$}}
+ {
+ \Tdot~[tnpos=r]{$T$}\taput{\small ${\red 0,35}$}
+ \Tdot~[tnpos=r]{$\overline{T}$}\tbput{\small ${\blue 0,65}$}
+ }
+ \pstree
+ {\Tdot~[tnpos=a]{$\overline{N}$}\tbput{\small ${\red 0,36}$}}
+ {
+ \Tdot~[tnpos=r]{$T$ {\blue ---> 0,27} }\taput{\small ${\red 0,75}$}
+ \Tdot~[tnpos=r]{$\overline{T}$}\tbput{\small ${\red 0,25}$}
+ }
+ }
+
+\section{Arbre de Bernoulli}
+
+Ajouter dans le préambule :
+
+\begin{verbatim}
+%----------------------------------début de la fonction Bernoutree
+\makeatletter 
+ 
+\newcount\@Bernoudepth 
+\newcount\@Bernoumaxdepth 
+ 
+\newcommand\Bernoutree[8][treemode=R,nodesep=1ex,levelsep=12ex]{% 
+  % #2 = profondeur de l'arbre 
+  % #3 = nom de l'évènement réussite 
+  % #4 = nom de l'évènement échec 
+  % #5 = proba de l'événement réussite 
+  % #6 = placement de #5 
+  % #7 = proba de l'évènement échec 
+  % #8 = placement de #7 
+  \begingroup 
+  % initialise paramètres 
+  \psset{treemode=R,nodesep=1ex,levelsep=12ex}% 
+  \psset{#1}% 
+  \@Bernoumaxdepth #2\relax 
+  \def\@Reussite{#3}% 
+  \def\@Echec{#4}% 
+  \def\@probareussite{#5}% 
+  \def\@Argreussite{#6}% 
+  % Si pas de spécification de placement, 
+  % on place au centre 
+  \ifx\empty\@Argreussite 
+    \def\@Argreussite{0.5}% 
+  \fi 
+  \def\@probaechec{#7}% 
+  \def\@Argechec{#8} 
+  \ifx\empty\@Argechec 
+    \def\@Argechec{0.5}% 
+  \fi 
+  % Premier appel (racine vide, niveau 1) 
+  \pstree{\TR{}}{\@Bernoutree{1}} 
+  \endgroup 
+} 
+\newcommand\@Bernoutree[1]{% 
+  % #1 = profondeur récursive 
+  % initialise profondeur en cours 
+  \@Bernoudepth #1\relax 
+  \ifnum\@Bernoudepth=\@Bernoumaxdepth 
+    % si la profondeur max est atteinte 
+    % on place les deux noeuds terminaux 
+    \TR{\@Reussite}\taput[tpos=\@Argreussite]{\@probareussite} 
+    \TR{\@Echec}\tbput[tpos=\@Argechec]{\@probaechec} 
+    % et c'est tout 
+  \else 
+    % sinon on construit récursivement 
+    % les deux sous-arbres de niveau supérieur 
+    \advance\@Bernoudepth \@ne 
+    \pstree{\TR{\@Reussite}\taput[tpos=\@Argreussite] 
+           {\@probareussite}}{\@Bernoutree{\the\@Bernoudepth}} 
+    \pstree{\TR{\@Echec}\tbput[tpos=\@Argechec] 
+           {\@probaechec}}{\@Bernoutree{\the\@Bernoudepth}} 
+  \fi 
+} 
+\makeatother 
+%----------------------------------fin de la fonction Bernoutree
+\end{verbatim}
+
+La commande tapée est juste :
+\begin{verbatim}
+\Bernoutree[levelsep=18ex,treenodesize=0pt]{4}{$R$}{$E$}{$p$}{}{$q$}{}
+\end{verbatim}
+
+\Bernoutree[levelsep=18ex,treenodesize=0pt]{4}{$R$}{$E$}{$p$}{}{$q$}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

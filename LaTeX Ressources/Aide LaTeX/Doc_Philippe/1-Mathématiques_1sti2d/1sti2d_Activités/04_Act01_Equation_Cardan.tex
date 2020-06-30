@@ -1,0 +1,69 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+\newcommand\Cardan{\bsc{Cardan}\xspace}
+
+{\small
+\TitreActivite{iv.1}{Introduction aux \\ nombres complexes}
+
+\subsection*{Introduction et notations}
+
+Scipion del \bsc{Ferro} et Girolamo \bsc{Cardano} (en français : Jérôme \bsc{Cardan}) sont tous les deux des mathématiciens italiens du \bsc{xvi}\ieme siècle.
+
+À cette époque, on connaissait une méthode permettant de résoudre les équations du second degré, de la forme : $ax^2 + bx + c = 0$ avec $a \neq 0$. Mais la méthode générale pour résoudre une équation du troisième degré restait un mystère. Une équation du troisième degré s'écrit sous la forme : \[ax^3 + bx^2 + cx + d = 0 \quad (a \neq 0).\]
+
+Cependant, en \num{1545}, \Cardan établit une méthode pour trouver une solution aux équations de la forme $x^3 = px + q$ où $p$ et $q$ sont deux nombres réels. Pour cela :
+
+\begin{itemize}
+    \item On note $D = \left(\frac q 2\right)^2 - \left(\frac p 3\right)^3$.
+    \item Si $D \geq 0$ alors l'équation $x^3 = px + q$ admet pour solution le nombre $s$ tel que :
+    \[s = \sqrt[3]{\dfrac q 2 + \sqrt D} + \sqrt[3]{\dfrac q 2 - \sqrt D}.\]
+\end{itemize}
+
+Le nombre $b = \sqrt[3]{a}$ est la racine cubique de $a$. C'est le nombre tel que $b^3 = a$. Par exemple, $\sqrt[3]{8} = 2$ car $2^3 = 8$. Autre exemple, puisque $4^3 = 64$ alors $\sqrt[3]{64} = 4$.\par
+Géométriquement, cela revient à déterminer le côté d'un cube dont on connaît le volume.\par
+À l'aide de la calculatrice, on peut utiliser la touche des puissances car $\sqrt[3]{a} = a^{\frac 13}$.
+
+\subsection*{Des exemples}
+
+\begin{description}
+    \item[Exemple \no 1 :] Considérons l'équation $(E_1)$ : $x^3 = 9x + 28$.
+        \begin{enumerate}
+            \item Dans ce cas, quelle est la valeur de $p$ et quelle est la valeur de $q$ ?
+            \item Calculer alors la valeur exacte de $D$.
+            \item Démontrer par le calcul que $s = 4$.
+            \item Vérifier en remplaçant $x$ par $4$ dans $(E_1)$ que $4$ est bien une solution de $(E_1)$.
+        \end{enumerate}
+    \item[Exemple \no 2 :] Considérons l'équation $(E_2)$ : $x^3 - 24x - 72$.
+        \begin{enumerate}
+            \item Dans ce cas, quelle est la valeur de $p$ et quelle est la valeur de $q$ ?
+            \item Calculer alors la valeur exacte de $D$.
+            \item Démontrer par le calcul que $s = 6$.
+            \item Vérifier que $6$ est bien une solution de $(E_2)$.
+        \end{enumerate}
+    \item[Exemple \no 3 :] Considérons l'équation $(E_3)$ : $x^3 = 15x + 4$.
+        \begin{enumerate}
+            \item Calculer la valeur exacte de $D$.
+            \item Peut-on poursuivre la méthode décrite par \Cardan ? Pourquoi ?
+            \item Cependant, vérifier que $4$ est bien une solution de $(E_3)$.
+        \end{enumerate}
+\end{description}
+
+\subsection*{Méthode de \bsc{Bombelli}}
+
+\begin{enumerate}
+    \item Expliquer pourquoi on peut écrire $\sqrt{121} = 11\sqrt1$.
+    \item Supposons que le nombre $\sqrt{-1}$ ait un sens. Comment peut-on écrire $\sqrt{-121}$ ?
+    \item Pour l'équation $(E_3)$, vérifier alors que la méthode de \Cardan donne comme solution : \[s = \sqrt[3]{2 + 11\sqrt{-1}} + \sqrt[3]{2 - 11\sqrt{-1}}.\]
+    \item On suppose que l'on peut écrire $\left(\sqrt{-1}\right)^2 = -1$ et donc $\left(\sqrt{-1}\right)^3 = -\sqrt{-1}$.
+        \begin{enumerate}
+            \item À l'aide de plusieurs développements, démontrer que :
+            \[\left(2 + \sqrt{-1}\right)^3 = 2 + 11\sqrt{-1} \qetq \left(2 - \sqrt{-1}\right)^3 = 2 - 11\sqrt{-1}.\]
+            \item Sachant que $\left(\sqrt[3]{a}\right)^3 = a$, démontrer à l'aide des questions précédentes que $s = 4$.
+        \end{enumerate}
+\end{enumerate}
+}
+\end{document} 

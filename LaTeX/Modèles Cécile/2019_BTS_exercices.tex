@@ -1,0 +1,58 @@
+\documentclass[french,12pt]{report}
+\input preambule_17-18
+\input{perso_cecile_2019}
+\input{commandes_cecile_2019}
+
+\usepackage{manfnt}
+
+
+\begin{document}
+\ReglePied
+\fancyhf{}
+\fancypagestyle{garde}{
+\pieddepage{2019 - 2020 - BTS Bâtiment 1}{}{\thepage / \pageref{LastPage}}
+\entete{}{}{}}
+\entete{}{}{}
+\pieddepage{2019 - 2020 - Bâtiment 1}{Ch ? : Titre - Exercices}{\thepage / \pageref{LastPage}}
+
+\newgeometry{includeheadfoot,headsep=0.2cm,top=1cm,bottom=0.8cm,right=1.5cm,left=1.5cm}
+
+
+\definecolor{Bleu}{RGB}{0,0,160}
+\definecolor{Rouge}{RGB}{200,0,0}
+\definecolor{Orange}{RGB}{242,79,0}
+
+\renewcommand\CouleurChapitre{Orange}
+\renewcommand\CouleurDefi{Bleu}
+\renewcommand\CouleurProp{Rouge}
+\renewcommand\CouleurThm{Rouge}
+\renewcommand\CouleurDemo{BlueCadet}
+\renewcommand\CouleurExemple{teal}
+\renewcommand\CouleurSolExemple{lightgray}
+\renewcommand\CouleurExemple{darkgray}
+\renewcommand\CouleurTitreBoiteCrayon{black}
+
+
+\chapter{Chapitre  : Titre \\Exercices}
+\thispagestyle{garde}
+\bigskip
+%\SetupExSheets[solution]{print= true}
+%\SetupExSheets[question]{print=false}
+
+\begin{question}
+
+\end{question}
+
+	\begin{solution}
+	
+	\end{solution}
+
+
+\newpage
+
+ 
+ 
+
+
+
+\end{document}

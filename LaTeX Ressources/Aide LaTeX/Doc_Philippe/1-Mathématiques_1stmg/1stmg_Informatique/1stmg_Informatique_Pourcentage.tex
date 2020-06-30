@@ -1,0 +1,59 @@
+\documentclass[12pt,french]{article}
+\input preambule_2013
+\pagestyle{empty}
+\begin{document}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,framearc=0.5,fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{
+\parbox[c]{0.5\linewidth}{
+\begin{center}
+\Large\bfseries
+Séance informatique\par
+\uuline{Calculs de pourcentages}
+\end{center}}}
+\end{center}\bigskip
+
+\textbf{\'Enoncé de départ :}\par
+\textbullet{} L'entreprise $A$ est prête à m'embaucher pour un salaire de \EUR{$\np{1350}$} par mois la première année. Le salaire mensuel sera alors augmenté de $5\%$ à la fin de chaque année.\par
+\textbullet{} L'entreprise $B$ est prête à m'embaucher pour un salaire de \EUR{$\np{1500}$} par mois la première année. Le salaire mensuel sera alors augmenté de $2,5\%$ à la fin de chaque année.\par\medskip
+
+$\rightsquigarrow$\ Quelle entreprise me permet de gagner le plus d'argent \textbf{au total} au bout de $5$ ans ? au bout de $10$ ans ?
+
+\section*{Préparation des feuilles de calculs}
+
+\begin{enumerate}
+    \item Ouvrir \texttt{Excel}.
+    \item Renommer la première feuille : \texttt{Entreprise A}. Pour cela, faire un clic droit sur l'onglet en bas du tableur et choisir \texttt{Renommer}.
+    \item Renommer la deuxième feuille : \texttt{Entreprise B}.
+    \item Sur la première ligne de \textbf{chaque feuille}, donner les noms suivants aux colonnes :
+    \begin{center}
+        \begin{tabular}{c*{5}{|c}|}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}} & \multicolumn{1}{c}{\texttt{D}} & \multicolumn{1}{c}{\texttt{E}} \\
+            \cline{2-6}
+            \texttt 1 & Année & Salaire mensuel & Augmentation & Salaire annuel & Total \\
+            \cline{2-6}
+            \texttt 2 & & & & & \\
+        \end{tabular}
+    \end{center}
+    \item \textbf{Sur chaque feuille}, compléter la colonne \texttt{Année} avec les nombres de $1$ à $10$.
+\end{enumerate}
+
+\section*{Entreprise A}
+\begin{enumerate}
+    \item Que faut-il écrire dans la cellule \texttt{B2} ?
+    \item Quel calcul faut-il écrire dans la cellule \texttt{C2} pour calculer $5\%$ de la cellule \texttt{B2} ?
+    \item Quel calcul faut-il écrire dans la cellule \texttt{D2} pour calculer le salaire annuel (une année = 12 mois) ?
+    \item Quel calcul faut-il écrire dans la cellule \texttt{B3} pour calculer le salaire de la deuxième année ?
+    \item Calculer alors l'augmentation du salaire à la fin de la deuxième année ainsi que le salaire annuel.
+    \item Sur les deux premières années, quel est le salaire total ?
+    \item Utiliser le tableur pour compléter automatiquement les $10$ années.
+\end{enumerate}
+
+\section*{Entreprise B}
+\begin{enumerate}
+    \item Suivre les mêmes étapes que précédemment. Attention, le salaire est maintenant de \EUR{$\np{1500}$} et l'augmentation est de $2,5\%$.
+    \item Répondre aux questions posées dans l'énoncé.
+\end{enumerate}
+
+
+\end{document}

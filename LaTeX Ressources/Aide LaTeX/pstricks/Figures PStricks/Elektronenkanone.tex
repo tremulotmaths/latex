@@ -1,0 +1,56 @@
+\listfiles
+\documentclass{article}
+%\usepackage{amsmath,amssymb} % allows multiple maths-environments
+
+\usepackage[dvipsnames]{xcolor} %% Farben sind im Dokument xcolor.pdf definiert
+%\usepackage[distiller]{pstricks}
+\usepackage{pst-slpe,pst-blur}
+%\usepackage{pst-math}
+\usepackage{pst-node}
+\usepackage{pst-solides3d}
+%\usepackage{pstricks-add}
+
+
+
+
+\begin{document}
+
+\psset{viewpoint=30 -40 10 rtp2xyz,Decran=60,lightsrc=30 -15 25}
+\begin{pspicture}[showgrid=false](-6.5,-3)(2.5,6)
+
+%\psset{solidmemory}
+
+\psSolid[object=line,linestyle=dashed,dash=3pt 2pt,linecolor=gray,args=0 -2.95 0 0 12 0,solidmemory=true,action=none,name=flugbahnx]
+
+\psSolid[object=tronccone,r0=0.3,r1=0.08,h=0.4,fillcolor=cyan!70,mode=4,RotY=90,RotZ=90,ngrid=1 90, grid=false,opacity=0.15,solidmemory=true,action=none,name=Spitze](0,-3.2,0)%
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.02,R=0.28,r=0.06,RotY=90,RotZ=90,linecolor=green!80,ngrid=120,
+grid=false,opacity=0.4,incolor=black,solidmemory=true,action=none,name=lochanode](0,-3.22,0)%
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.02,R=0.28,r=0.06,RotY=90,RotZ=90,linecolor=green!80,ngrid=120,
+grid=false,opacity=0.3,incolor=black,solidmemory=true,action=none,name=wehneltdeckel](0,-3.6,0)%
+
+\psSolid[object=cylindre,h=0.35,r=0.01,fillcolor=black,RotY=90,RotZ=-90,ngrid=1 90, grid=false,opacity=0.1,solidmemory=true,action=none,name=anschlusso](-0.08,-3.8,0.178)
+
+\psSolid[object=cylindre,h=0.35,r=0.01,fillcolor=black,RotY=90,RotZ=-90,ngrid=1 90, grid=false,opacity=0.1,solidmemory=true,action=none,name=anschlussu](0.08,-3.8,-0.175)
+
+\psSolid[object=cylindre,h=0.8,r=0.3,fillcolor=cyan!70,RotY=90,RotZ=90,ngrid=1 90, grid=false,opacity=0.1,solidmemory=true,action=none,name=zylout](0,-4,0)
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.36,R=0.28,r=0.27,RotY=90,RotZ=90,linecolor=green!80,ngrid=120,
+grid=false,opacity=0.1,solidmemory=true,action=none,name=wehnelt](0,-3.8,0)%
+
+{\defFunction[algebraic]{helice}(t){0.08*cos(80*t)}{0.08*sin(80*t)}{t}
+\psSolid[object=courbe,r=0,range=0 0.35343,linecolor=red,linewidth=0.5pt,resolution=720,
+function=helice,solidmemory=true,action=none,name=wendel](0,-3.8,-0.175)}%
+
+\psSolid[object=fusion,
+base=wendel anschlusso anschlussu wehnelt wehneltdeckel lochanode zylout Spitze,% flugbahnx,
+grid=false,opacity=0.4,name=ekanone,linecolor=red,action=draw**]
+
+\composeSolid
+%--------------------------------------------------------------------------------------------------
+
+\end{pspicture}
+
+
+\end{document}

@@ -1,0 +1,221 @@
+\def\fileversion{1.00}
+\def\filedate{2014/12/13}
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{tipfr}[%
+  \filedate\space v\fileversion\space
+  LaTeX package by Philippe DE SOUSA]
+\RequirePackage[dvipsnames,table]{xcolor}
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}
+\usetikzlibrary{calc,shapes,arrows,shadows}
+\@ifpackageloaded{ifthen}{}{\RequirePackage{ifthen}}
+\@ifpackageloaded{xkeyval}{}{\RequirePackage{xkeyval}}
+\@ifpackageloaded{babel}{}{\RequirePackage{babel}}
+
+
+\makeatletter
+
+% définition de l'accent circonflexe et de la racine carrée
+\def\circonflexe{\tikz{\draw[scale=0.25] (0,0)--(1,1)--(2,0);}}
+\def\racine{$\sqrt{\phantom{xx}}$}
+
+
+% création de booléen pour tester les styles de touche
+\newcommand*{\Def@Bool}[1]{%
+\newboolean{#1}
+\setboolean{#1}{false}
+}
+\newcommand*{\DefBool}[1]{\Def@Bool{#1}}
+
+\DefBool{ToucheChiffre}
+\DefBool{ToucheOperation}
+\DefBool{ToucheFonction}
+\DefBool{ToucheGraphe}
+\DefBool{ToucheAlpha}
+\DefBool{ToucheSeconde}
+\DefBool{ToucheOnOff}
+\DefBool{ToucheEntrer}
+\DefBool{ToucheFleches}
+\DefBool{ModeAlpha}
+\DefBool{ModeSeconde}
+\define@boolkey{Touche}{fixe}[true]{}
+
+
+% Définition des keys
+\define@key{Touche}{fontsize}{\def\Font@Size{#1}}
+
+\define@key{Touche}{hauteur}{\def\Hauteur@Touche{#1}}
+
+\define@key{Touche}{principal}{\def\Le@Principal{\fontsize{\Font@Size}{\Font@Size}\selectfont #1}}
+
+\define@key{Touche}{position}{\def\La@Position{#1}}
+
+\define@key{Touche}{alpha}{\ifthenelse{\equal{\string #1}{\string pasdealpha}}%
+                                                              {\setboolean{ModeAlpha}{false}}%
+                                                              {\def\Mode@Alpha{\fontsize{\Font@Size}{\Font@Size}\selectfont #1}\setboolean{ModeAlpha}{true}}%
+                                             }
+
+\define@key{Touche}{seconde}{\ifthenelse{\equal{\string #1}{\string pasdeseconde}}%
+                                                                  {\setboolean{ModeSeconde}{false}}%
+                                                                  {\def\Mode@Seconde{\fontsize{\Font@Size}{\Font@Size}\selectfont #1}\setboolean{ModeSeconde}{true}}%
+                                                 }
+
+\define@key{Touche}{xdecalage}{\def\X@Decalage{#1}}
+\define@key{Touche}{ydecalage}{\def\Y@Decalage{#1}}
+
+\define@key{Touche}{scalefleches}{\def\Scale@Fleches{#1}}
+
+% Définitions des styles disponibles
+\define@choicekey{Touche}{style}%
+    {chiffre,operation,fonction,graphe,seconde,on,entrer,alpha,fleches}%
+    {\ifthenelse{\equal{\string #1}{\string chiffre}}%
+                     {\setboolean{ToucheChiffre}{true}}
+                     {\setboolean{ToucheChiffre}{false}}%
+    \ifthenelse{\equal{\string #1}{\string operation}}%
+                     {\setboolean{ToucheOperation}{true}}
+                     {\setboolean{ToucheOperation}{false}}%
+    \ifthenelse{\equal{\string #1}{\string fonction}}%
+                     {\setboolean{ToucheFonction}{true}}
+                     {\setboolean{ToucheFonction}{false}}%
+    \ifthenelse{\equal{\string #1}{\string graphe}}%
+                     {\setboolean{ToucheGraphe}{true}}
+                     {\setboolean{ToucheGraphe}{false}}%
+    \ifthenelse{\equal{\string #1}{\string seconde}}%
+                     {\setboolean{ToucheSeconde}{true}}
+                     {\setboolean{ToucheSeconde}{false}}%
+    \ifthenelse{\equal{\string #1}{\string on}}%
+                     {\setboolean{ToucheOnOff}{true}}
+                     {\setboolean{ToucheOnOff}{false}}%
+    \ifthenelse{\equal{\string #1}{\string entrer}}%
+                     {\setboolean{ToucheEntrer}{true}}
+                     {\setboolean{ToucheEntrer}{false}}%
+    \ifthenelse{\equal{\string #1}{\string alpha}}%
+                     {\setboolean{ToucheAlpha}{true}}
+                     {\setboolean{ToucheAlpha}{false}}%
+    \ifthenelse{\equal{\string #1}{\string fleches}}%
+                     {\setboolean{ToucheFleches}{true}}
+                     {\setboolean{ToucheFleches}{false}}%
+    }
+
+% configurations par défaut
+\presetkeys{Touche}{style=fonction,principal=sin,alpha=pasdealpha,seconde=pasdeseconde,
+                    position=0.7,hauteur=0ex,fontsize=8pt,
+                    xdecalage=0cm,ydecalage=0cm,scalefleches=1}{}
+
+% commande Touche dont la forme dépend du style choisi
+\newcommand*\Touche[1][]{%
+\setkeys{Touche}{#1}
+% Touche blanche pour les chiffres
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheChiffre}}%
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=white] (0,1)..controls+(40:0.4)and+(140:0.4).. (2,1) node[midway] (c) {} -- (2,1) arc (0:-180:1) -- cycle;
+                    \path (1,0) -- (c) node[pos=\La@Position] {\bfseries \Le@Principal};
+                    \ifthenelse{\boolean{ModeSeconde}}
+                                    {\ifthenelse{\boolean{ModeAlpha}}
+                                                       {\node[above] at (c) {\makebox[1.2cm][s]{\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}\hfill\textcolor{ForestGreen}{\Mode@Alpha}}};}
+                                                       {\node[above] at (c) {\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}};}}
+                                    {}
+                \end{tikzpicture}}%
+                {\unskip}%
+}%
+% Touche grise pour les opérations
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheOperation}}%
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=gray] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.5)..(1,0.2)..controls+(180:0.5)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\bfseries\sffamily \Le@Principal};
+                    \ifthenelse{\boolean{ModeSeconde}}
+                                    {\ifthenelse{\boolean{ModeAlpha}}
+                                                       {\node[above] at (c) {\makebox[1.2cm][s]{\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}\hfill\textcolor{ForestGreen}{\Mode@Alpha}}};}
+                                                       {\node[above] at (c) {\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}};}}
+                                    {}
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche noire pour les fonctions
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheFonction}}
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=black] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.5)..(1,0.2)..controls+(180:0.5)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\bfseries\sffamily \Le@Principal};
+                    \ifthenelse{\boolean{ModeSeconde}}
+                                    {\ifthenelse{\boolean{ModeAlpha}}
+                                                       {\node[above] at (c) {\makebox[1.2cm][s]{\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}\hfill\textcolor{ForestGreen}{\Mode@Alpha}}};}
+                                                       {\node[above] at (c) {\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}};}}
+                                    {}
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche grise pour les graphes
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheGraphe}}
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.7cm]
+                    \draw[fill=gray] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.3)and+(0:0.75)..(1,0.7)..controls+(180:0.75)and+(-90:0.3)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\bfseries\sffamily \Le@Principal};
+                    \ifthenelse{\boolean{ModeSeconde}}
+                                    {\ifthenelse{\boolean{ModeAlpha}}
+                                                       {\node[above] at (c) {\makebox[1.2cm][s]{\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}\hfill\textcolor{ForestGreen}{\Mode@Alpha}}};}
+                                                       {\node[above] at (c) {\bfseries\sffamily\textcolor{blue}{\Mode@Seconde}};}}
+                                    {}
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche Entrer
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheEntrer}}
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=gray] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.7)..(1,-0.5)..controls+(180:0.7)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\fontsize{\Font@Size}{\Font@Size}\selectfont \bfseries\sffamily entrer};
+                    \node[above] at (c) {\makebox[1.2cm][s]{\bfseries\sffamily\textcolor{blue}{\fontsize{\Font@Size}{\Font@Size}\selectfont préc}\hfill\textcolor{ForestGreen}{\fontsize{\Font@Size}{\Font@Size}\selectfont résol}}};
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche On/Off
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheOnOff}}
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=black] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.7)..(1,0)..controls+(180:0.7)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\fontsize{\Font@Size}{\Font@Size}\selectfont\bfseries\sffamily on};
+                    \node[above] at (c) {\fontsize{\Font@Size}{\Font@Size}\selectfont\bfseries\sffamily\textcolor{blue}{off}};
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche 2nde
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheSeconde}}
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=blue] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.5)..(1,0.2)..controls+(180:0.5)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\fontsize{\Font@Size}{\Font@Size}\selectfont\bfseries\sffamily 2nde};
+                \end{tikzpicture}}%
+                {\unskip}%
+}%
+% Touche Alpha
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheAlpha}}%
+                {\unskip\begin{tikzpicture}[x=0.5cm,y=0.5cm]
+                    \draw[fill=ForestGreen] (0,1)..controls+(20:0.4)and+(160:0.4).. (2,1) node[midway] (c) {} -- (2,1)..controls+(-90:0.75)and+(0:0.5)..(1,0.2)..controls+(180:0.5)and+(-90:0.75)..(0,1) -- cycle ;
+                    \path (1,0.2) -- (c) node[color=white,pos=\La@Position] {\fontsize{\Font@Size}{\Font@Size}\selectfont\bfseries\sffamily alpha};
+                    \node[above] at (c) {\fontsize{\Font@Size}{\Font@Size}\selectfont\bfseries\sffamily\textcolor{blue}{verr A}};
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+% Touche des flèches
+\raisebox{\Hauteur@Touche}{
+\ifthenelse{\boolean{ToucheFleches}}%
+                {\unskip\begin{tikzpicture}[\ifKV@Touche@fixe\else overlay\fi,xshift=\X@Decalage,yshift=\Y@Decalage,scale=\Scale@Fleches]
+                    \fill[white] ({cos(110) -0.1},{sin(110)-0.2}) -- ({cos(160)+0.4},{sin(160)+0.12}) arc(30:-30:1) -- ({cos(-110) -0.1},{sin(-110)+0.2}) arc(-30:30:1.47) ;
+                    \fill[white,xscale=-1] ({cos(110) -0.1},{sin(110)-0.2}) -- ({cos(160)+0.4},{sin(160)+0.12}) arc(30:-30:1) -- ({cos(-110) -0.1},{sin(-110)+0.2}) arc(-30:30:1.47) ;
+                    \draw[fill=gray] ({cos(70)},{sin(70)}) arc (70:110:1) ..controls+(220:0.1)and+(90:0.1).. +(-0.1,-0.2) arc(30:-30:1.47) ..controls+(-90:0.1)and+(140:0.1)..
+                    ({cos(-110)},{sin(-110)}) arc (-110:-70:1)..controls+(40:0.1)and+(-90:0.1)..
+                    +(0.1,0.2) arc (210:150:1.47) ..controls+(90:0.1)and+(-40:0.1)..  ({cos(70)},{sin(70)});
+                    \draw[fill=gray] ({cos(160)},{sin(160)}) arc(160:200:1) ..controls+(-45:0.2)and+(170:0.2).. +(0.4,-0.2) arc(-30:30:1) ..controls+(180:0.2)and+(30:0.2).. ({cos(160)},{sin(160)});
+                    \draw[fill=gray,xscale=-1] ({cos(160)},{sin(160)}) arc(160:200:1) ..controls+(-45:0.2)and+(170:0.2).. +(0.4,-0.2) arc(-30:30:1) ..controls+(180:0.2)and+(30:0.2).. ({cos(160)},{sin(160)});
+                    \fill[white] (0,0.9) -- +(-0.15,-0.15) -- +(0.15,-0.15)-- cycle;
+                    \fill[white] (-0.9,0) -- +(0.15,0.15) -- +(0.15,-0.15)-- cycle;
+                    \fill[white,yscale=-1] (0,0.9) -- +(-0.15,-0.15) -- +(0.15,-0.15)-- cycle;
+                    \fill[white,xscale=-1] (-0.9,0) -- +(0.15,0.15) -- +(0.15,-0.15)-- cycle;
+                \end{tikzpicture}}
+                {\unskip}%
+}%
+}
+\makeatother

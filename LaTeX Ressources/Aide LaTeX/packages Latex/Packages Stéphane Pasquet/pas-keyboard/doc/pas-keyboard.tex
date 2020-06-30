@@ -1,0 +1,262 @@
+%\documentclass[10pt]{article}
+%\usepackage[latin1]{inputenc}
+%\usepackage[frenchb]{babel}
+%\usepackage[T1]{fontenc}
+%\usepackage{listings}
+%\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+%\usepackage[vmargin=2cm,hmargin=2cm]{geometry}
+%\usepackage[svgnames,table]{xcolor}
+%\usepackage{kpfonts}
+%\usepackage{cellspace}
+%\usepackage{aurical}
+%\usepackage{graphicx}
+%\RequirePackage{titlesec}
+%\usepackage[electrum]{pas-keyboard}
+% <---------- Paramètres globaux -------------------->
+%\author{Stéphane PASQUET \\ \href{http://www.mathweb.fr}{http://www.mathweb.fr} \\ \href{mailto:contact@mathweb.fr}{contact@mathweb.fr}}
+%\date{\today}
+%\setlength{\parindent}{0cm}
+%\definecolor{touchColor}{cmyk}{0,0,.05,0}
+%\pagecolor{touchColor}
+%\title{Documentation\\ \texttt{pas-keyboard.sty V1.02}}
+
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-keyboard}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+% --- Propre à cette doc
+
+\graphicspath{{images/}}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{cellspace}
+\setlength{\cellspacetoplimit}{4pt}
+\setlength{\cellspacebottomlimit}{4pt}
+
+% ----------------------
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-keyboard} }\\[3mm]
+{\large Version 1.02 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+L'extension \texttt{pas-keyboard} est conçue pour afficher des touches d'ordinateur.\\
+Bien sûr, il y a l'extension \texttt{keystroke}, mais le rendu me ne satisfaisait pas. C'est la raison pour laquelle j'ai eu envie de créer cette extension.
+
+\medskip
+
+Cette extension charge automatiquement les extensions suivantes :
+
+\medskip
+
+\begin{quote}
+tikz (avec les librairies : calc, arrows)
+\end{quote}
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-crosswords.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-keyboard/latex/pas-keyboard.sty
+./texlive/texmf-local/tex/latex/pas-keyboard/doc/pas-keyboard.tex
+./texlive/texmf-local/tex/latex/pas-keyboard/doc/pas-keyboard.pdf
+./texlive/texmf-local/tex/latex/pas-keyboard/doc/doc.codes.tex
+./texlive/texmf-local/tex/latex/pas-keyboard/doc/doc.styles.tex
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+\section{Appel de l'extension}
+
+Afin d'imiter le mieux les touches d'un ordinateur, j'ai fait appel à la fonte \texttt{electrum} disponible sur la page :
+\begin{center}
+\url{http://www.ctan.org/tex-archive/fonts/electrumadf/}. 
+\end{center}
+
+Cependant, conscient des difficultés que pose la mise en place d'une telle fonte, j'ai décidé de faire appel à celle-ci uniquement sur l'appel d'une option. Ainsi, pour faire appel à cette police de caractères, l'extension devra être appelée avec l'option suivante :
+
+\medskip
+
+\begin{tcblisting}{codeTEX}
+\usepackage[electrum]{pas-keyboard}
+\end{tcblisting}
+
+\medskip
+
+Sans cette option, les caractères des touches seront mis en helvetica.
+
+\section{Les commandes}
+
+Voici une liste des différentes commandes :
+
+\medskip\arrayrulecolor{brown}
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}Sc|>{\centering\arraybackslash}Sc|}
+\hline\rowcolor{brown}\color{white}
+Commandes & \color{white}Résultats\\
+\hline
+\texttt{\textbackslash key$\{$M$\}$}& \key{M}\\
+\hline
+\texttt{\textbackslash keyCTRL}& \keyCTRL\\
+\hline
+\texttt{\textbackslash keyUpArrow}& \keyUpArrow\\
+\hline
+\texttt{\textbackslash keyDownArrow}& \keyDownArrow\\
+\hline
+\texttt{\textbackslash keyLeftArrow}& \keyLeftArrow\\
+\hline
+\texttt{\textbackslash keyRightArrow}& \keyRightArrow\\
+\hline
+\texttt{\textbackslash keyShift}& \keyShift\\
+\hline
+\texttt{\textbackslash keySHIFT}& \keySHIFT\\
+\hline
+\texttt{\textbackslash keyBack}& \keyBack\\
+\hline
+\texttt{\textbackslash keyBACK}& \keyBACK\\
+\hline
+\texttt{\textbackslash keyEnter}& \keyEnter\\
+\hline
+\texttt{\textbackslash keyTab}& \keyTab\\
+\hline
+\texttt{\textbackslash keyCapsOff}& \keyCapsOff\\
+\hline
+\texttt{\textbackslash keyCapsOn}& \keyCapsOn\\
+\hline
+\texttt{\textbackslash keySupInf}& \keySupInf\\
+\hline
+\texttt{\textbackslash keySquare}& \keySquare\\
+\hline
+\texttt{\textbackslash keyEsc}& \keyEsc\\
+\hline
+\texttt{\textbackslash keyHome}& \keyHome\\
+\hline
+\texttt{\textbackslash keyHOME}& \keyHOME\\
+\hline
+\texttt{\textbackslash keyPgUp}& \keyPgUp\\
+\hline
+\texttt{\textbackslash keyPgDown}& \keyPgDown\\
+\hline
+\end{longtable}
+\end{center}
+
+\bigskip
+
+Bien entendu, vous pouvez mettre n'importe quelle lettre dans la commande \texttt{\textbackslash key} :
+
+\medskip
+
+\begin{tcblisting}{listing}
+\key{A}\key{B}\key{C}
+\end{tcblisting}
+
+\section{Les paramètres}
+
+Vous avez la possibilité de changer les couleurs :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}X|p{6.5cm}|}
+\hline\rowcolor{brown}
+\color{white}Nom & \color{white}Correspondance & \color{white}Valeur par défaut\\
+\hline
+\texttt{touchColor} & Fond des touches & \textbackslash\texttt{definecolor$\{$touchColor$\}\{$cmyk$\}\{$0,0,0,0$\}$}\\
+\hline
+\texttt{textColor} & Texte des touches & \textbackslash\texttt{definecolor$\{$textColor$\}\{$cmyk$\}\{$1,1,1,1$\}$}\\
+\hline
+\texttt{drawColor} & Contours des touches & \textbackslash\texttt{definecolor$\{$drawColor$\}\{$cmyk$\}\{$1,1,1,1$\}$}\\
+\hline
+\texttt{shadowColor} & Ombre des touches & \textbackslash\texttt{definecolor$\{$shadowColor$\}\{$cmyk$\}$ $\{$0.30,0.20,0.20,0$\}$}\\
+\hline
+\texttt{lightON} & Couleur de la \og diode \fg{} de la touche CAPS LOCK quand elle est active & \textbackslash\texttt{definecolor$\{$lightON$\}\{$cmyk$\}$ $\{$0.81,0.11,1,0.02$\}$}\\
+\hline
+\texttt{lightOFF} & Couleur de la \og diode \fg{} de la touche CAPS LOCK quand elle est inactive & \textbackslash\texttt{definecolor$\{$lightOFF$\}$ $\{$cmyk$\}\{$0.55,0.42,0.42,0.09$\}$}\\
+\hline
+\end{tabularx}
+\end{center}
+
+\medskip
+
+Vous pouvez donc changer la couleur de votre choix en la redéfinissant avec la commande \textbackslash\texttt{definecolor}.
+
+\section{Suppléments}
+
+Vous pouvez insérer ce que vous souhaitez dans les touches, y compris des dessins comme le montre le script suivant :
+
+\medskip
+
+\begin{tcblisting}{listing}
+\newcommand{\dessin}{\tikz{\clip (0,-0.1) 
+rectangle +(.4,.2);\draw (0,0) .. controls 
+(.2,.3) and (.3,-.3) .. (.4,.2);}}
+\key{\dessin}
+\end{tcblisting}
+
+\medskip
+
+Mais vous n'êtes pas obligés d'insérer du code TiKZ ; un code PST ou même une image est possible comme le montre le script suivant :
+
+\medskip
+
+\begin{tcblisting}{listing}
+\key{\includegraphics[scale=0.5]{icone.png}}
+\end{tcblisting}
+
+\medskip
+
+Je vous rappelle que la commande \textbackslash\texttt{includegraphics} s'emploie en ayant appelé l'extension \texttt{graphicx}.
+
+\section{Mises à jour}
+
+\begin{tcolorbox}[histo]
+2013/10/03
+~
+\tcblower
+Modification de la commande \texttt{\textbackslash key} afin de centrer verticalement les touches sur la ligne courante.
+\end{tcolorbox}
+\end{document}

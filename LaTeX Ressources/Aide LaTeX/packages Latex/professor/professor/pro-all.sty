@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-all}[07/03/2010 version provisoire ]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the many files
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsall}
+\setboolean{windowsall}{false}
+\newboolean{xcasall}
+\setboolean{xcasall}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasall}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsall}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsall}}
+{%
+\ifthenelse{\boolean{xcasall}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasall}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+
+
+\RequirePackage{pro-tablor}
+\RequirePackage{pro-glineor}
+\RequirePackage{pro-2varstat}
+\RequirePackage{pro-1varstat}
+\RequirePackage{pro-statdiv}
+\RequirePackage{pro-graphes}
+\RequirePackage{pro-courbes}
+\RequirePackage{pro-suites}
+\RequirePackage{pro-probas}
+\RequirePackage{pro-geometrie}

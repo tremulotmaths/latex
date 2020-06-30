@@ -1,0 +1,76 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreAlgo{i.1}{Calculer des indicateurs\par sur une liste de nombres}
+
+On considère une liste de nombre, appelée par exemple \texttt{Valeurs}. On la "remplit" avec les nombres que l'on souhaite :
+\begin{center}
+    \texttt{Valeurs = [10 ; 15 ; 12,5 ; 7 ; 9,5 ; 11]}
+\end{center}
+Dans un algorithme, le premier terme de la liste s'écrit \texttt{Valeurs[1]}, le deuxième \texttt{Valeurs[2]} et, en règle générale, le i\ieme s'écrit \texttt{Valeurs[i]}. Ici, on a par exemple \texttt{Valeurs[3] = 12,5}.\medskip
+
+L'algorithme ci-dessous calcule la moyenne des nombres de la liste. La première boucle \texttt{Pour} sert à enregistrer les nombres de la liste les uns à la suite des autres.
+
+\begin{center}
+\small
+    \psframebox{
+    \parbox{0.5\linewidth}{
+        \textbf{Variables}
+
+            \quad $Valeurs$ : une liste de nombre
+
+            \quad $i$ : un entier naturel
+
+            \quad $s$ : un nombre réel
+
+            \quad $m$ : un nombre réel
+
+            \quad $N$ : un entier naturel
+
+        \textbf{Initialisation}
+
+            \quad $s$ prend la valeur $0$
+
+        \textbf{Entrée}
+
+            \quad Afficher "Combien de nombres dans la liste ?"
+
+            \quad Saisir $N$
+
+        \textbf{Traitement}
+
+            \quad Pour $i$ allant de $1$ à $N$
+
+            \qquad Saisir $Valeurs[i]$
+
+            \quad FinPour
+
+            \quad Pour $i$ allant de $1$ à $N$
+
+            \qquad Affecter à $s$ la valeur $s + Valeurs[i]$
+
+            \quad FinPour
+
+            \quad Affecter à $m$ la valeur $s/N$
+
+        \textbf{Sortie}
+
+            \quad Afficher $m$
+    }}
+\end{center}
+
+\begin{enumerate}
+    \item Quelle variable est affectée à la moyenne ?
+    \item À la fin de la deuxième boucle \texttt{Pour}, quelle valeur est finalement affectée à la variable $s$ ?
+    \item Modifier légèrement l'algorithme ci-dessus pour qu'il calcule la variance de la liste de nombre.
+    \item Après l'affichage de la variance, faire afficher l'écart-type.
+\end{enumerate}
+
+\end{document} 

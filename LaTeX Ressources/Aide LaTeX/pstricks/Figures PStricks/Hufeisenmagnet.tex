@@ -1,0 +1,85 @@
+\documentclass[]{article}
+\pagestyle{empty}
+\usepackage{pst-solides3d}
+
+\begin{document}
+\begin{center}
+\begin{pspicture}(-2,-3)(7,8)
+\psset{viewpoint=20 28 15 rtp2xyz,lightsrc=20 60 60 rtp2xyz,Decran=30}
+\psset{solidmemory}
+\psPoint(-0.45,3,6.5){P1}
+\psPoint(-2,3,6.5){P2}
+\psPoint(0.45,3,6.5){P3}
+\psPoint(2,3,6.5){P4}
+\psSolid[object=cylindre,h=5,r=0.015,fillcolor=red!70,grid=false,name=L2](-2,3,1.5)
+%------------------------------------ red Magnet -------------------------------------------------------------------------
+\psSolid[incolor=red,fillcolor=red,object=parallelepiped,a=2,b=0.75,c=1.5,grid=false,name=H2](0,-0.375,0.75)
+\psSolid[incolor=red,fillcolor=red,object=parallelepiped,a=2,b=4,c=0.5,grid=false,name=H1](0,2,0.25)
+%------------------------------------ green Magnet -----------------------------------------------------------------------
+\psSolid[incolor=red,fillcolor=green,object=parallelepiped,a=2,b=0.75,c=1.5,grid=false,name=H3](0,-0.375,2.25)
+%------------------------------------ B-Feld --------------------------------------------------------------------------
+%------------------------------------ 3. Row --------------------------------------------------------------------------
+%\multido{\iA=0+1}{5}{%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF11](-0.75,0.4,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS11](-0.75,0.4,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF12](-0.75,1.2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS12](-0.75,1.2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF13](-0.75,2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS13](-0.75,2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF14](-0.75,2.8,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS14](-0.75,2.8,2.35)%
+%------------------------------------ 2. Row --------------------------------------------------------------------------
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF6](0,0.4,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS6](0,0.4,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF7](0,1.2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS7](0,1.2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF8](0,2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS8](0,2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF9](0,2.8,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS9](0,2.8,2.35)%
+%%------------------------------------ Force in cyan -----------------------------------------------------------------------
+\psSolid[object=cylindre,h=1.5,r=0.015,fillcolor=cyan!70,RotX=90,grid=false,name=P2](0,3,1.5)
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=cyan!70,RotX=90,ngrid=20 60,grid=false,name=PS2](0,1.5,1.5)%
+%------------------------------------ 1. Row --------------------------------------------------------------------------
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF1](0.75,0.4,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS1](0.75,0.4,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF2](0.75,1.2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS2](0.75,1.2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF3](0.75,2,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS3](0.75,2,2.35)%
+%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF4](0.75,2.8,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS4](0.75,2.8,2.35)%
+%
+\psSolid[object=cylindre,h=4,r=0.1,fillcolor=black!40,RotY=90,ngrid=1 60,grid=false,opacity=0.7,name=L1](-2,3,1.5)
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF15](-0.75,3.6,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS15](-0.75,3.6,2.35)%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF10](0,3.6,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS10](0,3.6,2.35)%
+%------------------------------------ Force in blue -----------------------------------------------------------------------
+\psSolid[object=cylindre,h=1.5,r=0.015,fillcolor=blue!70,RotY=90,RotZ=90,grid=false,name=P1](0,3,1.5)
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=blue!70,RotY=90,RotZ=90,ngrid=20 60,grid=false,name=PS](0,4.5,1.5)%
+\psSolid[object=cylindre,h=1.85,r=0.01,fillcolor=brown!70,grid=false,name=BF5](0.75,3.6,0.5)%
+\psSolid[object=cone,r=0.05,h=0.15,fillcolor=brown!70,mode=4,grid=false,name=BFS5](0.75,3.6,2.35)%
+\psSolid[incolor=red,fillcolor=green,object=parallelepiped,a=2,b=4,c=0.5,grid=false,name=H4](0,2,2.75)
+%--------------------------------------- wire -----------------------------------------------------------------------------
+\psSolid[object=cylindre,h=5,r=0.015,fillcolor=red!70,grid=false,name=L3](2,3,1.5)
+\psSolid[object=plan,definition=equation,args={[0 1 0 0] 180},action=none,name=SchaukelEbene](0,3,0)%
+%
+\psSolid[object=line,linewidth=1pt,linecolor=black,args=-0.45 3 6.5 -2 3 6.5]
+\psSolid[object=line,linewidth=1pt,linecolor=black,args=0.45 3 6.5 2 3 6.5]
+\psProjection[object=cercle,args=-0.4 6.5 0.05,range=0 360,plan=SchaukelEbene](0,0)
+\psProjection[object=texte,fontsize=6,text=-,plan=SchaukelEbene,linecolor=black](-0.4,6.7)
+\psProjection[object=cercle,args=0.4 6.5 0.05,range=0 360,plan=SchaukelEbene](0,0)
+\psProjection[object=texte,fontsize=6,text=+,plan=SchaukelEbene,linecolor=black](0.4,6.7)
+\end{pspicture}
+\end{center}
+\end{document}

@@ -1,0 +1,421 @@
+% Compilation : Latex + dvips + ps2pdf
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-cv}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-cv} }\\[3mm]
+{\large Version 2.01 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+L'extension \texttt{pas-cv} a été conçue dans le but de créer facilement des grilles de mots croisés. 
+
+\medskip
+
+Cette extension charge automatiquement les extensions suivantes :
+
+\medskip
+
+\begin{quote}
+xkeyval\\
+graphicx\\
+tikz (avec les librairies : shadows, calc, fadings, shapes.geometric, patterns, decorations.pathmorphing)\\
+eso-pic\\
+fp\\
+geometry\\
+\end{quote}
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-cv.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-cv/latex/pas-cv.sty
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-jupiter.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-architecte.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-dynamique.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-saturne.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-univers.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-venus.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-uranus.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-mars.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-neptune.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-pluton.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-gaia.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-pegase.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-andromede.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-orion.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-centaure.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/macro-cassiopee.tex
+./texlive/texmf-local/tex/latex/pas-cv/latex/photo-pasCV.png 
+[utile uniquement pour les exemples]
+./texlive/texmf-local/tex/latex/pas-cv/doc/pas-cv.tex
+./texlive/texmf-local/tex/latex/pas-cv/doc/pas-cv.pdf
+./texlive/texmf-local/tex/latex/pas-cv/examples/[Tous les exemples]
+\end{verbatim}
+
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+
+\section{Les commandes}
+
+\subsection{Création du style du CV}
+
+\begin{tcblisting}{codeTEX,title={Création d'un style de CV}}
+\CVbg[<options>]
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabular}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|p{.7\textwidth}|}
+\hline
+\texttt{modele} & (texte) & Nom du modèle choisi.\\
+\hline
+\texttt{bgcolor} & (texte) & Couleur dominante. Par défaut, bgcolor=black.\\
+\hline
+\texttt{bordercolor} & (texte) & Couleur des lignes ou couleur secondaire (selon les modèles). Par défaut, bordercolor=red.\\
+\hline 
+\texttt{postesize} & (texte) & Taille du poste. Par défaut, postesize=\textbackslash Huge.\\
+\hline
+\texttt{postecolor} & (texte) & Couleur en laquelle sera écrit le poste. Par défaut, postecolor=white.\\
+\hline 
+\texttt{poste} & (texte) & Intitulé du poste qui fait l'objet du CV. Par défaut, il est vide.\\
+\hline
+\texttt{pic} & (texte) & Chemin et nom de la photo à insérer. Par défaut, il est vide.\\
+\hline
+\texttt{borderpic} & (texte) & Couleur du cadre de la photo. Par défaut, elle est vide, donc le cadre n'est pas dessiné.\\
+\hline
+\texttt{scalepic} & (réel) & Coefficient d'agrandissement ou de réduction de la photo. Par défaut, scalepic=1.\\
+\hline
+\end{tabular}
+
+
+\begin{tcblisting}{codeTEX,title={Un exemple}}
+\CVbg[%
+	modele=saturne,%
+	bgcolor=green,%
+	bordercolor=gray,%
+	poste={Enseignant en Mathématiques},%
+	postesize=\huge,%
+	postecolor=green!25!white,%
+	pic=photo.png,%
+	borderpic=green!33!black,%
+	scalepic=.33]
+\end{tcblisting}
+
+\subsection{Informations personnelles}
+
+\begin{tcblisting}{codeTEX,title={Informations personnelles}}
+\infoLeft{...}  % Informations mises à gauche
+\infoRight{...} % Informations mises à droite
+\end{tcblisting}
+
+\medskip
+
+Ces commandes placent des \texttt{minipages} aux endroits adéquats selon les modèles.
+
+\begin{tcblisting}{codeTEX,title={Un exemple}}
+\infoLeft{%
+Jean DUPONT\\
+3, rue de la liberté\\
+Résidence Jean MONNET, APT 18\\
+33000 BORDEAUX
+%
+\vskip 2mm
+%
+05.56.31.32.33.\\
+06.98.52.36.12.
+}
+\infoRight{%
+37 ans\\
+Célibataire\\
+Sans enfant à charge\\
+Nationalité française\\
+Email : \href{mailto:mon.nom@domaine.fr}{mon.nom@domaine.fr}\\
+Site personnel : \url{http://www.domaine.fr}
+}
+\end{tcblisting}
+
+\subsection{Définition des marges}
+
+Après avoir inséré vos informations personnelles, il faut définir les marges avec la commande :
+
+\medskip
+
+\begin{tcblisting}{codeTEX,title={Les marges}}
+\CVmargins
+\end{tcblisting}
+
+\medskip
+
+Celles-ci sont automatiquement définies selon le modèle choisi.
+
+\subsection{Les titres}
+
+Dans un CV, il y a différentes catégories : \og Expériences professionnelles \fg, \og Diplômes \fg, ...\\
+Chacune de ces catégories doit posséder un titre, qui se construit avec la commande suivante :
+
+\medskip
+
+\begin{tcblisting}{codeTEX,title={Titres}}
+\CVtitle[<options>]{Le titre}
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabular}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|p{.7\textwidth}|}
+\hline
+\texttt{color} & (texte) & Couleur dominante. Par défaut, bgcolor=black.\\
+\hline
+\texttt{bordercolor} & (texte) & Couleur des lignes ou couleur secondaire (selon les modèles). Par défaut, bordercolor=black.\\
+\hline 
+\end{tabular}
+
+\begin{tcblisting}{codeTEX,title={Un exemple}}
+\CVtitle[color=green!33!black,bordercolor=green!33!black]{Diplômes}
+\end{tcblisting}
+
+\subsection{Créer une nouvelle page}
+
+Si votre CV ne tient pas sur une seule page, afin de répéter le même style sur les autres pages, il vous faudra utiliser la commande suivante :
+
+\begin{tcblisting}{codeTEX,title={Une nouvelle page}}
+\CVclearpage
+\end{tcblisting}
+
+\medskip
+
+Cette commande créera alors une nouvelle page (à l'aide de la commande \texttt{\textbackslash newpage}), effacera ce qui est inutile, redéfinira les marges et mettra en fond quelques éléments du modèle.
+
+\paragraph*{N.B.} Vous pouvez utiliser l'environnement \texttt{longtable} si les informations d'une section sont volumineuses, mais je vous déconseille de le faire sur la première page. En effet, dans un tel cas, la commande \textbackslash CVclearpage ne fonctionnera pas.
+
+\subsection{Modifier la hauteur de l'en-tête}
+
+\begin{tcblisting}{codeTEX,title={Hauteur de l'en-t\^ete}}
+% A insérer après la commande \CVbg
+\CVh{<hauteur en cm>}
+\end{tcblisting}
+
+\medskip
+
+Cette commande est utile lorsque les informations sont peu nombreuses et tiennent sur trio lignes par exemple. Dans ce cas, le rectangle horizontal (pour la plupart des modèles) est bien trop bas par rapport aux informations et on peut donc, avec cette commande, le relever.
+
+\medskip
+
+Par défaut, la valeur de la hauteur est :
+
+\medskip
+
+\begin{center}
+\begin{tabular}{|>{\columncolor{orange!20}}c|>{\columncolor{orange!10}}c||>{\columncolor{orange!20}}c|>{\columncolor{orange!10}}c}
+\hline
+\cellcolor{red!50!black}\color{white}Modèles & \cellcolor{red!50!black}\color{white}Valeurs par défaut & \cellcolor{red!50!black}\color{white}Modèles & \cellcolor{red!50!black}\color{white}Valeurs par défaut \\
+\hline
+Andromede & 2 & Orion & 4\\
+\hline
+Architecte & 4 & Pegase & 2\\
+\hline
+Centaure & 4& Pluton & 5\\
+\hline
+Dynamique & 5 & Saturne & 5\\
+\hline
+Gaia & 2 & Univers & 5\\
+\hline
+Jupiter & 4 & Uranus & 5\\
+\hline
+Mars & 4 &Venus & 4\\
+\hline
+Neptune & 4 & &\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{De nouveaux modèles}
+
+L'architecture du package permet d'ajouter facilement d'autres modèles (créés avec TiKZ).
+
+\medskip
+
+Chaque commande est définie dans le fichier \texttt{macro-<nom du modèle>}.tex.
+
+\medskip
+
+\subsection{Pour le fond du CV}
+
+\begin{tcblisting}{codeTEX,title={Fond du CV}}
+\newcommand*\fond@<nom du modèle>{%
+	Ici, tout ce qui est nécessaire pour créer le fond 
+	+ le placement du poste 
+	+ la photo
+}
+\end{tcblisting}
+
+\medskip
+
+Le coin supérieur gauche a pour coordonnées $(0~;0)$ et le coin inférieur droit $(21~;-29.7)$.
+
+\subsection{Informations personnelles à gauche}
+
+\begin{tcblisting}{codeTEX,title={Informations personnelles à gauche}}
+\newcommand*\infoLeft@<nom du modèle>[1]{%
+	\AddToShipoutPicture{%
+		\put(\LenToUnit{Xcm},\LenToUnit{Ycm}){%
+			\begin{minipage}{<largeur>}
+				#1
+			\end{minipage}
+		}
+	}
+}
+\end{tcblisting}
+
+
+\subsection{Informations personnelles à droite}
+
+\begin{tcblisting}{codeTEX,title={Informations personnelles à droite}}
+\newcommand*\infoRight@<nom du modèle>[1]{%
+	\AddToShipoutPicture{%
+		\put(\LenToUnit{Xcm},\LenToUnit{Ycm}){%
+			\begin{minipage}{<largeur>}
+				#1
+			\end{minipage}
+		}
+	}
+}
+\end{tcblisting}
+
+\subsection{Les titres}
+
+\begin{tcblisting}{codeTEX,title={Les titres}}
+\newcommand*\title@<nom du modèle>[1]{%
+	Ici, tout ce qui définit le titre avec les options :
+	\cmdPAS@title@color : couleur du titre
+	\cmdPAS@title@bordercolor : couleur des éventuels lignes
+}
+\end{tcblisting}
+
+
+\subsection{Les marges}
+
+\begin{tcblisting}{codeTEX,title={Les marges}}
+\newcommand*\margins@<nom du modèle>{%
+	\newgeometry{%
+		tmargin=Tcm,% marge du haut
+		bmargin=Bcm,% marge du bas
+		lmargin=Lcm,% marge de gauche
+		rmargin=Rcm% marge de droite
+	}
+}
+\end{tcblisting}
+
+\subsection{Effacer le tout pour les autres pages}
+
+\begin{tcblisting}{codeTEX,title={La commande \textbackslash CVclearpage}}
+\newcommand*\clearpage@<nom du modèle>{%
+	Ce qui doit rester en fond sera écrit ici
+}
+\newcommand*\clearmargins@<nom du modèle>{%
+	\newgeometry{%
+		tmargin=Tcm,% marge du haut
+		bmargin=Bcm,% marge du bas
+		lmargin=Lcm,% marge de gauche
+		rmargin=Rcm% marge de droite
+	}
+}
+\end{tcvlisting}
+
+\medskip
+
+Une fois que vous avez défini toutes ces commandes, mettez les lignes suivantes au début :
+
+\medskip
+
+\begin{tcblisting}{codeTEX}
+\def\modele@<nom du modèle>{<nom du modèle>}
+\def\cv@h@<nom du modèle>{<hauteur en cm>}
+\end{tcblisting}
+
+\medskip
+
+Puis enregistrez le fichier sous le nom : \texttt{macro-<nom du modèle>.tex}. Vous pouvez alors me l'envoyer afin de l'inclure dans le fichier STY.
+
+\section{Ajouts au-dessus d'un modèle}
+
+Il est quelque fois intéressant de pouvoir mettre des informations au niveau des graphiques mais les marges, quelques fois, ne le permettent pas. Dans ce cas, vous pouvez utiliser les commandes du package \texttt{eso-pic}, comme par exemple :
+
+\medskip
+
+\begin{tcblisting}{codeTEX}
+\AddToShipoutPicture
+{%
+	\put(\LenToUnit{Xcm},\LenToUnit{Ycm})
+	{%
+		Votre texte
+	}
+}
+\end{tcblisting}
+
+\medskip
+
+Ici, X et Y sont les coordonnées d'un point sachant que l'origine est en bas à droite.
+
+\section{Bug connus}
+
+\begin{itemize}
+\item Il semblerait qu'il y ait un problème avec l'impression papier du modèle \texttt{gaia} sous \texttt{Mac OS X}.
+\item Une personne a eu des problèmes lors de l'affichage d'un CV conçu avec le modèle \texttt{pegase} sous \texttt{Mac}.
+\end{itemize}
+
+\end{document}

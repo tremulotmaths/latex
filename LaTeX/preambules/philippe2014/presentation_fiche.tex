@@ -1,0 +1,102 @@
+\parindent=0pt
+
+\makeatletter
+\newlength\controltoctitle
+\setlength{\controltoctitle}{0.1cm}
+\newcommand\modele@font{\fontfamily{ugq}\bfseries\fontsize{30}{32}\selectfont}
+\newcommand\titre@font{\bfseries\fontsize{40}{42}\selectfont}
+\definecolor{modele@color}{cmyk}{0.07,0,0,0.19}
+\definecolor{modeleshadow@color}{cmyk}{0.07,0,0,0.49}
+
+\newcommand\FicheTitre[2][D{é}couverte]{%
+    \begin{tikzpicture}%[remember picture, overlay, shift={($(current page.north west)+(2,-6)$)}]
+        \catcode`\|12
+        \draw[decorate,decoration={text along path, text align=center, text={|\modele@font\color{modeleshadow@color}|#1}}] (0.1,-0.1) -- ++(0,2) arc (180:90:2) -- ++(2,0);
+        \draw[decorate,decoration={text along path, text align=center, text={|\modele@font\color{modele@color}|#1}}] (0,0) -- ++(0,2) arc (180:90:2) -- ++(2,0);
+        \draw (1,3.5) node[below right, teal] {\titre@font \parbox{0.8\linewidth}{\raggedright #2}};
+    \end{tikzpicture}%
+}
+\makeatother
+
+
+%--------------------- PREREQUIS
+\def\tocFONT{\fontfamily{phv}\fontseries{m}\selectfont}
+\def\titreFONT{\fontfamily{phv}\fontseries{bx}\selectfont}
+
+\newsavebox{\prerequisBox}
+\newenvironment{prerequis}
+{\noindent%
+	\begin{lrbox}{\prerequisBox}
+	\begin{minipage}{0.9\linewidth}
+	\begin{itemize}[leftmargin=1em,label={\color{purple}$\blacktriangleright$}]
+	\tocFONT
+}
+{%
+	\end{itemize}
+	\end{minipage}
+	\end{lrbox}
+	\begin{tikzpicture}
+	\node (titre) {\includegraphics[width=2cm]{PrReq}};
+	\node[below right,text=purple] at (titre.north east) {\titreFONT\huge Pr\'erequis};
+	\node[below right] (contenu) at (titre.south) {\usebox{\prerequisBox}};
+	\draw[purple,very thick,line cap=round] (contenu.north west) -- (contenu.south west);
+	\end{tikzpicture}\vspace*{1cm}
+}
+
+%--------------------- OBJECTIFS
+\newsavebox{\objectifsBox}
+\newenvironment{objectifs}
+{\noindent%
+	\begin{lrbox}{\objectifsBox}
+	\begin{minipage}{0.9\linewidth}
+	\begin{itemize}[leftmargin=1em,label={\color{purple}$\star$}]
+	\tocFONT
+}
+{%
+	\end{itemize}
+	\end{minipage}
+	\end{lrbox}
+	\begin{tikzpicture}
+	\node (titre) {\includegraphics[width=2cm]{Objectif}};
+	\node[below right,text=purple] at (titre.north east) {\titreFONT\huge Objectifs};
+	\node[below right] (contenu) at (titre.south) {\usebox{\objectifsBox}};
+	\draw[purple,very thick,line cap=round] (contenu.north west) -- (contenu.south west);
+	\end{tikzpicture}\vspace*{1cm}
+}
+
+%--------------------- entrainement
+\newsavebox{\entrainementBox}
+\newenvironment{entrainements}
+{\noindent%
+	\begin{lrbox}{\entrainementBox}
+	\begin{minipage}{0.9\linewidth}
+	\begin{itemize}[leftmargin=1em,label={\color{purple}$\bullet$}]
+	\tocFONT
+}
+{%
+	\end{itemize}
+	\end{minipage}
+	\end{lrbox}
+	\begin{tikzpicture}
+	\node (titre) {\includegraphics[width=0.75cm]{Crayon}};
+	\node[below right,text=purple] at (titre.north east) {\titreFONT\Large Pour s'entraîner};
+	\node[below right] (contenu) at (titre.south) {\usebox{\entrainementBox}};
+	\draw[purple,very thick,line cap=round] (contenu.north west) -- (contenu.south west);
+	\end{tikzpicture}\vspace*{1cm}
+}
+
+%--------------------- cours
+\newcommand*{\Cours}{%
+	\begin{tikzpicture}
+	\node (titre) {\includegraphics[width=2cm]{Livres}};
+	\node[below right,text=purple] at (titre.north east) {\titreFONT\huge À connaître};
+	\end{tikzpicture}\vspace*{1cm}
+}
+
+\newcounter{fiche}
+\setcounter{fiche}{0}
+
+\newcommand*\NoFiche{%
+    \refstepcounter{fiche}%
+    (fiche \no \thechapter.\thefiche)
+}

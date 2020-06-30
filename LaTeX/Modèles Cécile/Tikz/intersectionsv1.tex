@@ -1,0 +1,30 @@
+\documentclass[10pt,french]{article}
+\usepackage{etex}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{calc,babel}
+\usepackage{babel}
+
+\begin{document}
+
+\begin{tikzpicture}
+\coordinate (A) at (0,0);
+\draw (A) circle (1pt) node[above] {$A$};
+\coordinate (B) at (5,3);
+\draw (B) circle (1pt) node[above] {$B$};
+\coordinate (C) at ($(A)!1.5!(B)$); %vect(AC) = 1.5\vect(AB)
+\coordinate (D) at ($(B)!1.5!(A)$); %vect(BD) = 1.5\vect(BA)
+\draw (C)--(D);
+
+%% pour les projetés orthogonaux
+\coordinate (E) at (2,0);
+\fill (E) circle (1pt);
+\draw (E) node[right] {\small $E$};
+\coordinate (F) at ($(A)!(E)!(B)$);
+\fill (F) circle (1pt);
+\draw[dashed] (E) -- (F) ;
+\end{tikzpicture}
+
+
+\end{document}

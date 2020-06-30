@@ -1,0 +1,468 @@
+\renewcommand\MaCouleur{Plum}
+\newcommand\NomClasse[1]{{\small\textbf{\textsf{#1}}}\xspace}
+\chapter{Mathématiques}
+\thispagestyle{empty}
+
+\begin{info}
+    Pour écrire des mathématiques avec \LaTeX, il faut accéder au \jargon{mode mathématique} à l'aide du caractère \ordi{\$}. Ce même caractère est utilisé pour sortir du \jargon{mode mathématique}.
+\end{info}
+
+\section{Apprentissage par la pratique}
+
+\begin{info}
+	La plupart des codes présentés dans cette section sont des extraits d'un fichier complet. Pour cela, la numérotation des lignes de code ne commencera pas nécessairement à 1. Le fichier source complet est donné à la fin de cette fiche.
+\end{info}
+
+Voilà le préambule que nous utiliserons dans cette section :
+
+\VerbatimInput[firstline=1,lastline=14,label={[Préambule]\NumCode},gobble=0]{exemples/maths.tex}
+
+Nous avons déjà signalé que les packages \NomPack{amssymb} et \NomPack{amstools} servaient de << \textit{boîte à outils} >> pour les mathématiques. Parmi des nombreuses commandes, ces packages permettent notamment d'écrire les opérations arithmétiques basiques.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $1 + 2 = 3$ et $3 \neq 4$\par
+    $(-5) - (-8) = 3$ \par
+    $9 \times 7 = 63$\par
+    $25 \div 6 \approx 4,17$
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Dans le préambule, la commande \NomCom{DecimalMathComma} permet de définir la virgule comme séparateur entre la partie entière et la partie décimale d'un nombre. Cela permet d'éviter la création d'espaces non souhaitée dans l'écriture des nombres en français.
+\end{info}\medskip
+
+\subsection{\symbol{92}usepackage[autolanguage,np]\{numprint\}}
+
+En français, les grands nombres doivent être écrits en séparant les chiffres par tranche de $3$ en utilisant des espaces fines. Le package \NomPack{numprint} rend cela possible à l'aide de la commande \NomCom{np}. Celle-ci est un raccourci créé grâce à l'option \OptPack{np} du package. La vraie commande se nomme \NomCom{numprint}. De plus, cette commande peut prendre en option une unité de mesure, gérant ainsi automatiquement les espaces.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $\np[m]{10} = \np[mm]{10000} = \np[km]{0,01}$\par
+    $\np[km/h]{10} = \np[km.h^{-1}]{10}
+    \approx \np[m/s]{2,78}$
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    L'option \OptPack{autolanguage} permet simplement à \NomPack*{numprint} de s'accorder avec les règles de la langue en cours (notamment pour le séparateur de milliers : espace, point ou virgule).
+\end{info}
+
+Ce package permet aussi d'écrire \verb!$\np{1,54e-3}$! qui donne alors $\np{1,54e-3}$. La documentation du package renseigne sur les différentes options possibles et les modifications envisagées.
+
+\subsection{\symbol{92}usepackage\{xlop\}}
+
+Le package \NomPack{xlop} permet d'écrire les commandes du code ci-dessous et dispose de nombreuses options. Il ne faut pas hésiter à consulter sa documentation. Compiler le code suivant et admirer le résultat.
+
+\VerbatimInput[firstline=18,lastline=30,label={[Les opérations posées]\NumCode},gobble=0]{exemples/maths.tex}
+
+\subsection{\symbol{92}usepackage\{cancel\}}
+
+L'exemple suivant montre comment utiliser simplement le package \NomPack{cancel} qui définit la commande \NomCom{cancel}. Dans le préambule, la ligne \verb!\renewcommand\CancelColor{\color{red}}! permet de définir la couleur du trait utilisé par \NomCom{cancel} :\bigskip
+
+{\NewFont\everymath{\textstyle}
+\begin{SideBySideExample}
+    $\frac{a \times \cancel{c}}{\cancel{c}\times b}
+    = \frac a b$\par\medskip
+    $\cancel{2x^2} - 2x + 4 - \cancel{2x^2} + 3x = x + 4$
+\end{SideBySideExample}
+}
+
+\subsection{\symbol{92}usepackage\{dsfont\}}
+
+Le dernier package utilisé dans notre préambule est \NomPack{dsfont} et permet simplement d'écrire les ensembles mathématiques à l'aide de la commande \NomCom{mathds}. Profitons en pour donner quelques symboles liés aux ensembles (inclusion, appartenance\dots). Compilez le code ci-dessous et essayez de repérer les commandes associées aux symboles.
+
+\VerbatimInput[firstline=96,lastline=103,label={[Les ensembles de nombres]\NumCode\label{intervalles}},gobble=0]{exemples/maths.tex}
+
+\subsection{Fontes mathématiques}
+
+Le package \NomPack{amstools} propose la commandes \NomCom{mathbb} pour noter les ensembles à l'aide de caractères ajourés et la commande \NomCom{mathbf} pour écrire des caractères gras en mode mathématiques (la commande \NomCom{textbf} ne fonctionne pas dans ce mode). Certains préféreront l'une ou l'autre méthode pour écrire des ensembles à la place du package \NomPack{dsfont}.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $\mathbb N \subset \mathbb Z \subset \mathbb D
+    \subset \mathbb Q\subset \mathbb R \subset \mathbb C$
+
+    $\mathbf N \subset \mathbf Z \subset \mathbf D
+    \subset \mathbf Q\subset \mathbf R \subset \mathbf C$
+
+    $\mathds N \subset \mathds Z \subset \mathds D
+    \subset \mathds Q\subset \mathds R \subset \mathds C$
+\end{SideBySideExample}
+}
+\bigskip
+
+De plus, la commande \NomCom{mathcal} permet d'obtenir des lettres caligraphiées : la courbe $\mathcal C$.\par
+Le package \NomPack{mathrsfs} fournit la commande \NomCom{mathscr} : la courbe $\mathscr C$.
+
+\section{Les modes mathématiques}
+\subsection{En ligne ou hors du texte ?}
+
+En réalité, \LaTeX{} possède deux modes mathématiques : le \jargon{mode en ligne} est délimité par le caractère \ordi{\$} et est utilisé lorsque des mathématiques sont écrites au sein même d'un texte.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par $f(x) = \frac 12 x + 2$.
+    Cette fonction est une fonction affine croissante.
+\end{SideBySideExample}
+}\bigskip
+
+On constate que dans ce mode là, les mathématiques sont composées de telles sortes que les espaces interlignes restent inchangées, ce qui est typographiquement meilleur.\medskip
+
+S'il existe un mode en ligne pour écrire à l'intérieur des lignes d'un texte, alors il existe un \jargon{mode hors texte}. Celui-ci est délimité par les commandes \NomCom [ et \NomCom ].\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par \[f(x) = \frac 12 x + 2.\]
+    Cette fonction est une fonction affine croissante.
+\end{SideBySideExample}
+}\bigskip
+
+Dans ce cas, les mathématiques sont composées dans une nouvelle ligne centrée et la taille des symboles mathématiques est adaptée. L'entrée dans ce mode au cours d'un paragraphe n'interrompt pas celui-ci qui continue juste après la formule.
+
+Cependant, il se peut que l'on ait besoin d'écrire des mathématiques dans le texte mais avec des symboles ayant leur taille hors-texte. Pour cela, on pourra utiliser la commande \NomCom{displaystyle}. L'effet inverse est obtenu avec la commande \NomCom{textstyle}.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par
+    $\displaystyle{f(x) = \frac 12 x + 2}$.
+    Cela est typographiquement incorrect. On peut noter :
+    \[\textstyle{f(x) = \frac 12 x + 2}\]
+    mais cela est bizarre.
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Les changements de paragraphe (à l'aide d'une ligne vide ou de la commande \NomCom{par} ou toute autre méthode) sont rigoureusement interdits à l'intérieur des modes mathématiques.
+\end{info}
+
+\subsection{Du texte dans les maths}
+
+Il est courant de devoir écrire des morceaux de phrases à l'intérieur d'une ligne mathématique. Le problème est que dans n'importe quel mode mathématique, les lettres sont considérées comme des variables et sont donc formatées selon les règles typographiques en mathématique, c'est-à-dire en italique. Pour bien comprendre cela, comparer les deux lignes suivantes :
+\[\begin{array}{c}
+  	f(x) = \frac 12 x + 2 donc f(2) = 3 \\[10pt]
+  	f(x) = \frac 12 x + 2 \text{ donc } f(2) = 3
+  \end{array}\]
+
+La commande \NomCom{text} est celle qui nous sauve ! \'Evidemment, cette commande n'a pas spécialement d'utilité en mode en ligne comme nous le pouvons le constater dans l'exemple suivant :\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $f(x) = \frac 12 x + 2$ donc $f(2) = 3$.
+    \[f(x) = \frac 12 x + 2 \text{ donc } f(2) = 3\]
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Les espaces étant gérées de façon particulière dans les modes mathématiques, on constate que \NomCom{text}\ordi{\{donc\}} ne donne pas de résultat satisfaisant. Il faut donc ajouter les espaces autour du mot pour obtenir ce que l'on souhaite : \NomCom{text}\ordi{\{ donc \}}. Une autre façon est d'utiliser les commandes d'espace en mode mathématique (section suivante).
+\end{info}
+
+\subsection{Les espaces}
+Dans les modes mathématiques, les espaces saisis au clavier sont tout simplement ignorés et \LaTeX{} gère tout seul les calculs pour espacer les symboles mathématiques. En général, ces espaces conviennent parfaitement mais il peut s'avérer nécessaire de gérer soit même les espaces en utilisant des commandes particulières.
+
+\begin{center}
+\verb*! ! = barre d'espace simple\par\medskip
+
+\rowcolors{2}{}{gray!20}
+	\begin{tabular}{lll}
+
+		\rowcolor{gray!50} Commande & Nom & Résultat  \\
+        \verb+\!+ & Espace fine négative & $\square \! \square$\\
+        \verb*! ! & Espace par défaut & $\square \square$\\
+        \verb+\,+ & Espace fine & $\square \, \square$\\
+        \verb+\:+ & Espace moyenne & $\square \: \square$\\
+        \verb+\;+ & Espace épaisse & $\square \; \square$\\
+        \verb*+\ + & Espace inter-mot & $\square \ \square$\\
+        \verb+\quad+ & 1 cadratin & $\square \quad \square$\\
+        \verb+\qquad+ & 2 cadratins & $\square \qquad \square$\\
+	\end{tabular}
+\end{center}
+
+\begin{info}
+    Un cadratin est égal à \ordi{1em} donc la commande \NomCom{quad} est en fait un raccourci de \NomCom{hspace\{1em\}}.
+\end{info}
+
+Reprenons l'exemple des intervalles du code \ref{intervalles} de la page \pageref{intervalles}.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $\mathds R^*=]-\infty ; 0[ \cup ]0 ; +\infty[ =
+    \mathds R \setminus \{0\}$.\par\medskip
+    $]-\infty ; 4] \cap ]-2 ; +\infty[ = ]-2 ; 4]$.
+\end{SideBySideExample}
+}\bigskip
+
+Les espaces ne sont ici guère satisfaisantes autour des crochets et autour des points-virgules. Nous pouvons alors proposer la solution suivante :\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $\mathds R^*=\; ]-\infty\, ; 0[\, \cup\,
+                    ]0\, ;\, +\infty[\;
+    =\mathds R \setminus \{0\}$.\par\medskip
+    $]-\infty\, ; 4]\, \cap\, ]-2\, ; +\infty[ \;
+    =\; ]-2\, ; 4]$.
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Cela peut paraître bien lourd à gérer mais nous verrons dans une prochaine fiche comment automatiser cela à l'aide des \jargon{commandes personnelles}.
+\end{info}
+
+\section{\'Ecrire des maths de la sixième à la terminale}
+
+\subsection{Au collège}
+
+En \NomClasse{sixième}, les élèves apprennent à maîtriser les notations géométriques. Les crochets et les parenthèses s'obtiennent classiquement en appuyant sur la touche correspondante. Cependant, les symboles de droites parallèles et droites perpendiculaires s'obtiennent à l'aide d'une commande spéciale.
+
+\VerbatimInput[firstline=36,lastline=40,label={[Géométrie en sixième]\NumCode},gobble=0]{exemples/maths.tex}
+
+En \NomClasse{cinquième}, on travaille notamment sur les fractions. L'exemple ci-dessous nous permet de montrer que la commande \verb!\dfrac{}{}! est un raccourci de \verb!\displaystyle{\frac{}{}}!.
+
+\VerbatimInput[firstline=44,lastline=48,label={[Les fractions]\NumCode},gobble=0]{exemples/maths.tex}
+
+D'après l'exemple suivant, quelle semble être l'utilité des commandes \verb!\left! et \verb!\right! ? \bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $3 \times (\dfrac 3 2 + 2) - 1$ \par\medskip
+    $3 \times \left(\dfrac 3 2 + 2\right) - 1$
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Une commande \NomCom{left} se termine nécessairement par son homologue \NomCom{right}. Essayez alors les combinaisons \NomCom{left\symbol{92}\{} et \NomCom{right\symbol{92}\}}, \NomCom{left[} et \NomCom{right]} puis \NomCom{left|} et \NomCom{right|}.
+\end{info}
+
+Les angles sont également bien présents dans le programme de géométrie et les commandes \NomCom{widehat} et \NomCom{degres} sont alors très utiles.
+
+\VerbatimInput[firstline=50,lastline=52,label={[Notations des angles]\NumCode},gobble=0]{exemples/maths.tex}
+
+\begin{info}
+    La commande \NomCom{widehat} permet d'obtenir un des nombreux symboles étirables horizontalement. Nous en croiserons d'autres dans les exemples à venir. Saurez-vous les repérer ?
+\end{info}
+
+En classe de \NomClasse{quatrième}, les divisions de fractions sont apprises mais également les puissances. La mise en puissance en mode mathématique est réalisée à l'aide de la syntaxe \Arg{maths}\verb+^+\ArgObl{exposant}. Par exemple \verb!$3^2$! donne $3^2$. Et que donne \verb!$3^21$! ?
+
+\begin{info}
+    On pourra écrire des puissances de puissances en faisant bien attention aux groupes entre accolades.
+\end{info}
+
+Essayez donc l'exemple suivant :
+
+\VerbatimInput[firstline=56,lastline=60,label={[Fractions et puissances]\NumCode},gobble=0]{exemples/maths.tex}
+
+Profitons de parler des exposants pour indiquer la syntaxe et un exemple pour les indices :\linebreak \Arg{maths}\verb!_!\ArgObl{indice}.\par Ainsi, \verb!$d_1 \bot d_2$! donnera $d_1 \bot d_2$.\medskip
+
+L'exemple suivant donne une autre utilisation des exposants et des indices ainsi qu'un nouveau symbole étirable horizontalement : l'accolade. On notera également l'utilisation des commandes \NomCom{np} et \NomCom{text}.
+
+\VerbatimInput[firstline=62,lastline=64,label={[Accolades horizontales]\NumCode},gobble=0]{exemples/maths.tex}
+
+\begin{info}
+    Notons que la commande \NomCom{dots} permet d'obtenir trois points de suspension mais que ceux-là sont alignés verticalement automatiquement selon le contexte dans lequel la commande est utilisée.
+\end{info}\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $1 + \dots + n \neq
+    1, \dots, n$
+\end{SideBySideExample}
+}\bigskip
+
+La résolution des équations est également un moment important dans la vie d'un collégien et bien que le symbole d'équivalence ($\Leftrightarrow$) ne soit pas exigible, profitons tout de même de l'occasion pour en parler tout en mettant en avant une utilisation de l'espace cadratin.
+
+\VerbatimInput[firstline=66,lastline=69,label={[\'Equivalences]\NumCode},gobble=0]{exemples/maths.tex}
+
+Et enfin, les élèves de \NomClasse{quatrième} découvrent la joie de la trigonométrie. La commande \NomCom{cos} permet simplement d'obtenir $\cos$. Ses copines \NomCom{sin} et \NomCom{tan} viendront la rejoindre en \NomClasse{troisième}.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $\cos\left(\widehat{ABC}\right) = \dfrac{AB}{BC}$
+\end{SideBySideExample}
+}\bigskip
+
+Pour finir, voilà un exemple à compiler pour voir différentes notations vues en classe de \NomClasse{troisième}. Essayer de repérer et de comprendre celles qui n'ont pas encore été étudiées.
+
+\VerbatimInput[firstline=75,lastline=88,label={[En troisième]\NumCode},gobble=0]{exemples/maths.tex}
+
+\subsection{Au lycée}
+
+Nous avons déjà vu comment noter les ensembles de nombres. Cependant en classe de \NomClasse{seconde}, une grande importance est accordée aux fonctions. L'exemple suivant montre que l'utilisation de la commande \NomCom{colon} est largement préférée aux deux-points classiques \verb!:! pour une gestion correcte des espaces par \LaTeX. La commande \NomCom{mapsto} est également à retenir.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $f\colon x \mapsto f(x)$ est d\'efinie sur
+                                          $\mathcal D_f$.
+
+    On note $\mathcal C$ sa courbe repr\'esentative.
+\end{SideBySideExample}
+}\bigskip
+
+Les vecteurs font leur apparition au début du lycée. Cela nous permet alors de découvrir un nouveau symbole étirable horizontalement --- la flèche --- ainsi qu'un symbole étirable horizontalement --- la norme d'un vecteur.
+
+\VerbatimInput[firstline=92,lastline=100,label={[Les vecteurs]\NumCode},gobble=0]{exemples/maths.tex}
+
+On notera l'utilisation un peu faussée de la commande \NomCom{binom} qui sert en réalité pour l'écriture des c{\oe}fficients binomiaux. Cela dit, elle est utile pour écrire verticalement les coordonnées d'un vecteur. Tout comme \NomCom{dfrac}, la commande \NomCom{dbinom}\ordi{\{\}\{\}} est un raccourci pour \NomCom{displaystyle}\NomCom{binom}\ordi{\{\}\{\}}.
+
+\begin{info}
+    Les commandes \NomCom{imath} et \NomCom{jmath} sont bien pratiques pour obtenir un $i$ et un $j$ sans point : les lettres $\imath$ et $\jmath$ peuvent donc recevoir une flèche.
+\end{info}
+
+En transition avec la classe de \NomClasse{seconde} et celle de \NomClasse{première}, parlons un peu de statistiques \bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Moyenne : $\overline{x}$\par
+    \'Ecart-type : $\sigma$
+\end{SideBySideExample}
+}\bigskip
+
+Pour la classe de \NomClasse{première}, changeons un peu de méthode : essayez de trouver le code permettant d'obtenir le texte ci-dessous à l'aide des indications suivantes :
+\begin{itemize}
+    \item \verb!$\Delta$! permet d'obtenir $\Delta$ ;
+    \item \verb!$\pm$! permet d'obtenir $\pm$ ;
+    \item \verb!$\cdot$! permet d'obtenir le point du produit scalaire ;
+    \item \verb!$\hookrightarrow$! permet d'obtenir $\hookrightarrow$.
+\end{itemize}
+
+\begin{CadreExemple}
+\'Equation de la tangente en $x_0$ :
+$y = f'(x_0) \left(x - x_0\right) + f(x_0)$ avec
+$f' = \left(\dfrac u v\right)' = \dfrac{u'v - uv'}{v^2}$.\medskip
+
+$\Delta = b^2 - 4ac$. Si $\Delta > 0$ alors
+$x = \dfrac{-b \pm \sqrt \Delta}{2a}$.\medskip
+
+$\overrightarrow{AB} \cdot \overrightarrow{CD} = xx' + yy'$.\medskip
+
+$u_{n + 1} = q\times u_n = u_0 \times q^{n+1}$.\medskip
+
+$\mathds P(X = k) = \binom n k \times p^k \times (1-p)^{n-k}$.\medskip
+
+$X$ suit la loi binomiale de paramètres $n=10$ et $p=0,2$ :
+$X \hookrightarrow \mathcal B(10 ; 0,2)$.
+\end{CadreExemple}
+
+L'exemple suivant montre en quoi le mode mathématique en ligne peut encore être différent du mode hors texte toujours dans un soucis de respect des espaces inter-lignes.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    $1 + q + q^2 + \dots + q^n =
+    \sum_{i = 0}^n q^i$\medskip
+
+    $1 + q + q^2 + \dots + q^n =
+    \displaystyle{\sum_{i = 0}^n q^i}$
+\end{SideBySideExample}
+}\bigskip
+
+Finissons avec la classe de \NomClasse{terminale}. Compilez le prochain exemple et consultez les points suivants :
+\begin{enumerate}
+    \item Essayez de comprendre la fonction de la commande \NomCom{mathrm} (il s'agit d'une autre fonte mathématique pas encore rencontrée).
+    \item Quelle est la fonction de \NomCom{substack} ?
+    \item \'Ecrire l'intégrale et les limites en mode hors texte afin de comparer les présentations.
+\end{enumerate}
+
+{\NewFont
+\begin{SideBySideExample}
+    $\int_0^1 x^2 \mathrm{dx} =
+        \left[\frac{x^3}{3}\right]_0^1 =
+        \frac 13$.\medskip
+
+    $\lim_{x \to +\infty} e^x= +\infty$.\par
+    On parle de la fonction $x \mapsto \exp(x)$.\medskip
+
+    $\lim_{x \to 0^+}\ln(x) = -\infty$ ou encore\par
+    $\lim_{\substack{x \to 0 \\ x > 0}}
+            \ln(x) = -\infty$.\medskip
+
+    $a \equiv b\; [n] \quad\Leftrightarrow\quad
+        \exists\, k \in \mathds Z,\; a - b = kn$.\medskip
+
+    $\left\lvert e^{i\theta}\right\rvert = 1$.
+\end{SideBySideExample}
+}\bigskip
+
+Finissons par une dernière définition à recopier et à compiler :
+
+\VerbatimInput[firstline=145,lastline=152,label={[Fonction continue]\NumCode},gobble=0]{exemples/maths.tex}
+
+\section{Aligner des égalités}
+
+Lorsque l'on veut écrire les étapes d'un long calcul, la plupart du temps, les différentes étapes sont écrites en colonne et alignées. L'environnement \NomEnv{align} permet de faire cela.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \begin{align}
+        (2x + 4)^2 &= (2x)^2 + 2\times 2x\times 4 + 4^2 \\
+                   &= 4x^2 + 16x + 16
+    \end{align}
+\end{SideBySideExample}
+}\bigskip
+
+On note ici l'utilisation de deux caractères spéciaux : \verb!&! et \verb!\\!. Le premier permet d'identifier l'endroit où se fera l'alignement. Le deuxième permet d'indiquer un changement de ligne. On retrouvera ces deux caractères dans la composition de tableau.
+
+On peut être gêné par l'utilisation automatique de la numérotation de toutes les lignes. La commande \NomCom{nonumber} règle le problème. La commande \NomCom{tag}\ArgObl{texte} permet quand à elle de passer outre la numérotation automatique.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \begin{align}
+        (2x + 4)^2 &= (2x)^2 + 2\times 2x\times 4
+                                    + 4^2 \nonumber\\
+        \shortintertext{\textit{(id. remarquable)}}
+                   &= 4x^2 + 16x + 16 \tag{A} \\
+                   &= 4x^2 + 16x + 16 \tag{354}
+    \end{align}
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    La commande \NomCom{shortintertext}\ArgObl*{texte} est ici très pratique pour insérer du texte au milieu d'une suite de calcul.
+\end{info}
+
+Finalement, si on ne souhaite numéroter aucune ligne, on écrira \verb!\begin{align*}! et \verb!\end{align*}!.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \begin{align*}
+        (2x + 4)^2 &= (2x)^2 + 2\times 2x\times 4 + 4^2 \\
+                   &= 4x^2 + 16x + 16
+    \end{align*}
+\end{SideBySideExample}
+}\bigskip
+
+\section{Exercice}
+
+\'Etablir le code source permettant d'obtenir le document ci-dessous :
+
+\begin{CadreExemple}
+\textbf{Exercice 1.}\quad Recopier et compléter les égalités suivantes en écrivant le nombre qui convient à la place de $?$ :
+\[\dfrac{2}{3} = \dfrac{2 \times ?}{3 \times ?} = \dfrac{14}{?} \qq \dfrac{15}{35} = \dfrac{3 \times ?}{? \times ?} = \dfrac{?}{7}\]
+
+\textbf{Exercice 2.}\quad \'Ecrire les fractions suivantes sous forme irréductible :
+\[A = \dfrac{21}{35} \qq B = \dfrac{90}{54}\]
+
+\textbf{Exercice 3.}\quad Effectuer la division décimale suivante : $C = 13,608 \div 4,2$.
+
+\textbf{Exercice 4.}\quad Résoudre les équations suivantes :
+\[6x + 3 = 12 \qq 3x + 2 = 5 - 6x \qq 2(x - 3) = 8x\]
+
+\textbf{Exercice 5.}\quad La fonction $f$ est définie pour tout $x \in \R$ par \[f(x) = 2x^3 -x^2 - 4x + 1.\]
+    \begin{enumerate}
+        \item Le point $E$ de coordonnées $(-1,25 \pv 0,5)$ appartient-il à $\mathcal C_f$ ? Justifier la réponse.
+        \item Développer $(x - 1)^2$.
+        \item Démontrer que $f(x) = (2x+3)(x-1)^2-2$.
+        \item En déduire les antécédents de $-2$ par la fonction $f$.
+        \item En détaillant précisément les étapes, calculer l'image de $\tfrac{-1}{2}$ par la fonction $f$.
+    \end{enumerate}
+\end{CadreExemple}
+
+
+\section{L'exemple de la sixième à la terminale au complet}
+
+\VerbatimInput[firstline=0,lastline=98,xrightmargin=0\linewidth,label={[Code complet de la sixième à la terminale -- 1/2]\NumCode},gobble=0]{exemples/maths.tex}\clearpage
+
+%\VerbatimInput[firstline=33,lastline=105,xrightmargin=0\linewidth,label={[Code complet de la sixième à la terminale -- 2/3]\NumCode},gobble=0]{exemples/maths.tex}\clearpage
+
+\VerbatimInput[firstline=99,xrightmargin=0\linewidth,label={[Code complet de la sixième à la terminale -- 2/2]\NumCode},gobble=0]{exemples/maths.tex} 

@@ -1,0 +1,137 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\usepackage{tipfr}
+\newcommand\tc[1]{\psframebox[framearc=0.6,fillstyle=solid,fillcolor=gray!60]{\sffamily\textcolor{white}{#1}}}
+
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Simulation\\ Tableur }}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{\thepage}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 18}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Lancer de deux dés}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Situation}}\\[5pt]
+On lance deux dés équilibrés dont les faces sont numérotées de 1 à 6 et on additionne les deux nombres lus sur les faces supérieures.\\
+L'objectif est de déterminer la somme qui a la plus grande probabilité d'être obtenue.
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Simulation à l'aide d'une calculatrice}}
+\begin{enumerate}
+\item Simuler le lancer d'un dé\\[2pt]
+La calculatrice dispose de fonctionnalités permettant d'afficher un \emph{entier aléatoire} compris entre 1 et 6.
+\vspace{5pt}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour la calculatrice \bsc{Ti}}\\[5pt]
+Appuyer sur \tc{math}, puis sur le menu \tc{PRB}.\\[3pt]
+Choisir \tc{entAléat}\\[3pt]
+Saisir l'instruction entAléat(1,6)
+\vspace{5pt}
+   \end{minipage}}
+   \vspace{7pt}
+    \end{center}
+\item Simuler une série de 30 lancers de deux dés\\[2pt]
+Pour chaque lancer, noter la somme obtenue, puis compléter le tableau ci-dessous.\\
+La dernière ligne indique la fréquence de chacune de ces sommes.
+\begin{center}
+\vspace{7pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.95\linewidth}{|m{3cm} |*{11}{>{\centering\arraybackslash}X|}}
+\hline
+\rowcolor{blue!10}\centering Somme & 2 & 3 & 4 &5 &6&7&8&9&10&11&12 \\
+\hline
+\centering Effectifs  &  &  & &&&&&&&& \\
+\hline
+\centering Fréquences  &  &  & &&&&&&&& \\
+\hline
+\end{tabularx}
+\vspace{5pt}
+   \end{center}
+\item Quelle réponse les résultats obtenus permettent-ils de proposer?
+\end{enumerate}
+\vspace{15pt}
+
+
+%_______________
+\textcolor{blue}{\textbf{III. Simulation à l'aide d'un tableur}}
+\begin{enumerate}
+\item Réaliser une feuille de calcul simulant 500 lancers de deux dés, en suivant les instructions ci-dessous.
+\vspace{7pt}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour le tableur \bsc{Excel}}\\[-8pt]
+\begin{itemize}
+\item Créer une série d'entiers de 1 à 500\\
+Dans la cellule A2, entrer 1 puis, cliquer sur \textsc{Edition / Recopier / Série}\\
+Choisir \textsc{Série en colonne / Type linéaire}\\
+Noter la valeur du pas égale à 1 et celle de la valeur finale égale à 500
+\item Obtenir un nombre entier au hasard compris entre 1 et 6\\
+Dans la cellule B2, saisir \textsc{=ALEA.ENTRE.BORNES(1; 6)}\\
+ou \textsc{=ENT(6*ALEA()+1)}
+\item Obtenir le nombre d'apparitions du chiffre 2 dans la colonne D\\
+Dans la cellule G2, saisir \textsc{=NB.SI(D\$2 : D\$501 ; F2)}
+\end{itemize}
+\vspace{5pt}  
+   \end{minipage}}
+   \vspace{10pt}
+\end{center}  
+\item A l'aide de la touche F9, obtenir le renouvellement de la simulation.\\
+Comparer les résultats. 
+\item  Obtenir l'histogramme des fréquences à l'aide de l'assistant graphique.\\
+A l'aide de la touche F9, obtenir le renouvellement du graphique.\\
+Comparer les résultats.
+\item Quelle hypothèse peut-on formuler au sujet des sommes obtenues?
+\end{enumerate}
+\vspace{-3pt}
+\begin{center}
+ \includegraphics[scale=0.4]{Excel.eps}  
+\end{center}
+%\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{IV. Calcul de probabilités}}\\
+On note $S$ la somme obtenue suite au lancer des deux dés.
+\begin{enumerate}
+\item \begin{enumerate}
+	\item Déterminer les lancers permettant de réaliser l'événement $(S=2)$.
+	\item En déduire la probabilité que la somme obtenue soit égale à 2.
+	\end{enumerate}
+\item En procédant de même, déterminer la probabilité des événements:
+\begin{enumerate}
+	\item $(S=6)$
+	\item $(S=7)$
+	\item $(S=8)$
+	\end{enumerate}
+\item Comparer avec les fréquences obtenues par simulation.
+\end{enumerate}
+\end{document}
+

@@ -1,0 +1,85 @@
+\documentclass[10pt, french]{book}
+\input{preambule_2015}
+\input{commandes_2015}
+\input presentation_fiche_2015
+\ReglePied
+
+\entete{}{}{}
+\pieddepage{série \bsc{sti2d}}{\thepage{} / \pageref{LastPage}}{Année 2015-2016}
+
+\renewenvironment{Exo}[1][]{%
+  \refstepcounter{exo}\textbf{\textsc{Exercice} \theexo}\hfill \textbf{\textit{#1}}\par}%
+{\pagebreak[0]\[***\]}
+
+
+\parindent=0pt
+
+\newcommand{\bacblanc}{
+\thispagestyle{empty}
+\textbf{Lycée Jean-Pierre Timbaud \hfill Février 2016}
+\vspace*{1cm}
+    \begin{center}
+    \bfseries
+    \LARGE
+    \scshape
+        Session 2016\par\vspace{0.5cm}
+        Baccalauréat Blanc Technologique\par\vspace{1cm}
+        Sciences et Technologies de l'Industrie\par et du Développement Durable\par\vspace{1cm}
+        {\fontsize{40pt}{10pt}\selectfont Mathématiques}
+    \end{center}
+
+\vspace{1.5cm}
+
+Durée : 4 heures
+\hfill
+C{\oe}fficient 4
+
+\vspace{1cm}
+
+\hrule
+    \begin{center}
+        L'usage des calculatrices est autorisé pour cette épreuve.\par
+    \end{center}
+\hrule
+
+\vspace{1cm}
+
+
+    \begin{center}
+        \bfseries
+        Le candidat doit traiter les quatre exercices.\par\bigskip
+
+        Le candidat est invité à faire figurer sur la copie toute trace de recherche, même incomplète ou non fructueuse, qu'il aura développée.\par\bigskip
+
+        Il est rappelé que la qualité de la rédaction, la clarté et la précision des raisonnements entreront pour une part importante dans l'appréciation des copies.\par\bigskip
+
+        Dès que le sujet vous est remis, assurez-vous qu'il est complet, que toutes les pages sont imprimées.\par
+        Le sujet comporte \pageref{LastPage} pages.
+    \end{center}
+\clearpage
+}
+
+\begin{document}
+\newgeometry{margin=1.5cm}
+
+\bacblanc
+
+\begin{Exo}[5 points]
+\'Enoncé...
+\end{Exo}
+
+\begin{Exo}[5 points]
+\'Enoncé...
+\end{Exo}
+
+\begin{Exo}[5 points]
+\'Enoncé...
+\end{Exo}
+
+\begin{Exo}[5 points]
+\'Enoncé...
+\end{Exo}
+
+
+
+\end{document} 

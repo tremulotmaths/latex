@@ -1,0 +1,230 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Calcul formel\\ Logiciel Maxima}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 11}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Des pavés dans un cube}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Présentation de la situation}}\\[7pt]
+$ABCDEFGH$ est un cube d'arête 6 cm.\\
+On place un point $M$ sur le segment $[AB]$. On  place alors le point $P$ du segment $[AE]$ tel que $AM=EP$, puis on construit le pavé droit $AMNTPQRS$ de sorte que $AMNT$ soit un carré.\\
+On souhaite étudier l'évolution du volume de ce pavé lorsque le point $M$ parcourt le segment $[AB]$.
+\begin{center}
+   \definecolor{zzttqq}{rgb}{0.6,0.2,0.0}
+\definecolor{yqqqqq}{rgb}{0.5019607843137255,0.0,0.0}
+\definecolor{qqqqff}{rgb}{0.0,0.0,1.0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.7cm,y=0.7cm]
+\clip(-6.226762051421204,-2) rectangle (10,7.5);
+\fill[color=zzttqq!10,fill=zzttqq!10,fill opacity=0.1] (-2.0,-1.0) -- (1.4,-1.0) -- (3.0999999999999996,0.1333333333333333) -- (-0.30000000000000004,0.1333333333333333) -- cycle;
+\fill[color=zzttqq!20,fill=zzttqq!10,fill opacity=0.1] (1.3999999999999997,1.6000000000000003) -- (3.1,2.7333333333333334) -- (3.0999999999999996,0.1333333333333333) -- (1.4,-1.0) -- cycle;
+\fill[color=zzttqq!10,fill=zzttqq!20,fill opacity=0.1] (-2.0,-1.0) -- (1.4,-1.0) -- (1.3999999999999997,1.6000000000000003) -- (-1.9999999999999998,1.6) -- cycle;
+\fill[color=zzttqq!10,fill=zzttqq!10,fill opacity=0.1] (-1.9999999999999998,1.6) -- (-0.30000000000000004,2.733333333333334) -- (3.1,2.7333333333333334) -- (1.3999999999999997,1.6000000000000003) -- cycle;
+\draw (-2.0,-1.0)-- (4.0,-1.0);
+\draw [dash pattern=on 9pt off 9pt] (7.0,1.0)-- (1.0,1.0);
+\draw [dash pattern=on 9pt off 9pt] (1.0,1.0)-- (-2.0,-1.0);
+\draw (-2.0,-1.0)-- (-2.0,5.0);
+\draw (-2.0,5.0)-- (1.0,7.0);
+\draw (1.0,7.0)-- (6.988847098300219,6.993737520909426);
+\draw (6.988847098300219,6.993737520909426)-- (4.0,5.0);
+\draw (4.0,5.0)-- (-2.0,5.0);
+\draw (4.0,5.0)-- (4.0,-1.0);
+\draw (7.0,1.0)-- (6.988847098300219,6.993737520909426);
+\draw [dash pattern=on 9pt off 9pt] (1.0,7.0)-- (1.0,1.0);
+\draw (-2.0,-1.0)-- (1.4,-1.0);
+\draw (-2.0,5.0)-- (-1.9999999999999998,1.6);
+\draw (1.4,-1.0)-- (1.3999999999999997,1.6000000000000003);
+\draw [color=zzttqq](1.3999999999999997,1.6000000000000003)-- (-1.9999999999999998,1.6);
+\draw [color=zzttqq] (-2.0,-1.0)-- (1.4,-1.0);
+\draw[color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (3.0999999999999996,0.1333333333333333)-- (-0.30000000000000004,0.1333333333333333);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (-0.30000000000000004,0.1333333333333333)-- (-2.0,-1.0);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (3.1,2.7333333333333334)-- (3.0999999999999996,0.1333333333333333);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (3.0999999999999996,0.1333333333333333)-- (1.4,-1.0);
+\draw [color=zzttqq] (1.4,-1.0)-- (1.3999999999999997,1.6000000000000003);
+\draw [color=zzttqq] (-2.0,-1.0)-- (1.4,-1.0);
+\draw [color=zzttqq] (1.4,-1.0)-- (1.3999999999999997,1.6000000000000003);
+\draw [color=zzttqq] (1.3999999999999997,1.6000000000000003)-- (-1.9999999999999998,1.6);
+\draw [color=zzttqq] (-1.9999999999999998,1.6)-- (-2.0,-1.0);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (-1.9999999999999998,1.6)-- (-0.30000000000000004,2.733333333333334);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (-0.30000000000000004,2.733333333333334)-- (3.1,2.7333333333333334);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt] (3.1,2.7333333333333334)-- (1.3999999999999997,1.6000000000000003);
+\draw [color=zzttqq] (1.3999999999999997,1.6000000000000003)-- (-1.9999999999999998,1.6);
+\draw (7.0,1.0)-- (4.0,-1.0);
+\draw [color=zzttqq, dash pattern=on 2pt off 3pt, line width=1.2pt](-0.30000000000000004,2.733333333333334)-- (-0.30000000000000004,0.1333333333333333);
+\begin{scriptsize}
+\draw [fill=qqqqff] (-2.0,-1.0) circle (0.5pt);
+\draw[color=qqqqff] (-2.46,-1.3) node {$A$};
+\draw [fill=qqqqff] (4.0,-1.0) circle (0.5pt);
+\draw[color=qqqqff] (4.5,-1.3) node {$B$};
+\draw [fill=qqqqff] (4.0,5.0) circle (0.5pt);
+\draw[color=qqqqff] (4.5,4.990307410446338) node {$F$};
+\draw [fill=qqqqff] (-2.0,5.0) circle (0.5pt);
+\draw[color=qqqqff] (-2.46,5.5) node {$E$};
+\draw [fill=qqqqff] (1.0,1.0) circle (0.5pt);
+\draw[color=qqqqff] (0.521634110138672,1.1) node {$D$};
+\draw [fill=qqqqff] (7.0,1.0) circle (0.5pt);
+\draw[color=qqqqff] (7.4,0.8) node {$C$};
+\draw [fill=qqqqff] (6.988847098300219,6.993737520909426) circle (0.5pt);
+\draw[color=qqqqff] (7.4,7.3) node {$G$};
+\draw [fill=qqqqff] (1.0,7.0) circle (0.5pt);
+\draw[color=qqqqff] (0.41619042011429896,7.3) node {$H$};
+\draw [fill=yqqqqq] (1.4,-1.0) circle (0.5pt);
+\draw[color=yqqqqq] (1.8,-1.3) node {$M$};
+\draw [fill=yqqqqq] (-1.9999999999999998,1.6) circle (0.5pt);
+\draw[color=yqqqqq] (-2.46,1.9675882964143097) node {$P$};
+\draw [fill=yqqqqq] (3.0999999999999996,0.1333333333333333) circle (0.5pt);
+\draw[color=yqqqqq] (3.4,0.03445397930080321) node {$N$};
+\draw [fill=yqqqqq] (-0.30000000000000004,0.1333333333333333) circle (0.5pt);
+\draw[color=yqqqqq] (-0.7436901701538048,0.42108084272350454) node {$T$};
+\draw [fill=yqqqqq] (1.3999999999999997,1.6000000000000003) circle (0.5pt);
+\draw[color=yqqqqq] (1.8,1.5) node {$Q$};
+\draw [fill=yqqqqq] (-0.30000000000000004,2.733333333333334) circle (0.5pt);
+\draw[color=yqqqqq] (-0.6733943768042228,3.1977646800319954) node {$S$};
+\draw [fill=yqqqqq] (3.1,2.7333333333333334) circle (0.5pt);
+\draw[color=yqqqqq] (3.4,3.0923209900076225) node {$R$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Réaliser une figure en choisissant $AM =4$.
+\item On pose $AM=x$.\\
+Justifier que le volume du pavé s'écrit en fonction de $x$ sous la forme:
+\[V(x)=x^2(6-x).\]
+\end{enumerate}
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Observation à l'aide de la calculatrice}}
+\begin{enumerate}
+\item A l'aide du grapheur ou du tableur, conjecturer le sens de variation de cette fonction, ainsi que l'existence d'un extremum pour le volume $V$.
+\item Rappeler la définition d'un extremum pour une fonction $f$ définie sur une partie $D$ de $\R$.
+\item  Que faudrait-il justifier ici pour obtenir algébriquement l'existence d'un extremum?
+\end{enumerate}
+\vspace{15pt}
+\newpage
+%_______________
+\textcolor{blue}{\textbf{III. Utilisation d'un logiciel de calcul formel}}\\[7pt]
+Le logiciel de calcul formel \textsc{Maxima} permet de calculer des nombres à partir d'expressions algébriques, de simplifier des expressions, mais aussi d'obtenir les différentes formes d'une expression.
+\begin{enumerate}
+\item Exprimer, en fonction de $x$, la différence $V(x)-V(4)$.
+\item Le logiciel \textsc{Maxima} donne plusieurs nouvelles écritures de $V(x)-V(4)$.
+
+\input{Maxima}
+   \noindent
+%%% INPUT:
+\begin{minipage}[t]{8ex}{\color{red}\bf
+\begin{verbatim}
+(%i1) 
+\end{verbatim}}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}{\color{blue}
+\begin{verbatim}
+V(x):=x^2*(6-x);
+\end{verbatim}}
+\end{minipage}
+%%% OUTPUT:
+\begin{math}\displaystyle
+\parbox{8ex}{\color{labelcolor}(\%o1) }
+\mathrm{V}\left( x\right) :={{x}^{2}}\cdot \left( 6-x\right) \mbox{}
+\end{math}
+\noindent
+
+%%% INPUT:
+\begin{minipage}[t]{8ex}{\color{red}\bf
+\begin{verbatim}
+(%i2) 
+\end{verbatim}}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}{\color{blue}
+\begin{verbatim}
+V(x)-V(4);
+\end{verbatim}}
+\end{minipage}
+%%% OUTPUT:
+\begin{math}\displaystyle
+\parbox{8ex}{\color{labelcolor}(\%o2) }
+\left( 6-x\right) \cdot {{x}^{2}}-32\mbox{}
+\end{math}
+\noindent
+
+%%%% INPUT:
+%\begin{minipage}[t]{8ex}{\color{red}\bf
+%\begin{verbatim}
+%-->  
+%\end{verbatim}}
+%\end{minipage}
+%\begin{minipage}[t]{\textwidth}{\color{blue}
+%\begin{verbatim}
+%V(x)-V(4)
+%\end{verbatim}}
+%\end{minipage}
+%\noindent
+
+%%% INPUT:
+\begin{minipage}[t]{8ex}{\color{red}\bf
+\begin{verbatim}
+(%i3) 
+\end{verbatim}}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}{\color{blue}
+\begin{verbatim}
+expand(V(x)-V(4));
+\end{verbatim}}
+\end{minipage}
+%%% OUTPUT:
+\begin{math}\displaystyle
+\parbox{8ex}{\color{labelcolor}(\%o3) }
+-{{x}^{3}}+6\cdot {{x}^{2}}-32\mbox{}
+\end{math}
+\noindent
+
+%%% INPUT:
+\begin{minipage}[t]{8ex}{\color{red}\bf
+\begin{verbatim}
+(%i4) 
+\end{verbatim}}
+\end{minipage}
+\begin{minipage}[t]{\textwidth}{\color{blue}
+\begin{verbatim}
+factor(V(x)-V(4));
+\end{verbatim}}
+\end{minipage}
+%%% OUTPUT:
+\begin{math}\displaystyle
+\parbox{8ex}{\color{labelcolor}(\%o4) }
+-{{\left( x-4\right) }^{2}}\cdot \left( x+2\right) \mbox{}
+\end{math}
+\vspace{10pt}
+\item Vérifier algébriquement les différentes égalités données par le logiciel.
+\item Choisir celle qui parait la plus adaptée pour  conclure.
+\end{enumerate}
+
+\end{document}
+

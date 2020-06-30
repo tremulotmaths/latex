@@ -1,0 +1,110 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2018}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Essais d'encadré}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+
+%utilise le package tcolorbox
+\newtcolorbox{mybox}[2][]{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,enhanced,
+attach boxed title to top left={xshift=2mm,yshift=-2mm},
+title=#2,#1}
+
+\newtcolorbox{module}[2][]{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,enhanced,
+attach boxed title to bottom right={xshift=-5mm,yshift=+2mm},
+title=#2,#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\dots}{\thepage / \pageref{LastPage}}{Année 2017-2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Avec \verb~fbox~}
+
+\fbox{$f(x)=3x+1$}
+
+$g(x)=x^2$\fbox{$f(x)=\dfrac{5}{7} x+1$}$h(x)=1-6x$
+
+\fbox{$\int_{0}^{10}2x^3 \dd x$}
+
+\section*{Avec \verb~ovalbox~}
+
+$\int_{0}^{10}2x^3 \dd x$\ovalbox{$\int_{0}^{10}2x^3 \dd x$}$\int_{0}^{10}2x^3 \dd x$
+
+\section*{Avec \verb~Ovalbox~}
+
+$\int_{0}^{10}2x^3 \dd x$\Ovalbox{$\int_{0}^{10}2x^3 \dd x$}$\int_{0}^{10}2x^3 \dd x$
+
+\section*{Avec \verb~shadowbox~}
+
+\shadowbox{$\int_{0}^{10}2x^3 \dd x$}
+
+\section*{Avec \verb~doublebox~}
+
+\doublebox{$\int_{0}^{10}2x^3 \dd x$}
+
+\section*{Avec TikZ}
+
+$\int_{0}^{10}2x^3 \dd x$
+\begin{tikzpicture}
+    \node [fill=cyan, rounded corners=5pt] {$\int_{0}^{10}2x^3 \dd x$};
+\end{tikzpicture}
+$\int_{0}^{10}2x^3 \dd x$
+
+
+$\int_{0}^{10}2x^3 \dd x$
+\begin{tikzpicture}
+    \node [color=red,below=6pt,rounded corners=5pt] {$\int_{0}^{10}2x^3 \dd x$};
+\end{tikzpicture}
+$\int_{0}^{10}2x^3 \dd x$
+
+
+\section*{Avec \verb~fcolorbox~}
+
+$\int_{0}^{10}2x^3 \dd x$
+\fcolorbox{red}{white}{$\int_{0}^{10}2x^3 \dd x$}
+$\int_{0}^{10}2x^3 \dd x$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

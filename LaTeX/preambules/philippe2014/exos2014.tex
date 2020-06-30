@@ -1,0 +1,44 @@
+%___________________________
+%===    Commandes d'exos 04.12.2014
+%------------------------------------------------------
+\newcounter{exo}
+\newcommand\exo{
+\refstepcounter{exo}
+\Writinghand\ \textbf{Exercice \theexo.}\par
+}
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\textbf{(#1)}}\par
+  \medskip}%
+{\medskip}
+
+\newcommand\TitreExo[2]{%
+\setcounter{exo}{0}
+\begin{center}
+    \begin{tikzpicture}[every shadow/.style={opacity=.6,fill=black!50,shadow xshift=3pt, shadow yshift=-3pt}]
+    \node[draw=black,color=black,fill=white,rounded corners=5pt,inner sep=10pt,drop shadow] at (0,0) {
+    \begin{minipage}{0.5\linewidth}
+        \begin{center}
+            \Large\bfseries
+                \uuline{Fiche d'exercices \no \bsc{#1}}\par
+                #2
+        \end{center}
+    \end{minipage}};
+    \end{tikzpicture}
+\end{center}}
+
+\newcommand\TitreActivite[2]{%
+\setcounter{exo}{0}
+\begin{center}
+    \begin{tikzpicture}[every shadow/.style={opacity=.6,fill=black!50,shadow xshift=3pt, shadow yshift=-3pt}]
+    \node[draw=black,color=black,fill=white,rounded corners=5pt,inner sep=10pt,drop shadow] at (0,0) {
+    \begin{minipage}{0.5\linewidth}
+        \begin{center}
+            \Large\bfseries
+                \uuline{Activité \bsc{#1}}\par
+                #2
+        \end{center}
+    \end{minipage}};
+    \end{tikzpicture}
+\end{center}}

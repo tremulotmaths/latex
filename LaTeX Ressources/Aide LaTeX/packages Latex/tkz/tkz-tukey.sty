@@ -1,0 +1,638 @@
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %    tkz-tukey.sty         encodage : utf8                      %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %           Créé par Alain Matthes le 19-12-2006.               %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Objet :  Création de boîtes à moustaches.
+%% Utilisation
+%% \whbox{25,32,38,44,48}
+%% {min,q1,q2,q3,max} ou {d1,q1,q2,q3,d9} 
+%% Objet :  Création de boîtes à moustaches, de d'histogrammes etc...
+% \tkzBardiagramStar
+% \tkzHistogram
+% \newenvironment{whboxs}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tkz-tukey}[29/01/2008 v2 Elementary Statistic Graphic Tools]
+
+\RequirePackage{tkz-base}
+\FPmessagesfalse%
+\newlength{\whboxht}
+\newlength{\qinf}
+\newlength{\qsup}
+\newlength{\qmin}
+\newlength{\qfirst}
+\newlength{\qmed}
+\newlength{\qlast}
+\newlength{\qmax}
+\newlength{\tukhaut}
+\newlength{\tukbas}
+\newlength{\dy}
+\newlength{\splab}
+\setlength{\splab}{0.1 cm}%
+
+\newboolean{whbtitre}\setboolean{whbtitre}{false} 
+
+\newcounter{nbval}
+\newcounter{tuk@histo@ctp}
+
+\newcommand*{\@aawhblabel}{min}%
+\newcommand*{\@awhblabel}{D1}%
+\newcommand*{\@bwhblabel}{Q1}%
+\newcommand*{\@cwhblabel}{Med}%
+\newcommand*{\@dwhblabel}{Q3}%
+\newcommand*{\@ewhblabel}{D9}%
+\newcommand*{\@eewhblabel}{max}%
+\newcommand*{\setwhblabel}{\@ifstar\setwhblabelStar\setwhblabelNoStar}
+
+\newcommand*{\setwhblabelNoStar}[5]{%
+\renewcommand*{\@awhblabel}{#1}%
+\renewcommand*{\@bwhblabel}{#2}%
+\renewcommand*{\@cwhblabel}{#3}%
+\renewcommand*{\@dwhblabel}{#4}%
+\renewcommand*{\@ewhblabel}{#5}
+}
+
+\newcommand*{\setwhblabelStar}[7]{%
+\renewcommand*{\@aawhblabel}{#1}%
+\renewcommand*{\@awhblabel}{#2}%
+\renewcommand*{\@bwhblabel}{#3}%
+\renewcommand*{\@cwhblabel}{#4}%
+\renewcommand*{\@dwhblabel}{#5}%
+\renewcommand*{\@ewhblabel}{#6}%
+\renewcommand*{\@eewhblabel}{#7}%
+}
+\gdef\@lnofdix{2.302585093}
+%<––––––––––––––––––––––  Commande principale WHBOX –––––––––––––––––––––––––>
+\define@cmdkey [TUK]{whbox} {boxcolor}{}
+\define@cmdkey [TUK]{whbox} {pos}{}
+\define@boolkey[TUK]{whbox} {label}[true]{}
+\define@cmdkey [TUK]{whbox} {style}{}
+\define@cmdkey [TUK]{whbox} {labelsize}{}
+\define@cmdkey [TUK]{whbox} {labelstyle}{}
+\define@cmdkey [TUK]{whbox} {dy}{}
+\define@cmdkey [TUK]{whbox} {lw}{} 
+\define@cmdkey [TUK]{whbox} {ht}{} 
+\presetkeys    [TUK]{whbox} {boxcolor     = white,%
+                             pos          = 0pt,%
+                             label        = false,%
+                             labelsize    = \scriptsize,%
+                             labelstyle   = \textrm,%
+                             dy           = 1,%
+                             lw           = 1pt,%
+                             ht           = 1,
+                             style        = {}}{}%
+%<––––––––––––––––––––––––––––––––––> tkzWhbox  –––––––––––––––––––––––––––––>
+\newcommand*{\tkzWhbox}{\@ifstar\tkzWhboxStar\tkzWhboxNoStar}
+\newcommand*{\tkzWhboxNoStar}[1][]{\tkz@WhboxNoStar[#1]}%
+\newcommand*{\tkzWhboxStar}[1][]{\tkz@WhboxStar[#1]}%  
+%<––––––––––––––––––––––––––––> tkzWhboxNoStar  –––––––––––––––––––––––––––––>
+\def\tkz@WhboxNoStar[#1]#2{%
+\setkeys[TUK]{whbox}{#1}%
+%<––––––––––––––––––––––––––> Récupération des données ––––––––––––––––––––––>
+ \setlength{\dy}{\cmdTUK@whbox@dy cm}%
+ \setcounter{nbval}{0}
+  \@for\liste:=#2\do{%
+   \ifcase\thenbval%
+      \global\let\qminstr\liste%
+      \or%
+      \global\let\qfirststr\liste%
+      \or%
+      \global\let\qmedstr\liste%
+      \or%
+      \global\let\qlaststr\liste%
+      \or%
+      \global\let\qmaxstr\liste%
+      \fi%
+      \stepcounter{nbval}}%fin du do
+%<–––– DÉTERMINATION DES GRADUATIONS ET DES DIMENSIONS DE LA BOÎTE ––––––––––>
+\FPadd{\qminstr}{\qminstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qminstr}{\qminstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmin}{\qminstr cm}%
+\FPadd{\qfirststr}{\qfirststr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qfirststr}{\qfirststr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qfirst}{\qfirststr cm}%
+\FPadd{\qmedstr}{\qmedstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qmedstr}{\qmedstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmed}{\qmedstr cm}%
+\FPadd{\qlaststr}{\qlaststr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qlaststr}{\qlaststr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qlast}{\qlaststr cm}%
+\FPadd{\qmaxstr}{\qmaxstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qmaxstr}{\qmaxstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmax}{\qmaxstr cm}%
+\setlength{\whboxht}{\cmdTUK@whbox@ht cm}% épaisseur de la boite, défaut = 1 cm
+\setlength{\tukbas}{\dy -\whboxht/2}%
+\setlength{\tukhaut}{\dy +\whboxht/2}%
+%<–––––––––––––––––––––––––– TRACÉ DE LA BOÎTE ––––––––––––––––––––––––––––––>
+\draw[|-|,line width=\cmdTUK@whbox@lw] (\qmin,\dy) -- (\qmax,\dy);
+\protected@edef\@tempa{%
+\noexpand\draw [fill=\cmdTUK@whbox@boxcolor,line width=\cmdTUK@whbox@lw,\cmdTUK@whbox@style](\qfirst,\tukbas) rectangle (\qlast,\tukhaut);}\@tempa
+\draw[line width=\cmdTUK@whbox@lw] (\qmed,\tukbas) -- (\qmed,\tukhaut);
+%–––––––––––––––––––––––––– TRACÉ DES LABELS ––––––––––––––––––––––––––––––––>
+\ifthenelse{\boolean{whbtitre}}%
+{\node[left,%
+        text width = \cmdTUK@title@tw,
+        text centered] at (\@xwhbtitre,\@ywhbtitre)  {\@textwhbtitre};
+\setboolean{whbtitre}{false}}{}%
+\ifTUK@whbox@label%
+\node[above=\cmdTUK@whbox@pos] at (\qmin,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@awhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qfirst,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@bwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qmed,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@cwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qlast,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@dwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qmax,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@ewhblabel}}};
+\fi%
+}%fin de la macro whbox
+%<––––––––––––––––––––––––––––––> tkzWhboxStar  –––––––––––––––––––––––––––––>
+\def\tkz@WhboxStar[#1]#2{%
+ \setkeys[TUK]{whbox}{#1}%
+%<––––––––––––––––––––––––––> Récupération des données ––––––––––––––––––––––>
+ \setlength{\dy}{\cmdTUK@whbox@dy cm}%
+ \setcounter{nbval}{0}
+  \@for\liste:=#2\do{%
+   \ifcase\thenbval%
+      \global\let\qinfstr\liste%
+      \or%
+      \global\let\qminstr\liste%
+      \or%
+      \global\let\qfirststr\liste%
+      \or%
+      \global\let\qmedstr\liste%
+      \or%
+      \global\let\qlaststr\liste%
+      \or%
+      \global\let\qmaxstr\liste%
+      \or%
+      \global\let\qsupstr\liste%
+      \fi%
+      \stepcounter{nbval}}%fin du do
+%<–––– DÉTERMINATION DES GRADUATIONS ET DES DIMENSIONS DE LA BOÎTE ––––––––––>
+\FPadd{\qinfstr}{\qinfstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qinfstr}{\qinfstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qinf}{\qinfstr cm}%
+\FPadd{\qsupstr}{\qsupstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qsupstr}{\qsupstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qsup}{\qsupstr cm}%
+\FPadd{\qminstr}{\qminstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qminstr}{\qminstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmin}{\qminstr cm}%
+\FPadd{\qfirststr}{\qfirststr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qfirststr}{\qfirststr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qfirst}{\qfirststr cm}%
+\FPadd{\qmedstr}{\qmedstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qmedstr}{\qmedstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmed}{\qmedstr cm}%
+\FPadd{\qlaststr}{\qlaststr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qlaststr}{\qlaststr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qlast}{\qlaststr cm}%
+\FPadd{\qmaxstr}{\qmaxstr}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\qmaxstr}{\qmaxstr}{\cmdTKZ@tkzInit@xstep}
+\setlength{\qmax}{\qmaxstr cm}%
+\setlength{\whboxht}{\cmdTUK@whbox@ht cm}% épaisseur de la boite, défaut= 1 cm
+\setlength{\tukbas}{\dy -\whboxht/2}%
+\setlength{\tukhaut}{\dy +\whboxht/2}%
+%<–––––––––––––––––––––––––– TRACÉ DE LA BOÎTE ––––––––––––––––––––––––––––––>
+\draw[|-|,line width=\cmdTUK@whbox@lw] (\qmin,\dy) -- (\qmax,\dy);
+\protected@edef\@tempa{%
+\noexpand\draw [fill = \cmdTUK@whbox@boxcolor,%
+                line width = \cmdTUK@whbox@lw,%
+                \cmdTUK@whbox@style]%
+(\qfirst,\tukbas) rectangle (\qlast,\tukhaut);}\@tempa
+\draw[line width=\cmdTUK@whbox@lw] (\qmed,\tukbas) -- (\qmed,\tukhaut);
+\draw  (\qinf,\dy) circle(2.5 pt);
+\draw  (\qsup,\dy) circle(2.5 pt);
+%<––––––––––––––––––––––––– TRACÉ DES LABELS ––––––––––––––––––––––––––––––––>
+\ifthenelse{\boolean{whbtitre}}%
+ {\node[left,text width=\cmdTUK@title@tw,text centered] at (\@xwhbtitre,\@ywhbtitre)  {\@textwhbtitre};
+ \setboolean{whbtitre}{false}}{}%
+\ifTUK@whbox@label%
+\node[above=\cmdTUK@whbox@pos] at (\qinf,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@aawhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qmin,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@awhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qfirst,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@bwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qmed,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@cwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qlast,\splab+\tukhaut)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@dwhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qmax,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@ewhblabel}}};
+\node[above=\cmdTUK@whbox@pos] at (\qsup,\splab+\dy)%
+ {\cmdTUK@whbox@labelstyle{\cmdTUK@whbox@labelsize{\@eewhblabel}}};
+\fi%
+}%fin de la macro whbox*
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––   Début  Histog –––––––––––––––––––––––––––––––>
+\define@cmdkey  [TUK]{htg} {style}{}
+\define@cmdkey  [TUK]{htg} {lw}{}
+\define@cmdkey  [TUK]{htg} {wd}{}
+\define@cmdkey  [TUK]{htg} {color}{}
+\define@cmdkey  [TUK]{htg} {type}{}
+\define@cmdkey  [TUK]{htg} {start}{}
+\define@boolkey [TUK]{htg} {noval}[true]{}
+\define@boolkey [TUK]{htg} {alter}[true]{}
+\presetkeys     [TUK]{htg} {color = gray,%
+                           lw    = 1pt,%
+                           style = {},%
+                           start = {},%
+                           alter = false,%
+                           noval = false,%
+                           wd    = 1,%
+                           type  = n}{}
+
+\newcommand*{\tkzHistogram}{\@ifstar\tkzHistogramStar\tkzHistogramNoStar}
+\newcommand{\tkzHistogramNoStar}[1][]{\tkz@histogramNoStar[#1]}%
+\def\tkz@histogramNoStar[#1]{%
+\@ifnextchar\bgroup
+{\tkz@@histogramNoStar[#1]}
+{\tkz@@histogramNoStar[#1]{}}}
+
+\def\tkz@@histogramNoStar[#1]#2{%
+\setkeys[TUK]{htg}{#1}
+\setcounter{tuk@histo@ctp}{0}
+\ifthenelse{\equal{\cmdTUK@htg@start}{}}{%
+\FPset\tempx{\cmdTKZ@tkzInit@xmin}}{%
+\FPadd{\tempx}{\cmdTUK@htg@start}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\tempx}{\tempx}{\cmdTKZ@tkzInit@xstep}}
+
+\ifthenelse{\equal{\cmdTUK@htg@type}{n}}
+{\foreach \height in {#2}{%
+\let\nextx\thetuk@histo@ctp
+\FPmul{\nextx}{\nextx}{\cmdTUK@htg@wd}
+\FPadd{\nextx}{\nextx}{\tempx}
+\FPdiv{\rayon}{\cmdTUK@htg@wd}{2}
+\FPadd{\nxx}{\nextx}{\rayon}
+\FPadd{\nexty}{\height}{-\cmdTKZ@tkzInit@yorigine}
+\FPdiv{\nexty}{\nexty}{\cmdTKZ@tkzInit@ystep}
+
+\protected@edef\@tempa{%
+\noexpand\draw[fill       = \cmdTUK@htg@color,%
+               line width = \cmdTUK@htg@lw]%
+(\nextx cm,0cm) rectangle (\nextx cm + \cmdTUK@htg@wd cm,\nexty cm);}\@tempa
+\ifTUK@htg@noval%
+  \else% 
+\node[above] at (\nxx,\nexty) {\height};\fi%
+\stepcounter{tuk@histo@ctp}}
+}{% 
+\def\hstk{0}  \def\snh{0}
+\foreach \height in {#2}{%
+\FPadd\snh{\snh}{\height}
+\FPtrunc\snh{\snh}{0}
+\global\let\snh\snh
+\let\nextx\thetuk@histo@ctp
+\FPmul{\nextx}{\nextx}{\cmdTUK@htg@wd}
+\FPadd{\nextx}{\nextx}{\tempx}
+\FPdiv{\rayon}{\cmdTUK@htg@wd}{2}
+\FPadd{\nxx}{\nextx}{\rayon}
+\FPdiv{\nexty}{\height}{\cmdTKZ@tkzInit@ystep}
+\FPadd\hstk{\hstk}{\nexty}
+\global\let\hstk\hstk
+\protected@edef\@tempa{%
+\noexpand\draw[fill = lightgray,line width = \cmdTUK@htg@lw]%
+(\nextx cm,0cm) rectangle (\nextx cm + \cmdTUK@htg@wd cm,\hstk cm);}\@tempa
+\ifTUK@htg@noval%
+  \else% 
+\node[above ] at (\nxx,\hstk) {\snh};\fi%
+\stepcounter{tuk@histo@ctp}}}}%
+
+\newcommand{\tkzHistogramStar}[1][]{\tkz@histogramStar[#1]}%
+\def\tkz@histogramStar[#1]{%
+\@ifnextchar\bgroup{%
+\tkz@@histogramStar[#1]}{%
+\tkz@@histogramStar[#1]{}}}
+
+\def\tkz@@histogramStar[#1]#2#3{%
+\setkeys[TUK]{htg}{#1}
+  \ifthenelse{\equal{\cmdTUK@htg@start}{}}{%
+\FPset\tempx{\cmdTKZ@tkzInit@xmin}}{%
+\FPadd{\tempx}{\cmdTUK@htg@start}{-\cmdTKZ@tkzInit@xorigine}
+\FPdiv{\tempx}{\tempx}{\cmdTKZ@tkzInit@xstep}}
+
+\def\tk@gr{100}
+\foreach \newx/\height in {#2}{%
+ \FPadd{\nextx}{\newx}{-\cmdTKZ@tkzInit@xorigine}
+ \FPdiv{\nextx}{\nextx}{\cmdTKZ@tkzInit@xstep}
+ \FPadd{\nexty}{\height}{-\cmdTKZ@tkzInit@yorigine}
+ \FPdiv{\nexty}{\nexty}{\cmdTKZ@tkzInit@ystep}
+ \FPadd{\larg}{\nextx}{-\tempx}%
+ \FPdiv{\nexty}{\nexty}{\larg}%
+ \FPmul{\nexty}{\nexty}{#3}%
+% 
+\protected@edef\@tempa{%
+\noexpand\draw[fill      = \cmdTUK@htg@color!\tk@gr,%
+              line width = \cmdTUK@htg@lw,%
+              \cmdTUK@htg@style]%
+(\tempx,0) rectangle (\nextx,\nexty);}\@tempa
+\ifTUK@htg@noval%
+  \else% 
+  \FPadd{\tempx}{\nextx}{\tempx}%
+  \FPdiv{\tempx}{\tempx}{2}%
+\node[above] at (\tempx,\nexty) {\height};%
+\fi%
+\global\let\tempx\nextx%
+\ifTUK@htg@alter
+ \ifthenelse{\equal{\tk@gr}{100}}{\def\tk@gr{50}}{\def\tk@gr{100}}%
+ \global\let\tk@gr\tk@gr%
+ \fi%
+}
+}%
+
+%<––––––––––––––––––––––––––––– tkzBardiagram –––––––––––––––––––––––––––>
+\tikzstyle{bardiagramstyle}=[]
+\define@cmdkey  [TUK]{bar} {style}{}
+\define@cmdkey  [TUK]{bar} {wd}{}
+\define@cmdkey  [TUK]{bar} {pos}{}
+\define@cmdkey  [TUK]{bar} {lw}{}
+\define@cmdkey  [TUK]{bar} {sp}{}
+\define@cmdkey  [TUK]{bar} {deltax}{}
+\define@cmdkey  [TUK]{bar} {color}{}
+\define@boolkey [TUK]{bar} {noval}[true]{}
+\define@boolkey [TUK]{bar} {noticksx}[true]{}
+\presetkeys     [TUK]{bar} {color    = gray,%
+                            lw       = 1pt,%
+                            pos      = {anchor =east},%
+                            wd       = 0.3,%
+                            sp       = 1.5,%
+                            deltax   = 0,%
+                            noticksx = false,%
+                            noval    = false,%
+                            style    = {}}{}
+
+\newcommand*{\tkzBardiagram}{\@ifstar\tkzBardiagramStar\tkzBardiagramNoStar} 
+
+\newcommand*{\tkzBardiagramNoStar}[1][]{\tkz@BardiagramNoStar[#1]}%  
+
+\def\tkz@BardiagramNoStar[#1]#2{%
+\setkeys[TUK]{bar}{#1}
+\global\let\bar@sp\cmdTUK@bar@sp
+\foreach \name/\height in {#2}
+  {\FPdiv{\nx}{\bar@sp}{\cmdTKZ@tkzInit@xstep}
+   \FPdiv{\nh}{\height}{\cmdTKZ@tkzInit@ystep}
+\ifTUK@bar@noticksx \else%   
+   \protected@edef\@tempa{%
+   \noexpand \draw (\nx,0) node[\cmdTUK@bar@pos] {\name};}\@tempa
+   \fi%
+  \FPadd{\nx}{\nx}{\cmdTUK@bar@deltax}
+    \begin{scope}[xshift=\nx cm]
+     \protected@edef\@tempa{%
+      \noexpand\draw[fill       = \cmdTUK@bar@color,%
+                    line width  = \cmdTUK@bar@lw,%
+                    \cmdTUK@bar@style,bardiagramstyle]%
+      (-\cmdTUK@bar@wd cm,0cm) rectangle (\cmdTUK@bar@wd cm,\nh cm) ;}\@tempa
+      \end{scope}%
+\ifTUK@bar@noval ; \else 
+     \node[above] at (\nx,\nh) {\height}; \fi
+  \FPadd{\bar@sp}{\bar@sp}{\cmdTUK@bar@sp}
+  \global\let\bar@sp\bar@sp}
+ }% 
+
+\newcommand*{\tkzBardiagramStar}[1][]{\tkz@BardiagramStar[#1]}%  
+
+\def\tkz@BardiagramStar[#1]#2{%
+\setkeys[TUK]{bar}{#1}
+\global\let\bar@sp\cmdTUK@bar@sp
+\foreach \name/\height/\couleur in {#2}
+  {\FPdiv{\nx}{\bar@sp}{\cmdTKZ@tkzInit@xstep}
+   \FPdiv{\nh}{\height}{\cmdTKZ@tkzInit@ystep}
+  \ifTUK@bar@noticksx \else%  
+   \protected@edef\@tempa{%
+   \noexpand \draw (\nx,0) node[\cmdTUK@bar@pos] {\name};}\@tempa
+   \fi%
+  \FPadd{\nx}{\nx}{\cmdTUK@bar@deltax}
+    \begin{scope}[xshift=\nx cm]
+     \protected@edef\@tempa{%
+      \noexpand\draw[fill       = \couleur,%
+                     line width = \cmdTUK@bar@lw,
+                      \cmdTUK@bar@style]%
+      (-\cmdTUK@bar@wd cm,0cm) rectangle (\cmdTUK@bar@wd cm,\nh cm) ;}\@tempa
+      \end{scope}% 
+\ifTUK@bar@noval ; \else 
+     \node[above ] at (\nx,\nh) {\height}; \fi
+  \FPadd{\bar@sp}{\bar@sp}{\cmdTUK@bar@sp}
+  \global\let\bar@sp\bar@sp}
+ }%
+%<--------------------------------------------------------------------------->
+%                        mark
+%<--------------------------------------------------------------------------->
+\define@cmdkey [TKZ]{tkzmark} {mark}{}
+\define@cmdkey [TKZ]{tkzmark} {size}{}
+\define@cmdkey [TKZ]{tkzmark} {color}{}
+\presetkeys    [TKZ]{tkzmark} {mark  = x,%
+                               size  = .5ex,%
+                               color = black}{}
+
+\newcommand*{\tkzMark}[1][]{\tkz@mark[#1]}%
+\def\tkz@mark[#1](#2,#3)#4{%
+\setkeys[TKZ]{tkzmark}{#1}%
+\begingroup%  
+\FPadd{\tkz@xa}{#2}{-\cmdTKZ@tkzInit@xorigine}
+\FPadd{\tkz@ya}{#3}{-\cmdTKZ@tkzInit@yorigine}
+\FPdiv{\tkz@xa}{\tkz@xa}{\cmdTKZ@tkzInit@xstep}
+\FPdiv{\tkz@ya}{\tkz@ya}{\cmdTKZ@tkzInit@ystep}
+\FPtrunc\tkz@xa{\tkz@xa}{3}%
+\FPtrunc\tkz@ya{\tkz@ya}{3}%
+\protected@edef\tkz@temp{%
+\noexpand%
+\draw plot[mark size        = \cmdTKZ@tkzmark@size,%
+           mark             = \cmdTKZ@tkzmark@mark,%
+           mark options     = {color=\cmdTKZ@tkzmark@color}]%
+}\tkz@temp coordinates {(\tkz@xa cm,\tkz@ya cm)};
+\path[coordinate] (\tkz@xa cm,\tkz@ya cm) coordinate (#4);
+\endgroup%
+}
+
+%<--------------------------------------------------------------------------->
+%                   Début  Diagram
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzDiagram}[1][]{\tkz@Diagram[#1]}%
+\def\tkz@Diagram[#1]#2{% 
+ \setkeys[TKZ]{tkzmark}{#1}
+ \begingroup%
+ \setcounter{tkz@cnt}{1}
+ \foreach \x/\y in {#2}{%
+    \tkzMark[#1](\x,\y){tkzMark\thetkz@cnt}%
+    \stepcounter{tkz@cnt}%
+    }%
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+%                   Semi Log
+%<--------------------------------------------------------------------------->
+\define@cmdkey [TKZ]{tkzSL} {color}{}
+\define@cmdkey [TKZ]{tkzSL} {subcolor}{}
+\define@boolkey[TKZ]{tkzSL} {nosub}[true]{}
+\define@cmdkey [TKZ]{tkzSL} {subxstep}{}
+\define@cmdkey [TKZ]{tkzSL} {subystep}{}
+\define@cmdkey [TKZ]{tkzSL} {lw}{} 
+\define@cmdkey [TKZ]{tkzSL} {sublw}{} 
+\presetkeys    [TKZ]{tkzSL} {nosub    = false,%
+                             color    = gray,% 
+                             subcolor = gray,% 
+                             lw       = .6 pt,%
+                             sublw    = .4 pt}{}%
+\newcommand{\tkzYL}[1][]{\tkz@YL[#1]}%
+\def\tkz@YL[#1](#2,#3){% 
+\setkeys[TKZ]{tkzSL}{#1}
+\begingroup%
+\tkzY[noticks]
+\setcounter{tkz@cnt}{#3}
+\addtocounter{tkz@cnt}{-1}
+\gdef\@minlogy{#2}
+\foreach \y in {#2,...,\thetkz@cnt}{%
+  \pgfmathadd{\y}{-#2}
+     \let\ny\pgfmathresult
+  \pgfmathdivide{\ny}{\cmdTKZ@tkzInit@ystep}
+     \let\ny\pgfmathresult
+  \draw[shift={(0,\ny)}] node[left] {$10^{\y}$};
+  \draw[line width = \cmdTKZ@tkzSL@lw,%
+        \cmdTKZ@tkzSL@color,%
+        shift = {(0,\ny+1/\cmdTKZ@tkzInit@ystep)}]%
+       (\tkz@xa,0)--(\tkz@xb,0);
+  \ifTKZ@tkzSL@nosub%
+  \else%
+  \foreach \z in {0.301,0.477,0.602,0.699,0.778,0.845,0.903,0.954}{%
+     \pgfmathdivide{\z}{\cmdTKZ@tkzInit@ystep}
+     \let\nz\pgfmathresult
+     \draw[line width = \cmdTKZ@tkzSL@sublw,%
+           \cmdTKZ@tkzSL@subcolor,%
+           shift = {(0,\ny)}] (\tkz@xa,\nz)--(\tkz@xb,\nz);%
+      }%
+  \fi%
+  }
+  \pgfmathadd{#3}{-#2}
+     \let\ny\pgfmathresult
+  \pgfmathdivide{\ny}{\cmdTKZ@tkzInit@ystep}
+     \let\ny\pgfmathresult
+  \draw[shift={(0,\ny)}] node[left] {$10^{#3}$};
+  \pgfmathadd{\cmdTKZ@tkzInit@xstep}{\cmdTKZ@tkzInit@xstep}
+     \let\@intermed\pgfmathresult
+\tkzVLine{\cmdTKZ@tkzInit@xstep,\@intermed,...,\cmdTKZ@tkzInit@xmax}
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzXYL}[1][]{\tkz@XYL[#1]}%
+\def\tkz@XYL[#1](#2,#3)(#4,#5){% 
+% \setkeys[TKZ]{YL}{#1}
+\begingroup%
+\tkzX[noticks]
+\setcounter{tkz@cnt}{#3}
+\addtocounter{tkz@cnt}{-1}
+\gdef\@minlogx{#2}
+\foreach \x in {#2,...,\thetkz@cnt}{%
+  \pgfmathadd{\x}{-#2}
+     \let\nx\pgfmathresult
+  \pgfmathdivide{\nx}{\cmdTKZ@tkzInit@xstep}
+     \let\nx\pgfmathresult
+  \draw[shift={(\nx,0)}] node[below] {$10^{\x}$};
+  \draw[line width=.8pt,darkgray,shift={(\nx+1/\cmdTKZ@tkzInit@xstep,0)}]%
+       (0,\tkz@ya)--(0,\tkz@yb);
+  \foreach \z in {0.301,0.477,0.602,0.699,0.778,0.845,0.903,0.954}{%
+  \pgfmathdivide{\z}{\cmdTKZ@tkzInit@xstep}
+     \let\nz\pgfmathresult
+    \draw[thin,bistre,shift={(\nx,0)}] (\nz,\tkz@ya)--(\nz,\tkz@yb);}%
+}
+  \pgfmathadd{#3}{-#2}
+     \let\nx\pgfmathresult
+  \pgfmathdivide{\nx}{\cmdTKZ@tkzInit@xstep}
+     \let\nx\pgfmathresult
+  \draw[shift={(\nx,0)}] node[below] {$10^{#3}$};
+
+\tkzY[noticks]
+\setcounter{tkz@cnt}{#5}
+\addtocounter{tkz@cnt}{-1}
+\gdef\@minlogy{#4}
+\foreach \y in {#4,...,\thetkz@cnt}{%
+  \pgfmathadd{\y}{-#4}
+     \let\ny\pgfmathresult
+  \pgfmathdivide{\ny}{\cmdTKZ@tkzInit@ystep}
+     \let\ny\pgfmathresult
+  \draw[shift={(0,\ny)}] node[left] {$10^{\y}$};
+  \draw[line width=.8pt,darkgray,shift={(0,\ny+1/\cmdTKZ@tkzInit@ystep)}]%
+       (\tkz@xa,0)--(\tkz@xb,0);
+  \foreach \z in {0.301,0.477,0.602,0.699,0.778,0.845,0.903,0.954}{%
+  \pgfmathdivide{\z}{\cmdTKZ@tkzInit@ystep}
+     \let\nz\pgfmathresult
+     \draw[thin,bistre,shift={(0,\ny)}] (\tkz@xa,\nz)--(\tkz@xb,\nz);}%
+}
+  \pgfmathadd{#5}{-#4}
+     \let\ny\pgfmathresult
+  \pgfmathdivide{\ny}{\cmdTKZ@tkzInit@ystep}
+     \let\ny\pgfmathresult
+  \draw[shift={(0,\ny)}] node[left] {$10^{#5}$};
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzPointNL}[1][]{\tkz@PointNL[#1]}%
+\def\tkz@PointNL[#1](#2,#3)#4{% 
+\begingroup%
+\FPln{\@lnofarg}{#3}
+\FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+\FPadd{\ny}{\@logfoarg}{-\@minlogy}
+\tkzPoint[#1](#2,\ny){#4}%
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzPointLL}[1][]{\tkz@PointLL[#1]}%
+\def\tkz@PointLL[#1](#2,#3)#4{% 
+\begingroup%
+\FPln{\@lnofarg}{#3}
+\FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+\FPadd{\ny}{\@logfoarg}{-\@minlogy}
+\FPln{\@lnofarg}{#2}
+\FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+\FPadd{\nx}{\@logfoarg}{-\@minlogx}
+\tkzPoint[#1](\nx,\ny){#4}%
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+%                   Début  Diagram YL
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzDiagramYL}[1][]{\tkz@DiagramYL[#1]}%
+\def\tkz@DiagramYL[#1]#2{% 
+ \setkeys[TKZ]{tkzmark}{#1}
+ \begingroup%
+ \setcounter{tkz@cnt}{1}
+ \foreach \x/\y in {#2}{%
+    \FPln{\@lnofarg}{\y}
+    \FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+    \FPadd{\ny}{\@logfoarg}{-\@minlogy}
+    \tkzMark[#1](\x,\ny){tkzMark\thetkz@cnt}%
+    \stepcounter{tkz@cnt}%
+    }%
+\endgroup%
+}
+%<--------------------------------------------------------------------------->
+%                   Début  Diagram XYL
+%<--------------------------------------------------------------------------->
+\newcommand{\tkzDiagramXYL}[1][]{\tkz@DiagramXYL[#1]}%
+\def\tkz@DiagramXYL[#1]#2{% 
+ \setkeys[TKZ]{tkzmark}{#1}
+ \begingroup%
+ \setcounter{tkz@cnt}{1}
+ \foreach \x/\y in {#2}{%
+   \FPln{\@lnofarg}{\y}
+   \FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+   \FPadd{\ny}{\@logfoarg}{-\@minlogy}
+   \FPln{\@lnofarg}{\x}
+   \FPdiv{\@logfoarg}{\@lnofarg}{\@lnofdix}
+   \FPadd{\nx}{\@logfoarg}{-\@minlogx}
+    \tkzMark[#1](\nx,\ny){tkzMark\thetkz@cnt}%
+    \stepcounter{tkz@cnt}%
+    }%
+\endgroup%
+}
+
+\endinput
+%\draw[shift={(0,#3 /\cmdTKZ@tkzInit@ystep)}] node[left] {$10^{#3}$};
+% \draw[thin,darkgray,shift={(0,#3 / \cmdTKZ@tkzInit@ystep)}] (\tkz@xa,#3)--(\tkz@xb,#3);
+

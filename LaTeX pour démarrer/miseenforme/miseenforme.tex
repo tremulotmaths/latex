@@ -1,0 +1,503 @@
+\chapter{Mise en forme}
+
+\section{Mise en forme de base}
+
+\subsection{Un premier exemple}
+
+Recopier et compiler le \jargon{code source} suivant :
+
+%\VerbatimInput[label={[Quelques mises en forme]\NumCode},gobble=0]{exemples/mise_en_forme.tex}
+\VerbatimInput[label={[Quelques mises en forme]},gobble=0]{exemples/mise_en_forme.tex}
+
+\begin{enumerate}
+    \item Nommer cinq différentes mises en forme utilisées dans ce document.
+    \item Quelle(s) commandes permettent d'obtenir ces mises en forme ?
+    \item Quelle(s) différence(s) y a-t-il entre les deux commandes qui permettent de mettre du texte en gras ?
+\end{enumerate}
+
+
+\subsection{Police et fontes}
+
+Une \jargon{police} se déclinent en trois caractéristiques : famille, formes et graisses qui constituent alors un ensemble de \jargon{fontes} de cette police. Le tableau ci-dessous résume les commandes permettant d'utiliser une de ces fontes.
+
+\begin{info}
+	Le caractère $\sqcup$ indique qu'il faut laisser un espace dans le \jargon{code source}.
+\end{info}
+
+\begin{center}
+    \begin{tabular}{|>\bfseries cl|c|c|l|}
+    \cline{3-5}
+        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Portée} & \multicolumn{1}{c|}{Signification} \\
+        \multicolumn{2}{c|}{} & locale & semi-globale & \multicolumn{1}{c|}{des radicaux} \\
+    \hline
+        \multirow{3}*{Familles} & romain (par défaut) & \verb!\textrm!\{<texte>\} & \verb*!\rmfamily !<texte> & \verb!rm! = roman\\
+    \cline{2-5}
+        & {\sffamily sans empattement} & \verb!\textsf!\{<texte>\} & \verb*!\sffamily !<texte> & \verb!sf! = sans serif \\
+    \cline{2-5}
+        & {\ttfamily à chasse fixe} & \verb!\texttt!\{<texte>\} & \verb*!\ttfamily !<texte> & \verb!tt! = teletype \\
+    \hline\hline
+        \multirow{4}*{Formes} & droit (par défaut) & \verb!\textup!\{<texte>\} & \verb*!\upshape !<texte> & \verb!up! = upright (droit)\\
+      \cline{2-5}
+        & \textsl{incliné} & \verb!\textsl!\{<texte>\} & \verb*!\slshape !<texte> & \verb!sl! = slanted (penché) \\
+      \cline{2-5}
+        & \textit{italique} & \verb!\textit!\{<texte>\} & \verb*!\itshape !<texte> & \verb!it! = italique \\
+      \cline{2-5}
+        & \textsc{petites capitales} & \verb!\textsc!\{<texte>\} & \verb*!\scshape !<texte> & \verb!sc! = small caps \\
+    \hline\hline
+        \multirow{2}*{Graisses} & médium (par défaut) & \verb!\textmd!\{<texte>\} & \verb*!\mdseries !<texte> & \verb!ms! = medium\\
+      \cline{2-5}
+        & \textbf{gras} & \verb!\textbf!\{<texte>\} & \verb*!\bfseries !<texte> & \verb!bf! = bold face (gras) \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\begin{info}
+    Plusieurs commandes peuvent être utilisées conjointement. 
+    
+    Par exemple pour obtenir du texte en \textit{\textbf{gras, italique et sans empattement}}, on écrira :\par
+
+    \texttt{\textbackslash textsf
+    \hspace*{-6pt}\{\hspace*{-6pt}
+    \textbackslash textbf
+    \hspace*{-6pt}\{\hspace*{-6pt}
+    \textbackslash textit
+    \hspace*{-6pt}\{\hspace*{-6pt}
+    <texte>
+    \hspace*{-6pt}\}\}\}
+    }
+
+    L'ordre des commandes n'a pas d'importance mais il faut faire attention à avoir le bon nombre de paires d'accolades.
+\end{info}
+
+\subsection{Changement de la taille des fontes}
+
+La taille des fontes peut être fixée de manière absolue dans le préambule, en option à \textbackslash\verb!documentclass!. Les options disponibles sont \verb!10pt! (valeur par défaut si rien n'est indiqué), \verb!11pt! et \verb!12pt!.\par
+Une fois définie cette taille absolue, on peut agrandir et réduire la taille d'une partie du document en utilisant des \jargon{commandes semi-globales} qui modifient alors le texte de façon relative. Le changement dépendra en effet de la taille absolue. Ces commandes sont les suivantes :
+\begin{center}
+	\begin{tabular}{ll}
+		\hline
+		Commande & Signification et test \\
+		\hline
+			\verb*!\tiny <texte>! & {\tiny minuscule}\\
+			\verb*!\scriptsize <texte>! & {\scriptsize taille des indices et exposants}\\
+			\verb*!\footnotesize <texte>! & {\footnotesize Taille des notes de bas de pages}\\
+			\verb*!\small <texte>! & {\small petit}\\
+			\verb*!\normalsize <texte>! & taille définie par l'option absolue\\
+			\verb*!\large <texte>! & {\large grand}\\
+			\verb*!\Large <texte>! & {\Large plus grand}\\
+			\verb*!\LARGE <texte>! & {\LARGE encore plus grand}\\
+			\verb*!\huge <texte>! & {\huge énorme}\\
+			\verb*!\Huge <texte>! & {\Huge encore plus énorme}\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{info}
+	Les majuscules dans le nom des commandes sont importantes.\par
+	De plus, il s'agit de commandes \jargon{semi-globales} donc il faut penser à mettre des accolades englobantes si on veut modifier la taille d'une partie du texte seulement.
+\end{info}
+
+
+\subsection{Alignement}
+
+Par défaut, le texte est \jargon{justifié}. Cela signifie que \LaTeX{} gère les espaces entre les mots pour que le texte soit aligné à gauche \textbf{et} à droite.\par
+Cependant, on peut parfois avoir besoin de centrer le texte, ou bien de demander uniquement un alignement à gauche ou uniquement un alignement à droite. Pour cela, on utilise respectivement les \jargon{environnements} \ordi{center}, \ordi{flushleft}, \ordi{flushright}.\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{center}
+    Du texte au centre.
+    \end{center}
+    \begin{flushleft}
+    Alignement sur la gauche.
+    \end{flushleft}
+    \begin{flushright}
+    Alignement sur la droite.
+    \end{flushright}
+\end{SideBySideExample}
+}
+
+\begin{info}
+    \textbackslash \verb!centering! est la commande semi-globale associé à l'environnement \ordi{center}. \textbackslash \verb!raggedleft! est associé à \ordi{flushright} et \textbackslash \verb!raggedright! est associée à \ordi{flushleft}.
+\end{info}
+
+\subsection{Espaces}
+
+\begin{info}
+    Les espaces écrits dans le \jargon{code source} ne sont pas identiquement restitués dans le document final après compilation.\par
+    Pour cela, on parlera d'\textbf{un} espace dans le \jargon{fichier source} et d'\textbf{une} espace dans le document final.
+\end{info}
+
+\subsubsection{Espaces horizontales}
+
+Nous l'avons vu précédemment, pour obtenir une espace entre deux mots, il suffit de saisir un espace dans le \jargon{code source} à l'aide de la barre d'espace du clavier. Cependant, saisir plusieurs espaces ne changera rien et lors de la compilation, ils seront interprétés comme un seul et même espace. De même pour un changement de ligne (sans ligne vide !) :\medskip
+
+{
+\begin{SideBySideExample}[showspaces=true]
+    Du texte
+        sur une
+    seule          ligne.
+\end{SideBySideExample}
+}
+
+\begin{info}
+    Le symbole \ordi{\~{}} permet d'obtenir une \jargon{espace insécable}. En fin de ligne notamment, il faudra donc écrire \ordi{Louis\~{}XIV} si on veut éviter que \ordi{Louis} soit inscrit en bout de ligne et \ordi{XIV} au début de la ligne suivante.
+\end{info}
+
+Parfois, on peut avoir besoin d'une espace horizontale ayant une longueur bien précise. Cela est possible à l'aide de la commande \verb!\hspace!\{<longueur>\}. L'argument <longueur> est spécifié à l'aide d'un nombre suivi de son unité (sans espace entre les deux). L'unité peut être \ordi{cm}, \ordi{mm} ou bien encore \ordi{pt} mais bien d'autres aussi.\par
+De plus, la commande \verb!\hfill! est un espace élastique. Voilà une façon de se servir de ces deux commandes :\bigskip
+
+{
+\begin{SideBySideExample}
+    Les consignes sont vraiment importantes.\par
+    Les consignes sont \hspace{1.4cm} vitales !\par
+    Inutile \hspace{-1.3cm} xxxxxxx\par
+    \textbf{Exercice 1} \hfill \textit{(2 points)}
+\end{SideBySideExample}
+\bigskip
+}
+
+\subsubsection{Espaces verticales}
+
+Nous l'avons vu précédemment, pour changer de paragraphe, il suffit de saisir laisser une ligne vide dans le \jargon{code source}. La commande \verb!\par! assure la même fonction. Cependant, plusieurs lignes vides seront toujours interprétées comme un seul changement de paragraphe, de même que la succession de plusieurs commandes \verb!\par!.\par
+Comment faire alors apparaître dans le document final des espaces entre deux paragraphes ?\par
+La commande \verb!\vspace!\{<longueur>\} est une solution et cela fonctionne comme pour les espaces horizontales. Cependant, les commandes \verb!\smallskip!, \verb!\medskip! et \verb!\bigskip! sont simples et rapides à utiliser.\bigskip
+
+{
+\begin{SideBySideExample}
+    Consigne importante.
+
+    Espace standard.\smallskip
+
+
+
+    Petite espace.\medskip
+
+    Espace moyenne.\bigskip
+
+    Grande espace.\par\vspace{2em}
+    Espace personnelle.
+\end{SideBySideExample}
+\bigskip
+}
+
+Pour la commande \verb!\hspace{<longueur>}!, la longueur est un nombre avec une unité accolée, parmi :
+
+$\star$ mm (millimètre) ;
+
+$\star$ cm (centimètre) ;
+
+$\star$ pt (point anglo-saxon) ;
+
+$\star$ dd (point Didot) ;
+
+$\star$ ex (hauteur d'x) ;
+
+$\star$ em (cadratin).
+
+Les unités ex et em sont proportionnelles au corps de la police :
+
+$\star$ la hauteur d'x, parfois appelée à tort « hauteur d'œil », est la hauteur d'un bas de casse (lettre minuscule) sans hampe ni jambage, comme le x ;
+
+$\star$ le cadratin est égal au corps de la police.
+
+Par exemple :
+
+$\star$ \verb!\hspace{1cm}! pour une espace de un centimètre ;
+
+$\star$ \verb!\hspace{0.5em}! pour une espace d'un demi cadratin. 
+
+
+\begin{info}
+La commande \textbackslash \verb!vfill! permet de créer une espace verticale élastique. Essayer de compiler l'exemple ci-dessous.
+\end{info}
+
+\begin{Verbatim}
+    Le devoir est sur 20 points.\par\vfill
+    Tourner la page.
+\end{Verbatim}
+
+\section{Couleur}
+
+\begin{info}
+    Difficile de parler de couleurs sur des photocopies noir et blanc donc pensez à taper et compiler les exemples proposés.
+\end{info}
+
+
+
+Afin de colorer un document, on utilise le \jargon{package} \verb!xcolor!, chargé dans le préambule à l'aide de la commande \verb!\usepackage{xcolor}!. \verb!xcolor! permet d'accéder aux couleurs suivantes :
+\begin{center}
+    \ttfamily
+    \begin{tabular}{*{7}{l}}
+        red & magenta & gray & white & violet & olive & \\
+        blue & cyan  & lightgray & black & purple & teal & brown \\
+        green & yellow & darkgray & orange & pink & lime &
+    \end{tabular}
+\end{center}
+
+Là encore, il existe une commande locale et une commande semi-globale dont voilà un exemple :\medskip
+
+{
+\begin{SideBySideExample}
+    \color{blue}
+    Les consignes suivantes sont
+    \textcolor{red}{importantes.}\par
+    Lisez-les avec \textit{attention}.\par
+    Sinon, gare
+    \textcolor{purple}{\textbf{\textsc{\`a vous}}} !
+\end{SideBySideExample}
+}
+
+\begin{info}
+    Le \jargon{package} \verb!xcolor! possède différentes options qui permettent d'accéder à bien d'autres couleurs. C'est le cas de l'option \verb!dvipsnames! qui donne accès à 68 couleurs en plus de celles de base. On écrira alors : \textbackslash\verb!usepackage!\texttt{[dvipsnames]\{xcolor\}} dans le préambule.\par
+    La documentation du \jargon{package} permet d'en savoir davantage. Il suffit de taper sur un moteur de recherche \texttt{LaTeX xcolor doc} pour obtenir ce que l'on cherche.
+\end{info}
+
+Voilà un autre exemple qui montre comment faire des encadrements colorés.\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{center}
+        \colorbox{yellow}{\textbf{Chapitre 1 :}}\par
+        \textit{L'art de faire des encadrements}
+    \end{center}
+    \fcolorbox{red}{lightgray}{\textbf{I. Partie 1}}
+\end{SideBySideExample}
+\bigskip}
+
+Pour finir sur ce thème, voici la commande \textbackslash \verb!pagecolor{<couleur>}! qui permet de colorer le fond d'une page. Très utile pour créer un document destiné à être vidéoprojeté. En effet, le fond blanc d'un document projeté peut être fatigant pour les yeux des lecteurs. Allez-y : essayez !
+
+\section{Mise en page}
+
+\subsection{Dimensions de la page}
+
+Par défaut, les dimensions de la page sont réglées en fonction de la \jargon{classe} du document.\par
+Le \jargon{package} \verb!geometry! est utilisé pour régler la géométrie de la page indépendamment du choix de la \jargon{classe} : dimensions du papier, orientation (portrait, paysage), dimensions des marges, particularités d'un document recto-verso, dimensions des en-têtes et pieds-de-pages...
+
+Pour cela, on peut charger le \jargon{package} avec toute une liste d'options séparées par une virgule :\par\medskip
+\textbackslash\verb!usepackage[a4paper,margin=2cm]{geometry}!.\medskip
+
+Il est également possible de charger le \jargon{package} tout seul puis d'utiliser la commande \verb!\geometry! qui prend en argument la même liste d'options. Ainsi, on peut également écrire :\par\medskip
+\textbackslash\verb!usepackage{a4paper,geometry}!\par
+\textbackslash\verb!geometry{margin=2cm}!\medskip
+
+La documentation du \jargon{package} \verb!geometry! liste l'ensemble des options disponibles dont voici les plus courantes (<dim> est un nombre avec une unité de longueur) :
+\begin{itemize}
+    \item \verb!landscape! : orientation paysage ;
+    \item \verb!twoside! : document recto-verso ;
+    \item \verb!width=!<dim> et \verb!height=!<dim> : largeur et hauteur de la page. On peut aussi utiliser \verb!a4paper! ou \verb!a5paper! (formats disponibles de A0 jusqu'à A6) ;
+    \item \verb!textwidth=!<dim> et \verb!textheight=!<dim> : largeur et hauteur attribuée au texte ;
+    \item \verb!lmargin=!<dim> et \verb!rmargin=!<dim> : respectivement marges intérieures (ou gauche) et extérieures (ou droite) ;
+    \item \verb!tmargin=!<dim> et \verb!bmargin=!<dim> : respectivement marges de tête (t comme top) et de pied (b comme bottom) ;
+    \item \verb!margin=!<dim> : fixe les quatre marges précédentes avec la même longueur.
+\end{itemize}
+
+\subsection{Multicolonnes}
+
+Pour écrire une partie d'un document sur deux ou plusieurs colonnes, on a recourt au \jargon{package} \verb!multicol! qui nous permet alors d'accéder à l'\jargon{environnement} \ordi{multicols}.
+
+\begin{info}
+    Attention, le nom du \jargon{package} ne prend pas de S final alors que le nom de l'environnement en prend un.
+\end{info}
+
+Voilà deux exemples d'utilisation :\bigskip
+
+\begin{minipage}{0.4\linewidth}
+\VerbatimInput[label={[Multicolonnes]},gobble=0]{exemples/mise_en_forme1.tex}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\linewidth}
+donne :
+
+
+    \setlength{\columnseprule}{0.4pt}
+    \begin{multicols}{2}\raggedcolumns
+        Les policiers semblent avoir mis la main
+        sur les suspects qui ne courraient
+        visiblement pas assez vite.
+    \end{multicols}
+
+\end{minipage}
+
+\bigskip
+
+\begin{minipage}{0.45\linewidth}
+\VerbatimInput[label={[Multicolonnes]},gobble=0]{exemples/mise_en_forme2.tex}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+donne :
+
+    \setlength{\columnseprule}{0.4pt}
+    \begin{multicols}{3}[\textbf{Formation}]\raggedcolumns
+        Ce stage \LaTeX{} est incroyable.
+        Le prochain a lieu quel jour ? Ce
+        document est super !
+    \end{multicols}
+\end{minipage}
+
+\medskip
+
+\begin{info}
+    Pour changer de colonne à un point précis, on peut utiliser la commande \textbackslash\verb!columnbreak!.
+\end{info}
+
+\medskip
+
+\textbf{Remarque :}
+
+Pour supprimer la barre verticale de séparation, il suffit de régler sa largeur à 0 mm.
+
+\VerbatimInput[label={[Multicolonnes]},gobble=0]{exemples/mise_en_forme3.tex}
+
+donne :
+
+\setlength{\columnseprule}{0mm}
+\begin{multicols}{3}\raggedcolumns
+Ce stage \LaTeX{} est incroyable.
+
+\columnbreak
+
+Le prochain a lieu quel jour ?
+
+\columnbreak
+
+Ce document est super !
+\end{multicols}
+
+
+\begin{info}
+La commande \textbackslash\verb!raggedcolumns! sert à avoir un texte aligné en haut de colonne dans chaque colonne.
+\end{info}
+
+\section{Structurer un document}
+\subsection{Listes structurées}
+
+\LaTeX{} gère par défaut trois types de listes :
+\begin{itemize}[label=$-$]
+    \item les listes d'énumération avec une liste d'\jargon{item} comme celle que vous être en train de lire ;
+    \item les listes numérotées dont chaque élément est numéroté ;
+    \item les listes de description dont chaque élément est introduit par l'objet que l'on souhaite décrire.
+\end{itemize}
+
+Voilà ce que donne la liste précédente avec les deux autres types de listes :
+
+\begin{enumerate}[font=\mdseries,label=\arabic*.]
+    \item les listes d'énumération avec une liste d'\jargon{item} ;
+    \item les listes numérotées dont chaque élément est numéroté comme celle que vous être en train de lire ;
+    \item les listes de description dont chaque élément est introduit par l'objet que l'on souhaite décrire.
+\end{enumerate}
+
+\begin{description}
+    \item[les listes d'énumération] avec une liste d'\jargon{item} ;
+    \item[les listes numérotées] dont chaque élément est numéroté ;
+    \item[les listes de description] dont chaque élément est introduit par l'objet que l'on souhaite décrire comme celle que vous être en train de lire.
+\end{description}
+
+Toutes ces listes peuvent s'imbriquer les unes dans les autres en mélangeant ou non les différents types. On utilisera avantageusement les tabulations pour une présentation claire du \jargon{code source}.\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{itemize}
+        \item du pain ;
+        \item du beurre ;
+        \item de la confiture.
+    \end{itemize}
+\end{SideBySideExample}
+\bigskip}
+
+{
+\begin{SideBySideExample}
+    \begin{enumerate}
+        \item Qu'est ce qu'un polygone ?
+        \item Qu'est ce qu'un parall\'elogramme ?
+            \begin{enumerate}
+                \item Qu'est ce qu'un rectangle ?
+                \item Qu'est ce qu'un losange ?
+            \end{enumerate}
+    \end{enumerate}
+\end{SideBySideExample}
+\bigskip}
+
+{
+\begin{SideBySideExample}
+    \begin{description}
+        \item[Rectangle :] voici un long texte dans
+            lequel on parle du rectangle.
+        \item[Losange :] voici un long texte dans lequel
+            on parle du losange.
+    \end{description}
+    On remarque la mise en page automatique
+    de ce type de liste au niveau des espaces.
+\end{SideBySideExample}
+\bigskip}
+
+\begin{info}
+    Le \jargon{package} \verb!enumitem! permet de personnaliser la présentation des ces différents types de listes mais également de créer de nouvelles listes.\par
+    De plus, il permet de reprendre la numérotation d'une liste \ordi{enumerate} qui a été interrompue. La lecture de la documentation de ce \jargon{package} est vivement conseillée.
+\end{info}
+
+\subsection{Sectionnement}
+
+Les commandes de \jargon{sectionnement} permettent d'établir le plan du document. Les commandes les plus fréquemment utilisées sont :\medskip
+
+\begin{obeylines}
+    \texttt{\textbackslash part}[<titre court>]\{<Titre>\}
+    \texttt{\textbackslash chapter}[<titre court>]\{<Titre>\}
+    \texttt{\textbackslash section}[<titre court>]\{<Titre>\}
+    \texttt{\textbackslash subsection}[<titre court>]\{<Titre>\}
+    \texttt{\textbackslash subsubsection}[<titre court>]\{<Titre>\}
+\end{obeylines}
+
+\begin{info}
+    La commande \texttt{\textbackslash chapter} n'existe pas dans la classe \texttt{article}.\par
+    Le <titre court> est optionnel et permet d'afficher un titre différent dans la table des matières ou dans les en-têtes.
+\end{info}
+
+Recopier le code suivant et observer le résultat de la compilation :
+
+\VerbatimInput[label={[Commandes de sectionnement]},gobble=0]{exemples/sectionnement.tex}
+
+\begin{info}
+    Si on ne souhaite pas de numérotation à un endroit, on peut ajouter \verb!*!. On écrira par exemple :
+    \texttt{\textbackslash section*\{Introduction\}} à la place de \texttt{\textbackslash section\{Introduction\}}.
+\end{info}
+
+On peut modifier la mise en forme de la numérotation des commandes \verb!\section! et \texttt{\textbackslash subsection} de la façon suivante :
+\begin{Verbatim}
+    \renewcommand{\thesection}{\Roman{section}.}
+    \renewcommand{\thesubsection}{\Alph{subsection}.}
+\end{Verbatim}
+
+Il suffit de taper les deux lignes précédentes dans le préambule et de recompiler. Faites un essai et essayer de comprendre le fonctionnement des commandes utilisées.
+
+\begin{info}
+    Pour modifier avec plus de précision les différents types de sectionnement, on pourra lire attentivement les documentations des \jargon{packages} \texttt{sectsty} et \texttt{titlesec}.
+\end{info}
+
+\subsection{Références croisées}
+
+Les \jargon{renvois} sont gérés automatiquement par \LaTeX. L'intérêt de cela est évidemment de pouvoir modifier à loisir son document sans être obligé de se demander si telle ou telle référence a été changée de place ou de numérotation. Cela est très utile pour se reporter à une section ou bien encore à une liste.
+
+Voilà un exemple :\bigskip
+
+{
+\begin{SideBySideExample}
+    \section{Renvois}\label{sec}
+        \begin{enumerate}
+            \item Qui suis-je ?\label{qu:je}
+            \item Qui est-il ?\label{qu:il}
+        \end{enumerate}
+    Nous voyons que la question \ref{qu:il}
+    n'est pas si simple
+    (section \ref{sec} page \pageref{sec})
+\end{SideBySideExample}
+\bigskip}
+
+La commande \texttt{\textbackslash label}\{<étiquette>\} permet d'apposer une étiquette à l'élément que l'on souhaite référencer (ou qui est susceptible de l'être). Dans l'idéal, il faut essayer de choisir des étiquettes avec un nom suffisamment évocateur (ce qui n'est pas le cas de l'exemple précédent).\par
+La commande\texttt{\textbackslash ref}\{<étiquette>\} se place à l'endroit même où l'on souhaite faire notre référence à l'élément précédemment étiqueté. Le numéro alors affiché correspond au numéro de l'élément.\par
+Enfin, \texttt{\textbackslash pageref}\{<étiquette>\} indique le numéro de la page à laquelle se trouve l'élément à référencer.
+
+\begin{info}
+    Pour utiliser les références croisées, une seule compilation ne suffit pas. En effet, la première compilation permet simplement d'enregistrer les différentes étiquettes dans un fichier auxiliaire. Afin de pouvoir ensuite référencer ces étiquettes dans le texte, il faut procéder à une deuxième compilation. Sinon, on verra apparaître le symbole {\rmfamily\textbf{??}}.
+\end{info}

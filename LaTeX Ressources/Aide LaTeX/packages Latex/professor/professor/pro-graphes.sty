@@ -1,0 +1,1655 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-graphes}[12/12/2011]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-graphes.sty
+
+
+%----------------------------- option Windows
+\RequirePackage{color}
+\RequirePackage{ifthen}
+\newboolean{windowsgraphes}
+\setboolean{windowsgraphes}{false}
+\newboolean{xcasgraphes}
+\setboolean{xcasgraphes}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasgraphes}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsgraphes}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsgraphes}}
+{%
+\ifthenelse{\boolean{xcasgraphes}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasgraphes}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem enteteMP.cfg enteteTEX.cfg *.user  *.mpx *.giac XCAS*.cxx  XCAS*.mp mptextmp.mp XCAS*.tex}}
+     
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Mise en tableau de la matrice associee
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStableg.cxx}
+tableg(L):={
+local T,X;
+T:=L[0,0];
+X:=L[1];
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+$$"+T+"= "+latex(X)+"$$
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStableg.giac}
+maple_mode(0);
+read("XCAStableg.cxx");
+Sortie:=fopen("XCAStableg.tex");
+donnees:=read("XCAStableg.user");
+Resultat:=string("tableg(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+\newcounter{Cpttableg}
+\newcommand{\tbg}{\theCpttableg}
+%% \tbg change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-tableg}[1]
+{\setcounter{Cpttableg}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStableg.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAStableg.tex}
+\executGiacmp{XCAStableg.giac}
+\IfFileExists{\nomtravail_tableg\tbg.tex}{\immediate\write18{\rem \nomtravail_tableg\tbg.tex}}{}
+\immediate\write18{\cat XCAStableg.tex >> \nomtravail_tableg\tbg.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_tableg\tbg.tex}{}{% 
+\PackageError{pro-graphes}{Fichier \nomtravail_tableg\tbg.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_tableg\tbg.tex}
+%\stepcounter{Cpttableg}
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-tableg*}[1]
+{\setcounter{Cpttableg}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStableg.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_tableg\tbg.tex}
+%\stepcounter{Cpttableg}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Mise en tableau de la matrice associee elevee a la puisance n
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStablegp.cxx}
+tablegp(L):={
+local T,X,N;
+T:=L[0,0];
+X:=L[1];
+N:=L[2];
+
+X:=X^N;
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+$$"+T+"^"+N+"= "+latex(X)+"$$
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStablegp.giac}
+maple_mode(0);
+read("XCAStablegp.cxx");
+Sortie:=fopen("XCAStablegp.tex");
+donnees:=read("XCAStablegp.user");
+Resultat:=string("tablegp(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+\newcounter{Cpttablegp}
+\newcommand{\tbgp}{\theCpttablegp}
+%% \tbgp change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-tablegp}[1]
+{\setcounter{Cpttablegp}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStablegp.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAStablegp.tex}
+\executGiacmp{XCAStablegp.giac}
+\IfFileExists{\nomtravail_tablegp\tbgp.tex}{\immediate\write18{\rem \nomtravail_tablegp\tbgp.tex}}{}
+\immediate\write18{\cat XCAStablegp.tex >> \nomtravail_tablegp\tbgp.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_tablegp\tbgp.tex}{}{% 
+\PackageError{pro-graphes}{Fichier \nomtravail_tablegp\tbgp.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_tablegp\tbgp.tex}
+%\stepcounter{Cpttablegp}
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-tablegp*}[1]
+{\setcounter{Cpttablegp}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStablegp.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_tablegp\tbgp.tex}
+%\stepcounter{Cpttablegp}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Dessin d'un graphe probabiliste
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgrapheproba.cxx}
+grapheproba(L):={
+local A,B,X,T;
+local Ty,V,xtmin,tmin,textt,texts,texti,No;
+local echelle;
+T:=L[0];
+X:=L[1];
+Ty:=L[2];
+
+A:=T[0];
+B:=T[1];
+
+echelle:=1;
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(Ty);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=Ty[j];
+    
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") );
+");
+    }      
+     
+ 
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax)  shifted (0,0.7cm));
+");
+    }  
+  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="echelle") then      
+    {
+       echelle:=V[1];
+    }  
+    
+  }
+}
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_tex.mp;
+input dlf\_couleurs.mp;
+input dlf\_boxes.mp;
+
+
+
+u:="+echelle+"cm;
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+xmin:=-5u;
+xmax:=5u;
+ymin:=-3u;
+ymax:=3u;
+dx:=1;
+dy:=1;
+
+beginfig(0);
+
+circleit.aa(TEX(\"{\\large $"+A+"$}\"));
+circleit.bb(TEX(\"{\\large $"+B+"$}\"));
+circleit.oo();
+
+
+oo.c:=(0,0);
+bb.c-oo.c=(2.5u,0);
+aa.c-oo.c=(-2.5u,0);
+
+drawboxed(aa,bb) ;
+
+label(TEX(\"\\colorbox{white}{"+X[0,1]+"}\"), flechec(aa,bb,70,0.5)) ;
+label(TEX(\"\\colorbox{white}{"+X[1,0]+"}\"), flechec(bb,aa,250,0.5)) ;
+
+label.lft(TEX(\""+X[0,0]+"\"), boucler.aa(-u,0)) ;
+label.rt(TEX(\""+X[1,1]+"\"), boucler.bb(u,0)) ;
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+"+textt+"
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax)  shifted (0,0.1cm) --(xmax,ymax)  shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax)  shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+endfig;
+
+end ;
+
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgrapheproba.giac}
+maple_mode(0);
+read("XCASgrapheproba.cxx");
+Sortie:=fopen("XCASgrapheproba.mp");
+donnees:=read("XCASgrapheproba.user");
+Resultat:=string("grapheproba(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptgrapheproba}
+\newcommand{\grp}{\theCptgrapheproba}
+%% \grp change a chaque figure
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-grapheproba}[1]
+{\setcounter{Cptgrapheproba}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASgrapheproba.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASgrapheproba.mp}
+\executGiacmp{XCASgrapheproba.giac}
+\IfFileExists{\nomtravail_grapheproba\grp.mp}{\immediate\write18{\rem \nomtravail_grapheproba\grp.mp}}{}
+\immediate\write18{\cat XCASgrapheproba.mp >> \nomtravail_grapheproba\grp.mp}
+\immediate\write18{mpost \nomtravail_grapheproba\grp.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_grapheproba\grp.mp}{\immediate\write18{mpost \nomtravail_grapheproba\grp.mp}}{% 
+\PackageError{pro-graphes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_grapheproba\grp.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_grapheproba\grp.0}
+\end{center}
+%\stepcounter{Cptgrapheproba}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-grapheproba*}[1]
+{\setcounter{Cptgrapheproba}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASgrapheproba.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_grapheproba\grp.0}
+\end{center}
+%\stepcounter{Cptgrapheproba}
+
+}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Algorithme de Dijkstra
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASdijkstra.cxx}
+Dijkstra(L):={
+local T,X;
+local N,j,k,D,m;
+local textx,texti,textf;
+local indmin,longeur;
+loacal noeud,noeuda,textn;
+T:=L[0];
+X:=L[1];
+
+N:=size(T);
+textx:=makemat("",N+1,1);
+D:=makemat(0,N,3);
+
+
+// lignes initiale du tableau avec noms des sommets
+k:=0;
+textx[k]:=("");
+for(j:=0;j<=N-2;j++)
+{
+  textx[k]:=concat(textx[k],""+T[j]+"");
+  textx[k]:=concat(textx[k]," & ");
+}
+textx[k]:=concat(textx[k],""+T[N-1]+"");
+textx[k]:=concat(textx[k]," \\\\ ");
+
+//  initialisation de l algorithme
+D[0,0]:=0;
+D[0,1]:=0;
+D[0,2]:=2;
+for(m:=1;m<=N-1;m++)
+{
+  if (X[0,m]==0) then 
+  {
+ //   D[m,0]:="";
+    D[m,1]:=+infinity;
+  }
+  else
+  {
+    D[m,0]:=0;
+    D[m,1]:=X[0,m];
+  }
+}
+k:=1;
+textx[k]:=("");
+for(j:=0;j<=N-2;j++)
+{
+  switch (D[j,2])
+  {
+    case 0:
+    {
+      textx[k]:=concat(textx[k],"$"+latex(D[j,1])+"$");
+      if (D[j,1]!=+infinity) then
+      {
+        textx[k]:=concat(textx[k]," , ");
+        textx[k]:=concat(textx[k],""+T[D[j,0]]+"");
+      }
+      textx[k]:=concat(textx[k]," & ");
+      break;   
+    }
+    case 1:
+    {
+      textx[k]:=concat(textx[k]," & ");
+      break;   
+    } 
+     case 2:
+    {
+      textx[k]:=concat(textx[k],"\\textcolor{red}{$"+latex(D[j,1])+"$");
+      textx[k]:=concat(textx[k]," , ");
+      textx[k]:=concat(textx[k],""+T[D[j,0]]+"}");
+      textx[k]:=concat(textx[k]," & ");
+      break;   
+    } 
+  }
+}
+textx[k]:=concat(textx[k],"$"+latex(D[N-1,1])+"$");
+if (D[N-1,1]!=+infinity) then
+{
+  textx[k]:=concat(textx[k]," , ");
+  textx[k]:=concat(textx[k],""+T[D[N-1,0]]+"");
+}
+textx[k]:=concat(textx[k]," \\\\ ");
+
+indmin:=0;
+
+// boucle principale
+
+for(k:=2;k<=N-1;k++)
+{
+  D[indmin,2]:=1;
+  longeur:=+infinity;
+  for(m:=0;m<=N-1;m++)
+  {
+    if (D[m,1]<longeur)and(D[m,2]==0) then 
+    {
+      longeur:=D[m,1];
+      indmin:=m;
+    }
+  }
+  D[indmin,2]:=2;
+  
+  for(m:=0;m<=N-1;m++)
+  {
+    if ((X[indmin,m]!=0)and(D[m,2]==0)) then 
+    {
+       longeur:=D[indmin,1]+X[indmin,m];
+       if (longeur<D[m,1])
+       {
+          D[m,1]:=longeur;
+          D[m,0]:=indmin;
+       }
+    }
+  }
+  textx[k]:=("");
+  for(j:=0;j<=N-2;j++)
+  {
+     switch (D[j,2])
+    {
+      case 0:
+      {
+        textx[k]:=concat(textx[k],"$"+latex(D[j,1])+"$");
+        if (D[j,1]!=+infinity) then
+        {
+          textx[k]:=concat(textx[k]," , ");
+          textx[k]:=concat(textx[k],""+T[D[j,0]]+"");
+        }
+        textx[k]:=concat(textx[k]," & ");
+        break;   
+      }
+      case 1:
+      {
+        textx[k]:=concat(textx[k]," & ");
+        break;   
+      } 
+       case 2:
+      {
+        textx[k]:=concat(textx[k],"\\textcolor{red}{$"+latex(D[j,1])+"$");
+        textx[k]:=concat(textx[k]," , ");
+        textx[k]:=concat(textx[k],""+T[D[j,0]]+"}");
+        textx[k]:=concat(textx[k]," & ");
+        break;   
+      } 
+    } 
+  }
+  textx[k]:=concat(textx[k],"$"+latex(D[N-1,1])+"$");
+  if (D[N-1,1]!=+infinity) then
+  { 
+    textx[k]:=concat(textx[k]," , ");
+    textx[k]:=concat(textx[k],""+T[D[N-1,0]]+"");
+  }
+  textx[k]:=concat(textx[k]," \\\\ "); 
+}
+
+
+// chemin le plus court
+
+noeud:=N-1;
+textn:="";
+textn:=concat(textn,""+T[N-1]+"");
+while (noeud!=0)
+{
+  noeuda:=D[noeud,0];
+  textn:=concat(""+T[noeuda]+"",textn);
+  noeud:=noeuda;
+}
+textn:=concat("Le chemin le plus court est ",textn);
+textn:=concat(textn," de longueur ");
+textn:=concat(textn,""+D[N-1,1]+"");
+textn:=concat(textn,".");
+
+texti:=" 
+
+\\hline
+
+";
+
+textf:=" 
+
+\\hline
+
+\\end{tabular} 
+\\end{center}
+
+\\vspace{0.5cm}
+
+
+";
+
+
+
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+\\begin{center}
+
+\\begin{tabular}{|*{"+N+"}{@{~~}c@{~~}|}}
+
+\\hline
+
+";
+
+for(j:=0;j<=N-2;j++)
+{
+  I:=concat(I,textx[j]);
+  I:=concat(I,texti);
+}
+I:=concat(I,textx[N-1]);
+I:=concat(I,textf);
+I:=concat(I,textn);
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASdijkstra.giac}
+maple_mode(0);
+read("XCASdijkstra.cxx");
+Sortie:=fopen("XCASdijkstra.tex");
+donnees:=read("XCASdijkstra.user");
+Resultat:=string("Dijkstra(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+\newcounter{Cptdijkstra}
+\newcommand{\dij}{\theCptdijkstra}
+%% \dij change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-dijkstra}[1]
+{\setcounter{Cptdijkstra}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASdijkstra.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASdijkstra.tex}
+\executGiacmp{XCASdijkstra.giac}
+\IfFileExists{\nomtravail_dijkstra\dij.tex}{\immediate\write18{\rem \nomtravail_dijkstra\dij.tex}}{}
+\immediate\write18{\cat XCASdijkstra.tex >> \nomtravail_dijkstra\dij.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_dijkstra\dij.tex}{}{% 
+\PackageError{pro-graphes}{Fichier \nomtravail_dijkstra\dij.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_dijkstra\dij.tex}
+%\stepcounter{Cptdijkstra}
+
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-dijkstra*}[1]
+{\setcounter{Cptdijkstra}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASdijkstra.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_dijkstra\dij.tex}
+%\stepcounter{Cptdijkstra}
+
+}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Theoreme d euler
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgreuler.cxx}
+greuler(L):={
+local T,X;
+local N,S,j,k,val;
+local texta,textb,texti,textf,textc;
+T:=L[0];
+X:=L[1];
+
+N:=size(T);
+S:=[];
+
+
+// lignes initiale du tableau avec noms des sommets
+texta:=("Sommets & ");
+for(j:=0;j<=N-2;j++)
+{
+  texta:=concat(texta,""+T[j]+"");
+  texta:=concat(texta," & ");
+}
+texta:=concat(texta,""+T[N-1]+"");
+texta:=concat(texta," \\\\ ");
+
+// comptage des degres des somments
+for(j:=0;j<=N-1;j++)
+{
+  val:=0;
+  for(k:=0;k<=N-1;k++)
+  {
+    if ((X[j,k]!=0) and (j!=k)) then
+    {
+      val:=val +1;
+    }
+  }
+  S:=append(S,val);
+}
+
+// lignes donnant les degres
+textb:=("Degr\\'es & ");
+for(j:=0;j<=N-2;j++)
+{
+  textb:=concat(textb,""+S[j]+"");
+  textb:=concat(textb," & ");
+}
+textb:=concat(textb,""+S[N-1]+"");
+textb:=concat(textb," \\\\ ");
+
+// comptage des degres impairs
+val:=somme(irem(S,2));
+// conclusion
+
+switch(val)
+{
+  case 0 :
+  {
+    textc:=(" Il n'y a aucun sommet de degr\\'e impair : ce graphe admet un cycle eul\\'erien.");
+    break;
+  }
+  case 2 :
+  {
+    textc:=(" Il y a deux sommets de degr\\'e impair : ce graphe admet une cha\\^ine eul\\'erienne.");
+    break;
+  }
+  default :
+  {
+    textc:=(" Il y a plus de deux sommets de degr\\'e impair : ce graphe n'admet pas de cha\\^ine eul\\'erienne.");
+    break;
+  }
+}
+
+
+texti:=" 
+
+\\hline
+
+";
+
+textf:=" 
+
+\\hline
+
+\\end{tabular} 
+\\end{center}
+
+\\vspace{0.5cm}
+
+
+";
+
+
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+\\begin{center}
+
+\\begin{tabular}{|l|*{"+N+"}{@{~~}c@{~~}|}}
+
+\\hline
+
+";
+
+I:=concat(I,texta);
+I:=concat(I,texti);
+I:=concat(I,textb);
+I:=concat(I,textf);
+I:=concat(I,textc);
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgreuler.giac}
+maple_mode(0);
+read("XCASgreuler.cxx");
+Sortie:=fopen("XCASgreuler.tex");
+donnees:=read("XCASgreuler.user");
+Resultat:=string("greuler(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+\newcounter{Cptgreuler}
+\newcommand{\eul}{\theCptgreuler}
+%% \eul change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-greuler}[1]
+{\setcounter{Cptgreuler}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASgreuler.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASgreuler.tex}
+\executGiacmp{XCASgreuler.giac}
+\IfFileExists{\nomtravail_greuler\eul.tex}{\immediate\write18{\rem \nomtravail_greuler\eul.tex}}{}
+\immediate\write18{\cat XCASgreuler.tex >> \nomtravail_greuler\eul.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_greuler\eul.tex}{}{% 
+\PackageError{pro-graphes}{Fichier \nomtravail_greuler\eul.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_greuler\eul.tex}
+\stepcounter{Cptgreuler}
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-greuler*}[1]
+{\setcounter{Cptgreuler}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASgreuler.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_greuler\eul.tex}
+\stepcounter{Cptgreuler}
+}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Dessin d'un graphe 
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgraphedessin.cxx}
+graphedessin(L):={
+local T,X,N,Ty;
+local textc,textp,textd,texta,textf,textb;
+local C,P,D,F,E;
+local A;
+local AL,AC;
+local Te,V,xtmin,tmin,textt,texts,texti,No;
+local l,m,Nt,Tg,numtype;
+local echelle;
+
+T:=L[0];
+X:=L[1];
+Te:=L[2];
+
+N:=size(T);
+
+echelle:=1;
+
+
+//definition des noeuds
+C:=T;
+textc:=("");
+for(j:=0;j<=N-2;j++)
+{
+  textc:=concat(textc,"circleit.");
+  textc:=concat(textc,""+head(C)+"");
+  textc:=concat(textc,"(TEX(\"{\\large $");
+  textc:=concat(textc,""+head(C)+"");
+  textc:=concat(textc,"$}\"));
+");
+  C:=tail(C);
+}
+textc:=concat(textc,"circleit.");
+textc:=concat(textc,""+head(C)+"");
+textc:=concat(textc,"(TEX(\"{\\large $");
+textc:=concat(textc,""+head(C)+"");
+textc:=concat(textc,"$}\"));
+");
+
+//positonnement des noeuds
+A:=1;
+P:=T;
+textp:=("");
+for(j:=0;j<=N-2;j++)
+{
+  textp:=concat(textp,""+head(P)+"");
+  textp:=concat(textp,".c - oo.c = (");
+  textp:=concat(textp,""+evalf(re(A))+"");
+  textp:=concat(textp,"r,");
+  textp:=concat(textp,""+evalf(im(A))+"");
+  textp:=concat(textp,"r);
+");
+  P:=tail(P);
+  //A:=A*e^(i*2*pi/N);
+  angle_radian:=1;
+  A:=A*(cos(2*pi/N)+i*sin(2*pi/N));
+}
+textp:=concat(textp,""+head(P)+"");
+textp:=concat(textp,".c - oo.c = (");
+textp:=concat(textp,""+evalf(re(A))+"");
+textp:=concat(textp,"r,");
+textp:=concat(textp,""+evalf(im(A))+"");
+textp:=concat(textp,"r);
+");
+
+//dessins des couleurs par defaut
+textf:=("%%%%rien%%%%");
+
+//dessins des boucles par defaut
+textb:=("%%%%rien%%%%");
+
+//dessins des noeuds
+D:=T;
+textd:=("drawboxed(");
+for(j:=0;j<=N-2;j++)
+{
+  textd:=concat(textd,""+head(D)+"");
+  textd:=concat(textd,",");
+  D:=tail(D);
+}
+textd:=concat(textd,""+head(D)+"");
+textd:=concat(textd,");
+");
+
+//dessin des aretes
+AL:=T;
+texta:="";
+for(j:=0;j<=N-2;j++)
+{
+  for(k:=j+1;k<=N-1;k++)
+  {
+  if (X[j,k]!=0) then
+     {
+       AC:=T;
+       for(m:=0;m<k;m++)
+       {
+         AC:=tail(AC);
+       }
+       texta:=concat(texta,"label(TEX(\" \"), areted(");
+       texta:=concat(texta,""+head(AL)+"");
+       texta:=concat(texta,",");
+       texta:=concat(texta,""+head(AC)+"");
+       texta:=concat(texta,",0.5));
+");
+     }
+  }
+  AL:=tail(AL);
+}
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(Te);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=Te[j];
+    
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") placer);
+");
+    } 
+
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax) shifted (0,0.7cm));
+");
+    }  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="graphe-colorie") then      
+    {
+      E:=T;
+      F:=V[1];
+      textf:=("");
+      for(k:=0;k<=N-2;k++)
+      {
+        textf:=concat(textf,"fill bpath ");
+        textf:=concat(textf,""+head(E)+"");  
+        textf:=concat(textf," withcolor "); 
+        textf:=concat(textf,""+head(F)+""); 
+       textf:=concat(textf," ; 
+");
+       E:=tail(E);
+       F:=tail(F);
+     }
+     textf:=concat(textf,"fill bpath ");
+     textf:=concat(textf,""+head(E)+"");  
+     textf:=concat(textf," withcolor "); 
+     textf:=concat(textf,""+head(F)+""); 
+     textf:=concat(textf," ; 
+");
+
+    }  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="position-noeuds") then      
+    {
+      F:=V[1];
+     //positonnement des noeuds
+     A:=1;
+     P:=T;
+     textp:=("");
+     for(l:=0;l<=N-2;l++)
+     {
+       textp:=concat(textp,""+head(P)+"");
+       textp:=concat(textp,".c - oo.c = (");
+       textp:=concat(textp,""+F[l,0]+"");
+       textp:=concat(textp,"*1cm,");
+       textp:=concat(textp,""+F[l,1]+"");
+       textp:=concat(textp,"*1cm);
+");
+       P:=tail(P);
+     }
+     textp:=concat(textp,""+head(P)+"");
+     textp:=concat(textp,".c - oo.c = (");
+     textp:=concat(textp,""+F[N-1,0]+"");
+     textp:=concat(textp,"*1cm,");
+     textp:=concat(textp,""+F[N-1,1]+"");
+     textp:=concat(textp,"*1cm);
+");
+
+    }  
+
+
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="type-graphe") then      
+    {
+      Tg:=V[1];
+      Nt:=size(Tg);
+      numtype:=0;
+      for(m:=0;m<=Nt-1;m++)
+      {
+        if (Tg[m]=="oriente") then
+        {
+          numtype:=numtype+1;
+        }
+        if (Tg[m]=="pondere") then
+        {
+          numtype:=numtype+2;
+        }
+      }
+      
+      switch(numtype)
+      {
+        case 0:
+        {
+          //graphe non oriente non pondere %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          break;
+        }
+
+
+        case 1:
+        {
+          //graphe oriente non pondere %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          //dessin des aretes
+          AL:=T;
+          texta:="";
+          for(l:=0;l<=N-2;l++)
+          {
+            for(k:=0;k<=N-1;k++)
+            {
+              if ((X[l,k]!=0)and(l!=k)) then
+              {
+                AC:=T;
+                for(m:=0;m<k;m++)
+                {
+                  AC:=tail(AC);
+                } 
+                if (X[k,l]==0) then
+                {
+                  texta:=concat(texta,"label(TEX(\" \"), fleched(");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,",");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,",0.5));
+");      
+                }
+                else
+                {
+                  texta:=concat(texta,"angg:=angle(");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,".c - ");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,".c)+15;
+");
+                  texta:=concat(texta,"label(TEX(\" \"), flechec(");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,",");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,",angg,0.5));
+");
+               }
+             }
+           }
+           AL:=tail(AL);
+         }
+         for(k:=0;k<=N-1;k++)
+         {
+           if ((X[N-1,k]!=0)and(N-1!=k)) then
+           {
+             AC:=T;
+             for(m:=0;m<k;m++)
+             {
+               AC:=tail(AC);
+             } 
+             if (X[k,N-1]==0) then
+             {
+               texta:=concat(texta,"label(TEX(\" \"), fleched(");
+               texta:=concat(texta,""+head(AL)+"");
+               texta:=concat(texta,",");
+               texta:=concat(texta,""+head(AC)+"");
+               texta:=concat(texta,",0.5));
+");      
+             }
+             else
+             {
+               texta:=concat(texta,"angg:=angle(");
+               texta:=concat(texta,""+head(AC)+"");
+               texta:=concat(texta,".c - ");
+               texta:=concat(texta,""+head(AL)+"");
+               texta:=concat(texta,".c)+15;
+");
+               texta:=concat(texta,"label(TEX(\" \"), flechec(");
+               texta:=concat(texta,""+head(AL)+"");
+               texta:=concat(texta,",");
+               texta:=concat(texta,""+head(AC)+"");
+               texta:=concat(texta,",angg,0.5));
+");
+            }
+          }
+        }
+
+        //dessins des boucles
+        B:=T;
+        textb:=("");
+        for(l:=0;l<=N-2;l++)
+        {
+          if (X[l,l]!=0) then
+          {
+            textb:=concat(textb,"angg:=angle(");
+            textb:=concat(textb,""+head(B)+"");
+            textb:=concat(textb,".c-oo.c);
+");
+            textb:=concat(textb,"label(TEX(\" \"), boucler.");
+            textb:=concat(textb,""+head(B)+"");
+            textb:=concat(textb,"(u,0)rotatedaround((0,0),angg));
+");
+          }
+          B:=tail(B);
+        }
+        if (X[N-1,N-1]!=0) then
+        {
+          textb:=concat(textb,"angg:=angle(");
+          textb:=concat(textb,""+head(B)+"");
+          textb:=concat(textb,".c-oo.c);
+");
+          textb:=concat(textb,"label(TEX(\" \"), boucler.");
+          textb:=concat(textb,""+head(B)+"");
+          textb:=concat(textb,"(u,0)rotatedaround((0,0),angg));
+");
+        }
+
+          break;
+        }
+
+
+        case 2:
+        {
+          //graphe non oriente  pondere %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          //dessin des aretes
+          AL:=T;
+          texta:="";
+          for(l:=0;l<=N-2;l++)
+          {
+            for(k:=l+1;k<=N-1;k++)
+            {
+              if (X[l,k]!=0) then
+              {
+                AC:=T;
+                for(m:=0;m<k;m++)
+                {
+                  AC:=tail(AC);
+                }
+                texta:=concat(texta,"label(TEX(\"\\colorbox\{white\}\{");
+                texta:=concat(texta,""+X[l,k]+"");
+                texta:=concat(texta,"\} \"), areted(");
+                texta:=concat(texta,""+head(AL)+"");
+                texta:=concat(texta,",");
+                texta:=concat(texta,""+head(AC)+"");
+                texta:=concat(texta,",0.4));
+");
+              }
+            }
+            AL:=tail(AL);
+          }
+
+          break;
+        }
+
+
+        case 3:
+        {
+          //graphe  oriente  pondere %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          // dessin des aretes
+          AL:=T;
+          texta:="";
+          for(l:=0;l<=N-2;l++)
+          {
+            for(k:=0;k<=N-1;k++)
+            {
+              if ((X[l,k]!=0)and(l!=k)) then
+              {
+                AC:=T;
+                for(m:=0;m<k;m++)
+                {
+                  AC:=tail(AC);
+                } 
+                if (X[k,l]==0) then
+                {
+                  texta:=concat(texta,"label(TEX(\"\\colorbox\{white\}\{");
+                  texta:=concat(texta,""+X[l,k]+"");
+                  texta:=concat(texta,"\} \"), fleched(");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,",");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,",0.4));
+");      
+                }
+                else
+                {
+                  texta:=concat(texta,"angg:=angle(");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,".c - ");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,".c)+15;
+");
+                  texta:=concat(texta,"label(TEX(\"\\colorbox\{white\}\{");
+                  texta:=concat(texta,""+X[l,k]+"");
+                  texta:=concat(texta,"\} \"), flechec(");
+                  texta:=concat(texta,""+head(AL)+"");
+                  texta:=concat(texta,",");
+                  texta:=concat(texta,""+head(AC)+"");
+                  texta:=concat(texta,",angg,0.4));
+");
+                }
+              }
+            }
+            AL:=tail(AL);
+          }
+          for(k:=0;k<=N-1;k++)
+          {
+            if ((X[N-1,k]!=0)and(N-1!=k)) then
+            {
+              AC:=T;
+              for(m:=0;m<k;m++)
+              {
+                AC:=tail(AC);
+              } 
+              if (X[k,N-1]==0) then
+              {
+                texta:=concat(texta,"label(TEX(\"\\colorbox\{white\}\{");
+                texta:=concat(texta,""+X[N-1,k]+"");
+                texta:=concat(texta,"\} \"), fleched(");
+                texta:=concat(texta,""+head(AL)+"");
+                texta:=concat(texta,",");
+                texta:=concat(texta,""+head(AC)+"");
+                texta:=concat(texta,",0.4));
+");      
+              }
+              else
+              {
+                texta:=concat(texta,"angg:=angle(");
+                texta:=concat(texta,""+head(AC)+"");
+                texta:=concat(texta,".c - ");
+                texta:=concat(texta,""+head(AL)+"");
+                texta:=concat(texta,".c)+15;
+");       
+                texta:=concat(texta,"label(TEX(\"\\colorbox\{white\}\{");
+                texta:=concat(texta,""+X[N-1,k]+"");
+                texta:=concat(texta,"\} \"), flechec(");
+                texta:=concat(texta,""+head(AL)+"");
+                texta:=concat(texta,",");
+                texta:=concat(texta,""+head(AC)+"");
+                texta:=concat(texta,",angg,0.4));
+");
+              }
+            }
+          }
+
+          //dessins des boucles
+          B:=T;
+          textb:=("");
+          for(l:=0;l<=N-2;l++)
+          {
+            if (X[l,l]!=0) then
+            {
+              textb:=concat(textb,"angg:=angle(");
+              textb:=concat(textb,""+head(B)+"");
+              textb:=concat(textb,".c-oo.c);
+"); 
+              textb:=concat(textb,"label(TEX(\"\\colorbox\{white\}\{");
+              textb:=concat(textb,""+X[l,l]+"");
+              textb:=concat(textb,"\} \"), boucler.");
+              textb:=concat(textb,""+head(B)+"");
+              textb:=concat(textb,"(u,0)rotatedaround((0,0),angg));
+");
+            }
+            B:=tail(B);
+          }
+          if (X[N-1,N-1]!=0) then
+          {
+            textb:=concat(textb,"angg:=angle(");
+            textb:=concat(textb,""+head(B)+"");
+            textb:=concat(textb,".c-oo.c);
+");
+            textb:=concat(textb,"label(TEX(\"\\colorbox\{white\}\{");
+            textb:=concat(textb,""+X[N-1,N-1]+"");
+            textb:=concat(textb,"\} \"), boucler.");
+            textb:=concat(textb,""+head(B)+"");
+            textb:=concat(textb,"(u,0)rotatedaround((0,0),angg));
+");
+         }
+
+          break;
+        }
+      }
+
+
+
+    }  
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="echelle") then      
+    {
+       echelle:=V[1];
+    }  
+          
+
+    
+  }
+}
+
+
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+Dessin:="
+
+input dlf\_tex.mp;
+input dlf\_boxes.mp;
+input dlf\_couleurs.mp;
+
+u:="+echelle+"cm;
+numeric r;
+r:=4u;
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+xmin:=-1.75*r;
+xmax:=1.75*r;
+ymin:=-1.25*r;
+ymax:=1.25*r;
+dx:=1;
+dy:=1;
+
+beginfig(0);
+
+% definition des noeuds
+circleit.oo();
+"+textc+"
+
+%positionnement des noeuds
+oo.c:=(0,0);
+"+textp+"
+
+%dessin des couleurs
+"+textf+"
+
+%dessin des noeuds
+"+textd+"
+
+%dessin des aretes
+"+texta+"
+
+%dessin des boucles
+"+textb+"
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+"+textt+"
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax)  shifted (0,0.1cm) --(xmax,ymax)  shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax)  shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+
+endfig;
+
+end ;
+
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASgraphedessin.giac}
+maple_mode(0);
+read("XCASgraphedessin.cxx");
+Sortie:=fopen("XCASgraphedessin.mp");
+donnees:=read("XCASgraphedessin.user");
+Resultat:=string("graphedessin(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptgraphedessin}
+\newcommand{\grdr}{\theCptgraphedessin}
+%% \grdr change a chaque figure
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-graphedessin}[1]
+{\setcounter{Cptgraphedessin}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASgraphedessin.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASgraphedessin.mp}
+\executGiacmp{XCASgraphedessin.giac}
+\IfFileExists{\nomtravail_graphedessin\grdr.mp}{\immediate\write18{\rem \nomtravail_graphedessin\grdr.mp}}{}
+\immediate\write18{\cat XCASgraphedessin.mp >> \nomtravail_graphedessin\grdr.mp}
+\immediate\write18{mpost \nomtravail_graphedessin\grdr.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_graphedessin\grdr.mp}{\immediate\write18{mpost \nomtravail_graphedessin\grdr.mp}}{% 
+\PackageError{pro-graphes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_graphedessin\grdr.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_graphedessin\grdr.0}
+\end{center}
+%\stepcounter{Cptgraphedessin}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-graphedessin*}[1]
+{\setcounter{Cptgraphedessin}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASgraphedessin.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_graphedessin\grdr.0}
+\end{center}
+%\stepcounter{Cptgraphedessin}
+
+}
+
+

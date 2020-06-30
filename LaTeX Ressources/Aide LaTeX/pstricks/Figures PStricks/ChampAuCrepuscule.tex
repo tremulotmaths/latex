@@ -1,0 +1,307 @@
+\documentclass[12pt]{article}
+\usepackage{pst-mirror,pst-grad,calc}
+\usepackage[a4paper]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}%
+% manuel d'utilisation
+\definecolor{GrisClair} {rgb}{0.7,0.7,0.7}
+\definecolor{JauneTresPale}{cmyk}{0,0,0.2,0.1}
+\definecolor{OrangePale}{cmyk}{0,0.2,0.4,0.2}
+\definecolor{BleuClair}{cmyk}{0.2,0,0,0}
+\definecolor{JaunePaille}{cmyk}{0,0,0.9,0.4}
+%%%%
+% 6 août 2002
+% Manuel LUQUE <Mluque5130@aol.com>
+\title{Images dans un miroir sphérique}
+\author{Manuel Luque\thanks{\mbox{\textsf{<Mluque5130@aol.com>}}}}
+\date{6 août 2\,002}
+\makeatother
+\makeatletter
+% macro d'Etienne RIGA sur fr.comp.text.tex
+\newcount\r@pport  \newdimen\r@ppord
+\newcount\kslant   \newdimen\kslantd
+
+\def\ARC#1{\setbox0\hbox{$\m@th\displaystyle#1$}\kslant=\ht0
+   \divide\kslant by1000\multiply\kslant by\fontdimen1\textfont1
+   \divide\kslant by10000\kslantd=\kslant\fontdimen6\textfont1
+      \divide\kslantd by7750\kern\kslantd
+   \r@ppord=\wd0\multiply\r@ppord by100\divide\r@ppord by\ht0
+   \multiply\r@ppord by300\advance\r@ppord by\ht0
+   \pspicture(0,0)
+   \parabola[linewidth=.3pt](0,1.05\ht0)(.5\wd0,1.21\r@ppord)
+   \endpspicture\kern-\kslantd\box0}
+
+\makeatother
+\makeatletter
+\def\BallotPaille{\pst@object{BallotPaille}}
+\def\BallotPaille@i{\@ifnextchar[{\BallotPaille@do}{\BallotPaille@do[]}}
+\def\BallotPaille@do[#1]#2#3{{%
+% Le centre de la base sera placé avec
+% les paramètres CX,CY et CZ
+% #2 rayon
+% #3 hauteur
+% on peut ensuite faire tourner le cylindre
+% avec RotX, RotY et RotZ
+\pst@killglue
+\psset{#1}%
+\begin@ClosedObj
+\addto@pscode{%
+\variablesBoule
+reduction reduction scale
+    /Rcylindre #2 def
+    /Hcylindre #3 def
+    /incrementANGLE 5 def
+    /incrementHAUTEUR Hcylindre 10 div def
+tx@Boule3DDict begin
+0 incrementANGLE 360 {%
+    /theta exch def
+ 0 incrementHAUTEUR Hcylindre incrementHAUTEUR sub {%
+    /H exch def
+% newpath
+    /X1 Rcylindre theta cos mul def
+    /Y1 Rcylindre theta sin mul def
+    /Z1 H def
+    /Xpoint X1 def
+    /Ypoint Y1 def
+    /Zpoint Z1 def
+CalculsPointsAfterTransformations
+    /Xfacette Xabscisse  def
+    /Yfacette Yordonnee  def
+    /Zfacette Zcote def
+    CalcCoordinates
+     moveto
+% coordonnées du centre de la facette
+    /Xpoint Rcylindre theta incrementANGLE 2 div add cos mul def
+    /Ypoint Rcylindre theta incrementANGLE 2 div add sin mul def
+    /Zpoint H incrementHAUTEUR 2 div add def
+CalculsPointsAfterTransformations
+% Point sur l'axe du cylindre
+% à la même hauteur que M1
+    /Zpoint Z1 def
+    /Xpoint 0 def
+    /Ypoint 0 def
+CalculsPointsAfterTransformations
+% normale à la facette
+    /nXfacette Xfacette Xabscisse sub def
+    /nYfacette Yfacette Yordonnee sub def
+    /nZfacette Zfacette Zcote sub def
+% test de visibilité
+    /PSfacette nXfacette Xfacette mul
+    nYfacette Yfacette mul add
+    nZfacette Zfacette mul add
+    def
+PSfacette 0 le {
+theta 1 theta incrementANGLE add {%
+    /theta1 exch def
+    /Xpoint Rcylindre theta1 cos mul def
+    /Ypoint Rcylindre theta1 sin mul def
+    /Zpoint H def
+CalculsPointsAfterTransformations
+    CalcCoordinates
+    lineto
+    } for
+H 1 H incrementHAUTEUR add {
+    /H1 exch def
+    /Xpoint Rcylindre  theta incrementANGLE add cos mul def
+    /Ypoint Rcylindre theta incrementANGLE add sin mul def
+    /Zpoint H1 def
+CalculsPointsAfterTransformations
+    CalcCoordinates
+    lineto
+    } for
+theta incrementANGLE add -1 theta {%
+    /theta1 exch def
+    /Xpoint Rcylindre theta1 cos mul def
+    /Ypoint Rcylindre theta1 sin mul def
+    /Zpoint H incrementHAUTEUR add def
+CalculsPointsAfterTransformations
+    CalcCoordinates
+    lineto
+    } for
+H incrementHAUTEUR add -1 H {
+    /H1 exch def
+    /Xpoint Rcylindre theta cos mul def
+    /Ypoint Rcylindre theta sin mul def
+    /Zpoint H1 def
+CalculsPointsAfterTransformations
+    CalcCoordinates
+    lineto
+    } for
+} if
+} for
+} for
+% Face supérieure
+% centre de la face supérieure
+    /Xpoint 0 def
+    /Zpoint Hcylindre def
+    /Ypoint 0 def
+CalculsPointsAfterTransformations
+    /CxFaceSup Xabscisse def
+    /CyFaceSup Yordonnee def
+    /CzFaceSup Zcote def
+% centre de la face inférieure
+    /CxFaceInf CX def
+    /CyFaceInf CY def
+    /CzFaceInf CZ def
+% Normale à la face supérieure
+    /nXFaceSup CxFaceSup CxFaceInf sub def
+    /nYFaceSup CyFaceSup CyFaceInf sub def
+    /nZFaceSup CzFaceSup CzFaceInf sub def
+% Visibilité face supérieure
+    /PSfaceSup nXFaceSup CxFaceSup mul
+               nYFaceSup CyFaceSup mul add
+               nZFaceSup CzFaceSup mul add def
+% Visibilité face inférieure
+    /PSfaceInf CX nXFaceSup mul neg
+               CY nYFaceSup mul sub
+               CZ nZFaceSup mul sub def
+PSfaceSup 0 le {
+/TableauxPoints [
+0 1 359 {% on décrit le cercle
+    /theta exch def [
+    /Xpoint Rcylindre theta cos mul def
+    /Ypoint Rcylindre theta sin mul def
+    /Zpoint Hcylindre def
+CalculsPointsAfterTransformations
+    CalcCoordinates ]
+    } for
+    ] def
+gsave
+newpath
+ TableauxPoints 0 get aload pop moveto
+0 1 359 {
+    /compteur exch def
+    TableauxPoints compteur get aload pop
+    lineto } for
+0 0 1 0 setcmykcolor
+closepath
+fill
+grestore
+% dessine les cercles
+0 Rcylindre 10 div Rcylindre {
+/Rcircle exch def
+/TableauxPoints [
+0 1 359 {% on décrit le cercle
+    /theta exch def [
+    /Xpoint Rcircle theta cos mul def
+    /Ypoint Rcircle theta sin mul def
+    /Zpoint Hcylindre def
+CalculsPointsAfterTransformations
+    CalcCoordinates ]
+    } for
+    ] def
+gsave
+newpath
+ TableauxPoints 0 get aload pop moveto
+0 1 359 {
+    /compteur exch def
+    TableauxPoints compteur get aload pop
+    lineto } for
+0.5 setlinewidth
+0 0 1 0.2 setcmykcolor
+stroke
+grestore
+} for
+ } if
+% face inférieure
+PSfaceInf 0 le {
+/TableauxPoints [
+0 1 359 {% on décrit le cercle
+    /theta exch def [
+    /Xpoint Rcylindre theta cos mul def
+    /Ypoint Rcylindre theta sin mul def
+    /Zpoint 0 def
+CalculsPointsAfterTransformations
+    CalcCoordinates ]
+    } for
+    ] def
+gsave
+newpath
+ TableauxPoints 0 get aload pop moveto
+ 0 1 359 {
+    /compteur exch def
+    TableauxPoints compteur get aload pop
+    lineto } for
+0 0 1 0 setcmykcolor
+closepath
+fill
+grestore
+% dessine les cercles
+0 Rcylindre 10 div Rcylindre {
+/Rcircle exch def
+/TableauxPoints [
+0 1 359 {% on décrit le cercle
+    /theta exch def [
+    /Xpoint Rcircle theta cos mul def
+    /Ypoint Rcircle theta sin mul def
+    /Zpoint 0 def
+CalculsPointsAfterTransformations
+    CalcCoordinates ]
+    } for
+    ] def
+gsave
+newpath
+0.5 setlinewidth
+0 0 1 0.2 setcmykcolor
+ TableauxPoints 0 get aload pop moveto
+0 1 359 {
+    /compteur exch def
+    TableauxPoints compteur get aload pop
+    lineto } for
+stroke
+grestore
+} for
+ } if
+end
+ }% fin du code ps
+\showpointsfalse
+\end@ClosedObj
+ }}% % fin de la commande PSTricks
+%
+\makeatother
+\pagestyle{empty}
+\begin{document}
+\begin{pspicture}(-7,-7)(7,7)
+\psset{Boule=false}
+\pscircle[fillstyle=gradient,gradbegin=blue,gradend=magenta,linestyle=none,gradmidpoint=0.5]{7.1}
+%\begin{psclip}{\pscircle[linestyle=none]{7.1}}%
+%\BouleLine[linewidth=1mm,linecolor=magenta](65,-600,-5)(65,600,-5)%
+%\end{psclip}%
+{\psset{CX=65,CZ=-5,CY=0}
+\psset{fillstyle=gradient,gradend=red,gradbegin=yellow,gradmidpoint=1,linestyle=none}
+\psBowlSphere(65,-5,0){20}}%
+{\psset{normale=0 -90,%
+        Xorigine=75,%
+        Yorigine=0,%
+        Zorigine=-15}
+\psBowlFrame[fillstyle=solid,fillcolor=OrangePale](-120,75)(120,8)
+}%
+\multido{\iXA=110+-10,\iXB=105+-10}{22}{%
+\psset{normale=0 -90,%
+        Xorigine=75,%
+        Yorigine=0,%
+        Zorigine=-15}
+\psBowlFrame[fillstyle=vlines,hatchcolor=GrisClair,%
+    linestyle=none,hatchwidth=0.1mm,hatchsep=0.2mm](\iXA,75)(\iXB,8)}
+\multido{\iCX=65+-10}{7}{%
+\multido{\iCY=105+-10}{11}{%
+\psset{CZ=-12.5}
+\psset{CX=\iCX,CY=\iCY,RotX=90,RotY=90,linecolor=JaunePaille,linewidth=0.1mm,%
+fillstyle=gradient,gradbegin=yellow,gradend=lightgray,gradmidpoint=0}
+\ifnum\iCX=5
+\ifnum\iCY=5
+\psset{RotX=0,RotY=0,CY=2.5}
+\fi\fi
+\BallotPaille{2.5}{5}}}
+\multido{\iCX=65+-10}{7}{%
+\multido{\iCY=-105+10}{11}{%
+\psset{CZ=-12.5}
+\psset{CX=\iCX,CY=\iCY,RotY=90,RotX=90,linecolor=JaunePaille,linewidth=0.1mm,%
+fillstyle=solid,fillcolor=yellow}
+\ifnum\iCX=5
+\ifnum\iCY=-5
+\psset{RotX=90,RotY=0,RotZ=90,CY=-7.5,CX=3}
+\fi\fi
+\BallotPaille{2.5}{5}}}
+\end{pspicture}
+\end{document}

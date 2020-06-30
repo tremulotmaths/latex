@@ -1,0 +1,379 @@
+\documentclass[fleqn,a4paper,12pt]{article}
+
+\usepackage{pst-grad,pstricks-add}
+
+
+
+\begin{document}
+
+% Chaîne de désintégration du Thorium 232
+
+\newpsstyle{Stabil}{fillstyle=gradient,linewidth=.2pt,gradbegin=black,gradend=black!60,gradmidpoint=0,gradangle=45}
+%\newpsstyle{BetaM}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=blue!80,gradend=blue!50,gradmidpoint=0,gradangle=45,dimen=middle}
+%\newpsstyle{BetaP}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=orange!90!red!90,gradend=orange!70!red!80,gradmidpoint=0,gradangle=45,dimen=middle}
+%\newpsstyle{ElektronenE}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=cyan!70!black!50,gradend=cyan!50!black!40,gradmidpoint=0,gradangle=45,dimen=middle}
+%\newpsstyle{Alpha}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=yellow!90!brown!80,gradend=yellow!40!brown!40,gradmidpoint=0,gradangle=45,dimen=middle}
+\newpsstyle{BetaM}{fillstyle=solid,framesep=0pt,linestyle=none,fillcolor=blue!70,dimen=middle,opacity=0.5}
+\newpsstyle{BetaP}{fillstyle=solid,framesep=0pt,linestyle=none,fillcolor=orange!90!red!90,dimen=middle,opacity=0.5}
+\newpsstyle{ElektronenE}{fillstyle=solid,framesep=0pt,linestyle=none,fillcolor=cyan!70!black!50,dimen=middle,opacity=0.5}
+\newpsstyle{Alpha}{fillstyle=solid,framesep=0pt,linestyle=none,fillcolor=yellow!90!brown!80,dimen=middle,opacity=0.5}
+
+\newpsstyle{NeutronenZ}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=green!80!black!50,gradend=green!50,gradmidpoint=0,gradangle=45}
+\newpsstyle{ProtonenZ}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=red,gradend=red!60,gradmidpoint=0,gradangle=45,dimen=middle}
+\newpsstyle{ProtonBeta}{fillstyle=gradient,framesep=0pt,linewidth=.2pt,gradbegin=red,gradend=orange!30,gradmidpoint=0,gradangle=45,dimen=middle}
+
+\definecolor{Alpha}{rgb}{0,0,0}
+\definecolor{BetaM}{rgb}{1,1,1}
+\definecolor{BetaP}{rgb}{1,1,1}
+\definecolor{ElektronenE}{rgb}{0,0,0}
+\definecolor{NeutronenZ}{rgb}{1,1,1}
+\definecolor{ProtonenZ}{rgb}{1,1,1}
+\definecolor{ProtonBeta}{rgb}{1,1,1}
+
+
+\newcommand{\IsotopZ}[3]
+{\def\textfarbe{#3}%
+\psscalebox{0.5}{%
+\psframe[style=#3](0,0)(2,2)%
+\rput(1,1.5){\textcolor{\textfarbe}{\textbf{\scriptsize #1}}}%
+\rput(1,0.8){\textcolor{\textfarbe}{\tiny #2}}%
+}%
+}%
+
+\newcommand{\IsotopSt}[2]%
+{%
+\psscalebox{0.5}{%
+\psframe[fillstyle=gradient,linewidth=.2pt,gradbegin=black,gradend=black!60,gradmidpoint=0,gradangle=45](0,0)(2,2)%
+\rput(1,1.5){\textcolor{white}{\textbf{\scriptsize #1}}}%
+\rput(1,1){\textcolor{white}{\tiny stabil}}%
+\rput(1,0.5){\textcolor{white}{\tiny #2\,\%}}%
+}%
+}%
+
+
+\newcommand{\IsotopZZ}[5]%----- Der 3. Parameter um die Gr\"{o}{\ss}e der gef\"{a}rbten Fl\"{a}che anzugeben --> Prozent des jew. kleineren Zerfalls
+{\def\textfarbe{#5}%
+\psscalebox{0.5}{%
+\pspolygon[style=#5,linestyle=none](0,0)(2,0)(2,2)(!#3 2 mul sqrt 0.2 mul 2)(!0 2 #3 2 mul sqrt 0.2 mul sub)%
+\pspolygon[style=#4,linestyle=none](!0 2 #3 2 mul sqrt 0.2 mul sub)(0,2)(!#3 2 mul sqrt 0.2 mul 2)%
+\psframe[linewidth=.2pt](0,0)(2,2)%
+\rput(1,1.5){\textcolor{\textfarbe}{\textbf{\scriptsize #1}}}%
+\rput(1,0.8){\textcolor{\textfarbe}{\tiny #2}}%
+}%
+}%
+
+%&\IsotopW{Cl 36}{1,248\, E9\, a}{8,53809}{1,311\, MeV}{1,505\, MeV}{$\gamma$: --}{1.9}{BetaP}{BetaM}
+%&\IsotopStabil{Cl 41}{6,73}{}
+%&\Isotop{Cl 42}{}{}{}{$\beta^{-}$}{$\gamma$: --}{BetaM}
+
+{\psset{unit=0.75,labelFontSize=\scriptscriptstyle}%
+\begin{pspicture}(2,-1)(20,15)%
+%-----------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+%---------------------- Americium -------------------------------------------
+\rput(17,15){\IsotopZZ{Am 237}{73,0\, min}{5}{Alpha}{ElektronenE}}
+\rput(18,15){\IsotopZZ{Am 238}{1,63\, h}{5}{Alpha}{ElektronenE}}
+\rput(19,15){\IsotopZZ{Am 239}{11,9\, h}{5}{Alpha}{ElektronenE}}
+\rput(20,15){\IsotopZZ{Am 240}{50,8\, h}{5}{Alpha}{ElektronenE}}
+\rput(21,15){\IsotopZ{Am 241}{432,2\, a}{Alpha}}
+\rput(22,15){\IsotopZZ{Am 242}{141\, a}{12}{ElektronenE}{BetaM}}
+%---------------------- Plutonium -------------------------------------------
+\rput(15,14){\IsotopZZ{Pu 234}{8,8\, h}{50}{Alpha}{ElektronenE}}
+\rput(16,14){\IsotopZZ{Pu 235}{25,3\, min}{5}{Alpha}{ElektronenE}}
+\rput(17,14){\IsotopZ{Pu 236}{2,858\, a}{Alpha}}
+\rput(18,14){\IsotopZZ{Pu 237}{45,2\, d}{5}{Alpha}{ElektronenE}}
+\rput(19,14){\IsotopZ{Pu 238}{87,74\, a}{Alpha}}
+\rput(20,14){\IsotopZ{Pu 239}{24110\, a}{Alpha}}
+\rput(21,14){\IsotopZ{Pu 240}{6563\, a}{Alpha}}
+\rput(22,14){\IsotopZZ{Pu 241}{14,35\, a}{5}{Alpha}{BetaM}}
+%---------------------- Neptunium -------------------------------------------
+\rput(14,13){\IsotopZ{Np 232}{8,8\, h}{ElektronenE}}
+\rput(15,13){\IsotopZZ{Np 233}{36,2\, min}{5}{Alpha}{ElektronenE}}
+\rput(16,13){\IsotopZZ{Np 234}{4,4\, d}{50}{BetaP}{ElektronenE}}
+\rput(17,13){\IsotopZZ{Np 235}{396,1\, d}{5}{Alpha}{ElektronenE}}
+\rput(18,13){\IsotopZZ{Np 236}{1,54\, E\, 6 a}{30}{BetaM}{Alpha}}
+\rput(19,13){\IsotopZ{Np 237}{2,144\, E\, 6 a}{Alpha}}
+\rput(20,13){\IsotopZ{Np 238}{2,117\, d}{BetaM}}
+\rput(21,13){\IsotopZ{Np 239}{2,355\, d}{BetaM}}
+\rput(22,13){\IsotopZ{Np 240}{65\, min}{BetaM}}
+%---------------------- Uran -------------------------------------------
+\rput(11,12){\IsotopZZ{U 228}{48,8\, min}{5}{Alpha}{ElektronenE}}
+\rput(12,12){\IsotopZZ{U 229}{58\, min}{50}{Alpha}{ElektronenE}}
+\rput(13,12){\IsotopZ{U 230}{20,8\, d}{Alpha}}
+\rput(14,12){\IsotopZZ{U 231}{4,2\, d}{5}{Alpha}{ElektronenE}}
+\rput(15,12){\IsotopZ{U 232}{68,9\, a}{Alpha}}
+\rput(16,12){\IsotopZ{U 233}{1,592\, E\, 5 a}{Alpha}}
+\rput(17,12){\IsotopZ{U 234}{2,455\, E\, 6 a}{Alpha}}
+\rput(18,12){\IsotopZ{U 235}{7,038\, E\, 8 a}{Alpha}}
+\rput(19,12){\IsotopZ{U 236}{2,342\, E\, 7 a}{Alpha}}
+\rput(20,12){\IsotopZ{U 237}{6,75\, d}{BetaM}}
+\rput(21,12){\IsotopZ{U 238}{4,468\, E\, 9 a}{Alpha}}
+\rput(22,12){\IsotopZ{U 239}{23,5\, min}{Alpha}}
+%---------------------- Protactinium -------------------------------------------
+\rput(9,11){\IsotopZ{Pa 225}{1,8\, s}{Alpha}}
+\rput(10,11){\IsotopZZ{Pa 226}{1,8\, min}{50}{Alpha}{ElektronenE}}
+\rput(11,11){\IsotopZZ{Pa 227}{38,3\, min}{50}{Alpha}{ElektronenE}}
+\rput(12,11){\IsotopZZ{Pa 228}{22\, h}{5}{Alpha}{ElektronenE}}
+\rput(13,11){\IsotopZZ{Pa 229}{1,50\, d}{5}{Alpha}{ElektronenE}}
+\rput(14,11){\IsotopZZ{Pa 230}{17,4\, d}{50}{ElektronenE}{BetaM}}
+\rput(15,11){\IsotopZ{Pa 231}{3,276\, E 4\, a}{Alpha}}
+\rput(16,11){\IsotopZ{Pa 232}{1,31\, d}{BetaM}}
+\rput(17,11){\IsotopZ{Pa 233}{27,0\, d}{BetaM}}
+\rput(18,11){\IsotopZ{Pa 234}{6,7\, h}{BetaM}}
+\rput(19,11){\IsotopZ{Pa 235}{24,2\, min}{BetaM}}
+\rput(20,11){\IsotopZ{Pa 236}{9,1\, min}{BetaM}}
+\rput(21,11){\IsotopZ{Pa 237}{8,7\, min}{BetaM}}
+\rput(22,11){\IsotopZ{Pa 238}{2,3\, min}{BetaM}}
+%---------------------- Thorium -------------------------------------------
+\rput(7,10){\IsotopZ{Th 222}{2,24\, ms}{Alpha}}
+\rput(8,10){\IsotopZ{Th 223}{0,66\, s}{Alpha}}
+\rput(9,10){\IsotopZ{Th 224}{1,05\, s}{Alpha}}
+\rput(10,10){\IsotopZZ{Th 225}{8,72\, min}{50}{Alpha}{ElektronenE}}
+\rput(11,10){\IsotopZ{Th 226}{31\, min}{Alpha}}
+\rput(12,10){\IsotopZ{Th 227}{18,72\, d}{Alpha}}
+\rput(13,10){\IsotopZ{Th 228}{1,913\, a}{Alpha}}
+\rput(14,10){\IsotopZ{Th 229}{7932\, a}{Alpha}}
+\rput(15,10){\IsotopZ{Th 230}{7,54\, E\, 4 a}{Alpha}}
+\rput(16,10){\IsotopZ{Th 231}{25,5\, h}{BetaM}}
+\rput(17,10){\IsotopZ{Th 232}{1,4\, E 10 a}{Alpha}}
+\rput(18,10){\IsotopZ{Th 233}{22,3\, min}{BetaM}}
+\rput(19,10){\IsotopZ{Th 234}{24,10\, d}{BetaM}}
+\rput(20,10){\IsotopZ{Th 235}{7,1\, min}{BetaM}}
+\rput(21,10){\IsotopZ{Th 236}{37,5\, min}{BetaM}}
+%---------------------- Actinium ------------------------------------------
+\rput(6,9){\IsotopZ{Ac 220}{26,4\, ms}{Alpha}}
+\rput(7,9){\IsotopZ{Ac 221}{52\, ms}{Alpha}}
+\rput(8,9){\IsotopZZ{Ac 222}{63\, s}{4}{ElektronenE}{Alpha}}
+\rput(9,9){\IsotopZ{Ac 223}{2,10\, min}{Alpha}}
+\rput(10,9){\IsotopZZ{Ac 224}{2,78\, h}{50}{Alpha}{ElektronenE}}
+\rput(11,9){\IsotopZ{Ac 225}{10,0\, h}{Alpha}}
+\rput(12,9){\IsotopZZ{Ac 226}{29\, h}{50}{ElektronenE}{BetaM}}
+\rput(13,9){\IsotopZZ{Ac 227}{21,773\, a}{5}{Alpha}{BetaM}}
+\rput(14,9){\IsotopZ{Ac 228}{6,13\, h}{BetaM}}
+\rput(15,9){\IsotopZ{Ac 229}{62,7\, min}{BetaM}}
+\rput(16,9){\IsotopZ{Ac 230}{122\, s}{BetaM}}
+\rput(17,9){\IsotopZ{Ac 231}{7,5\, min}{BetaM}}
+\rput(18,9){\IsotopZ{Ac 232}{119\, s}{BetaM}}
+\rput(19,9){\IsotopZ{Ac 233}{145\, s}{BetaM}}
+\rput(20,9){\IsotopZ{Ac 234}{44\, s}{BetaM}}
+%---------------------- Radium --------------------------------------------
+\rput(5,8){\IsotopZ{Ra 218}{25,6\, E -6 s}{Alpha}}
+\rput(6,8){\IsotopZ{Ra 219}{10\, ms}{Alpha}}
+\rput(7,8){\IsotopZ{Ra 220}{18\, ms}{Alpha}}
+\rput(8,8){\IsotopZ{Ra 221}{28\, s}{Alpha}}
+\rput(9,8){\IsotopZ{Ra 222}{38\, s}{Alpha}}
+\rput(10,8){\IsotopZ{Ra 223}{11,43\, d}{Alpha}}
+\rput(11,8){\IsotopZ{Ra 224}{3,66\, d}{Alpha}}
+\rput(12,8){\IsotopZ{Ra 225}{14,8\, d}{BetaM}}
+\rput(13,8){\IsotopZ{Ra 226}{1600\, a}{Alpha}}
+\rput(14,8){\IsotopZ{Ra 227}{42,2\, min}{BetaM}}
+\rput(15,8){\IsotopZ{Ra 228}{5,75\, a}{BetaM}}
+\rput(16,8){\IsotopZ{Ra 229}{4,0\, min}{BetaM}}
+\rput(17,8){\IsotopZ{Ra 230}{93\, min}{BetaM}}
+\rput(18,8){\IsotopZ{Ra 231}{104,1\, s}{BetaM}}
+\rput(19,8){\IsotopZ{Ra 232}{4,2\, min}{BetaM}}
+\rput(20,8){\IsotopZ{Ra 233}{30\, s}{BetaM}}
+%---------------------- Francium ------------------------------------------
+\rput(4,7){\IsotopZ{Fr 216}{700\, ns}{Alpha}}
+\rput(5,7){\IsotopZ{Fr 217}{16\, E\, -6 s}{Alpha}}
+\rput(6,7){\IsotopZ{Fr 218}{22\, ms}{Alpha}}
+\rput(7,7){\IsotopZ{Fr 219}{21\, ms}{Alpha}}
+\rput(8,7){\IsotopZZ{Fr 220}{27,4\, s}{4}{BetaM}{Alpha}}
+\rput(9,7){\IsotopZZ{Fr 221}{4,77\, min}{4}{BetaM}{Alpha}}
+\rput(10,7){\IsotopZZ{Fr 222}{14,2\, min}{5}{Alpha}{BetaM}}
+\rput(11,7){\IsotopZZ{Fr 223}{21,8\, min}{5}{Alpha}{BetaM}}
+\rput(12,7){\IsotopZ{Fr 224}{3,3\, min}{BetaM}}
+\rput(13,7){\IsotopZ{Fr 225}{4,0\, min}{BetaM}}
+\rput(14,7){\IsotopZ{Fr 226}{48\, s}{BetaM}}
+\rput(15,7){\IsotopZ{Fr 227}{2,47\, min}{BetaM}}
+\rput(16,7){\IsotopZ{Fr 228}{39\, s}{BetaM}}
+\rput(17,7){\IsotopZ{Fr 229}{50,2\, s}{BetaM}}
+\rput(18,7){\IsotopZ{Fr 230}{19,1\, s}{BetaM}}
+\rput(19,7){\IsotopZ{Fr 231}{17,5\, s}{BetaM}}
+%---------------------- Radon ------------------------------------------
+\rput(3,6){\IsotopZ{Rn 214}{270\, ns}{Alpha}}
+\rput(4,6){\IsotopZ{Rn 215}{2,3\, E\, -6 s}{Alpha}}
+\rput(5,6){\IsotopZ{Rn 216}{45\, E\, -6 s}{Alpha}}
+\rput(6,6){\IsotopZ{Rn 217}{0,54\, ms}{Alpha}}
+\rput(7,6){\IsotopZ{Rn 218}{35\, ms}{Alpha}}
+\rput(8,6){\IsotopZ{Rn 219}{3,96\, s}{Alpha}}
+\rput(9,6){\IsotopZ{Rn 220}{55,6\, s}{Alpha}}
+\rput(10,6){\IsotopZZ{Rn 221}{25\, min}{50}{Alpha}{BetaM}}
+\rput(11,6){\IsotopZ{Rn 222}{3,825\, d}{Alpha}}
+\rput(12,6){\IsotopZ{Rn 223}{23,2\, min}{BetaM}}
+\rput(13,6){\IsotopZ{Rn 224}{1,78\, h}{BetaM}}
+\rput(14,6){\IsotopZ{Rn 225}{4,5\, min}{BetaM}}
+\rput(15,6){\IsotopZ{Rn 226}{7,4\, min}{BetaM}}
+\rput(16,6){\IsotopZ{Rn 227}{22,5\, s}{BetaM}}
+\rput(17,6){\IsotopZ{Rn 228}{65\, s}{BetaM}}
+\rput(18,6){\IsotopZ{Rn 229}{12\, s}{BetaM}}
+%---------------------- Astatin ------------------------------------------
+\rput(1,5){\IsotopZZ{At 211}{07,22\, h}{50}{Alpha}{ElektronenE}}
+\rput(2,5){\IsotopZ{At 212}{314\, ms}{Alpha}}
+\rput(3,5){\IsotopZ{At 213}{110\, ns}{Alpha}}
+\rput(4,5){\IsotopZ{At 214}{760\, ns}{Alpha}}
+\rput(5,5){\IsotopZ{At 215}{0,1\, ms}{Alpha}}
+\rput(6,5){\IsotopZ{At 216}{0,3\, ms}{Alpha}}
+\rput(7,5){\IsotopZZ{At 217}{32,3\, ms}{5}{BetaM}{Alpha}}
+\rput(8,5){\IsotopZZ{At 218}{2\, s}{5}{BetaM}{Alpha}}
+\rput(9,5){\IsotopZZ{At 219}{0,9\, s}{5}{BetaM}{Alpha}}
+\rput(10,5){\IsotopZZ{At 220}{3,71\, min}{50}{Alpha}{BetaM}}
+\rput(11,5){\IsotopZ{At 221}{2,3\, min}{BetaM}}
+\rput(12,5){\IsotopZ{At 222}{54\, s}{BetaM}}
+\rput(13,5){\IsotopZ{At 223}{50\, s}{BetaM}}
+\rput(14,5){\IsotopZ{At 224}{76\, s}{BetaM}}
+\rput(15,5){\IsotopZ{At 225}{160\, ns}{BetaM}}
+\rput(16,5){\IsotopZ{At 226}{160\, ns}{BetaM}}
+\rput(17,5){\IsotopZ{At 227}{160\, ns}{BetaM}}
+\rput(18,5){\IsotopZ{At 228}{160\, ns}{BetaM}}
+%---------------------- Polonium ------------------------------------------
+\rput(-1,4){\IsotopZZ{Po 208}{2,898\, a}{5}{ElektronenE}{Alpha}}
+\rput(0,4){\IsotopZZ{Po 209}{102\, a}{5}{ElektronenE}{Alpha}}
+\rput(1,4){\IsotopZ{Po 210}{138,38\, d}{Alpha}}
+\rput(2,4){\IsotopZ{Po 211}{25,2\, s}{Alpha}}
+\rput(3,4){\IsotopZ{Po 212}{45,1\, s}{Alpha}}
+\rput(4,4){\IsotopZ{Po 213}{4,2\, E -6 s}{Alpha}}
+\rput(5,4){\IsotopZ{Po 214}{164\, E -6 s}{Alpha}}
+\rput(6,4){\IsotopZZ{Po 215}{1,78\, ms}{5}{BetaM}{Alpha}}
+\rput(7,4){\IsotopZ{Po 216}{0,15\, s}{Alpha}}
+\rput(8,4){\IsotopZZ{Po 217}{1,53\, s}{5}{BetaM}{Alpha}}
+\rput(9,4){\IsotopZZ{Po 218}{3,05\, min}{5}{BetaM}{Alpha}}
+\rput(10,4){\IsotopZ{Po 219}{300\, ns}{BetaM}}
+\rput(11,4){\IsotopZ{Po 220}{300\, ns}{BetaM}}
+\rput(12,4){\IsotopZ{Po 221}{112\, s}{BetaM}}
+\rput(13,4){\IsotopZ{Po 222}{145\, s}{BetaM}}
+\rput(14,4){\IsotopZ{Po 223}{160\, ns}{BetaM}}
+\rput(15,4){\IsotopZ{Po 224}{160\, ns}{BetaM}}
+\rput(16,4){\IsotopZ{Po 225}{160\, ns}{BetaM}}
+\rput(17,4){\IsotopZ{Po 226}{160\, ns}{BetaM}}
+\rput(18,4){\IsotopZ{Po 227}{160\, ns}{BetaM}}
+%---------------------- Bismut --------------------------------------------
+\rput(-2,3){\IsotopZ{Bi 206}{6,24\, d}{BetaP}}
+\rput(-1,3){\IsotopZ{Bi 207}{31,55\, a}{BetaP}}
+\rput(0,3){\IsotopZ{Bi 208}{3,68\, E\, 6 a}{BetaP}}
+\rput(1,3){\IsotopZ{Bi 209}{1,9\, E\, 19 a}{Alpha}}
+\rput(2,3){\IsotopZZ{Bi 210}{3,0\, E\, 6 a}{5}{Alpha}{BetaM}}
+\rput(3,3){\IsotopZZ{Bi 211}{2,17\, min}{5}{BetaM}{Alpha}}
+\rput(4,3){\IsotopZZ{Bi 212}{9\, min /60,6\, min}{45}{BetaM}{Alpha}}
+\rput(5,3){\IsotopZZ{Bi 213}{45,59\, min}{5}{Alpha}{BetaM}}
+\rput(6,3){\IsotopZZ{Bi 214}{19,9\, min}{5}{Alpha}{BetaM}}
+\rput(7,3){\IsotopZ{Bi 215}{7,7\, min}{BetaM}}
+\rput(8,3){\IsotopZ{Bi 216}{3,6\, min}{BetaM}}
+\rput(9,3){\IsotopZ{Bi 217}{98,5\, s}{BetaM}}
+\rput(10,3){\IsotopZ{Bi 218}{33\, s}{BetaM}}
+\rput(11,3){\IsotopZ{Bi 219}{160\, ns}{BetaM}}
+\rput(12,3){\IsotopZ{Bi 220}{160\, ns}{BetaM}}
+\rput(13,3){\IsotopZ{Bi 221}{160\, ns}{BetaM}}
+\rput(14,3){\IsotopZ{Bi 222}{160\, ns}{BetaM}}
+\rput(15,3){\IsotopZ{Bi 223}{160\, ns}{BetaM}}
+\rput(16,3){\IsotopZ{Bi 224}{160\, ns}{BetaM}}
+%---------------------- Blei ------------------------------------------
+\rput(-2,2){\IsotopZ{Pb 205}{1,5\, E\, 7 a}{ElektronenE}}
+\rput(-1,2){\IsotopSt{Pb 206}{24,1}}
+\rput(0,2){\IsotopSt{Pb 207}{22,1}}
+\rput(1,2){\IsotopSt{Pb 208}{52,4}}
+\rput(2,2){\IsotopZ{Pb 209}{3,253\, h}{BetaM}}
+\rput(3,2){\IsotopZZ{Pb 2010}{22,3\, a}{5}{Alpha}{BetaM}}
+\rput(4,2){\IsotopZ{Pb 211}{36,1\, min}{BetaM}}
+\rput(5,2){\IsotopZ{Pb 212}{10,64\, h}{BetaM}}
+\rput(6,2){\IsotopZ{Pb 213}{10,2\, min}{BetaM}}
+\rput(7,2){\IsotopZ{Pb 214}{26,8\, min}{BetaM}}
+\rput(8,2){\IsotopZ{Pb 215}{160\, ns}{BetaM}}
+\rput(9,2){\IsotopZ{Pb 216}{160\, ns}{BetaM}}
+\rput(10,2){\IsotopZ{Pb 217}{160\, ns}{BetaM}}
+\rput(11,2){\IsotopZ{Pb 218}{160\, ns}{BetaM}}
+\rput(12,2){\IsotopZ{Pb 219}{160\, ns}{BetaM}}
+\rput(13,2){\IsotopZ{Pb 220}{160\, ns}{BetaM}}
+%---------------------- Thallium ------------------------------------------
+\rput(-2,1){\IsotopZZ{Tl 204}{3,78\, a}{5}{ElektronenE}{BetaM}}
+\rput(-1,1){\IsotopSt{Tl 205}{70,48}}
+\rput(0,1){\IsotopZ{Tl 206}{4,20\, min}{BetaM}}
+\rput(1,1){\IsotopZ{Tl 207}{4,77\, min}{BetaM}}
+\rput(2,1){\IsotopZ{Tl 208}{3,054\, min}{BetaM}}
+\rput(3,1){\IsotopZ{Tl 209}{2,16\, min}{BetaM}}
+\rput(4,1){\IsotopZ{Tl 210}{1,30\, min}{BetaM}}
+\rput(5,1){\IsotopZ{Tl 211}{300\, ns}{BetaM}}
+\rput(6,1){\IsotopZ{Tl 212}{300\, ns}{BetaM}}
+\rput(7,1){\IsotopZ{Tl 213}{101\, s}{BetaM}}
+\rput(8,1){\IsotopZ{Tl 214}{160\, ns}{BetaM}}
+\rput(9,1){\IsotopZ{Tl 215}{160\, ns}{BetaM}}
+\rput(10,1){\IsotopZ{Tl 216}{160\, ns}{BetaM}}
+\rput(11,1){\IsotopZ{Tl 217}{160\, ns}{BetaM}}
+%---------------------- Quecksilber ------------------------------------------
+\rput(-2,0){\IsotopZ{Hg 203}{46,59\, d}{BetaM}}
+\rput(-1,0){\IsotopSt{Hg 204}{6,87}}
+\rput(0,0){\IsotopZ{Hg 205}{5,2\, min}{BetaM}}
+\rput(1,0){\IsotopZ{Hg 206}{8,15\, min}{BetaM}}
+\rput(2,0){\IsotopZ{Hg 207}{2,9\, min}{BetaM}}
+\rput(3,0){\IsotopZ{Hg 208}{42\, min}{BetaM}}
+\rput(4,0){\IsotopZ{Hg 209}{35\, s}{BetaM}}
+\rput(5,0){\IsotopZ{Hg 210}{300\, ns}{BetaM}}
+\rput(6,0){\IsotopZ{Hg 211}{160\, ns}{BetaM}}
+\rput(7,0){\IsotopZ{Hg 212}{160\, ns}{BetaM}}
+\rput(8,0){\IsotopZ{Hg 213}{160\, ns}{BetaM}}
+\rput(9,0){\IsotopZ{Hg 214}{160\, ns}{BetaM}}
+\rput(10,0){\IsotopZ{Hg 215}{160\, ns}{BetaM}}
+\rput(11,0){\IsotopZ{Hg 216}{160\, ns}{BetaM}}
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+%\ifNoSolutions{\psframe[linestyle=none,fillstyle=solid,fillcolor=white,opacity=1](-2,0)(19,13)}{%
+\psframe[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.8](-2,0)(23,16)%}
+\psgrid[subgriddiv=0,gridlabels=0,gridwidth=0.4pt,gridcolor=black!80,subgridwidth=0.4pt,subgridcolor=gray!50](-2,0)(23,16)
+\psaxes[yticksize=0 0,ticklinestyle=dashed,ylabelOffset=-0.5,xlabelOffset=-0.5,Oy=79,Ox=122,xticksize=0 0,showorigin=false, arrowscale=1.4,arrowinset=0.05,arrowlength=2.0]{->}(-2,0)(24,17)
+\uput[-90](23.8,0){\scriptsize $N$} \uput[180](-2,16.8){\scriptsize $Z$}
+%------------------------------------------------------------------------------------
+%\ifNoSolutions{}{%
+%------------------------------------------------------------------------------------
+%---------------------- Thorium ------------------------------------------
+\rput(13,10){\IsotopZ{Th 228}{1,913\, a}{Alpha}}
+\rput(17,10){\IsotopZ{Th 232}{1,4\, E 10 a}{Alpha}}
+%---------------------- Actinium ------------------------------------------
+\rput(14,9){\IsotopZZ{Ac 228}{6,13\, a}{4.27}{Alpha}{BetaM}}
+%---------------------- Radium ------------------------------------------
+\rput(11,8){\IsotopZ{Ra 224}{3,66\, d}{Alpha}}
+\rput(15,8){\IsotopZ{Ra 228}{5,75\, a}{BetaM}}
+%---------------------- Radon ------------------------------------------
+\rput(9,6){\IsotopZ{Rn 220}{55,6\, s}{Alpha}}
+%---------------------- Polonium ------------------------------------------
+\rput(3,4){\IsotopZ{Po 212}{45,1\, s}{Alpha}}
+\rput(7,4){\IsotopZ{Po 216}{0,15\, s}{Alpha}}
+%---------------------- Bismut --------------------------------------------
+\rput(4,3){\IsotopZZ{Bi 212}{9\, min /60,6\, min}{45}{BetaM}{Alpha}}
+%---------------------- Blei ------------------------------------------
+\rput(1,2){\IsotopSt{Pb 208}{52,4}}
+\rput(5,2){\IsotopZ{Pb 212}{10,64\, h}{BetaM}}
+%---------------------- Thallium ------------------------------------------
+\rput(2,1){\IsotopZ{Tl 208}{3,054\, min}{BetaM}}
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+{\psset{linewidth=1.0pt,linecolor=red,arrowscale=1.1,arrowinset=0.05,arrowlength=1.4}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(17,10)(16,9)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=1.1]{->}(15,9)(14,10)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\beta^{-}$}}
+\pcline[nodesepA=-0.2,nodesepB=1.1]{->}(14,10)(13,11)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\beta^{-}$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(13,10)(12,9)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(11,8)(10,7)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(9,6)(8,5)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(7,4)(6,3)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=1.1]{->}(5,3)(4,4)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\beta^{-}$}}
+\pcline[nodesepA=-0.2,nodesepB=1.1]{->}(4,4)(3,5)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\beta^{-}$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(4,3)(3,2)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=-0.2]{->}(3,4)(2,3)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\alpha$}}
+\pcline[nodesepA=-0.2,nodesepB=1.1]{->}(2,2)(1,3)
+\nbput[labelsep=1pt]{\scriptsize\textcolor{red}{$\beta^{-}$}}
+}%}
+\end{pspicture}
+}
+
+
+\end{document} 

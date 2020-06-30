@@ -1,0 +1,95 @@
+\documentclass[12pt,french]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2013}
+\input{perso_dom_2013_2014}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2013-2014}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{12 p 91}
+
+On a les points $A\left( 1\pv 3\right)$ et $B\left( -1\pv 7\right)$ dans le repère $\left( O\pv I , J\right)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8,line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-3,-3) grid (8.5,8.5);
+\draw [color=gray, xstep=1.0,ystep=1.0] (-3,-3) grid (8.5,8.5);
+\draw[>=stealth,->,line width=1.5pt,color=blue] (-3,0) -- (8.5,0);
+\foreach \x in {-3,...,8}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};
+\draw[>=stealth,->,line width=1.5pt,color=blue] (0,-3) -- (0,8.5);
+\foreach \y in {-3,...,8}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};
+\clip(-3,-3) rectangle (8.5,8.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-2*\x+5});
+\draw (1,3) node [above right] {A};
+\draw [line width=1.5pt] (1,3)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (-1,7) node [below left] {B};
+\draw [line width=1.5pt] (-1,7)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (2,1) node [above right] {C};
+\draw [line width=1.5pt] (2,1)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (3.5,-2) node [above right] {D};
+\draw [line width=1.5pt] (3.5,-2)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+\item $x_A\neq x_B$, donc la droite $(AB)$ admet une équation du type $y=mx+p$.
+
+$m=\dfrac{y_B-y_A}{x_B-x_A}=\dfrac{7-3}{-1-1}=\dfrac{4}{-2}=-2$.
+
+La droite $(AB)$ admet donc une équation du type $y=-x+p$.
+
+Comme $A$ appartient à cette droite, ses coordonnées vérifient l'équation précédente, c'est-à-dire $y_A=-2x_A+p$.
+
+On obtient donc $3=-2\times 1+p \qLRq 3=-2+p\qLRq 5=p$.
+
+La droite $(AB)$ admet donc pour équation $y=-2x+5$.
+
+\item La figure est au-dessus.
+
+Puisque $C$ appartient à la droite $(AB)$, ses coordonnées vérifient l'équation précédente, c'est-à-dire $y_C=-2x_C+5$.
+
+On obtient donc $y_C=-2\times 2+5=1$.
+
+L'ordonnée du point $C$ est $1$.
+
+\item La figure est au-dessus.
+
+Puisque $D$ appartient à la droite $(AB)$, ses coordonnées vérifient l'équation précédente, c'est-à-dire $y_D=-2x_D+5$.
+
+On obtient donc $-2=-2\times x_D+5 \qLRq 2x_D=5+2\qLRq x_D=\dfrac{7}{2}$.
+
+L'abscisse du point $D$ est $\dfrac{7}{2}$.
+
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{spacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

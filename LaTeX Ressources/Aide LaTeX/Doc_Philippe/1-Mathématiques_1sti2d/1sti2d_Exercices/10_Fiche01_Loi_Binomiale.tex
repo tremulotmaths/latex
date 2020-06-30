@@ -1,0 +1,67 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreExo{\bsc{x}.1}{Loi binomiale}
+
+\exo On lance un dé trois fois de suite et on note $X$ la variable aléatoire égale au nombre d'apparitions du $6$.
+\begin{enumerate}
+    \item Quel est le schéma associé au lancer du dé ? Justifier.
+    \item Quelle est la loi suivie par $X$ ?
+    \item À l'aide d'un arbre pondéré, calculer $p(X = k$ avec $k \in \{0 \pv 1 \pv 2 \pv 3\}$.
+    \item Quelle est la probabilité d'obtenir au moins un six.
+\end{enumerate}\[*\]
+
+\exo Une entreprise produit des batteries de téléphones portables. Au cours de la production peuvent apparaître deux défauts indépendants que l'on appellera défaut $A$ et défaut $B$.\par
+La probabilité que le défaut $A$ apparaisse vaut $2\%$ et celle que le défaut $B$ apparaisse vaut $0,01$.
+\begin{enumerate}
+    \item Calculer la probabilité qu'une batterie soit défectueuse, c'est-à-dire qu'elle comporte au moins un des deux défauts.
+    \item On prélève au hasard dans la production un échantillon de $100$ batteries. La production est suffisamment importante pour que ce prélèvement soit assimilé à un tirage avec remise.\par
+    Soit $X$ la variable aléatoire qui, à tout échantillon de taille $100$, associe le nombre de batteries défectueuses.
+    \begin{enumerate}
+        \item Caractériser la loi de probabilité de $X$.
+        \item Donner son espérance mathématique et interpréter le résultat.
+        \item Quelle est la probabilité que toutes les batteries soient en bon état ?
+        \item Quelle est la probabilité qu'il y ait exactement une batterie défectueuse ?
+    \end{enumerate}
+\end{enumerate}\[*\]
+
+\exo Une fabrique artisanale de jouets en bois vérifie la qualité de sa production avant sa commercialisation.\par
+Chaque jouet produit par l'entreprise est soumis à deux contrôle : d'une part l'aspect du jouet est examiné afin de vérifier qu'il ne présente pas de défaut de finition, d'autre part sa solidité est testée.\par\medskip
+
+Il s'avère, à la suite d'un grand nombre de vérifications, que :
+\begin{itemize}[label=\textbullet]
+    \item $92\%$ des jouets sont sans défaut de finition ;
+    \item parmi les jouets qui sont sans défaut de finition, $95\%$ réussissent le test de solidité ;
+    \item parmi les jouets qui ont des défauts de finition, $25\%$ ne réussissent pas le test de solidité.
+\end{itemize}\medskip
+
+On prend au hasard un jouet parmi les jouets produits. On note :
+\begin{itemize}[label=\textbullet]
+    \item $F$ l'événement : << le jouet est sans défaut de finition >> ;
+    \item $S$ l'événement : << le jouet réussit le test de solidité >>.
+\end{itemize}\medskip
+
+\begin{enumerate}
+    \item Construire l'arbre pondéré correspondant à cette situation.
+    \item Démontrer que $p(S) = 0,934$.
+    \item Les jouets ayant satisfait aux deux contrôles rapportent un bénéfice de \EUR{$10$}, ceux qui n'ont pas satisfait au test de solidité sont mis au rebut, les autres rapportent un bénéfice de \EUR{$5$}.\par
+        On désigne par $B$ la variable aléatoire qui associe à chaque jouet le bénéfice rapporté.
+        \begin{enumerate}
+            \item Déterminer la loi de probabilité de la variable aléatoire $B$.
+            \item Calculer l'espérance mathématiques de la variable aléatoire $B$. Interpréter le résultat.
+        \end{enumerate}
+    \item On prélève au hasard dans la production de l'entreprise un lot de $10$ jouets.\par On désigne par $X$ la variable aléatoire égale au nombre de jouets de ce lot subissant avec succès le test de solidité. On suppose que la quantité fabriquée est suffisamment importante pour que tous les tirages soient considérés comme indépendants les uns des autres.
+        \begin{enumerate}
+            \item Calculer l'espérance mathématique de $X$, sa variance et son écart-type.\par
+            \textit{On donnera des valeurs approchées à $10^{-3}$ près de ces nombres.}
+            \item Calculer la probabilité que tous les jouets réussissent le test $S$ ?
+            \item À l'aide de la calculatrice, donner la probabilité qu'au moins $8$ jouets réussissent le test $S$.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document} 

@@ -1,0 +1,109 @@
+\BOOKMARK [1][-]{section.1}{Installation et arborescence}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Respectez la TDS \(Tree Directory Structure\)}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{R\351glage de MiKTeX sous Windows}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Rafra\356chir la base de donn\351es sous Linux ou iOS}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{Appel \340 l'extension}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{Les options}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Les extensions charg\351es}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Titre des chapitres}{}% 8
+\BOOKMARK [1][-]{section.4}{La commande \134definmot}{}% 9
+\BOOKMARK [1][-]{section.5}{L'environnement \253 pasbox \273 : l'environnement principal}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Syntaxe et options}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.2}{Exemples}{section.5}% 12
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Th\351or\350me non num\351rot\351}{subsection.5.2}% 13
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Th\351or\350me num\351rot\351}{subsection.5.2}% 14
+\BOOKMARK [3][-]{subsubsection.5.2.3}{D\351finition sans titre mais avec un nom}{subsection.5.2}% 15
+\BOOKMARK [3][-]{subsubsection.5.2.4}{D\351finitions \(au pluriel et avec un titre\)}{subsection.5.2}% 16
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Propri\351t\351}{subsection.5.2}% 17
+\BOOKMARK [3][-]{subsubsection.5.2.6}{Exemple}{subsection.5.2}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.7}{Notations}{subsection.5.2}% 19
+\BOOKMARK [3][-]{subsubsection.5.2.8}{Remarque}{subsection.5.2}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.9}{Activit\351}{subsection.5.2}% 21
+\BOOKMARK [3][-]{subsubsection.5.2.10}{M\351thode}{subsection.5.2}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.11}{D\351monstration}{subsection.5.2}% 23
+\BOOKMARK [2][-]{subsection.5.3}{Nom avec virgule}{section.5}% 24
+\BOOKMARK [2][-]{subsection.5.4}{D\351finition d'un autre style}{section.5}% 25
+\BOOKMARK [2][-]{subsection.5.5}{Cassage d'un cadre : la commande \134breakbox}{section.5}% 26
+\BOOKMARK [1][-]{section.6}{Ins\351rer une entr\351e dans la table des mati\350res}{}% 27
+\BOOKMARK [1][-]{section.7}{Environnements \253 \300 retenir \273, \253 Attention \273 et \253 Pr\351requis \273 }{}% 28
+\BOOKMARK [2][-]{subsection.7.1}{\300 retenir}{section.7}% 29
+\BOOKMARK [2][-]{subsection.7.2}{Attention}{section.7}% 30
+\BOOKMARK [2][-]{subsection.7.3}{Pr\351requis}{section.7}% 31
+\BOOKMARK [1][-]{section.8}{Commande \253 bonus \273 }{}% 32
+\BOOKMARK [1][-]{section.9}{Styles des listes}{}% 33
+\BOOKMARK [1][-]{section.10}{Figures usuelles dans l'espace}{}% 34
+\BOOKMARK [2][-]{subsection.10.1}{Le cube et le parall\351l\351pip\350de rectangle}{section.10}% 35
+\BOOKMARK [3][-]{subsubsection.10.1.1}{Syntaxe}{subsection.10.1}% 36
+\BOOKMARK [3][-]{subsubsection.10.1.2}{Exemple 1 : avec l\351gende}{subsection.10.1}% 37
+\BOOKMARK [3][-]{subsubsection.10.1.3}{Exemple 2 : sans l\351gende}{subsection.10.1}% 38
+\BOOKMARK [3][-]{subsubsection.10.1.4}{Exemple 3 : parall\351l\351pip\350de rectangle}{subsection.10.1}% 39
+\BOOKMARK [2][-]{subsection.10.2}{Le c\364ne de r\351volution}{section.10}% 40
+\BOOKMARK [3][-]{subsubsection.10.2.1}{Syntaxe}{subsection.10.2}% 41
+\BOOKMARK [3][-]{subsubsection.10.2.2}{Exemple 1 : sans option}{subsection.10.2}% 42
+\BOOKMARK [3][-]{subsubsection.10.2.3}{Exemple 2 : avec deux points}{subsection.10.2}% 43
+\BOOKMARK [3][-]{subsubsection.10.2.4}{Exemple 3 : avec l\351gende}{subsection.10.2}% 44
+\BOOKMARK [2][-]{subsection.10.3}{Le cylindre de r\351volution}{section.10}% 45
+\BOOKMARK [3][-]{subsubsection.10.3.1}{Syntaxe}{subsection.10.3}% 46
+\BOOKMARK [3][-]{subsubsection.10.3.2}{Exemple 1 : sans option}{subsection.10.3}% 47
+\BOOKMARK [3][-]{subsubsection.10.3.3}{Exemple 2 : avec deux points}{subsection.10.3}% 48
+\BOOKMARK [3][-]{subsubsection.10.3.4}{Exemple 3 : avec l\351gende}{subsection.10.3}% 49
+\BOOKMARK [2][-]{subsection.10.4}{Sph\350re et boule}{section.10}% 50
+\BOOKMARK [3][-]{subsubsection.10.4.1}{Syntaxe}{subsection.10.4}% 51
+\BOOKMARK [3][-]{subsubsection.10.4.2}{Exemple 1 : sans option}{subsection.10.4}% 52
+\BOOKMARK [3][-]{subsubsection.10.4.3}{Exemple 2 : avec grands cercles}{subsection.10.4}% 53
+\BOOKMARK [3][-]{subsubsection.10.4.4}{Exemple 3 : sph\350re}{subsection.10.4}% 54
+\BOOKMARK [3][-]{subsubsection.10.4.5}{Exemple 4 : coordonn\351es sph\351riques}{subsection.10.4}% 55
+\BOOKMARK [2][-]{subsection.10.5}{Pyramide \340 base r\351guli\350re}{section.10}% 56
+\BOOKMARK [3][-]{subsubsection.10.5.1}{Syntaxe}{subsection.10.5}% 57
+\BOOKMARK [3][-]{subsubsection.10.5.2}{Exemple 1 : sans option}{subsection.10.5}% 58
+\BOOKMARK [3][-]{subsubsection.10.5.3}{Exemple 2}{subsection.10.5}% 59
+\BOOKMARK [3][-]{subsubsection.10.5.4}{Exemple 3}{subsection.10.5}% 60
+\BOOKMARK [3][-]{subsubsection.10.5.5}{Exemple 4}{subsection.10.5}% 61
+\BOOKMARK [2][-]{subsection.10.6}{Prisme \340 base r\351guli\350re}{section.10}% 62
+\BOOKMARK [3][-]{subsubsection.10.6.1}{Syntaxe}{subsection.10.6}% 63
+\BOOKMARK [3][-]{subsubsection.10.6.2}{Exemple 1}{subsection.10.6}% 64
+\BOOKMARK [3][-]{subsubsection.10.6.3}{Exemple 2}{subsection.10.6}% 65
+\BOOKMARK [3][-]{subsubsection.10.6.4}{Exemple 3}{subsection.10.6}% 66
+\BOOKMARK [1][-]{section.11}{Patrons de figures}{}% 67
+\BOOKMARK [2][-]{subsection.11.1}{Pav\351 droit}{section.11}% 68
+\BOOKMARK [3][-]{subsubsection.11.1.1}{Syntaxe}{subsection.11.1}% 69
+\BOOKMARK [3][-]{subsubsection.11.1.2}{Exemple 1 : sans option}{subsection.11.1}% 70
+\BOOKMARK [3][-]{subsubsection.11.1.3}{Exemple 2 : patron avec l\351gende}{subsection.11.1}% 71
+\BOOKMARK [3][-]{subsubsection.11.1.4}{Exemple 3 : afficher tous les patrons}{subsection.11.1}% 72
+\BOOKMARK [2][-]{subsection.11.2}{C\364ne de r\351volution}{section.11}% 73
+\BOOKMARK [3][-]{subsubsection.11.2.1}{Syntaxe}{subsection.11.2}% 74
+\BOOKMARK [3][-]{subsubsection.11.2.2}{Exemple 1 : sans option}{subsection.11.2}% 75
+\BOOKMARK [3][-]{subsubsection.11.2.3}{Exemple 2 : avec l\351gende}{subsection.11.2}% 76
+\BOOKMARK [2][-]{subsection.11.3}{Cylindre de r\351volution}{section.11}% 77
+\BOOKMARK [3][-]{subsubsection.11.3.1}{Syntaxe}{subsection.11.3}% 78
+\BOOKMARK [3][-]{subsubsection.11.3.2}{Exemple 1 : sans option}{subsection.11.3}% 79
+\BOOKMARK [3][-]{subsubsection.11.3.3}{Exemple 2 : avec l\351gende}{subsection.11.3}% 80
+\BOOKMARK [2][-]{subsection.11.4}{Pyramide \340 base r\351guli\350re}{section.11}% 81
+\BOOKMARK [3][-]{subsubsection.11.4.1}{Syntaxe}{subsection.11.4}% 82
+\BOOKMARK [3][-]{subsubsection.11.4.2}{Exemple 1 : sans option}{subsection.11.4}% 83
+\BOOKMARK [3][-]{subsubsection.11.4.3}{Exemple 2 : avec l\351gende}{subsection.11.4}% 84
+\BOOKMARK [2][-]{subsection.11.5}{Prisme \340 base r\351guli\350re}{section.11}% 85
+\BOOKMARK [3][-]{subsubsection.11.5.1}{Syntaxe}{subsection.11.5}% 86
+\BOOKMARK [3][-]{subsubsection.11.5.2}{Exemple 1 : sans option}{subsection.11.5}% 87
+\BOOKMARK [3][-]{subsubsection.11.5.3}{Exemple 2 : avec l\351gende}{subsection.11.5}% 88
+\BOOKMARK [1][-]{section.12}{Juxtaposition de figures}{}% 89
+\BOOKMARK [2][-]{subsection.12.1}{Patron et solide c\364te-\340-c\364te}{section.12}% 90
+\BOOKMARK [2][-]{subsection.12.2}{Juxtaposition de deux solides}{section.12}% 91
+\BOOKMARK [1][-]{section.13}{Les calculs}{}% 92
+\BOOKMARK [2][-]{subsection.13.1}{G\351n\351ralit\351s}{section.13}% 93
+\BOOKMARK [2][-]{subsection.13.2}{Construction du graphe d'une suite}{section.13}% 94
+\BOOKMARK [3][-]{subsubsection.13.2.1}{Syntaxe}{subsection.13.2}% 95
+\BOOKMARK [3][-]{subsubsection.13.2.2}{Exemple}{subsection.13.2}% 96
+\BOOKMARK [2][-]{subsection.13.3}{D\351composition en produits de facteurs premiers}{section.13}% 97
+\BOOKMARK [3][-]{subsubsection.13.3.1}{Syntaxes}{subsection.13.3}% 98
+\BOOKMARK [3][-]{subsubsection.13.3.2}{Exemple 1}{subsection.13.3}% 99
+\BOOKMARK [3][-]{subsubsection.13.3.3}{Exemple 2}{subsection.13.3}% 100
+\BOOKMARK [3][-]{subsubsection.13.3.4}{Exemple 3 : sous forme de tableau}{subsection.13.3}% 101
+\BOOKMARK [2][-]{subsection.13.4}{Simplification de fractions}{section.13}% 102
+\BOOKMARK [3][-]{subsubsection.13.4.1}{Syntaxe}{subsection.13.4}% 103
+\BOOKMARK [3][-]{subsubsection.13.4.2}{Exemple}{subsection.13.4}% 104
+\BOOKMARK [2][-]{subsection.13.5}{Simplification d'une expression litt\351rale}{section.13}% 105
+\BOOKMARK [3][-]{subsubsection.13.5.1}{Syntaxe}{subsection.13.5}% 106
+\BOOKMARK [3][-]{subsubsection.13.5.2}{Exemple}{subsection.13.5}% 107
+\BOOKMARK [1][-]{section.14}{Historique de l'extension}{}% 108
+\BOOKMARK [1][-]{section.15}{Remarques et suggestions}{}% 109

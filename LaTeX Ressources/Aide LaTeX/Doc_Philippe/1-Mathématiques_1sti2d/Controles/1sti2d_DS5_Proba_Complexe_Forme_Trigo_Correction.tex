@@ -1,0 +1,169 @@
+\documentclass[10pt,french]{book}
+\input philippe2013
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\textbf{#1}}\par
+  \medskip}%
+{\medskip}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=3pt,%
+framearc=0.3,%
+fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!60!yellow!40,gradend= white]{%
+\parbox{0.75\linewidth}{%
+\begin{center}
+\Large\bfseries
+\uuline{Contrôle Nombres complexes - Probabilités}\par
+Correction
+\end{center}}}
+\end{center}\bigskip
+
+\hrulefill\bigskip
+
+Sur 22 copies : \pfr{Moyenne : 08/20}. \textbf{17 élèves ont une note strictement inférieure à 10/20 !!}.\par
+Merci de lire très attentivement la correction et de \textbf{refaire plusieurs fois les exercices} afin de comprendre et de retenir toutes les méthodes.\bigskip
+
+\hrulefill\bigskip
+
+\exo
+\begin{enumerate}
+\item $z = \intervalleff{12}{\frac\pi 6}$.
+
+\[\begin{array}{rcl}
+    z & = & \intervalleff{12}{\frac\pi 6} \\[8pt]
+      & = & 12\left(\cos \frac\pi 6 + \I \sin \frac \pi 6\right) \\[8pt]
+      & = & 12\left(\frac{\sqrt 3}{6} + \I\frac 12\right)\\[8pt]
+    \multicolumn{3}{l}{\pfr{z = 6\sqrt 3 + 6\I}}
+\end{array}\]\bigskip
+
+\item $z' = 2 - 2\I\sqrt 3$\bigskip
+
+On calcule d'abord le module :
+
+\[\begin{array}{rcl}
+\abs{z' }& = & \sqrt{x^2 + y^2} \\
+            & = & \sqrt{2^2 + (-2\sqrt 3)^2}\\
+            & = & \sqrt{4 + 4\times 3} \\
+            & = & \sqrt{16} \\
+    \multicolumn{3}{l}{\pfr{\abs{z'} = 4}}
+\end{array}\]
+
+Ensuite, on met $\abs{z'}$ en facteur dans l'expression de départ.
+
+\[\begin{array}{rcl}
+z'& = & 2 - 2\I\sqrt 3 \\[8pt]
+            & = & 4\left(\frac{2}{4} - \I\frac{2\sqrt3}{4}\right)\\[8pt]
+            & = & 4\left(\frac{1}{2} - \I\frac{\sqrt3}{2}\right)
+\end{array}\]
+
+On trouve alors : $\cos \theta = \frac 1 2$ et $\sin \theta = -\frac{\sqrt 3}{2}$ ce qui correspond à \pfr{$\theta = -\frac\pi 3$}.
+
+\[\pfr{z' = \intervalleff{4}{-\frac{\pi}{3}}}\]
+\end{enumerate}\clearpage
+
+{\small
+\exo \[z_A = \sqrt 3 + \I \qq z_B = z_A - 4\I \qetq z_C = 3 \overline{z_A} + 2\I.\]
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item\strut
+    
+    \begin{center}
+        \begin{tabularx}{0.75\linewidth}{>\centering X|>{\centering\arraybackslash} X}
+            $\begin{array}{rcl}
+                z_B & = & z_A - 4\I \\
+                &=& \sqrt 3 + \I - 4 \I \\
+                \multicolumn{3}{l}{\pfr{z_B = \sqrt 3 - 3\I}}
+            \end{array}$ &
+            $\begin{array}{rcl}
+                z_C & = & 3\overline{z_A} + 2\I \\
+                &=& 3(\sqrt 3 - \I) + 2\I \\
+                &=&3\sqrt 3 - 3\I + 2\I \\
+                \multicolumn{3}{l}{\pfr{z_C = 3\sqrt 3 - \I}}
+            \end{array}$ 
+        \end{tabularx}
+    \end{center}
+    
+    \item $ABC$ est un triangle équilatéral lorsque $AB = BC = AC$. On calcule donc chaque longueur.\medskip
+
+\hspace*{-2cm}
+        \begin{tabularx}{1.2\linewidth}{>\centering X|>\centering X|>{\centering\arraybackslash} X}
+            $\begin{array}{rcl}
+                AB & = & \abs{z_B - z_A} \\
+                &=& \abs{\sqrt3 - 3\I - (\sqrt 3 + \I)} \\[5pt]
+                &=&  \abs{\sqrt 3 - 3\I -\sqrt 3 - \I} \\[5pt]
+                &=&\abs{-4\I}\\
+                \multicolumn{3}{l}{\pfr{AB = 4}}
+            \end{array}$ &
+            $\begin{array}{rcl}
+                AC & = & \abs{z_C - z_A} \\
+                &=& \abs{3\sqrt3 - \I - (\sqrt 3 + \I)} \\[5pt]
+                &=&  \abs{3\sqrt 3 - \I -\sqrt 3 - \I} \\[5pt]
+                &=&\abs{2\sqrt 3 - 2\I}\\[5pt]
+                &=&\sqrt{(2\sqrt 3)^2 + (-2)^2}\\
+                &=&\sqrt{16}\\
+                \multicolumn{3}{l}{\pfr{AC = 4}}
+            \end{array}$ &
+            $\begin{array}{rcl}
+                BC & = & \abs{z_C - z_B} \\
+                &=& \abs{3\sqrt3 - \I - (\sqrt 3 - 3\I)} \\[5pt]
+                &=&  \abs{3\sqrt 3 - \I -\sqrt 3 + 3\I} \\[5pt]
+                &=&\abs{2\sqrt 3 + 2\I}\\[5pt]
+                &=&\sqrt{(2\sqrt 3)^2 + 2^2}\\
+                &=&\sqrt{16}\\
+                \multicolumn{3}{l}{\pfr{BC = 4}}
+            \end{array}$
+        \end{tabularx}\medskip
+    
+    $AB = BC = AC$ donc le triangle $ABC$ est bien un triangle équilatéral.
+
+\item $z_A= \sqrt 3 + \I$
+
+\[\begin{array}{rcl}
+\abs{z_A }& = & \sqrt{(\sqrt 3)^2 + 1^2}\\
+            & = & \sqrt{3 + 1} \\
+            & = & \sqrt{4} \\
+    \multicolumn{3}{l}{\pfr{\abs{z_A} = 2}}
+\end{array} \qq
+\begin{array}{rcl}
+z_A& = & \sqrt 3 + \I \\[8pt]
+            & = & 2\left(\frac{\sqrt 3}{2} + \I\frac{1}{2}\right)
+\end{array}\]
+
+On trouve alors : $\cos \theta =\frac{\sqrt 3}{2}$ et $\sin \theta = \frac 1 2$ ce qui correspond à \pfr{$\theta = \frac\pi 6$}.
+
+\[\pfr{z_A = \intervalleff{2}{\frac{\pi}{6}}}\]
+
+$z_B= \sqrt 3 - 3\I$
+
+\[\begin{array}{rcl}
+\abs{z_B }& = & \sqrt{(\sqrt 3)^2 + (-3)^2}\\
+            & = & \sqrt{3 + 9} \\
+            & = & \sqrt{12} \\
+            & = & \sqrt{4 \times 3} \\
+    \multicolumn{3}{l}{\pfr{\abs{z_B} = 2\sqrt3}}
+\end{array} \qq
+\begin{array}{rcl}
+z_B& = & \sqrt 3 - 3\I \\[8pt]
+            & = & 2\sqrt 3\left(\frac{\sqrt 3}{2\sqrt3} + \I\frac{-3}{2\sqrt3}\right) \\[8pt]
+            & = & 2\sqrt3\left(\frac{1}{2} + \I\frac{-\sqrt 3}{2}\right) \\[8pt]
+\end{array}\]
+
+On trouve alors : $\cos \theta =\frac{1}{2}$ et $\sin \theta = -\frac{\sqrt3}{2}$ ce qui correspond à \pfr{$\theta = -\frac\pi 3$}.
+
+\[\pfr{z_B = \intervalleff{2\sqrt3}{\frac{-\pi}{3}}}\]
+
+\item $\left(\vect{OB} \pv \vect{OA}\right) = \left(\vect{OB} \pv \vect u\right) + \left(\vect u \pv \vect{OA}\right) = -\left(\vect u \pv \vect{OB}\right)+ \left(\vect u \pv \vect{OA}\right)$ donc\par
+$\left(\vect{OB} \pv \vect{OA}\right) =  -\arg(z_B) + \arg z_A = -\left(-\frac \pi 3\right) + \frac\pi 6 =\frac \pi 3 + \frac\pi 6 = \pfr{\dfrac \pi 2}.$
+\item Le triangle $OAB$ possède un angle droit donc c'est un \pfr{triangle rectangle}.
+    \end{enumerate}
+\end{enumerate}
+}
+
+ 
+\end{document}

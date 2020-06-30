@@ -1,0 +1,479 @@
+\documentclass[svgnames,smaller]{beamer}
+\usetheme{Warsaw}
+%\useoutertheme{infolines}
+%\usepackage[final]{movie15}
+%\usepackage{default}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{etex}
+\usepackage[babel=true,kerning=true]{microtype}
+\usepackage{multimedia}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{multirow}
+\usepackage{colortbl}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[version=3]{mhchem}
+\usepackage{caption}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\pgfplotsset{compat=1.3}
+\definecolor{lightgray}{gray}{0.95}
+\usepackage{listings}
+	\lstset{backgroundcolor=\color{lightgray},language=[LaTeX]TeX,texcsstyle=\color{blue},commentstyle=\color{gray},
+	literate=
+	{à}{{\`a}}1
+	{é}{{\'e}}1
+	{è}{{\`e}}1}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{breakcites}
+\usepackage[normalem]{ulem}
+\usepackage{nicefrac}
+\usepackage[sort&compress,comma]{natbib}
+\def\newblock{}
+\setlength{\unitlength}{1mm}
+\date{janvier 2012}
+\author{Dorian Depriester}
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+
+
+\title{Introduction à \LaTeX}
+
+\AtBeginSection[]{
+   \begin{frame}
+\begin{block}{}
+   %%% affiche en début de chaque section, les noms de sections et
+   %%% noms de sous-sections de la section en cours.
+   \tableofcontents[currentsection,hideothersubsections]
+\end{block}
+   \end{frame} 
+}
+
+
+
+
+
+    \setbeamertemplate{caption}[numbered]
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+
+\begin{document}
+\maketitle
+
+
+
+\section{Historique}
+\frame{
+		\begin{block}{Fin des années 70}
+			\begin{columns}
+				\begin{column}{0.2\linewidth}
+	    			\includegraphics[width=\linewidth]{Donald.jpg}
+				\end{column}
+				\begin{column}{0.7\linewidth}
+	    			Langage \TeX{} par Donald Knuth : invention du principe du \textit{What-you-see-is-what-you-mean} (WYSIWYM)
+				\end{column}
+			\end{columns}
+		\end{block}
+		\begin{block}{Années 80}
+			\begin{columns}
+				\begin{column}{0.7\linewidth}
+	    			Leslie Lamport propose une surcouche simplifiée : \LaTeX
+				\end{column}
+				\begin{column}{0.2\linewidth}
+	    			\includegraphics[width=\linewidth]{Leslie.jpg}
+				\end{column}
+			\end{columns}
+		\end{block}
+}
+
+
+
+\section{Principe}
+\frame{
+\begin{block}{Principe du WYSIWYM}
+		L'utilisateur se concentre sur le contenu, et laisse le logiciel gérer la mise en page. Le contenu est écrit dans un fichier texte standard (\texttt{.tex}) puis ce contenu est lu par le compilateur pour générer le document.
+\end{block}
+
+\begin{block}{Qu'est-ce que \LaTeX}<2->
+		\LaTeX{} est un compilateur. Depuis le \texttt{.tex}, il va générer le document avec la mise en page souhaitée.
+\end{block}
+}
+
+\frame{
+\frametitle{Obtenir un fichier pdf}
+\begin{block}{Avec le compilateur \texttt{latex}}
+\centering
+	\texttt{.tex}$\xrightarrow{\text{\texttt{latex}}}$\texttt{.dvi}$\xrightarrow{\text{\texttt{dvips}}}$\texttt{.ps}
+		\visible<2->{$\left( \xrightarrow{\text{\texttt{pstopdf}}}\text{\texttt{.pdf}}\right)$}
+\end{block}
+
+\begin{block}{Avec le compilateur \texttt{pdflatex}}<3->
+	\centering
+	\texttt{.tex}$\xrightarrow{\text{\texttt{pdflatex}}}$\texttt{.pdf}
+\end{block}
+
+
+\begin{block}{Fichiers supplémentaires (créés lors de la compilation)}<4->
+	\begin{description}
+		\item[\texttt{.aux}] Fichier de configuration. Sert aux références croisées
+		\item[\texttt{.log}] Fichier de journal
+		\item[\texttt{.toc}] Table des matières
+		\item[...] 
+	\end{description}
+\end{block}
+}
+
+
+\section{Pourquoi \LaTeX}
+\frame{
+	\begin{block}{Avantages}
+		\begin{description}
+			\item[Typographique] \LaTeX{} respecte des normes typographiques très strictes, propres à chaque langue.
+			\item[Extensibilité] De très nombreuses \textit{packages} disponibles
+			\item[Pérennité] Toutes les versions de \LaTeX{} sont rétrocompatibles
+			\item[Modularité] Gestion aisée des très gros documents, possibilité de ne compiler que certaines parties
+			\item[Portabilité] Compatible tout OS (Linux, Windows, Mac)
+		\end{description}
+	\end{block}
+	
+	\begin{alertblock}{Inconvénients}<2->
+		\begin{itemize}
+			\item Nécessite un apprentissage
+			\item Résultat moins direct
+			\item Personnalisation de la mise en page qui peut sembler complexe
+		\end{itemize}
+	\end{alertblock}	
+	}
+	
+	
+	
+\section{Utilisation}
+	\subsection{Édition du fichier source}	
+\frame{
+\begin{block}{Éditeur graphique (IDE)}
+	\centering\includegraphics[height=0.5\textheight]{texmaker.jpg}
+\end{block}
+}
+
+\subsection{Exemple minimal}
+\begin{frame}[fragile]
+\begin{lstlisting}
+	\documentclass{article}       % Mise en page
+	
+	\usepackage[francais]{babel}  % Règles typo.
+	\usepackage[latin1]{inputenc} % Accents
+	\usepackage[T1]{fontenc}      % Fontes EC
+	
+	\begin{document}
+		  Bonjour tout le monde !
+	\end{document}
+\end{lstlisting}
+\end{frame}
+
+
+\subsection{Commandes habituelles}
+\begin{frame}[fragile]
+	\begin{block}{Dans le préambule}
+		\begin{lstlisting}
+			\title{Introduction à \LaTeX}
+			\date{janvier 2012}
+			\author{Dorian Depriester}
+		\end{lstlisting}
+	\end{block}
+	
+	\begin{block}{Dans le document}
+		\begin{lstlisting}
+			\maketitle
+			\tableofcontents
+			\newpage
+			\section{Utilisation}
+			  \subsection{Exemple minimal}
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+	
+\subsection{L'environnement mathématique}
+\begin{frame}[fragile]
+	\begin{block}{Packages nécessaires}
+	  amsmath, amsfonts et mathrsfs
+	\end{block}
+
+	\begin{block}{Utilisation ``inline''}
+  		\begin{lstlisting}
+			On sait que $\sin(\pi)=0$ donc tout va bien.
+		\end{lstlisting}
+			On sait que $\sin(\pi)=0$ donc tout va bien.
+	\end{block}
+	
+	\begin{block}{Équation centrée}
+  		\begin{lstlisting}
+			De plus : 
+			\begin{equation}
+			  \sin(\frac{\pi}{2})=1
+			\end{equation}
+		\end{lstlisting}
+			De plus : 
+			\begin{equation}
+			  \sin(\frac{\pi}{2})=1
+			\end{equation}
+	\end{block}
+\end{frame}
+
+
+
+
+
+\section{Les figures}
+	\subsection{Les flottants}
+	\begin{frame}[fragile]
+		\begin{block}{Utilité}
+		  Les éléments flottants servent à optimiser l'espace, tout en rendant la lecture plus continue grâce aux rassemblement des figures sur une même page.
+		\end{block}
+		
+		\begin{block}{Sous \LaTeX}
+		  Les éléments flottants sont définis dans les environnements tels que \texttt{figure} ou \texttt{table}. On spécifie en option la position \textbf{souhaitée}.
+		\end{block}
+		
+		\begin{exampleblock}{Exemple}<2->
+			\begin{lstlisting}
+				\begin{figure}[htbp]
+				  % Ici le contenu de la figure flottante
+				  \caption{Légende de la figure}
+				\end{figure}				 
+			\end{lstlisting}
+		\end{exampleblock}
+	\end{frame}
+
+
+	\subsection{Images}
+		\begin{frame}[fragile]
+			\begin{block}{package nécessaire}
+				graphicx
+			\end{block}
+
+			\begin{block}{Insertion d'une image}
+				\begin{lstlisting}
+					\begin{figure}[htbp]
+						  \includegraphics[width=3cm]{monimage.jpg}
+						  \caption{Légende de la figure}
+					\end{figure}		
+				\end{lstlisting}
+				\visible<2->{
+					{\centering
+					\includegraphics[width=0.2\textwidth]{guy-fawkes.jpg}
+					\captionof{figure}{Légende de la figure}
+					
+					}
+							}
+			\end{block}
+		\end{frame}
+
+\begin{frame}
+	\frametitle{Formats pris en charge}
+	\begin{block}{Avec \texttt{latex}}
+		PostScript Encapsulé (\texttt{.eps})
+	\end{block}
+	\begin{block}{Avec \texttt{pdflatex}}
+		\begin{itemize}
+			\item JPEG
+			\item PNG
+			\item PDF
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+
+	\subsection{Tableaux}
+		\begin{frame}[fragile]
+			\begin{block}{environnement \texttt{tabular}}
+				\begin{lstlisting}
+					\begin{tabular}{|l|c|r|}
+						  \hline
+						  Colonne 1 & Colonne 2 & Colonne 3\\
+						  \hline
+						  à gauche  & centré    & à droite\\
+						  \hline
+					\end{tabular}
+				\end{lstlisting}
+					\visible<2->{
+					\begin{tabular}{|l|c|r|}
+						\hline
+						Colonne 1	&	Colonne 2	& Colonne 3\\
+						\hline
+						à gauche	&	centré		& à droite\\
+						\hline
+					\end{tabular}
+					}
+			\end{block}
+		\end{frame}			
+			
+		\begin{frame}[fragile]
+		\frametitle{Quid des tableaux flottants ?}
+			\begin{block}{environnement \texttt{table}}
+				\begin{lstlisting}
+					\begin{table}
+						  \caption{Légende du tableau}
+						  \begin{tabular}{c}
+						  	  \hline Un tableau quelconque\\ \hline
+						  \end{tabular}
+						  \label{tab:montableau}
+					\end{table}
+				On voit dans le tableau~\ref{tab:montableau} que...
+				\end{lstlisting}
+			\end{block}
+			
+					\begin{table}
+						  \caption{Légende du tableau}
+						  \begin{tabular}{c}
+						  	  \hline Un tableau quelconque\\ \hline
+						  \end{tabular}
+					\end{table}
+		\end{frame}
+
+
+
+\section{Mise en page}
+	\subsection{Sectionnement}
+	\begin{frame}[fragile]
+		\begin{exampleblock}{Exemple}
+				\begin{lstlisting}
+					\section{Mise en page}
+						  \subsection{Sectionnement}
+						    Je parle du sectionnement sous \LaTeX.
+						  \subsection{Les références croisées}
+						    Après, je parlerai des références croisées.
+					\section{Conclusion}
+					  Enfin je conclurai.
+				\end{lstlisting}
+		\end{exampleblock}
+		
+		\begin{block}{Différents niveaux de sectionnement}<2->
+		  Dépend de la classe choisie :
+		  	\begin{itemize}
+		  		\item \texttt{part}
+		  		\item \texttt{chapter}
+		  		\item \texttt{section/subsection/subsubsection}
+		  		\item \texttt{paragraph/subparagraph}
+		  	\end{itemize}
+		\end{block}
+	\end{frame}
+
+	\subsection{Environnements spécifiques}	
+		\begin{frame}[fragile]
+			\begin{columns}
+				\begin{column}{0.4\textwidth}
+					\begin{block}{\texttt{itemize}}
+						\begin{lstlisting}
+							\begin{itemize}
+							  \item un
+							  \item deux
+							  \item trois
+							\end{itemize}
+						\end{lstlisting}
+						\begin{itemize}
+							\item un
+							\item deux
+							\item trois
+						\end{itemize}
+					\end{block}
+				\end{column}
+				\begin{column}{0.4\textwidth}
+					\begin{block}{\texttt{enumerate}}
+						\begin{lstlisting}
+							\begin{enumerate}
+							  \item un
+							  \item deux
+							  \item trois
+							\end{enumerate}
+						\end{lstlisting}
+						\begin{enumerate}
+							\item un
+							\item deux
+							\item trois
+						\end{enumerate}
+					\end{block}	
+				\end{column}
+			\end{columns}
+			
+			\begin{exampleblock}{Astuce}<2->
+				Il est possible d'imbriquer ces environnements pour créer différents niveaux.
+			\end{exampleblock}
+		\end{frame}
+	
+	
+	
+	
+\subsection{Références croisées}
+\begin{frame}[fragile]
+	\begin{block}{Qu'est-ce ?}
+	  Elles servent à faire référence à un objet (partie, équation, figure etc.) sans avoir à se soucier de son numéro ou de sa position.
+	\end{block}
+	
+	\begin{block}{Méthode}
+	  On donne un nom à chaque élément (commande \lstinline!\label{}!) lors de sa définition, puis on fait référence à ce label (commande \lstinline!\ref{}!).
+	\end{block}
+	
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Exemple}	
+	%\begin{block}{Source}
+	\begin{lstlisting}
+		\begin{figure}[h]
+	  	    \includegraphics[width=2cm]{Tux-DJ.png}
+	  	    \caption{Une image au hasard}
+	  	    \label{fig:hasard}
+		\end{figure}
+	  Je peux faire référence à ma figure~\ref{fig:hasard} 
+	  sans me soucier de son numéro.
+	  \end{lstlisting}
+	  		\begin{figure}[h]
+	  	    \includegraphics[width=2cm]{Tux-DJ.png}
+	  	    \caption{Une image au hasard}
+	  	    \label{fig:hasard}
+		\end{figure}
+		\vspace{-2em}
+	  Je peux faire référence à ma figure~\ref{fig:hasard} 
+	  sans me soucier de son numéro.
+	%\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Notes}
+
+\begin{block}{Commandes supplémentaires}
+	\begin{description}
+		\item[Afficher la page de la référence] \lstinline!\pageref{}!
+		\item[Référence à une équation] \lstinline!\eqref{}!, met le numéro entre parenthèse
+	\end{description}
+\end{block}
+
+\begin{block}{Les bonnes habitudes}
+	\begin{itemize}
+		\item Utiliser une espace insécable avant la référence : tilde (\lstinline!~!) sous \LaTeX
+		\item Préciser pour chaque objet sa nature (figure, tableau, etc.) : \lstinline!\label{fig:hasard}!
+	\end{itemize}
+\end{block}
+
+
+\end{frame}
+
+
+
+
+\end{document}

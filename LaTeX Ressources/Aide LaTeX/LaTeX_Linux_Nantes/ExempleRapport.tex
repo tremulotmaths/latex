@@ -1,0 +1,339 @@
+\documentclass[11pt,a4paper,twoside,french,svgnames]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+% pour compiler avec xelatex
+%\usepackage{fontspec,xltxtra,xunicode}
+
+% format de la page
+\usepackage[papersize={21cm,29.7cm},margin=1.5cm,bottom=1.5cm%, height=250mm,width=183mm
+]{geometry}
+
+% fontes
+%\usepackage[upright]{fourier}
+\usepackage[boldsans]{ccfonts}
+\usepackage{stmaryrd}
+\IfFileExists{monster2e.sty}{\usepackage{monster2e}}{} % écrire en très grand
+\IfFileExists{bold-extra.sty}{\usepackage{bold-extra}}{}
+\IfFileExists{luximono.sty}{\usepackage[scaled=0.9]{luximono}}{}
+
+% graphiques
+\usepackage{graphicx}
+
+% références françaises
+\usepackage[french]{varioref}
+
+%biblio
+\usepackage[nottoc]{tocbibind} % pour que la biblio soit insérée dans la toc
+\usepackage[square]{daedale}
+\bibliographystyle{cyclope}
+
+% le logo byCC
+\usepackage{cclicenses}
+\usepackage{cclicence}
+
+%ajoute de l'espace entre le numero de chapitre (chap) et le titre dans la TDM
+\usepackage{tocloft}
+
+% Listings INFO 
+\usepackage{listings}
+
+\newcommand{\lat}{%
+  \lstset{
+  language=[AlLaTeX]{TeX},
+        escapeinside={(*@}{@*)},
+        % numbers=left,
+        commentstyle={\sffamily\color{gray}},
+        keywordstyle={\large\bfseries\color{black!40!blue}},
+        stringstyle={\ttfamily\color{gray}\itshape},
+        basicstyle={\ttfamily},
+        breaklines=true,
+        breakatwhitespace=true,
+        showtabs=False,
+        showspaces=False,
+        showstringspaces=False,
+        extendedchars=true,
+        emph=[2]{In},
+        emphstyle=[2]\color{black!70},
+        morecomment=[l][\color{blue}]{Out},
+        % aboveskip=1em,
+        %belowskip=1em,
+        rulecolor=\color{gray},
+        backgroundcolor = \color{yellow!20},
+        % rulesepcolor=\color{gray},
+        %frame=trBL,
+        frame=single,
+        frameround=tttt,
+        framerule=0.3pt,
+        framesep=4pt,
+        belowcaptionskip=2.1pt,
+        title={{\setlength{\fboxsep}{1pt}\fcolorbox{orange}{yellow!20}{\sffamily\scriptsize
+              \textcolor{gray!10}{\_}\LaTeX{} \textcolor{gray!10}{\_}}}}}
+}
+
+
+\newcommand{\shell}{%
+\lstset{
+ language=sh,
+        escapeinside={(*@}{@*)},
+        %numbers=left,
+        commentstyle={\sffamily\color{gray}},
+        keywordstyle={\large\bfseries\ttfamily\color{black!70!blue}},
+        stringstyle={\ttfamily\color{gray}\itshape},
+        basicstyle={\ttfamily},
+        breaklines=true,
+        breakatwhitespace=true,
+        showtabs=False,
+        showspaces=False,
+        showstringspaces=False,
+        extendedchars=true,
+        emph=[2]{In},
+        emphstyle=[2]\color{black!70},
+        morecomment=[l][\color{blue}]{Out},
+        %aboveskip=1em,
+        %belowskip=1em,
+        rulecolor=\color{gray},
+        backgroundcolor = \color{blue!10},
+        %rulesepcolor=\color{gray},
+        %frame=trBL,
+        frame=single,
+        frameround=tttt,
+        framerule=0.3pt,
+        framesep=4pt,
+        belowcaptionskip=2.1pt,
+title={{\setlength{\fboxsep}{1pt}\fcolorbox{blue}{blue!10}{\sffamily\scriptsize
+      \textcolor{gray!10}{\_}Shell \textcolor{gray!10}{\_}}}}}
+}
+% hack pour forcer la compatibilité avec UTF8 (pour le français uniquement)
+\lstset{
+        extendedchars=true,
+        literate={à}{{\`a}}1 {â}{{\^a}}1 %                         lettre a
+                 {À}{{\`A}}1 {Â}{{\^A}}1 %                         lettre A
+                 {ç}{{\c{c}}}1 %                                   lettre c
+                 {Ç}{{\c{C}}}1 %                                   lettre C
+                 {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1 % lettre e
+                 {É}{{\'E}}1 {È}{{\`E}}1 {Ê}{{\^E}}1 {Ë}{{\"E}}1 % lettre E
+                 {î}{{\^i}}1 {ï}{{\"i}}1 %                         lettre i
+                 {Î}{{\^I}}1 {Ï}{{\"I}}1 %                         lettre I
+                 {ô}{{\^o}}1 %                                     lettre o
+                 {Ô}{{\^O}}1 %                                     lettre O
+                 {œ}{{\oe}}1 %                                     lettre oe
+                 {Œ}{{\OE}}1 %                                     lettre OE
+                 {ù}{{\`u}}1 {û}{{\^u}}1 {ü}{{\"u}}1 %             lettre u
+                 {Ù}{{\`U}}1 {Û}{{\^U}}1 {Ü}{{\"U}}1 %             lettre U
+}
+
+
+
+
+\usepackage{array}     % Nouveau package de tableau
+\usepackage{tabularx}  % Nouveau package de tableau de
+                           % fixe largeur
+\usepackage{dcolumn}   % alignement sur la virgule
+\usepackage{hhline}    % Nouvelle gestion des lignes 
+                           % horizontales dans les tableaux
+\usepackage{multirow}  % package permettant de d'\'erire sur plusieures
+                           % lignes dans un tableau
+\usepackage{slashbox}  % ligne diagonale dans une case
+
+
+\usepackage[detect-all]{siunitx} % unités et format des nombres
+
+\usepackage{xcolor} % les couleurs
+\definecolor{ciel}{rgb}{0.220,0.890,0.999}
+
+
+
+
+\setcounter{tocdepth}{3} % profondeur de TDM
+\pagenumbering{arabic} % numérotation des pages
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Gestion des espaces % %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{xspace}	    % Pour bien g\'eer les espaces \'ela fin de macros 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%% Gestion conditionnelle % %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{calc}              % permet les calculs
+\usepackage{lastpage}   % utilis\'edans tounez la page 
+                          
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Entete et pied de page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}%,fancybox} conflit avec fancyvrb quand on met une option \`a VerbatimOut
+
+
+
+
+% en-tête et pieds de pages reformatés avec fancyhdr
+\newcommand{\entet}[3]{
+\fancyfoot[C]{{\scriptsize\textsl{  Guillaume  \textsc{Connan} -  Atelier  Linux  Nantes - #3 - \today}}}
+ \fancyhead[RO,LE]{\color{MidnightBlue}\fontfamily{ugq}\selectfont\bfseries\thepage} \fancyhead[RE,LO]{ }
+ \fancyhead[CO]{\color{black!80}\fontfamily{ugq}\selectfont     #1     }
+ \fancyhead[CE]{\color{MidnightBlue}\fontfamily{ugq}\selectfont\MakeLowercase
+     #2  }
+\renewcommand{\headrulewidth}{0.4pt}
+ \pagestyle{fancy}
+}
+
+\entet{\leftmark }{\rightmark }{\href{http://informathix.tuxfamily.org/}{Licence
+    Creative Commons}\byncsa}%g,d,b
+
+
+% un nouveau style de théorème
+\newtheorem{definition}{D\'efinition}[chapter]
+\renewcommand{\thedefinition}{\thechapter\, - \arabic{definition}}
+
+
+% pour faire de belles figures
+\usepackage{tikz}
+\usetikzlibrary{automata,fit,trees,matrix,arrows,decorations.pathmorphing,shapes.arrows,chains,positioning,intersections,backgrounds,calc,through,mindmap}
+\usepackage{amssymb,amsbsy,amsfonts,amstext,amscd,amsopn,amsxtra}
+
+% liens hypertexte
+\usepackage[colorlinks=true,linkcolor=red!50!blue,citecolor=red,pdfauthor={Guillaume CONNAN},bookmarks,pdfpagelabels]{hyperref}
+
+
+% le chemin vers les graphiques et les images à insérer 
+\graphicspath{{/home/moi/VISA_III/figures_visa/}{/home/moi/Lycee/TDmaple/2006_7/}{/home/moi/Figures/Arbres_Graphes/}{/home/moi/Figures/FigSTI/}{/home/moi/Figures/FigMaple/}{/home/moi/Photos/Maths/}{/home/moi/Photos/Tehessin/}{/home/moi/Figures/FigSTI/}{/home/moi/Figures/FigSeconde/}{/home/moi/Lycee/Informatique/XCAS/2008_9/}{/home/moi/Lycee/TDmaple/2008_9/}{/home/moi/IUT/Thierry/Conversions/}{/home/moi/Photos/informathix/}{/home/moi/Lycee/Informatique/PafAlgo/}{/home/moi/Figures/figuresAlice/}{/home/moi/Figures/FigSeconde/}{/home/moi/Biocam/robot/}{/home/moi/Biocam/CoursIni3d/}{/home/moi/Biocam/central/figures/}{/home/moi/Biocam/central/}{/home/moi/IUT/INFO2/Images/}{/home/moi/IUT/INFO2/2011_12/graphes/}{/home/moi/IUT/INFO1/CM1/}{/home/moi/Figures/figuresTS/}{/home/moi/Photos/Tehessin/}{/home/moi/Figures/FigSTI/}{/home/moi/Alice/figures3/}{/home/moi/Alice/figures3/newcourbes/}{/home/moi/Alice/figures/}{/home/moi/Figures/figuresAlice/}{/home/moi/Photos/Maths/}{/home/moi/Lycee/TS/}{/home/moi/Lycee/TS/2009_10/}{/home/moi/Figures/FigMaple/}{/home/moi/Figures/figuresTS/newcourbes/}{/home/moi/Figures/FigEspace/}}
+
+
+
+
+%% INDEX
+\usepackage{makeidx,showidx}
+\usepackage{index}
+\makeindex
+\renewindex{default}{idx}{ind}{Un exemple d'index}
+
+
+%% GLOSSAIRE
+\usepackage{glossaries}
+\makeglossaries
+\loadglsentries{LinuxGlossaire}
+
+
+% pas d'indentation 
+\setlength{\parindent}{0mm}
+
+
+%%
+%% le titre
+
+\title{UN RAPPORT EN \LaTeX{}
+\\
+\scalebox{0.75}[0.75]{\emph{Pour les débutatnts}}
+}
+\author{Guillaume \textsc{Connan}\thanks{ Université de
+  Nantes}             }
+
+
+\date{Atelier Linux Nantes - 8 février 2014}
+
+% page de titre 
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+  \centering
+      {\HUGE \textsc{Université de Nantes}}\\
+      \textsc{Institut de Recherhce sur l'Enseignement des Mathématiques}\\
+    \vspace{1cm}
+      \includegraphics[width=0.25\textwidth]{logo_iut_coul.jpg}
+      \hfill
+      \includegraphics[width=0.45\textwidth]{logo_uni_bleu}\\
+    \vspace{1cm}
+      {\huge	\@date}\\
+    \vfill
+    \par
+    \hrulefill
+    \par
+       {\Huge \@title} \\
+    \par
+    \hrulefill
+    \par
+ \vspace{2em}
+% Author and supervisor
+{
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \LARGE
+\emph{Auteur:}\\
+Guillaume \textsc{Connan}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \LARGE
+\emph{Superviseur:} \\
+Dr.~Stéphane \textsc{Grognet}
+\end{flushright}
+\end{minipage}
+}
+    \vfill
+        \includegraphics[height=0.2\textheight]{linux_nantes}
+        \hfill
+        \includegraphics[height=0.2\textheight]{irem_heron}
+  \end{titlepage}
+}
+\makeatother
+
+%
+%
+%
+% FIΝ DU PRÉAMBULE 
+%
+%
+
+
+
+
+
+\begin{document}
+
+% Insertion du titre
+
+\maketitle
+
+% TDM
+
+\tableofcontents
+
+% les chapitres inclus
+
+\renewcommand\chaptername{Atelier \No}
+\include{chap-01}
+\include{chap-02}
+
+%%% biblio  
+\renewcommand{\bibname}{Un exemple de bibliographie}
+\bibliography{ExempleBiblio}
+
+% index
+\addcontentsline{toc}{chapter}{Un exemple d'index}
+{
+\thispagestyle{empty}
+\printindex
+}
+
+% glossaire
+\addcontentsline{toc}{chapter}{Un exemple de glossaire}
+{
+\thispagestyle{empty}
+\printglossary
+}
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% TeX-master: t
+%%% End: 

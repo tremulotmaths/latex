@@ -1,0 +1,499 @@
+\documentclass[10pt,french]{book}
+
+\input philippe2013
+\input{philippe2014_cours_fiche}
+\input philippe2013_sections
+\input{stage_latex}
+\usepackage{booktabs}
+
+\renewcommand\MaCouleur{Cerulean}
+\setcounter{NumFiche}{1}
+
+\entete{Stage \LaTeX}{Fiche \theNumFiche{} : Présentation du document}{}
+
+%\makeindex
+\begin{document}
+\TitreFiche{Présentation du document}{\small Stage \LaTeX}
+\thispagestyle{empty}
+
+\section{Mise en forme de base}
+
+\subsection{L'apprentissage par la pratique}
+
+Recopier et compiler le \jargon{code source} suivant :
+
+\VerbatimInput[label={[Quelques mises en forme]\NumCode},gobble=0]{exemples/mise_en_forme.tex}
+
+\begin{enumerate}
+    \item Nommer cinq différentes mises en forme utilisées dans ce document.
+    \item Quelle(s) commandes permettent d'obtenir ces mises en forme ?
+    \item Quelle(s) différence(s) y a-t-il entre les deux commandes qui permettent de mettre du texte en gras ?
+\end{enumerate}
+
+\begin{info}
+    D'un point de vue typographique, le soulignement ne devrait jamais être utilisé. Pour mettre un texte en évidence, il doit être composé en italique. Le soulignement est réservé pour les documents manuscrits.
+\end{info}
+
+\subsection{Police et fontes}
+
+Une \jargon{police} se déclinent en trois caractéristiques : famille, formes et graisses qui constituent alors un ensemble de \jargon{fontes} de cette police. Le tableau ci-dessous résume les commandes permettant d'utiliser une de ces fontes.
+
+\begin{info}
+	Le caractère $\sqcup$ indique qu'il faut laisser un espace dans le \jargon{code source}.
+\end{info}
+
+\begin{center}
+    \begin{tabular}{|>\bfseries cl|c|c|l|}
+    \cline{3-5}
+        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Portée} & \multicolumn{1}{c|}{Signification} \\
+        \multicolumn{2}{c|}{} & locale & semi-globale & \multicolumn{1}{c|}{des radicaux} \\
+    \hline
+        \multirow{3}*{Familles} & romain (par défaut) & \verb!\textrm!\ArgObl{texte} & \verb*!\rmfamily !\Arg{texte} & \verb!rm! = roman\\
+    \cline{2-5}
+        & {\sffamily sans empattement} & \verb!\textsf!\ArgObl{texte} & \verb*!\sffamily !\Arg{texte} & \verb!sf! = sans serif \\
+    \cline{2-5}
+        & {\ttfamily à chasse fixe} & \verb!\texttt!\ArgObl{texte} & \verb*!\ttfamily !\Arg{texte} & \verb!tt! = teletype \\
+    \hline\hline
+        \multirow{4}*{Formes} & droit (par défaut) & \verb!\textup!\ArgObl{texte} & \verb*!\upshape !\Arg{texte} & \verb!up! = upright (droit)\\
+      \cline{2-5}
+        & \textsl{incliné} & \verb!\textsl!\ArgObl{texte} & \verb*!\slshape !\Arg{texte} & \verb!sl! = slanted (penché) \\
+      \cline{2-5}
+        & \textit{italique} & \verb!\textit!\ArgObl{texte} & \verb*!\itshape !\Arg{texte} & \verb!it! = italique \\
+      \cline{2-5}
+        & \textsc{petites capitales} & \verb!\textsc!\ArgObl{texte} & \verb*!\scshape !\Arg{texte} & \verb!sc! = small caps \\
+    \hline\hline
+        \multirow{2}*{Graisses} & médium (par défaut) & \verb!\textmd!\ArgObl{texte} & \verb*!\mdseries !\Arg{texte} & \verb!ms! = medium\\
+      \cline{2-5}
+        & \textbf{gras} & \verb!\textbf!\ArgObl{texte} & \verb*!\bfseries !\Arg{texte} & \verb!bf! = bold face (gras) \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\begin{info}
+    Plusieurs commandes peuvent être utilisées conjointement. Par exemple pour obtenir du texte en \textit{\textbf{gras, italique et sans empattement}}, on écrira :\par
+    \NomCom{textsf}{\tt\{}\NomCom{textbf}{\tt\{}\NomCom{textit}\ArgObl*{texte}{\tt\}}{\tt\}}.\par
+    L'ordre des commandes n'a pas d'importance mais il faut faire attention à avoir le bout nombre de paires d'accolades.
+\end{info}
+
+\subsection{Changement de la taille des fontes}
+
+La taille des fontes peut être fixée de manière absolue dans le préambule, en option à \NomCom{documentclass}. Les options disponibles sont \OptPack{10pt} (valeur par défaut si rien n'est indiqué), \OptPack{11pt} et \OptPack{12pt}.\par
+Une fois définie cette taille absolue, on peut agrandir et réduire la taille d'une partie du document en utilisant des \jargon{commandes semi-globales} qui modifient alors le texte de façon relative. Le changement dépendra en effet de la taille absolue. Ces commandes sont les suivantes :
+\begin{center}
+	\begin{tabular}{ll}
+		\toprule
+		Commande & Signification et test \\
+		\midrule
+			\NomCom{tiny}\verb*! !\Arg{texte} & {\tiny minuscule}\\
+			\NomCom{scriptsize}\verb*! !\Arg{texte} & {\scriptsize taille des indices et exposants}\\
+			\NomCom{footnotesize}\verb*! !\Arg{texte} & {\footnotesize Taille des notes de bas de pages}\\
+			\NomCom{small}\verb*! !\Arg{texte} & {\small petit}\\
+			\NomCom{normalsize}\verb*! !\Arg{texte} & taille définie par l'option absolue\\
+			\NomCom{large}\verb*! !\Arg{texte} & {\large grand}\\
+			\NomCom{Large}\verb*! !\Arg{texte} & {\Large plus grand}\\
+			\NomCom{LARGE}\verb*! !\Arg{texte} & {\LARGE encore plus grand}\\
+			\NomCom{huge}\verb*! !\Arg{texte} & {\huge énorme}\\
+			\NomCom{Huge}\verb*! !\Arg{texte} & {\Huge encore plus énorme}\\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{info}
+	Les majuscules dans le nom des commandes sont importantes.\par
+	De plus, il s'agit de commandes \jargon{semi-globales} donc il faut penser à mettre des accolades englobantes si on veut modifier la taille d'une partie du texte seulement.
+\end{info}
+
+
+\subsection{Alignement}
+
+Par défaut, le texte est \jargon{justifié}. Cela signifie que \LaTeX{} gère les espaces entre les mots pour que le texte soit aligné à gauche \textit{et} à droite.\par
+Cependant, on peut parfois avoir besoin de centrer le texte, ou bien de demander uniquement un alignement à gauche ou uniquement un alignement à droite. Pour cela, on utilise respectivement les \jargon{environnements} \ordi{center}, \ordi{flushleft}, \ordi{flushright}.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \begin{center}
+    Du texte au centre.
+    \end{center}
+    \begin{flushleft}
+    Alignement sur la gauche.
+    \end{flushleft}
+    \begin{flushright}
+    Alignement sur la droite.
+    \end{flushright}
+\end{SideBySideExample}
+}
+
+\begin{info}
+    \NomCom{centering} est la commande semi-globale associé à l'environnement \ordi{center}. \NomCom{raggedleft} est associé à \ordi{flushright} et \NomCom{raggedright} est associée à \ordi{flushleft}.
+\end{info}
+
+\subsection{Espaces}
+
+\begin{info}
+    Les espaces écrits dans le \jargon{code source} ne sont pas identiquement restitués dans le document final après compilation.\par
+    Pour cela, on parlera d'\textbf{un} espace dans le \jargon{fichier source} et d'\textbf{une} espace dans le document final.
+\end{info}
+
+\subsubsection{Espaces horizontales}
+
+Nous l'avons vu précédemment, pour obtenir une espace entre deux mots, il suffit de saisir un espace dans le \jargon{code source} à l'aide de la barre d'espace du clavier. Cependant, saisir plusieurs espaces ne changera rien et lors de la compilation, ils seront interprétés comme un seul et même espace. De même pour un changement de ligne (sans ligne vide !) :\medskip
+
+{\NewFont
+\begin{SideBySideExample}[showspaces=true]
+    Du texte
+        sur une
+    seule          ligne.
+\end{SideBySideExample}
+}
+
+\begin{info}
+    Le symbole \ordi{\~{}} permet d'obtenir une \jargon{espace insécable}. En fin de ligne notamment, il faudra donc écrire \ordi{Louis\~{}XVI} si on veut éviter que \ordi{Louis} soit inscrit en bout de ligne et \ordi{XVI} au début de la ligne suivante.
+\end{info}
+
+Parfois, on peut avoir besoin d'une espace horizontale ayant une longueur bien précise. Cela est possible à l'aide de la commande \NomCom{hspace}\ArgObl{longueur}. L'argument \Arg{longueur} est spécifié à l'aide d'un nombre suivi de son unité (sans espace entre les deux). L'unité peut être \ordi{cm}, \ordi{mm} ou bien encore \ordi{pt} mais bien d'autres aussi.\par
+De plus, la commande \NomCom{hfill} est un espace élastique. Voilà une façon de se servir de ces deux commandes :\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Les consignes sont vraiment importantes.\par
+    Les consignes sont \hspace{1.4cm} vitales !\par
+    Inutile \hspace{-1.3cm} xxxxxxx\par
+    \textbf{Exercice 1} \hfill \textit{(2 points)}
+\end{SideBySideExample}
+\bigskip
+}
+
+\subsubsection{Espaces verticales}
+
+Nous l'avons vu précédemment, pour changer de paragraphe, il suffit de saisir laisser une ligne vide dans le \jargon{code source}. La commande \NomCom{par} assure la même fonction. Cependant, plusieurs lignes vides seront toujours interprétées comme un seul changement de paragraphe, de même que la succession de plusieurs commandes \NomCom{par}.\par
+Comment faire alors apparaître dans le document final des espaces entre deux paragraphes ?\par
+La commande \NomCom{vspace}\ArgObl{longueur} est une solution et cela fonctionne comme pour les espaces horizontales. Cependant, les commandes \NomCom{smallskip}, \NomCom{medskip} et \NomCom{bigskip} sont simples et rapides à utiliser.\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Consigne importante.
+
+    Espace standard.\smallskip
+
+
+
+    Petite espace.\medskip
+
+    Espace moyenne.\bigskip
+
+    Grande espace.\par\vspace{1cm}
+    Espace personnelle.
+\end{SideBySideExample}
+\bigskip
+}
+
+\begin{info}
+    La commande \NomCom{vfill} permet de créer une espace verticale élastique. Essayer de compiler l'exemple ci-dessous.
+\end{info}
+
+\begin{Verbatim}
+    Le devoir est sur 20 points.\par\vfill
+    Tourner la page.
+\end{Verbatim}
+
+\section{Couleur}
+
+\begin{info}
+    Difficile de parler de couleurs sur des photocopies noir et blanc donc pensez à taper et compiler les exemples proposés.
+\end{info}
+
+
+
+Afin de colorer un document, on utilise le \package \NomPack{xcolor}, chargé dans le préambule à l'aide de la commande \verb!\usepackage{xcolor}!. \NomPack{xcolor} permet d'accéder aux couleurs suivantes :
+\begin{center}
+    \ttfamily
+    \begin{tabular}{*{7}{l}}
+        red & magenta & gray & white & violet & olive & \\
+        blue & cyan  & lightgray & black & purple & teal & brown \\
+        green & yellow & darkgray & orange & pink & lime &
+    \end{tabular}
+\end{center}
+
+Là encore, il existe une commande locale et une commande semi-globale dont voilà un exemple :\medskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \color{blue}
+    Les consignes suivantes sont
+    \textcolor{red}{importantes.}\par
+    Lisez-les avec \textit{attention}.\par
+    Sinon, vous affronterez ma
+    \textcolor{purple}{\textbf{\textsc{fureur}}}.
+\end{SideBySideExample}
+}
+
+\begin{info}
+    Le \package \NomPack{xcolor} possède différentes options qui permettent d'accéder à bien d'autres couleurs. C'est le cas de l'option \OptPack{dvipsnames} qui donne accès à 68 couleurs en plus de celles de base. On écrira alors : \NomCom{usepackage}\texttt{[dvipsnames]\{xcolor\}} dans le préambule.\par
+    La page 38 de la documentation du \package permet d'en savoir davantage. Il suffit de taper sur un moteur de recherche \ttfamily{LaTeX xcolor doc} pour obtenir ce que l'on cherche.
+\end{info}
+
+Voilà un autre exemple qui montre comment faire des encadrements colorés. Quelles sont les différentes commandes ? Comment fonctionnent-elles ?\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \begin{center}
+        \colorbox{yellow}{\textbf{Chapitre 1 :}}\par
+        \textit{L'art de faire des encadrements}
+    \end{center}
+    \fcolorbox{red}{lightgray}{\textbf{I. Partie 1}}
+\end{SideBySideExample}
+\bigskip}
+
+Pour finir sur ce thème, voici la commande \NomCom{pagecolor}\ArgObl{couleur} qui permet de colorer le fond d'une page. Très utile pour créer un document destiné à être vidéoprojeté. En effet, le fond blanc d'un document projeté peut être fatigant pour les yeux des lecteurs. Allez-y : essayez !
+
+\section{Mise en page}
+
+\subsection{Dimensions de la page}
+
+Par défaut, les dimensions de la page sont réglées en fonction de la \jargon{classe} du document.\par
+Le \package \NomPack{geometry} est utilisé pour régler la géométrie de la page indépendamment du choix de la \jargon{classe} : dimensions du papier, orientation (portrait, paysage), dimensions des marges, particularités d'un document recto-verso, dimensions des en-têtes et pieds-de-pages...
+
+Pour cela, on peut charger le \package avec toute une liste d'options séparées par une virgule :\par\medskip
+\verb!\usepackage[a4paper,margin=2cm]{geometry}!.\medskip
+
+Il est également possible de charger le \package tout seul puis d'utiliser la commande \NomCom{geometry} qui prend en argument la même liste d'options. Ainsi, on peut également écrire :\par\medskip
+\verb!\usepackage{a4paper,geometry}!\par
+\verb!\geometry{margin=2cm}!\medskip
+
+La documentation du \package \NomPack{geometry} liste l'ensemble des options disponibles dont voici les plus courantes (\Arg{dim} est un nombre avec une unité de longueur) :
+\begin{itemize}
+    \item \OptPack{landscape} : orientation paysage ;
+    \item \OptPack{twoside} : document recto-verso ;
+    \item \OptPack{width=}\Arg{dim} et \OptPack{height=}\Arg{dim} : largeur et hauteur de la page. On peut aussi utiliser \OptPack{a4paper} ou \OptPack{a5paper} (formats disponibles de A0 jusqu'à A6) ;
+    \item \OptPack{textwidth=}\Arg{dim} et \OptPack{textheight=}\Arg{dim} : largeur et hauteur attribuée au texte ;
+    \item \OptPack{lmargin=}\Arg{dim} et \OptPack{rmargin=}\Arg{dim} : respectivement marges intérieures (ou gauche) et extérieures (ou droite) ;
+    \item \OptPack{tmargin=}\Arg{dim} et \OptPack{bmargin=}\Arg{dim} : respectivement marges de tête (t comme top) et de pied (b comme bottom) ;
+    \item \OptPack{margin=}\Arg{dim} : fixe les quatre marges précédentes avec la même longueur.
+\end{itemize}
+
+\subsection{Multicolonnes}
+
+Pour écrire une partie d'un document sur deux ou plusieurs colonnes, on a recourt au \package \NomPack{multicol} qui nous permet alors d'accéder à l'\jargon{environnement} \ordi{multicols}.
+
+\begin{info}
+    Attention, le nom du package ne prend pas de S final alors que le nom de l'environnement en prend un.
+\end{info}
+
+Voilà deux exemples d'utilisation :\bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    \setlength{\columnseprule}{0.4mm}
+    \begin{multicols}{2}
+        Les policiers semblent avoir mis la main
+        sur les suspects qui ne courraient
+        visiblement pas assez vite.
+    \end{multicols}
+\end{SideBySideExample}
+\bigskip}
+
+{\NewFont
+\begin{SideBySideExample}
+    \setlength{\columnseprule}{0.4pt}
+    \begin{multicols}{3}[\textbf{Formation}]
+        Ce stage \LaTeX{} est incroyable.
+        Le prochain a lieu quel jour ? Ce
+        document est super !
+    \end{multicols}
+\end{SideBySideExample}
+\bigskip}
+
+\begin{info}
+    Pour changer de colonne à un point précis, on peut utiliser la commande \NomCom{columnbreak}.
+\end{info}
+
+\section{Structurer un document}
+\subsection{Listes structurées}
+
+\LaTeX{} gère par défaut trois types de listes :
+\begin{itemize}[label=$-$]
+    \item les listes d'énumération avec une liste d'\jargon{item} comme celle que vous être en train de lire ;
+    \item les listes numérotées dont chaque élément est numéroté ;
+    \item les listes de description dont chaque élément est introduit par l'objet que l'on souhaite décrire.
+\end{itemize}
+
+Voilà ce que donne la liste précédente avec les deux autres types de listes :
+
+\begin{enumerate}[font=\mdseries,label=\arabic*.]
+    \item les listes d'énumération avec une liste d'\jargon{item} ;
+    \item les listes numérotées dont chaque élément est numéroté comme celle que vous être en train de lire ;
+    \item les listes de description dont chaque élément est introduit par l'objet que l'on souhaite décrire.
+\end{enumerate}
+
+\begin{description}
+    \item[les listes d'énumération] avec une liste d'\jargon{item} ;
+    \item[les listes numérotées] dont chaque élément est numéroté ;
+    \item[les listes de description] dont chaque élément est introduit par l'objet que l'on souhaite décrire comme celle que vous être en train de lire.
+\end{description}
+
+Toutes ces listes peuvent s'imbriquées les unes dans les autres en mélangeant ou non les différents types. On utilisera avantageusement les tabulations pour une présentation claire du \jargon{code source}.\bigskip
+
+{\NewFont\reset
+\begin{SideBySideExample}
+    \begin{itemize}
+        \item du pain ;
+        \item du beurre ;
+        \item de la confiture.
+    \end{itemize}
+\end{SideBySideExample}
+\bigskip}
+
+{\NewFont\reset
+\begin{SideBySideExample}
+    \begin{enumerate}
+        \item Qu'est ce qu'un polygone ?
+        \item Qu'est ce qu'un plg ?
+            \begin{enumerate}
+                \item Qu'est ce qu'un rectangle ?
+                \item Qu'est ce qu'un losange ?
+            \end{enumerate}
+    \end{enumerate}
+\end{SideBySideExample}
+\bigskip}
+
+{\NewFont\reset
+\begin{SideBySideExample}
+    \begin{description}
+        \item[Rectangle :] voici un long texte dans
+            lequel on parle du rectangle.
+        \item[Losange :] voici un long texte dans lequel
+            on parle du losange.
+    \end{description}
+    On remarque la mise en page automatique
+    de ce type de liste au niveau des espaces.
+\end{SideBySideExample}
+\bigskip}
+
+\begin{info}
+    Le \package \NomPack{enumitem} permet de personnaliser la présentation des ces différents types de listes mais également de créer de nouvelles listes.\par
+    De plus, il permet de reprendre la numérotation d'une liste \ordi{enumerate} qui a été interrompue. La lecture de la documentation de ce \package est vivement conseillée.
+\end{info}
+\subsection{Sectionnement}
+
+Les commandes de \jargon{sectionnement} permettent d'établir le plan du document. Les commandes les plus fréquemment utilisées sont :\medskip
+
+\begin{obeylines}
+    \NomCom{part}\ArgOpt{titre court}\ArgObl{Titre}
+    \NomCom{chapter}\ArgOpt{titre court}\ArgObl{Titre}
+    \NomCom{section}\ArgOpt{titre court}\ArgObl{Titre}
+    \NomCom{subsection}\ArgOpt{titre court}\ArgObl{Titre}
+    \NomCom{subsubsection}\ArgOpt{titre court}\ArgObl{Titre}
+\end{obeylines}
+
+\begin{info}
+    La commande \NomCom{chapter} n'existe pas dans la classe \NomPack{article}.\par
+    Le \Arg*{titre court} est optionnel et permet d'afficher un titre différent dans la table des matières ou dans les en-têtes.
+\end{info}
+
+Recopier le code suivant et observer le résultat de la compilation :
+
+\VerbatimInput[label={[Commandes de sectionnement]\NumCode},gobble=0]{exemples/sectionnement.tex}
+
+\begin{info}
+    Si on ne souhaite pas de numérotation à un endroit, on peut ajouter \verb!*!. On écrira par exemple :
+    \NomCom{section*\{Introduction\}} à la place de \NomCom{section\{Introduction\}}.
+\end{info}
+
+On peut modifier la mise en forme de la numérotation des commandes \NomCom{section} et \NomCom{subsection} de la façon suivante :
+\begin{Verbatim}
+    \renewcommand{\thesection}{\Roman{section}.}
+    \renewcommand{\thesubsection}{\Alph{subsection}.}
+\end{Verbatim}
+
+Il suffit de taper les deux lignes précédentes dans le préambule et de recompiler. Faites un essai et essayer de comprendre le fonctionnement des commandes utilisées.
+
+\begin{info}
+    Pour modifier avec plus de précision les différents types de sectionnement, on pourra lire attentivement les documentations des packages \NomPack{sectsty} et \NomPack{titlesec}.
+\end{info}
+
+\subsection{Références croisées}
+
+Les \jargon{renvois} sont gérés automatiquement par \LaTeX. L'intérêt de cela est évidemment de pouvoir modifier à loisir son document sans être obligé de se demander si telle ou telle référence a été changée de place ou de numérotation. Cela est très utile pour se reporter à une section ou bien encore à une liste.
+
+Voilà un exemple :\bigskip
+
+{\NewFont\reset
+\begin{SideBySideExample}
+    \section{Renvois}\label{sec}
+        \begin{enumerate}
+            \item Qui suis-je ?\label{qu:je}
+            \item Qui est-il ?\label{qu:il}
+        \end{enumerate}
+    Nous voyons que la question \ref{qu:il}
+    n'est pas si simple
+    (section \ref{sec} page \pageref{sec})
+\end{SideBySideExample}
+\unreset
+\bigskip}
+
+La commande \NomCom{label}\ArgObl{étiquette} permet d'apposer une étiquette à l'élément que l'on souhaite référencer (ou qui est susceptible de l'être). Dans l'idéal, il faut essayer de choisir des étiquettes avec un nom suffisamment évocateur (ce qui n'est pas le cas de l'exemple précédent).\par
+La commande \NomCom{ref}\ArgObl{étiquette} se place à l'endroit même où l'on souhaite faire notre référence à l'élément précédemment étiqueté. Le numéro alors affiché correspond au numéro de l'élément.\par
+Enfin, \NomCom{pageref}\ArgObl{étiquette} indique le numéro de la page à laquelle se trouve l'élément à référencer.
+
+\begin{info}
+    Pour utiliser les références croisées, une seule compilation ne suffit pas. En effet, la première compilation permet simplement d'enregistrer les différentes étiquettes dans un fichier auxiliaire. Afin de pouvoir ensuite référencer ces étiquettes dans le texte, il faut procéder à une deuxième compilation. Sinon, on verra apparaître le symbole {\rmfamily\textbf{?\!?}}.
+\end{info}
+
+\section{Exercices}
+
+\subsection*{\ExoFiche}
+Reconstituer toutes les commandes de sectionnement qui ont permis d'obtenir le plan de cette fiche.\par
+On commencera par \verb!\chapter{Présentation du document}!
+
+\subsection*{\ExoFiche}
+
+\'Ecrire un \jargon{fichier source} complet permettant d'obtenir le document encadré ci-dessous.\par
+La première ligne est centrée, écrite en bleu et en gras. Attention à l'écriture du nom de famille.\par
+La citation est en italique.\par\medskip
+
+Les marges sont toutes égales à $\np[cm]{2,5}$.\bigskip
+
+\begin{CadreExemple}
+    \begin{center}
+        \color{blue}\bfseries Une citation d'un mathématicien : \fbox{David \bsc{Hilbert}}
+    \end{center}\medskip
+
+    {\itshape Les mathématiques sont un jeu qu'on exerce selon des règles simples en manipulant des symboles et des concepts qui n'ont, en soi, aucune importance particulière.}\bigskip
+
+    \begin{flushright}
+        Citation vue sur internet.
+    \end{flushright}
+\end{CadreExemple}\bigskip
+
+\subsection*{\ExoFiche}
+
+\'Ecrire un \jargon{fichier source} complet permettant d'obtenir le document encadré ci-dessous.\par
+Le titre a une taille plus grande que la taille du document et les consignes ont, quant à elles, une taille plus petite. Les références de la question 3 sont générées de façon automatique.\bigskip
+
+\begin{CadreExemple}
+\reset
+\begin{center}
+    \scshape\bfseries\Large Contrôle de Mathématiques
+\end{center}\bigskip
+
+{\small
+Les consignes suivantes sont importantes :
+\begin{itemize}
+    \item il faut répondre aux questions par des phrases complètes ;
+    \item le soin de la copie et la rédaction seront pris en compte dans l'appréciation de la copie.
+\end{itemize}}\bigskip
+
+\textit{Exercice 1 :}\hfill (5 points)
+
+\begin{enumerate}
+    \item Donner la définition d'un quadrilatère.
+    \item Donner la définition d'un parallélogramme.
+        \begin{enumerate}
+            \item Quelle propriété permet de dire qu'un parallélogramme est un rectangle ?\label{rect}
+            \item Quelle propriété permet de dire qu'un parallélogramme est un losange ?\label{los}
+        \end{enumerate}
+    \item À partir des questions \ref{rect} et \ref{los}, déterminer une propriété permettant de dire qu'un parallélogramme est un carré.
+\end{enumerate}
+\end{CadreExemple}
+
+\end{document}

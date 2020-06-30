@@ -1,0 +1,320 @@
+\documentclass[11pt]{beamer}
+\usetheme{boadilla} %boadilla thème général du diaporama
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{fancybox} 
+\usepackage{eurosym}
+\usepackage{xcolor} 
+
+
+\setlength{\parindent}{0pt} 
+
+\theoremstyle{plain}
+\newtheorem{Theo}{Théorème}
+\newtheorem{Lem}{Lemme}
+\newtheorem{Def}{Définition}
+\newtheorem{Voca}{Vocabulaire}
+\newtheorem{Prop}{Propriété}
+\newtheorem{Cor}{Corollaire}
+\newtheorem{Reg}{Règle}
+\theoremstyle{definition}
+\newtheorem{Not}{Notation}
+\newtheorem{Rem}{Remarque}
+\newtheorem{Exo}{Exercice}
+
+\newcommand{\cadre}[1]{\fbox{\parbox{.9\linewidth}{#1}}}
+\newcommand{\nb}{\nombre}
+\newcommand{\acc}{\underbrace}
+\renewcommand{\thesection}{\Roman{section} -}
+\renewcommand{\thesubsection}{\arabic{subsection} )}
+\renewcommand{\thesubsubsection}{\alph{subsubsection} )}
+
+\definecolor{roseclair}{rgb}{0.5,0,0}
+\definecolor{rosefonce}{rgb}{3,0,0}
+\usecolortheme[named=black]{structure} %paquets pour le français
+\setbeamercolor{block title}{fg=red,bg=rosefonce!20}
+\setbeamercolor{block body}{bg=roseclair!10}
+
+\newcounter{MonPetitCompteur}
+
+\setbeamertemplate{section in toc}{%
+\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsectionnumber}}\MaDefTemp%
+\Roman{MonPetitCompteur} - \inserttocsection\par}
+
+\setbeamertemplate{subsection in toc}{%
+\leavevmode\leftskip=1.5em%
+\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsubsectionnumber}}\MaDefTemp%
+\arabic{MonPetitCompteur}) \inserttocsubsection\par}
+
+\AtBeginSection{
+   \begin{frame}{\textcolor{red}{\shadowbox{Chapitre 10 - Triangles et quadrilatères}}}
+   \Large%
+   \tableofcontents[sectionstyle=show/hide%
+                ,subsectionstyle=show/shaded/hide]
+   \end{frame}}
+
+\AtBeginSubsection{  
+  \begin{frame}{\textcolor{red}{\shadowbox{Chapitre 10 - Triangles et quadrilatères}}}
+   \Large%
+ \tableofcontents[sectionstyle=show/hide%
+                ,subsectionstyle=show/shaded/hide]
+   \end{frame}}
+\title[Triangles et quadrilatères]
+\date{}
+
+\usepackage{soul} 
+% sert à barrer avec la commande \st et à souligner avec la commande \ul ou surligner avec la commande \hl
+%avec de la couleur : \setstcolor{yellow} \st{blabla} ou \setulcolor{magenta} \ul{blabla} ou sethlcolor{blue}\hl{blabla}
+\begin{document}
+\date{}
+\section{Triangles}
+\subsection{Vocabulaire}
+\begin{frame}
+\begin{Def}
+Un triangle est un polygone à 3 côtés. \\
+Trois points $A$, $B$, $C$ définissent le triangle $ABC$. 
+\end{Def}
+
+\pause
+\begin{minipage}{7cm}
+\includegraphics[width=7cm]{6chap9fig1}
+\end{minipage}
+\begin{minipage}[7cm]{4cm}
+\pause
+$\bullet $ Ce triangle peut se noter \pause $ABC$, $ACB$, $BCA$, $BAC$, $CAB$ ou $CBA$.\\ \pause
+
+$\bullet $ Les points $A$, $B$ et $C$ sont appelés les \pause \textbf{sommets du triangle.}\\ \pause
+
+$\bullet $ Les segments $[AB]$, $[AC]$ et $[BC]$ sont les \pause \textbf{côtés du triangle}.\\
+\end{minipage}
+\end{frame}
+
+\subsection{Triangle isocèle}
+\begin{frame}
+\begin{Def}
+Un triangle isocèle est un triangle ayant deux côtés de même longueur.
+\end{Def}
+\pause
+\textbf{\underline{Exemple} :} Construire un triangle $DEF$ tel que $DE=3cm$ et $DF=FE=4cm$. \\
+\pause
+
+\begin{minipage}[4cm]{4cm}
+\includegraphics[width=4cm]{6chap9fig2}
+\end{minipage}
+\begin{minipage}[3cm]{7cm}
+\pause $\bullet $ Les deux côtés de même longueur partent de $F$ ; on dit que $F$ est le \pause\textbf{sommet principal du triangle} \pause ou que le triangle $DEF$ est \pause\textbf{isocèle en $F$}.\\
+\pause
+$\bullet $ Le côté opposé au sommet principal est appelé \pause\textbf{base du triangle isocèle} (ici il s'agit de $[DE]$).
+\end{minipage}
+\end{frame}
+
+\subsection{Triangle équilatéral}
+\begin{frame}
+\begin{Def}
+Un triangle équilatéral est un triangle ayant ses trois côtés de même longueur.
+\end{Def}
+\pause
+\textbf{\underline{Exemple} :} Construire un triangle $ABC$ tel que $AB=BC=CA=4cm$. \pause
+\begin{center}
+\includegraphics[width=4cm]{6chap9fig3}
+\end{center}
+\end{frame}
+
+\subsection{Triangle rectangle}
+\begin{frame}
+\begin{Def}
+Un triangle rectangle est un triangle ayant un angle droit.
+\end{Def}
+\pause
+
+\textbf{\underline{Exemple} :} Construire un triangle $BEC$, rectangle en B, tel que $BE=3cm$ et $BC=5cm$. \pause
+\begin{center}
+\includegraphics[width=5cm]{6chap9fig4}
+\end{center}
+\end{frame}
+\begin{frame}
+\begin{Def}
+L'hypoténuse d'un triangle rectangle est le côté opposé à l'angle droit.
+\end{Def}
+\pause
+\begin{Prop}
+L'hypoténuse d'un triangle rectangle est le côté le plus long de ce triangle.
+\end{Prop}
+
+\pause
+\textbf{\underline{Remarque} :} Un triangle peut être à la fois isocèle et rectangle. Dire qu'un triangle $DEF$ est rectangle et isocèle en $F$ signifie que \pause $(FE)\perp (FD)$ et que $FE=FD$.\pause
+\begin{center}
+\includegraphics[width=3cm]{6chap9fig5}
+\end{center}
+\end{frame}
+
+\section{Quadrilatères}
+\subsection{Vocabulaire}
+\begin{frame}
+\begin{Def}
+Un quadrilatère est un polygone à 4 côtés.
+\end{Def}\pause
+\begin{center}
+\includegraphics[width=10cm]{6chap9fig6}
+\end{center}\pause
+$A$, $B$, $C$ et $D$ sont les sommets du quadrilatère ci-dessus. \\
+Pour nommer ce quadrilatère, il suffit de les citer dans l'ordre où ils apparaissent en parcourant le quadrilatère dans un sens ou dans l'autre. Différents noms possibles : \pause $ABCD$, $ADCB$, $BADC$, $BCDA$,... \st{mais pas $ABDC$}. 
+\end{frame}
+
+\subsection{Cerf-volant}
+\begin{frame}
+\begin{Def}
+Un cerf-volant est un quadrilatère qui a deux paires de côtés consécutifs de la même longueur.
+\end{Def}
+\pause
+\textbf{\ul{Exemple} :} Construire un cerf-volant $ABCD$ tel que $AB=5cm$, $BC=3cm$ et $BD=4cm$. \\ \pause
+\begin{minipage}{3cm}
+\includegraphics[width=3cm]{6chap9fig7}
+\end{minipage}
+\begin{minipage}[3cm]{8cm}\pause
+$\bullet $ Les quadrilatères $ABCD$ et $ABC'D$ sont tous les deux des cerf-volants.\\ \pause
+
+$\bullet $ Les triangles $ABD$ et $BCD$ sont des triangles \pause isocèles de même base $[BD]$.\\ \pause
+ 
+ $\bullet $ On sait que $AB=AD$ et que $CB=CD$ donc les points $A$ et $C$ appartiennent à la \pause médiatrice de $[BD]$. Donc (AC) est la \pause médiatrice de $[BD]$.
+\end{minipage}
+
+\end{frame}
+\subsection{Losange}
+\begin{frame}
+\begin{Def}
+Un losange est un quadrilatère qui a ses quatre côtés de même longueur.
+\end{Def}\pause
+
+\textbf{\ul{Exemple} :} Construire un losange $MATH$ tel que $MA=4cm$ et $AH=2cm$. \\ \pause
+\begin{minipage}{4cm}\begin{center}
+\includegraphics[width=2cm]{6chap9fig8}
+\end{center}\end{minipage}
+\begin{minipage}[4cm]{7cm}\pause
+Remarque : un losange est un cerf-volant particulier.
+\end{minipage}
+\end{frame}
+\subsection{Rectangle}
+\begin{frame}
+\begin{Def}
+Un rectangle est un quadrilatère qui a ses quatre angles droits.
+\end{Def}\pause
+
+
+\begin{minipage}[6cm]{6cm}
+\includegraphics[width=4cm]{6chap9fig9}
+\end{minipage} \pause
+\begin{minipage}[6cm]{11cm}
+\begin{Prop}
+Si un quadrilatère est un rectangle, alors ses côtés opposés sont \pause parallèles et de même longueur.
+\end{Prop}\pause
+\begin{Prop}
+Si un quadrilatère a trois angles droits, alors ce quadrilatère est un \pause rectangle.
+\end{Prop}
+\end{minipage}
+\end{frame}
+\subsection{Carré}
+\begin{frame}
+\begin{Def}
+Un carré est un quadrilatère qui a ses quatre angles droits et ses quatre côté de même longueur.
+\end{Def}\pause
+
+\begin{minipage}[6cm]{6cm}
+\includegraphics[width=4cm]{6chap9fig10}
+\end{minipage}
+\begin{minipage}[6cm]{10cm}\pause
+Remarque : un carré est à la fois un losange et un rectangle.
+\end{minipage}
+\end{frame}
+
+\section{Axes de symétrie des figures usuelles}
+\begin{frame}
+\frametitle{Triangle isocèle}
+
+\begin{minipage}{8cm}
+Un triangle isocèle a .... axe de symétrie. \\
+
+Cet axe est la ................................... de l'angle de sommet : le sommet ............................... du triangle. \\
+
+Cet axe est aussi la ................................... du côté opposé au sommet ............................... du triangle.
+\end{minipage}
+\begin{minipage}[8cm]{3cm}
+\begin{center}
+ \includegraphics[width=3cm]{6chap11fig11}
+  \end{center}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Triangle équilatéral}
+
+  \begin{minipage}{8cm}
+Un triangle équilatéral a .... axes de symétrie. \\
+
+Ces axes sont les ................................... des côtés du triangle. \\
+
+Ces axes sont aussi les ................................... des angles du triangle.
+\end{minipage}
+\begin{minipage}[8cm]{3cm}
+\begin{center}
+ \includegraphics[width=4cm]{6chap11fig12}
+  \end{center}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cerf-volant}
+
+\begin{center}
+ \includegraphics[width=5cm]{6chap11fig13}
+  \end{center}
+
+Un cerf-volant a .... axe de symétrie. \\
+
+Cet axe est l'une des ................................... du cerf-volant : celle qui est la ................................... de l'autre.
+
+\end{frame}
+\begin{frame}
+\frametitle{Losange}
+
+\begin{center}
+ \includegraphics[width=5cm]{6chap11fig14}
+  \end{center}
+
+Un losange a .... axes de symétrie. \\
+
+Ces axes sont les ................................... du losange. Elles sont ........................................ et se coupent en leur ...................................
+
+\end{frame}
+\begin{frame}
+\frametitle{Rectangle}
+
+ \begin{center}
+ \includegraphics[width=4cm]{6chap11fig15}
+  \end{center}
+
+Un rectangle a .... axes de symétrie. \\
+
+Ces axes sont les ................................... des côtés ................................... du rectangle.
+
+\end{frame}
+\begin{frame}
+\frametitle{Carré}
+
+\begin{center}
+ \includegraphics[width=3cm]{6chap11fig16}
+  \end{center}
+
+Un carré est à la fois un ...................................  et un ................................... . \\
+
+Un carré a .... axes de symétrie. \\
+
+Ces axes sont les ................................... du carré et les ................................... de ses côtés ................................... .
+
+\end{frame}
+\end{document}

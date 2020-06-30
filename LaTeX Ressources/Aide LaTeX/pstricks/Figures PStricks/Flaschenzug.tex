@@ -1,0 +1,1686 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage{amsmath}
+\usepackage{multido}
+\usepackage[dvips]{graphicx}
+\usepackage[dvipsnames]{xcolor} %% Farben sind im Dokument xcolor.pdf definiert
+\usepackage{pst-node}
+\usepackage{pst-grad}
+\usepackage{pst-slpe}
+\usepackage{pst-eucl}
+\usepackage{pstricks-add}
+
+
+
+\begin{document}
+
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\def\x{\hbox{$\,$}}
+
+%-------------------------------Definition der Flaschenzüge ----------------------------------------------
+
+\def\pulleyA{%---------------- mit 1 Rolle ------------------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-2,-11.5)(6,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+\rput(I){\pnode(3;-80){End}}%------------------------ Ende
+\rput(I){\pnode(3.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,4.3){\pnode(0,0){N}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1,nodesepB=1]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+%\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{N}{MI}%
+\pcline[linecolor=green]{->}([Xnodesep=-1.5]{MI}MI)(MI)%
+\uput{0.1}[180]{0}([Xnodesep=-1.5]{MI}MI){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+%\rput(0,2.2){\pscircle(0,0){0.55}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,1.1)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,2.4)(0.15,3)}%
+\rput(N){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](H)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+%\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} =\fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+
+%--------------------------------------------------------------------------------------------------
+
+\def\pulleyB{%----------------- mit 2 Rollen --------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-3,-11.5)(5,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+%\rput(0,2.2){\pnode(0.525;0){J}}
+%\rput(0,2.2){\pnode(0.525;180){K}}
+%\rput(0,1.25){\pnode(0.275;0){O}}
+%\rput(0,1.25){\pnode(0.275;180){P}}
+\rput(0,2.5){\pnode(0,0){N}}
+\rput(I){\pnode(3;-80){End}}%------------------------ Ende
+\rput(I){\pnode(3.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.7){\pnode(0.835;0){G}}
+\rput(0,3.7){\pnode(0.835;180){H}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1,nodesepB=1]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{G}{MI}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(H)(N){IPi}%
+%\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(K)(L){IPii}%
+%\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(M)(N){IPiii}%
+\pcdiagg[linecolor=green](SKE)(MI)%
+%\pcdiagg[linecolor=red](SKE)(IPii)%
+%\pcdiagg[linecolor=blue](SKE)(IPiii)%
+\pcdiagg[linecolor=orange](SKE)(IPi)%
+\uput{0.1}[180]{0}(SKE){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(G)%
+\psline(H)(N)%
+%\psline(K)(L)%
+%\psline(M)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+%\psarc(0,2.2){0.525}{-10}{190}%
+%\psarc(0,1.25){0.275}{-10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+%\rput(0,2.2){\pscircle(0,0){0.55}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0.7)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(N){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](H)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+%-------------- Seilbögen des unteren Flaschenzugteils -------------------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psarc(0,3.7){0.835}{-10}{190}
+%\psarc(0,2.2){0.525}{-10}{190}
+}
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+%\rput(0,2.2){\pscircle(0,0){0.55}}%
+%\rput(0,1.25){\pscircle(0,0){0.3}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,1.1)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} =\fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+
+\def\pulleyC{%------------------ mit 3 Rollen -------------------------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-2,-11.5)(5,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+\rput(0,2.2){\pnode(0.525;0){J}}
+\rput(0,2.2){\pnode(0.525;180){K}}
+\rput(I){\pnode(3;-80){End}}%------------------------ Ende
+\rput(I){\pnode(3.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.7){\pnode(0.835;0){G}}
+\rput(0,3.7){\pnode(0.835;180){H}}
+\rput(0,2.5){\pnode(0,0){N}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1,nodesepB=1]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{G}{MI}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(H)(J){IPi}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(K)(N){IPii}%
+\pcdiagg[linecolor=green](SKE)(MI)%
+\pcdiagg[linecolor=red](SKE)(IPii)%
+\pcdiagg[linecolor=orange](SKE)(IPi)%
+\uput{0.1}[180]{0}(SKE){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+\psarc(0,2.2){0.525}{-10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.1)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+%-------------- Seilbögen des unteren Flaschenzugteils -------------------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psarc(0,3.7){0.835}{-10}{190}
+}
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0.7)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(N){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](K)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} =\fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+
+\def\pulleyD{% ------------------- mit 4 Rollen -----------------------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-3,-11.5)(5,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+\rput(0,2.2){\pnode(0.525;0){J}}
+\rput(0,2.2){\pnode(0.525;180){K}}
+\rput(0,1.25){\pnode(0.275;0){O}}
+\rput(0,1.25){\pnode(0.275;180){P}}
+\rput(0,1.5){\pnode(0,0){N}}
+\rput(I){\pnode(3;-80){End}}%------------------------ Ende
+\rput(I){\pnode(3.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.7){\pnode(0.835;0){G}}
+\rput(0,3.7){\pnode(0.835;180){H}}
+\rput(0,2.2){\pnode(0.525;0){L}}
+\rput(0,2.2){\pnode(0.525;180){M}}
+\rput(0,1.25){\pnode(0.275;0){Q}}
+\rput(0,1.25){\pnode(0.275;180){R}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1,nodesepB=1]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{G}{MI}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(H)(J){IPi}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(K)(L){IPii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(M)(N){IPiii}%
+\pcdiagg[linecolor=green](SKE)(MI)%
+\pcdiagg[linecolor=red](SKE)(IPii)%
+\pcdiagg[linecolor=blue](SKE)(IPiii)%
+\pcdiagg[linecolor=orange](SKE)(IPi)%
+\uput{0.1}[180]{0}(SKE){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+\psarc(0,2.2){0.525}{-10}{190}%
+%\psarc(0,1.25){0.275}{-10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.35)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(N){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](M)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+%-------------- Seilbögen des unteren Flaschenzugteils -------------------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psarc(0,3.7){0.835}{-10}{190}
+\psarc(0,2.2){0.525}{-10}{190}
+}
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+%\rput(0,1.25){\pscircle(0,0){0.3}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.1)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} =\fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+
+%
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\pulleyE{%------------------------- mit 5 Rollen ----------------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-3,-11.5)(5,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse ------------------------------------------------------------------
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+\rput(0,2.2){\pnode(0.525;0){J}}
+\rput(0,2.2){\pnode(0.525;180){K}}
+\rput(0,1.25){\pnode(0.275;0){O}}
+\rput(0,1.25){\pnode(0.275;180){P}}
+\rput(I){\pnode(4;-80){End}}%------------------------ Ende
+\rput(I){\pnode(4.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.7){\pnode(0.835;0){G}}
+\rput(0,3.7){\pnode(0.835;180){H}}
+\rput(0,2.2){\pnode(0.525;0){L}}
+\rput(0,2.2){\pnode(0.525;180){M}}
+\rput(0,1.25){\pnode(0.275;0){Q}}
+\rput(0,1.25){\pnode(0.275;180){R}}
+\rput(0,1.4){\pnode(0,0){N}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1.8,nodesepB=1.2]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{G}{MI}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(H)(J){IPi}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(K)(L){IPii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(M)(O){IPiii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(P)(N){IPiiii}%
+\pcdiagg[linecolor=green](SKE)(MI)%
+\pcdiagg[linecolor=red](SKE)(IPii)%
+\pcdiagg[linecolor=cyan](SKE)(IPiiii)%
+\pcdiagg[linecolor=blue](SKE)(IPiii)%
+\pcdiagg[linecolor=orange](SKE)(IPi)%
+\uput{0.1}[180]{0}(SKE){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(O)%
+\psline(P)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+\psarc(0,2.2){0.525}{-10}{190}%
+\psarc(0,1.25){0.275}{-10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+\rput(0,1.25){\pscircle(0,0){0.3}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.8)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.25){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+%-------------- Seilbögen des unteren Flaschenzugteils -------------------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psarc(0,3.7){0.835}{-10}{190}
+\psarc(0,2.2){0.525}{-10}{190}
+}
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.4)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(N){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](P)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} = \fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+%
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%
+%
+\def\pulleyF{%--------------------------- mit 6 Rollen -------------------------------------------------------
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-3,-11.5)(5,7)%
+%\psgrid
+%
+%------------------------- verschobene Masse ------------------------------------------------------------------
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{\mas\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.7){\pnode(0.835;180){F}}
+\rput(0,3.7){\pnode(0.835;10){I}}
+\rput(0,2.2){\pnode(0.525;0){J}}
+\rput(0,2.2){\pnode(0.525;180){K}}
+\rput(0,1.25){\pnode(0.275;0){O}}
+\rput(0,1.25){\pnode(0.275;180){P}}
+\rput(0,0.77){\pnode(0,0){N}}
+\rput(I){\pnode(4;-80){End}}%------------------------ Ende
+\rput(I){\pnode(4.37;-80){EndH}}%--------------------- Ende für Beginn Haken
+\rput(I){\pnode(\seilend\space;-80){EndZ}}%----------------------- verschobenes Ende
+\rput(I){\pnode(\seilendh\space;-80){EndZH}}%-------------------- Ende für Beginn Haken verschobenes Ende
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.7){\pnode(0.835;0){G}}
+\rput(0,3.7){\pnode(0.835;180){H}}
+\rput(0,2.2){\pnode(0.525;0){L}}
+\rput(0,2.2){\pnode(0.525;180){M}}
+\rput(0,1.25){\pnode(0.275;0){Q}}
+\rput(0,1.25){\pnode(0.275;180){R}}
+}}%
+%
+%--------------------- Haken am oberen Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=2.5pt,doublecolor=gray!60,linewidth=0.7pt,linecolor=gray!60}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!30](I)(End)%
+%
+%--------------------- Haken am unteren Seilende zum Ziehen ------------------------------------------------------------
+%
+\rput{10}(EndZH){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=4.5pt,doublecolor=black!80,linewidth=0.4pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{-150}{45}%
+\psbezier[linecap=1](0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\pscircle[linecolor=black!80,linewidth=0.4pt,fillstyle=solid, fillcolor=white](EndZ){2.0pt}%
+\psline[nodesepA=1cm,linewidth=2.5pt,linecap=1,linecolor=Brown!80](I)(EndZ)% --- Seil bis zur Öffnung
+%
+%---------------- Kraftpfeil am Seilende und delta s --------------------------------------------------------------
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=.3cm,linecolor=red,nodesepA=1.8,nodesepB=1.2]{->}(I)(End)
+\naput{$F_{\text{Z}} = \fsz\x\text{N}$}%
+\rput(EndH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\rput(EndZH){\pcline[linewidth=0.7pt,nodesepA=0.15](0,0)(0.8;10)}%
+\pcline[linewidth=0.7pt,arrowsize=0.12,arrowinset=0.05, offset=.6cm]{<->}(EndH)(EndZH)
+\naput{$\Delta s = \seil\x\text{cm}$}%
+%
+%------------------ Pfeile zu den Seilmitten für Kräfte ------------------------------------------------
+%
+{\psset{linearc=0.2,armB=0.1,angleA=0,arrowscale=1.4,arrowinset=0.04,lineAngle=120,arrows=->}%
+\pnode(! -2 .5 0.5\space \flzly\space mul\space add){SKE}%
+\pstMiddleAB[PointSymbol=none,PointName=none]{F}{G}{MI}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(H)(J){IPi}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(K)(L){IPii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(M)(O){IPiii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(P)(Q){IPiiii}%
+\psIntersectionPoint(MI)([Xnodesep=-1.5]{MI}MI)(R)(N){IPiiiii}%
+\pcdiagg[linecolor=green](SKE)(MI)%
+\pcdiagg[linecolor=red](SKE)(IPii)%
+\pcdiagg[linecolor=cyan](SKE)(IPiiii)%
+\pcdiagg[linecolor=magenta](SKE)(IPiiiii)%
+\pcdiagg[linecolor=blue](SKE)(IPiii)%
+\pcdiagg[linecolor=orange](SKE)(IPi)%
+\uput{0.1}[180]{0}(SKE){$F_{\text{S}} = \fsz\x\text{N}$}%
+}
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(O)%
+\psline(P)(Q)%
+\psline(R)(N)%
+\psarc(0,3.7){0.835}{10}{190}%
+\psarc(0,2.2){0.525}{-10}{190}%
+\psarc(0,1.25){0.275}{-10}{190}%
+\psline[linecolor=Brown!80](I)(EndZ)%
+\psline(I)(End)%
+}%
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+\rput(0,1.25){\pscircle(0,0){0.3}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-1.0)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.25){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,0.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.07}}%
+\pcline[linewidth=2.5pt,nodesepA=1cm,linecolor=Brown!80,linecap=1](R)(N)%-------------Neu-Zeichnen des letzten Verbindungsstückes
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+%
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+%
+%-------------- Seilbögen des unteren Flaschenzugteils -------------------------------------
+%
+{\psset{linecolor=Brown!80,linewidth=2.5pt}
+\psarc(0,3.7){0.835}{-10}{190}
+\psarc(0,2.2){0.525}{-10}{190}
+\psarc(0,1.25){0.275}{-10}{190}}
+{\psset{linewidth=0.7pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=outer}%
+\rput(0,3.7){\pscircle(0,0){0.85}}%
+\rput(0,2.2){\pscircle(0,0){0.55}}%
+\rput(0,1.25){\pscircle(0,0){0.3}}%
+}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.8)(0.15,3)}%
+\rput(0,3.7){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.2){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.25){\pscircle[linewidth=0.7pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=black!70,gradbegin=black!100]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\mas\x kg}}
+\rput(0,-1){\pnode(0,0){mu}}% --------- Node an der Massenunterseite
+%
+%------------------ Kraft und Abstandspfeile
+%
+\pcline[linewidth=1.0pt,arrowsize=0.12,arrowinset=0.05, offset=-1.4cm,linecolor=blue]{->}(0,1.5)(0,0.5)
+\nbput{$F_{\text{G}} = \fge\x\text{N}$}
+}%
+}%
+\psline[linewidth=0.7pt](mu)([Xnodesep=1.5]{mu}mu)%
+\psline[linewidth=0.7pt](vmu)([Xnodesep=1.5]{vmu}vmu)%
+\pcline[linewidth=0.7pt,arrowsize=0.09,arrowinset=0.05, offset=1.4cm]{<->}(mu)(vmu)%
+\naput{\small $\Delta h = \hvb\x\text{cm}$}%
+%
+%-----------------------------------Decke ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+%
+%-----------------------------------Boden ------------------------------------------------------------------------
+%
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradmidpoint=0.1,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,-11.5)(2,-11)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,-11.5)(2,-11)%
+\end{pspicture}}
+}
+
+%----------------------------- Ende der Definitionen -------------------------------------------------------------------------
+
+
+%------------------ Zeichnen der Flaschenzüge mit den spez. Einstellungen -----------------------------------
+%
+\def\flzly{-2}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.835}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{10}%------------Höhe vom Boden Delta h
+\def\seil{10}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{600}%------------Kraft Fs und Fz
+\def\seilend{4}%---------Seilende
+\def\seilendh{4.37}%-----Seilende für den Haken
+%
+\pulleyA
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-1.5}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.2}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{15}%------------Höhe vom Boden Delta h
+\def\seil{30}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{300}%------------Kraft Fs und Fz
+\def\seilend{6}%---------Seilende
+\def\seilendh{6.37}%-----Seilende für den Haken
+%
+\pulleyB
+
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+
+\def\flzly{0}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{30}%------------Höhe vom Boden Delta h
+\def\seil{90}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{200}%------------Kraft Fs und Fz
+\def\seilend{12}%---------Seilende
+\def\seilendh{12.37}%-----Seilende für den Haken
+%
+\pulleyC
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-1}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{20}%------------Höhe vom Boden Delta h
+\def\seil{80}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{150}%------------Kraft Fs und Fz
+\def\seilend{11}%---------Seilende
+\def\seilendh{11.37}%-----Seilende für den Haken
+%
+\pulleyD
+
+%--------------------------------------------------------------------------------------------------------------
+
+%
+\def\flzly{-1.5}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{15}%------------Höhe vom Boden Delta h
+\def\seil{75}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{120}%------------Kraft Fs und Fz
+\def\seilend{10.5}%---------Seilende
+\def\seilendh{10.87}%-----Seilende für den Haken
+%
+\pulleyE
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-2}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{10}%------------Höhe vom Boden Delta h
+\def\seil{60}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{100}%------------Kraft Fs und Fz
+\def\seilend{9}%---------Seilende
+\def\seilendh{9.37}%-----Seilende für den Haken
+%
+\pulleyF
+
+
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-0.5}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.15}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{25}%------------Höhe vom Boden Delta h
+\def\seil{150}%------------Seillänge Delta s
+\def\fge{300}%------------Kraft Fg
+\def\mas{30}%------------Masse m
+\def\fsz{150}%------------Kraft Fs und Fz
+\def\seilend{8}%---------Seilende
+\def\seilendh{8.37}%-----Seilende für den Haken
+%
+\psscalebox{0.3}{%
+\pulleyB
+}
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-1}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.11}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{20}%------------Höhe vom Boden Delta h
+\def\seil{60}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{200}%------------Kraft Fs und Fz
+\def\seilend{9}%---------Seilende
+\def\seilendh{9.37}%-----Seilende für den Haken
+%
+\psscalebox{0.4}{%
+\pulleyC
+}
+%
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-1.5}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{15}%------------Höhe vom Boden Delta h
+\def\seil{60}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{150}%------------Kraft Fs und Fz
+\def\seilend{9}%---------Seilende
+\def\seilendh{9.37}%-----Seilende für den Haken
+%
+\psscalebox{0.5}{%
+\pulleyD
+}
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{-2.5}% ----------- Flaschenzuglänge nach unten oder oben verschieben - Boden ist bei -3 -----------------
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten, damit die Seile symmetrisch sind
+\def\hvb{5}%------------Höhe vom Boden Delta h
+\def\seil{30}%------------Seillänge Delta s
+\def\fge{600}%------------Kraft Fg
+\def\mas{60}%------------Masse m
+\def\fsz{100}%------------Kraft Fs und Fz
+\def\seilend{6}%---------Seilende
+\def\seilendh{6.37}%-----Seilende für den Haken
+%
+\psscalebox{0.6}{%
+\pulleyF
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------
+
+\def\flzly{0}% ----------- Flaschenzuglänge nach unten oder oben verschieben
+\def\flzlx{0}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten
+%
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-2,-10)(2,7)%
+\psgrid
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.8){\pnode(0.73;180){F}}
+\rput(0,3.8){\pnode(0.73;0){I}}
+\rput(0,2.3){\pnode(0.47;0){J}}
+\rput(0,2.3){\pnode(0.47;180){K}}
+\rput(0,1.3){\pnode(0.27;0){O}}
+\rput(0,1.3){\pnode(0.27;180){P}}
+\rput(0,0.8){\pnode(0,0){N}}
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.8){\pnode(0.73;0){G}}
+\rput(0,3.8){\pnode(0.73;180){H}}
+\rput(0,2.3){\pnode(0.47;0){L}}
+\rput(0,2.3){\pnode(0.47;180){M}}
+\rput(0,1.3){\pnode(0.27;0){Q}}
+\rput(0,1.3){\pnode(0.27;180){R}}
+}}%
+%---------------------- Seile des Flaschenzuges ----------------------------
+{\psset{linecolor=Brown,linewidth=1.8pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(O)%
+\psline(P)(Q)%
+\psline(R)(N)%
+\psline{->}(I)(2,-3)%
+}
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.75}}%
+\rput(0,2.3){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.5}}%
+\rput(0,1.3){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.3}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-1.0)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.3){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.3){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,0.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\pcline[linewidth=1.8pt,nodesepA=1cm,linecolor=Brown,linecap=1](R)(N)%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.75}}%
+\rput(0,2.3){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.5}}%
+\rput(0,1.3){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.3}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,-0.8)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.3){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.3){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%------------------------- verschobene Masse ------------------------------------------------------------------
+%------------------------- verschobene Masse mit Haken-------------------------------------------------------
+%
+\rput(\flzlx\space,-10){%
+\rput{180}(0,1.35){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!10,gradbegin=black!25,linecolor=black!40]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{\textcolor{black!50}{60\x kg}}}
+\rput(0,-1){\pnode(0,0){vmu}}}% --------- Node an der verschobenen Massenunterseite
+%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+%
+\rput(0,-7){\pspolygon[linewidth=1.0pt,linearc=.2,fillstyle=gradient,gradangle=90,gradmidpoint=0.3,gradend=cyan!30,gradbegin=black!90]%
+(-1.0,-1.0)(-0.75,1)(0.75,1)(1.0,-1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{60\x kg}}}%
+}%
+%-----------------------------------Decke ------------------------------------------------------------------------
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+\end{pspicture}}
+%
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{2}% ----------- Flaschenzuglänge nach unten oder oben verschieben
+\def\flzlx{-0.1}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten
+%
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-2,-10)(2,7)%
+%\psgrid
+%
+%------------------- Nodes für die Seile ---------------------------------------
+%
+\rput(0,3.8){\pnode(0.63;180){F}}
+\rput(0,3.8){\pnode(0.63;0){I}}
+\rput(0,2.5){\pnode(0.33;0){J}}
+\rput(0,2.5){\pnode(0.33;180){K}}
+\rput(0,1.8){\pnode(0,0){N}}
+%
+% -----------------Nodes für die Seile der Unterseite --------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.8){\pnode(0.63;0){G}}
+\rput(0,3.8){\pnode(0.63;180){H}}
+\rput(0,2.5){\pnode(0.33;0){L}}
+\rput(0,2.5){\pnode(0.33;180){M}}
+}}%
+%
+%---------------------- Seile des Flaschenzuges ----------------------------
+%
+{\psset{linecolor=Brown,linewidth=1.8pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(N)%
+\psline{->}(I)(2,-3)%
+}
+%
+%----------------------- Haken an der Decke ------------------------------------------------------
+%
+\rput(0,5.65){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%----------------------- gedrehter Haken unterhalb des Deckenhakens  ------------------------------------------------------
+%
+\rput{180}(0,5){\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%
+%---------------------Verbindung mit dem Deckenhaken ---------------------------------------------
+%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+%--------------------- Oberer Flaschenzugteil -------------------------------------------------------
+%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.65}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.35}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\pcline[linewidth=1.8pt,nodesepA=1cm,linecolor=Brown,linecap=1](M)(N)%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+%-----------------------------Kompletter unterer Teil des Flaschenzuges um 100° gedreht -----------------
+\rput{180}(0,0){%
+%------------------------------ Haken am unteren Flaschenzugteil -----------------------------------------
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+%------------------------------------- Haken an der angehängten Masse  ----------------------------------------
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)% Verbindung der Haken angeh. Masse - Flaschz.
+%
+%-------------------------- Unterer Flaschenzugteil -------------------------------------------------------
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.65}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.35}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0.3)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+\rput(0,-7){\psframe[linewidth=1.0pt,framearc=.2,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-1.0,-1.0)(1.0,1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{60\x kg}}}%
+}%
+%-----------------------------------Decke ------------------------------------------------------------------------
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+\end{pspicture}}
+%
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------
+%
+\def\flzly{3}% ----------- Flaschenzuglänge nach unten oder oben verschieben
+\def\flzlx{-0.15}% ----------- unteren Flaschenzugteil nach links oder rechts ausrichten
+%
+{\psset{yunit=1.0cm,xunit=1.0cm, dotscale=0.75, arrowscale=1.5,arrowinset=0.15}%
+\begin{pspicture}(-2,-10)(2,7)%
+%\psgrid
+%
+\rput(0,3.8){\pnode(0.63;180){F}}
+\rput(0,3.8){\pnode(0.63;0){I}}
+\rput(0,2.5){\pnode(0.33;0){J}}
+\rput(0,2.5){\pnode(0.33;180){K}}
+\rput(0,1.8){\pnode(0,0){N}}
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+\rput{180}(0,0){%
+\rput(0,3.8){\pnode(0.63;0){G}}
+\rput(0,3.8){\pnode(0.63;180){H}}
+\rput(0,2.5){\pnode(0.33;0){L}}
+\rput(0,2.5){\pnode(0.33;180){M}}
+}}%
+{\psset{linecolor=Brown,linewidth=1.8pt}
+\psline(F)(G)%
+\psline(H)(J)%
+\psline(K)(L)%
+\psline(M)(N)%
+\psline{->}(I)(2,-3)%
+}
+%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.65}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.35}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,1.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\pcline[linewidth=1.8pt,nodesepA=1cm,linecolor=Brown,linecap=1](M)(N)%
+%
+%-------------------------- Variation der Flaschenzuglänge --------------------------------------------
+%
+\rput(\flzlx,\flzly){% -----------   y-Wert ändert die Flaschenzuglänge nach unten oder oben
+%
+\rput{180}(0,0){%
+\rput(0,5.65){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\rput{180}(0,5){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=1.4pt,doublecolor=gray!80,linewidth=1pt,linecolor=black!80}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)
+}%
+\psline[linewidth=2.5pt,linecap=1](0,5.05)(0,5.58)
+%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.65}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=radslope,slopeangle=70,slopeend=black!70,slopebegin=gray!30,dimen=middle](0,0){0.35}}%
+\rput(0,1.65){\psframe[linewidth=1.0pt,framearc=.15,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-0.15,0.3)(0.15,3)}%
+\rput(0,3.8){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+\rput(0,2.5){\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](0,0){.05}}%
+}%
+%------------------------- angehängte Masse ------------------------------------------------------------------
+\rput(0,-7){\psframe[linewidth=1.0pt,framearc=.2,fillstyle=gradient,gradangle=0,gradend=cyan!30,gradbegin=black!70](-1.0,-1.0)(1.0,1.0)%
+\rput[c](0,0){\psframebox[linestyle=none,fillstyle=solid,fillcolor=white,opacity=0.7,framearc=0.3]{60\x kg}}}%
+}%
+%-----------------------------------Decke ------------------------------------------------------------------------
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](-2,6)(2,6.5)%
+\psframe[linestyle=none,framearc=.0,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt](-2,6)(2,6.5)%
+%
+\end{pspicture}}
+%
+
+\end{document} 

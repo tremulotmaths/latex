@@ -1,0 +1,224 @@
+%___________________________
+%===    Configurations 12.09.2013
+%------------------------------------------------------
+%packages permettant d'augmenter le nombre de registres de dimension et donc d'éviter les erreurs de compilation dûs aux packages tikz, pstricks and compagnie
+\usepackage{etex}
+%___________________________
+%===    Pour le français
+%------------------------------------------------------
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%===    Polices d'écriture
+%------------------------------------------------------
+\usepackage{frcursive} % Pour l'écriture cursive
+%\cursive{texte}
+\usepackage[upright]{fourier}% l'option permet d'avoir les majuscules droites dans les formules mathématiques
+\usepackage[scaled=0.875]{helvet}
+
+%___________________________
+%===    Les couleurs
+%------------------------------------------------------
+\usepackage[dvipsnames,table]{xcolor}
+%
+
+
+%___________________________
+%===   Entête, pied de page
+%------------------------------------------------------
+
+\usepackage{lscape} %permet le format paysage du document
+\usepackage{xspace} % création automatique d'espaces dans les commandes
+
+\setlength{\parindent}{0pt} %pas d'alinéa
+
+\usepackage{fancyhdr}
+%
+
+
+
+\usepackage{enumerate} %permet la modif de la numérotation et de poursuivre une numérotation en cours avec \begin{enumerate}[resume]
+\usepackage{enumitem}
+\setenumerate[1]{font=\bfseries,label=\arabic*\degres)} % numérotation 1°) 2°) ...
+%\setenumerate[2]{font=\itshape,label=(\alph*)} % sous-numérotation (a) (b) ...
+\setenumerate[2]{font=\bfseries,label=(\alph*)} % sous-numérotation (a) (b) ...
+
+\usepackage{lastpage} % permet d'afficher le nombre total de pages après DEUX compilations.
+
+%___________________________
+%===    Réglages et Commandes Maths
+%------------------------------------------------------
+%redéfinition de fractions, limites, sommes, intégrales, coefficients binomiaux en displaystyle, limites de suites
+\usepackage{amssymb,mathtools}
+\everymath{\displaystyle} %permet l'écriture jolie des limites et autres...
+
+%\usepackage{bm} % pour l'écriture en gras des formules mathématiques avec \bm
+
+\usepackage{cancel} % pour les simplifications de fractions
+\renewcommand\CancelColor{\color{red}}
+
+\usepackage[autolanguage,np]{numprint}
+%permet les espacement pour les nombres décimaux avec \np{3,12456} en environnement maths ou pas
+
+%
+\usepackage{dsfont} %écriture des ensemble N, R, C ...
+
+
+%
+\usepackage{mathrsfs}   % Police de maths jolie caligraphie
+
+
+
+
+
+
+
+%___________________________
+%===    Pour les tableaux
+%------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx,tabulary}
+\usepackage{multirow}
+\usepackage{multicol}
+
+%Pour multicol : Pour ajouter un titre numéroté qui apparaisse sur toute la largeur de la page, il faut utiliser l'option [\section{Titre.}] juste après \begin{multicols}{nb-col}.
+%Remarques :
+%Pour qu'une ligne de séparation apparaisse entre les colonnes, il faut utiliser : \setlength{\columnseprule}{1pt}.
+%Pour redéfinir la largeur de l'espace inter-colonnes, il faut utiliser \setlength{\columnsep}{30pt}.
+
+%Pour remonter le texte, dans chaque colonne vers le haut : \raggedcolumns qui se tape :\begin{multicols}{2}\raggedcolumns...\columnbreak...\columnbreak\end{multicols}
+
+\setlength\columnseprule{0pt}
+
+\usepackage{slashbox} %traits obliques dans les cellules
+
+%___________________________
+%===    Divers packages
+%------------------------------------------------------
+\usepackage{bclogo}
+\usepackage{textcomp}
+\usepackage{eurosym}%avec \EUR{3,12}
+\usepackage{ulem} % Pour soiligner simple \ul
+					%Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+\usepackage{tikz,tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-graph,tikz-3dplot}
+\usetkzobj{all}
+\usetikzlibrary{babel,intersections,calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing,patterns,positioning,decorations.text}
+\usepackage{pstricks}
+%pst-plot,pst-text,pstricks-add,pst-eucl,pst-all}
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   []
+%\end{spacing}
+
+
+\usepackage{multido} %faire des boucles dans les commandes
+
+
+
+%divers cadres
+\usepackage{fancybox} % par exemple \ovalbox{}
+
+%caractères spéciaux  (symbole divers) avec la commande \ding{230} par exemple
+\usepackage{pifont}
+
+%___________________________
+%===    Quelques raccourcis perso
+%------------------------------------------------------
+
+
+%checked box
+\newcommand{\checkbox}{
+\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{0.1em}$\checkmark$}
+}
+
+%QRcode, codebarre
+\usepackage{pst-barcode}
+%\begin{pspicture}(2,2)
+%	\psbarcode{http://www.latex-howto.be}{eclevel=M}{qrcode}
+%\end{pspicture}
+
+
+%Texte en filigrane
+\usepackage{watermark}
+%On utilise ensuite les commandes \watermark, \leftwatermark, \rightwatermark ou \thiswatermark qui permettent de définir un filigrane sur toutes les pages, les pages paires, les pages impaires ou juste une page
+%Exemple : \thiswatermark {
+%\begin{minipage}{0.95\linewidth}
+%\vspace{25cm}
+%\begin{center}
+%\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}\LaTeX}}
+%\end{center}
+%\end{minipage}
+%}
+
+%QCM
+\usepackage{alterqcm}					%%Permet de créer des QCM
+%\begin{alterqcm}
+%\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+%\end{alterqcm}
+
+%\dingsquare %carré avant V ou F
+%\dingchecksquare %carré validé devant V ou F
+
+%___________________________
+%===    ALGORITHMES
+%------------------------------------------------------
+
+% Mise en forme des algorithmes
+\usepackage[french,boxed,titlenumbered,lined,longend]{algorithm2e}
+  \SetKwIF {Si}{SinonSi}{Sinon}{si}{alors}{sinon\_si}{alors}{fin~si}
+ \SetKwFor{Tq}{tant\_que~}{~faire~}{fin~tant\_que}
+ \SetKwFor{PourCh}{pour\_chaque }{ faire }{fin pour\_chaque}
+ \SetKwInput{Sortie}{Sortie}
+  \SetKwInput{Entree}{Entrée}
+\newcommand{\Algocmd}[1]{\textsf{\textsc{\textbf{#1}}}}\SetKwSty{Algocmd}
+  \newcommand{\AlgCommentaire}[1]{\textsl{\small  #1}}
+
+%Exemple à faire...ça peut être sympa
+
+\usepackage{marvosym} %différents symboles
+
+
+
+
+
+
+%___________________________
+%===    SOMMAIRE DANS LES CHAPITRES
+%------------------------------------------------------
+
+%\usepackage{minitoc}
+
+%___________________________
+%===    TABLEUR
+%------------------------------------------------------
+\usepackage{pas-tableur}
+\usepackage{xstring}
+\usepackage{xkeyval}
+
+
+%___________________________
+%===    touches calculatrices
+%------------------------------------------------------
+
+\usepackage{tipfr}
+
+
+\usepackage{babel}
+\FrenchFootnotes
+%\frenchbsetup{StandardLists=true}%frenchb ne s'occupera pas des listes
+\frenchbsetup{SuppressWarning,CompactItemize=false}
+\DecimalMathComma %supprime l'espace après la virgule dans un nombre
+
+
+%___________________________
+%===    HYPERLIENS
+%------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue,bookmarksnumbered]{hyperref} 

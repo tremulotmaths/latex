@@ -1,0 +1,62 @@
+\documentclass[12pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+
+\geometry{a4paper, height = 26.5cm,hmargin=1.5cm,marginparwidth=2cm,headheight=20pt,headsep=16.5pt,bottom=2cm,footskip=30pt,footnotesep=30pt}
+
+\pagestyle{empty}
+
+\begin{document}
+\small
+
+\TitreExo{\bsc{xiii}.1}{\'Echantillonage \\ Prise de décision}
+
+\exo
+Un rayon lumineux qui traverse une plaque de verre teinté perd $15\%$ de son intensité lumineuse, mesurée en candelas.
+\begin{enumerate}
+	\item On note $I_0$ l'intensité lumineuse d'un rayon avant la traversée d'une plaque et $I_1$ son intensité à la sortie. Calculer $I_1$ lorsque $I_ 0 = 18$.
+	\item On superpose que $n$ plaques de verre identiques et on note $I_n$ l'intensité du rayon lumineux après avoir traveré la $n\ieme$ plaque.\par
+	Montrer que $\left(I_n\right)$ est une suite géométrique et préciser sa raison.
+	\item Exprimer alors $I_n$ en fonction de $n$.
+	\item Trouver l'intensité lumineuse d'un rayon dont l'intensité après avoir traversé $5$ plaques est égale à $20$.
+	\item Déterminer, à l'aide de la calculatrice, le nombre minimum de plaques à utiliser pour que l'intensité d'un rayon sortant soit inférieure au dixième de l'intensité d'un rayon entrant.
+\end{enumerate}\[*\]
+
+\exo En $\np{2010}$, une voiture neuve vaut \EUR{$\np{22000}$}. On désigne par $P_n$ sa valeur en l'année $\np{2010} + n$ : on a donc $P_0 = \np{22000}$.\par
+La valeur de ce véhicule une année donnée est égale à la valeur de l'année précédente diminuée de $20\%$ à laquelle on rajoute \EUR{$500$}.
+
+\begin{enumerate}
+	\item Calculer $P_1$, $P_2$ et $P_3$.
+	\item \begin{enumerate}
+	      	\item Exprimer $P_{n+1}$ en fonction de $P_n$.
+	      	\item Pour tout $n \in \N$, on pose $Q_n = P_n - 2500$. Montrer que $(Q_n)$ est une suite géométrique.
+	      	\item Donner le terme général de $(Q_n)$ en fonction de $n$, puis en déduire l'expression de $P_n$ en fonction de $n$.
+	      \end{enumerate}
+	\item À l'aide de la calculatrice, déterminer à partir de quelle année la valeur de cette voiture sera inférieure à \EUR{$5000$}.
+	\item À l'aide de la calculatrice, lire les valeurs de $P_n$ pour $n$ allant de $0$ à $30$. Que constate-t-on ?
+\end{enumerate}\[*\]
+
+\exo$P$ représente une population de coccinelles de $\np{3000}$ insectes qui augmente de $4\%$ tous les ans.\par
+Quel est la but de l'algorithme suivant ?\medskip
+
+{\obeylines
+\textbf{Variables}
+	\quad $N$ : nombre entier positif
+	\quad $P$ : nombre entier positif \smallskip
+\textbf{Initialisations}
+	\quad $N$ prend la valeur $0$\smallskip
+\textbf{Entrées}
+	\quad Saisir $P$\smallskip
+\textbf{Traitement}
+	\quad Tant que $P\leq 6000$
+		\qquad $P$ prend la valeur $1,04 \times P$
+		\qquad $N$ prend la valeur $N+1$
+	\quad FIN Tant que\smallskip
+\textbf{Sorties}
+	\quad Afficher $P$
+	\quad Afficher $N$
+}
+
+
+\end{document} 

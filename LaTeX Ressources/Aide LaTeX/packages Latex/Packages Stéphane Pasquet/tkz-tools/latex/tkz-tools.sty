@@ -1,0 +1,111 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%     tkz-tools.sty V1.01    encodage : UTF8                     %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%           Créé par Stéphane PASQUET 		             	  	%
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tkz-tools}[2017/07/16]
+\@ifpackageloaded{xkeyval}{}{\RequirePackage{xkeyval}}
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}
+\usetikzlibrary{calc}
+
+%-----------> \tkzPen <-------------------
+\definecolor{wood}{cmyk}{0.00,0.12,0.35,0.05}
+\define@cmdkey [PAS] {tkzPen} {angle}{}
+\define@cmdkey [PAS] {tkzPen} {color}{}
+\define@cmdkey [PAS] {tkzPen} {xscale}{}
+\define@cmdkey [PAS] {tkzPen} {yscale}{}
+\presetkeys    [PAS] {tkzPen} {color = red,	angle = 30, xscale=1, yscale=1}{}
+%
+\newcommand{\tkzPen}[2][]
+{%
+\setkeys[PAS]{tkzPen}{#1}
+\begin{scope}[shift={(#2)},rotate=\cmdPAS@tkzPen@angle, xscale=\cmdPAS@tkzPen@xscale, yscale=\cmdPAS@tkzPen@yscale]
+\fill[wood] (0,5) circle[x radius=5mm, y radius=2mm];
+\fill[wood] (-0.5,1) to[bend right=30] (-0.25,1.2) arc (180:360:0.25cm) to[bend right=30] (0.5,1) -- (0,0) -- cycle;
+\fill[fill=\cmdPAS@tkzPen@color] (116.565:2mm) -- (63.435:2mm) -- (0,0) -- cycle;
+\fill[fill=\cmdPAS@tkzPen@color] (-0.5,5) -- (-0.5,1) to[bend right=30] (-0.25,1.2) arc (180:360:0.25cm) to[bend right=30] (0.5,1) -- (0.5,5) arc (0:-180:0.5cm and 0.2cm);
+\fill[fill=\cmdPAS@tkzPen@color] (116.565:2mm) -- (63.435:2mm) -- (0,0) -- cycle;
+\fill[\cmdPAS@tkzPen@color] (0,5) circle[x radius=1.5mm, y radius=0.5mm];
+\draw (-0.5,5) -- (-0.5,1) -- (0,0) -- (0.5,1) -- (0.5,5) arc (0:-360:0.5cm and 0.2cm);
+\draw (-0.25,4.82) -- (-0.25,1.2) arc(180:360:0.25cm and 0.25cm) -- (0.25,4.82);
+\draw (-0.25,1.2) to[bend left=30] (-0.5,1);
+\draw (0.25,1.2) to[bend right=30] (0.5,1);
+\end{scope}
+}
+
+%-----------> \tkzRule <-------------------
+
+\definecolor{plastic}{cmyk}{0.17,0.00,0.00,0.02}
+\define@cmdkey [PAS] {tkzRule} {angle}{}
+\define@cmdkey [PAS] {tkzRule} {color}{}
+\define@cmdkey [PAS] {tkzRule} {width}{}
+\define@cmdkey [PAS] {tkzRule} {height}{}
+\define@cmdkey [PAS] {tkzRule} {opacity}{}
+\define@cmdkey [PAS] {tkzRule} {delta}{}
+\presetkeys    [PAS] {tkzRule} {color = plastic, angle = 0, width=10, height=1.5, opacity=0.6, delta=0.3}{}
+\newcommand{\tkzRule}[2][]
+{%
+\setkeys[PAS]{tkzRule}{#1}
+\begin{scope}[shift={(#2)},rotate=\cmdPAS@tkzRule@angle]
+\fill[\cmdPAS@tkzRule@color,opacity=\cmdPAS@tkzRule@opacity] 
+	(-\cmdPAS@tkzRule@delta,-\cmdPAS@tkzRule@height) -- ({\cmdPAS@tkzRule@width+\cmdPAS@tkzRule@delta},-\cmdPAS@tkzRule@height) [rounded corners=2mm]-- ({\cmdPAS@tkzRule@width+\cmdPAS@tkzRule@delta},0)  -- (-\cmdPAS@tkzRule@delta,0) [rounded corners=0mm]-- cycle;
+\foreach \xsubgrad in {0,0.1,...,\cmdPAS@tkzRule@width}
+{
+	\draw[black] (\xsubgrad,0) -- (\xsubgrad,-1mm);
+}
+\foreach \xsubgrad in {0.5,1.5,...,\cmdPAS@tkzRule@width}
+{
+	\draw[black] (\xsubgrad,0) -- (\xsubgrad,-2mm);
+}
+\foreach \xsubgrad in {0,1,...,\cmdPAS@tkzRule@width}
+{
+	\draw[black] (\xsubgrad,0) -- (\xsubgrad,-3mm) node[below,rotate=\cmdPAS@tkzRule@angle] {\small\xsubgrad};
+}
+\end{scope}
+}
+
+%-----------> \tkzSquare <-------------------
+
+\define@cmdkey [PAS] {tkzSquare} {angle}{}
+\define@cmdkey [PAS] {tkzSquare} {color}{}
+\define@cmdkey [PAS] {tkzSquare} {width}{}
+\define@cmdkey [PAS] {tkzSquare} {height}{}
+\define@cmdkey [PAS] {tkzSquare} {opacity}{}
+\define@cmdkey [PAS] {tkzSquare} {delta}{}
+\define@cmdkey [PAS] {tkzSquare} {Dx}{}
+\define@cmdkey [PAS] {tkzSquare} {Dy}{}
+\presetkeys    [PAS] {tkzSquare} {color = plastic, angle = 0, width=5, height=5, opacity=0.6, delta=0.3, Dx=0, Dy=0}{}
+\newcommand{\tkzSquare}[2][]
+{%
+\setkeys[PAS]{tkzSquare}{#1}
+\begin{scope}[shift={(#2)},rotate=\cmdPAS@tkzSquare@angle]
+\fill[\cmdPAS@tkzSquare@color,opacity=\cmdPAS@tkzSquare@opacity] 
+	(0,{\cmdPAS@tkzSquare@height+\cmdPAS@tkzSquare@delta})
+	-- (0,0) -- ({\cmdPAS@tkzSquare@width+\cmdPAS@tkzSquare@delta},0) --  cycle;
+\pgfmathparse{(\cmdPAS@tkzSquare@height+\cmdPAS@tkzSquare@height+2*\cmdPAS@tkzSquare@delta)/7}\let\r\pgfmathresult
+\begin{scope}[shift={($(45:\r)+(\cmdPAS@tkzSquare@Dx,\cmdPAS@tkzSquare@Dy)$)}]
+\fill[white,rounded corners] (0,{0.5*\cmdPAS@tkzSquare@height+0.5*\cmdPAS@tkzSquare@delta})	-- (0,0) -- ({0.5*\cmdPAS@tkzSquare@width+0.5*\cmdPAS@tkzSquare@delta},0) --  cycle;
+\end{scope}
+\foreach \xsubgrad in {0.1,0.2,...,\cmdPAS@tkzSquare@width}
+{
+	\draw[black] (\xsubgrad,0) -- (\xsubgrad,1mm);
+}
+\foreach \xsubgrad in {1,2,...,\cmdPAS@tkzSquare@width}
+{
+	\draw[black] (\xsubgrad,0) -- (\xsubgrad,1.5mm);
+}
+\foreach \xsubgrad in {0.1,0.2,...,\cmdPAS@tkzSquare@height}
+{
+	\draw[black] (0,\xsubgrad) -- (1mm,\xsubgrad);
+}
+\foreach \xsubgrad in {1,2,...,\cmdPAS@tkzSquare@height}
+{
+	\draw[black] (0,\xsubgrad) -- (1.5mm,\xsubgrad);
+}
+\end{scope}
+}

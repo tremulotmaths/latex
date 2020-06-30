@@ -1,0 +1,126 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{multido}      % From PSTricks
+\usepackage{pst-slpe,pst-node}
+\usepackage{pst-grad}
+\usepackage{pst-electricfield}
+
+
+\SpecialCoor
+
+\begin{document}
+% machine de Van de Graff
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\newcommand{\D}{\displaystyle}
+\def\x{\hbox{$\,$}}
+
+\newpsstyle{RahmenA}{linewidth=1.0pt,framearc=0,fillstyle=gradient,gradangle=0,gradend=cyan!20,gradbegin=black!70,gradmidpoint=0.1}
+\newpsstyle{RahmenB}{linestyle=none,framearc=.1,fillstyle=gradient,gradangle=90,gradend=cyan!20,gradbegin=black!80,gradmidpoint=0.55}
+\newpsstyle{KugelL}{linecolor=cyan!30,slopebegin=cyan!30,sloperadius=0.2,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+\newpsstyle{KugelK}{linecolor=gray!80,slopebegin=cyan!20,sloperadius=1.05,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+\newpsstyle{KugelKurb}{linecolor=gray!80,slopebegin=gray!20,sloperadius=.09,linewidth=0.1pt,slopecenter=0.5 0.5,linestyle=solid}
+
+{\psset{yunit=1cm,xunit=1cm, dotscale=0.75, arrowscale=1.2}%
+
+\begin{pspicture*}(-5,-1)(5,8)
+%\psgrid[subgriddiv=0,gridcolor=lightgray,griddots=10]
+\pnode(-1.2,0){A}
+\pnode(1.2,0){B}
+\pnode(1.2,0.4){C}
+\pnode(-1.2,0.4){D}
+\pnode(0.6,0.4){E}
+\pnode(0.2,5.4){F}
+\pnode(-0.2,5.4){G}
+\pnode(-0.6,0.4){H}
+\pnode(0,1){I}
+\pnode(0,6){K1}
+\rput(K1){\pnode(2.5;0){L1}}
+\rput(K1){\pnode(2.5;40){L2}}
+\rput(K1){\pnode(3;150){L3}}
+\rput(K1){\pnode(2.5;240){L4}}
+%
+\psframe[style=RahmenB](A)(C)
+\pspolygon[style=RahmenB](E)(F)(G)(H)
+\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](I){.07}
+\rput[l]{30}(I){\psframe[style=RahmenA](0,-0.03)(1,0.03)}
+\rput[c](I){\psBall[style=KugelKurb](0,0){black!90}{.1}}%
+\uput{1.0cm}[30]{0}(I){\psBall[style=KugelKurb](0,0){black!90}{.15}}%
+%\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](I){.15}
+%
+\rput(L1){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;180)
+\nbput{\small $\vec{F_{1}}$}}
+\rput(L2){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;220)
+\nbput{\small $\vec{F_{2}}$}}
+\rput(L3){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;330)
+\naput{\small $\vec{F_{3}}$}}
+\rput(L4){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;60)
+\naput{\small $\vec{F_{4}}$}}
+\rput[c](K1){\psBall[style=KugelK](0,0){black!90}{1.0}}%
+\rput[c](K1){$+$}%
+\rput[c](L1){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L1){$-$}%
+\rput[c](L2){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L2){$-$}%
+\rput[c](L3){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L3){$-$}%
+\rput[c](L4){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L4){$-$}%
+\rput(-2.5,1){Bandgenerator}%
+\rput[l](2.2,5.2){Probeladung}%
+\end{pspicture*}
+
+
+\begin{pspicture*}(-5,-1)(5,10)
+\psgrid[subgriddiv=0,gridcolor=lightgray,griddots=10]
+\pnode(-1.2,0){A}
+\pnode(1.2,0){B}
+\pnode(1.2,0.4){C}
+\pnode(-1.2,0.4){D}
+\pnode(0.6,0.4){E}
+\pnode(0.2,5.4){F}
+\pnode(-0.2,5.4){G}
+\pnode(-0.6,0.4){H}
+\pnode(0,1){I}
+\pnode(0,6){K1}
+\rput(K1){\pnode(2.5;0){L1}}
+\rput(K1){\pnode(2.5;40){L2}}
+\rput(K1){\pnode(3;150){L3}}
+\rput(K1){\pnode(2.5;240){L4}}
+\rput{0}(K1){\psElectricfield[Q={[2 0 0]}, linecolor=red,radius=5pt,N=11,points=1000,Pas=0.025,posArrow=0.1]}
+%
+\psframe[style=RahmenB](A)(C)
+\pspolygon[style=RahmenB](E)(F)(G)(H)
+\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](I){.07}
+\rput[l]{30}(I){\psframe[style=RahmenA](0,-0.03)(1,0.03)}
+\rput[c](I){\psBall[style=KugelKurb](0,0){black!90}{.1}}%
+\uput{1.0cm}[30]{0}(I){\psBall[style=KugelKurb](0,0){black!90}{.15}}%
+%\pscircle[linewidth=1pt,fillstyle=solid, fillcolor=black](I){.15}
+%
+\rput(L1){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;180)
+\nbput{\small $\vec{F_{1}}$}}
+\rput(L2){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;220)
+\nbput{\small $\vec{F_{2}}$}}
+\rput(L3){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;330)
+\naput{\small $\vec{F_{3}}$}}
+\rput(L4){\pcline[linewidth=0.8pt,arrowscale=1.4,arrowinset=0.1]{->}(0,0)(1;60)
+\naput{\small $\vec{F_{4}}$}}
+\rput[c](K1){\psBall[style=KugelK](0,0){black!90}{1.0}}%
+\rput[c](K1){$+$}%
+\rput[c](L1){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L1){$-$}%
+\rput[c](L2){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L2){$-$}%
+\rput[c](L3){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L3){$-$}%
+\rput[c](L4){\psBall[style=KugelL](0,0){black!90}{.2}}%
+\rput[c](L4){$-$}%
+\rput(-2.5,1){Bandgenerator}%
+\rput[l](2.2,5.2){Probeladung}%
+\end{pspicture*}}
+
+
+
+
+\end{document} 

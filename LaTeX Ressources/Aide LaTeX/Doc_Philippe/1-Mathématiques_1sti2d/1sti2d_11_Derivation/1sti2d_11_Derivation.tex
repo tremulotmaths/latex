@@ -1,0 +1,132 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Analyse}
+\renewcommand\MaCouleur{Purple}
+
+%\pieddepage{}{%
+%\begin{tikzpicture}[scale=0.65]
+%\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+%[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+%lindenmayer system -- cycle;
+%\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+%\end{tikzpicture}%
+%}{}
+
+\setcounter{chapter}{10}
+\begin{document}
+\chapter{Dérivation}\label{ch_derivation}
+
+\section{Fonction  dérivée}
+\subsection{Introduction}
+\begin{Defi}
+	Soit $f$ une fonction définie sur un intervalle $I$ et soit $a$ un réel de $I$.\par
+	$f$ est \iptb{dérivable}\index{fonction!dérivable} en $a$ s'il existe un nombre $L$ tel que
+	\[\lim_{h \to 0} \dfrac{f(a + h) - f(a)}{h} = L.\]
+	Le nombre $L$ est appelé \ipt{nombre dérivé} en $a$ de $f$.
+\end{Defi}
+
+\begin{Defi}
+	Soit $f$ une fonction définie sur un intervalle $I$.\par
+	$f$ est dite \iptb{dérivable} sur $I$ lorsque, pour tout $a \in I$, $f$ admet un nombre dérivé en $a$.\par
+	La fonction définie sur $I$ qui, à tout réel $a$ de $I$, associe le nombre dérivé de $f$ en $a$ est appelée \iptb{fonction dérivée}\index{fonction!dérivée} de $f$.\par
+	Cette fonction se note $f'$.
+\end{Defi}
+
+\begin{Exemple}
+	Fonction polynomiale de degré 2.
+\end{Exemple}
+
+\subsection{Dérivée de fonctions de référence}
+
+\begin{Prop}
+    Soient $u$ et $v$ deux fonctions définies sur un même intervalle $I$. Alors :
+    \[(u+v)' = u' + v'.\]
+\end{Prop}
+
+Dans le tableau ci-dessous, $k$ désigne un nombre réel et $u$ une fonction :
+
+\begin{center}
+\renewcommand\arraystretch{1.25}
+	\begin{tabularx}{0.75\linewidth}{|>\centering X|c|>{\centering\arraybackslash}X|c|}
+		\hline
+			\textbf{Fonction} & $\calig D_f$ & \textbf{Dérivée} & $\calig D_{f'}$\\
+		\hline
+			Fonction constante : $u\colon x\mapsto k$ & $\R$ &  $u' = 0$  & $\R$\\
+		\hline
+			$ku$ & $\calig D_u$ & $(ku)' = k \times u'$ &$\calig D_{u'}$\\
+		\hline
+            $x \mapsto x$ & $\R$ & $x \mapsto 1$ & $\R$\\
+        \hline
+            $x \mapsto ax + b$ & $\R$ & $x \mapsto a$ & $\R$\\
+        \hline
+            $x \mapsto x^n$, $n \in \N^*$ & $\R$ & $x \mapsto n \times x^{n-1}$ & $\R$ \\
+        \hline
+            $x \mapsto \frac 1 x$ & $\R^*$ & $x\mapsto \frac{-1}{x^2}$ & $\R^*$ \\
+        \hline
+            $x \mapsto \cos x$ & $\R$ & $x \mapsto -\sin x$ & $\intervalleff{-1}{1}$\\
+        \hline
+            $x \mapsto \sin x$ & $\R$ & $x \mapsto \cos x$ & $\intervalleff{-1}{1}$ \\
+        \hline
+            $x \mapsto \cos(\omega x + \varphi)$ & $\R$ & $x \mapsto -\omega \times \sin(\omega x + \varphi)$  & $\R$\\
+        \hline
+            $x \mapsto \sin(\omega x + \varphi)$ & $\R$ & $x \mapsto \omega \times \cos(\omega x + \varphi)$ & $\R$ \\
+        \hline
+	\end{tabularx}
+\end{center}
+
+\begin{Prop}[(admise)]
+    Soient $u$ et $v$ deux fonctions définies sur un même intervalle $I$. Alors :
+    \[(u \times v)' = u'v + uv'.\]
+    De plus, si pour tout $x \in I, v(x) \neq 0$ alors :
+    \[\left(\frac u v\right)' = \frac{u'v - uv'}{v^2}.\]
+\end{Prop}
+
+
+\section{Tangente}
+
+\begin{Defi}
+	Soit $f$ une fonction définie sur un intervalle $I$.\par
+	Soit $a$ un réel de $I$ tel que $f$ est dérivable en $a$, de nombre dérivé $f'(a)$.\par
+	On note $\calig C_f$ la courbe représentative de $f$ dans un repère orthogonal du plan.\par
+	La \ipt{tangente} à $\calig C_f$ au point $A(a \pv f(a))$ est la droite passant par $A$ de c{\oe}fficient directeur $f'(a)$.
+
+    \begin{center}
+        \begin{tikzpicture}[scale=.5,xscale=2]
+            \tkzInit[xmin=-3,xmax=3,ymin=-1,ymax=9,xstep=1,ystep=1]
+            \tkzClip
+            \tkzGrid[sub,subxstep=0.5,subystep=0.25,color=brown](-4,-1)(4,9)
+            \tkzGrid
+            \tkzDrawX\tkzDrawY
+            \tkzSetUpPoint[shape=circle, size = 3, color=black, fill=lightgray]
+            \tkzFct[line width=1pt,color=blue]{x**2}
+            \tkzDrawTangentLine[color=red,line width=0.75pt](1)
+            \tkzDefPointByFct[draw,ref=A](1)
+            \tkzLabelPoint[above](A){$A$}
+        \end{tikzpicture}
+    \end{center}
+\end{Defi}
+
+\begin{Thm}
+	Soit $f$ une fonction dérivable en un réel $a$ de nombre dérivé $f'(a)$.\par
+	On note $\calig C_f$ la courbe représentative de $f$ dans un repère orthogonal.\par
+	L'équation réduite de la tangente $T$ à $\calig C_f$ au point d'abscisse $a$ est :
+	\[y = f'(a) \times (x - a) + f(a)\]
+\end{Thm}
+
+\section{Variations d'une fonction}
+
+\begin{Thm}[(admis)]
+    Soit $f$ une fonction polynôme du second degré dont on note $f'$ la dérivée. $I$ est un intervalle.
+    \begin{itemize}
+        \item Si, pour tout $x \in I$, $f' (x)> 0$, alors $f$ est strictement croissante sur $I$.
+        \item Si, pour tout $x \in I$, $f' (x)< 0$, alors $f$ est strictement décroissante sur $I$.
+    \end{itemize}
+\end{Thm}
+
+
+
+\end{document}

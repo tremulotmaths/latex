@@ -1,0 +1,109 @@
+\beamer@endinputifotherversion {3.12pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\partentry {Les pages}{1}}
+\headcommand {\beamer@partpages {1}{1}}
+\headcommand {\beamer@sectionpages {1}{1}}
+\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{1}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\sectionentry {1}{Mod\`eles}{3}{Mod\`eles de pages}{1}}
+\headcommand {\beamer@sectionpages {2}{2}}
+\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\slideentry {1}{0}{3}{3/3}{}{1}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionentry {1}{1}{1}{4}{Normal}}\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\slideentry {1}{1}{1}{4/4}{Normal}{1}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\beamer@subsectionentry {1}{1}{2}{5}{Verbatim}}\headcommand {\beamer@subsectionpages {4}{4}}
+\headcommand {\slideentry {1}{2}{1}{5/5}{Verbatim}{1}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {1}{1}{3}{6}{plein}}\headcommand {\beamer@subsectionpages {5}{5}}
+\headcommand {\slideentry {1}{3}{1}{6/6}{plein}{1}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\beamer@subsectionentry {1}{1}{4}{7}{trop-plein}}\headcommand {\beamer@subsectionpages {6}{6}}
+\headcommand {\slideentry {1}{4}{1}{7/7}{trop-plein}{1}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {1}{4}{1}{7/8}{trop-plein}{1}}
+\headcommand {\beamer@framepages {7}{8}}
+\headcommand {\slideentry {1}{4}{1}{7/9}{trop-plein}{1}}
+\headcommand {\beamer@framepages {7}{9}}
+\headcommand {\sectionentry {2}{Les diff\'erents blocs}{10}{Les diff\'erents blocs}{1}}
+\headcommand {\beamer@sectionpages {3}{9}}
+\headcommand {\beamer@subsectionpages {7}{9}}
+\headcommand {\slideentry {2}{0}{2}{10/10}{}{1}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@subsectionentry {1}{2}{1}{11}{Les blocs de base}}\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\slideentry {2}{1}{1}{11/11}{Les blocs de base}{1}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\beamer@subsectionentry {1}{2}{2}{12}{Les blocs pr\'ed\'efinis}}\headcommand {\beamer@subsectionpages {11}{11}}
+\headcommand {\slideentry {2}{2}{1}{12/12}{Les blocs pr\'ed\'efinis}{1}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {1}{2}{3}{13}{Les bo\IeC {\^\i }tes arrondies}}\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\slideentry {2}{3}{1}{13/13}{Les bo\IeC {\^\i }tes arrondies}{1}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\beamer@subsectionentry {1}{2}{4}{14}{Encadr\'es}}\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\slideentry {2}{4}{1}{14/14}{Encadr\'es}{1}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\sectionentry {3}{Les jeux de texte}{15}{Les jeux de texte}{1}}
+\headcommand {\beamer@sectionpages {10}{14}}
+\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\slideentry {3}{0}{2}{15/15}{}{1}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {3}{0}{3}{16/16}{}{1}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\sectionentry {4}{Mises en valeur}{17}{Mises en valeur}{1}}
+\headcommand {\beamer@sectionpages {15}{16}}
+\headcommand {\beamer@subsectionpages {15}{16}}
+\headcommand {\slideentry {4}{0}{4}{17/17}{}{1}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {4}{0}{5}{18/18}{}{1}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\sectionentry {5}{Les listes}{19}{Les listes}{1}}
+\headcommand {\beamer@sectionpages {17}{18}}
+\headcommand {\beamer@subsectionpages {17}{18}}
+\headcommand {\slideentry {5}{0}{6}{19/19}{}{1}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\beamer@subsectionentry {1}{5}{1}{20}{Itemize}}\headcommand {\beamer@subsectionpages {19}{19}}
+\headcommand {\slideentry {5}{1}{1}{20/20}{Itemize}{1}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\beamer@subsectionentry {1}{5}{2}{21}{Enumerate}}\headcommand {\beamer@subsectionpages {20}{20}}
+\headcommand {\slideentry {5}{2}{1}{21/21}{Enumerate}{1}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\beamer@subsectionentry {1}{5}{3}{22}{Description}}\headcommand {\beamer@subsectionpages {21}{21}}
+\headcommand {\slideentry {5}{3}{1}{22/22}{Description}{1}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\sectionentry {6}{Les colonnes}{23}{Les colonnes}{1}}
+\headcommand {\beamer@sectionpages {19}{22}}
+\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\slideentry {6}{0}{2}{23/23}{}{1}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {6}{0}{3}{24/24}{}{1}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\sectionentry {7}{Les recouvrements}{25}{Les recouvrements}{1}}
+\headcommand {\beamer@sectionpages {23}{24}}
+\headcommand {\beamer@subsectionpages {23}{24}}
+\headcommand {\slideentry {7}{0}{4}{25/25}{}{1}}
+\headcommand {\beamer@framepages {25}{25}}
+\headcommand {\beamer@subsectionentry {1}{7}{1}{26}{altenv}}\headcommand {\beamer@subsectionpages {25}{25}}
+\headcommand {\slideentry {7}{1}{1}{26/33}{altenv}{1}}
+\headcommand {\beamer@framepages {26}{33}}
+\headcommand {\beamer@subsectionentry {1}{7}{2}{34}{over}}\headcommand {\beamer@subsectionpages {26}{33}}
+\headcommand {\slideentry {7}{2}{1}{34/37}{over}{1}}
+\headcommand {\beamer@framepages {34}{37}}
+\headcommand {\sectionentry {8}{Affichage d\'ecompos\'e}{38}{Affichage d\'ecompos\'e}{1}}
+\headcommand {\beamer@sectionpages {25}{37}}
+\headcommand {\beamer@subsectionpages {34}{37}}
+\headcommand {\slideentry {8}{0}{2}{38/38}{}{1}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\beamer@subsectionentry {1}{8}{1}{39}{En liste}}\headcommand {\beamer@subsectionpages {38}{38}}
+\headcommand {\slideentry {8}{1}{1}{39/46}{En liste}{1}}
+\headcommand {\beamer@framepages {39}{46}}
+\headcommand {\beamer@subsectionentry {1}{8}{2}{47}{En texte}}\headcommand {\beamer@subsectionpages {39}{46}}
+\headcommand {\slideentry {8}{2}{1}{47/50}{En texte}{1}}
+\headcommand {\beamer@framepages {47}{50}}
+\headcommand {\beamer@partpages {2}{50}}
+\headcommand {\beamer@subsectionpages {47}{50}}
+\headcommand {\beamer@sectionpages {38}{50}}
+\headcommand {\beamer@documentpages {50}}
+\headcommand {\def \inserttotalframenumber {30}}

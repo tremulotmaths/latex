@@ -1,0 +1,116 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2017}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Symboles utiles}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{Symboles}{}{\thepage / \pageref{LastPage}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Avec le package marvosym}
+
+{\Huge\Stopsign}
+
+\Radioactivity
+
+\CEsign
+
+\Biohazard
+
+\Huge{\LeftScissors}
+
+\Cutright \Cutline \Cutline\Cutline\Cutline\Cutline\Cutline\Cutline
+\Cutline\Cutline\Cutline\Cutline\Cutline\Cutline\Cutline\Cutline
+\Cutline\Cutline\Cutline\Cutline\Cutline\Cutline\Cutline
+\Cutline\Cutline\Cutleft 
+
+\Huge{\LeftScissors}\dotfill\Huge{\RightScissors}
+
+\Huge{\WritingHand}
+
+\section{Avec le package bclogo (utilisant pstricks)}
+
+\bcyin
+
+\bcrecyclage
+
+\bcoutil
+
+\bctrombone
+
+\bcfeuvert \bcfeujaune \bcfeurouge \bcfeutricolore
+
+\section{Avec le package tikzsymbols}
+
+
+\Changey[2]{-2}
+\Changey[3]{-1.367}
+\Changey[4]{-1}
+\Changey[5]{0}
+\Changey[6]{1}
+\Changey[7]{1.41}
+\Changey[-8]{2}
+
+\cChangey[2]{2}
+\cChangey[3]{1}
+\cChangey[3]{0.5}
+\cChangey[3]{0.1}
+\cChangey[3]{0}
+\cChangey[3]{-0.5}
+\cChangey[3]{-1}
+\cChangey[3]{-2}
+\cChangey[3][][blue]{-1}
+\cChangey[3][][blue]{0.5}
+
+\dSmiley[-5][blue!50]
+
+\Springtree[5]
+
+
+\begin{tikzpicture}
+\draw[-)),line width=2pt] (0,0) -- (1,0);
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

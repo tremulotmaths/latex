@@ -1,0 +1,357 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{pst-slpe,pst-blur,multido}
+\SpecialCoor
+
+
+\begin{document}
+
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\def\x{\hbox{$\,$}}
+
+
+\def\Kernradius{7.5pt}
+\def\KernabstandHe{7.5pt}
+\def\KernabstandA{7.5pt}
+\def\KernabstandB{7.7pt}
+\def\KernabstandCB{11.8pt}
+\def\KernabstandCD{12.3pt}
+\def\KernabstandC{12.5pt}
+\def\KernabstandD{13.0pt}
+\def\KernabstandE{20.5pt}
+\def\KernabstandBaE{19.8pt}
+\def\KernabstandEA{20.0pt}
+\def\KernabstandF{24.0pt}
+\def\KernabstandG{23.4pt}
+\def\ColorProton{red}
+\def\ColorNeutron{gray!20}
+
+
+\newpsstyle{proton}{linecolor={[rgb]{0.72 0 0}},slopebegin=red!50,sloperadius=0.15,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+\newpsstyle{neutron}{linecolor=gray!50,slopebegin=white,sloperadius=0.11,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+
+\def\Proton{\psBall[style=proton](0,0){\ColorProton}{\Kernradius}}
+\def\Neutron{\psBall[style=neutron](0,0){\ColorNeutron}{\Kernradius}}
+
+
+\def\AtomKernU{%
+%---------- 0. Ebene -------------------
+\rput(\KernabstandG;108){\Neutron}%
+\rput(\KernabstandG;144){\Neutron}%
+\rput(\KernabstandG;180){\Proton}%
+\rput(\KernabstandG;216){\Neutron}%
+\rput(\KernabstandG;252){\Neutron}%
+\rput(\KernabstandG;288){\Proton}%
+\rput(\KernabstandG;324){\Neutron}%
+\rput(\KernabstandG;0){\Proton}%
+\rput(\KernabstandG;36){\Proton}%
+\rput(\KernabstandG;72){\Proton}%
+%---------- 1. Ebene -------------------
+\rput(\KernabstandF;90){\Neutron}%
+\rput(\KernabstandF;126){\Proton}%
+\rput(\KernabstandF;162){\Neutron}%
+\rput(\KernabstandF;198){\Proton}%
+\rput(\KernabstandF;234){\Proton}%
+\rput(\KernabstandF;270){\Neutron}%
+\rput(\KernabstandF;306){\Neutron}%
+\rput(\KernabstandF;342){\Neutron}%
+\rput(\KernabstandF;18){\Neutron}%
+\rput(\KernabstandF;54){\Neutron}%
+%------------ 2. Ebene ------------------
+\rput(\KernabstandE;73){\Proton}%
+\rput(\KernabstandE;145){\Proton}%
+\rput(\KernabstandE;107){\Neutron}%
+\rput(\KernabstandE;180){\Neutron}%
+\rput(\KernabstandE;215){\Neutron}%
+\rput(\KernabstandE;290){\Neutron}%
+\rput(\KernabstandE;253){\Neutron}%
+\rput(\KernabstandE;36){\Neutron}%
+\rput(\KernabstandE;1){\Neutron}%
+\rput(\KernabstandE;325){\Proton}%
+%------------ 3. Ebene ------------------
+\rput(\KernabstandD;225){\Proton}%
+\rput(\KernabstandC;282){\Neutron}%
+\rput(\KernabstandC;327){\Neutron}%
+\rput(\KernabstandC;171){\Neutron}%
+\rput(\KernabstandC;104){\Neutron}%
+\rput(\KernabstandC;36){\Proton}%
+\rput(0;0){\Neutron}%
+}%
+
+
+\def\AtomKernRn{%
+%---------- 0. Ebene -------------------
+\rput(\KernabstandG;108){\Proton}%
+\rput(\KernabstandG;144){\Neutron}%
+\rput(\KernabstandG;180){\Proton}%
+\rput(\KernabstandG;216){\Neutron}%
+\rput(\KernabstandG;252){\Neutron}%
+\rput(\KernabstandG;288){\Proton}%
+\rput(\KernabstandG;324){\Neutron}%
+\rput(\KernabstandG;0){\Proton}%
+\rput(\KernabstandG;36){\Proton}%
+\rput(\KernabstandG;72){\Neutron}%
+%---------- 1. Ebene -------------------
+\rput(\KernabstandF;90){\Neutron}%
+\rput(\KernabstandF;126){\Neutron}%
+\rput(\KernabstandF;162){\Neutron}%
+\rput(\KernabstandF;198){\Proton}%
+\rput(\KernabstandF;234){\Proton}%
+\rput(\KernabstandF;270){\Proton}%
+\rput(\KernabstandF;306){\Neutron}%
+\rput(\KernabstandF;342){\Neutron}%
+\rput(\KernabstandF;18){\Neutron}%
+\rput(\KernabstandF;54){\Neutron}%
+%------------ 2. Ebene ------------------
+\rput(\KernabstandE;73){\Proton}%
+\rput(\KernabstandE;145){\Proton}%
+\rput(\KernabstandE;107){\Neutron}%
+\rput(\KernabstandE;180){\Neutron}%
+\rput(\KernabstandE;215){\Neutron}%
+\rput(\KernabstandE;290){\Neutron}%
+\rput(\KernabstandE;253){\Neutron}%
+\rput(\KernabstandE;36){\Neutron}%
+\rput(\KernabstandE;1){\Neutron}%
+\rput(\KernabstandE;325){\Proton}%
+%------------ 3. Ebene ------------------
+\rput(\KernabstandD;225){\Proton}%
+\rput(\KernabstandC;282){\Neutron}%
+\rput(\KernabstandC;327){\Neutron}%
+\rput(\KernabstandC;171){\Neutron}%
+\rput(\KernabstandC;104){\Neutron}%
+\rput(\KernabstandC;36){\Neutron}%
+\rput(0;0){\Proton}%
+}%
+
+
+\def\AtomKernF{%
+%------------ 1. Ebene ------------------
+\rput(\KernabstandCB;10){\Neutron}%
+\rput(\KernabstandCD;70){\Proton}%
+\rput(\KernabstandCD;135){\Proton}%
+\rput(\KernabstandCD;180){\Proton}%
+\rput(\KernabstandCB;255){\Neutron}%
+\rput(\KernabstandCD;330){\Proton}%
+%------------ 2. Ebene ------------------
+\rput(\KernabstandCD;97){\Neutron}%
+\rput(\KernabstandCD;152){\Neutron}%
+\rput(\KernabstandCD;222){\Proton}%
+\rput(\KernabstandCD;295){\Neutron}%
+\rput(9pt;348){\Neutron}%
+\rput(\KernabstandCD;40){\Proton}%
+\rput(0;0){\Neutron}%
+}%
+
+\def\AtomKernKr{%
+%------------ 1. Ebene ------------------
+\rput(\KernabstandCD;0){\Proton}%
+\rput(\KernabstandCD;70){\Proton}%
+%\rput(\KernabstandCD;305){\Proton}%
+%\rput(\KernabstandCD;250){\Neutron}%
+\rput(\KernabstandCB;195){\Neutron}%
+\rput(\KernabstandCB;135){\Neutron}%
+%------------ 2. Ebene ------------------
+%\rput(\KernabstandCD;282){\Neutron}%
+\rput(\KernabstandCD;225){\Proton}%
+\rput(\KernabstandCB;327){\Neutron}%
+\rput(\KernabstandCB;104){\Neutron}%
+\rput(\KernabstandCB;165){\Neutron}%
+\rput(\KernabstandCB;36){\Neutron}%
+\rput(0;0){\Proton}%
+}%
+
+\def\AtomKernNa{%
+%------------ 1. Ebene ------------------
+\rput(\KernabstandCD;0){\Proton}%
+\rput(\KernabstandCD;70){\Proton}%
+\rput(\KernabstandCD;305){\Proton}%
+\rput(\KernabstandCD;250){\Neutron}%
+\rput(\KernabstandCB;195){\Neutron}%
+\rput(\KernabstandCB;135){\Neutron}%
+%------------ 2. Ebene ------------------
+\rput(\KernabstandCD;282){\Neutron}%
+\rput(\KernabstandCD;225){\Proton}%
+\rput(\KernabstandCB;327){\Neutron}%
+\rput(\KernabstandCB;104){\Neutron}%
+\rput(\KernabstandCB;165){\Neutron}%
+\rput(\KernabstandCB;36){\Neutron}%
+\rput(0;0){\Proton}%
+}%
+
+\def\AtomKernBa{%
+%---------- 1. Ebene -------------------
+\rput(\KernabstandEA;90){\Neutron}%
+\rput(\KernabstandEA;126){\Proton}%
+\rput(\KernabstandEA;162){\Neutron}%
+\rput(\KernabstandEA;198){\Proton}%
+\rput(\KernabstandEA;234){\Proton}%
+\rput(\KernabstandEA;270){\Proton}%
+\rput(\KernabstandEA;306){\Neutron}%
+\rput(\KernabstandEA;342){\Neutron}%
+\rput(\KernabstandEA;18){\Proton}%
+\rput(\KernabstandEA;54){\Proton}%
+%------------ 2. Ebene ------------------
+\rput(\KernabstandBaE;73){\Proton}%
+\rput(\KernabstandBaE;145){\Proton}%
+\rput(\KernabstandBaE;107){\Neutron}%
+\rput(\KernabstandBaE;180){\Neutron}%
+\rput(\KernabstandBaE;215){\Neutron}%
+\rput(\KernabstandBaE;290){\Neutron}%
+\rput(\KernabstandBaE;253){\Neutron}%
+\rput(\KernabstandBaE;36){\Neutron}%
+\rput(\KernabstandBaE;1){\Neutron}%
+\rput(\KernabstandBaE;325){\Proton}%
+%------------ 3. Ebene ------------------
+\rput(\KernabstandC;225){\Proton}%
+\rput(\KernabstandCD;282){\Neutron}%
+\rput(\KernabstandCD;327){\Neutron}%
+\rput(\KernabstandCD;171){\Neutron}%
+\rput(\KernabstandCD;104){\Neutron}%
+\rput(\KernabstandCD;36){\Neutron}%
+\rput(0;0){\Proton}%
+}%
+
+\def\AtomKernLi{%
+\rput(\KernabstandHe;0){\Proton}%
+\rput(\KernabstandHe;135){\Proton}%
+\rput(\KernabstandHe;70){\Neutron}%
+\rput(\KernabstandHe;220){\Neutron}%
+\rput(\KernabstandHe;295){\Proton}%
+\rput(0;0){\Neutron}%
+}%
+
+
+\def\AtomKernB{%
+\rput(\KernabstandHe;45){\Proton}%
+\rput(\KernabstandHe;135){\Proton}%
+\rput(\KernabstandHe;315){\Neutron}%
+\rput(\KernabstandB;225){\Neutron}%
+\rput(\KernabstandHe;180){\Proton}%
+\rput(\KernabstandHe;0){\Neutron}%
+\rput(\KernabstandHe;270){\Proton}%
+\rput(\KernabstandHe;90){\Neutron}%
+}%
+
+\def\AtomKernHe{%
+\multido{\iAngle=40+180}{2}{%
+\rput(\KernabstandHe;\iAngle){\Proton}%
+}%
+\multido{\iAngle=130+180}{2}{%
+\rput(\KernabstandHe;\iAngle){\Neutron}%
+}%
+}%
+
+\def\AtomKernBe{%
+\multido{\iAngle=60+120}{3}{%
+\rput(\KernabstandHe;\iAngle){\Neutron}%
+}%
+\multido{\iAngle=0+120}{3}{%
+\rput(\KernabstandHe;\iAngle){\Proton}%
+}%
+\rput(0,0){\Neutron}%
+}%
+
+\def\AtomKernC{%
+\rput(\KernabstandA;100){\Neutron}%
+\rput(\KernabstandA;55){\Proton}%
+\rput(\KernabstandA;190){\Proton}%
+\rput(\KernabstandA;280){\Proton}%
+\rput(\KernabstandA;-35){\Neutron}%
+\rput(\KernabstandA;10){\Neutron}%
+\rput(\KernabstandA;-125){\Neutron}%
+\rput(\KernabstandA;155){\Neutron}%
+\rput(0,0){\Proton}%
+}%
+
+
+\def\AtomKernCN{%
+\rput(\KernabstandA;100){\Neutron}%
+\rput(\KernabstandA;10){\Neutron}%
+\rput(\KernabstandA;55){\Proton}%
+\rput(\KernabstandA;190){\Proton}%
+\rput(\KernabstandA;280){\Proton}%
+\rput(\KernabstandA;-35){\Neutron}%
+\rput(\KernabstandA;-125){\Neutron}%
+\rput(\KernabstandA;155){\Neutron}%
+\rput(0,0){\Proton}%
+}%
+
+\def\AtomKernO{%
+\rput(\KernabstandCB;-10){\Proton}%
+\rput(\KernabstandCB;-100){\Proton}%
+\rput(\KernabstandCB;50){\Proton}%
+\rput(\KernabstandCB;120){\Proton}%
+\rput(\KernabstandCB;185){\Neutron}%
+\rput(\KernabstandCB;290){\Neutron}%
+\rput(\KernabstandCB;20){\Neutron}%
+\rput(\KernabstandCB;80){\Neutron}%
+\rput(\KernabstandCB;145){\Proton}%
+\rput(\KernabstandCB;-40){\Proton}%
+\rput(\KernabstandCB;220){\Neutron}%
+\rput(0,0){\Neutron}
+}%
+
+
+\def\AtomKernNe{%
+\multido{\iAngle=-40+60}{3}{%
+\rput(\KernabstandCB;\iAngle){\Proton}%
+}%
+\multido{\iAngle=140+60}{3}{%
+\rput(\KernabstandCB;\iAngle){\Neutron}%
+}%
+\rput(\KernabstandCB;170){\Neutron}%
+\rput(\KernabstandCB;230){\Neutron}%
+\multido{\iAngle=-10+60}{3}{%
+\rput(\KernabstandCB;\iAngle){\Neutron}%
+}%
+\rput(\KernabstandCB;-70){\Proton}
+\rput(0,0){\Proton}
+}%
+
+
+\rput(1,1){\AtomKernHe}
+\rput(1,0){$\mathsf{ ^{4}_{2}He}$}
+\rput(3,1){\AtomKernLi}
+\rput(3,0){$\mathsf{ ^{7}_{3}Li}$}
+\rput(5,1){\AtomKernBe}
+\rput(5,0){$\mathsf{ ^{9}_{4}Be}$}
+\rput(7,1){\AtomKernB}
+\rput(7,0){$\mathsf{ ^{10}_{\phantom{1}5}B}$}
+\rput(9,1){\AtomKernC}
+\rput(9,0){$\mathsf{ ^{12}_{\phantom{1}6}C}$}
+\rput(11,1){\AtomKernCN}
+\rput(11,0){$\mathsf{ ^{13}_{\phantom{1}6}C}$}
+
+\vspace{2cm}
+\rput(1,1){\AtomKernO}
+\rput(1,-0.5){$\mathsf{ ^{17}_{\phantom{1}8}O}$}
+\rput(3,1){\AtomKernF}
+\rput(3,-0.5){$\mathsf{ ^{18}_{\phantom{1}9}F}$}
+\rput(5,1){\psscalebox{1.0}{\AtomKernNe}}
+\rput(5,-0.5){$\mathsf{ ^{22}_{10}Ne}$}
+\rput(7,1){\AtomKernNa}
+\rput(7,-0.5){$\mathsf{ ^{22}_{11}Na}$}
+\rput(9,1){\AtomKernBa}
+\rput(9,-0.5){$\mathsf{ ^{144}_{\phantom{1}56}Ba}$}
+\rput(12,1){\AtomKernRn}
+\rput(12,-0.5){$\mathsf{ ^{222}_{\phantom{2}86}Rn}$}
+
+\vspace{2cm}
+\rput(-0.3,0.5){\Neutron}
+\rput(0.2,0.7){$\mathsf{ ^{1}_{0}n}$}
+\rput(1,-1){\AtomKernU}
+\rput(1,-2.5){$\mathsf{ ^{235}_{\phantom{2}92}U}$}
+\rput(5,-1.5){\AtomKernBa}
+\rput(5,-0.5){\AtomKernKr}
+\rput(5,-3){$\mathsf{ ^{236}_{\phantom{2}92}U}$}
+\rput(8,-2.0){\AtomKernBa}
+\rput(8,-0.5){\AtomKernNa}
+\rput(9,-0){$\mathsf{ ^{89}_{36}Kr}$}
+\rput(9,-3){$\mathsf{ ^{144}_{\phantom{1}56}Ba}$}
+\rput(9.8,-0.5){\Neutron}
+\rput(10.2,-1.5){\Neutron}
+\rput(9.8,-2.5){\Neutron}
+
+\end{document}

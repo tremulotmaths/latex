@@ -1,0 +1,778 @@
+\documentclass[11pt,dvips]{article} 
+\usepackage[cp1252]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[scaled=0.875]{helvet} 
+  \renewcommand{\ttdefault}{lmtt}
+\usepackage[colorlinks=true,urlcolor=blue, linkcolor=blue]{hyperref}
+\usepackage{geometry}
+\geometry{a4paper,hmargin=2.5cm,vmargin=2.5cm}
+%\usepackage[a4paper,vmargin=1cm,hmargin=1.5cm,includefoot,includehead]{geometry}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage[framed]{ntheorem}
+\usepackage[frenchb]{babel}
+
+% +++
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+
+%Changer la numerotation des listes 
+\usepackage{enumerate}
+
+% Numérotation des sections
+\renewcommand{\thesection}{\Roman{section}}  
+%\renewcommand{\thesubsection}{\qquad\arabic{subsection} } % chiffres arabes
+
+% Autres symboles et caractères
+\usepackage{textcomp}
+    \newcommand{\euro}{\eurologo{}} 
+\usepackage{siunitx} 
+\usepackage{pifont,dingbat}
+
+% Images
+\usepackage{graphicx}
+\usepackage{pstricks,pst-plot,pst-text,pstricks-add,pst-eucl} 
+\usepackage{caption}
+
+% Tableaux
+\usepackage{tabularx}
+\usepackage{colortbl} 
+\usepackage{array}
+
+% Ecrire des mathématiques
+\usepackage[fleqn]{amsmath}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}  
+\usepackage[np]{numprint} 
+\usepackage[upright]{fourier}  %!!!! change la police lorsqu'il est actif !!!  ???
+   \renewcommand{\rmdefault}{lmr}
+
+% QCM
+\usepackage{alterqcm}
+    %Exemple: %\begin{alterqcm}
+                       %\AQuestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+                       %\end{alterqcm}
+
+%%% Raccourcis mathématiques %%%
+%Ensembles de nombres
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+%Repères
+\def\Oij{$\left(\text{O}\,;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}\,;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}\,;~\vect{u},~\vect{v}\right)$}
+%Arc de cercles
+\newlength{\longarc}
+\newcommand{\arc}[1]{\settowidth{%
+\longarc}{$#1$}
+\addtolength{\longarc}{-0.5em}%
+\unitlength \longarc \ensuremath{%
+\stackrel{\begin{picture}(1,0.2)
+\qbezier(0,0)(0.5,0.2)(1,0)
+\end{picture}}{#1}}}  %l'arc AB s'obtient par \arc{AB} en mode mathématiques ou non
+%Vecteurs
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+%Intervalles
+\newcommand{\intervalle}[4]{\mathopen{#1}#2\mathclose{}\mathpunct{};#3\mathclose{#4}}
+\newcommand{\intervalleff}[2]{\intervalle{[}{#1}{#2}{]}}
+\newcommand{\intervalleof}[2]{\intervalle{]}{#1}{#2}{]}}
+\newcommand{\intervallefo}[2]{\intervalle{[}{#1}{#2}{[}}
+\newcommand{\intervalleoo}[2]{\intervalle{]}{#1}{#2}{[}}
+
+%Mise en forme des théorèmes
+\makeatletter
+\def\ntheorem@breakstrut{\rule{0pt}{1\baselineskip}}
+\renewtheoremstyle{break}%
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+          ##1\ ##2\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont                      % th numérotés
+          ##1\ ##2\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
+
+\def\ntheorem@nonumberbreakstrut{\rule{0pt}{0.9\baselineskip}}
+\renewtheoremstyle{nonumberbreak}%
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+          ##1\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont              % th non numérotés
+          ##1\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
+\makeatother
+
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+\newframedtheorem{Th}{Théorème}
+\newframedtheorem{Prop}{Propriété}
+\theorembodyfont{\slshape}
+\definecolor{azure}{rgb}{.88,.932,.932}
+\shadecolor{azure}
+\newshadedtheorem{Def}{Définition}
+\theoremstyle{nonumberbreak}
+\theorembodyfont{\rmfamily}
+\newtheorem{Ex}{Exemple}
+\newtheorem{Exo}{Exercice}
+\theoremheaderfont{\scshape}
+\newtheorem{Rem}{Remarque}
+
+
+\renewcommand{\arraystretch}{1.5} 
+
+\begin{document}
+\fancyhf{}
+\rhead{}%\small{Année \np{2013}-\np{2014}}}
+\lhead{}
+\rfoot{Trigonométrie plane}
+\lfoot{BTS Géomètre Topographe}
+\cfoot{\thepage}
+\renewcommand \footrulewidth{0.4pt}
+\renewcommand \headrulewidth{0pt}
+\pagestyle{fancy}
+
+\color{blue}
+%\textcolor{blue}{
+\hrule%}
+\vspace{0.4cm}
+\begin{center}
+\textcolor{blue}{\LARGE\textsc{TRIGONOMETRIE PLANE}}
+\end{center}
+%\textcolor{blue}{
+\hrule%}
+
+\vspace*{1.5cm}
+
+\renewcommand{\contentsname}{%\textcolor{blue}{
+Table des matières}%}
+\tableofcontents
+
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\color{black}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+Dans tout ce chapitre, le plan est muni d'un repère orthonormé \Oij.
+Les points $I$ et $J$ sont définis par: $\vect{OI}=\vect{i} \text{ et } \vect{OJ}=\vect{j}$.
+L'unité de longueur correspond donc à la norme des vecteurs $\vect{i}\text{ et }\vect{j}$.
+\section{Repérage sur le cercle trigonométrique}
+\subsection{Le cercle trigonométrique}
+\begin{Def}
+Le cercle trigonométrique est le cercle de centre O, de rayon 1 et orienté dans le sens direct, c'est-à-dire, le sens inverse des aiguilles d'une montre.
+\end{Def}
+\begin{Prop}
+Le périmètre du cercle trigonométrique est égal à $2\pi$.
+\end{Prop}
+\begin{Ex}
+Sur le cercle trigonométrique $\mathcal{C}$, on considère les deux diamètres perpendiculaires $[II'] \text{ et }[JJ']$.
+\medskip % penser à insérer un espace avant un environnement liste
+\begin{enumerate}
+\item Compléter le tableau suivant où $M$ désigne un point du cercle $\mathcal{C}$.
+\bigskip
+\renewcommand\arraystretch{2.2}
+\begin{center}
+\begin{tabularx}{0.9\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}
+\hline
+Point $M$&$A$&$B$&$C$&$D$&$E$&$F$\\
+\hline
+Mesure de l'angle $\widehat{IOM}$ en degrés&$180$&$90$&$60$&$45$&&0\\
+\hline
+Longueur de l'arc $\arc{AB}$&&&&&$\dfrac{\pi}{6}$&\\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{1cm}
+\item Placer les points correspondants sur le cercle trigonométrique.
+\bigskip
+\begin{center}
+\newrgbcolor{qqqqcc}{0 0 0.8}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-4.1,-4.01)(4.15,3.78)
+\pscircle(0,0){3}
+\psline(-3,0)(3,0)
+\psline(0,3)(0,-3)
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,0)
+\rput[bl](-0.38,-0.47){\qqqqcc{$O$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](3,0)
+\rput[bl](3.33,-0.1){\qqqqcc{$I$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](-3,0)
+\rput[bl](-3.51,-0.12){\qqqqcc{$I'$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,3)
+\rput[bl](-0.05,3.29){\qqqqcc{$J$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,-3)
+\rput[bl](-0.03,-3.53){\qqqqcc{$J'$}}
+\end{pspicture*}
+\end{center}
+\vspace{1cm}
+\end{enumerate}
+\end{Ex}
+
+\subsection{Enroulement de la droite numérique}
+La droite $d$, tangente au point $I$ au cercle trigonométrique est munie du repère $\left(I\, ;~\vect{i}\right)$. 
+Elle représente l'ensemble $\R$ des nombres réels.\\
+En enroulant la droite des réels $d$ autour du cercle trigonométrique, on fait correspondre à tout réel $x$ un unique point $M$ du cercle $\mathcal{C}$.
+\begin{Def}
+\begin{itemize}
+\item On dit que $M$ est le point image du réel $x$.
+\item On dit que $x$ repère le point $M$ sur le cercle $\mathcal{C}$.
+\end{itemize}
+\end{Def}
+
+\psset{unit=0.5}
+\begin{minipage}{4.5cm}
+\begin{center}
+\begin{pspicture}(-5,-6.8)(1,7)
+   \psaxes[labels=y,dx=2,dy=2]{->}(0,0)(-5,-6)(1,7)
+   \pscircle[linecolor=red](-2,0){2}
+   \psline[linecolor=blue,linewidth=0.07](0,0)(0,7)
+   \psline[linecolor=blue,linewidth=0.07](0,0)(0,-6)
+   \psline{->}(-2,-6)(-2,7) 
+   \rput(-0.25,6.28){$\textcolor{blue}{\pi}$}
+   \rput(-2.4,-0.4){\textcolor{red}{$O$}}
+   \rput(-0.4,0){$O$}
+\end{pspicture}
+\end{center}
+\end{minipage}
+\begin{minipage}{4.5cm}
+   \begin{center}
+         enroulement
+   \end{center}
+\end{minipage}
+\begin{minipage}{10cm}
+\begin{pspicture}(-5,-6.8)(8,7)
+   \psaxes[labels=none,dx=2,dy=2]{->}(0,0)(-5,-6)(8,7)
+   \pscircle[linecolor=red](0,0){2}
+   \rput(-0.4,-0.4){\textcolor{red}{$O$}}
+   \psline[linecolor=blue,linewidth=0.07](2,0)(2,-6)
+   %spirale
+   \parametricplot[plotpoints=200,linecolor=blue]{0}{6.8}
+{2.72 t 5 div exp t 57.3 mul cos mul 2 mul
+2.72 t 5 div exp t 57.3 mul sin mul 2 mul}
+   \parametricplot[plotpoints=200,linecolor=blue,linestyle=dashed]{6.8}{7.2}
+{2.72 t 5 div exp t 57.3 mul cos mul 2 mul
+2.72 t 5 div exp t 57.3 mul sin mul 2 mul}
+   %points spirale
+   \pstGeonode[PosAngle={45,90,90,130,165,190,200,230,280},PointName={1,2,,\pi ,,,,2\pi },linecolor=blue](1.50,1.87){S1}(-0.23,2.77){S2}(-2.15,2.34){S3}(-2.38,2.18){Sp}(-3.46,0.87){S4}(-3.81,-1.08){S5}(-3.19,-2.96){S6}(-2.87,-3.42){S2p}
+   \pstGeonode[PointName=none,linecolor=blue](-1.81,-4.39){A}(0.03,-5.14){A}(2.01,-5.15){A}(3.89,-4.47){A}(5.43,-3.22){A}(6.53,-1.55){A}(7.09,0.36){A}(7.11,2.35){A}
+   %points cercle
+   \pstGeonode[PosAngle={225,280,0,320,45,100,165,145},PointName={1,,,\pi,,,,2\pi},linecolor=red,PointNameSep=0.4](1.08,1.68){C1}(-0.83,1.82){C2}(-1.98,0.28){C3}(-2,0){Cp}(-1.31,-1.51){C4}(0.57,-1.92){C5}(1.92,-0.56){C6}(2,0){C2p}
+   %pointilles
+   \pscurve[linestyle=dashed](1.50,1.87)(1.25,1.8)(1.08,1.68)
+   \pscurve[linestyle=dashed](-0.23,2.77)(-0.6,2.5)(-0.83,1.82)
+   \pscurve[linestyle=dashed](-2.15,2.34)(-2.4,1.2)(-1.98,0.28)
+   \pscurve[linestyle=dotted,linewidth=0.07](-2.38,2.18)(-2.5,1)(-2,0)
+   \psbezier[linestyle=dashed](-3.46,0.87)(-3,-0.4)(-2,-1.15)(-1.31,-1.51)
+   \psbezier[linestyle=dashed](-3.81,-1.08)(-3,-2)(-1,-2.4)(0.57,-1.92)
+   \pscurve[linestyle=dashed](-3.19,-2.96)(0,-2.8)(1.5,-1.8)(1.92,-0.56)
+   \pscurve[linestyle=dotted,linewidth=0.07](-2.87,-3.42)(0,-3)(1.5,-2)(2,0)
+   \end{pspicture}
+\end{minipage}
+\vspace{0.5cm}
+
+\psset{unit=1cm}
+\begin{Ex}
+Placer sur le cercle trigonométrique le point image de chacun des réels:
+\[\dfrac{\pi}{4};~-\dfrac{\pi}{2};~3\pi;~\dfrac{5\pi}{4}\text{ et}\dfrac{-7\pi}{4}.\]
+\begin{center}
+\newrgbcolor{qqqqcc}{0 0 0.8}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-4.1,-4.01)(4.15,3.78)
+\pscircle(0,0){3}
+\psline(-3,0)(3,0)
+\psline(0,3)(0,-3)
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,0)
+\rput[bl](-0.38,-0.47){\qqqqcc{$O$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](3,0)
+\rput[bl](3.33,-0.1){\qqqqcc{$I$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](-3,0)
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,3)
+\rput[bl](-0.05,3.29){\qqqqcc{$J$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,-3)
+\end{pspicture*}
+\end{center}
+\end{Ex}
+\begin{Prop}
+Tout point du cercle trigonométrique est l'image d'une infinité de réels.\\
+Si $x$ est l'un d'entre eux, les autres sont les réels de la forme $x+k\times2\pi$, où $k$ est un entier relatif $\left(k\in\Z\right)$, soit:
+\[\ldots~x-6\pi\,;~x-4\pi\,;~x-2\pi\,;~x\,;~x+2\pi\,;~x+4\pi\,;~x+6\pi\,;~\ldots\]
+\end{Prop}
+\begin{Ex}
+Les nombres réels $\dfrac{9\pi}{4}$ et $-\dfrac{7\pi}{4}$ ont le même point image sur le cercle trigonométrique, en effet:
+\[\dfrac{9\pi}{4}-\left(-\dfrac{7\pi}{4}\right)=\dfrac{16\pi}{4}=4\pi=2\times2\pi\]
+la différence obtenue est un multiple de $2\pi$.
+\end{Ex}
+
+
+%%%%%%%%%%%%
+\subsection{Le radian}%
+\begin{Def}
+Le radian est l'unité de mesure des angles telle que la mesure en radian d'un angle est égale à la longueur de l'arc que cet angle intercepte sur un cercle de rayon 1.
+\end{Def}
+\newrgbcolor{ttqqcc}{0.2 0 0.8}
+\newrgbcolor{qqwwtt}{0 0.4 0.2}
+\newrgbcolor{qqwwqq}{0 0.4 0}
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{center}
+\begin{pspicture*}(-4.28,-2.14)(5.9,2.44)
+\psplot{0}{5.9}{(-0-0*x)/2}
+\psplot{0}{5.9}{(-0--2*x)/3}
+\pscircle(0,0){2}
+\pscustom[linecolor=qqwwtt,fillcolor=qqwwtt]{\parametricplot{0.0}{0.5880026035475675}{0.6*cos(t)+0|0.6*sin(t)+0}\lineto(0,0)\closepath}
+\rput[tl](2.18,0.88){x (longueur de l'arc)}
+\rput[tl](0.82,0.48){x rad}
+\parametricplot[linewidth=1.6pt,linecolor=qqwwqq]{0.0}{0.5880026035475675}{1*2*cos(t)+0*2*sin(t)+0|0*2*cos(t)+1*2*sin(t)+0}
+\rput[tl](1.02,-0.16){1}
+\psdots[dotstyle=*,linecolor=ttqqcc](0,0)
+\rput[bl](-0.08,-0.42){\ttqqcc{$O$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](2,0)
+\rput[bl](2.1,-0.44){\ttqqcc{$I$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](3,2)
+\rput[bl](2.9,2.18){\ttqqcc{$B$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](3.18,0)
+\rput[bl](3.16,-0.38){\ttqqcc{$A$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](1.66,1.11)
+\rput[bl](1.52,1.44){\ttqqcc{$M$}}
+\end{pspicture*}
+\end{center}
+\begin{Ex}
+Un angle plat mesure $\pi$ radians; un angle droit mesure $\dfrac{\pi}{2}$ radians.
+\end{Ex}
+\begin{Prop}
+Les mesures en degrés et en radians des angles sont proportionnelles.
+\end{Prop}
+On obtient ainsi un tableau de conversion des mesures des angles:
+\renewcommand{\arraystretch}{2} 
+\begin{center}
+     \begin{tabularx}{0.9\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}
+         \hline 
+         Mesure en degrés & $360$ & $180$ & $90$ & $60$ & $45$ & $30$ \\ 
+         \hline 
+         Mesure en radians & $2\pi$ & $\pi$ & $\dfrac{\pi}{2}$ & $\dfrac{\pi}{3}$ & $\dfrac{\pi}{4}$ & $\dfrac{\pi}{6}$ \\ 
+         \hline
+      \end{tabularx}
+\end{center} 
+    
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cosinus et sinus d'un réel}%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\subsection{Définition et propriétés}%
+\begin{Def}
+   Soit $x$ un réel quelconque. Il lui correspond un unique point $M$ du cercle trigonométrique tel que $x$ soit une mesure en radians de $\widehat{IOM}$.
+   \begin{itemize}
+      \item Le cosinus de $x$, noté $\cos x$, est l'abscisse de $M$ dans le repère \Oij.
+      \item Le sinus de $x$, noté $\sin x$, est l'ordonnée de $M$ dans le repère \Oij.
+   \end{itemize}
+\end{Def}
+\begin{minipage}{11cm}
+     On a donc, dans le repère \Oij\\
+   {\setlength{\fboxsep}{5mm}
+    \setlength{\fboxrule}{0mm}
+    \fbox{\qquad$M\left({\cos x};~{\sin x}\right)$.}}
+    \end{minipage}
+\begin{minipage}{6cm}
+     \psset{unit=2}
+      \begin{pspicture}(-1,-0.8)(1,1.1)
+         \pscircle(0,0){1}
+         \psline{-}(-1,0)(0,0)
+         \psline{->}(0,0)(0,1)
+         \psline{-}(0,-1)(0,0)
+         \psline{->}(0,0)(1,0)
+         \psline[linestyle=dashed,linecolor=blue]{-}(0.5,0)(0.5,0.87)
+         \psline[linestyle=dashed,linecolor=blue]{-}(0,0.87)(0.5,0.87)
+         \psline[linewidth=0.02,linecolor=blue]{-}(0,0)(0.5,0.87)
+         \psarc[linecolor=blue]{->}(0,0){0.3}{0}{60}
+         \rput(0.6,1.05){\textcolor{blue}{$M$}}
+         \rput(0.35,0.2){\textcolor{blue}{$x$}}
+         \rput(0.5,-0.25){\textcolor{blue}{$\cos x$}}
+         \rput(-0.25,0.78){\textcolor{blue}{$\sin x$}}
+         \rput(-0.1,-0.1){$O$}
+         \rput(1.1,-0.1){$I$}
+        \end{pspicture}
+  \end{minipage}
+\vspace{1cm}
+\begin{Ex}
+Compléter le tableau suivant:\\
+\begin{minipage}{11cm}
+   \begin{tabularx}{0.8\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}
+         \hline 
+         Réel $x$ & $0$ & $\dfrac{\pi}{2}$ & $\pi$ & $\dfrac{3\pi}{2}$ & $-\pi$ & $-\dfrac{3\pi}{2}$ \\ 
+         \hline 
+         $\cos(x)$ &  &  &  &  &  &  \\ 
+         \hline
+         $\sin(x)$ &  &  &  &  &  &  \\ 
+         \hline
+      \end{tabularx}
+  \end{minipage}
+\begin{minipage}{6cm}
+\psset{unit=0.7}
+\newrgbcolor{qqqqcc}{0 0 0.8}
+\psset{xunit=0.7cm,yunit=0.7cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-4.1,-4.01)(4.15,3.78)
+\pscircle(0,0){3}
+\psline(-3,0)(3,0)
+\psline(0,3)(0,-3)
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,0)
+\rput[bl](-0.38,-0.47){\qqqqcc{$O$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](3,0)
+\rput[bl](3.33,-0.1){\qqqqcc{$I$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](-3,0)
+\rput[bl](-3.51,-0.12){\qqqqcc{$I'$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,3)
+\rput[bl](-0.05,3.29){\qqqqcc{$J$}}
+\psdots[dotsize=2pt 0,dotstyle=*,linecolor=qqqqcc](0,-3)
+\rput[bl](-0.03,-3.53){\qqqqcc{$J'$}}
+\end{pspicture*}
+\end{minipage}
+\end{Ex}
+
+\begin{Prop}
+Pour tout réel $x$, on a: 
+\begin{gather*}
+\cos\left(x+2k\pi\right)=\cos x \\
+\sin\left(x+2k\pi\right)=\sin x, \qquad \text{ avec } k\in\Z.
+\end{gather*}
+\end{Prop}
+\begin{Prop}
+Pour tout réel $x$, on a: 
+\begin{gather*}
+-1\leqslant\cos x\leqslant1\\
+-1\leqslant\sin x \leqslant1.
+\end{gather*}
+\end{Prop}
+\begin{Prop}
+Pour tout réel $x$, on a: \[\cos^{2}x+\sin^{2}x=1.\]
+\end{Prop}
+Preuve:\\
+On applique le théorème de Pythagore dans un triangle rectangle dont les côtés mesurent respectivement $\cos x$, $\sin x$  et $1$.
+\psset{unit=0.5}
+\begin{center}
+\newrgbcolor{qqqqzz}{0 0 0.6}
+\newrgbcolor{wwqqww}{0.4 0 0.4}
+\psset{xunit=0.5cm,yunit=0.5cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-7.52,-4.66)(8.02,4.69)
+\pscircle(0,0){4}
+\psline(-4,0)(4,0)
+\psline(0,-4)(0,4)
+\psline[linewidth=1pt,linecolor=wwqqww](0,0)(3.01,2.64)
+\psline[linewidth=1pt,linecolor=wwqqww](3.01,2.64)(3,0)
+\psline[linewidth=1pt,linecolor=wwqqww](3,0)(0,0)
+\rput[tl](1,-0.3){cosx}
+\rput[tl](3.43,1.5){sinx}
+\rput[tl](1.3,2.2){1}
+\psdots[dotstyle=*,linecolor=qqqqzz](0,0)
+\rput[bl](-0.7,-0.7){\qqqqzz{$O$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](4,0)
+\rput[bl](4.35,-0.7){\qqqqzz{$I$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](0,4)
+\rput[bl](-0.44,4.16){\qqqqzz{$J$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](3.01,2.64)
+\rput[bl](3.12,3.03){\qqqqzz{$M$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](3,0)
+\rput[bl](2.94,-0.7){\qqqqzz{$A$}}
+\end{pspicture*}
+\end{center}
+
+\begin{Rem}[Lien avec le cosinus et le sinus d'un angle aigu]
+Si $x$ est un réel compris entre $0$ et $\dfrac{\pi}{2}$, et $M$ son point image sur le cercle trigonométrique, alors:\\
+$\cos x=\cos\left(\widehat{IOM}\right)\text{  et  } \sin x=\sin\left(\widehat{IOM}\right)$ 
+ce qui fait le lien avec la trigonométrie dans le triangle rectangle.
+\end{Rem}
+\begin{minipage}{7cm}
+    \begin{center}
+    $\sin x =\dfrac{\text{côté opposé}}{\text{hypoténuse}} =\dfrac{AM}{OM} =AM$ \\
+    \bigskip
+    $\cos x =\dfrac{\text{côté adjacent}}{\text{hypoténuse}} =\dfrac{OA}{AM} =OA$
+    \end{center}
+\end{minipage}
+\begin{minipage}{9cm}
+   \psset{unit=1.7}
+     \begin{pspicture}(-3,-0.5)(5,3.5)
+      \pstTriangle{O}(4,0){A}(4,2.5){M}
+      \pstRightAngle{O}{A}{M}
+      \pstMarkAngle[linecolor=red,MarkAngleRadius=0.7]{A}{O}{M}{$x$}
+      \rput(2,-0.5){côté adjacent}
+      \rput(2,1.7){\rotatebox{34}{hypoténuse $=1$}}
+      \rput(4.5,1.25){\rotatebox{90}{côté opposé}}
+   \end{pspicture}
+   \end{minipage}
+
+
+%%%%%%%%%%%%%%%%%%
+\subsection{Valeurs remarquables}%
+A l'aide de configurations géométriques simples, on établit les résultats suivants \emph{à connaître}!
+\begin{center}
+\psset{unit=2}
+   \begin{pspicture}(-2.5,-3.5)(3,3.5)
+      \pscircle(0,0){3}
+      \psline{-}(-3,0)(3,0)
+      \psline{-}(0,-3)(0,3)
+      \pspolygon[linestyle=dashed,linecolor=blue](2.6,1.5)(0,1.5)(0,0)(2.6,0)
+      \pspolygon[linestyle=dashed,linecolor=blue](2.1,2.1)(0,2.1)(0,0)(2.1,0)
+      \pspolygon[linestyle=dashed,linecolor=blue](1.5,2.6)(0,2.6)(0,0)(1.5,0)
+      \pspolygon(0,0)(1.5,2.6)(3,0)
+      \rput(3.3,0){$0$}
+      \rput(3,1.5){\textcolor{blue}{$\dfrac{\pi}{6}$}}
+      \rput(2.4,2.5){\textcolor{blue}{$\dfrac{\pi}{4}$}}
+      \rput(1.6,3.1){\textcolor{blue}{$\dfrac{\pi}{3}$}}
+      \rput(0,3.5){$\dfrac{\pi}{2}$}
+      \rput(-3.5,0){$\pi$}
+      \rput(0,-3.5){$\dfrac{3\pi}{2}$}
+      \rput(1.5,-0.4){$\dfrac{1}{2}$}
+      \rput(2,-0.4){$\dfrac{\sqrt{2}}{2}$}
+      \rput(2.6,-0.4){$\dfrac{\sqrt{3}}{2}$}
+      \rput(-0.2,-0.3){$0$}
+      \rput(-0.3,1.5){$\dfrac{1}{2}$}
+      \rput(-0.8,2.1){$\dfrac{\sqrt{2}}{2}$}
+      \rput(-0.3,2.6){$\dfrac{\sqrt{3}}{2}$}
+   \end{pspicture}
+\end{center}
+
+On peut donc établir le tableau suivant :
+\renewcommand{\arraystretch}{2.5} 
+\begin{center}
+   \begin{tabularx}{0.9\linewidth}{|c|*{6}{>{\centering \arraybackslash}X|}}
+      \hline 
+      valeur de $x$ en radians & $0$ & $\dfrac{\pi}{6}$ & $\dfrac{\pi}{4}$ & $\dfrac{\pi}{3}$ & $\dfrac{\pi}{2}$  \\
+      \hline 
+      $\sin x$ & $0$ & $\dfrac{1}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ & $1$  \\ 
+      \hline 
+      $\cos x$ & $1$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{1}{2}$ & $0$  \\ 
+      \hline 
+   \end{tabularx} 
+\end{center} 
+\medskip
+\begin{Rem}
+On peut retenir ces valeurs en observant que la première ligne s'écrit aussi:
+\begin{center}
+   \begin{tabularx}{0.9\linewidth}{|c|*{6}{>{\centering \arraybackslash}X|}}
+      \hline 
+      $\sin x$ & $\dfrac{\sqrt{0}}{2}$ & $\dfrac{\sqrt{1}}{2}$ & $\dfrac{\sqrt{2}}{2}$ & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{\sqrt{4}}{2}$  \\ 
+      \hline 
+   \end{tabularx} 
+\end{center} 
+\end{Rem}
+\newpage
+
+%%%%%%%%%%%%%%%%
+\subsection{Angles associés}%
+En observant certaines symétries sur le cercle trigonométrique, on peut établir les formules suivantes:\\
+\begin{minipage}{7cm}
+\begin{Prop}
+Pour tout réel $x$, on a:
+\begin{gather*}
+\cos(-x)=\cos x\\
+\sin(-x)=-\sin x
+\end{gather*}
+\begin{gather*}
+\cos(\pi-x)=-\cos(x)\\
+\sin(\pi-x)=\sin x
+\end{gather*}
+\begin{gather*}
+\cos(\pi+x)=-\cos x\\
+\sin(\pi+x)=-\sin x
+\end{gather*}
+\end{Prop}
+\end{minipage}
+\begin{minipage}{11cm}
+\begin{center}
+\psset{unit=0.8cm}
+\newrgbcolor{qqqqzz}{0 0 0.6}
+\newrgbcolor{qqwwqq}{0 0.4 0}
+\newrgbcolor{xdxdff}{0.49 0.49 1}
+\psset{xunit=0.8cm,yunit=0.8cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-5.32,-4.39)(5.18,4.71)
+\pscircle(0,0){4}
+\psline(-4,0)(4,0)
+\psline(0,-4)(0,4)
+\psline[linewidth=1.6pt,linecolor=qqwwqq](0,0)(3.01,2.64)
+\psline[linestyle=dashed,dash=2pt 2pt,linecolor=qqqqzz](3.01,2.64)(3,0)
+\psline[linewidth=1.6pt,linecolor=qqwwqq](3,0)(0,0)
+\rput[tl](2.1,-0.2){cosx}
+\rput[tl](-1,3.29){sinx}
+\psline(0,0)(-2.99,-2.66)
+\psline[linestyle=dashed,dash=2pt 2pt,linecolor=qqqqzz](3.01,2.64)(-3.01,2.63)
+\psline[linestyle=dashed,dash=2pt 2pt,linecolor=qqqqzz](-3.01,2.63)(-2.99,-2.66)
+\psline[linestyle=dashed,dash=2pt 2pt,linecolor=qqqqzz](-2.99,-2.66)(3,-2.64)
+\psline[linestyle=dashed,dash=2pt 2pt,linecolor=qqqqzz](3,-2.64)(3,0)
+\psline(3,-2.64)(0,0)
+\psline(0,0)(-3.01,2.63)
+\pscustom[linecolor=qqwwqq,fillcolor=qqwwqq]{\parametricplot{2.0410779985789225E-17}{0.7196456563842162}{0.83*cos(t)+0|0.83*sin(t)+0}\lineto(0,0)\closepath}
+\rput[tl](0.86,0.55){\qqwwqq{x}}
+\rput[tl](3.35,3.13){x}
+\rput[tl](3.44,-2.58){-x}
+\rput[tl](-4.13,3.29){$\pi-x$}
+\rput[tl](-4.24,-2.42){$\pi+x$}
+\rput[tl](-2.86,-0.17){-cosx}
+\rput[tl](-1.1,-2.81){-sinx}
+\psline[linewidth=1.6pt,linecolor=qqwwqq](0,0)(4,0)
+\psdots[dotstyle=*,linecolor=qqqqzz](0,0)
+\rput[bl](-0.5,-0.48){\qqqqzz{$O$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](4,0)
+\rput[bl](4.3,-0.48){\qqqqzz{$I$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](0,4)
+\rput[bl](-0.09,4.4){\qqqqzz{$J$}}
+\psdots[dotstyle=*,linecolor=qqqqzz](3.01,2.64)
+\psdots[dotstyle=*,linecolor=xdxdff](-2.99,-2.66)
+\psdots[dotstyle=*,linecolor=xdxdff](-3.01,2.63)
+\psdots[dotstyle=*,linecolor=xdxdff](3,-2.64)
+\end{pspicture*}
+\end{center}
+\end{minipage}
+\begin{Prop}
+Pour tout réel $x$, on a:
+\begin{gather*}
+\cos\left(\dfrac{\pi}{2}-x\right)=\sin x\\
+\sin\left(\dfrac{\pi}{2}-x\right)=\cos x
+\end{gather*}
+\end{Prop}
+\begin{Rem}
+Connaissant les valeurs du sinus et du cosinus des angles du premier quadrant, on peut en déduire celles correspondant aux trois autres quadrants sur le cercle trigonométrique.
+\end{Rem}
+\begin{Ex}
+Ainsi on calcule:
+\[\cos\left(\dfrac{4\pi}{3}\right)=\cos\left(\dfrac{3\pi}{3}+\dfrac{\pi}{3}\right)=\cos\left(\pi+\dfrac{\pi}{3}\right)=-\cos\left(\dfrac{\pi}{3}\right)=-\dfrac{1}{2}\]
+\end{Ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résolution des triangles}
+\subsection{Objectif}
+Un triangle est défini par six éléments: trois angles et trois côtés.\\
+Dans le cas général , il suffit de connaître trois de ces éléments pour déterminer les trois autres, sauf dans les cas de  la connaissance des trois angles (on a alors seulement le rapport des longueurs des côtés).
+\subsection{Résolution des triangles rectangles}
+Principe.\\
+Dans le cas particulier du triangle rectangle un des angles est déjà connu par définition. Pour déterminer tous les autres éléments, il suffit donc de connaître:
+\begin{itemize}
+\item soit un angle (non droit) et la longueur d'un côté,
+\item soit la longueur d'un côté de l'angle droit et celle de l'hypoténuse,
+\item soit la longueur des deux côtés de l'angle droit.
+\end{itemize}
+\medskip
+Cette résolution des triangles rectangles est utilisée dans de nombreux cas pratiques tels que des problèmes de cartographie ou de navigation.\par
+Relation fondamentale.\\
+On considère un triangle $ABC$ rectangle en $B$.\\
+On place un cercle trigonométrique de centre $A$ qui définit un petit triangle $ADE$ rectangle en $D$. \\
+On reconnaît alors une configuration de Thalès.
+\begin{center}
+\psset{unit=0.9cm}
+\newrgbcolor{ttqqcc}{0.2 0 0.8}
+\newrgbcolor{qqwwqq}{0 0.4 0}
+\newrgbcolor{ttwwqq}{0.2 0.4 0}
+\newrgbcolor{ttccqq}{0.2 0.8 0}
+\psset{xunit=0.9cm,yunit=0.9cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-2.69,-2.22)(4.71,3.01)
+\pscircle(0,0){2}
+\rput[tl](0.65,0.96){\qqwwqq{1}}
+\psline(0,0)(4.5,0)
+\psline(4.5,0)(4.5,2.5)
+\psline(4.5,2.5)(0,0)
+\psline[linewidth=1.2pt,linecolor=ttwwqq](1.75,0.97)(1.75,0)
+\pscustom[linecolor=ttccqq,fillcolor=ttccqq]{\parametricplot{0.0}{0.507098504392337}{0.52*cos(t)+0|0.52*sin(t)+0}\lineto(0,0)\closepath}
+\rput[tl](0.8,0.37){$\qqwwqq{\theta}$}
+\rput[tl](0.65,-0.16){$\qqwwqq{cos\theta}$}
+\rput[tl](-0.12,2.37){1}
+\rput[tl](1.96,0.82){$\qqwwqq{sin\theta}$}
+\psline(0,0)(4.5,2.5)
+\psline(0,2)(-0.01,-2)
+\psline(0,0)(-2,0)
+\psline(0,0)(2,0)
+\psline[linewidth=1.2pt,linecolor=ttwwqq](0,0)(1.75,0.97)
+\psline[linewidth=1.2pt,linecolor=ttwwqq](1.75,0.97)(1.75,0)
+\psline[linewidth=1.2pt,linecolor=ttwwqq](1.75,0)(0,0)
+\psdots[dotstyle=*,linecolor=ttqqcc](0,0)
+\rput[bl](-0.28,-0.35){\ttqqcc{$A$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](4.5,2.5)
+\rput[bl](4.42,2.66){\ttqqcc{$C$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](4.5,0)
+\rput[bl](4.49,-0.33){\ttqqcc{$B$}}
+\psdots[dotstyle=*,linecolor=ttqqcc](1.75,0.97)
+\rput[bl](1.63,1.27){\ttqqcc{$E$}}
+\psdots[dotstyle=*,linecolor=darkgray](1.75,0)
+\rput[bl](1.82,-0.4){\darkgray{$D$}}
+\end{pspicture*}
+\end{center}
+On peut donc écrire l'égalité des rapports de longueurs:
+\[\dfrac{AB}{AD}=\dfrac{AC}{AE}=\dfrac{BC}{DE}\quad \text{soit}\quad\dfrac{AB}{\cos\theta}=\dfrac{AC}{1}=\dfrac{BC}{\sin\theta}\]
+Les différentes égalités nous permettent d'obtenir:
+\begin{align*}
+ AB&=AC\cdot  \cos\theta\\
+ BC&=AC\cdot \sin\theta\\
+ BC&=AB\cdot \dfrac{\sin\theta}{\cos\theta}=AB\cdot \tan\theta\
+\end{align*}
+
+\begin{Prop}
+   Un côté $=$ \textcolor{blue}{hypothénuse} $\cdot$ \textbf{cosinus} de l'angle \textbf{adjacent}\\
+   Un côté $=$ \textcolor{blue}{hypothénuse} $\cdot$ \textbf{sinus} de l'angle \textbf{opposé}\\
+   Un côté $=$ autre côté $\cdot$ \textbf{tangente} de l'angle \textbf{opposé}
+\end{Prop}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Résolution des triangles quelconques}
+
+Principe.\\
+Un triangle quelconque peut toujours être divisé en deux triangles rectangles; il suffit pour cela de tracer une de ses hauteurs.
+\psset{unit=0.6}
+\begin{center}
+\newrgbcolor{qqzztt}{0 0.6 0.2}
+\newrgbcolor{ccttqq}{0.8 0.2 0}
+\psset{xunit=0.6cm,yunit=0.6cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\begin{pspicture*}(-5.19,-2)(9.19,5)
+\psline(-3,-1)(6,-1)
+\psline(6,-1)(2,4)
+\psline(2,4)(-3,-1)
+\pscustom[linewidth=1.2pt,linecolor=qqzztt]{\parametricplot{-2.356194490192345}{-0.8960553845713439}{0.86*cos(t)+2|0.86*sin(t)+4}\lineto(2,4)\closepath}
+\pscustom[linewidth=1.2pt,linecolor=qqzztt]{\parametricplot{0.0}{0.7853981633974483}{0.86*cos(t)+-3|0.86*sin(t)+-1}\lineto(-3,-1)\closepath}
+\pscustom[linewidth=1.2pt,linecolor=qqzztt]{\parametricplot{2.2455372690184494}{3.141592653589793}{0.86*cos(t)+6|0.86*sin(t)+-1}\lineto(6,-1)\closepath}
+\psline[linewidth=1.2pt,linecolor=ccttqq](2,4)(2,-1)
+\psdots[dotstyle=*,linecolor=blue](2,4)
+\rput[bl](1.84,4.39){\blue{$A$}}
+\psdots[dotstyle=*,linecolor=blue](-3,-1)
+\rput[bl](-3.7,-1.21){\blue{$B$}}
+\psdots[dotstyle=*,linecolor=blue](6,-1)
+\rput[bl](6.41,-1.21){\blue{$C$}}
+\rput[bl](1.29,-1.52){$a$}
+\rput[bl](4.42,1.84){$b$}
+\rput[bl](-0.91,1.91){$c$}
+\rput[bl](1.53,2.67){\qqzztt{$\alpha$}}
+\rput[bl](-1.77,-0.6){\qqzztt{$\beta$}}
+\rput[bl](4.55,-0.53){\qqzztt{$\gamma$}}
+\psdots[dotstyle=*,linecolor=ccttqq](2,-1)
+\rput[bl](2.01,-1.76){\ccttqq{$H$}}
+\rput[bl](2.22,1.05){\ccttqq{$h$}}
+\end{pspicture*}
+\end{center}
+En partant des relations établies dans le triangle rectangle, on définit deux séries de formules pour les triangles quelconques:
+\begin{itemize}
+\item les formules aux sinus
+\item les formules aux cosinus
+\end{itemize}
+Si on note
+\begin{itemize}
+\item $A$, $B$ et $C$ les sommets du triangle quelconque
+\item $\alpha$, $\beta$ et $\gamma$ les angles en ces sommets
+\item $a$, $b$ et $c$ les longueurs des côtés opposés à ces angles,
+\end{itemize}
+alors on a:
+\begin{Prop}
+   $\dfrac{a}{\sin\alpha}=\dfrac{b}{\sin\beta}=\dfrac{c}{\sin \gamma}$
+\end{Prop}
+\begin{Prop}
+  $a^2=b^2+c^2 -2 \cdot   b \cdot c \cdot \cos \alpha$ \\
+  $b^2=c^2+a^2 -2 \cdot   c \cdot a \cdot \cos \beta$\\
+  $c^2=a^2+b^2 -2 \cdot   a \cdot b \cdot \cos \gamma$
+\end{Prop}
+\begin{Rem}
+   Ces formules sont des extensions du théorème de Pythagore. Elles expriment que, si l'angle est inférieur à un angle droit, alors le segment opposé est inférieur à la somme des carrés des côtés.
+\end{Rem}
+
+\end{document}

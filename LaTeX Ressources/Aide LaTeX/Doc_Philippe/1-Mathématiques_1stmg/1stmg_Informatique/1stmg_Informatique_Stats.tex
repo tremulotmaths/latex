@@ -1,0 +1,100 @@
+\documentclass[10pt,french]{article}
+\input preambule_2013
+\pagestyle{empty}
+
+\setlength{\textheight}{27cm}% Hauteur de la zone de texte
+\setlength{\topmargin}{-2.5cm}% Marge en haut
+
+\begin{document}
+\small
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,framearc=0.5,fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{
+\parbox[c]{0.5\linewidth}{
+\begin{center}
+\Large\bfseries
+Séance informatique\par
+\uuline{Statistiques}
+\end{center}}}
+\end{center}
+
+\subsection*{\'Enoncé de départ}
+
+On relève dans deux région de France le prix mensuel de location en euros et au \SI{}{m^2} de $30$ studios.\par\medskip
+
+\begin{tabular}{*{10}{|c}|}
+    \multicolumn{10}{c}{\textbf{Région 1}} \\
+\hline
+    12 & 12 & 16 &15 & 16 & 15 & 11 & 15 & 13 & 14 \\
+\hline
+    13 & 15 & 13 & 12 & 10 & 11 & 13 & 9 & 16 & 15 \\
+\hline
+    13 & 14 & 14 & 13 & 12 & 16 & 15 & 16 & 13 & 15 \\
+\hline
+\end{tabular}
+\hfill
+\begin{tabular}{*{10}{|c}|}
+    \multicolumn{10}{c}{\textbf{Région 2}} \\
+\hline
+    11 & 12 & 14 & 12 & 13 & 12 & 11 & 14 & 13 & 14 \\
+\hline
+    13 & 14 & 13 & 13 & 11 & 11 & 13 & 13 & 12 & 14 \\
+\hline
+    12 & 11 & 14 & 13 & 14 & 11 & 14 & 13 & 14 & 12 \\
+\hline
+\end{tabular}\bigskip
+
+Le ministre du logement nous demande une étude permettant de comparer les prix des studios dans ces deux régions.\bigskip
+
+\begin{enumerate}
+    \item Que signifie le $12$ en haut à gauche du premier tableau ?\par
+    \tikz{\draw (0,0) rectangle (16.1,1);}
+\end{enumerate}
+
+\subsection*{Feuille de calcul 1 : indicateurs de position}
+
+\begin{enumerate}
+    \item Ouvrir Excel.
+    \item Sélectionner la première feuille de calcul dans les onglets en bas à gauche.
+    \item Recopier et présenter proprement les deux tableaux des deux régions.\par Utiliser la mise en forme du tableur pour votre présentation (changement des largeurs de colonnes, des hauteurs de lignes...).
+    \item Sur le tableur toujours, quelques lignes en dessous, réaliser le tableau ci-dessous :\par
+        \begin{tabular}{c|r|*{6}{>{\centering\arraybackslash}m{1.5cm}|}}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}}  & \multicolumn{1}{c}{\texttt{D}} & \multicolumn{1}{c}{\texttt{E}} & \multicolumn{1}{c}{\texttt{F}} & \multicolumn{1}{c}{\texttt{G}} \\
+            \cline{2-8}
+            \texttt 10 &  & Moyenne & Minimum & Q1 & Médiane & Q3 & Maximum \\
+            \cline{2-8}
+            \texttt 11 & Région $1$ & &  &&&&\\
+            \cline{2-8}
+            \texttt 12 & Région $2$ & &  &&&&\\
+        \end{tabular}
+    \item Utiliser les commandes ci-dessous pour compléter le tableau à l'aide du tableur (remplacer \texttt{...} en sélectionnant les cellules qui vous intéressent) :
+    \begin{description}
+        \item[\texttt{=MOYENNE(...)}] permet de calculer la moyenne d'une série statistique.
+        \item[\texttt{=MEDIANE(...)}] permet de calculer la médiane d'une série statistique.
+        \item[\texttt{=QUARTILE(...;1)}] permet de calculer le premier quartile d'une série statistique. Pour le 3\ieme quartile, remplacer {\tt 1} par {\tt 3}.
+        \item[\texttt{=MIN(...)} et \texttt{MAX(...)}] permet de calculer le minimum et le maximum d'une série statistique.
+    \end{description}
+    \item En utilisant la moyenne, comparer les deux régions.\par \tikz{\draw (0,0) rectangle (16.1,1);}
+    \item Afin d'informer le ministre plus précisément, interpréter convenablement $Q_1$, la médiane et $Q_3$ pour chaque région.\par
+    \tikz{\draw (0,0) rectangle (16.1,3);}
+\end{enumerate}
+
+\subsection*{Feuille de calcul 2 : comparaison graphique}
+\begin{enumerate}
+    \item Ouvrir la feuille de calcul 2 en cliquant sur le deuxième onglet en bas à gauche.
+    \item Compléter à la main le tableau suivant :
+    \begin{center}
+        \begin{tabular}{*{10}{|c}|}
+        \hline
+            \textbf{Prix} & 09 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & Total \\
+        \hline
+            \textbf{Effectif Région 1} & &&&&&&&& \\
+        \hline
+            \textbf{Effectig Région 2} & &&&&&&&& \\
+        \hline
+        \end{tabular}
+    \end{center}
+    \item Reproduire le tableau complété dans le tableur.
+    \item À l'aide du tableur, effectuer un diagramme en bâtons représentant les deux séries statistiques.
+\end{enumerate}
+
+\end{document} 

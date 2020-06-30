@@ -1,0 +1,97 @@
+%
+%  Variations version 0.8
+%  Copyright (c) Christian Obrecht 2006-2010
+%
+%  This program is free software; you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation; either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This program is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License
+%  along with this program; if not, write to the Free Software
+%  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+%
+
+\font\f@nt=variations scaled\sc@le
+
+\newdimen\w@dth  \w@dth=.2\p@int
+\newdimen\h@ight \h@ight=10\p@int
+\newdimen\d@pth  \d@pth=4\p@int
+\newdimen\vh@ight \vh@ight=\h@ight
+\newdimen\vd@pth  \vd@pth=\d@pth
+\newdimen\r@
+\newdimen\w@
+
+\newcount\h@     \h@=\p@int    \multiply\h@ by 2
+\newcount\n@
+
+\newbox\b@x
+\newbox\t@b
+
+\def\@rrow#1#2{\raise#1\hbox{\f@nt #2}}
+\def\str@t{\vrule height\h@ight depth\d@pth width 0pt}
+\def\c@#1{\hfil$\str@t#1$\hfil}
+
+\def\bv@r{\leavevmode\hbox\bgroup\vbox\bgroup
+
+\def\cb{\@rrow{-10\p@int}{A}}  \def\tcb{\@rrow{-10\p@int}{a}}
+\def\ch{\@rrow{10\p@int}{A}}   \def\tch{\@rrow{10\p@int}{a}}
+\def\db{\@rrow{-10\p@int}{B}}  \def\tdb{\@rrow{-10\p@int}{b}}
+\def\dh{\@rrow{10\p@int}{B}}   \def\tdh{\@rrow{10\p@int}{b}}
+\def\c{\@rrow{0\p@int}{C}}     \def\tc{\@rrow{0\p@int}{c}}
+\def\d{\@rrow{0\p@int}{D}}     \def\td{\@rrow{0\p@int}{d}}
+\def\cl{\@rrow{0\p@int}{E}}    \def\tcl{\@rrow{0\p@int}{e}}
+\def\dl{\@rrow{0\p@int}{F}}    \def\tdl{\@rrow{0\p@int}{f}}
+\def\eb{\@rrow{-10\p@int}{G}}  \def\teb{\@rrow{-10\p@int}{g}}
+\def\e{\@rrow{0\p@int}{G}}     \def\te{\@rrow{0\p@int}{g}}
+\def\eh{\@rrow{10\p@int}{G}}   \def\teh{\@rrow{10\p@int}{g}}
+\def\elb{\@rrow{-10\p@int}{H}} \def\telb{\@rrow{-10\p@int}{h}}
+\def\el{\@rrow{0\p@int}{H}}    \def\tel{\@rrow{0\p@int}{h}}
+\def\elh{\@rrow{10\p@int}{H}}  \def\telh{\@rrow{10\p@int}{h}}
+
+\def\n##1{\setbox\b@x\hbox{##1}
+\r@=\wd\b@x \advance\r@ by -\w@dth \divide\r@ by 2\w@=\r@ \advance\w@ by \w@dth
+\hbox to 10\p@int{\hss\str@t\kern\r@\vrule width \w@dth\kern-\w@\box\b@x\hss}}
+\def\z{\n0}
+
+\def\dr##1{\omit\quad\hfil$##1$\hfil&\quad}
+\def\ga##1{\quad&\omit\hfil$##1$\hfil\quad}
+\def\l{\vrule width\w@dth}
+\def\bb{\vrule\kern1\p@int\vrule}
+\def\bg{\omit\kern1\p@int\vrule\hfil}
+\def\bd{\omit\hfil\vrule\kern1\p@int}
+\def\mI{\,-\infty\,} \def\pI{\,+\infty\,}
+\let\\=\cr
+\everycr={\noalign{\hrule}}
+
+\def\t@p##1{\setbox\b@x\hbox{$##1$}
+\r@=\ht\b@x \advance\r@ by 2\p@int \ht\b@x=\r@ \advance\r@ by 15\p@int
+\ifdim\vh@ight<\r@ \n@=\r@ \divide\n@ by \h@ \advance\n@ by 1\multiply\n@ by 2
+\global\vh@ight=\n@\p@int\fi}
+\def\h##1{\t@p{##1}\raise15\p@int\box\b@x}
+
+\def\d@wn##1{\setbox\b@x\hbox{$##1$}
+\r@=\dp\b@x \advance\r@ by 2\p@int \dp\b@x=\r@ \advance\r@ by 20\p@int
+\ifdim\vd@pth<\r@ \n@=\r@ \divide\n@ by \h@ \advance\n@ by 1\multiply\n@ by 2
+\global\vd@pth=\n@\p@int\fi}
+\def\b##1{\d@wn{##1}\raise-20\p@int\box\b@x}
+
+\def\ha{\advance\h@ight by \d@pth\raise-\d@pth
+\vbox to \h@ight{\leaders\hbox{\f@nt 0}\vfil}}
+
+\def\hv{\advance\vh@ight by \vd@pth\raise-\vd@pth
+\vbox to \vh@ight{\leaders\hbox{\f@nt 0}\vfil}}
+
+\hbox\bgroup\vrule\vbox\bgroup
+\halign\bgroup\c@{\;\;##\;\;}\vrule&&\c@{\,##\,}\cr}
+
+\def\ev@r{\egroup\egroup\vrule\egroup\egroup\egroup}
+
+\def\variations#1\fin{\setbox\t@b\hbox{\bv@r#1\ev@r}\bv@r#1\ev@r}
+
+\endinput

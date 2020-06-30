@@ -1,0 +1,28 @@
+\documentclass[french,12pt]{report}
+\input{preambule_17-18}
+\input{commandes_17-18}
+%\input{presentation_fiche_17-18}
+\input{perso_cecile_2017}
+
+\begin{document}
+\fancyhf{}
+\fancypagestyle{chapitre}{
+\pieddepage{2018 - 2019 - 2\up{nde} 8}{}{\thepage / \pageref{LastPage}}
+\entete{}{}{}}
+\ReglePied
+\entete{}{}{}
+\pieddepage{2018 - 2019 - 2\up{nde} 8}{Chapitre - Titre}{\thepage / \pageref{LastPage}}
+
+\newgeometry{includeheadfoot, top=1cm, bottom=0.8cm, right=1.5cm, left=1.5cm}
+
+\renewcommand\CouleurChapitre{PineGreen}
+
+\chapter{Chapitre  \\Titre}
+
+\thispagestyle{chapitre}
+\bigskip
+
+
+
+
+\end{document} 

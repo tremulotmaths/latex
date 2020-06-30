@@ -1,0 +1,235 @@
+\documentclass[svgnames,smaller]{beamer}
+\usetheme{Warsaw}
+%\useoutertheme{infolines}
+%\usepackage[final]{movie15}
+%\usepackage{default}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{etex}
+\usepackage[babel=true,kerning=true]{microtype}
+\usepackage{multimedia}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{multirow}
+\usepackage{colortbl}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[version=3]{mhchem}
+\usepackage{caption}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\pgfplotsset{compat=1.3}
+\definecolor{lightgray}{gray}{0.95}
+\usepackage{listings}
+	\lstset{backgroundcolor=\color{lightgray},language=[LaTeX]TeX,texcsstyle=\color{blue},commentstyle=\color{gray},
+	literate=
+	{à}{{\`a}}1
+	{é}{{\'e}}1
+	{è}{{\`e}}1}
+\usepackage{wrapfig}
+\usepackage{amsmath}		% Permet de taper des formules mathématiques
+\usepackage{amssymb}		% Permet d'utiliser des symboles mathématiques
+\usepackage{amsfonts}		% Permet d'utiliser des polices mathématiques
+\usepackage{verbatim}
+\usepackage{breakcites}
+\usepackage[normalem]{ulem}
+\usepackage{nicefrac}
+\usepackage[sort&compress,comma]{natbib}
+\usepackage{dtklogos}
+
+
+
+\def\newblock{}
+\setlength{\unitlength}{1mm}
+\date{février 2012}
+\author{Dorian Depriester}
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+
+
+\title{Les mathématiques sous \LaTeX}
+
+\AtBeginSection[]{
+   \begin{frame}
+\begin{block}{}
+   %%% affiche en début de chaque section, les noms de sections et
+   %%% noms de sous-sections de la section en cours.
+   \tableofcontents[currentsection,hideothersubsections]
+\end{block}
+   \end{frame} 
+}
+
+
+
+
+
+    \setbeamertemplate{caption}[numbered]
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+
+\begin{document}
+\maketitle
+
+\section{Les différents environnements}
+\begin{frame}[fragile]
+	\begin{block}{Équations \textit{inline} : \lstinline!$ $!}<1->
+	  On bascule en mode mathématique dans un texte en ouvrant et en fermant avec le symbole \lstinline!$!%$
+	\end{block}
+	\begin{block}{Équations centrées numérotées : environnement \textit{equation}}<2->
+	  \begin{lstlisting}
+	  	\begin{equation}
+	  		  % Equation ici
+	  	\end{equation}
+	  \end{lstlisting}
+	\end{block}
+	\begin{block}{Équations centrées non numérotées : environnement \textit{equation$\ast$}}<3->
+	  \begin{lstlisting}
+	  	\begin{equation*}
+	  		  % Equation ici
+	  	\end{equation*}
+	  \end{lstlisting}
+	\end{block}
+\end{frame}
+
+
+\section{Symboles mathématiques}
+\begin{frame}[fragile]
+	\begin{block}{Caractères}
+		Les lettres latines s'écrivent normalement (\lstinline!$a,b,c...z$!), les caractères grecques s'appellent par leur noms (\lstinline!$\alpha...\Omega,\omega $!) :
+		
+		$$a,b,c...z$$\\
+		$$\alpha...\Omega, \omega$$
+	\end{block}
+
+\begin{block}{Opérateurs}<2->
+	Les packages \texttt{amsmath} et \texttt{amssymbol} fournissent des milliers d'opérateurs: \lstinline!$\pm\in\bigotimes\lll\because\oint\wedge\sum\uplus\propto$!
+	$$\pm\in\bigotimes\lll\because\oint\wedge\sum\uplus\propto$$
+\end{block}
+\end{frame}
+
+
+
+\section{Règles de syntaxe}
+\begin{frame}[fragile]
+	\begin{block}{Fonctions mathématiques}<1->
+		Les fonctions mathématiques sont écrites en texte \og roman \fg : \lstinline!\mathrm{exp}!\\
+		Les fonctions usuelles sont implantées dans des macros : \lstinline!\exp()\sin()\cosh()!
+	\end{block}
+	
+	\begin{block}{Variables}<2->
+		En italique, par défaut en mode math.
+	\end{block}
+	
+	\begin{block}{Constantes, points et vecteurs}<3->
+		Généralement en romain
+	\end{block}
+\end{frame}
+
+
+
+\section{Mise en forme}
+	\subsection{Espacements et texte}
+\begin{frame}[fragile]
+	\begin{block}{Espacements}
+		\begin{description}
+			\item[Indentation] un cadratin : \lstinline!\quad!
+			\item[Double indentation] double cadratin : \lstinline!\qquad!
+			\item[Espace fine] 3/18 de cadratin : \lstinline!\,!
+		\end{description}
+	\end{block}
+	
+	\begin{block}{Texte dans une équation}<2->
+		\begin{description}
+			\item[Sans respect de la typographie (mot seul) :] \lstinline!\textnormal{mon texte}!
+			\item[Respect de la typographie (paragraphe) :] \lstinline!\text{ma phrase}!
+		\end{description}
+	\end{block}
+\end{frame}
+
+
+
+	\subsection{Parenthèses}
+\begin{frame}[fragile]
+	\begin{exampleblock}{Exemple de parenthèse laide}
+		\begin{lstlisting}
+			\Phi=\sum_{i=1}^n(\frac{x_i-y_i}{y_i})^2
+		\end{lstlisting}
+		\begin{equation}
+			\Phi=\sum_{i=1}^n(\frac{x_i-y_i}{y_i})^2
+		\end{equation}
+		\visible<2->{\alert{Les parenthèses sont trop petites pour la fraction.}}
+	\end{exampleblock}
+	\begin{block}{Syntaxe correcte}<3->
+		\begin{lstlisting}
+			\Phi=\sum_{i=1}^n\left(\frac{x_i-y_i}{y_i}\right)^2
+		\end{lstlisting}
+		\begin{equation}
+			\Phi=\sum_{i=1}^n\left(\frac{x_i-y_i}{y_i}\right)^2
+		\end{equation}
+	\end{block}
+\end{frame}
+
+	\subsection{Matrices}
+\begin{frame}[fragile]
+	\begin{block}{Même syntaxe que dans l'environnement \texttt{tabular}}
+		\begin{lstlisting}
+			\begin{bmatrix}
+				  1	& 0\\
+				  0	& 1
+			\end{bmatrix}
+			\begin{pmatrix}
+			  a\\b
+			\end{pmatrix}
+		\end{lstlisting}
+		\begin{equation}
+			\begin{bmatrix}
+				1	& 0\\
+				0	& 1
+			\end{bmatrix}
+			\begin{pmatrix}
+				a\\b
+			\end{pmatrix}
+		\end{equation}
+	\end{block}
+	
+	\begin{alertblock}{Noms des matrices}<2->
+		\texttt{\uline{b}matrix} pour ``brackets'' (crochets), \texttt{\uline{p}matrix} pour ``parenthesis'', \texttt{\uline{v}matrix} pour ``vertical lines''
+	\end{alertblock}
+\end{frame}
+
+	\subsection{Systèmes d'équation}
+\begin{frame}[fragile]
+	\begin{exampleblock}{Objectif}
+		\begin{equation}
+			\left\lbrace
+			\begin{aligned}
+				a.&x	&= y\\
+				a.b.&x+c	&= z
+			\end{aligned}			 
+			\right.
+		\end{equation}
+	\end{exampleblock}
+	
+	\begin{block}{Solution}<2->
+	Utiliser l'environnement \texttt{aligned} pour forcer les alignements :
+		\begin{lstlisting}
+			\left\lbrace	% Accolade à gauche
+			  \begin{aligned} % Les & seront alignées
+				  a.  &x    &= y\\
+				  a.b.&x+c  &= z
+			  \end{aligned}			 
+			\right.			% Ferme le \left
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+\end{document}

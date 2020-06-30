@@ -1,0 +1,109 @@
+%___________________________
+%===    Configurations perso 04.12.2014
+%------------------------------------------------------
+\usepackage{etex}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchstyle,partialup,light]{kpfonts}
+\usepackage{aurical}%font lukas \Fontlukas
+\usepackage{xspace}
+\usepackage{geometry,atbegshi}
+\geometry{a4paper, height = 25.5cm,hmargin=2.5cm,marginparwidth=2cm,headheight=20pt,headsep=16.5pt,bottom=2cm,footskip=30pt,footnotesep=30pt}
+\usepackage{titlesec}
+\usepackage{totpages}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\newcommand\RegleEntete[1][0.4pt]{\renewcommand{\headrulewidth}{#1}}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\entete}[3]{\lhead{#1} \chead{\sffamily\textbf{#2}} \rhead{#3}}
+\newcommand{\pieddepage}[3]{\lfoot{#1} \cfoot{#2} \rfoot{#3}}
+\fancypagestyle{plain}{ \fancyhead{} \renewcommand{\headrulewidth}{0pt}}
+
+\entete{}{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}{}
+\pieddepage{}{\color{\MaCouleur}$\stackrel{***}{\thepage}$}{}
+
+\usepackage[dvipsnames,table]{xcolor}
+\definecolor{midblue}{rgb}{0.145,0.490,0.882}
+\newcommand\MaCouleur{midblue}
+
+\usepackage[dotinlabels]{titletoc}
+
+\usepackage{booktabs,tabularx,environ,marvosym,multirow,multicol,humanist}
+% booktabs -> pour les tableaux : toprule, midrule, bottomrule...
+% environ : pour les environnements personnalisés
+% humanist -> font \hminfamily
+
+\usepackage{mathtools,amssymb}
+\everymath{\displaystyle}
+\usepackage[autolanguage,np]{numprint}
+\usepackage{xlop}
+\usepackage{cancel}
+\renewcommand\CancelColor{\color{red}}
+\usepackage{dsfont}
+
+\usepackage[normalem]{ulem} % Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+                      
+\usepackage[right]{eurosym}
+
+\usepackage{tkz-tab,pas-tableur}
+\usetikzlibrary{calc,shapes,arrows,shadows}
+\usepackage[tikz]{bclogo}
+
+\usepackage{enumitem}
+\setenumerate[1]{font=\bfseries,label=\arabic*\degres)}
+\setenumerate[2]{font=\itshape,label=(\alph*)}
+\setitemize[1]{label=$\ast$}
+
+\usepackage{babel}
+\DecimalMathComma
+\frenchbsetup{SuppressWarning,CompactItemize=false}
+\FrenchFootnotes
+
+%___________________________
+%===    Commandes raccourcis
+%------------------------------------------------------
+\newcommand\seconde{2\up{nde}\xspace}
+\newcommand\premiere{1\up{ère}\xspace}
+\newcommand\terminale{T\up{le}\xspace}
+\newcommand\stmg{\bsc{Stmg}}
+\newcommand\sti{\bsc{Sti2d}}
+
+\newcommand{\diff}[1][x]{\mathop{}\mathopen{}\mathrm{d}x}
+
+\newcommand{\intervalle}[4]{\left#1 #2\mathpunct{};#3\right#4}
+\newcommand{\intervalleff}[2]{\intervalle{[}{#1}{#2}{]}}
+\newcommand{\intervalleof}[2]{\intervalle{]}{#1}{#2}{]}}
+\newcommand{\intervallefo}[2]{\intervalle{[}{#1}{#2}{[}}
+\newcommand{\intervalleoo}[2]{\intervalle{]}{#1}{#2}{[}}
+
+\newcommand{\C}{\mathds C}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+\newcommand\Ind{\mathds 1} %= fonction indicatrice
+\newcommand\p{\mathds P} %= probabilité
+\newcommand\E{\mathds E} % Espérance
+\newcommand\V{\mathds V} % Variance
+
+%___________________________
+%===    Gestion des espaces
+%------------------------------------------------------
+\newcommand{\pv}{\ensuremath{\: ; \,}}
+\newlength{\EspacePV}
+\setlength{\EspacePV}{1em plus 0.5em minus 0.5em}
+\newcommand{\qq}{\hspace{\EspacePV} ; \hspace{\EspacePV}}
+\newcommand{\qetq}{\hspace{\EspacePV} \text{et} \hspace{\EspacePV}}
+\newcommand{\qLq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+\newcommand{\qRq}{\hspace{\EspacePV} \Rightarrow \hspace{\EspacePV}}
+\newcommand{\qLRq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+
+\renewcommand*{\hrulefill}[1][0.3mm]{\leavevmode \leaders \hrule height #1 \hfill \kern 0pt} % filet horizontal à épaisseur modifiable
+
+
+\usepackage[pdfborder={0 0 0},bookmarksnumbered,pdfpagelabels]{hyperref} 

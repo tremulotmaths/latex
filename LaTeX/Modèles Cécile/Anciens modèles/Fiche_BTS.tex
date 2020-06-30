@@ -1,0 +1,27 @@
+\documentclass[11pt, french]{book}
+\input{preambule_2015}
+\input{commandes_2015}
+\input{perso_cecile_2015}
+
+\newgeometry{includeheadfoot,headsep=0.2cm,top=0.5cm,bottom=0.8cm,right=1.5cm,left=1.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+
+%\newcommand\voc[1]{\textbf{#1}\xspace}
+
+
+\begin{document}
+\ReglePied
+
+\fancypagestyle{garde}{
+\pieddepage{2015-2017 - BTS Bâtiment}{}{\thepage / \pageref{LastPage}}}
+
+\pieddepage{2015-2017 - BTS Bâtiment}{Fiche  : Titre }{\thepage / \pageref{LastPage}}
+
+
+\chapter{Fiche  \\ Titre}
+\thispagestyle{garde}
+\bigskip
+
+
+\end{document}

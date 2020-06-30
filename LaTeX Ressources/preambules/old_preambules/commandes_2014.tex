@@ -1,0 +1,130 @@
+%Les couleurs
+
+\newcommand{\rouge}[1]{{\color{red} #1}}
+\definecolor{midblue}{rgb}{0.145,0.490,0.882} %Couleur Philippe 
+
+
+%
+\renewcommand{\headrulewidth}{0pt}% pas de trait en entête
+\newcommand\RegleEntete[1][0.4pt]{\renewcommand{\headrulewidth}{#1}}%commande pour ajouter un trait horizontal en entête
+
+\renewcommand{\footrulewidth}{0pt}
+\newcommand\ReglePied[1][0.5pt]{\renewcommand{\footrulewidth}{#1}}%commande pour ajouter un trait horizontal en pied de page
+
+\setlength{\columnseprule}{0pt}
+\newcommand\RegleColonne[1][0.4pt]{\setlength{\columnseprule}{#1}}%commande pour ajouter un trait vertical entre les colonnes
+
+\newcommand{\entete}[3]{\lhead{#1} \chead{#2} \rhead{#3}}
+\newcommand{\pieddepage}[3]{\lfoot{#1} \cfoot{#2} \rfoot{#3}}
+
+%___________________________
+%===    Raccourcis classe
+%------------------------------------------------------
+\newcommand\seconde{2\up{nde}\xspace}
+\newcommand\premiere{1\up{ère}\xspace}
+\newcommand\terminale{T\up{le}\xspace}
+\newcommand\stmg{\bsc{Stmg}}
+\newcommand\sti{\bsc{Sti2d}}
+\newcommand\bat{BAT 1\xspace}
+\newcommand\BAT{BAT 2\xspace}
+\newcommand\tesspe{TES Spécialité\xspace}
+
+
+% MATH
+
+%Intervalles
+
+\newcommand{\intervalleff}[2]{\left[#1\,;#2\right]}
+\newcommand{\intervallefo}[2]{\left[#1\,;#2\right[}
+\newcommand{\intervalleof}[2]{\left]#1\,;#2\right]}
+\newcommand{\intervalleoo}[2]{\left]#1\,;#2\right[}
+
+%Ensembles 
+
+\newcommand{\C}{\mathds C}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\D}{\mathds D}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+
+%fonction exponentielle
+\newcommand{\e}{\text{e}}
+
+%Intégrale d droit
+\newcommand{\dd}{\,\text{d}}
+
+%Nombres complexes
+\newcommand{\ii}{\,\text{i}}
+
+% Raccourcis pour police pour écriture des noms de fonctions, ...
+
+\newcommand{\calig}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand\mtc[1]{\ensuremath{\mathcal{#1}}}
+
+%Gestion des espaces
+%
+\newcommand{\pv}{\ensuremath{\: ; \,}}
+
+\newlength{\EspacePV}
+\setlength{\EspacePV}{1em plus 0.5em minus 0.5em}
+
+\newcommand{\qq}{\hspace{\EspacePV} ; \hspace{\EspacePV}}
+
+\newcommand{\qetq}{\hspace{\EspacePV} \text{et} \hspace{\EspacePV}}
+
+\newcommand{\qouq}{\hspace{\EspacePV} \text{ou} \hspace{\EspacePV}}
+
+\newcommand{\qLq}{\hspace{\EspacePV} \Leftarrow \hspace{\EspacePV}}
+
+\newcommand{\qRq}{\hspace{\EspacePV} \Rightarrow \hspace{\EspacePV}}
+
+\newcommand{\qLRq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\ensuremath{\left\lVert #1\right\rVert}}
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\ensuremath{\overrightarrow{#1}}}
+
+%Repères
+\newcommand\Oij{\ensuremath{\left(O\pv\vect{\imath}\ ,\ \vect{\jmath}\right)}}
+
+\newcommand\Oijk{\ensuremath{\left(O\pv\vect{\imath}\ ,\ \vect{\jmath}\ ,\ \vect{k}\right)}}
+
+\newcommand\Ouv{\ensuremath{\left(O\pv\vect{u}\ ,\ \vect{v}\right)}}
+
+\newcommand\OIJ{\ensuremath{\left(O\pv I\ ,\ J\right)}}
+
+
+% valeur absolue
+\newcommand\abs[1]{\ensuremath{\left\lvert #1 \right\rvert}}%valeur absolue
+
+%Arc
+\newcommand\Arc[1]{\ensuremath{\wideparen{#1}}}%arc de cercle
+
+%symbole pour variable aléatoire qui suit une loi
+\newcommand{\suit}{\hookrightarrow} %commande beurk Dom 
+
+%Tableaux
+%colonnes centrées verticalement et horizontalement permettant d'écrire des paragraphes de largeur fixée du type M{3cm}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}%cellule centrée horizontalement et verticalement
+%\arraybackslash permet de continuer à utiliser \\ pour le changement de ligne
+
+%Pointillés sur toute la ligne
+\newcommand{\Pointilles}[1][1]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[1.5\parskip]
+}}
+%commandes : \Pointilles ou \Pointilles[4] pour 4 lignes
+
+%Raccourcis 
+
+\newcommand\pfr[1]{\psframebox[linecolor=red]{#1}}
+\newcommand\coef[1][]{c{\oe}fficient#1\xspace}
+
+%Rond entourant une lettre avec pour arguments la couleur de fond, puis la lettre
+\newcommand\rond[2][red!20]{\tikz[baseline]{\node[fill=#1,anchor=base,circle]{\bf #2};}} 
+
+
+%Ecrire card en écriture normale :
+\newcommand{\card}{\text{card}\xspace}

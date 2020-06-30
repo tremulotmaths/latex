@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=1.75]
+\tkzInit[xmin=0,xmax=800,xstep=100,
+ymin=0,ymax=2000,ystep=400]
+\tkzGrid
+\tkzDrawX[line width=2pt,color=blue,below right,>=stealth]
+\tkzLabelX%[label options={below=12pt,rotate=-45}]
+\tkzDrawY[line width=2pt,color=blue,above left,>=stealth]
+\tkzLabelY[label options={left=6pt}]
+\tkzFct[domain = 0:800]{(1./90000)*\x*\x*\x-(1./100)*\x*\x+(113./36)*\x}
+\tkzDefPoint(450,400){a}
+\tkzDrawArea[color=blue!50, domain =0:450]
+\tkzDrawArea[color=red!50, domain =450:800]
+\tkzDrawPoint[size=4pt](a)
+\end{tikzpicture}

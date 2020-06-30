@@ -1,0 +1,400 @@
+\newcommand\ipt[1]{\textcolor{red}{\textbf{#1}}\protect\index{#1@\lowercase{#1}}}
+\newcommand\iptb[1]{\textcolor{red}{\textbf{#1}}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+%_________________________
+%===    Environnements de cours
+%------------------------------------------------------
+\newlength{\Longueur}
+
+%%___________________________
+%%===    Avec TikzPicture
+%%------------------------------------------------------
+%
+%%___________________________
+%%===    Définitions
+%%------------------------------------------------------
+%
+\newcounter{defi}[chapter]
+\NewEnviron{Defi}[2][]%
+{
+    \settowidth{\Longueur}{\textbf{Définition#1 \textbullet}\quad}
+    \hspace{-\Longueur}
+    \begin{tikzpicture}
+        \node[fill=\MaCouleur!25, rounded corners=5pt, anchor=north west] at (0,0)%
+            {\begin{minipage}[t]{\Longueur}
+                \textbf{Définition#1 \textbullet}\quad\par
+                \raggedright{\small\textit{#2}}
+            \end{minipage}%
+            \begin{minipage}[t]{\dimexpr\textwidth-8.51pt\relax}
+                \BODY
+            \end{minipage}};
+    \end{tikzpicture}\par\medbreak
+}
+
+%___________________________
+%===    Propriété
+%------------------------------------------------------
+
+\NewEnviron{Prop}[2][]%
+{
+    \settowidth{\Longueur}{\textbf{Propriété#1 \textbullet}\quad}
+    \hspace{-\Longueur}
+    \begin{tikzpicture}
+        \node[fill=\MaCouleur!25,rounded corners=5pt,anchor=north west] at (0,0)%
+            {\begin{minipage}[t]{\Longueur}
+                \textbf{Propriété#1 \textbullet}\quad\par
+                \raggedright{\small\textit{#2}}
+            \end{minipage}%
+            \begin{minipage}[t]{\dimexpr\textwidth-8.51pt\relax}
+                \BODY
+            \end{minipage}};
+    \end{tikzpicture}\par\medbreak
+}
+
+%___________________________
+%===    Théorème
+%------------------------------------------------------
+
+\NewEnviron{Thm}[2][]%
+{
+    \settowidth{\Longueur}{\textbf{Théorème#1 \textbullet}\quad}
+    \hspace{-\Longueur}
+    \begin{tikzpicture}
+        \node[fill=\MaCouleur!25,rounded corners=5pt,anchor=north west] at (0,0)%
+            {\begin{minipage}[t]{\Longueur}
+                \textbf{Théorème#1 \textbullet}\quad\par
+                \raggedright{\small\textit{#2}}
+            \end{minipage}%
+            \begin{minipage}[t]{\dimexpr\textwidth-8.51pt\relax}
+                \BODY
+            \end{minipage}};
+    \end{tikzpicture}\par\medbreak
+}
+
+
+%___________________________
+%===    Remarque
+%------------------------------------------------------
+
+\NewEnviron{Rmq}[1][]%
+{
+   \settowidth{\Longueur}{\small\itshape\textbf{Remarque#1 \textbullet}\quad}
+    \hspace{-\Longueur}\small\itshape\textbf{Remarque#1 \textbullet}\quad%
+        \BODY\par\nopagebreak[4]
+    \textcolor{\MaCouleur!25}{\hspace{-0.01\textwidth}\rule[2ex]{1.01\textwidth}{2pt}}
+}
+
+%
+%%___________________________
+%%===    Exemples du cours
+%%------------------------------------------------------
+%\newenvironment{Exemple}[1][]
+%{\sffamily\small\color{gray!125}%
+%\settowidth{\Longueur}{\textbf{Exemple#1} \textbullet}
+%\begin{minipage}[t]{\Longueur}
+%    \textbf{Exemple#1} \textbullet
+%\end{minipage}\quad
+%\begin{minipage}[t]{0.85\textwidth}
+%}
+%{\end{minipage}\normalsize\par\bigskip}
+%
+
+%}
+%
+%%___________________________
+%%===    Théorème
+%%------------------------------------------------------
+%
+%\NewEnviron{Thm}[2][]%
+%{
+%    \settowidth{\Longueur}{\textbf{Théorème#1 \textbullet{}} }
+%    \hspace{-\Longueur}
+%    \hspace{-7pt}%
+%    \begin{tikzpicture}
+%        \node[fill=\MaCouleur!25,rounded corners=2.5pt,anchor=north west] at (0,0)%
+%            {\begin{minipage}[t]{\Longueur}
+%                \textbf{Théorème#1 \textbullet{}}\par
+%                \raggedright{\small\textit{#2}}
+%            \end{minipage}%
+%            \begin{minipage}[t]{0.995\textwidth}
+%                \BODY
+%            \end{minipage}};
+%    \end{tikzpicture}\par\medskip
+%}
+%
+%%___________________________
+%%===    Démonstration
+%%------------------------------------------------------
+%
+%\NewEnviron{Demo}[1][]%
+%{
+%    \settowidth{\Longueur}{\textbf{Démonstration#1 \textbullet{}} }
+%    \hspace{-\Longueur}\textbf{Démonstration#1 \textbullet{}} \BODY\par
+%    \hfill$\square$
+%    \textcolor{\MaCouleur!25}{\hspace{-0.1\linewidth}\rule[1ex]{1.1\linewidth}{2pt}}
+%}
+%
+
+
+%___________________________
+%===    Avec \psframebox
+%------------------------------------------------------
+
+%___________________________
+%===    Définitions
+%------------------------------------------------------
+
+%\newcounter{defi}[chapter]
+%\NewEnviron{Defi}[2][]%
+%{
+%    \settowidth{\Longueur}{\textbf{Définition#1 \textbullet{}} }
+%    \hspace{-\Longueur}
+%    \hspace{-7pt}%
+%            \begin{minipage}[t]{\Longueur}
+%                \textbf{Définition#1 \textbullet{}}\par
+%                \raggedright{\small\textit{#2}}
+%            \end{minipage}%
+%    \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=\MaCouleur!25,linearc=0.05,cornersize=absolute,framesep=5pt]{
+%            \begin{minipage}[t]{0.973\textwidth}
+%                \BODY
+%            \end{minipage}
+%    }\par\medskip
+%}
+
+%___________________________
+%===    Exemples du cours
+%------------------------------------------------------
+\newenvironment{Exemple}[1][]
+{\sffamily\small\color{gray!150}%
+\settowidth{\Longueur}{\textbf{Exemple#1} \textbullet}
+\begin{minipage}[t]{\Longueur}
+    \textbf{Exemple#1} \textbullet
+\end{minipage}\quad
+\begin{minipage}[t]{0.85\textwidth}
+}
+{\end{minipage}
+\normalsize\par\bigbreak}
+
+%%___________________________
+%%===    Propriété
+%%------------------------------------------------------
+%
+%\NewEnviron{Prop}[2][]%
+%{
+%    \settowidth{\Longueur}{\textbf{Propriété#1 \textbullet{}} }
+%    \hspace{-\Longueur}
+%    \hspace{-7pt}%
+%            \begin{minipage}[t]{\Longueur}
+%                \textbf{Propriété#1 \textbullet{}}\par
+%                \raggedright{\small\textit{#2}}
+%            \end{minipage}%
+%    \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=\MaCouleur!25,linearc=0.05,cornersize=absolute]{
+%            \begin{minipage}[t]{0.984\textwidth}
+%                \BODY
+%            \end{minipage}
+%    }\par\medskip
+%}
+
+%%___________________________
+%%===    Théorème
+%%------------------------------------------------------
+%
+%\NewEnviron{Thm}[2][]%
+%{
+%    \settowidth{\Longueur}{\textbf{Théorème#1 \textbullet{}} }
+%    \hspace{-\Longueur}
+%    \hspace{-7pt}%
+%            \begin{minipage}[t]{\Longueur}
+%                \textbf{Théorème#1 \textbullet{}}\par
+%                \raggedright{\small\textit{#2}}
+%            \end{minipage}%
+%    \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=\MaCouleur!25,linearc=0.05,cornersize=absolute]{
+%            \begin{minipage}[t]{0.984\textwidth}
+%                \BODY
+%            \end{minipage}
+%    }\par\medskip
+%}
+
+%___________________________
+%===    Démonstration
+%------------------------------------------------------
+
+\NewEnviron{Demo}[2][]%
+{
+    \small
+    \settowidth{\Longueur}{\small\textbf{Démonstration#1 \textbullet{}} }
+    \hspace{-\Longueur}
+    \hspace{-7pt}
+            \begin{minipage}[t]{\Longueur}
+                \textbf{Démonstration#1 \textbullet{}}\par
+                \raggedright{\small\textit{#2}}
+            \end{minipage}\hspace*{5pt}
+            \begin{minipage}[t]{0.984\textwidth}
+                \BODY
+            \end{minipage}\par\nopagebreak[4]
+    \hfill$\square$\par\nopagebreak[4]
+    \textcolor{\MaCouleur!25}{\hspace{-0.1\linewidth}\rule[2ex]{1.1\linewidth}{2pt}}
+}
+
+%___________________________
+%===    ROC
+%------------------------------------------------------
+\newcommand*{\ROC}{\textbf{R \hspace{-2.5pt}\raisebox{-5pt}{\includegraphics[scale=0.75]{bc-loupe}} C \textbullet{}}}
+\NewEnviron{Roc}[1]%
+{
+    \settowidth{\Longueur}{\ROC }
+    \hspace{-\Longueur}
+    \hspace{-10pt}%
+            \begin{minipage}[t]{\Longueur}
+                \ROC
+            \end{minipage}%
+    \hspace{4pt}
+    \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=red,linearc=0.25,cornersize=absolute]{
+            \begin{minipage}[t]{0.975\textwidth}
+		{\itshape #1}
+		\begin{center}
+			\textcolor{\MaCouleur}{\rule{0.4\linewidth}{2pt}}
+		\end{center}
+		\Note{\hfill\includegraphics[scale=0.5]{bc-coeur}}
+                \BODY
+            \end{minipage}
+    }\par\bigskip
+}
+
+%%___________________________
+%%===    Remarque
+%%------------------------------------------------------
+%
+%\NewEnviron{Rmq}[1][]%
+%{
+%	\small\itshape
+%    \settowidth{\Longueur}{\small\itshape\textbf{Remarque#1 \textbullet{}} }
+%    \hspace{-\Longueur}\hspace{-6pt}\textbf{Remarque#1 \textbullet{} } \hspace{5pt}\BODY\par\nopagebreak[4]
+%    \textcolor{\MaCouleur!25}{\hspace{-0.1\linewidth}\rule[2ex]{1.1\linewidth}{2pt}}
+%}
+
+%___________________________
+%===    ALGO
+%------------------------------------------------------
+\newcommand*{\ALGO}{\textbf{Algorithme \textbullet{}}}
+\newenvironment{Alg}%[1][Engrenage_Transparent.eps]
+{\small
+\hspace*{-0.05\linewidth}
+\textcolor{\MaCouleur!25}{\rule{0.45\linewidth}{2pt}}\par
+\settowidth{\Longueur}{\ALGO }
+\hspace{-\Longueur}
+\hspace{-10pt}%
+	\begin{minipage}[t]{\Longueur}
+	\ALGO%\par
+	%\hspace{4em}\includegraphics[width=0.5cm]{#1}
+	\end{minipage}\hspace{10pt}
+	\begin{minipage}[t]{0.9\linewidth}
+	\color{blue}\vspace{-0.65\baselineskip}
+	\tt
+	\obeylines
+}
+{\end{minipage}\par\smallskip
+\setlength{\parindent}{0mm}
+\hspace*{-0.05\linewidth}
+\textcolor{\MaCouleur!25}{\rule{0.45\linewidth}{2pt}}
+\normalsize\par\bigskip}
+
+\newcommand*{\Variable}[1][]%
+	{\setlength{\parindent}{0mm}%
+	{\normalfont\textbf{Variable#1 :}}
+	\setlength{\parindent}{1em}
+	}
+
+\newcommand*{\Entree}[1][]%
+	{\par\medskip\setlength{\parindent}{0mm}%
+	{\normalfont\textbf{Entrée#1 :}}
+	\setlength{\parindent}{1em}
+	}
+	
+\newcommand*{\Initialisation}[1][]%
+	{\par\medskip\setlength{\parindent}{0mm}%
+	{\normalfont\textbf{Initialisation#1 :}}
+	\setlength{\parindent}{1em}
+	}
+	
+\newcommand*{\Traitement}%
+	{\par\medskip\setlength{\parindent}{0mm}%
+	{\normalfont\textbf{Traitement :}}
+	\setlength{\parindent}{1em}
+	}
+	
+\newcommand*{\Sortie}[1][]%
+	{\par\medskip\setlength{\parindent}{0mm}%
+	{\normalfont\textbf{Sortie#1 :}}
+	\setlength{\parindent}{1em}
+	}
+	
+\newcommand*\Tantque{\small\bsc{Tant que}\xspace}
+\newcommand*\FinTantque{\bsc{Fin Tant que}}
+\newenvironment{TantQue}[1]%
+	{
+		\Tantque #1\par
+		\addtolength{\parindent}{1em}
+	}
+	{
+		\addtolength{\parindent}{-1em}
+		\FinTantque
+	}
+
+\newcommand*\AlgoPour{\small\bsc{Pour}\xspace}
+\newcommand*\AlgoFinPour{\bsc{Fin Pour}}
+\newenvironment{Pour}[1]%
+	{
+		\AlgoPour #1\par
+		\addtolength{\parindent}{1em}
+	}
+	{
+		\addtolength{\parindent}{-1em}
+		\AlgoFinPour
+	}
+
+
+%___________________________
+%===    Illustration
+%------------------------------------------------------
+
+\NewEnviron{Ill}
+{
+    %\vspace*{-2.5\baselineskip}
+    \settowidth{\Longueur}{\textbf{Illustration \textbullet{}} }
+    \hspace{-\Longueur}
+    \hspace{-7pt}
+            {\begin{minipage}[c]{\Longueur}
+                \textbf{Illustration \textbullet{}}
+            \end{minipage}%
+            \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=\MaCouleur!25,linearc=0.05,cornersize=absolute]{
+            \begin{minipage}[c]{0.984\textwidth}
+                \begin{center}
+                    \BODY
+                \end{center}
+            \end{minipage}}\par\medskip}
+%        \psframebox[fillstyle=solid,fillcolor=\MaCouleur!25,linewidth=0.4pt,linecolor=\MaCouleur!25,framearc=0.1]{\BODY}
+
+}
+
+
+
+
+%___________________________
+%===    Pour écrire des notes dans la marge
+%===    À manipuler avec précaution car bricolage
+%------------------------------------------------------
+
+\newcommand\Note[2][0cm]{
+\hspace{-3.3cm}
+    \raisebox{#1}[0cm][0cm]{
+        \makebox[0cm][l]{
+            \parbox{2.65cm}{
+                \raggedright
+                \scriptsize #2
+                }
+            }
+        }
+\hspace{2.85cm}
+} 

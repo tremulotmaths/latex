@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.12pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Question a)}{2}{0}{1}
+\beamer@sectionintoc {2}{Question b)}{10}{0}{2}
+\beamer@sectionintoc {3}{Question c)}{12}{0}{3}
+\beamer@sectionintoc {4}{Avec la fonction $\qopname \relax o{ln}$}{19}{0}{4}

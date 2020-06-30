@@ -1,0 +1,201 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Info. chiffrée}
+\renewcommand\MaCouleur{Melon!150}
+
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+
+\begin{document}
+
+\chapter{\'Evolutions}\label{ch_evolution}
+
+\section{Variations}
+On considère une quantité ayant une valeur $y_1$, exprimée dans une unité de mesure. Cette quantité est modifiée et on lui affecte une nouvelle valeur $y_2$, exprimée dans la même unité de mesure.\par
+Il y a donc une variation entre $y_1$ et $y_2$.
+
+\subsection{Variation absolue}
+\begin{Defi}
+    La \ipt{variation absolue} est définie par $y_2 - y_1$.\par
+    Si ce nombre est positif, on parlera d'une \textbf{hausse} ou d'une \textbf{augmentation}. Sinon, on parlera d'une \textbf{baisse} ou d'une \textbf{diminution}.
+\end{Defi}
+
+\begin{Rmq}
+    La variation absolue est exprimée dans la même unité de mesure que la quantité.
+\end{Rmq}
+
+\begin{Exemple}[s]
+    \begin{description}
+        \item[En Essonne :] En $\NP{1990}$, l'Essonne comptait $\NP{1084824}$ habitants. En $\NP{2010}$, ont été comptabilisés $\NP{1215340}$ habitants.\par
+        La variation absolue est donc égale à : $\NP{1215340} - \NP{1084824} = \NP{130516}$. Cette variation est positive donc la population en Essonne a augmenté de $\NP{130516}$ habitants en $20$ ans.
+        \item[En France :] En $\NP{1990}$, la France comptait $\NP{58 040 660}$ habitants. En $\NP{2010}$, ont été comptabilisés $\NP{64 612 940}$ habitants.\par
+        La variation absolue est donc égale à : $\NP{64 612 940} - \NP{58 040 660} = \NP{6572280}$. Cette variation est positive donc la population en France a augmenté de $\NP{6572280}$ habitants en $20$ ans.
+    \end{description}
+\end{Exemple}
+
+\begin{Rmq}
+    \'Evidemment, la variation absolue du nombre d'habitants en France est plus importante que celle du nombre d'habitants en Essonne.\par Comment peut-on alors comparer ces deux évolutions ? En Essonne, l'évolution du nombre d'habitant correspond-elle à l'évolution du nombre d'habitants en France ?
+\end{Rmq}
+
+\subsection{Variation relative}
+\textbf{Bien comprendre le symbole \% :}
+Le symbole \% correspond simplement à une écriture simplifiée d'une fraction ayant pour dénominateur $100$.\medskip
+
+\begin{Exemple}[s]
+    $7,5\% = \frac{7,5}{100} = 0,075$.\par\medskip
+    $\frac{4}{10} = \frac{40}{100} = 40\%$.\par\medskip
+    $0,0125 = \frac{1,25}{100} = 1,25\%$.
+\end{Exemple}
+
+\begin{Rmq}[s]
+    \begin{itemize}
+        \item La variation relative est souvent exprimé à l'aide de pourcentage afin de faciliter les comparaisons.
+        \item Il est important de comprendre la signification de la variation relative afin d'éviter parfois certains calculs.
+    \end{itemize}
+\end{Rmq}\medskip
+
+\begin{Exemple}[s]
+    \begin{itemize}
+        \item Durant les soldes, un article coûte \EUR{$10$}. À la fin des soldes, l'article coûte \EUR{$20$}. Le prix a doublé : $t = 100\%$.\par
+        \item Dans une station service, le Sans Plomb 95 coûte \EUR{$1,52$}. Le lendemain, le prix affiché est de \EUR{$1,52$}. Le prix n'a pas changé donc : $t = 0\%$.
+        \item Ce matin, il y avait $60$ croissants à la boulangerie. À midi, il en restait $30$. Le nombre de croissants a diminué de moitié donc $t = -50\%$.
+    \end{itemize}
+\end{Exemple}\medskip
+
+\begin{Rmq}
+    Sauf indication contraire, on supposera jusqu'à la fin du cours que $y_1 \neq 0$.
+\end{Rmq}\medskip
+
+\begin{Defi}
+    La \ipt{variation relative} ou \ipt{taux d'évolution} $t$ est calculée à partir de la formule suivante : \[t = \frac{y_2 - y_1}{y_1}.\]
+    Une fois encore, un nombre positif indique une augmentation et un nombre négatif indique une diminution.
+\end{Defi}
+
+\begin{Exemple}[s]
+    \begin{description}
+        \item[En Essonne :] $t = \frac{\NP{1215340} - \NP{1084824}}{\NP{1084824}} = \frac{\NP{130516}}{\NP{1084824}}\approx \NP{0,1203}$.\par\medskip
+        Le taux d'évolution est donc environ égal à $\NP{0,1203}$ : la population a augmenté d'environ $12,03\%$.
+        \item[En France :] $t = \frac{\NP{64 612 940} - \NP{58 040 660}}{\NP{58 040 660}} = \frac{\NP{6572280}}{\NP{58 040 660}}\approx \NP{0,1132}$.\par\medskip
+        Le taux d'évolution est donc environ égal à $\NP{0,1132}$ : la population a augmenté d'environ $11,32\%$.\medskip
+        \item[Conclusion :] En Essonne, l'augmentation de population entre $\NP{1990}$ et $\NP{2010}$ a été légèrement plus importante qu'en France.
+    \end{description}
+\end{Exemple}
+
+\subsection{Lorsque l'on connaît le taux de variation}
+\begin{Exemple}
+    Un commerçant de meubles a vendu $125$ chaises ce mois-ci. Son contrat stipule qu'il doit augmenter ses ventes d'au moins $3\%$ chaque mois.\par
+    Combien doit-il vendre de chaises le mois prochain ?\medskip
+
+    On commence par calculer l'augmentation souhaitée en nombre de chaises :
+    \[3\% \text{ de } 125 = 3\% \times 125 = \frac{3}{100} \times 125 = \frac{3 \times 125}{100} = 3,75.\]
+    Le commerçant doit vendre $3,75$ chaises au minimum c'est-à-dire $4$ chaises.\par\smallskip
+    On calcule le nombre total : $125 + 4 = 129$. Le commerçant doit vendre au moins $129$ chaises le mois prochain.
+\end{Exemple}
+
+\begin{Rmq}
+    \textbf{Bilan de l'exemple :}\par
+    $y_1$ correspond au nombre de chaises ce mois-ci. Donc $y_1 = 125$.\par
+    On cherche la valeur $y_2$ sachant que le taux de variation est égal à $t = 3\% = 0,03$.\par\medskip
+    Pour trouver $y_2$, on calcule $3\%$ de $y_1$ en faisant $0,03 \times y_1$ puis on ajoute $y_1$. On obtient alors :
+    \[y_2 = y_1 + 0,03y_1 = y_1(1 + 0,03) = (1 + 0,03)y_1.\]
+\end{Rmq}\clearpage
+
+On applique le raisonnement précédent à un taux de variation quelconque égal à $t$ :\medskip
+
+\begin{Prop}
+    Lorsque l'on passe de la valeur $y_1$ à la valeur $y_2$ avec une variation relative égale à $t$, on a :
+    \[y_2 = (1 + t) \times y_1.\]
+\end{Prop}
+
+\begin{Demo}
+    On peut démontrer la propriété précédente en utilisant la démarche de l'exemple.\par
+    Utilisons plutôt la définition du taux de variation :
+    \[t = \frac{y_2 - y_1}{y_1} \qLRq t \times y_1 = y_2 - y_1 \qLRq t \times y_1 + y_1 = y_2 \qLRq (t + 1)\times y_1 = y_2.\]
+\end{Demo}
+
+\begin{Defi}
+    Le nombre $1 + t$ est appelé \ipt{c{\oe}fficient multiplicateur} de $y_1$ à $y_2$.\par
+    Un \coef supérieur à $1$ traduit une augmentation, inférieur à $1$ une diminution. S'il est égal à $1$, il n'y a pas de variation.
+\end{Defi}
+
+\begin{Exemple}
+    Dans une usine, le coût de production $c_1$ d'un objet est égal à \EUR{$\NP{2530}$}.\par
+    Afin d'augmenter les bénéfices, le gérant décide de diminuer le coût de production de $2\%$. Quel est alors le nouveau de coût de production $c_2$ ?\medskip
+
+    Puisqu'il s'agit d'une diminution, $t = -2\% = -0,02$ donc :
+    \[c_2 = (1+t)c_1 = (1 + (-0,02)) \times \NP{2530} = 0,98 \times \NP{2530} = \NP{2479,40} \text{ \euro}.\]
+\end{Exemple}
+
+\section{Taux d'évolution successifs}
+
+\begin{Exemple}
+    Dans une commune, le maire décide d'augmenter les impôts locaux de $5\%$.\par
+    Ses conseillers lui suggèrent \textit{d'y aller en douceur} en augmentant les impôts seulement de $2\%$ la première année puis de $3\%$ la seconde année.\par
+    Le maire doit-il suivre l'avis de ses conseillers ?
+\end{Exemple}\medskip
+
+Dans l'exemple précédent, la quantité (impôts) augmente de $y_1$ à $y_2$ puis de $y_2$ à $y_3$. On souhaite connaître le taux de variation $t$ de $y_1$ à $y_3$. Par définition, $t = \frac{y_3 - y_1}{y_1}$. Ici, on ne peut pas utiliser cette définition puisque les valeurs $y_1$ et $y_3$ sont inconnues. On a alors la propriété suivante :\medskip
+
+\begin{Prop}
+    On considère une quantité qui évolue de $y_1$ à $y_2$ puis de $y_2$ à $y_3$ avec $y_2 \neq 0$.\par
+    On appelle $t_1$ le taux d'évolution de $y_1$ à $y_2$, $t_2$ le taux d'évolution de $y_2$ à $y_3$.\par
+    Le taux d'évolution global $t$ permettant de passer de $y_1$ à $y_3$ est tel que :\[1+t = (1 + t_1)(1 + t_2).\]
+\end{Prop}
+
+\begin{Rmq}
+    Les valeurs $t_1$, $t_2$ et $t$ peuvent évidemment être négatives.
+\end{Rmq}
+
+\begin{Demo}
+    On sait que $y_3 = (1+t_2) \times y_2$ et $y_2 = (1+t_1)\times y_1$. De plus, $y_3 = (1+t)y_1$. Donc :
+    \[y_3 = (1+t_2) \times y_2 = \underbrace{(1 + t_2) \times (1 + t_1)}_{= 1 + t} \times y_1.\]
+\end{Demo}
+
+\begin{Exemple}
+    Calculons la véritable augmentation des impôts prévus par les conseillers :
+    \[1 + t = (1+0,02) \times (1+0,03) = \NP{1,0506}.\]
+    L'augmentation sera alors de $5,06\%$ au lieu de $5\%$.
+\end{Exemple}
+
+\section{Taux d'évolution réciproque}
+
+\begin{Exemple}
+    Afin de faire des économies, un patron décide de baisser les salaires de $4\%$.\par
+    Le mois suivant, les ouvriers entrent en grève pour retrouver leur ancien salaire. Le patron accepte et décide alors d'augmenter les salaires de $4\%$ pour qu'ils retrouvent leur valeur d'origine.\par
+    La grève doit-elle continuer ?
+\end{Exemple}
+
+\begin{Prop}
+    On considère une quantité de valeur $y_1 \neq 0$ qui passe à la valeur $y_2 \neq 0$ avec un taux égal à $t$.\par
+    Afin de passer de $y_2$ à $y_1$, il faut utiliser le coefficient $t'$ tel que : \[1 + t' = \frac{1}{1 + t}.\]
+\end{Prop}
+
+\begin{Rmq}
+    On rappelle que $t$ et $t'$ peuvent être négatifs. De plus, on a bien $t \neq -100\%$ puisque $y_2 \neq 0$.
+\end{Rmq}
+
+\begin{Demo}
+    On a les égalités suivantes : $y_2 = (1 + t)y_1$ et $y_1 = (1+t')y_2$ d'où :
+    \[\begin{split}
+        y_2 = (1 + t)y_1 = (1+t)(1+t')y_2 &\qLRq 1 = (1+ t)(1+t') \quad (\text{puisque }y_2 \neq 0)\\
+                                                           &\qLRq 1+t' = \frac{1}{1+t} \quad (\text{puisque } t \neq -1).
+    \end{split}\]
+\end{Demo}
+
+\begin{Exemple}
+    Le taux appliqué par le patron est égal à $(1 - 0,04)(1 + 0,04) =  \NP{0,9984}$ soit $99,84\%$ ce qui signifie qu'au final, les salaires ont baissé de $0,16\%$.\par
+    Il faut donc trouver le taux de variation réciproque $t'$ sachant que $t = -0,04$ et que donc $1+t = 0,96$ :
+    \[1+t' = \frac{1}{1+t} \qLRq 1+t' = \frac{1}{0,96} \qLRq t' = \frac{1}{0,96} - 1 \approx \NP{1,0417} \quad \text{donc} \quad \pfr{t' \approx 4,17\%}.\]
+\end{Exemple}
+
+\end{document}

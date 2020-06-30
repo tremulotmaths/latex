@@ -1,0 +1,57 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+\usepgflibrary{patterns}
+
+
+\begin{document}
+
+\TitreActivite{i.3}{Indicateurs de dispersion\par Comparer deux séries statistiques}
+
+Une usine produit des pièces dont le diamètre doit être de $20~mm$.\par
+Pour cela, elle utilise deux machines différentes.\par
+Après production de $\NP{1000}$ pièces par machine, on effectue une vérification et on obtient le tableau suivant :
+
+\begin{center}
+\renewcommand\arraystretch{1.5}
+    \begin{tabularx}{0.75\linewidth}{|>\bfseries m{2cm}||*{9}{X|}}
+        \hline
+            Diamètre\par
+            en $mm$ & $\NP{19,6}$ & $\NP{19,7}$ & $\NP{19,8}$ & $\NP{19,9}$ & $\NP{20}$ & $\NP{20,1}$ & $\NP{20,2}$ & $\NP{20,3}$ & $\NP{20,4}$\\
+        \hline
+            Nombre\par Machine A & $24$ & $70$ & $100$ & $180$ & $220$ & $170$ & $130$ & $68$ & $38$ \\
+        \hline
+            Nombre\par Machine B & $31$ & $91$ & $130$ & $159$ & $166$ & $158$ & $116$ & $70$ & $79$ \\
+        \hline
+    \end{tabularx}
+\end{center}\medskip
+
+À partir de ces données, le gérant de l'usine veut comparer la fiabilité des deux machines.
+
+\begin{enumerate}
+    \item Pour chaque machine, calculer le diamètre moyen puis déterminer une médiane.\par
+    Quelle conclusion peut-on en tirer ?
+    \item Le gérant a fait réaliser le diagramme en bâton ci-dessous. Quelle remarque peut-on faire ?
+        \begin{center}
+            \begin{tikzpicture}[scale=1]
+                \begin{scope}[yscale=0.025,xscale=12]
+                    \draw[gray,very thin] (19.5,0) grid[xstep=0.1,ystep=20] (20.501,240);
+                    \foreach \x/\y in {19.6/24,19.7/70,19.8/100,19.9/180,20/220,20.1/170,20.2/130,20.3/68,20.4/38} \draw[pattern=horizontal lines] ({\x-0.04},0) rectangle ++(0.4mm,\y) ;
+                    \foreach \x/\y in {19.6/31,19.7/91,19.8/130,19.9/159,20/166,20.1/158,20.2/116,20.3/70,20.4/79} \draw[pattern = north east lines] (\x,0) node[below] {\tiny $\NP{\x}$} rectangle ++(0.4mm,\y) ;
+                    \draw[->,>=latex] (19.5,0) -- (20.5,0) node[below right=-2.5pt] {\scriptsize diamètre} node[below right=5pt] {\scriptsize en $mm$};
+                    \draw[->,>=latex] (19.5,0) -- (19.5,240) node[left] {\scriptsize effectif};
+                    \foreach \y in {0,20,...,220} \draw (19.5,\y) node[left] {\tiny $\NP{\y}$};
+                    \draw[pattern=horizontal lines] (20.2,220) rectangle ++(0.1,20) ; \draw (20.3,230) node[right,fill=white] {\scriptsize Machine A};
+                    \draw[pattern=north east lines] (20.2,180) rectangle ++(0.1,20) ; \draw (20.3,190) node[right,fill=white] {\scriptsize Machine B};
+                \end{scope}
+            \end{tikzpicture}
+        \end{center}
+    \item Pour chaque machine, déterminer l'intervalle $\intervalleff{\mtc Q_1}{\mtc Q_3}$ où $\mtc Q_1$ et $\mtc Q_3$ représentent respectivement le premier et le troisième quartile.\par Quel pourcentage de pièces appartiennent à cet intervalle ? Justifier en utilisant les définitions des quartiles.
+    \item Quelle conclusion peut-on apporter ?
+\end{enumerate}
+
+
+
+\end{document} 

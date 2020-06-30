@@ -1,0 +1,754 @@
+% Ceci est une démo des possibilités
+% offertes par Latex pour changer le
+% style d'un document structuré sans
+% toucher au document lui-même.
+%
+% Auteur : Bonave
+%
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+% \BEGIN{A LIRE ATTENTIVEMENT}
+%
+% Dans ce qui suit, pour la démo, l'idée est
+% de compiler une première fois, le fichier avec
+% les lignes qui suivent sous la forme :
+%      \usepackage{style1}
+%      %\usepackage{style2}
+%      %\usepackage{style3}
+%      %...
+%
+% puis de recommencer l'opération, mais cette fois
+% en les mettant sous la forme :
+%      %\usepackage{style1}
+%      \usepackage{style2}
+%      %\usepackage{style3}
+%      %...
+%
+% etc.
+%
+% Ne pas oublier de compiler trois fois, comme indiqué
+% dans le résumé.
+% IMPORTANT : Effacer le fichier "demo.aux" a chaque
+% installation d'un nouveau style.
+%
+% \END{A LIRE ATTENTIVEMENT}
+%
+% Jeter un coup d'oeil à chaque "package"
+% style?.sty pour des explications propres
+% au package.
+%
+%\usepackage{Style1}
+%\usepackage{Style2}
+\usepackage{Style3}
+%\usepackage{Style4}
+
+
+\oddsidemargin 0cm
+\textwidth 16cm
+\textheight 23cm
+
+\begin{document}
+
+\author{Bonave}
+\title{D\'{e}mo \LaTeX}
+\date{02/02/2002 }
+\maketitle
+
+\begin{abstract}
+Ceci est un exemple de fichier \LaTeX. A cause des r\'{e}f\'{e}rences crois\'{e}es
+et de la bibliographie, il faut le compiler plusieurs fois pour que \c{c}a
+marche : v\'{e}rifier la pr\'{e}sence de signes ``??'' dans l'affichage, et
+recompiler tant qu'ils sont pr\'{e}sents. A priori 3 compilations sont
+n\'{e}cessaires et suffisantes.
+\end{abstract}
+
+\part{Ceci est un titre moche.}
+
+\section{Les chiens aboient...}
+
+Introduisons une sous-section :
+
+\subsection{Ouah-ouah !}
+
+En \LaTeX, on peut mettre du texte avec des maths \`{a} l'int\'{e}rieur, comme
+$\int_{0}^{1}\sin x\,dx$ par exemple.
+
+Mais aussi des \'{e}quations, num\'{e}rot\'{e}es ou non, ou avec un
+num\'{e}ro ``custom'', et \'{e}ventuellement labellis\'{e}es pour rappeler
+leur num\'{e}ro plus tard. Ici les \'{e}quations sont s\'{e}par\'{e}es ;
+plus loin, elles seront group\'{e}es.
+\[
+\sum_{k=1}^{n}k=\frac{n(n+1)}{2}
+\]
+\begin{equation}
+\sum_{k=1}^{n}k^{2}=\frac{n(n+1)(2n+1)}{6}
+\end{equation}
+\begin{equation}
+\sum_{k=1}^{n}k^{3}=\frac{n^{2}(n+1)^{2}}{4}  \label{sommek3}
+\end{equation}
+\begin{equation}
+\sum_{k=1}^{n}k^{4}=\frac{n\left( n+1\right) \left( 2n+1\right) \left(
+3n^{2}+3n-1\right) }{30}
+\tag{\ref{sommek3}$^{\prime }$}  \label{sommek4}
+\end{equation}
+
+L'\'{e}galit\'{e} (\ref{sommek3}) est courte, mais l'\'{e}galit\'{e} (\ref
+{sommek4}) est longue.
+
+Voici un th\'{e}or\`{e}me, suivi d'une preuve, d'un corollaire, d'une
+proposition, entrecoup\'{e}s de remarques et d'exemples :
+
+\begin{theorem}[th\'eor\`eme fondamental]
+Quand le chien Till fait des cabrioles, il ne bave pas.
+\end{theorem}
+
+\proof
+En effet, quand Till fait l'beau, il ne pleut pas.%
+\endproof
+
+Du texte pour faire du remplissage : quand un pitbull mord, il ne l\^{a}che
+pas prise. Ceci explique pourquoi les mordus de pitbulls le restent,
+malgr\'{e} tout le mal que font les pitbulls.
+
+\begin{remark}
+Tout ce qui pr\'{e}c\`{e}de est encore valable si le temps est mitig\'{e}.
+\end{remark}
+
+Encore du remplissage. Ce n'est pas toujours facile de trouver
+l'inspiration, mais avec ce paragraphe, j'esp\`{e}re bien arriver \`{a} mes
+fins : faire en sorte qu'il fasse plusieurs lignes... En g\'{e}n\'{e}ral,
+quand les paragraphes ne font qu'une ligne, l'indentation a une forte
+tendance \`{a} la mochet\'{e}.
+
+\begin{corollary}
+Quand il est au travail, Otto Mobile le tonnelier n'a pas \`{a} nettoyer ses
+fringues toutes les cinq minutes.
+\end{corollary}
+
+\proof
+On rappelle que Till est le chien d'Otto. On v\'{e}rifie ais\'{e}ment que
+quand l'Otto Mobile fait des tonneaux avec le chien, celui-ci fait
+forc\'{e}ment des cabrioles. Par cons\'{e}quent, les v\^{e}tements d'Otto ne
+sont pas couverts de bave.%
+\endproof
+
+\subsection{Grrr !}
+
+L'objectif de tous ces changements de section et de sous-section est de
+constater leur effet sur les diverses num\'{e}rotations automatiques.
+
+\begin{example}
+Par exemple, on pourra examiner avec attention le num\'{e}ro de la
+proposition suivante.
+\end{example}
+
+\begin{proposition}
+Till bave rarement.
+\end{proposition}
+
+\proof
+D'apr\`{e}s Richard Strauss (\cite{till}), Till est espi\`{e}gle. Il fait
+donc souvent des cabrioles.%
+\endproof
+
+Consid\'{e}rer aussi les \'{e}quations qui vont suivre :
+\begin{equation}
+\sum_{k=1}^{n}k^{5}=\frac{n^{2}\left( n+1\right) ^{2}\left(
+2n^{2}+2n-1\right) }{12}
+\end{equation}
+
+\section{...mathons-les !}
+
+On n'est pas oblig\'{e} d'aller dans une sous-section pour mettre des choses
+int\'{e}ressantes :
+
+\begin{lemma}
+\label{lempp}Soit $p$ un entier (strictement) positif. Alors il existe un
+unique polyn\^{o}me $P_{p}\in \mathbf{C}[X]$ tel que pour tout entier
+positif $n$,
+\begin{equation}
+\sum_{k=1}^{n}k^{p}=P_{p}(n)  \label{defpp}
+\end{equation}
+$P$ est \`{a} coefficients rationnels, de degr\'{e} $p+1$ et de coefficient
+dominant $1/(p+1)$, v\'{e}rifie l'\'{e}galit\'{e} $P(0)=0$ et les
+\'{e}quations fonctionnelles suivantes :
+\begin{gather}
+P_{p}(X+1)-P_{p}(X)=(X+1)^{p}  \label{ef1} \\
+P_{p}(-X-1)=(-1)^{p+1}P_{p}(X)  \label{ef2}
+\end{gather}
+\end{lemma}
+
+\begin{remark}
+On peut aussi s'amuser \`{a} aligner les \'{e}quations sur leur signe
+``\'{e}gale'' et m\^{e}me les \'{e}carter comme suit :
+\end{remark}
+
+\begin{align}
+P_{p}(X+1)-P_{p}(X)& =(X+1)^{p}  \nonumber \\[0.4cm]
+P_{p}(-X-1)& =(-1)^{p+1}P_{p}(X)
+\end{align}
+
+\proof[Preuve du lemme]
+Si deux polyn\^{o}mes conviennent, ils co\"{i}ncident sur les entiers
+positifs, donc sont \'{e}gaux~; ceci montre l'unicit\'{e}.
+
+Cherchons un polyn\^{o}me $P_{p}=a_{0}+a_{1}X+\cdots +a_{p+1}X^{p+1}$ qui
+v\'{e}rifie l'\'{e}galit\'{e} $P_{p}(0)=0$ et l'\'{e}quation fonctionnelle (%
+\ref{ef1}). Pour cela, on doit avoir $a_{0}=0$ et :
+\begin{align*}
+\sum_{k=0}^{p}\mathsf{C}_{p}^{k}X^{k}& =\sum_{k=0}^{p+1}a_{k}\left(
+\sum_{l=0}^{k}\mathsf{C}_{k}^{l}X^{l}-X^{k}\right) \\
+& =\sum_{k=1}^{p+1}a_{k}\sum_{l=0}^{k-1}\mathsf{C}_{k}^{l}X^{l} \\[0.25cm]
+\sum_{l=0}^{p}\mathsf{C}_{p}^{l}X^{l}& =\sum_{l=0}^{p}\left(
+\sum_{k=l+1}^{p+1}a_{k}\mathsf{C}_{k}^{l}\right) X^{l}
+\end{align*}
+Cette derni\`{e}re \'{e}galit\'{e} donne lieu \`{a} un syst\`{e}me de $p+1$
+\'{e}quations en les inconnues $a_{p+1},\ldots ,a_{1}$, \`{a} savoir $%
+1=a_{p+1}.(p+1)$ (pour $l=p$), $\mathsf{C}_{p}^{p-1}=a_{p}\mathsf{C}%
+_{p}^{p-1}+a_{p+1}\mathsf{C}_{p+1}^{p-1}$ (pour $l=p-1$), $\ldots $ , et $%
+\mathsf{C}_{p}^{0}=a_{1}\mathsf{C}_{1}^{0}+a_{2}\mathsf{C}_{2}^{0}+\cdots
++a_{p+1}\mathsf{C}_{p+1}^{0}$ (pour $l=0$) ; on voit que ce syst\`{e}me se
+r\'{e}sout successivement en $a_{p+1}$, $a_{p}$, $\ldots $ , $a_{1}$. Il
+existe donc un polyn\^{o}me $P_{p}$ unique, de degr\'{e} au plus $p+1$,
+v\'{e}rifiant $P_{p}(0)=0$ et l'\'{e}quation fonctionnelle (\ref{ef1}). Ce
+polyn\^{o}me est \`{a} coefficients rationnels, de degr\'{e} $p+1$, et de
+coefficient dominant $a_{p+1}=1/(p+1)$. L'\'{e}quation (\ref{ef1}) permet
+ensuite de montrer par r\'{e}currence sur $n$ que pour tout entier positif $%
+n $ on a : $P_{p}(n)=\sum_{k=1}^{n}k^{p}$. On trouve aussi : $%
+P_{p}(-1+1)-P_{p}(-1)=(-1+1)^{p}=0$, donc $P_{p}(-1)=0$.
+
+Soit $Q$ le polyn\^{o}me $(-1)^{p+1}P_{p}(-X-1)$. Il est de degr\'{e} $p+1$,
+et $Q(0)=(-1)^{p+1}P_{p}(-1)=0$. On a \'{e}galement :
+\begin{align*}
+Q(X+1)-Q(X)& =(-1)^{p}\left[ P_{p}(-X-1)-P_{p}(-X-2)\right] \\
+& =(-1)^{p}(-X-2+1)^{p} \\
+& =(X+1)^{p}
+\end{align*}
+Donc $Q=P_{p}$, ce qui prouve l'\'{e}quation fonctionnelle (\ref{ef2}).%
+\endproof
+
+\begin{corollary}
+$P_{p}(0)=P_{p}(-1)=0$ ; si $p$ est pair, $P_{p}(-1/2)=0$.
+\end{corollary}
+
+\proof
+Tout a \'{e}t\'{e} vu, sauf l'annulation en $-1/2$, laquelle se d\'{e}duit
+directement de l'\'{e}quation fonctionnelle (\ref{ef2}). On remarquera que
+cette \'{e}quation signifie que le polyn\^{o}me $P_{p}(X-1/2)$ est pair
+quand $p$ est impair, impair quand $p$ est pair.%
+\endproof
+
+Voici deux sous-sections, juste pour le plaisir.
+
+\subsection{Une sous-section avec des num\'{e}rotations.}
+
+\begin{enumerate}
+\item  Un item.
+
+\begin{enumerate}
+\item  Un autre.
+
+\item  Encore un.
+
+\begin{enumerate}
+\item  Et un autre.
+
+\item  Un autre encore.
+
+\item
+
+\begin{enumerate}
+\item  Toujours un item.
+
+\item[$\dagger $.]  Tiens, changeons un peu de signe.
+
+\item  Et revenons \`{a} nos moutons.
+\end{enumerate}
+
+\item  Encore...
+\end{enumerate}
+
+\item  Ca devient lourd.
+\end{enumerate}
+
+\item  Tr\`{e}s lourd.
+
+\begin{enumerate}
+\item  Mais bon, il faut faire avec.
+
+\item  Faisons donc avec.
+\end{enumerate}
+
+\item  Allez, un petit dernier.
+\end{enumerate}
+
+Bien. Changeons de sous-section.
+
+\subsection{Une autre sans num\'{e}ro mais avec des tables.}
+
+\begin{itemize}
+\item  Un item.
+
+\begin{itemize}
+\item  Un autre.
+
+\item  Encore un.
+
+\begin{itemize}
+\item  Et un autre.
+
+\item  Un autre encore.
+
+\item
+
+\begin{itemize}
+\item  Toujours un item.
+
+\item  Bref.
+\end{itemize}
+
+\item  Et encore.
+\end{itemize}
+
+\item  Ca devient lourd.
+\end{itemize}
+
+\item  Tr\`{e}s lourd.
+
+\begin{itemize}
+\item  Mais bon, il faut faire avec.
+
+\item  Faisons donc avec.
+\end{itemize}
+
+\item  Allez, une petit table align\'{e}e au milieu : $\left\{
+\begin{array}{lcr}
+zlurp & blurps & glurp \\
+r\hat{a} & lov & ely
+\end{array}
+\right. $.
+
+\item  Et une autre align\'{e}e en haut : $
+\begin{array}[t]{rcl}% t="top", l="left", c="center", r="right"
+f:\mathbf{R}[X] & \rightarrow  & \mathbf{R}[X]/(X^{2}+1) \\
+P & \mapsto  & \overline{P}
+\end{array}
+$.
+\end{itemize}
+
+Bien. Nous allons pouvoir changer de \emph{partie}, ce qui peut avoir des
+effets d\'{e}vastateurs.
+
+\part{Sissi hait un titre moche.}
+
+\section{Comtesse.}
+
+\begin{proposition}
+Sissi n'\'{e}tait pas comtesse.
+\end{proposition}
+
+\proof
+Si 6 comtesses scient 606 pens\'{e}es, c'est sans une pens\'{e}e pour chaque
+comtesse. Or, Sissi aimait tous ses semblables (\cite{sis1}).%
+\endproof
+
+\section{Reine.}
+
+\begin{proposition}
+\label{propreine}Sissi n'\'{e}tait pas reine.
+\end{proposition}
+
+\proof
+Sissi \'{e}tait marraine, pas reine. De plus, six sir\`{e}nes et deux pots
+lisses, c'est tr\`{e}s bruyant.%
+\endproof
+
+\begin{remark}
+Souvent un homme aimerait avoir six sir\`{e}nes \`{a} ses c\^{o}t\'{e}s ; il
+doit cependant songer aux risques de noyade (\cite{ody}) :
+\begin{equation}
+\nu \int 6.sir\grave{e}ne=O\left( \frac{mera}{\acute{e}}\right)
+\end{equation}
+\end{remark}
+
+Voici un petit plaisir en passant, qui illustre encore le lemme \ref{lempp}.
+$:$%
+\begin{equation}
+\sum_{k=1}^{n}k^{6}=\frac{n\left( n+1\right) \left( 2n+1\right) \left(
+3n^{4}+6n^{3}-3n+1\right) }{42}
+\end{equation}
+
+\section{Imp\'{e}ratrice.}
+
+\subsection{Un p\`{e}re.}
+
+Non, Sissi n'\'{e}tait pas un p\`{e}re. Voir la preuve de la proposition \ref
+{propreine}.
+
+\subsection{Actrice.}
+
+Oui, c'est certain, Sissi \'{e}tait actrice. Voir tous les films avec Sissi (%
+\cite{sis1}, \cite{sis2}, etc.).
+
+\subsection{Conclusion.}
+
+\begin{itemize}
+\item  Dans certains films avec Sissi, elle \'{e}tait imp\'{e}ratrice (\cite
+{sis2}). Dans d'autres (\cite{sis1}), non.
+
+\item  Sissi n'\'{e}tait pas un p\`{e}re, mais \'{e}tait actrice.
+
+\item  Sissi hait un titre moche.
+\end{itemize}
+
+Au vu de ces indices r\'{e}v\'{e}lateurs, nous formulons donc la conjecture
+suivante, et nous laissons le soin de la d\'{e}montrer, aux \emph{%
+g\'{e}n\'{e}rations futures} :
+
+\begin{conjecture}
+Sissi \'{e}tait \`{a} demi imp\'{e}ratrice.
+\end{conjecture}
+
+\begin{thebibliography}{Hom-830}
+\bibitem[Hom-830]{ody}  Hom\`{e}re, \emph{L'Odyss\'{e}e}, circa -830.
+
+\bibitem[Sis1955]{sis1}  E. Marischka, \emph{Sissi}, 1955.
+
+\bibitem[Sis1956]{sis2}  E. Marischka, \emph{Sissi Imp\'{e}ratrice}, 1956.
+
+\bibitem[Str1895]{till}  R. Strauss, \emph{Till Eulenspiegel (Till
+l'Espi\`{e}gle)}, 1895.
+\end{thebibliography}
+
+\end{document}
+
+
+% Le style le plus basique possible.
+% C'est celui de thmsb.sty basé sur les
+% environnements "théorème" de amsthm.sty
+%
+% Rien n'est changé aux numérotations standard.
+% Les titres seront en anglais.
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+\newtheorem{definition}{Definition}
+% Chaque type de "théorème" défini ci-dessus
+% a sa propre numérotation, indépendante de tout
+% changement de section, partie, etc.
+
+
+% Voici les modifications apportées par
+% ce style au style "style1.sty" :
+%  - tous les mots anglais fournis en
+%    standard et apparaissant dans le
+%    résultat sont remplaçés par leurs
+%    équivalents français ;
+%  - les environnements "theorem", "corollary",
+%    "lemma", "proposition", "axiom" et
+%    "definition" partagent la
+%    même numérotation ;
+%  - les environnements "remark" et "example"
+%    partagent leur numérotation propre, affichée
+%    en caractères romains;
+%  - l'environnement "conjecture" n'a plus de
+%    numérotation.
+%
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{corollary}[theorem]{Corollaire}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{axiom}[theorem]{Axiome}
+\newtheorem{remark}{Remarque}
+\newtheorem{example}[remark]{Exemple}
+\newtheorem{exercise}{Exercice}
+\newtheorem{definition}[theorem]{D\'efinition}
+% Encore une fois, ces numérotations sont
+% indépendantes de tout changement de
+% section, partie, etc.
+%
+\renewcommand\theremark{\Roman{remark}}
+%
+% lorsqu'un environnement numéroté appelé
+% "zzz" est créé, les deux "commandes"
+% (en fait, variables) \thezzz et \c@zzz
+% sont créées en même temps. \c@zzz désigne
+% le numéro. \thezzz désigne l'apparence
+% que devra prendre ce numéro.
+% exemple tiré de article.cls:
+%    \renewcommand\thesubsection{\thesection.\@arabic\c@subsection}
+%    L'apparence du numéro d'une sous-section est l'ensemble
+%    "apparence numéro de section"+"."+"numéro de sous-section en
+%    chiffres arabes"
+% \Roman{remark} est un alias pour \@Roman\c@remark
+%
+\def\partname{Partie}
+\def\proofname{Preuve}
+\def\abstractname{R\'{e}sum\'{e}}
+\def\refname{R\'{e}f\'{e}rences.}
+
+
+% Dans le style style3.sty, on conserve à peu près
+% les mêmes principes que dans style2.sty pour la
+% numérotation, à ceci près que :
+%  - désormais, la numérotation des théorèmes
+%    est remise à zéro à chaque changement de section ;
+%  - les numéros de remarques/exemples sont affichés
+%    avec des lettres majuscules, et sont remis à zéro
+%    à chaque changement de partie ;
+%  - les numéros de section prennent le format "I.1"
+%    et les numéros de sous-section le format "1"
+%
+% La vraie nouveauté vient de la définition de
+% nouvelles apparences pour les théorèmes, en
+% utilisant la commande \newtheoremstyle
+%
+% Cette commande admet 9 paramètres :
+%  #1 : le nom donné au nouveau style
+%  #2 : l'espace laissé avant un théorème
+%  #3 : l'espace laissé après
+%  #4 : la police du corps du théorème
+%  #5 : l'indentation
+%  #6 : la police de l'en-tête
+%  #7 : la ponctuation après l'en-tête
+%  #8 : l'espace laissé après l'en-tête
+%       (peut être \newline)
+%  #9 : XXX thm head spec
+% Dans ce qui précède, j'emploie le terme
+% 'théorème' mais il peut s'agir du style d'une
+% remarque ou de tout autre paragraphe ayant un
+% format qui s'y prête.
+% Des explications détaillées se trouvent dans le
+% fichier amsthm.dtx du package standard LaTeX2e.
+%
+% On commence par définir lesdits nouveaux styles
+%
+% Tout d'abord, un style pour les théorèmes, etc.
+%
+\newtheoremstyle{bona_thm}%
+  {9pt}{9pt}{\slshape}{}{\bfseries}{.}{.5em}{}
+%
+% Ensuite un style pour les remarques
+%
+\newtheoremstyle{bona_rem}%
+  {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{.5em}{}
+%
+% Enfin, un style pour les exemples
+%
+\newtheoremstyle{bona_exp}%
+  {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{\newline}{}
+%
+% On utilise ensuite ces définitions grâce à la
+% commande \theoremstyle{XX}. Lorsqu'elle précède une
+% série de \newtheorem, tous les environnements définis
+% seront de ce style.
+%
+\theoremstyle{bona_thm}
+%
+% Dans la ligne suivante, remarquer le mot-clé section
+% en fin de ligne, qui indique que la numérotation
+% "theorem" doit être remise à zéro à chaque changement
+% de section.
+%
+\newtheorem{theorem}{Th\'eor\`eme}[section]
+\newtheorem{corollary}[theorem]{Corollaire}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{axiom}[theorem]{Axiome}
+\newtheorem{definition}[theorem]{D\'efinition}
+\theoremstyle{bona_rem}
+\newtheorem{remark}{Remarque}[part]
+\theoremstyle{bona_exp}
+\newtheorem{example}[remark]{Exemple}
+%
+% Nous trouvons dans article.cls :
+% \newcounter {part}
+% \newcounter {section}
+% \newcounter {subsection}[section]
+% \newcounter {subsubsection}[subsection]
+% \newcounter {paragraph}[subsubsection]
+% \newcounter {subparagraph}[paragraph]
+% Ceci définit le schéma de numérotation des
+% différents types de structure. Par exemple,
+% le numéro de 'subsection' est remis à zéro
+% quand on change de 'section'. On remarquera
+% que les numéros de 'section' ne sont pas remis
+% à zéro quand on change de 'part' (constater cet
+% effet sur le résultat avec style2, par exemple).
+% Si on veut changer ce comportement, il faut
+% reformuler le compteur 'section'.
+\@newctr section[part]
+%
+% * Apparences des numéros *
+%
+\renewcommand\theremark
+  {\thepart.\Alph{remark}}
+\renewcommand\thesection
+  {\thepart.\arabic{section}}
+\renewcommand\thesubsection
+  {\arabic{subsection}}
+%
+% Une petite magouille pour mettre des points
+% après les numéros des subsections mais pas
+% des sections (par exemple)
+%
+\def\sectionpt{\quad}
+\def\subsectionpt{.\hspace{.5em}}
+\def\@seccntformat#1{\csname the#1\endcsname\csname #1pt\endcsname}
+%
+% la définition originale était :
+% \def\@seccntformat#1{\csname the#1\endcsname\quad}
+%
+% * Titres *
+%
+\def\partname{Partie}
+\def\proofname{Preuve}
+\def\abstractname{R\'{e}sum\'{e}}
+\def\refname{R\'{e}f\'{e}rences.}
+
+
+% La commande suivante permet de réduire la taille du
+% texte d'un environnement de type théorème en ajoutant
+% une marge gauche (paramètre 1) et une marge droite
+% (paramètre 2). À employer juste avant l'indication de
+% la police du corps du théorème (paramètre 4 de
+% \newtheoremstyle)
+\def\leftrightmargin#1#2{%
+ \linewidth\textwidth%
+ \advance\linewidth -#1
+ \advance\linewidth -#2\relax
+ \@totalleftmargin #1
+ \parshape\@ne\@totalleftmargin\linewidth
+}
+% J'ai mis une indentation de première ligne
+% négative pour qu'on voie se qui se passe
+% Remarque : c'est dans le paramètre 4 qu'on peut
+% insérer toutes les commandes de formats (caractères,
+% paragraphe, etc.).
+\newtheoremstyle{bonathm}%
+  {9pt}{9pt}{\leftrightmargin{3cm}{2cm}\slshape}{-1cm}{\bfseries}{.}{.5em}{}
+%
+% Ensuite un style pour les remarques
+%
+\newtheoremstyle{bona_rem}%
+  {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{.5em}{}
+%
+% Enfin, un style pour les exemples
+%
+\newtheoremstyle{bona_exp}%
+  {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{\newline}{}
+%
+% On utilise ensuite ces définitions grâce à la
+% commande \theoremstyle{XX}. Lorsqu'elle précède une
+% série de \newtheorem, tous les environnements définis
+% seront de ce style.
+%
+\theoremstyle{bonathm}
+%
+% Dans la ligne suivante, remarquer le mot-clé section
+% en fin de ligne, qui indique que la numérotation
+% "theorem" doit être remise à zéro à chaque changement
+% de section.
+%
+\newtheorem{theorem}{Th\'eor\`eme}[section]
+\newtheorem{corollary}[theorem]{Corollaire}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{axiom}[theorem]{Axiome}
+\newtheorem{definition}[theorem]{D\'efinition}
+\theoremstyle{bona_rem}
+\newtheorem{remark}{Remarque}[part]
+\theoremstyle{bona_exp}
+\newtheorem{example}[remark]{Exemple}
+%
+% Nous trouvons dans article.cls :
+% \newcounter {part}
+% \newcounter {section}
+% \newcounter {subsection}[section]
+% \newcounter {subsubsection}[subsection]
+% \newcounter {paragraph}[subsubsection]
+% \newcounter {subparagraph}[paragraph]
+% Ceci définit le schéma de numérotation des
+% différents types de structure. Par exemple,
+% le numéro de 'subsection' est remis à zéro
+% quand on change de 'section'. On remarquera
+% que les numéros de 'section' ne sont pas remis
+% à zéro quand on change de 'part' (constater cet
+% effet sur le résultat avec style2, par exemple).
+% Si on veut changer ce comportement, il faut
+% reformuler le compteur 'section'.
+\@newctr section[part]
+%
+% * Apparences des numéros *
+%
+\renewcommand\theremark
+  {\thepart.\Alph{remark}}
+\renewcommand\thesection
+  {\thepart.\arabic{section}}
+\renewcommand\thesubsection
+  {\arabic{subsection}}
+%
+% Une petite magouille pour mettre des points
+% après les numéros des subsections mais pas
+% des sections (par exemple)
+%
+\def\sectionpt{\quad}
+\def\subsectionpt{.\hspace{.5em}}
+\def\@seccntformat#1{\csname the#1\endcsname\csname #1pt\endcsname}
+%
+% la définition originale était :
+% \def\@seccntformat#1{\csname the#1\endcsname\quad}
+%
+% * Titres *
+%
+\def\partname{Partie}
+\def\proofname{Preuve}
+\def\abstractname{R\'{e}sum\'{e}}
+\def\refname{R\'{e}f\'{e}rences.}
+
+% Ce qui suit est encore en gestation
+\def\indentedtrivlist#1{%
+  \parsep\parskip
+  \@nmbrlistfalse
+  \@trivlist
+  \labelwidth\z@
+  \leftmargin\z@
+  \linewidth\textwidth
+  \advance\linewidth -#1
+  \@totalleftmargin #1
+  \parshape \@ne \@totalleftmargin \linewidth
+  \let\@itemlabel\@empty
+  \def\makelabel##1{##1}}
+\def\endindentedtrivlist{%
+  \if@inlabel
+    \leavevmode
+    \global \@inlabelfalse
+  \fi
+  \if@newlist
+    \@noitemerr
+    \global \@newlistfalse
+  \fi
+  \ifhmode\unskip \par\fi
+  \if@noparlist \else
+    \ifdim\lastskip >\z@
+      \@tempskipa\lastskip \vskip -\lastskip
+      \advance\@tempskipa\parskip \advance\@tempskipa -\@outerparskip
+      \vskip\@tempskipa
+    \fi
+    \@endparenv
+  \fi
+}
+

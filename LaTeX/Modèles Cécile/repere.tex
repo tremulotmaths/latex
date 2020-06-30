@@ -1,0 +1,78 @@
+\documentclass[12pt,french]{article}
+
+\input{preambule_2014_v2}
+\input{commandes_2014}
+
+
+\begin{document}
+
+
+\begin{spacing}{1.2} %gestion interlignes
+
+
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% TEXTE %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,x=1cm,y=0.25cm]
+\def\xmin{0}\def\xmax{8}\def\ymin{0}\def\ymax{30}
+
+\draw[gray] (\xmin,\ymin) grid[xstep={0.2},ystep=2] (\xmax,\ymax);
+\draw[->, line width = 1pt] (\xmin,0)--(\xmax,0);
+\draw[->, line width = 1pt] (0,\ymin)--(0,\ymax);
+
+%%%%%%%%%%%%%%%%%Repère OIJ
+\draw (-2pt,-2pt) node[below left ,font=\bfseries] {O};
+\draw (1,0)--++(0,+2pt)--++(0,-4pt) node [below]{$I$};
+\draw (0,1)--++(2pt,0)--++(-4pt,0) node [left]{$J$};
+
+%%%%%%%%%%%%%%%%%Repère Oij vecteurs
+%\draw (-2pt,-2pt) node[below left ,font=\bfseries] {O};
+%\draw[line width = 1.5pt, ->] (0,0)--(1,0) node[midway, below]{\footnotesize $\boldsymbol{\vect{i}}$};
+%\draw[line width = 1.5pt, ->] (0,0)--(0,1) node[midway, left]{\footnotesize $\boldsymbol{\vect{j}}$};
+
+\foreach \x in {1,2,...,\numexpr\xmax-1\relax}%
+{\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\small \x};}
+\foreach \y in {10,20,...,\numexpr\ymax-1\relax}%
+{\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\small \y};}
+
+\clip (\xmin,\ymin) rectangle (\xmax,\ymax);
+\draw[name path=f, line width = 1pt, red] plot[samples=200,domain=0:8] (\x,{73.3936*(\x)/exp(\x)});
+
+
+
+\end{tikzpicture}
+ 
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=0.5cm,y=0.5cm]
+
+\draw [color=gray!50, xstep=1,ystep=1] (-1,-1) grid (15,16);
+%\draw [color=gray!, xstep=1,ystep=1,line width=1.5pt] (-1,-1) grid (15,16);
+
+\draw[->,line width=1.5pt,color=blue] (-1,0) -- (15,0);
+\draw[->,line width=1.5pt,color=blue] (0,-1) -- (0,16);
+
+
+\foreach \x in {0,5,10,15}
+{\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
+\foreach \y in {4,8,12}
+{\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};}
+\draw (1,0)--++(0,+2pt)--++(0,-4pt) node [below]{$I$};
+\draw (0,1)--++(2pt,0)--++(-4pt,0) node [left]{$J$};
+\clip(-1,-1) rectangle (15,16);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=0:14,line width=2pt] plot(\x,{1.8*(\x)-0.08*(\x)^2});
+\draw[smooth,samples=200,domain=0:14,line width=2pt,color=red] plot(\x,{0.03*(\x)^3-0.45*(\x)^2+2.5*(\x)});
+
+\draw (12,11) node[below right] {$y=R(x)$};
+\draw (11.5,14) node[above right] {$y=C(x)$};
+
+
+\end{tikzpicture}
+\end{center}
+
+\end{spacing}
+
+\end{document}

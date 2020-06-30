@@ -1,0 +1,52 @@
+
+			 L'extension VARIATIONS
+
+1. Introduction
+
+L'extension 'variations' permet de composer au sein de documents
+(La)TeX, des tableaux de variations de fonctions et des tableaux de
+signes respectant les usages typographiques français. La syntaxe est
+proche de celle de l'environnement 'tabular'. Les macros fournies
+permettent de répondre aux besoins les plus courants. Elles sont
+utilisables avec LaTeX comme avec plain TeX.
+
+2. Licence
+
+Vous pouvez utiliser et diffuser librement cette extension dans le cadre
+de la licence GNU GPL version 3 (voir le fichier COPYING joint).
+
+3. Contenu de la distribution
+
+  ALIRE		     Ce fichier.
+  README	     La version anglaise de ce fichier.
+  COPYING	     La licence d'utilisation.
+  variations         Le répertoire contenant les fichiers de macros.
+  variations.mac     Le fichier source principal des macros.
+  variations.sty     L'extension LaTeX.
+  variations.tex     L'interface plain TeX.
+  variations.mf      Le fichier source des caractères spécifiques.
+  docvariations.pdf  Une documentation succincte.
+  docvariations.tex  Le fichier source de la documentation.
+
+4. Installation
+
+Sur un système Unix, copier le répertoire 'variations' dans
+'/usr/share/texmf/tex/generic', créer le répertoire
+'/usr/share/texmf/fonts/source/variations' et y copier le fichier
+'variations.mf', puis exécuter la commande 'mktexlsr'.
+
+
+Pour une installation MiKTeX, copier le répertoire 'variations' dans
+
+'C:\Program Files\MiKTeX x.y\tex\generic', 
+créer le répertoire
+'C:\Program Files\MiKTeX x.y\fonts\source\variations' et y copier le
+fichier 'variations.mf'. 
+Ensuite, exécuter le programme 'MiKTeX Options'
+et dans la rubrique 'File name database', cliquer sur 'Refresh now'.
+
+5. 
+Contact
+
+L'extension 'variations' a été écrite par Christian Obrecht. Pour contac-
+ter l'auteur, veuillez utiliser l'adresse : obrecht at eukleides dot org.

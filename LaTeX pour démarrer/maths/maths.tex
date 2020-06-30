@@ -1,0 +1,518 @@
+
+\chapter{Mathématiques}
+
+\begin{info}
+    Pour écrire des mathématiques avec \LaTeX, il faut accéder au mode \og mathématiques\fg{} à l'aide du caractère \ordi{\$}. Ce même caractère est utilisé pour sortir du mode \og mathématiques\fg{}.
+\end{info}
+
+\section{Un premier exemple}
+
+Voilà le préambule que nous utiliserons dans cette section :
+
+\VerbatimInput[firstline=1,lastline=14,label={[Préambule]},gobble=0]{exemples/maths.tex}
+
+Nous avons déjà signalé que les \jargon{package} \texttt{amssymb} et \texttt{amstools} servaient de \og \textit{boîte à outils} \fg{} pour les mathématiques. Parmi des nombreuses commandes, ces \jargon{packages} permettent notamment d'écrire les opérations arithmétiques basiques.\bigskip
+
+{
+\begin{SideBySideExample}
+    $1 + 2 = 3$ et $3 \neq 4$\par
+    $(-5) - (-8) = 3$ \par
+    $9 \times 7 = 63$\par
+    $25 \div 6 \approx 4,17$
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Dans le préambule, la commande \texttt{\textbackslash DecimalMathComma} permet de définir la virgule comme séparateur entre la partie entière et la partie décimale d'un nombre. Cela permet d'éviter la création d'espaces non souhaitée dans l'écriture des nombres en français.
+\end{info}
+
+D'autre part, certains \jargon{packages} viennent compléter les possibilités déjà nombreuses.
+
+\begin{info}
+    Les \jargon{codes sources} suivants peuvent s'écrire à la suite du préambule présenté ci-dessus mais il ne faut alors pas oublier de les encadrer avec \texttt{\textbackslash begin\{document\}} et \texttt{\textbackslash end\{document\}}.
+\end{info}
+
+\subsection{Utilisation de \texttt{\textbackslash usepackage}\ordi{[autolanguage,np]\{numprint\}}}
+
+En français, les grands nombres doivent être écrits en séparant les chiffres par tranche de $3$ en utilisant des espaces fines. Le \jargon{package} \texttt{numprint} rend cela possible à l'aide de la commande \texttt{\textbackslash np}. Celle-ci est un raccourci créé grâce à l'option \texttt{np} du \jargon{package}. La vraie commande se nomme \texttt{\textbackslash numprint}. De plus, cette commande peut prendre en option une unité de mesure, gérant ainsi automatiquement les espaces.\bigskip
+
+{
+\begin{SideBySideExample}
+    $\np[m]{10} = \np[mm]{10000} = \np[km]{0,01}$
+    
+    $\np[km/h]{10} = \np[km.h^{-1}]{10}
+    \approx \np[m/s]{2,78}$
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    L'option \texttt{autolanguage} permet simplement à \texttt{numprint} de s'accorder avec les règles de la langue en cours (notamment pour le séparateur de milliers : espace, point ou virgule).
+\end{info}
+
+Ce \jargon{package} permet aussi d'écrire \verb!$\np{1,54e-3}$! qui donne alors $\np{1,54e-3}$. La documentation du \jargon{package} renseigne sur les différentes options possibles et les modifications envisagées.
+
+\subsection{Utilisation de \texttt{\textbackslash usepackage}\{\ordi{xlop}\}}
+
+Le \jargon{package} \texttt{xlop} permet d'écrire les commandes du code ci-dessous et dispose de nombreuses options. Il ne faut pas hésiter à consulter sa documentation.
+
+%\VerbatimInput[firstline=18,lastline=30,label={[Les opérations posées]},gobble=0]{exemples/maths.tex}
+\VerbatimInput[label={[Les opérations posées]},gobble=0]{exemples/mathsxlop.tex}
+
+Voici le résultat de ce code :
+
+\input{exemples/mathsxlop.tex}
+
+\subsection{Utilisation de \texttt{\textbackslash usepackage}\{\ordi{cancel}\}}
+
+L'exemple suivant montre comment utiliser simplement le \jargon{package} \texttt{cancel} qui définit la commande \texttt{\textbackslash cancel}. Dans le préambule, la ligne \verb!\renewcommand\CancelColor{\color{red}}! permet de définir la couleur du trait utilisé par \texttt{\textbackslash cancel} :\bigskip
+
+{\everymath{\textstyle}
+\begin{SideBySideExample}
+    $\dfrac{a \times \cancel{c}}{\cancel{c}\times b}
+    = \dfrac a b$\par\medskip
+    $\cancel{2x^2}-2x+4-\cancel{2x^2}+3x=x+4$
+\end{SideBySideExample}
+}
+
+\subsection{Utilisation \texttt{\textbackslash usepackage}\{\ordi{dsfont}\}}
+
+Le dernier \jargon{package} utilisé dans notre préambule est \texttt{dsfont} et permet simplement d'écrire les ensembles mathématiques à l'aide de la commande \texttt{\textbackslash mathds}. Profitons en pour donner quelques symboles liés aux ensembles (inclusion, appartenance\dots). 
+
+Voici un exemple :
+
+\VerbatimInput[label={[Les ensembles de nombres]},gobble=0]{exemples/mathsdsfont.tex}
+
+On obtient le résultat suivant :
+
+\input{exemples/mathsdsfont.tex}
+
+\subsection{Fontes mathématiques}
+
+Le \jargon{package} \texttt{amstools} propose la commandes \texttt{\textbackslash mathbb} pour noter les ensembles à l'aide de caractères ajourés et la commande \texttt{\textbackslash mathbf} pour écrire des caractères gras en mode mathématiques (la commande \texttt{\textbackslash textbf} ne fonctionne pas dans ce mode). Certains préféreront l'une ou l'autre méthode pour écrire des ensembles à la place du \jargon{package} \texttt{dsfont}.\bigskip
+
+{
+\begin{SideBySideExample}
+    $\mathbb N \subset \mathbb Z \subset \mathbb D
+    \subset \mathbb Q\subset \mathbb R \subset \mathbb C$
+
+    $\mathbf N \subset \mathbf Z \subset \mathbf D
+    \subset \mathbf Q\subset \mathbf R \subset \mathbf C$
+
+    $\mathds N \subset \mathds Z \subset \mathds D
+    \subset \mathds Q\subset \mathds R \subset \mathds C$
+\end{SideBySideExample}
+}
+\bigskip
+
+De plus, la commande \texttt{\textbackslash mathcal} permet d'obtenir des lettres caligraphiées : la courbe $\mtc C$.
+
+Le package \texttt{mathrsfs} fournit la commande \texttt{\textbackslash mathscr} : la courbe $\calig C$.
+
+\section{Les modes mathématiques}
+\subsection{En ligne ou hors du texte ?}
+
+En réalité, \LaTeX{} possède deux modes mathématiques : le mode \jargon{en ligne} est délimité par le caractère \ordi{\$} et est utilisé lorsque des mathématiques sont écrites au sein même d'un texte.\bigskip
+
+{
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par $f(x) = \frac 12 x + 2$.
+    Cette fonction est une fonction affine croissante.
+\end{SideBySideExample}
+}\bigskip
+
+On constate que dans ce mode là, les mathématiques sont composées de telles sortes que les espaces interlignes restent inchangées, ce qui est typographiquement meilleur.\medskip
+
+S'il existe un mode \jargon{en ligne} pour écrire à l'intérieur des lignes d'un texte, alors il existe un mode \jargon{hors texte}. Celui-ci est délimité par les commandes \verb!\[! et \verb!\]!.\bigskip
+
+{
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par \[f(x) = \frac 12 x + 2.\]
+    Cette fonction est une fonction affine croissante.
+\end{SideBySideExample}
+}\bigskip
+
+Dans ce cas, les mathématiques sont composées dans une nouvelle ligne centrée et la taille des symboles mathématiques est adaptée.
+
+Cependant, il se peut que l'on ait besoin d'écrire des mathématiques dans le texte mais avec des symboles ayant leur taille hors-texte. Pour cela, on pourra utiliser la commande \texttt{\textbackslash displaystyle}. L'effet inverse est obtenu avec la commande \texttt{\textbackslash textstyle}.\bigskip
+
+{
+\begin{SideBySideExample}
+    Soit $f$ la fonction d\'efinie pour tout nombre
+    $x \in \mathds R$ par
+    $\displaystyle{f(x) = \frac 12 x + 2}$.
+    Cela est typographiquement incorrect. On peut noter :
+    \[\textstyle{f(x) = \frac 12 x + 2}\]
+    mais cela est bizarre.
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Les changements de paragraphe (à l'aide d'une ligne vide ou de la commande \texttt{\textbackslash par} ou toute autre méthode) sont rigoureusement interdits à l'intérieur des modes mathématiques.
+\end{info}
+
+\subsection{Du texte dans des formules}
+
+Il est courant de devoir écrire des morceaux de phrases à l'intérieur d'une ligne mathématique. Le problème est que dans n'importe quel mode mathématique, les lettres sont considérées comme des variables et sont donc formatées selon les règles typographiques en mathématique, c'est-à-dire en italique. Pour bien comprendre cela, comparer les deux lignes suivantes :
+\[\begin{array}{c}
+  	f(x) = \frac 12 x + 2 donc f(2) = 3 \\[10pt]
+  	f(x) = \frac 12 x + 2 \text{ donc } f(2) = 3
+  \end{array}\]
+
+La commande \texttt{\textbackslash text} est celle qui nous sauve ! \'Evidemment, cette commande n'a pas spécialement d'utilité en mode \jargon{en ligne} comme nous le pouvons le constater dans l'exemple ci-dessous :\bigskip
+
+{
+\begin{SideBySideExample}
+    $f(x) = \frac 12 x + 2$ donc $f(2) = 3$.
+    \[f(x) = \frac 12 x + 2 \text{ donc } f(2) = 3\]
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Les espaces étant gérées de façon particulière dans les modes mathématiques, on constate que \texttt{\textbackslash text}\ordi{\{donc\}} ne donne pas de résultat satisfaisant. Il faut donc ajouter les espaces autour du mot pour obtenir ce que l'on souhaite : \texttt{\textbackslash text}\ordi{\{ donc \}}.
+\end{info}
+
+\subsection{Les espaces}
+Dans les modes mathématiques, les espaces saisis au clavier sont tout simplement ignorés et \LaTeX{} gère tout seul les calculs pour espacer les symboles mathématiques. En général, ces espaces conviennent parfaitement mais il peut s'avérer nécessaire de gérer soit même les espaces en utilisant des commandes particulières.
+
+\begin{center}
+\verb*! ! = barre d'espace simple\par\medskip
+
+\rowcolors{2}{}{gray!20}
+	\begin{tabular}{lll}
+
+		\rowcolor{gray!50} Commande & Nom & Résultat  \\
+        \verb+\!+ & Espace fine négative & $\square \! \square$\\
+        \verb*! ! & Espace par défaut & $\square \square$\\
+        \verb+\,+ & Espace fine & $\square \, \square$\\
+        \verb+\:+ & Espace moyenne & $\square \: \square$\\
+        \verb+\;+ & Espace épaisse & $\square \; \square$\\
+        \verb*+\ + & Espace inter-mot & $\square \ \square$\\
+        \verb+\quad+ & 1 cadratin & $\square \quad \square$\\
+        \verb+\qquad+ & 2 cadratins & $\square \qquad \square$\\
+	\end{tabular}
+\end{center}
+
+\begin{info}
+    Un cadratin est égal à \ordi{1em} donc la commande \texttt{\textbackslash quad} est en fait un raccourci de \texttt{\textbackslash hspace\{1em\}}.
+\end{info}
+
+Reprenons des exemples d'intervalles.\bigskip
+
+{
+\begin{SideBySideExample}
+    $\mathds R^*=]-\infty ; 0[ \cup ]0 ; +\infty[ =
+    \mathds R \setminus \{0\}$.\par\medskip
+    $]-\infty ; 4] \cap ]-2 ; +\infty[ = ]-2 ; 4]$.
+\end{SideBySideExample}
+}\bigskip
+
+Les espaces ne sont ici guère satisfaisantes autour des crochets et autour des points-virgules. Nous pouvons alors proposer la solution suivante :\bigskip
+
+{
+\begin{SideBySideExample}
+    $\mathds R^*=\; ]-\infty\, ; 0[\, \cup\,
+                    ]0\, ;\, +\infty[\;
+    =\mathds R \setminus \{0\}$.\par\medskip
+    $]-\infty\, ; 4]\, \cap\, ]-2\, ; +\infty[ \;
+    =\; ]-2\, ; 4]$.
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    Cela peut paraître bien lourd à gérer mais on régler cela à l'aide des \jargon{commandes personnelles}.
+\end{info}
+
+Voici, par exemple, mes commandes personnelles pour définir les différents intervalles :
+
+\VerbatimInput[label={[Commandes personnelles - Intervalles]},gobble=0]{exemples/mathsintervalles.tex}
+
+\section{\'Ecrire des mathématiques de la sixième à la terminale}
+\subsection{Au collège}
+
+\subsubsection{En Sixième}
+
+En \textbf{sixième}, les élèves apprennent à maîtriser les notations géométriques. Les crochets et les parenthèses s'obtiennent classiquement en appuyant sur la touche correspondante. Cependant, les symboles de droites parallèles et droites perpendiculaires s'obtiennent à l'aide d'une commande spéciale.
+
+\VerbatimInput[label={[Géométrie en sixième]},gobble=0]{exemples/maths6eme.tex}
+
+ce qui donne :
+
+\input{exemples/maths6eme.tex}
+
+\subsubsection{En Cinquième}
+
+En \textbf{cinquième}, on travaille notamment sur les fractions. L'exemple ci-dessous nous permet de montrer que la commande \verb!\dfrac{}{}! est un raccourci de \verb!\displaystyle{\frac{}{}}!.
+
+\VerbatimInput[label={[Les fractions]},gobble=0]{exemples/mathsfractions.tex}
+
+ce qui donne :
+
+\input{exemples/mathsfractions.tex}
+
+Dans l'exemple suivant, on vois bien la différence obtenue sur les parenthèses en ajoutant les commandes \verb!\left! et \verb!\right! ? \bigskip
+
+{
+\begin{SideBySideExample}
+    $3 \times (\dfrac 3 2 + 2) - 1$ \par\medskip
+    $3 \times \left(\dfrac 3 2 + 2\right) - 1$
+\end{SideBySideExample}
+}
+\bigskip
+
+\begin{info}
+    Une commande \texttt{\textbackslash left}\textbackslash\{ se termine nécessairement par son homologue \texttt{\textbackslash right}\textbackslash\}. Essayez alors les combinaisons \texttt{\textbackslash left}\{ et \texttt{\textbackslash right}\}, \texttt{\textbackslash left[} et \texttt{\textbackslash right]} puis \texttt{\textbackslash left|} et \texttt{\textbackslash right|}.
+\end{info}
+
+Les angles sont également bien présents dans le programme de géométrie et les commandes \texttt{\textbackslash widehat} et \texttt{\textbackslash degres} sont alors très utiles.
+
+\VerbatimInput[label={[Notations des angles]},gobble=0]{exemples/mathsangles.tex}
+
+Le \jargon{code source} précédent donne :
+
+\input{exemples/mathsangles.tex}
+
+\begin{info}
+    La commande \texttt{\textbackslash widehat} permet d'obtenir un des nombreux symboles étirables horizontalement. Nous en croiserons d'autres dans les exemples à venir.
+\end{info}
+
+
+\subsubsection{En Quatrième}
+
+En classe de \textbf{quatrième}, les divisions de fractions sont apprises mais également les puissances. La mise en puissance en mode mathématique est réalisée à l'aide de la syntaxe <maths>\verb+^+<exposant>. Par exemple \verb!$3^2$! donne $3^2$. Et que donne \verb!$3^21$! ?
+
+\begin{info}
+    On pourra écrire des puissances de puissances en faisant bien attention aux groupes entre accolades.
+\end{info}
+
+Voici un exemple
+
+\VerbatimInput[label={[Fractions et puissances]},gobble=0]{exemples/maths4eme.tex}
+
+qui donne 
+
+\input{exemples/maths4eme.tex}
+
+Profitons de parler des exposants pour indiquer la syntaxe et un exemple pour les indices :\linebreak <maths>\verb!_!<indice>.
+
+L'exemple suivant donne une autre utilisation des exposants et des indices ainsi qu'un nouveau symbole étirable horizontalement : l'accolade. On notera également l'utilisation des commandes \texttt{\textbackslash np} et \texttt{\textbackslash text}.
+
+\VerbatimInput[label={[Accolades horizontales]},gobble=0]{exemples/mathsaccolades.tex}
+
+Ce \jargon{code source} donne :
+
+\input{exemples/mathsaccolades}
+
+\begin{info}
+    Notons que la commande \texttt{\textbackslash dots} permet d'obtenir trois points de suspension mais que ceux-là sont alignés verticalement automatiquement selon le contexte dans lequel la commande est utilisée.
+\end{info}
+
+La résolution des équations est également un moment important dans la vie d'un collégien et bien que le symbole d'équivalence ($\Leftrightarrow$) ne soit pas exigible, profitons tout de même de l'occasion pour en parler tout en mettant en avant une utilisation de l'espace cadratin.
+
+\VerbatimInput[label={[\'Equivalences]},gobble=0]{exemples/mathsequiv.tex}
+
+\input{exemples/mathsequiv}
+
+
+\subsubsection{En Troisième}
+
+Les élèves de \textbf{troisième} découvrent la joie de la trigonométrie. La commande \texttt{\textbackslash cos} permet simplement d'obtenir $\cos$ 
+
+{
+\begin{SideBySideExample}
+    $\cos\left(\widehat{ABC}\right) = \dfrac{AB}{BC}$
+\end{SideBySideExample}
+}\bigskip
+
+et ses acolytes  \texttt{\textbackslash sin} et \texttt{\textbackslash tan} permettent d'obtenir $\sin$ et $\tan$ (caractères droits et non en italique).
+
+Pour finir, voilà un exemple à compiler pour voir différentes notations vues en classe de \textbf{troisième}. 
+
+\VerbatimInput[label={[En troisième]},gobble=0]{exemples/maths3eme.tex}
+
+ce qui donne 
+
+\medskip
+
+\input{exemples/maths3eme.tex}
+
+\subsection{Au lycée}
+
+\subsubsection{En 2nde}
+
+Nous avons déjà vu comment noter les ensembles de nombres. Cependant en classe de \textbf{seconde}, une grande importance est accordée aux fonctions. L'exemple suivant montre que l'utilisation de la commande \texttt{\textbackslash colon} est largement préférée aux deux-points classiques \verb!:! pour une gestion correcte des espaces par \LaTeX. La commande \texttt{\textbackslash mapsto} est également à retenir.\bigskip
+
+{
+\begin{SideBySideExample}
+    $f\colon x \mapsto f(x)$ est d\'efinie sur
+                                $\calig D_f$.
+
+    On note $\calig C$ sa courbe repr\'esentative.
+\end{SideBySideExample}
+}\bigskip
+
+Les vecteurs font leur apparition au début du lycée. Cela nous permet alors de découvrir un nouveau symbole étirable horizontalement --- la flèche --- ainsi qu'un symbole étirable verticalement --- la norme d'un vecteur.
+
+\VerbatimInput[label={[Les vecteurs]},gobble=0]{exemples/mathsvecteurs.tex}
+
+Ce \jargon{code source} donne :
+
+\input{exemples/mathsvecteurs}
+
+On notera l'utilisation un peu faussée de la commande \texttt{\textbackslash binom} qui sert en réalité pour l'écriture des c{\oe}fficients binomiaux. Cela dit, elle est très pratique pour écrire les coordonnées d'un vecteur. Tout comme \texttt{\textbackslash dfrac}, la commande \verb!\dbinom{}{}! est un raccourci pour \verb!\displaystyle{\binom{}{}}!.
+
+\begin{info}
+    Les commandes \texttt{\textbackslash imath} et \texttt{\textbackslash jmath} sont bien pratiques pour obtenir un $i$ et un $j$ sans point : les lettres $\imath$ et $\jmath$ peuvent donc recevoir une flèche.
+\end{info}
+
+En transition avec la classe de \textbf{seconde} et celle de \textbf{première}, parlons un peu de statistiques \bigskip
+
+{
+\begin{SideBySideExample}
+    Moyenne : $\overline{x}$\par
+    \'Ecart-type : $\sigma$
+\end{SideBySideExample}
+}\bigskip
+
+\subsubsection{En première}
+
+Pour la classe de \textbf{première}, on rencontre notamment les symboles et notations suivants :
+
+\begin{itemize}
+    \item \verb!$\Delta$! permet d'obtenir $\Delta$ ;
+    \item \verb!$\pm$! permet d'obtenir $\pm$ ;
+    \item \verb!$\cdot$! permet d'obtenir le point du produit scalaire ;
+    \item \verb!$\hookrightarrow$! permet d'obtenir $\hookrightarrow$.
+\end{itemize}
+
+\VerbatimInput[label={[Les vecteurs]},gobble=0]{exemples/maths1ere.tex}
+
+Le \jargon{code source} précédent donne :
+
+\input{exemples/maths1ere}
+
+
+L'exemple suivant montre en quoi le mode \og mathématiques\fg{} \jargon{en ligne} peut encore être différent du mode \jargon{hors texte} toujours dans un souci de respect des espaces inter-lignes.
+
+\VerbatimInput[label={[Somme de termes consécutifs]},gobble=0]{exemples/mathssomme.tex}
+
+Formule :
+$1 + q + q^2 + \dots + q^n = \sumOld_{i = 0}^n q^i$
+
+\medskip
+
+Formule :
+\[1 + q + q^2 + \dots + q^n=\sum_{i = 0}^n q^i\]
+
+\subsubsection{En Terminale}
+
+Finissons avec la classe de \textbf{terminale}.
+
+Quelques nouvelles notations apparaissent\dots et du coup de nouvelles commandes \LaTeX{} :
+
+La commande \texttt{\textbackslash mathrm} (il s'agit d'une autre fonte mathématique pas encore rencontrée) permet d'obtenir un $d$ droit en mode \og mathématiques \fg{}.
+
+Les commandes \textbackslash\verb!int_{}^{}! et \textbackslash\verb!lim_{}! permettent d'écrire des intégrales et des limites.
+
+La commande \verb!\substack! permet d'écrire les arguments des limites sur plusieurs lignes.
+
+\begin{info}
+Les commandes $\mathrm{\textbackslash int\_\{\}\wedge\{\}}$ et $\mathrm{\textbackslash lim\_\{\}}$ ne donnent pas le même résultat \jargon{en ligne} ou \jargon{hors texte}.
+\end{info}
+
+{
+\begin{SideBySideExample}
+    $\int_0^1 x^2 \mathrm{d}x =
+        \left[\frac{x^3}{3}\right]_0^1 =
+        \frac 13$.\medskip
+
+    $\lim_{x \to +\infty} e^x= +\infty$.\par
+    On parle de la fonction $x \mapsto \exp(x)$.\medskip
+
+    $\lim_{x \to 0^+}\ln(x) = -\infty$ ou encore\par
+    $\lim_{\substack{x \to 0 \\ x > 0}}
+            \ln(x) = -\infty$.\medskip
+
+    $a \equiv b\; [n] \quad\Leftrightarrow\quad
+        \exists\, k \in \mathds Z,\; a - b = kn$.\medskip
+        
+    $\left\lvert e^{i\theta}\right\rvert = 1$.
+    
+    ou
+    
+    $\left| e^{i\theta}\right| = 1$.
+\end{SideBySideExample}
+}\bigskip
+
+\subsection{En licence}
+
+Finissons par une dernière définition.
+
+\VerbatimInput[label={[Fonction continue]},gobble=0]{exemples/mathslicence.tex}
+
+Ce \jargon{code source} donne :
+
+\input{exemples/mathslicence}
+
+
+\section{Aligner des égalités}
+
+Lorsque l'on veut écrire les étapes d'un long calcul, la plupart du temps, les différentes étapes sont écrites en colonne et alignées. L'environnement \ordi{align} permet de faire cela.
+
+\danger L'environnement \ordi{align} contient déjà le mode \og mathématiques\fg{}.
+
+Il est donc inutile d'ajouter les symboles \$, \verb!\[! ou \verb!\]!.
+\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{align}
+        (2x+4)^2&=(2x)^2+2\times 2x\times 4+4^2 \\
+                &=4x^2+16x+16
+    \end{align}
+\end{SideBySideExample}
+}\bigskip
+
+On note ici l'utilisation de deux caractères spéciaux : \verb!&! et \verb!\\!. Le premier permet d'identifier l'endroit où se fera l'alignement. Le deuxième permet d'indiquer un changement de ligne. On retrouvera ces deux caractères dans la composition de tableau.
+
+On peut être gêné par l'utilisation automatique de la numérotation de toutes les lignes. La commande \texttt{\textbackslash nonumber} règle le problème. La commande \texttt{\textbackslash tag}<texte> permet quand à elle de passer outre la numérotation automatique.\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{align}
+        (2x+4)^2&=(2x)^2+2\times 2x\times 4
+                           + 4^2\nonumber\\
+        \shortintertext{\textit{(id. remarquable)}}
+                &=4x^2+16x+16 \tag{A} \\
+                &=4x^2+16x+16 \tag{354}
+    \end{align}
+\end{SideBySideExample}
+}\bigskip
+
+\begin{info}
+    La commande \texttt{\textbackslash shortintertext}<texte> est ici très pratique pour insérer du texte au milieu d'une suite de calcul.
+\end{info}
+
+Finalement, si on ne souhaite numéroter aucune ligne, on écrira \verb!\begin{align*}! et \verb!\end{align*}!.\bigskip
+
+{
+\begin{SideBySideExample}
+    \begin{align*}
+        (2x+4)^2&=(2x)^2+2\times 2x\times 4+4^2 \\
+                &=4x^2+16x+16
+    \end{align*}
+\end{SideBySideExample}
+}
+
+\medskip
+
+\textbf{Remarque :}
+
+On peut également utiliser l'environnement \ordi{aligned}.
+
+Celui permet également d'aligner des équations, sans les numéroter, et nécessite les balises \verb!$...$! ou \verb!\[...\]! lorsqu'on l'utilise avec des formules mathématiques.
+
+\section{Écrire un système}
+
+Pour écrire un système, il y a plusieurs possibilités que l'on retrouver dans la section \ref{tabmath}\ref{syst} du chapitre \ref{tableaux}.

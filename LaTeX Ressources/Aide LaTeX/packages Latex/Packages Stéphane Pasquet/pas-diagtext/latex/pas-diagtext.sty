@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%    		 pas-diagtext.sty        encodage : UTF8            %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%           	Créé par Stéphane PASQUET 		          		%
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pas-diagtext}[2011/09/04]
+
+% <------------------------------- Chargement des extensions ----------------------------------->
+\RequirePackage{xkeyval}
+\RequirePackage{eso-pic}
+\RequirePackage{multido}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+% <------------------------------- Texte en fond de page ----------------------------------->
+\define@cmdkey [PAS] {backpage} {angle}{}
+\define@cmdkey [PAS] {backpage} {color}{}
+\define@cmdkey [PAS] {backpage} {times}{}
+\presetkeys    [PAS] {backpage} {angle=30,color=gray!10,times=250}{}
+\newcommand*{\backpage}[2][]
+{%
+	\setkeys[PAS]{backpage}{#1}
+	\AddToShipoutPicture
+	{
+		\put(\LenToUnit{0cm},\LenToUnit{0cm})
+		{%
+			\begin{tikzpicture}
+				\clip (0,0) rectangle (21.5,-29.7cm);
+				\begin{scope}[yshift=-23cm]
+					\node[rotate=\cmdPAS@backpage@angle,inner sep=0pt] at (0,0)
+					{
+						\begin{minipage}{60cm}
+							\Huge\color{\cmdPAS@backpage@color}\multido{\i=1+1}{\cmdPAS@backpage@times}{#2\ }
+						\end{minipage}
+					};
+				\end{scope}
+			\end{tikzpicture}
+		}
+	}
+}
+
+% <------------------------------- Encadré avec texte de fond ----------------------------------->
+\define@cmdkey [PAS] {pasbox} {angle}{}
+\define@cmdkey [PAS] {pasbox} {textbgcolor}{}
+\define@cmdkey [PAS] {pasbox} {times}{}
+\define@cmdkey [PAS] {pasbox} {width}{}
+\define@cmdkey [PAS] {pasbox} {widthB}{}
+\presetkeys    [PAS] {pasbox} {angle=30,textbgcolor=gray!10,times=50,width=19cm,widthB=25cm}{}
+
+\newcommand*{\pasbox}[3][] % #1 = options, #2 = texte en diagonale, #3 = contenu de la boîte
+{%
+	\setkeys[PAS]{pasbox}{#1}
+		\node[pasbox] (text) {
+			\begin{minipage}{\cmdPAS@pasbox@width}
+				#3
+			\end{minipage}
+		};
+		\clip (text.south west) rectangle (text.north east);
+		\node[rotate=\cmdPAS@pasbox@angle,inner sep=0pt,below right] at ($(text.north west)+(-5,0)$)
+		{
+			\begin{minipage}{\cmdPAS@pasbox@widthB}
+				\color{\cmdPAS@pasbox@textbgcolor}\multido{\i=1+1}{\cmdPAS@pasbox@times}{#2\ }
+			\end{minipage}
+		};
+		\node[below right,pastext] at (text.north west) {
+			\begin{minipage}{\cmdPAS@pasbox@width}
+				#3
+			\end{minipage}
+		};
+}
+
+\endinput

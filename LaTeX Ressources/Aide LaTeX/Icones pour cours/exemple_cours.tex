@@ -1,0 +1,141 @@
+%%
+%% Exemple pour l'utilisation du package cours.sty
+%% 
+%% Libre d'utiliser, modifier, distribuer
+%% Germain Vallverdu <germain.vallverdu@univ-pau.fr>
+%% 20 Octobre 2010
+%%
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.5}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+
+\usepackage{cours}
+
+\title{Package cours.sty}
+\author{Germain Vallverdu - \texttt{germain.vallverdu@univ-pau.fr}}
+\date{\today}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+% * 
+% * begin document
+% * 
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+\begin{document}
+
+\maketitle
+
+Le paquet \verb!cours.sty! apporte quelques commandes permettant de dessiner des icônes avec tikz et
+des environnements utilisant ces icônes. Les icônes ou les environnement peuvent être utilisés dans
+le cadre de cours pour poser une question, faire une remarque ou encore insister sur l'importance
+d'un commentaire.
+
+\section{Icônes}
+
+Le package définit des commandes permettant de dessiner avec tikz des icônes pour une question une
+remarque ou insister sur l'importance d'un commentaire. 
+
+\begin{center}
+\begin{tabularx}{0.8\textwidth}{clX}
+    \hline
+    \textbf{icône} & \textbf{description} & \textbf{commande} \\
+    \hline
+    \iconequestion & Une icône pour les questions & \verb!\iconequestion! \\
+    \iconeattention & Une icône circulaire pour dire attention & \verb!\iconeattention! \\
+    \iconetriangleattention & Une icône triangulaire pour dire attention &
+    \verb!\iconetriangleattention! \\
+    \iconeremarque & Une icône pour une remarque & \verb!\iconeremarque! \\
+    \hline
+\end{tabularx}
+\end{center}
+
+\section{Environnments}
+
+\lipsum[1]
+
+\begin{question}
+    Mais au fait, comprennez vous le latin ?
+\end{question}
+
+\lipsum[2]
+
+\begin{remarque}
+    Vous auriez du faire du latin au collège.
+\end{remarque}
+
+\lipsum[3]
+
+\begin{attention}
+    La suite est importante, tant pis pour ceux qui ne comprennent pas le latin.
+\end{attention}
+
+\lipsum[4]
+
+\section{Modifications des couleurs}
+
+Il est possible de modifier les
+couleurs des icônes ou du texte dans les environnements. Quatre commandes sont
+disponibles. Les trois premières, du type \verb!\SetCouleurXXX! ou \verb!XXX! est
+\verb!Question!, \verb!Remarque! ou \verb!Attention! permettent de définir la couleur de
+l'environnement associé.
+
+\begin{minipage}{0.49\textwidth}
+    ~
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+    \footnotesize\verb!\SetCouleurQuestion{40,40,40}}!
+\end{minipage}
+
+\begin{minipage}{0.49\textwidth}
+    \begin{question}
+        Couleur par defaut
+    \end{question}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+    \SetCouleurQuestion{40,40,40}
+    \begin{question}
+        par defaut on donne les valeurs RGB entre 0 et 255
+    \end{question}
+\end{minipage}
+
+\begin{minipage}{0.49\textwidth}
+    \footnotesize\verb!\SetCouleurQuestion[cmyk]{0,1,0,1}}!
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+    \footnotesize\verb!\SetCouleurQuestion[rgb]{0.9,0.3,0.1}}!
+\end{minipage}
+
+\begin{minipage}{0.49\textwidth}
+    \SetCouleurQuestion[cmyk]{1,0,0,1}
+    \begin{question}
+        On peut donner les valeurs cmyk
+    \end{question}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+    \SetCouleurQuestion[rgb]{0.9,0.3,0.1}
+    \begin{question}
+        ou les valeurs rgb entre 0 et 1
+    \end{question}
+\end{minipage}
+
+De la même manière on a les commandes \verb!\SetCouleurAttention! et
+\verb!\SetCouleurRemarque! pour les deux autres cas qui s'utilisent de la même manière.
+
+La commande \verb!\SetCouleurDefaut! permet de rétablir les couleurs par défaut. \\
+
+Commandes \verb!\SetCouleurAttention! ou \verb!\SetCouleurRemarque! ou
+\verb!\SetCouleurQuestion! :
+\begin{itemize}
+    \item[\hspace{2ex}\bfseries\#1] (Optionnel) système de couleur (RGB, rgb, cmyk
+        \ldots). Par défaut RGB.
+    \item[\hspace{2ex}\bfseries\#2] code couleur qui dépend du système de couleur choisi. \\
+\end{itemize}
+
+
+\end{document}

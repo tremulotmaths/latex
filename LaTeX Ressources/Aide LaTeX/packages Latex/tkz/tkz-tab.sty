@@ -1,0 +1,638 @@
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %        tkz-tab.sty    encodage : utf8                         %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %           Créé par Alain Matthes le 04-01-2007.               %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Objet :  Création de tableaux (signes et variations)
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tkz-tab}[2007/09/21 v2  tableaux (signe et variation)  ]
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\RequirePackage{ifthen}
+\RequirePackage{xkeyval}[2005/11/25]
+%<–––––––––––––––––––––––––––––– Initialisation –––––––––––––––––––––––––––––>
+\newdimen\tkz@XF  
+\newdimen\tkz@YF
+\tikzstyle{AL}    = [above left  =  3pt]
+\tikzstyle{AR}    = [above right =  3pt]
+\tikzstyle{BR}    = [below right =  3pt]
+\tikzstyle{BL}    = [below left  =  3pt]
+\tikzstyle{A}     = [above       =  3pt]
+\tikzstyle{B}     = [below       =  3pt]
+\tikzstyle{arrow} = [shorten     >= 2pt,%
+                     shorten     <= 2pt]
+\tikzstyle{ArrowStyle}= [               \cmdTAB@VA@colorF,%
+                                    ->,%
+                     >            = latex,%
+                                    arrow,%
+                                    thick]
+\tikzstyle{nPC}   = [fill         = \cmdTAB@VA@colorPC,%
+                     inner sep    = 3pt]
+\newcounter{tkz@cnt@line}\setcounter{tkz@cnt@line}{0}
+\newcounter{tkz@cnt@lg}
+\newcounter{tkz@cnt@cl}
+\newcounter{tkz@cnt@pred}
+\newcounter{tkz@cnt@temp}
+\newcounter{tkz@cnt@arrow}\setcounter{tkz@cnt@arrow}{0}
+\newcounter{tkz@cnt@zone}\setcounter{tkz@cnt@zone}{0}
+\newcounter{tkz@cnt@lgnext}
+\newcounter{tkz@cnt@clnext}
+\newcounter{tkz@cnt@pair}\newcounter{tkz@cnt@impair}
+\newcounter{tkz@cnt@aw}
+
+%<––––––––––––––––––––– tracé du cadre extérieur  –––––––––––––––––––––––––––>
+\define@boolkey [TAB] {tbs} {color}[true]{}
+\define@boolkey [TAB] {tbs} {nocadre}[true]{}
+\define@cmdkey  [TAB] {tbs} {style}{}
+\define@cmdkey  [TAB] {tbs} {lw}{}
+\define@boolkey [TAB] {tbs} {zerob}[true]{}
+\define@cmdkey  [TAB] {tbs} {colorC}{}
+\define@cmdkey  [TAB] {tbs} {colorL}{}
+\define@cmdkey  [TAB] {tbs} {colorT}{}
+\define@cmdkey  [TAB] {tbs} {colorV}{}
+\define@cmdkey  [TAB] {tbs} {lgt}{}
+\define@cmdkey  [TAB] {tbs} {espcl}{}
+\define@cmdkey  [TAB] {tbs} {deltacl}{}
+\presetkeys     [TAB] {tbs} {espcl    = 3,%
+                             lgt      = 2,%
+                             style    = dotted,%
+                             lw       = 0.6pt,% 
+                             colorC = white,% 
+                             colorL = white,%
+                             colorT = white,%
+                             colorV = white,%
+                             color  = false,%
+                             nocadre  = false,%
+                             zerob    = false,%
+                             deltacl  = 0.5}{}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––– Macro principale : détermine les dim –––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\tkzTabInit}[3][]{%
+\setkeys[TAB]{tbs}{#1}%
+\setcounter{tkz@cnt@line}{1}
+\setcounter{tkz@cnt@lgnext}{0}
+\setcounter{tkz@cnt@clnext}{0}
+\setcounter{tkz@cnt@aw}{0}
+\setcounter{tkz@cnt@lg}{0}
+\setcounter{tkz@cnt@cl}{0}
+\gdef\tkz@deltaY{0}
+%<––––––––––––––––––––––– Première colonne ––––––––––––––––––––––––––––––––––>
+\foreach \ligne/\ecart in {#2}{%
+   \stepcounter{tkz@cnt@lg}%
+   }
+\stepcounter{tkz@cnt@lg}
+\foreach \colonne in {#3}{%
+   \stepcounter{tkz@cnt@cl}%
+}
+\addtocounter{tkz@cnt@cl}{-1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkz@nbinterv}{\thetkz@cnt@cl}
+\addtocounter{tkz@cnt@lg}{-1}
+\xdef\maxtkz@cnt@lg{\thetkz@cnt@lg}
+\xdef\tkz@maxcl{\thetkz@cnt@cl}
+\pgfmathparse{\cmdTAB@tbs@lgt+%
+            2*\cmdTAB@tbs@deltacl+%
+              \cmdTAB@tbs@espcl*\tkz@nbinterv}
+\global\let\tkz@lgttab\pgfmathresult 
+\global\let\tkz@lgttab\tkz@lgttab
+\node(T00) at (0,0) {};
+\node(T10) at (\cmdTAB@tbs@lgt,0) {};
+\node(T20) at (\tkz@lgttab,0) {};
+\setcounter{tkz@cnt@lg}{0}
+\foreach \ligne/\tkz@deltaH in {#2}{%
+   \setcounter{tkz@cnt@cl}{0}
+   \foreach \x in {#3}{%
+       \pgfmathmultiply{\cmdTAB@tbs@espcl}{\thetkz@cnt@cl}
+       \global\let\ecartcl\pgfmathresult
+       \pgfmathparse{\cmdTAB@tbs@lgt+\cmdTAB@tbs@deltacl+\ecartcl}%
+       \global\let\tkz@ddx\pgfmathresult
+       \stepcounter{tkz@cnt@cl}
+       \node(N\thetkz@cnt@cl 0) at (\tkz@ddx,-\tkz@deltaY) {};
+       }%
+    }
+\foreach \m in {1,...,\tkz@maxcl}{%
+    \setcounter{tkz@cnt@clnext}{\m}
+    \stepcounter{tkz@cnt@clnext}
+    \path (N\m 0)--(N\thetkz@cnt@clnext 0) node[midway](M\m 0) {};%
+    }%
+\setcounter{tkz@cnt@cl}{0}
+\setcounter{tkz@cnt@lg}{0}
+\foreach \ligne/\tkz@deltaH in {#2}{%
+    \stepcounter{tkz@cnt@lg}
+    \pgfmathadd{\tkz@deltaY}{\tkz@deltaH}
+    \global\let\tkz@deltaY\pgfmathresult
+    \node(T0\thetkz@cnt@lg) at (0,-\tkz@deltaY) {};
+    \node(T1\thetkz@cnt@lg) at (\cmdTAB@tbs@lgt,-\tkz@deltaY) {};
+    \node(T2\thetkz@cnt@lg) at (\tkz@lgttab,-\tkz@deltaY) {};
+    \setcounter{tkz@cnt@cl}{0}
+    \foreach \x in {#3}{%
+        \pgfmathparse{\cmdTAB@tbs@lgt+%
+        \cmdTAB@tbs@deltacl+%
+        \cmdTAB@tbs@espcl*\thetkz@cnt@cl}
+        \global\let\tkz@ddx\pgfmathresult
+        \stepcounter{tkz@cnt@cl}
+        \node(N\thetkz@cnt@cl\thetkz@cnt@lg) at (\tkz@ddx,-\tkz@deltaY) {};%
+        }
+    \foreach \m in {1,...,\tkz@maxcl}{%
+        \setcounter{tkz@cnt@clnext}{\m} \stepcounter{tkz@cnt@clnext}
+        \path (N\m\thetkz@cnt@lg)--(N\thetkz@cnt@clnext\thetkz@cnt@lg)%
+              node[midway](M\m\thetkz@cnt@lg) {};%
+        }%
+    \pgfmathdivide{\cmdTAB@tbs@lgt}{2}
+    \global\let\tkz@dx\pgfmathresult
+    \pgfmathdivide{\tkz@deltaH}{2}
+    \global\let\tkz@halfdeltaH\pgfmathresult
+    \pgfmathsubtract{\tkz@halfdeltaH}{\tkz@deltaY}
+    \global\let\tkz@dy\pgfmathresult
+    \setcounter{tkz@cnt@temp}{\thetkz@cnt@lg}\addtocounter{tkz@cnt@temp}{-1}
+    \path (\tkz@dx,\tkz@dy) node(F\thetkz@cnt@temp){};%
+   }
+
+%<––––––––––––––––––––––– Colorisation du fond ––––––––––––––––––––––––––––––>
+\tikzstyle {fondC} = [fill = \cmdTAB@tbs@colorC]
+\tikzstyle {fondL} = [fill = \cmdTAB@tbs@colorL]
+\tikzstyle {fondT} = [fill = \cmdTAB@tbs@colorT]
+\tikzstyle {fondV} = [fill = \cmdTAB@tbs@colorV]
+\def\tkz@opa{1}
+\ifTAB@tbs@color 
+  \draw[fondC,opacity=\tkz@opa] (T01.center)%
+        rectangle (T1\maxtkz@cnt@lg.center);
+  \draw[fondL,opacity=\tkz@opa] (T11.center) rectangle (T20.center);
+  \draw[fondT,opacity=\tkz@opa] (T11.center) rectangle (T2\maxtkz@cnt@lg);
+  \draw[fondV,opacity=\tkz@opa] (T00.center) rectangle (T11);
+\fi
+%<–––––––––––––––––––Fin  Colorisation du fond ––––––––––––––––––––––––––––––>
+
+%<––––––––––––––– Écriture des formules en colonne 1  –––––––––––––––––––––––>
+\setcounter{tkz@cnt@lg}{-1}
+\foreach \ligne/\tkz@deltaH in {#2}{%
+  \stepcounter{tkz@cnt@lg}
+  \pgfmathsubtract{\cmdTAB@tbs@lgt}{\cmdTAB@tbs@deltacl}
+  \xdef\tkz@textw{\pgfmathresult}
+  \node[text width = \tkz@textw cm,text centered]%
+        at (F\thetkz@cnt@lg) {\ligne};%
+  }
+% Cadre = true on trace tout sinon condition
+\ifTAB@tbs@nocadre 
+  \foreach \y in {1,...,\maxtkz@cnt@lg}{%
+     \draw (T0\y .center) --(T2\y .center);%
+     }
+  \foreach \x in {1}
+     {\draw (T\x 0.center) --(T\x \maxtkz@cnt@lg .center);}
+\else
+  \foreach \y in {0,...,\maxtkz@cnt@lg}{%
+     \draw (T0\y .center) --(T2\y .center);%
+     }
+  \foreach \x in {0,1,2}{%
+     \draw (T\x 0.center) --(T\x \maxtkz@cnt@lg .center);%
+     }
+\fi
+%<––––––––––– Première ligne et Nodes variations  –––––––––––––––––––––––––––>
+\setcounter{tkz@cnt@cl}{0} 
+\pgfextractx{\tkz@XF}{\pgfpointanchor{F0}{center}} 
+\pgfextracty{\tkz@YF}{\pgfpointanchor{F0}{center}}
+\foreach \x in {#3}{%
+    \pgfmathparse{\cmdTAB@tbs@deltacl+%
+                  \cmdTAB@tbs@lgt/2+%
+                  \cmdTAB@tbs@espcl*\thetkz@cnt@cl}
+    \global\let\tkz@dx\pgfmathresult
+    \stepcounter{tkz@cnt@cl}
+    %\node[node distance  = \tkz@dx cm] (L\thetkz@cnt@cl) [right of =F0]{\x};%
+    \node (L\thetkz@cnt@cl) at (\tkz@XF + \tkz@dx cm,\tkz@YF) {\x};%
+    }
+}% fin de tkzTabInit
+%<––––––––––––––––––––– fin de tkzTabInit  ––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<––––––––––––––––––––––– Ligne de signes  ––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey[TAB] {sgn} {colorH}{}
+\presetkeys   [TAB] {sgn} {colorH=lightgray}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTabLine}[2][]{%
+ \setkeys   [TAB] {sgn} {#1}%
+ \setcounter{tkz@cnt@lg}{\thetkz@cnt@line}
+ \stepcounter{tkz@cnt@line}
+ \setcounter{tkz@cnt@lgnext}{\thetkz@cnt@line}
+ \setcounter{tkz@cnt@cl}{1}
+ \setcounter{tkz@cnt@pair}{1}
+ \setcounter{tkz@cnt@impair}{1}
+ \foreach \x in {#2}
+   {\ifthenelse{\isodd{\thetkz@cnt@cl}}
+   {\path (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center)%
+    node[midway](Z\thetkz@cnt@impair\thetkz@cnt@lg) {};%
+   \ifthenelse{\equal{\x}{0}}%
+   {\ifTAB@tbs@zerob 
+      \draw[line width = \cmdTAB@tbs@lw,\cmdTAB@tbs@style]%
+      (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to node[midway]%
+      (Z\thetkz@cnt@impair\thetkz@cnt@lg) {$0$} (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);%
+    \else%
+       \draw[line width = \cmdTAB@tbs@lw,\cmdTAB@tbs@style]%
+      (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to node[fill=\cmdTAB@tbs@colorT,midway]%
+      (Z\thetkz@cnt@impair\thetkz@cnt@lg) {$0$} (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);%
+    \fi%
+   }
+   {\ifthenelse{\equal{\x}{}}%
+   {\path (N\thetkz@cnt@impair\thetkz@cnt@lg)--(N\thetkz@cnt@impair\thetkz@cnt@lgnext) node[midway]{};%
+   }
+   {\ifthenelse{\equal{\x}{cd}}%
+   {\draw[inner sep=0pt,line width =\cmdTAB@tbs@lw,double]%
+   (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);
+   }
+   {\ifthenelse{\equal{\x}{dc}}%
+   {\draw[inner sep=0pt,line width =\cmdTAB@tbs@lw,double]%
+   (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);
+   }
+   {\ifthenelse{\equal{\x}{t}}%
+   {\draw[line width =\cmdTAB@tbs@lw,\cmdTAB@tbs@style]
+   (N\thetkz@cnt@impair\thetkz@cnt@lg.center) to (N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);%
+   }
+   {\ifthenelse{\equal{\x}{d}}%
+   {\draw[line width =\cmdTAB@tbs@lw,double]%
+(N\thetkz@cnt@impair\thetkz@cnt@lg.center)--(N\thetkz@cnt@impair\thetkz@cnt@lgnext.center);%
+   }
+   {\path (N\thetkz@cnt@impair\thetkz@cnt@lg)--(N\thetkz@cnt@impair\thetkz@cnt@lgnext) node[midway]%
+   {\x};%
+   }
+   }}}}}\stepcounter{tkz@cnt@impair}}%
+   {\path (M\thetkz@cnt@pair\thetkz@cnt@lg)--(M\thetkz@cnt@pair\thetkz@cnt@lgnext)%
+    node[midway](S\thetkz@cnt@pair\thetkz@cnt@lg){};%
+   \ifthenelse{\equal{\x}{h}}%
+   {\setcounter{tkz@cnt@clnext}{\thetkz@cnt@pair}\stepcounter{tkz@cnt@clnext}%
+   \draw[fill=lightgray,opacity=0.4]%
+        (N\thetkz@cnt@pair\thetkz@cnt@lg) rectangle (N\thetkz@cnt@clnext\thetkz@cnt@lgnext);}
+   {\node at (S\thetkz@cnt@pair\thetkz@cnt@lg) {\x}; 
+   }
+   \stepcounter{tkz@cnt@pair}}
+   \stepcounter{tkz@cnt@cl}%
+   }% end foreach
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––     Variations    –––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<––––––––––––––––––––––– Macro pour tracer une flèche ––––––––––––––––––––––>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzDrawArrow}{%
+\ifthenelse{\equal{\thetkz@cnt@zone}{0}}{%
+  \setcounter{tkz@cnt@pred}{\thetkz@cnt@cl}
+  \addtocounter{tkz@cnt@pred}{-1}
+  \ifthenelse{\thetkz@cnt@temp>0}{%
+    \addtocounter{tkz@cnt@pred}{-\thetkz@cnt@temp}%
+    \setcounter{tkz@cnt@temp}{0}}{%
+    }%
+  \draw[ArrowStyle] (FR\thetkz@cnt@pred\thetkz@cnt@lg) to (FL\thetkz@cnt@cl\thetkz@cnt@lg);%
+  }%
+{\setcounter{tkz@cnt@zone}{0}}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey[TAB]{VA}{colorF}{}
+\define@cmdkey[TAB]{VA}{colorPC}{}
+\presetkeys[TAB]{VA}{colorF=black,colorPC=white}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTabVar}[2][]{%
+\setkeys[TAB]{VA}{#1}%
+\setcounter{tkz@cnt@lg}{\thetkz@cnt@line}
+\stepcounter{tkz@cnt@line}
+\setcounter{tkz@cnt@lgnext}{\thetkz@cnt@line}
+\begin{scope}
+%\tikzstyle{every to}=[->,>=latex,shorten >=10pt,shorten <=10pt,thick]
+\tikzstyle{every node}=[inner sep =3pt]
+
+\setcounter{tkz@cnt@cl}{0}
+\setcounter{tkz@cnt@aw}{0}
+\setcounter{tkz@cnt@temp}{0}
+\setcounter{tkz@cnt@arrow}{0}
+%<––––––––––––––––– Lecture des données et création des nodes –––––––––––––––>
+\foreach \x/\tl/\tr in {#2}
+{\stepcounter{tkz@cnt@aw}\stepcounter{tkz@cnt@cl}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– D- ––––>
+\ifthenelse{\equal{\x}{D-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– D+ ––––>
+{\ifthenelse{\equal{\x}{D+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +D ––––>
+{\ifthenelse{\equal{\x}{+D}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --   (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +C ––––>
+{\ifthenelse{\equal{\x}{+C}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --   (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[B,nPC] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[B,nPC] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -D –––––>
+{\ifthenelse{\equal{\x}{-D}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -C –––––>
+{\ifthenelse{\equal{\x}{-C}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[A,nPC] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \node[A,nPC] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– + ––––>
+{\ifthenelse{\equal{\x}{+}}%
+{\node[B]  (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl} ;%
+ \node[B]  (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––   +V+ ––––>
+{\ifthenelse{\equal{\x}{+V+}}%
+{\node[BL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl} ;%
+ \node[BR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––    -V- ––––>
+{\ifthenelse{\equal{\x}{-V-}}%
+{\node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl} ;%
+ \node[AR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––     -V+ ––––>
+{\ifthenelse{\equal{\x}{-V+}}%
+{\node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl} ;%
+ \node[BR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––   +V- ––––>
+{\ifthenelse{\equal{\x}{+V-}}%
+{\node[BL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl} ;%
+ \node[AR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– - ––––>
+{\ifthenelse{\equal{\x}{-}}%
+{\node[A]  (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl} ;%
+ \node[A]  (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -D+ ––––>
+{\ifthenelse{\equal{\x}{-D+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \node[BR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +D- ––––>
+{\ifthenelse{\equal{\x}{+D-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --  (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[AR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -CD+ ––––>
+{\ifthenelse{\equal{\x}{-CD+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --  (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[A,nPC]  (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \node[BR,nPC] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +CD- ––––>
+{\ifthenelse{\equal{\x}{+CD-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[B,nPC]  (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[AR,nPC] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -DC+ ––––>
+{\ifthenelse{\equal{\x}{-DC+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL,nPC]     (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \node[B,nPC]   (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +DC- ––––>
+{\ifthenelse{\equal{\x}{+DC-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL,nPC]   (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[A,nPC]       (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -DC- ––––>
+{\ifthenelse{\equal{\x}{-DC-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --   (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL,nPC] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \node[A,nPC]       (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +DC+ ––––>
+{\ifthenelse{\equal{\x}{+DC+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) --   (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL,nPC] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[B,nPC]       (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––  C- ––––>
+{\ifthenelse{\equal{\x}{C-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[A,nPC]   (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \node[A,nPC]   (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––  C+ ––––>
+{\ifthenelse{\equal{\x}{C+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[B,nPC]  (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};%
+ \node[B,nPC]  (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +D+ ––––>
+{\ifthenelse{\equal{\x}{+D+}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL,nPC]   (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \node[BR,nPC]   (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tr};
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -D- ––––>
+{\ifthenelse{\equal{\x}{-D-}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl} ;%
+ \node[AR] (FR\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tr} ;
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– R ––––––>
+{\ifthenelse{\equal{\x}{R}}%
+{\stepcounter{tkz@cnt@temp}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +DH ––––>
+{\ifthenelse{\equal{\x}{+DH}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[BL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+ \setcounter{tkz@cnt@clnext}{\thetkz@cnt@cl}\stepcounter{tkz@cnt@clnext}
+ \draw[fill=lightgray,opacity=0.4]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg) rectangle (N\thetkz@cnt@clnext\thetkz@cnt@lgnext);
+\ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}\stepcounter{tkz@cnt@zone}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -DH ––––>
+{\ifthenelse{\equal{\x}{-DH}}%
+{\draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[AL] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@cl\thetkz@cnt@lgnext){\tl};%
+ \setcounter{tkz@cnt@clnext}{\thetkz@cnt@cl}\stepcounter{tkz@cnt@clnext}%
+ \draw[fill=lightgray,opacity=0.4]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg) rectangle (N\thetkz@cnt@clnext\thetkz@cnt@lgnext);
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}\stepcounter{tkz@cnt@zone}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– +CH ––––>
+{\ifthenelse{\equal{\x}{+CH}}%
+{\setcounter{tkz@cnt@clnext}{\thetkz@cnt@cl}\stepcounter{tkz@cnt@clnext}
+ \draw[fill=lightgray,opacity=0.4]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg) rectangle (N\thetkz@cnt@clnext\thetkz@cnt@lgnext);
+ \draw[line width =1pt,double]%
+ (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[B,nPC] (FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lg){\tl};%
+\ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}\stepcounter{tkz@cnt@zone}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -CH ––––>
+{\ifthenelse{\equal{\x}{-CH}}%
+{\setcounter{tkz@cnt@clnext}{\thetkz@cnt@cl}\stepcounter{tkz@cnt@clnext}%
+ \draw[fill=lightgray,opacity=0.4]%
+      (N\thetkz@cnt@cl\thetkz@cnt@lg) rectangle (N\thetkz@cnt@clnext\thetkz@cnt@lgnext);
+ \draw[line width =1pt,double]%
+      (N\thetkz@cnt@cl\thetkz@cnt@lg.center) -- (N\thetkz@cnt@cl\thetkz@cnt@lgnext.center);
+ \node[A,nPC](FL\thetkz@cnt@cl\thetkz@cnt@lg) at (N\thetkz@cnt@aw\thetkz@cnt@lgnext){\tl};%
+ \ifthenelse{\equal{\thetkz@cnt@arrow}{0}}{}{\tkzDrawArrow}\stepcounter{tkz@cnt@zone}%
+}
+{}% non prévu
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+\stepcounter{tkz@cnt@arrow}}% end de la boucle
+%<–––––––––––––––––––––––––––––––––––––––––––––––––– Tracé des flèches ––––––>
+\end{scope}
+}% fin de la macro variation
+%<–––––––––––––––––––––––– Valeur Intermédiaire ––––––––––––––––––––––––––––>
+\define@boolkey[TAB] {VI} {draw}[true]{}
+\define@boolkey[TAB] {VI} {last}[true]{}   
+\define@cmdkey [TAB] {VI} {colorA}{}
+\define@cmdkey [TAB] {VI} {colorI}{}
+\presetkeys    [TAB] {VI} {colorA = black,%
+                           colorI = black,%
+                           draw     = false,%
+                           last     = false}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTabVal}[6][]{%
+  \setkeys[TAB]{VI}{#1}%
+  \setcounter{tkz@cnt@cl}{#2}
+  \setcounter{tkz@cnt@clnext}{#3}
+  \pgfmathmultiply{\cmdTAB@tbs@espcl}{#4}
+       \global\let\tkz@dx\pgfmathresult 
+  \setcounter{tkz@cnt@lg}{\thetkz@cnt@line}
+  \addtocounter{tkz@cnt@lg}{-1}
+  \node[inner sep=0pt,fondL,node distance = \tkz@dx cm](ANT) [right of =L#2] {#5};
+  \path node[node distance = \tkz@dx cm](ANTa) [right of =N\thetkz@cnt@cl 1]%
+            {\scriptsize $\bullet$};
+  \path node[node distance = \tkz@dx cm](ANTb) [right of =N\thetkz@cnt@cl\thetkz@cnt@line]  {};
+  \ifTAB@VI@last \path node(IMAold) at (IMA) {};%
+  \fi
+  \path (intersection cs:%
+        first line={(FR\thetkz@cnt@cl\thetkz@cnt@lg.center)--%
+                    (FL\thetkz@cnt@clnext\thetkz@cnt@lg.center)},%
+        second line={(ANTa)--(ANTb)}) node[inner sep=0pt,fondT](IMA)  {#6};
+  \ifTAB@VI@draw 
+    \ifTAB@VI@last
+      \draw[shorten >=3pt,shorten <=3pt,line width=1pt,->,dotted,>=latex']%
+           (IMAold.south) to (IMA);%
+    \else%
+      \draw[shorten >=3pt,shorten <=3pt,line width=1pt,->,dotted,>=latex']%
+           (ANTa.center) to (IMA);%
+    \fi%
+  \fi
+}
+%<–––––––––––––––––––––––– tangente horizontale ––––––––––––––––––––––––––––>
+
+% args 1--> options ;
+%      2--> tkz@cnt@cl debut fl  ;
+%      3--> tkz@cnt@clnext fin de fl ;%
+%      4---> n°de val  ;
+%      5----> image
+\define@cmdkey [TAB] {TG} {pos}[below]{}
+\define@cmdkey [TAB] {TG} {colorTG}{}
+\define@boolkey[TAB] {TG} {last}[true]{}
+\presetkeys    [TAB] {TG} {colorTG = black,%
+                           pos     = above,%
+                           last    = false}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTabTan}[5][]{%
+\setkeys[TAB]{TG}{#1}%
+\ifTAB@TG@last 
+   \draw[fill] (IMA) circle (1pt);
+   \node[\cmdTAB@TG@pos =1pt] at (IMA) {#5};
+   \draw[thick,>=latex',->] (IMA.center) -- ++(.75,0);
+   \draw[thick,>=latex',->] (IMA.center) -- ++(-.75,0);
+\else
+   \setcounter{tkz@cnt@clnext}{#3}
+   \setcounter{tkz@cnt@aw}{#4}
+   \setcounter{tkz@cnt@cl}{#2}
+   \setcounter{tkz@cnt@lg}{\thetkz@cnt@line}\addtocounter{tkz@cnt@lg}{-1}
+   \setcounter{tkz@cnt@lgnext}{\thetkz@cnt@line}
+   \path (intersection cs:
+    first line={(FR\thetkz@cnt@cl\thetkz@cnt@lg.center)--%
+                (FR\thetkz@cnt@clnext\thetkz@cnt@lg.center)},second line={(N\thetkz@cnt@aw\thetkz@cnt@lg)--%
+                (N\thetkz@cnt@aw\thetkz@cnt@lgnext)}) node[](tgt){};
+   \draw[fill] (tgt) circle (1pt);
+   \node[\cmdTAB@TG@pos =1pt] at (tgt) {#5};
+   \draw[thick,>=latex',->] (tgt.center) -- ++(.75,0);
+   \draw[thick,>=latex',->] (tgt.center) -- ++(-.75,0);
+\fi}
+%<–––––––––––––––––––––––– dérivée droite gauche ––––––––––––––––––––––––––––>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTabSlope}[2][]{%
+\setkeys[TAB]{DT}{#1}%
+\foreach \x/\y/\z in {#2}
+{\node[left=3pt] at (Z\x 1) {\scriptsize \y};
+\node[right=3pt] at (Z\x 1) {\scriptsize \z};
+}} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\tkzTab}[5][]{%
+\tkzTabInit[#1]{#2}{#3}
+\tkzTabLine{#4}
+\tkzTabVar{#5}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<––––––––––––––––––––––––––––––– fin –––––––––––––––––––––––––––––––––––––––> 
+\let\sgnvar\tkzTabInit
+\let\signe\tkzTabLine
+\let\variation\tkzTabVar
+\let\variations\tkzTab
+\let\valeur\tkzTabVal    
+\let\tangente\tkzTabTan
+\let\nbderiv\tkzTabSlope
+\endinput
+

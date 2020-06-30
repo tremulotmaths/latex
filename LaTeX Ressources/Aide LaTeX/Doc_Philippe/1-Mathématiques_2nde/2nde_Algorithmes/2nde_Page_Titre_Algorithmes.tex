@@ -1,0 +1,50 @@
+\titlepage{
+\begin{center}
+{\Large\bfseries\color{\MaCouleur} Philippe \bsc{De Sousa}}
+
+\vspace*{\stretch{1}}
+
+\begin{tikzpicture}[scale=1.5]
+\begin{scope}
+% style des noeuds
+\tikzstyle{debutfin}=[ellipse,draw,text=red]
+\tikzstyle{instruct}=[rectangle,draw,fill=yellow!50]
+\tikzstyle{test}=[diamond, aspect=2.5,thick,draw=blue,fill=yellow!50,text=blue]
+\tikzstyle{es}=[rectangle,draw,rounded corners=4pt,fill=blue!25]
+% style des flèches
+\tikzstyle{suite}=[->,>=stealth',thick,rounded corners=4pt]
+% placement des noeuds
+\node[debutfin] (debut) at (-3,11) {Début};
+\node[es] (lire) at (-3,9) {\begin{tabular}{c}Lire un entier positif $A$ \\ Lire un entier positif $B$\end{tabular}};
+\node[instruct] (init) at (-3,6) {\begin{tabular}{c}$Q\leftarrow ENT(A \div B)$ \\ $R\leftarrow A - B \times Q$\end{tabular}};
+\node[test] (test) at (-3,4) {$R = 0$ \ ?};
+\node[es] (affichage) at (-3,1) {$PGCD = B$};
+\node[debutfin] (fin) at (-3,-1) {Fin};
+\node[es] (remplace) at (1,6) {\begin{tabular}{c}$A\leftarrow B$ \\ $B\leftarrow R$\end{tabular}};
+% Placement des flèches
+\draw[suite] (debut) -- (lire);
+\draw[suite] (lire) -- (init);
+\draw[suite] (init) -- (test.north);
+\draw[suite] (test) -- (affichage) node[midway,fill=white]{oui};
+\draw[suite] (affichage) -- (fin);
+\draw[suite] (test) -| (remplace) node[near start,fill=white]{non};
+\draw[suite] (remplace) |- (-3,7.5);
+\end{scope}
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}
+\node [rotate=45,scale=8,text opacity=0.2]
+at (current page.center) {\color{\MaCouleur}\scshape Mathématiques};
+\end{scope}
+\begin{scope}[xshift=5.5cm,yshift=6cm]
+\node [scale=8,color=\MaCouleur] at (0,0) {\seconde};
+\node [below=2cm,scale=4,color=\MaCouleur] at (0,0) {Algorithmes};
+\end{scope}
+\end{tikzpicture}
+
+\vspace*{\stretch{1}}
+
+D'après le programme $\NP{2010}$
+\end{center}
+} 

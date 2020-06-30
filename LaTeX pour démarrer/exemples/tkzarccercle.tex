@@ -1,0 +1,50 @@
+\begin{center}
+\begin{tikzpicture}[scale=1]
+
+\tkzDefPoint(0,0){A}\tkzLabelPoints[font=\boldmath,below left,color=blue](A)
+\tkzDefPoint(2,0){C}\tkzLabelPoints[font=\boldmath,below right,color=blue](C)
+\tkzDefPoint(5,0){B}\tkzLabelPoints[font=\boldmath,below right,color=blue](B)
+\tkzDefPoint(0,4){D}\tkzLabelPoints[font=\boldmath,above left,color=blue](D)
+\tkzDefPoint(2,4){F}\tkzLabelPoints[font=\boldmath,above right,color=blue](F)
+\tkzDefPoint(5,4){E}\tkzLabelPoints[font=\boldmath,above right,color=blue](E)
+\tkzDefPoint(2,7){E_1}\tkzLabelPoints[font=\boldmath,above right,color=blue](E_1)
+\tkzDefPoint(2,-3){B_1}\tkzLabelPoints[font=\boldmath,below right,color=blue](B_1)
+
+\tkzCalcLength[cm](A,B_1)\tkzGetLength{dAB}
+
+\tkzDefPoint(-\dAB,0){B_2}\tkzLabelPoints[font=\boldmath,below left,color=blue](B_2)
+\tkzDefPoint(-\dAB,4){E_2}\tkzLabelPoints[font=\boldmath,above left,color=blue](E_2)
+
+\tkzDrawArc[delta=10,line width=1.5pt,color=red,style=dashed](A,B_2)(B_1)
+\tkzDrawArc[delta=10,line width=1.5pt,color=red,style=dashed](D,E_1)(E_2)
+
+\tkzMarkRightAngle[fill=red!50](E_1,F,D)
+\tkzMarkRightAngle[fill=red!50](F,C,A)
+\tkzMarkRightAngle[fill=red!50](A,D,F)
+\tkzMarkRightAngle[fill=red!50](D,A,B_2)
+\tkzMarkRightAngle[fill=red!50](B_2,E_2,D)
+\tkzMarkRightAngle[fill=red!50](C,F,E)
+\tkzMarkRightAngle[fill=red!50](E,B,C)
+
+\tkzMarkRightAngle[fill=blue!50](D,F,C)
+\tkzMarkRightAngle[fill=blue!50](A,C,B_1)
+\tkzMarkRightAngle[fill=blue!50](C,A,D)
+\tkzMarkRightAngle[fill=blue!50](E_2,D,A)
+\tkzMarkRightAngle[fill=blue!50](A,B_2,E_2)
+\tkzMarkRightAngle[fill=blue!50](B,C,F)
+\tkzMarkRightAngle[fill=blue!50](F,E,B)
+
+\tkzDrawPolygon[line width=1.5pt,color=blue](B_2,A,D,E_2)
+\tkzDrawPolygon[line width=1.5pt,color=blue](A,C,F,D)
+\tkzDrawPolygon[line width=1.5pt,color=blue](C,B,E,F)
+\tkzDrawPolygon[line width=1.5pt,color=blue](A,C,B_1)
+\tkzDrawPolygon[line width=1.5pt,color=blue](D,F,E_1)
+
+\tkzMarkSegments[mark=||,size=4pt](B_1,C C,B F,E F,E_1)
+\tkzMarkSegments[mark=o,size=4pt](E_2,B_2 A,D C,F B,E)
+\tkzMarkSegments[mark=|||,size=4pt](A,B_1 A,B_2 D,E_1 D,E_2)
+\tkzMarkSegments[mark=oo,size=8pt](A,C D,F)
+
+
+\end{tikzpicture}
+\end{center}

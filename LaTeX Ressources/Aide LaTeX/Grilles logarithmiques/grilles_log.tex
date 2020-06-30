@@ -1,0 +1,178 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{bodegraph} %Bode plot package 
+
+
+\begin{document}
+
+
+
+
+\begin{tikzpicture}[yscale=3/40,xscale=6/5]
+ 
+\semilog{-2}{3}{-20}{20} 
+ 
+\end{tikzpicture}
+
+
+
+
+\begin{tikzpicture}[yscale=3/40,xscale=6/5]
+ 
+\semilog*{-2}{3}{-20}{20} 
+ 
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}[yscale=3/40, xscale=6/3]
+    \UnitedB
+    \tikzset{ 
+        semilog lines/.style={black},
+        semilog lines 2/.style={ blue}, 
+        semilog half lines/.style={dashed},
+        semilog label x/.style={below,font=\tiny},
+        semilog label y/.style={above,font=\tiny} }
+    \semilog*{-2}{3}{-20}{20} 
+\end{tikzpicture}
+
+
+
+
+
+\begin{tikzpicture}
+% Grid style
+\tikzset{ 
+    semilog lines/.style={black},
+    semilog lines 2/.style={gray}, 
+    semilog half lines/.style={gray, dotted},
+    semilog label x/.style={below,font=\tiny},
+    semilog label y/.style={above,font=\tiny} }
+ 
+% Magnitude Plot
+\begin{scope}[xscale=7/5, yscale=3/40]
+    \UnitedB
+    \OrdBode{10}
+    \semilog*{-2}{3}{-30}{10} 
+\end{scope}
+ 
+%Phase plot
+\begin{scope}[yshift=-3.5cm,xscale=7/5,yscale=3/180]
+    \UniteDegre
+    \OrdBode{30}
+    \semilog*{-2}{3}{-180}{0} 
+\end{scope}
+ 
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={}},
+]
+ 
+% Grid Style
+\tikzset{
+    semilog lines/.style={black},
+    semilog lines 2/.style={gray},
+    semilog half lines/.style={gray, dotted},
+    semilog label x/.style={below,font=\tiny},
+    semilog label y/.style={above,font=\tiny} }
+ 
+% Magnitude Plot
+\begin{scope}[xscale=7/5, yscale=3/40]
+    \UnitedB
+    \semilog*{-2}{3}{-30}{10} 
+    % Asymptotic Line
+    \BodeGraph[black,samples=500]{-2:2.5}{\POAmpAsymp{1}{0.1}}
+    % Bode Plot
+    \BodeGraph[blue]{-2:2.5}{\POAmp{1}{0.1}}
+\end{scope}
+ 
+% Phase Plot
+\begin{scope}[yshift=-3.5cm,xscale=7/5,yscale=3/90]
+    \UniteDegre
+    \OrdBode{30}
+    \semilog*{-2}{3}{-90}{0} 
+    % Asymptotic Line
+    \BodeGraph[black,samples=500]{-2:3}{\POArgAsymp{1}{0.1}}
+    % Bode Plot
+    \BodeGraph[red]{-2:3}{\POArg{1}{0.1}}
+\end{scope}
+ 
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[
+    gnuplot def/.append style={prefix={}},
+]
+ 
+% Grid Style
+\tikzset{
+    semilog lines/.style={black},
+    semilog lines 2/.style={gray,dotted},
+    semilog half lines/.style={gray, dotted},
+    semilog label x/.style={below,font=\tiny},
+    semilog label y/.style={above,font=\tiny} }
+ 
+% Magnitude Plot
+\begin{scope}[xscale=7/5, yscale=3/50]
+    \UnitedB
+    \semilog{-2}{3}{-30}{20} 
+    % xi=0.1
+    \BodeGraph[red,samples=500]{-2:1.9}{\SOAmp{2}{0.1}{10}}
+    % xi=0.5
+    \BodeGraph[green,samples=500]{-2:1.9}{\SOAmp{2}{0.5}{10}}
+    % xi=1
+    \BodeGraph[blue,samples=500]{-2:1.9}{\SOAmp{2}{1}{10}}
+\end{scope}
+ 
+% Phase plot
+\begin{scope}[yshift=-3cm,xscale=7/5,yscale=3/180]
+    \UniteDegre
+    \OrdBode{30}
+    \semilog{-2}{3}{-180}{0}
+    % xi=0.1
+    \BodeGraph[red,samples=500]{-2:3}{\SOArg{2}{0.1}{10}}
+    % xi=0.5
+    \BodeGraph[green,samples=500]{-2:3}{\SOArg{2}{0.5}{10}}
+    % xi=1
+    \BodeGraph[blue,samples=500]{-2:3}{\SOArg{2}{1}{10}}
+\end{scope}
+ 
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[
+    gnuplot def/.append style={prefix={}},
+]
+ 
+% Grid Style
+\tikzset{
+    semilog lines/.style={black},
+    semilog lines 2/.style={gray},
+    semilog half lines/.style={gray, dotted},
+    semilog label x/.style={below,font=\tiny},
+    semilog label y/.style={above,font=\tiny} }
+ 
+% Magnitude Plot
+\begin{scope}[xscale=7/4, yscale=3/60]
+    \UnitedB
+    \semilog*{-2}{2}{-40}{20} 
+    % Bode Plot
+    \BodeGraph[blue!80]{-2:2}{\SOAmp{1}{0.5}{1} - \POAmp{1}{2}}
+\end{scope}
+ 
+% Phase Plot
+\begin{scope}[yshift=-3.5cm,xscale=7/4,yscale=3/105]
+    \UniteDegre
+    \OrdBode{15}
+    \semilog*{-2}{2}{-90}{15}
+    %Bode Plot
+    \BodeGraph[blue!80]{-2:2}{ \SOArg{1}{0.5}{1}- \POArg{1}{2}}
+\end{scope}
+ 
+\end{tikzpicture}
+
+
+\end{document}

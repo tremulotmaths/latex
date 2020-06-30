@@ -1,0 +1,237 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\input{pas-echant.mod.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-echant.mod.tex} }\\[3mm]
+{\large Version 1.00 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+Le module (et non l'extension) \texttt{pas-echant.mod.tex} a été conçu dans le but de créer facilement une table de valeurs de $P(X\leqslant k)$, pour $0\leqslant k\leqslant n$, où $X\hookrightarrow\mathcal{B}(n~;p)$.
+
+\medskip
+
+
+Ce module charge les extensions suivantes :
+
+\begin{quote}
+xcolor (avec l'option : table)\\
+amsmath\\
+amssymb\\
+fancyvrb\\
+cellspace\\
+longtable
+\end{quote}
+
+et définit :
+
+\begin{tcblisting}{codeTEX}
+\setlength{\cellspacetoplimit}{3pt}
+\setlength{\cellspacebottomlimit}{3pt}
+\end{tcblisting}
+
+\medskip
+
+Ce module utilise Giac/Xcas. Il est donc nécessaire de faire quelques réglages avec votre éditeur de sorte qu'il reconnaisse l'utilisation de Giac/Xcas.
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-echant.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-echant/latex/pas-echant.mod.tex
+./texlive/texmf-local/tex/latex/pas-echant/doc/pas-echant.tex
+./texlive/texmf-local/tex/latex/pas-echant/doc/doc.codes.tex
+./texlive/texmf-local/tex/latex/pas-crosswords/doc/doc.styles.tex
+./texlive/texmf-local/tex/latex/pas-echant/doc/pas-echant.pdf
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+\medskip
+
+Pour faire appel à ce module, on l'appellera en préambule :
+
+\begin{tcblisting}{codeTEX}
+\documentclass{article}
+...
+\input{pas-echant.mod.tex}
+\begin{document}
+...
+\end{document}
+\end{tcblisting}
+
+
+\section{Installation de Giac/Xcas}
+
+Le module \texttt{pas-echant.tex} fait appel à Giac/Xcas ; par conséquent, vous devez installer Xcas à partir, par exemple, de la page : \begin{center}
+\url{http://www-fourier.ujf-grenoble.fr/~parisse/giac_fr.html}
+\end{center}
+
+\section{Paramétrage de l'éditeur LaTeX}
+
+N'oubliez pas de mettre en option de compilation  :
+
+\begin{verbatim}
+--shell-escape
+\end{verbatim}
+
+afin que les commande Xcas s'exécutent. Par exemple, en compilant avec Pdflatex, on aura (avec TexMaker, mais pour les autres éditeurs, ça ressemble à cela aussi) :
+
+\begin{verbatim}
+pdflatex -synctex=1 -interaction=nonstopmode --shell-escape %.tex
+\end{verbatim}
+
+\section{Les trois fonctions principales}
+
+\begin{tcblisting}{codeTEX}
+\begin{echantillon}
+build("<nom du tableau>","<option>",[n,p <,options>]);
+\end{echantillon}
+\input{<nom du tableau>}
+\end{tcblisting}
+
+\medskip
+
+Ici, la commande \texttt{build} va construire un tableau de valeurs selon l'option indiquée et va le sauvegarder dans un fichier externe \texttt{.tex} dont le nom est celui informé pour la \texttt{<nom du tableau>}. Ensuite, on affiche le tableau de valeurs à l'aide de la commande \texttt{\textbackslash input\{<nom du tableau>\}}.
+
+\medskip
+
+Les 3 options possibles sont :
+
+\begin{itemize}
+\item[$\bullet$] \og complet \fg{} 
+\item[$\bullet$] \og min \fg{} 
+\item[$\bullet$] \og minbreak \fg{} 
+\end{itemize}
+
+\subsection{Construire un tableau complet}
+
+J'ai ici construit le tableau des valeurs avec $n=50$ et $p=0,487$ :
+
+\medskip
+
+\begin{tcblisting}{listing}
+\begin{center}
+\begin{echantillon}
+build("tableau1","complet",[50,0.487])
+\end{echantillon}
+\input{tableau1}
+\end{center}
+\end{tcblisting}
+
+
+Cette fonction surligne les valeurs de $a$ et $b$ telles que :
+\begin{itemize}
+\item[$\bullet$] $P(X\leqslant a)>2,5\%$
+\item[$\bullet$] $P(X\leqslant b)\geqslant 97,5\%$
+\end{itemize}
+
+L'intervalle de fluctuation au seuil de 95\% est alors $\left[\dfrac{a}{n};\dfrac{b}{n}\right]$.
+
+\subsection{Construire un tableau minimal}
+
+Quand $n$ est très grand, pour éviter que la construction se mette sur plusieurs pages, on peut utiliser la fonction :
+
+\begin{tcblisting}{listing}
+\begin{echantillon}
+build("tableau2","min",[50,0.487,15,33]);
+\end{echantillon}
+\input{tableau2}
+\end{tcblisting}
+
+
+\subsection{Construire un tableau minimal tronqué}
+
+Dans l'éventualité où il y aurait beaucoup de valeurs entre $a$ et $b$, on peut tronquer le tableau avec la 3\ieme{} option :
+
+\begin{tcblisting}{listing}
+\begin{echantillon}
+build("tableau3","minbreak",[50,0.487,16,32,18,30]);
+\end{echantillon}
+\input{tableau3}
+\end{tcblisting}
+
+\newpage
+
+\section{Changer les couleurs}
+
+\subsection{Couleur des lignes pour $a$ et $b$}
+
+\begin{tcblisting}{codeTEX}
+\def\bkcolor{<couleur souhaitée>}
+% Par défaut, la couleur est : gray!10
+\end{tcblisting}
+
+\subsection{Couleur de la première ligne}
+
+\begin{tcblisting}{codeTEX}
+\def\fstlinecolor{<couleur souhaitée>} % couleur de fond
+% Par défaut, la couleur est : gray
+\def\txtfstlinecolor{<couleur souhaitée>} % couleur du texte
+% Par défaut, la couleur est : white
+\end{tcblisting}
+
+\subsection{Couleur des traits}
+
+\begin{tcblisting}{codeTEX}
+\def\bordercolor{<couleur souhaitée>}
+% Par défaut, la couleur est : black
+\end{tcblisting}
+
+\begin{tcblisting}{listing}
+\def\fstlinecolor{blue!40}
+\def\txtfstlinecolor{blue!50!black}
+\def\bkcolor{blue!20}
+\def\bordercolor{blue!50!black}
+\begin{center}
+\input{tableau3}
+\end{center}
+\end{tcblisting}
+
+\end{document}

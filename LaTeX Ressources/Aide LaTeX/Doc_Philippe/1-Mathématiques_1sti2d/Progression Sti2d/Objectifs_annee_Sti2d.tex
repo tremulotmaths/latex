@@ -1,0 +1,182 @@
+\documentclass[10pt,openright,twoside]{book}
+\usepackage{etex}
+
+\input philippe2011_complet
+\usepackage{lscape}
+
+\entete{}{}{\footnotesize\itshape Programme de \premiere \bsc{Sti2d}}
+\pieddepage{}{\footnotesize - \thepage/\pageref{LastPage} -}{}
+\renewcommand\headrulewidth{0pt}
+
+\newcounter{chapp}
+\newcommand\chapitre[1]{%
+\refstepcounter{chapp}%
+\begin{center}
+\bfseries
+\underbar{\bsc{Chapitre \thechapp}}\par\large\textit{#1}
+\end{center}\nopagebreak[4]
+}
+
+
+\newcounter{fct}
+\newcommand\ANA{%
+\refstepcounter{fct}%
+\item[\pfr{Ana.\thefct}]
+}
+
+\newcounter{geo}
+\newcommand\GEO{%
+\refstepcounter{geo}%
+\item[\pfr{Géo.\thegeo}]
+}
+
+\newcounter{stp}
+\newcommand\STP{%
+\refstepcounter{stp}%
+\item[\pfr{StP.\thestp}]
+}
+
+\newcommand\EnPlus[1]{\footnotesize\textit{\underbar{Permet de travailler en parallèle :} #1}\par}
+
+\begin{document}
+
+\begin{center}
+{\fontfamily{augie}\fontsize{9}{11}\selectfont
+{\Large \pfr{\begin{tabular}{cc}
+                            Cours de Mathématiques\\
+                            Classe de Première\\
+                            {\large Sciences et Technologies de l'Industrie et du Développement Durable}
+                        \end{tabular}}}}
+\end{center}\bigskip
+
+
+\noindent\textbf{Légende des trois parties du programme :}
+    \begin{enumerate}
+        \item[\quad $\checkmark$] \bsc{Ana.} Analyse ;
+        \item[\quad $\checkmark$] \bsc{Geo.} Géométrie ;
+        \item[\quad $\checkmark$] \bsc{StP.} Statistiques et Probabilités.
+    \end{enumerate}\[*\]
+
+
+\chapitre{Statistiques descriptive, analyse de données}
+    \begin{enumerate}
+        \STP Utiliser de façon appropriée les deux couples usuels qui permettent de résumer une série statistique : (moyenne, écart type) et (médiane, écart interquartile).
+        \STP Étudier une série statistique ou mener une comparaison pertinente de deux séries statistiques à l'aide d'un logiciel ou d'une calculatrice.
+    \end{enumerate}\[*\]
+
+\chapitre{\'Etudes de fonctions}
+    \begin{enumerate}
+        \ANA Connaître les variations de la fonction $x \mapsto |x|$ et sa représentation graphique.
+        \ANA Obtenir la représentation graphique des fonctions $u + k$, $t \mapsto u(t + \lambda)$ et $|u|$ à partir de celle de $u$, la fonction $u$ étant connue, $k$ étant une fonction constante et $\lambda$ un réel.
+    \end{enumerate}\[*\]
+
+\chapitre{Cercle trigonométrique}
+    \begin{enumerate}
+        \ANA Utiliser le cercle trigonométrique, notamment pour :
+            \begin{itemize}
+                \item déterminer les cosinus et sinus d'angles associés ;
+                \item résoudre dans $\R$ les équations d'inconnue t :
+                \[\cos t = \cos a \qq \sin t = \sin a.\]
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{Nombres complexes : forme algébrique}
+    \begin{enumerate}
+        \GEO Effectuer des calculs algébriques avec des nombres complexes ;
+        \GEO Représenter un nombre complexe par un point ou un vecteur ;
+        \GEO Déterminer l'affixe d'un point ou d'un vecteur.
+    \end{enumerate}\[*\]\clearpage
+
+\chapitre{Probabilités \bsc i : schéma de Bernoulli}
+    \begin{enumerate}
+        \STP Représenter un schéma de Bernoulli par un arbre pondéré ;
+        \STP Simuler un schéma de Bernoulli.
+    \end{enumerate}\[*\]
+    
+\chapitre{Nombres complexes : forme trigonométrique}
+    \begin{enumerate}
+        \GEO Passer de la forme algébrique à la forme trigonométrique et inversement.
+    \end{enumerate}\[*\]
+
+\chapitre{\'Equations du second degré}
+    \begin{enumerate}
+        \ANA Mobiliser les résultats sur le second degré dans le cadre de la résolution de problème.
+    \end{enumerate}\[*\]
+
+\chapitre{Produit scalaire dans le plan}
+    \begin{enumerate}
+        \GEO Décomposer un vecteur selon deux axes orthogonaux et exploiter une telle décomposition ;
+        \GEO Calculer le produit scalaire de deux vecteurs par différentes méthodes :
+            \begin{itemize}
+                \item projection orthogonale ;
+                \item analytiquement ;
+                \item à l'aide des normes et d'un angle.
+            \end{itemize}
+        \GEO Choisir la méthode la plus adaptée en vue de la résolution d'un problème ;
+        \GEO Calculer des angles et des longueurs.
+    \end{enumerate}\[*\]
+
+\chapitre{Fonctions circulaires}
+    \begin{enumerate}
+        \ANA Connaître la représentation graphique des fonctions $x \mapsto \cos x$ et $x \mapsto \sin x$ ;
+        \ANA Connaître certaines propriétés de ces fonctions, notamment parité et périodicité.
+    \end{enumerate}\[*\]
+
+\chapitre{Probabilités \bsc{ii} : la loi binomiale}
+    \begin{enumerate}
+        \STP Reconnaître des situations relevant de la loi binomiale ;
+        \STP Calculer une probabilité dans le cadre de la loi binomiale à l'aide de la calculatrice ou du tableur ;
+        \STP Représenter graphiquement la loi binomiale ;
+        \STP Interpréter l'espérance comme valeur moyenne dans le cas d'un grand nombre de répétitions.
+    \end{enumerate}\[*\]\clearpage
+
+\chapitre{Dérivation}
+    \begin{enumerate}
+        \ANA Tracer une tangente connaissant le nombre dérivé ;
+        \ANA Calculer la dérivée de fonctions usuelles : $x \mapsto \frac 1 x$, $x \mapsto x^n$ ($n$ entier naturel non nul), $x\mapsto \cos x$ et $x\mapsto \sin x$.
+        \ANA Dérivée d'une somme, d'un produit, d'un quotient, de $t\mapsto \cos(\omega t + \varphi)$ et $t\mapsto \sin(\omega t + \varphi)$, $\omega$ et $\varphi$ étant réels ;
+        \ANA Exploiter le tableau de variation d'une fonction $f$ pour obtenir :
+            \begin{itemize}
+                \item un éventuel extremum de $f$ ;
+                \item le signe de $f$ ;
+                \item le nombre de solutions d'une équations du type $f(x) = k$.
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{\'Echantillonage}
+    \begin{enumerate}
+        \STP Déterminer à l'aide de la loi binomiale un intervalle de fluctuation, à environ 95\%, d'une fréquence ;
+        \STP Exploiter un tel intervalle pour rejeter ou non une hypothèse sur une proportion.
+    \end{enumerate}\[*\]
+
+\chapitre{Suites}
+    \begin{enumerate}
+        \ANA Modéliser et étudier une situation simple à l'aide de suites ;
+        \ANA $\lozenge$ Mettre en œuvre un algorithme permettant de calculer un terme de rang donné ;
+        \ANA Exploiter une représentation graphique des termes d'une suite ;
+        \ANA \'Ecrire le terme général d'une suite géométrique définie par son premier terme et sa raison.
+    \end{enumerate}\[*\]
+
+\begin{center}
+{\fontfamily{augie}\fontsize{9}{11}\selectfont
+{\Large \pfr{Algorithmique (objectifs pour le lycée)}}}
+\end{center}\bigskip
+
+
+\noindent\textbf{Instructions élémentaires (affectation, calcul, entrée, sortie)}\par
+Les élèves, dans le cadre d'une résolution de problèmes, doivent être capables :
+\begin{itemize}
+    \item d'écrire une formule permettant un calcul ;
+    \item d'écrire un programme calculant et donnant la valeur d'une fonction, ainsi que les instructions d'entrées et sorties nécessaires au traitement.
+\end{itemize}
+
+\noindent\textbf{Boucle et itérateur, instruction conditionnelle}\par
+Les élèves, dans le cadre d'une résolution de problèmes, doivent être capables :
+\begin{itemize}
+    \item de programmer un calcul itératif, le nombre d'itérations étant donné ;
+    \item de programmer une instruction conditionnelle, un calcul itératif, avec une fin de boucle conditionnelle.
+\end{itemize}
+
+
+
+\end{document}

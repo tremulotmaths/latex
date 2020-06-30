@@ -1,0 +1,60 @@
+\documentclass[french,11pt]{report}
+\input{preambule_2016}
+\input{commandes_2016}
+\input{presentation_fiche_2016}
+\usepackage{cprotect}
+
+
+\begin{document}
+\ReglePied
+\entete{}{}{}
+\pieddepage{2016 - 2017 - 2nde}{Exsheets + Verbatim}{\thepage / \pageref{LastPage}}
+
+\newgeometry{includeheadfoot, top=1cm, bottom=0.8cm, right=1.5cm, left=1.5cm}
+
+\Chapitre[Dr LaTeX]{}{Exsheets et Verbatim}
+
+\subsection*{Les questions}
+\begin{question}
+Comment écrire \LaTeX{} en utilisant \LaTeX{} ?
+\end{question}
+
+\cprotEnv
+\begin{solution}
+Il suffit d'écrire \verb=\LaTeX{}= ou \verb!\LaTeX! si on n'a pas besoin de l'espace après le mot.
+\end{solution}
+
+\[*\]
+
+\cprotEnv
+\begin{question}
+    Comment utiliser \verb=\verb= avec le package \textsf{Exsheets} ?
+\end{question}
+
+\cprotEnv
+\begin{solution}
+On utilise le package \textsf{cprotect} :
+    \begin{verbatim}
+        \input{preambule_2016}
+        \input{commandes_2016}
+        \input{presentation_fiche_2016}
+        \usepackage{cprotect}
+    \end{verbatim}\smallskip
+    
+Et avant \textit{chaque} environnement nécessitant l'utilisation de \verb=\verb= ou \verb=verbatim=, on utilise la commande \verb=\cprotEnv= :
+    \begin{verbatim}
+        \cprotEnv
+        \begin{solution}
+            <... code ... >
+        \end{solution}
+    \end{verbatim}
+\end{solution}
+
+
+
+\subsection*{Les solutions}
+
+\printsolutions
+
+
+\end{document} 

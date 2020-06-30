@@ -1,0 +1,9 @@
+maple_mode(0);
+L:=read("n.val");
+n:=L[0];
+d:=L[1];
+s:=ratnormal(n/d);
+T:="\\ensuremath{\\frac{\\numprint{"+n+"}}{\\numprint{"+d+"}}="+latex(s)+"}";
+Sortie:=fopen("pascours-fracsimplify.tex");
+fprint(Sortie,Unquoted,T);
+fclose(Sortie);

@@ -1,0 +1,64 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\input preambule_2013
+
+\newcommand\TitreActivite[2]{%
+    \setcounter{exo}{0}
+        \begin{center}
+            \psframebox[shadow=true,shadowcolor=gray!75,shadowsize=3pt,%
+            framearc=0.3,%
+            fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!60!yellow!40,gradend= white]{%
+                \parbox{0.5\linewidth}{%
+                    \begin{center}
+                        \Large\bfseries
+                        \uuline{Activité \bsc{#1}}\par
+                        #2
+                    \end{center}}}
+        \end{center}\bigskip
+}
+
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{iii.2}{Valeurs remarquables \par \'Equations}
+
+\exo On considère un repère $\OIJ$ et le cercle trigonométrique $\calig U$. On place le point $M$ sur $\calig U$ tel que $\widehat{IOM} = \rad{\dfrac{\pi}{3}}$.\par
+On veut démontrer que $\cos\left(\dfrac\pi3\right) = \dfrac12$ et $\sin\left(\dfrac\pi3\right) = \dfrac{\sqrt 3}{2}$.
+
+\begin{enumerate}
+    \item Faire une figure.
+    \item Démontrer que le triangle $MIO$ est un triangle équilatéral.
+    \item On appelle $H$ le projeté orthogonal de $M$ sur l'axe des abscisse.
+        \begin{enumerate}
+            \item Quel lien existe-t-il entre le point $H$ et $\cos\left(\dfrac\pi3\right)$ ?
+            \item Que représente la droite $(MH)$ pour le triangle $OMI$ (plusieurs réponses attendues) ? Justifier.
+            \item En déduire la valeur de $\cos\left(\dfrac\pi3\right)$.
+        \end{enumerate}
+    \item On appelle $K$ le projeté orthogonal de $M$ sur l'axe des ordonnées.
+        \begin{enumerate}
+            \item Quel lien existe-t-il entre le point $K$ et $\sin\left(\dfrac\pi3\right)$ ?
+            \item Expliquer pourquoi $OK = MH$.
+            \item Dans le triangle $OHM$ rectangle en $H$, calculer la valeur exacte de la longueur $MH$.
+            \item En déduire la valeur de $\sin\left(\dfrac\pi3\right)$.
+        \end{enumerate}
+\end{enumerate}\[*\]
+
+\exo En s'appuyant sur une représentation dans le cercle trigonométrique, résoudre les équations suivantes \textbf{dans l'intervalle donné} :
+\begin{enumerate}
+    \item $\cos(x) = \dfrac{\sqrt 3}{2}$ avec $x \in \intervalleof{-\pi}{\pi}$.
+    \item $\cos(x) = \cos\left(\dfrac{\pi}{8}\right)$ avec $x \in \R$.
+    \item $\sin(x) = -\dfrac{\sqrt 2}{2}$ avec $x \in \intervalleof{-\pi}{\pi}$.
+    \item $\sin(x) = \sin\left(-\dfrac{2\pi}{5}\right)$ avec $x \in \R$.
+\end{enumerate}\[*\]
+
+\exo
+\begin{enumerate}
+    \item Résoudre dans $\intervalleof{-\pi}{\pi}$ l'équation $\cos(x) =\dfrac 12$.
+    \item Dans un repère orthonormal $\Oij$, tracer le cercle trigonométrique $\calig U$. Placer les points $M$ et $M'$ de $\calig U$ repérés par les solutions de l'équation de la question précédente.
+    \item En rouge, repasser la partie de $\calig U$ dont les points ont une abscisse supérieure à $\dfrac 12$.
+    \item En déduire les solutions de l'inéquation $\cos(x) > \dfrac 12$ dans $\intervalleof{-\pi}{\pi}$.
+\end{enumerate}
+\[***\]
+
+\end{document} 

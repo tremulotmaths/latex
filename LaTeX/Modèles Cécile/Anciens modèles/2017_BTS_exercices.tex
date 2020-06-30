@@ -1,0 +1,41 @@
+\documentclass[11pt, french]{report}
+\input{preambule_17-18}
+\input{commandes_17-18}
+\input{perso_cecile_2017}
+
+\newgeometry{includeheadfoot,headsep=0.2cm,top=0.5cm,bottom=0.8cm,right=1.5cm,left=1.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+
+
+
+
+\begin{document}
+\ReglePied
+
+\fancypagestyle{garde}{
+\pieddepage{2017-2018 - BTS Bâtiment 1}{}{\thepage / \pageref{LastPage}}}
+
+\pieddepage{2017-2018 - BTS Bât1}{Ch  : Titre - Exercices}{\thepage / \pageref{LastPage}}
+
+
+\chapter{Chapitre  : Titre \\Exercices}
+\thispagestyle{garde}
+\bigskip
+
+%\SetupExSheet[question]{print=false}
+
+\begin{question}
+
+\end{question}
+
+	\begin{solution}
+	
+	\end{solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\printsolutions[byID ={1,2,3,4,5,6,7,8}]
+
+
+\end{document}

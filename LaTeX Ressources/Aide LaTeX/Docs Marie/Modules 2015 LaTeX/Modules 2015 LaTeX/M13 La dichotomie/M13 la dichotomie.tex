@@ -1,0 +1,190 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\input{algorithme}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Initiation à l'algorithmique\\Logiciel Algobox}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 13}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{La dichotomie}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Situation}}\\[7pt]
+L'objectif est de produire un algorithme permettant la recherche d'un nombre vérifiant certaines conditions: nombre à deviner, solution d'une équation \ldots
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Le jeu du nombre à deviner}}\\[7pt]
+On demande à un utilisateur de deviner un nombre choisi au hasard entre 10 et 100. Il n'a droit qu'à un certain nombre d'essais et, à chacune de ses propositions, on lui indique si le nombre cherché est plus grand, ou s'il est plus petit.
+\begin{enumerate}
+\item \begin{enumerate}
+\item Faire plusieurs essais par groupe de deux, noter à chaque fois les nombres proposés et le nombre d'essais effectués pour parvenir à la solution.
+\item Etablir une stratégie de recherche du nombre à deviner.
+\end{enumerate}
+\item Quel est le nombre minimum d'essais pour déterminer, à coup sûr, la solution? 
+\item  On souhaite écrire un algorithme permettant de mettre en oeuvre ce jeu, et ne laissant à l'utilisateur qu'un nombre limité d'essais.
+\begin{enumerate}
+\item Réfléchir aux variables\\
+ L'algorithme nécessite:
+\begin{itemize}
+\item une variable qui contiendra le nombre à deviner
+\item une variable qui contiendra les différents essais de l'utilisateur
+\end{itemize}
+Par ailleurs, il faut définir:
+\begin{itemize}
+\item  un compteur qui augmente de 1 à chaque essai.
+\end{itemize}
+\item Réfléchir à la structure de l'algorithme\\
+L'algorithme nécessite:
+\begin{itemize}
+\item une \emph{instruction conditionnelle} du type \textsc{ si ... alors ...}
+\item une \emph{instruction alternative} du type \textsc{ si ... alors ... sinon ...}
+\item une \emph{instruction itérative} du type \textsc{ tant que  ...}
+\end{itemize}
+
+%A chaque proposition de l'utilisateur il y a trois cas :
+%\begin{itemize}
+%\item soit le nombre proposé est égal au nombre cherché, on affiche dans ce cas le message \og gagné! \fg.
+%\item soit le nombre proposé est supérieur au nombre cherché, on affiche dans ce cas le message \og c'est plus petit!\fg.
+%\item soit le nombre proposé est inférieur au nombre cherché, on affiche dans ce cas le message \og c'est plus grand!\fg.
+%\end{itemize}
+\end{enumerate}
+\newpage
+
+\item L'algorithme est traduit ci-dessous dans le langage du logiciel \textsc{Algobox}.
+\begin{enumerate}
+\item Cet algorithme se compose de plusieurs blocs, l'un présentant une instruction itérative, deux autres présentant des instructions conditionnelles.\\
+ Les repérer et les délimiter à l'aide de couleurs.
+\item Que représente la variable $S$? Expliquer l'instruction de la ligne 6 de l'algorithme.
+\item Que représente la variable $n$? Quelle est sa valeur initiale?
+\item Repérer la condition qui provoque l'arrêt du processus itératif. Quelle est la ligne qui indique cet arrêt?
+\item Quelles sont les différentes sorties possibles pour cet algorithme?
+\end{enumerate}
+\end{enumerate}
+\vspace{15pt}
+
+\textsc{Avec le logiciel Algobox}\\
+Le jeu du nombre à deviner
+\begin{algobox}
+\Variables
+\Ligne S EST\_DU\_TYPE NOMBRE
+\Ligne n EST\_DU\_TYPE NOMBRE
+\Ligne essai EST\_DU\_TYPE NOMBRE
+\DebutAlgo
+\Ligne S PREND\_LA\_VALEUR ALGOBOX\_ALEA\_ENT(10,100)
+\Ligne n PREND\_LA\_VALEUR 1
+\Ligne AFFICHER "Choisir un nombre entier entre 10 et 100"
+\Tantque{(n<=6)}
+\DebutTantQue
+\Ligne LIRE essai
+\Si{(essai==S)}
+\DebutSi
+\Ligne AFFICHER "Gagné!"
+\Ligne AFFICHER "Vous avez trouvé le nombre en "
+\Ligne AFFICHER n
+\Ligne AFFICHER " essais"
+\Ligne PAUSE
+\FinSi
+\Si{(essai<S)}
+\DebutSi
+\Ligne AFFICHER "C'est plus!"
+\FinSi
+\Sinon
+\DebutSinon
+\Ligne AFFICHER "c'est moins!"
+\FinSinon
+\Ligne n PREND\_LA\_VALEUR n+1
+\FinTantQue
+\Ligne AFFICHER "Vous avez perdu..."
+\Ligne AFFICHER "Le nombre à deviner était "
+\Ligne AFFICHER S
+\FinAlgo
+\end{algobox}
+
+\newpage
+
+%_______________
+\textcolor{blue}{\textbf{III. Recherche d'un zéro par dichotomie}}\\[7pt]
+La dichotomie est utilisée lors de la recherche de solutions approchées d'une équation.\\[7pt]
+Exemple\\
+On considère la fonction $f$ définie sur $\R$ par $f(x)=-x^2+10x-23$.\\
+On souhaite obtenir un encadrement d'amplitude $10^{-1}$ des solutions de l'équation $f(x)=0$.
+\begin{enumerate}
+\item Expliquer pourquoi l'intervalle $\Iff{3}{4}$ contient une solution de l'équation $f(x)=0$.
+\item On coupe cet intervalle en deux. Comment déterminer si cette solution est contenue dans l'intervalle $\Iff{3}{3,5}$ ou dans l'intervalle $\Iff{3,5}{4}$?
+\item Combien de fois faut-il répéter ce processus pour obtenir un intervalle d'amplitude $10^{-2}$?
+\item Déterminer un autre intervalle d'amplitude 1 contenant une solution de l'équation $f(x)=0$, puis obtenir, comme précédemment, un intervalle d'amplitude $10^{-1}$.
+\end{enumerate}
+\vspace{7pt}
+\textsc{Principe}\\%[2pt]
+On dispose d'un intervalle $\Iff{a}{b}$ contenant une solution de l'équation $f(x)=0$. On partage cet intervalle en deux intervalles d'amplitude moitié $\Iff{a}{m}$ et $\Iff{m}{b}$ et on repère celui des deux qui contient la solution. On réitère ce processus jusqu'à obtenir la précision $10^{-p}$ souhaitée.\\[7pt]
+L'algorithme est donné ci-dessous. Le compléter à chaque question.
+\begin{enumerate}
+\item Comment se calcule le nombre $m$ qui sépare l'intervalle $\Iff{a}{b}$ en deux intervalles de même amplitude? \\
+Compléter la ligne 13.
+\item Expliquer les instructions des lignes 14, 16 et 20.
+\item  Quand arrête-t-on le processus itératif?\\
+Compléter la ligne 11.
+\end{enumerate}
+\vspace{15pt}
+\textsc{Avec le logiciel Algobox}\\
+Dichotomie
+\begin{algobox}
+\Variables
+\Ligne a EST\_DU\_TYPE NOMBRE
+\Ligne b EST\_DU\_TYPE NOMBRE
+\Ligne p EST\_DU\_TYPE NOMBRE
+\Ligne m EST\_DU\_TYPE NOMBRE
+\DebutAlgo
+\Ligne AFFICHER "Entrer la précision souhaitée"
+\Ligne LIRE p
+\Ligne a PREND\_LA\_VALEUR 3
+\Ligne b PREND\_LA\_VALEUR 4
+\Tantque{...\phantom{(b-a>=pow(10,-p))}}
+\DebutTantQue
+\Ligne m PREND\_LA\_VALEUR  ... %(a+b)/2
+\Si{(F1(a)*F1(m)<0)}
+\DebutSi
+\Ligne b PREND\_LA\_VALEUR m
+\FinSi
+\Sinon
+\DebutSinon
+\Ligne a PREND\_LA\_VALEUR m
+\FinSinon
+\FinTantQue
+\Ligne AFFICHER "La solution est comprise entre "
+\Ligne AFFICHER a
+\Ligne AFFICHER " et "
+\Ligne AFFICHER b
+\FinAlgo
+
+Fonction numérique utilisée : F1(x)=-pow(x,2)+10*x-23
+\end{algobox}
+\end{document}
+

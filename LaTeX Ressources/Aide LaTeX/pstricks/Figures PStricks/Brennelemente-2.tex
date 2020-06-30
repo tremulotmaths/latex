@@ -1,0 +1,187 @@
+\documentclass[12pt,dvipsnames]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[sfmath,frenchstyle]{kpfonts}
+\usepackage[a4paper,margin=2cm]{geometry}
+
+\parindent0pt
+\parskip4pt
+
+\usepackage[rgb]{pstricks}
+\usepackage{pst-grad,pst-node,multido}
+\usepackage{pst-coil}
+
+\newcommand{\Zylinder}[9]{%  #1 L\"{a}nge, #2 Radius, #3 gradbegin, #4 gradend, #5 gradmidpoint
+\pscustom[dimen=#9,fillstyle=gradient,gradbegin=#3,gradend=#4,gradmidpoint=#5,gradangle=90,linecolor=#6,linewidth=#7,linestyle=#8]{%
+\psellipticarc(0,0)(!#2 #2 0.3 mul){180}{360}
+\psellipticarcn(0,#1)(!#2 #2 0.3 mul){0}{-180}
+\closepath
+}
+\psellipse[fillstyle=solid,fillcolor=#6,linestyle=none](0,#1)(!#2 #2 0.3 mul)
+}
+
+\definecolor{TextA}{rgb}{0.2,0.402,0.333}% Pfeile Medium Aquamarine
+
+\begin{document}
+
+\section*{Reaktorkern}
+
+Blick von oben in den beladenen Reaktorkern
+
+\begin{pspicture}[showgrid=false](-6,-6)(6,6)
+\pscircle[fillstyle=gradient,gradbegin=black!90!brown!90,gradend=black!40!brown!10,gradmidpoint=0.65,gradangle=45,%
+linecolor=black!40,linewidth=0.5pt,linestyle=solid](0,0){5.9}
+\pscircle[fillstyle=gradient,gradbegin=black!90!cyan!90,gradend=black!40!cyan!10,gradmidpoint=0.67,gradangle=45,%
+linecolor=black!40,linewidth=0.5pt,linestyle=solid](0,0){5.3}
+\pscircle[fillstyle=solid,fillcolor=black,linestyle=solid](0,0){4.7}
+
+\def\Brennelement{%
+\psframe[fillstyle=solid,fillcolor=cyan!90!black!40,linewidth=0.3pt](-0.25,-0.25)(0.25,0.25)
+\pspolygon[fillstyle=solid,fillcolor=black,linestyle=none](-0.19,-0.13)(-0.19,0.13)(-0.13,0.19)(0.13,0.19)(0.19,0.13)(0.19,-0.13)(0.13,-0.19)(-0.13,-0.19)
+\psframe[fillstyle=solid,fillcolor=black,linestyle=none](-0.24,-0.24)(-0.19,-0.19)
+\psframe[fillstyle=solid,fillcolor=black,linestyle=none](-0.24,0.24)(-0.19,0.19)
+\psframe[fillstyle=solid,fillcolor=black,linestyle=none](0.24,-0.24)(0.19,-0.19)
+\psframe[fillstyle=solid,fillcolor=black,linestyle=none](0.24,0.24)(0.19,0.19)
+\multido{\rB=0+30}{6}{%
+\rput{\rB}(0,0){\pcline[linecolor=cyan!90!black!40,linewidth=0.5pt](-0.24,0)(0.24,0)}
+}
+\pscircle[fillstyle=solid,fillcolor=black,linecolor=cyan!90!black!40,linewidth=0.7pt](0,0){0.06}
+\pscircle[linecolor=black,linewidth=0.3pt](0,0){0.064}}
+
+\multido{\rD=-3+0.5}{13}{%
+\multido{\rC=-2.5+0.5}{11}{%
+\rput(\rC,\rD){\Brennelement}
+}}
+
+\multido{\rD=-1.5+0.5}{7}{%
+\rput(-3.5,\rD){\Brennelement}
+}
+\multido{\rD=-2.5+0.5}{11}{%
+\rput(-3.0,\rD){\Brennelement}
+}
+
+\multido{\rD=-1.5+0.5}{7}{%
+\rput(3.5,\rD){\Brennelement}
+}
+\multido{\rD=-2.5+0.5}{11}{%
+\rput(3.0,\rD){\Brennelement}
+}
+
+\multido{\rD=-1.5+0.5}{7}{%
+\rput(\rD,-3.5){\Brennelement}
+}
+\multido{\rD=-2.5+0.5}{11}{%
+\rput(\rD,-3){\Brennelement}
+}
+
+\multido{\rD=-1.5+0.5}{7}{%
+\rput(\rD,3.5){\Brennelement}
+}
+\multido{\rD=-2.5+0.5}{11}{%
+\rput(\rD,3){\Brennelement}
+}
+
+\end{pspicture}
+
+\section*{Brennelement}
+\begin{minipage}[t]{10cm}
+  Zusammenfassung von 72 Brennst\"{a}ben (KKW Kr\"{u}mmel) zu einem Brennelement. Davon befinden sich wiederum 840 im Reaktorkern mit insgesamt etwa 150 Tonnen Urandioxid
+%
+\end{minipage}
+%
+\begin{pspicture}[showgrid=false,shift=-25](-1,0)(3,25.5)
+{\psset{xunit=0.065,yunit=0.065}%
+\def\BrennstabA{%
+\rput{0}(0,-0.8){\Zylinder{0.3}{0.38}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,-0.5){\Zylinder{0.3}{0.25}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,-0.2){\Zylinder{0.2}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,0){\Zylinder{390}{0.5}{black!90!blue!80}{cyan!10}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,390){\Zylinder{0.2}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,390.2){\Zylinder{0.5}{0.25}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,390.7){\Zylinder{0.6}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!70!blue!80}{1pt}{none}{middle}}
+%
+}
+
+\multido{\rB=5.25+1.5}{9}{%
+\rput(\rB,5.25){\BrennstabA}}
+\multido{\rB=4.5+1.5}{9}{%
+\rput(\rB,4.5){\BrennstabA}}
+\multido{\rB=3.75+1.5}{9}{%
+\rput(\rB,3.75){\BrennstabA}}
+\multido{\rB=3+1.5}{9}{%
+\rput(\rB,3){\BrennstabA}}
+\multido{\rB=2.25+1.5}{9}{%
+\rput(\rB,2.25){\BrennstabA}}
+\multido{\rB=1.5+1.5}{9}{%
+\rput(\rB,1.5){\BrennstabA}}
+\multido{\rB=0.75+1.5}{9}{%
+\rput(\rB,0.75){\BrennstabA}}
+\multido{\rB=0+1.5}{9}{%
+\rput(\rB,0){\BrennstabA}}
+
+\def\Halter{%
+\pspolygon[fillstyle=gradient,gradbegin=black!90!cyan!90,gradend=black!40!cyan!10,gradmidpoint=0.67,gradangle=90,%
+linecolor=black!60,linewidth=0.5pt,linestyle=none]%
+(-0.3,0)(12.5,0)(18.1,5.25)(18.1,10.25)(12.5,5)(-0.3,5)}
+
+\multido{\rA=5+62.5}{7}{%
+\rput(-0.32,\rA){%
+\Halter \psline[linecolor=black!60,linewidth=0.5pt,linestyle=none](12.5,0)(18.1,5.25)}}
+}
+\end{pspicture}
+
+\section*{Brennstab}
+
+Der Brennstab ist von einer Zirkaloy-H\"{u}lle (Zirkonium-Legierung) mit einer Wandst\"{a}rke von $0,65\,\text{mm}$ umgeben.
+Die Urandioxid-Tabletten wurden gepresst, gesintert und geschliffen. Im Spaltgasraum sammeln sich Edelgase und die leicht fl\"{u}chtigen Spaltprodukte.
+
+\begin{pspicture}[showgrid=false](-2,-2)(4,15)
+\def\Brennstab{%
+\rput{0}(0,-0.8){\Zylinder{0.3}{0.38}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,-0.5){\Zylinder{0.3}{0.25}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,-0.2){\Zylinder{0.2}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,0){\Zylinder{13}{0.5}{black!90!blue!80}{cyan!10}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,0){\Zylinder{1}{0.35}{black!90!orange!80}{orange!10}{0.3}{black!90!orange!80}{1pt}{solid}{middle}}
+\rput{0}(0,1){\Zylinder{0.4}{0.35}{black!70!green!80}{green!10}{0.3}{black!70!green!80}{1pt}{solid}{middle}}
+\multido{\rB=1.4+0.6}{14}{%
+\rput(0,\rB){%
+\Zylinder{0.6}{0.35}{black!50!red!90}{red!10}{0.3}{black!70!red!80}{1pt}{solid}{middle}
+}
+}
+\rput{0}(0,9.8){\Zylinder{0.4}{0.35}{black!70!green!80}{green!10}{0.3}{black!70!green!80}{1pt}{solid}{middle}}
+\pscoil[coilaspect=30,coilarm=0.02cm,coilwidth=6mm,coilheight=0.35,linewidth=1pt,linecolor=orange](0,10.2)(0,13)
+\rput{0}(0,13){\Zylinder{0.2}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,13.2){\Zylinder{0.5}{0.25}{black!90!blue!80}{black!60!blue!50}{0.3}{black!90!blue!80}{1pt}{none}{middle}}
+\rput{0}(0,13.7){\Zylinder{0.6}{0.5}{black!90!blue!80}{black!60!blue!50}{0.3}{black!70!blue!80}{1pt}{none}{middle}}
+%
+\def\break{%
+\pspolygon[fillstyle=solid,fillcolor=white,linestyle=none]%
+(-0.5,0.2)(-0.3,0.5)(-0.2,0.35)(0,0.57)(0.2,0.4)(0.4,0.55)(0.5,0.6)(0.5,0.2)(0.4,0.15)(0.2,0)(0,0.17)(-0.2,-0.05)(-0.3,0.1)(-0.5,-0.2)
+}
+\rput(0,11.5){\break}
+\rput(0,4.1){\break}
+%
+}
+\rput(0,0){\Brennstab}
+\pcline[arrowlength=1.8,arrowscale=1.6,arrowinset=0.06,tbarsize=8pt]{|<->|}(-1.5,-0.8)(-1.5,14.3)
+\ncput*[nrot=:U]{\small $4,17\,\text{m}$}
+
+\pcline[arrowlength=1.8,arrowscale=1.6,arrowinset=0.06,tbarsize=6pt]{|<->|}(-0.5,-1.2)(0.5,-1.2)
+\nbput[labelsep=7pt]{\small ca. $11\,\text{mm}$}
+
+\rput[l](1.5,12.4){\small\shortstack[l]{Enceinte\\ des gaz de fission}}
+\pcline(0.4,12.38)(1.4,12.38)
+\rput[l](1.5,11){\small \textcolor{orange!90!black!90}{Ressort}}
+\pcline(0.35,11)(1.4,11)
+\rput[l](1.5,10){\small \textcolor{green!60!black!90}{\shortstack[l]{Pastille isolante\strut\\[-5pt] de $\text{Al}_{2}\text{O}_{3}$\strut}}}
+\pcline(0.35,10)(1.4,10)
+\rput[l](1.5,8){\small \textcolor{red!90!black!90}{\shortstack[l]{Pastille d'oxyde\strut\\[-5pt] d'uranium $\text{U}\text{O}_{2}$\strut}}}
+\pcline(0.35,8.1)(1.4,8.1)
+\rput[l](1.5,1.1){\small \textcolor{green!60!black!90}{\shortstack[l]{Pastille isolante\strut\\[-5pt] de $\text{Al}_{2}\text{O}_{3}$\strut}}}
+\pcline(0.4,1.1)(1.4,1.1)
+\rput[l](1.5,0.3){\small \textcolor{brown!90!black!90}{Manchon support}}
+\pcline(0.4,0.3)(1.4,0.3)
+\end{pspicture}
+
+\end{document}

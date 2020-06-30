@@ -1,0 +1,26 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\input philippe2013
+\input philippe2013_activites
+
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreActivite{i.2}{Motif d'un drapeau}
+
+Une association désire concevoir un drapeau. Pour cela, elle dispose d'une toile carré de côté $8~dm$. Le motif du drapeau est une croix dessinée au centre telle que le montre la figure ci-dessous :
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- cycle;
+        \draw (0,2.5) -| (1.5,4); \draw (0,1.5) -| (1.5,0);
+        \draw (2.5,0) |- (4,1.5); \draw (4,2.5) -| (2.5,4);
+        \draw[<->] (0,4.5) -- (4,4.5) node[midway,above] {$8~dm$};
+    \end{tikzpicture}
+\end{center}
+
+Pour des raisons esthétiques, les concepteurs souhaitent que la croix occupe la moitié de la surface totale du carré. De plus, les espaces vides autour de la croix doivent être des carrés identiques.\medskip
+
+$\rightsquigarrow$ Faire un schéma du drapeau en indiquant toutes les longueurs nécessaires à la conception d'un motif respectant les contraintes énoncées.
+
+\end{document} 

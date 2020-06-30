@@ -1,0 +1,216 @@
+\documentclass[a4paper,french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins,theorems,breakable}
+\usepackage{fourier}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{titlesec}
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-correction} }\\[3mm]
+{\large Version 1.01 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction}
+
+L'idée de ce package est venu du fait que je devais produire des exercices avec et sans corrigés. Je trouvais long et fastidieux de supprimer les corrigés quand je voulais fournir uniquement les questions. Aussi, j'ai créé \texttt{pas-correction}, basé sur \texttt{tcolorbox}, très petite extension, vous allez le voir...
+
+\section{Installation}
+
+Je vous conseille fortement de mettre à jour \texttt{pgf} car \texttt{tcolorbox} ne fonctionne pas correctement avec une version trop ancienne.
+
+Concernant l'installation de \texttt{pas-correction}, je vous conseille de l'installer dans un répertoire personnel suivant la structure conventionnelle \LaTeX.
+
+\medskip
+
+Sous Ubuntu, on pourra donc décompresser \texttt{pas-correction.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-correction/pas-correction.sty
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-correction/pas-correction.pdf
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-correction/pas-correction.tex
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-correction/doc.codes.tex
+\end{verbatim}
+\begin{verbatim}
+./texlive/texmf-local/doc/latex/pas-correction/doc.styles.tex
+\end{verbatim}
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows), j'ai personnellement créer à la racine les chemins suivants :
+
+\begin{verbatim}
+C:\texmf\tex\latex\pas-correction\pas-correction.sty
+\end{verbatim}
+\begin{verbatim}
+C:\texmf\doc\latex\pas-correction\pas-correction.pdf
+\end{verbatim}
+
+\section{Appel de l'extension}
+
+L'appel de \texttt{pas-correction} se fait en préambule :
+
+\begin{tcblisting}{codeTEX,title={implantation}}
+\documentclass[a4paper,french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[<option>]{pas-correction}
+\begin{document}
+...
+\end{document}
+\end{tcblisting}
+
+\section{Compilation}
+
+Pensez à insérer l'option \texttt{--shell-escape} dans la chaîne de votre compilation. 
+
+Par exemple, avec PdfLateX :
+
+\begin{center}
+\texttt{pdflatex --shell-escape NomDuFichier.tex}
+\end{center}
+
+\section{Structure du document}
+
+Le sujet pourra être écrit directement avec les corrigés en utilisant la structure suivante :
+
+\begin{tcblisting}{codeTEX,title={implantation}}
+\documentclass[a4paper,french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[sujet,correction]{pas-correction}
+	\titlesubject{Sujet} % Titre du sujet
+	\titlecorrection{Correction} % Titre de la correction
+\begin{document}
+\begin{enumerate}
+\item Intitul\e' de la question 1
+\begin{correction}
+Contenu du corrig\'e de la question 1.
+\end{correction}
+
+\item Question 2.
+\begin{correction}
+Contenu du corrig\'e de la question 2.
+\end{correction}
+
+etc.
+\end{enumerate}
+\end{document}
+\end{tcblisting}
+
+\subsection{Ce que fait l'extension}
+
+L'extension \texttt{pas-correction} se charge d'enregistrer le contenu du document dans le fichier :
+\begin{center}
+\texttt{monfichier.sav}
+\end{center}
+où \emph{monfichier} est le nom du fichier courant.
+
+\medskip
+
+Une fois la compilation terminée, le fichier auxiliaire est supprimé.
+
+\subsubsection{Si l'option \og sujet \fg{} est présente}
+
+Le titre du sujet (informé en préambule avec la commande \texttt{\textbackslash titlesubject}) est inséré automatiquement. Ensuite, le sujet s'affiche sans les corrections.
+
+\subsubsection{Si l'option \og correction \fg{} est présente}
+
+Une nouvelle page est insérée (si le sujet est affiché) puis c'est au tour du titre du corrigé (informé en préambule avec la commande \texttt{\textbackslash titlecorrection}), et enfin le sujet avec les corrigés.
+
+\subsection{Le style des titres}
+
+L'extension \texttt{pas-correction} étant basée sur \texttt{tcolorbox}, les styles sont gérés par cette dernière extension.
+
+Par défaut, le style des titres est le suivant :
+
+\begin{tcblisting}{codeTEX,title={Titre par défaut}}
+\tcbset{title/.style={
+	enhanced,
+	hbox,
+	tikznode,
+	left=8mm,
+	right=8mm,
+	boxrule=0.4pt,
+  colback=white,
+  colframe=gray,
+  drop lifted shadow=black!50!yellow,
+  before=\par\vspace*{5mm},
+  after=\par\bigskip,
+  fontupper=\sffamily\bfseries\Huge,
+  interior style={
+		draw=white,
+		top color=white,
+		bottom color=white}
+	}
+}
+\end{tcblisting}
+
+Pour définir un nouveau titre pour le  sujet, on utilisera la macro \texttt{\textbackslash newtitlesubject} dans le préambule.
+
+\begin{tcblisting}{codeTEX,title={Exemple}}
+\newtitlesubject{%
+\begin{center}
+\color{red}\Huge\bfseries
+\end{center}}
+\end{tcblisting}
+
+Pour définir un nouveau titre pour la correction, on utilisera la macro\newline \texttt{\textbackslash newtitlecorrection} dans le préambule.
+
+\begin{tcblisting}{codeTEX,title={Exemple}}
+\newtitlecorrection{%
+\begin{center}
+\color{blue}\Huge\bfseries\ssfamily
+\end{center}}
+\end{tcblisting}
+
+\subsection{Mise en page}
+
+Il arrive que l'on doive insérer un \texttt{\textbackslash newpage} soit dans le sujet, soit dans la correction. Il faudra utiliser l'une des commandes suivantes :
+
+\begin{tcblisting}{codeTEX,title={Nouvelle page}}
+\newpageforsubject % pour une nouvelle page dans le sujet
+\newpageforcorrection % pour une nouvelle page dans la correction
+\end{tcblisting}
+
+\section{Historique}
+
+\begin{tcolorbox}[histo]
+2017/06/04\\
+2015/06/09
+\tcblower
+\begin{tabular}{@{}l@{\quad}l}v1.00 & Naissance de l'extension.\end{tabular}\\
+\begin{tabular}{@{}l@{\quad}l}v1.01 & amélioration pour afficher sujet et correction.\end{tabular}
+\end{tcolorbox}
+\end{document}

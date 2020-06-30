@@ -1,0 +1,266 @@
+\documentclass[12pt]{book}\usepackage{livre}\usetikz\begin{document}%\nocolor
+
+
+\chapitre{07}{Fonctions exponentielles}{Term Sti}
+\begin{center}\today\end{center}
+\begin{minipage}{15cm}\tableofcontents\end{minipage}\newpage
+
+
+
+\section{Les fonctions exponentielles}
+
+On introduit une fonction exponentielle comme \og prolongement \fg d'une suite géométrique de raison strictement positive et de premier terme 1. Il s'agit de mettre en \oe uvre une démarche permettant de faire comprendre aux élèves comment on peut passer du discret (suite géométrique de raison strictement positive) au continu (fonction exponentielle de base q) en plusieurs étapes. Le problème du prolongement peut-être posé ainsi :
+
+
+\subsection{Introduction}
+Le nuage de points représentant une suite arithmétique est inclus dans la courbe représentative d'une fonction affine. Que se passe-t-il pour une suite géométrique ?\\
+
+On veut donc effectuer un passage de $\N$ dans $\R$ afin de pouvoir définir des \og suites géométriques généralisées \fg~ sur $\R$. On souhaite par ailleurs conserver la propriété des suites géométriques : $q^{n}\times q^{m}=q^{n+m}$\\[10pt]
+
+On considére la suite géométrique $\un$ de raison $q=1.5$ et de premier terme $1$ : Elle est donc définie par $u_0 = 1$   et  $q = 1,5$.
+Son graphique est le suivant :
+$$\psset{unit=0.7cm}
+\begin{pspicture*}(-6,-1)(6,8)
+\psaxes[labels=all,labelsep=1pt, Dx=1,Dy=1]{->}(0,0)(-6,-1)(6,8)
+\psgrid[gridlabels=0pt,gridwidth=.3pt, gridcolor=gray, subgridwidth=.3pt, subgridcolor=gray, subgriddiv=1](-6,-1)(6,8)
+\psdots(0,1)\psdots(1,1.5)\psdots(2,2.25)\psdots(3,3.38)\psdots(4,5.06)\psdots(5,7.59)
+\end{pspicture*}$$
+
+\textbf{Etape 1 : Passage de $\N$ dans $\Z$}\\
+Pour étendre ce graphique à $\Z$, il suffit de se rapeller que $x^{-n}=\dfrac{1}{x^n}$. On place donc les points des coordonées $(-n ; \dfrac{1}{x^n})$ pour $n=1 ; 2; 3 ; 4 ; 5$.\\[10pt]
+
+
+\textbf{Etape 2 : On double le nombre de points}\\
+Pour compléter de façon cohérente ce graphique, on remarque que :
+\begin{enumerate}
+\item La suite des \defin{indices} est telle que chaque terme est la moyenne arithmétique du terme qui le précède immédiatement et du terme qui le suit immédiatement : $n =\dfrac{(n-1)(n+1)}{2}$.
+\item Chaque \defin{terme} de la suite est la moyenne géométrique du terme qui le précède immédiatement et du terme qui le suit immédiatement : $u_n=\sqrt{u_{n-1}u_{n+1}}$.
+\item Ceci n'est pas étonnant puisque la somme de indices se traduits pour les puissances par la multiplication des termes et la division des indices par 2 correspond à la puissance $\frac12$, c'est à dire la racine carrée. Plus clairement : 
+\begin{eqnarray*}
+ u_\frac{x+y}{2}&=&q^\frac{x+y}{2}\\
+ &=&(q^{x+y})^\frac12\\
+ &=&\sqrt{q^x\times q^y}\\
+ &=&\sqrt{u_x\times u_y}
+\end{eqnarray*}
+\end{enumerate}
+
+On peut donc ajouter entre deux termes successifs de cette suite le terme d'indice $\dfrac{n(n+1)}{2}$ dont la valeur est $\sqrt{u_n u_{n+1}}$.\\[10pt]
+
+
+
+\textbf{Etape 3 : On réitère le procédé. }\\
+A partir de ces nouveaux points, on réitère l'étape 2. en placant un nouveau point entre deux points successifs existants ; et ainsi de suite. On obtient ainsi la représentation graphique d'une suite géométrique sur $\R$ \defin{qui respecte les propriétés initiales}.\\[10pt]
+$$\psset{unit=0.7cm}
+\begin{pspicture*}(-6,-1)(6,8)
+\psaxes[labels=all,labelsep=1pt, Dx=1,Dy=1]{->}(0,0)(-6,-1)(6,8)
+\psgrid[gridlabels=0pt,gridwidth=.3pt, gridcolor=gray, subgridwidth=.3pt, subgridcolor=gray, subgriddiv=1](-6,-1)(6,8)
+\psplot{-6}{6}{3 2 div x exp }
+\end{pspicture*}$$
+
+
+
+
+
+\subsection{Fonctions exponentielles de base $a$}
+\defi{Fonctions exponentielles de base $a$}
+{$a$ étant un nombre strictement positif et différent de 1, on appelle \defin{fonction exponentielle de base a} la fonction $f$ définie pour tout $x$ de $\R$ par $$f(x)=a^x.$$}
+
+
+
+\theo{Sens de variation}
+{La fonction exponentielle de base $a$ est :
+\begin{itemize}
+\item croissante  si $a>1$
+\item décroissante si $a<1$
+\item (et constante si $a=1$, mais la valeur $a=1$ est interdite par définition).
+\end{itemize}}
+
+
+\theo{signe}
+{La fonction exponentielle de base $a$ est strictement positive pour toutes valeurs de $x$.}
+$$\psset{unit=0.7cm}
+\begin{pspicture*}(-6,-1)(6,8)
+\psaxes[labels=all,labelsep=1pt, Dx=1,Dy=1]{->}(0,0)(-6,-1)(6,8)
+\psgrid[gridlabels=0pt,gridwidth=.3pt, gridcolor=gray, subgridwidth=.3pt, subgridcolor=gray, subgriddiv=1](-6,-1)(6,8)
+\psset{linecolor=bleu}\psplot{-6}{6}{3 2 div x exp }\rput(4,7){$3.5^x$}
+\psset{linecolor=rouge}\psplot{-1}{6}{1 10 div x exp }\rput(-1.5,7){$0.1^x$}
+\end{pspicture*}$$
+
+
+\theo{Propriétés algébriques}
+{Les propriétés vraies pour puissances entières restent vraies pour les puissances réelles. 
+\`A savoir : Pour tout réel $x$ et $y$, on a :
+\begin{multicols}{2} 
+\begin{itemize}
+\item $a^x\times a^y = a^{x+y}$
+\item $\dfrac{1}{a^x}=a^{-x}$
+\item $\dfrac{a^x}{a^y}=a^{x-y}$
+\item $a^{x^{y}}=a^{x\times y}$
+\end{itemize}
+\end{multicols}}
+
+\subsection{La fonction exponentielle de base $\e$}
+\defi{Fonction exponentielle de base $\e$}
+{Parmi toutes les fonctions exponentielles, il en existe une qui est égale à sa dérivée, c'est celle qui correspond à la base $$\e\simeq 2,71828182845904523536028747135266249775724709369995957496696$$ $$7627724076630353547594571382178525166427.$$
+Ce nombre est de même nature que $\pi$, c'est à dire qu'il n'a pas d'écriture décimale exacte.\\
+Cette valeur particulière de la base se note traditionnellement \defin{$\e$}. On note donc \defin{$f(x)=\e^x$}.}
+
+
+\rems{\begin{itemize}
+\item Dans la suite, sauf indication contraire, si on ne précise pas la base de la fonction 
+exponentielle, c'est qu'il s'agit de celle de base e.
+\item La fonction exponentielle de base $\e$ correspond à la touche \touche{$e^x$}  de la calculatrice.
+\end{itemize}}
+
+
+De l'étude des fonctions exponentielles de base $a$, de la formule générale de la dérivée d'une fonctions composée, on déduit que :\\
+\theo{Propriétés de la fonction exponentielle}
+{\begin{itemize}
+\begin{multicols}{2} 
+\itemb $\e^x\times \e^y = \e^{x+y}$\\
+\itemb $\dfrac{1}{\e^x}=\e^{-x}$\\
+\itemb $\dfrac{\e^x}{\e^y}=\e^{x-y}$\\
+\itemb $\e^{x^{y}}=\e^{x\times y}$\\
+\end{multicols}
+\itemb $\e^x$ est strictement croissante sur $\R$.
+\itemb $\e^x$ est strictement positive sur $\R$
+\itemb $\dis\lim_{x\mapsto-\infty}\e^x=0$ et $\dis\lim_{x\mapsto+\infty}\e^x=+\infty$
+\itemb $\pa{\e^{x}}'=\e^{x}$ et $\pa{\e^{u(x)}}'=u'(x)\times\e^{u(x)}$
+\end{itemize}}
+
+$$\psset{unit=0.7cm}
+\begin{pspicture*}(-6,-1)(6,8)
+\psaxes[labels=all,labelsep=1pt, Dx=1,Dy=1]{->}(0,0)(-6,-1)(6,8)
+\psgrid[gridlabels=0pt,gridwidth=.3pt, gridcolor=gray, subgridwidth=.3pt, subgridcolor=gray, subgriddiv=1](-6,-1)(6,8)
+\psset{linecolor=bleu}\psplot{-6}{6}{2.718 x exp }\rput(3,7){$\e^x$}
+\end{pspicture*}$$
+
+\theo{Croissance comparée}
+{La fonction exponentielle l'emporte en $\pm\infty$ sur toute fonction polynôme, c'est à dire :
+Pour tout entier $\alpha$ strictement positif $$\lim_{x\mapsto -\infty} x^{\alpha} \e^{x}=0 \textrm{ et } \lim_{x\mapsto+\infty}\dfrac{\e^{x}}{x^{\alpha}}= +\infty$$
+Les autres limites ne sont pas indéterminées.}
+
+\listexo{5-6}{\\dérivées 14-18 p 283 ; 46-50 p 287\\ primitives 19-22 p 283 ;  51-58 p 287 \\limites 9-13 p 283 ; 43 - 45 p 287\\}
+
+\section{Fonction exponentielle et nombres complexes}
+\subsection{Notation exponentielle d'un nombre complexe} 
+\rem{Les propriétés des fonctions exponentielles permettent d'écrire 
+$$k\e^{x}\times k'\e^{x'}=kk'\e^{x+x'}$$
+Ainsi, on multiplie les parties non exponentielle et on additionne les exposants. Cette similitude avec les propriétés des modules et arguments des nombres complexes amènent à la définition :}
+
+
+
+\defi{Notation exponentielle d'un nombre complexe.}
+{Soit $z$ un nombre complexe.\\
+La notation \textbf{exponentielle} de $z$ est $z=r\e^{i\theta}$ où 
+\begin{tabular}[t] {l}
+$r$ est le module de $z$, \\
+$\theta$ est l'argument de $z$, \\
+et $\e$ est le nombre tel que $\ln(e)=1$.\end{tabular}}
+
+\exe{Le nombre complexe de module 2 et d'argument $\frac{\pi}{3}$ est noté $2\ei{}{3}$.\\
+Sa forme algébrique est $z=2(\cos\frac{\pi}{3}+\i\frac{\pi}{3})=1+\i\sqrt{3}$.}
+
+\rem{Il ne faut pas confondre la fonction exponentielle $e^x$ qui ne se calcule que pour tout réel $x$ et la notation exponentielle $\eit{}$ qui est à valeur complexe.}
+
+\listexo{1-2}{12-17-18 p 35 ; 70-71 p 36-42}
+
+\theo{}{Les propriétés sur les modules et les arguments des nombres complexes se traduisent par :
+$$r\eit{}\times r'\eitp{}=r\times r'e^{i(\theta + \theta')} \qquad \frac{r\eit{}}{r'\eitp{}}=\frac{r}{r'}e^{i(\theta - \theta')} \qquad (r\eit{})^n=r^ne^{in\theta}$$}
+
+
+
+
+\subsection{Efficacités de la notation}
+\txt{La notation exponentielle permet de calculer plus facilement des produits ou des quotients de nombres complexes.}
+\exosol{Soit $z=3\ei{3}{4}$ et $z'=7\ei{-2}{3}$. Calculer $zz'$ et $\frac{z}{z'}$.}
+{\\$zz'=3\times7e^{i(\frac{3\pi}{4}+\frac{-2\pi}{3})}=21\ei{}{12}$.\\
+$\frac{z}{z'}=\frac{3}{7}e^{i(\frac{3\pi}{4}-\frac{-2\pi}{3})}=\frac{3}{7}\ei{17}{12}$.}
+
+\listexo{3-4}{60 p 41}
+
+\txt{La notation exponentielle permet de calculer plus facilement des puissances de nombres complexes.}
+\exosol{Calculer $(1+i)^{8}$}{$(1+i)^{8} = (\sqrt{2}\ei{}{4})^{8}=\sqrt{2}^{8}\ei{8}{4}=16e^{i2\pi}=16$}
+
+\exofiche{5-6-7}
+
+\txt{La notation exponentielle permet d'obtenir (entre autre) les formules d'addition de trigonométrie:}
+\theo{Formules trigonométriques}{$\cos(a+b)=\cos a\cos b - \sin a \sin b \qquad \sin(a+b)=\cos a\sin b + \cos b\sin a$}
+\dem{\\D'une part, $e^{i(a+b)}=\cos(a+b) + i \sin(a+b)$.\\
+D'autre part , \begin{eqnarray*}
+e^{i(a+b)}&=&e^{ia}\times e^{ib}\\
+&=&(\cos a + i \sin a)(\cos b + i \sin b)\\
+&=&\cos a\cos b - \sin a \sin b + i(\cos a\sin b + \cos b\sin a)
+\end{eqnarray*}
+Par identification des parties réelles et imaginaires, on retrouve les formules d'addition :\\
+$\cos(a+b)=\cos a\cos b - \sin a \sin b$ et $\sin(a+b)=\cos a\sin b + \cos b\sin a$}
+
+\exofiche{8}
+
+\exosol{En remarquant que $\frac{\pi}{12}=\frac{\pi}{3}+\frac{-\pi}{4}$, donner les valeurs exactes de $\cos(\frac{\pi}{12})$ et $\sin(\frac{\pi}{12})$}
+{$\cos(\frac{\pi}{12})=\cos(\frac{\pi}{3}+\frac{-\pi}{4})=\cos(\frac{\pi}{3})\cos(\frac{-\pi}{4}) - \sin(\frac{\pi}{3}) \sin(\frac{-\pi}{4})=\frac{1}{2}\times\frac{\sqrt{2}}{2}-\frac{\sqrt{3}}{2}\times\frac{-\sqrt{2}}{2}=\frac{\sqrt{2}}{4}\times\frac{\sqrt{6}}{4}=\frac{\sqrt{6}+\sqrt{2}}{4}$.\\
+On montre de la même manière que $\cos(\frac{\pi}{12})=\frac{\sqrt{6}-\sqrt{2}}{4}$.}
+
+
+
+\subsection{Applications}
+
+\theo{Formule de Moivre}{$(\cos\theta + i\sin\theta)^n =\cos n\theta + i\sin n\theta$.}
+\dem{$(\cos\theta + i\sin\theta)^n =(e^{i\theta})^n=e^{in\theta}=\cos n\theta + i\sin n\theta$}
+
+\exofiche{10}
+
+
+\txt{cette formule est à la base de la méthode permettant d'exprimer $\cos n\theta$ et $\sin n\theta$ en fonction de $\cos\theta$ et $\sin\theta$.}
+\exosol{Exprimer $\cos 3\theta$ et $\sin 3\theta$ en fonction de $\cos\theta$ et $\sin\theta$.}
+{\\D'une part , d'après la formule de Moivre, $(\cos\theta + i\sin\theta)^3 = \cos(3\theta) +i\sin(3\theta)$. \\
+D'autre part, la formule $(a+b)^3=a^3 +3ab^2+3a^2 b+b^3$ donne : \\
+$(\cos\theta + i\sin\theta)^3 = \cos^3\theta + 3\cos ^2 i\sin\theta + 3cos\theta (i\sin\theta)^2 + 3(i\sin\theta)^3
+=\cos^3 \theta -3\cos\theta \sin^2 \theta + i (3\cos ^2 \theta\sin\theta - \sin^3 \theta)$ \\
+Par identification des parties réelles et imaginaires, on déduit :\\
+$\cos 3\theta = \cos^3 \theta -3\cos\theta \sin^2 \theta = 4 \cos^4 \theta - 3 \cos\theta$ et $\sin 3 \theta=3\cos ^2 \theta\sin\theta - \sin^3 \theta$.}
+
+
+
+
+
+\theo{Formule d'Euler}{$ \cos\theta=\frac{\eit{}+\eit{-}}{2} \qquad$ et $\qquad \sin\theta=\frac{\eit{}-\eit{-}}{2}$.}
+\dem{$\frac{\eit{}+\eit{-}}{2}=\frac{\cos\theta + isin\theta +\cos (-\theta) + i\sin (-\theta)}{2} =\frac{\cos\theta + isin\theta +\cos \theta -i\sin\theta}{2}=\frac{2\cos\theta}{2}=\cos\theta$} 
+
+\exofiche{9}
+
+
+\defi{Linéarisation}
+{\defin{Linéariser} une expression trigonométrique, c'est trouver une expression du premier degré qui lui soit égale.}
+\txt{Les formules d'Euler sont à la base de la méthode permettant de linéariser $\cos^n\theta$ (ou $\sin^n\theta$).}
+
+\exosol{Linéariser $\cos^4\theta$.}
+{A l'aide de la relation $(a+b)^4=a^4+4a^3b+6a^2b^2+4ab^3+b^4$ et de la formule d'Euler, on écrit
+$$ \begin{array}{l c l}
+\cos^4\theta &=&(\frac{\eit{}+\eimt{}}{2})^4 \\
+&=&\frac{(\eit{})^4 + 4(\eit{})^3 \eimt{} + 6 (\eit{})^2 (\eimt{})^2 + 4 \eit{} (\eimt{})^3 + (\eimt{})^4}{16} \\
+&=&\frac{\eit{4} + 4\eit{2} + 6 + 4\eimt{2} + \eimt{4}}{16} \\
+&=&\frac{(\eit{4}+\eimt{4})+4(\eit{2}+\eimt{2})+6}{16} \\
+&=&\frac{2\cos 4\theta + 4\cos 2\theta +6}{16} \\
+&=&\frac{cos 4\theta}{8}+\frac{cos 2\theta}{2}+\frac{3}{8} 
+\end{array}$$}
+
+\listexo{11-12}{19-20 p 36 et 73-74 p 43}
+
+
+
+
+
+\subsection{Complexe et transformation}
+
+\theoad{Notation complexe d'une translation}
+{Soit \vect{u} ~un vecteur du plan d'affixe $b$.L'application qui a tout point M d'affixe $z$, fait correspondre le point M', d'affixe $z'$ telle que $z'=z+b$ est la translation de vecteur \vect{u}}
+
+
+
+\theoad{Notation complexe d'une rotation}
+{L'application qui a tout point M d'affixe $z$, fait correspondre le point M', d'affixe $z'$ telle que $z'=\eit{}\times z$ est la rotation de centre O et d'angle $\theta$.}
+
+\listexo{13-14-15-16}{24-27-28-29 p 37}
+
+\end{document}

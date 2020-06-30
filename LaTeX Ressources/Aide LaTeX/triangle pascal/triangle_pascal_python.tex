@@ -1,0 +1,46 @@
+\documentclass[10pt,a0paper,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{diagbox}
+\usepackage{pythontex}
+\usepackage{nopageno}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usepackage[margin=5mm]{geometry}
+\setlength{\parindent}{0pt}
+\newcommand{\dashed}{\tikz[baseline=1mm]\draw[gray!50,dashed](0,0)--(0,0.5);}
+\begin{document}
+\begin{pycode}
+n = 10
+def trianglePascal(n):
+    T = [[0] * (n+1) for p in range(n+1)]
+    for n in range(n+1):
+        if n == 0:
+            T[n][0] = 1
+        else:
+            for k in range(n+1):
+                if k == 0:
+                    T[n][0] = 1
+                else:
+                    T[n][k] = T[n-1][k-1] + T[n-1][k]
+    return T
+T = trianglePascal(n)
+print('\\begin{tabular}{|>{\\columncolor{orange!10}}c|*{',n,'}{c!{\\dashed}}c|}\\rowcolor{orange!10}\\hline\\diagbox[height=8mm]{$n$}{$k$}')
+for k in range(n+1):
+    print('&',k)
+    
+for j in range(n+1):
+    print('\\\\\\hline ',j)
+    for k in range(n+1):
+        if k == 0:
+            print('&1')
+        else:
+            if T[j][k] != 0:
+                print('&',T[j][k])
+            else:
+                print('&')
+print('\\\\\\hline\\end{tabular}')
+\end{pycode} 
+\end{document}

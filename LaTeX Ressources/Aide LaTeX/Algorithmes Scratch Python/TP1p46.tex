@@ -1,0 +1,265 @@
+\documentclass[12pt]{article}
+
+\usepackage{fourier}
+\usepackage[latin1]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{enumerate} % pour pouvoir changer la numérotation des listes
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx,bm} %bm : pour mettre en gras dans une formule de maths
+
+%redéfinition de limites, sommes, intégrales en displaystyle, limites de suites
+\let\limOld\lim
+\renewcommand{\lim}{\displaystyle\limOld}
+\newcommand{\limn}{\lim_{n\to +\infty}}
+\newcommand{\limm}{\lim_{x\to -\infty}}
+\newcommand{\limp}{\lim_{x\to +\infty}}
+\newcommand{\limz}{\lim_{x\to 0}}
+\newcommand{\limzm}{lim_{\substack{x \to 0\\ x < 0}}}
+\newcommand{\limzp}{lim_{\substack{x \to 0\\ x + 0}}}
+\let\sumOld\sum
+\renewcommand{\sum}{\displaystyle\sumOld}
+\let\intOld\int
+\renewcommand{\int}{\displaystyle\intOld}
+
+%style des pages
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+%redéfinition du style plain
+\fancypagestyle{plain}{%
+\fancyhf{} %vide l'en-tête et le pied de page
+%\fancyfoot[C]{\bfseries \thepage / \pageref{LastPage}} %numéro de la page en gras et centré
+\fancyfoot[C]{\thepage / \pageref{LastPage}} %numéro de la page centré
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.2pt}}
+
+%redéfinition des marges par défaut
+\usepackage[top=0cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+
+%ALGORITHME avec Algobox
+\usepackage{ucs}
+\usepackage{xcolor}
+\usepackage{framed}
+\definecolor{fond}{gray}{0.95}
+\newenvironment{cadrecode}{%
+  \def\FrameCommand{{\color[HTML]{888888}\vrule width 3pt}\colorbox{fond}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\usepackage{alltt}
+
+
+%\setlength{\voffset}{-1,5cm}
+%\setlength{\textheight}{23,5cm}
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   […]
+%\end{spacing}
+
+
+%diminuer la taille des caractères dans un tableau
+%Pour aérer un tableau, il est possible de redéfinir l'espacement entre les lignes d'un tableaux et l'espacement entre les colonnes, par exemple :
+\renewcommand{\arraystretch}{1.5}
+%\setlength{\tabcolsep}{1cm}
+
+%IMAGES
+\usepackage{graphicx} %inclure des graphiques
+\usepackage{picins} %grahique avec texte entourant avec la commande \parpic[r]{\includegraphics[width=5cm]{ex41p218.eps}} par exemple
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{soul} %pour utiliser \ul pour souligner
+\usepackage{pifont}
+\usepackage{slashbox}
+\usepackage{textcomp}
+\usepackage{pst-plot}
+
+\usepackage[np]{numprint}
+
+
+%QCM
+\usepackage{alterqcm}					%%Permet de créer des QCM
+%\begin{alterqcm}
+%\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+%\end{alterqcm}
+
+
+%ENCADRES
+\usepackage{pstricks}
+\usepackage{pst-grad}
+\usepackage{xkeyval}
+\usepackage{pst-coil}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\usepackage{pst-blur}
+\usepackage{bclogo}
+%doc ici :
+%http://www.tug.org/texlive/Contents/live/texmf-dist/doc/latex/bclogo/bclogo-doc.pdf
+
+
+%liens hypertexte
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue]{hyperref}
+%\href{mailto:mail@exemple.com}{Mon mail} % Lien email
+%\href{http://exemple.com}{Mon site web}  % Lien web
+%\href{fichier.pdf}{Mon fichier}          % Lien vers un fichier
+
+\newcommand{\euro}{\texteuro{}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+%Ensembles de nombres
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+
+%Repères
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+
+%Symboles Casio dans les programmes
+\usepackage{pifont} % ça c'est pour le retour chariot
+\newcommand{\RetourChariot}{\Pisymbol{psy}{191}}
+
+
+
+
+% Ecrire sur plusieurs colonnes
+\usepackage{multicol}
+\setlength{\columnseprule}{0.5pt}
+%exemple
+%\begin{multicols}{3}[Titre sur une seule colonne.]
+%   3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées
+%\end{multicols}
+%\begin{multicols}{2}[\section{Titre numéroté.}]
+%   blabla sur deux colonnes, c'est plus sérieux. C'est le style qui est généralement utilisé pour écrire des articles.
+%saut de colonne forcé : 
+%\columnbreak
+%djhskjdhjsq
+%sdkksqjhd
+%\end{multicols}
+%Pour ajouter un titre numéroté qui apparaisse sur toute la largeur de la page, il faut utiliser l'option [\section{Titre.}] juste après \begin{multicols}{nb-col}.
+%Remarques :
+%+ Pour qu'une ligne de séparation apparaisse entre les colonnes, il faut utiliser : \setlength{\columnseprule}{1pt}.
+
+%+ Pour redéfinir la largeur de l'espace inter-colonnes, il faut utiliser \setlength{\columnsep}{30pt}.
+
+
+
+\newcommand{\tete}{
+	{\noindent
+      \textbf{TS1}     	            %% Auteur
+      \hfill \textbf{Année 2012-2013}   \\  	            	%% Année
+	}
+	%{\noindent
+  %    \url{tremulot.maths@gmail.com}                 	%% Module
+  %    \hfill \textbf{\today}   \\  % Numero de la feuille
+	%}
+	\hrule
+	\begin{center} 
+	\Large \textsc{\textbf{Algorithmes du TP 1 p 46}}
+	\end{center}
+	\hrule
+	\noindent \\
+}
+
+
+%\usepackage{lmodern}
+%\usepackage[crop=off]{auto-pst-pdf}%compilation automatique en ps, puis pdf
+%\usepackage{ifpdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\tete
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage / \pageref{LastPage}}
+
+%\thispagestyle{empty} %annuler le style pour la page en cours, soit la première page, ici
+
+%\title{\textbf{\textsc{CHAPITRE 1 : MATRICES}}}
+%\date{}
+
+%\maketitle %impose le style plain à la page
+%\hrule
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Voici les algorithmes version \og calculatrice\fg~ pour la question \ding{173} :\\
+
+\begin{cadrecode}
+\begin{small}
+%\begin{verbatim}
+\begin{multicols}{2}
+\textbf{Avec une TI :}\\
+
+:Input "Nombre à dépasser",A\\
+:3000 $\rightarrow$ S\\
+:0 $\rightarrow$ N\\
+:While  U$\leq$A\\
+:1,04S+350 $\rightarrow$ S\\
+:N+1$\rightarrow$N\\
+:End\\
+:Disp "On dépassera la somme au bout de :",N,"années"
+
+\columnbreak
+
+\textbf{Avec une Casio :}\\
+
+"Nombre à dépasser"\RetourChariot\\
+?$\rightarrow$A\RetourChariot\\
+3000 $\rightarrow$ S\RetourChariot\\
+0 $\rightarrow$ N\RetourChariot\\
+While  S$\leq$A\RetourChariot\\
+1,04S+350 $\rightarrow$ S\RetourChariot\\
+N+1$\rightarrow$N\RetourChariot\\
+WhileEnd\RetourChariot\\
+"On dépassera la somme au bout de :"\ding{115}\\
+N\ding{115}\\
+"années"\RetourChariot
+
+\end{multicols}					
+					
+\end{small}					
+\end{cadrecode}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,78 @@
+%:-+-+-+- Engendré par : http://math.et.info.free.fr/TikZ/Arbre/
+\begin{center}
+% Racine à Gauche, développement vers la droite
+\begin{tikzpicture}[xscale=0.9,yscale=0.9]
+% Styles (MODIFIABLES)
+\tikzstyle{fleche}=[->,>=latex,thick,color=blue]
+\tikzstyle{score}=[->,>=latex,thick,style=dotted,color=red]
+\tikzstyle{noeud}=[fill=white]%,circle,draw]
+\tikzstyle{feuille}=[fill=white]%,circle,draw]
+\tikzstyle{feuillescore}=[fill=white,text=red]%,circle,draw]
+\tikzstyle{etiquette}=[midway,fill=white]%,draw]
+% Dimensions (MODIFIABLES)
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{1.5}
+% Dimensions calculées (NON MODIFIABLES)
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1.6666666666666665)*\DistanceInterNiveaux}
+\def\NiveauC{(3)*\DistanceInterNiveaux}
+\def\NiveauD{(4)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+\node[noeud] (R) at ({\NiveauA},{(5.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(2.5)*\InterFeuilles}) {Face};
+\node[noeud] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$1$};
+\node[feuillescore] (Raaa) at ({\NiveauD},{(0)*\InterFeuilles}) {$2$};
+\node[noeud] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$2$};
+\node[feuillescore] (Raba) at ({\NiveauD},{(1)*\InterFeuilles}) {$4$};
+\node[noeud] (Rac) at ({\NiveauC},{(2)*\InterFeuilles}) {$3$};
+\node[feuillescore] (Raca) at ({\NiveauD},{(2)*\InterFeuilles}) {$6$};
+\node[noeud] (Rad) at ({\NiveauC},{(3)*\InterFeuilles}) {$4$};
+\node[feuillescore] (Rada) at ({\NiveauD},{(3)*\InterFeuilles}) {$8$};
+\node[noeud] (Rae) at ({\NiveauC},{(4)*\InterFeuilles}) {$5$};
+\node[feuillescore] (Raea) at ({\NiveauD},{(4)*\InterFeuilles}) {$10$};
+\node[noeud] (Raf) at ({\NiveauC},{(5)*\InterFeuilles}) {$6$};
+\node[feuillescore] (Rafa) at ({\NiveauD},{(5)*\InterFeuilles}) {$12$};
+\node[noeud] (Rb) at ({\NiveauB},{(8.5)*\InterFeuilles}) {Pile};
+\node[noeud] (Rba) at ({\NiveauC},{(6)*\InterFeuilles}) {$1$};
+\node[feuillescore] (Rbaa) at ({\NiveauD},{(6)*\InterFeuilles}) {$5$};
+\node[noeud] (Rbb) at ({\NiveauC},{(7)*\InterFeuilles}) {$2$};
+\node[feuillescore] (Rbba) at ({\NiveauD},{(7)*\InterFeuilles}) {$6$};
+\node[noeud] (Rbc) at ({\NiveauC},{(8)*\InterFeuilles}) {$3$};
+\node[feuillescore] (Rbca) at ({\NiveauD},{(8)*\InterFeuilles}) {$7$};
+\node[noeud] (Rbd) at ({\NiveauC},{(9)*\InterFeuilles}) {$4$};
+\node[feuillescore] (Rbda) at ({\NiveauD},{(9)*\InterFeuilles}) {$8$};
+\node[noeud] (Rbe) at ({\NiveauC},{(10)*\InterFeuilles}) {$5$};
+\node[feuillescore] (Rbea) at ({\NiveauD},{(10)*\InterFeuilles}) {$9$};
+\node[noeud] (Rbf) at ({\NiveauC},{(11)*\InterFeuilles}) {$6$};
+\node[feuillescore] (Rbfa) at ({\NiveauD},{(11)*\InterFeuilles}) {$10$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (R)--(Ra) node[etiquette] {$\dfrac{1}{2}$};
+\draw[fleche] (Ra)--(Raa) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Raa)--(Raaa);
+\draw[fleche] (Ra)--(Rab) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rab)--(Raba);
+\draw[fleche] (Ra)--(Rac) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rac)--(Raca);
+\draw[fleche] (Ra)--(Rad) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rad)--(Rada);
+\draw[fleche] (Ra)--(Rae) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rae)--(Raea);
+\draw[fleche] (Ra)--(Raf) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Raf)--(Rafa);
+\draw[fleche] (R)--(Rb) node[etiquette] {$\dfrac{1}{2}$};
+\draw[fleche] (Rb)--(Rba) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rba)--(Rbaa);
+\draw[fleche] (Rb)--(Rbb) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rbb)--(Rbba);
+\draw[fleche] (Rb)--(Rbc) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rbc)--(Rbca);
+\draw[fleche] (Rb)--(Rbd) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rbd)--(Rbda);
+\draw[fleche] (Rb)--(Rbe) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rbe)--(Rbea);
+\draw[fleche] (Rb)--(Rbf) node[etiquette] {$\frac{1}{6}$};
+\draw[score] (Rbf)--(Rbfa);
+\end{tikzpicture}
+\end{center}
+%:-+-+-+-+- Fin

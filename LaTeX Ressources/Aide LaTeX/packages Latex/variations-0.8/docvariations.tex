@@ -1,0 +1,176 @@
+% Documentation de l'extension 'variations'
+% Copyright (c) 2010 Christian Obrecht
+
+\documentclass{article}
+\usepackage{mafr,variations,ae,aecompl}
+
+\nofiles
+\def\mac#1{\item[\qquad\hbox to 4em{\ttfamily\textbackslash#1\hfill}]}
+
+\title{L'extension \texttt{variations}\\
+\texttt{\small <http://obrecht.fr/variations/>}}
+\author{Christian Obrecht}
+\date{15 mars 2010}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+L'extension \texttt{variations} permet de composer au sein de documents \LaTeX,
+des tableaux de variations de fonctions et des tableaux de signes respectant les
+usages typographiques français. La syntaxe utilisée est proche de celle de
+l'environnement \texttt{tabular}. Les macros fournies permettent de répondre aux
+besoins les plus courants. Voici un exemple élémentaire :
+
+$$
+\variations
+     x     & \mI &    &       &  0  &       &    & \pI \\
+\frc{1}{x} & \h0 & \d & \b\mI & \bb & \h\pI & \d & \b0 \\
+\fin
+$$
+
+\noindent
+obtenu avec le code suivant :
+
+\begin{quote}
+\begin{verbatim}
+\variations
+     x     & \mI &    &       &  0  &       &    & \pI \\
+\frc{1}{x} & \h0 & \d & \b\mI & \bb & \h\pI & \d & \b0 \\
+\fin
+\end{verbatim}
+\end{quote}
+
+\noindent
+Plusieurs points méritent d'être évoqués :
+
+\begin{enumerate}
+
+\item Les éléments figurant dans l'environnement sont composés en mode
+mathématique\footnote{La macro \texttt{\textbackslash frc} provient de
+l'extension \texttt{mafr}. Elle permet de composer une fraction qui sera
+systématiquement au format \texttt{displaystyle}.}.
+
+\item Un cadre pour le tableau, un filet vertical à droite de la première
+colonne et des filets horizontaux séparant chaque ligne sont tracés
+automatiquement.
+
+\item Des macros comme \verb+\d+ (flèche décroissante) ou \verb+\bb+ (double
+barre) permettent de composer les éléments spécifiques aux tableaux de
+variations.
+
+\item Les macros \verb+\b+ (pour bas) et \verb+\h+ (pour haut) autorisent le
+positionnement vertical des éléments dans la ligne des variations.
+
+\item Les macros \verb+\mI+ et \verb+\pI+ correspondent respectivement à
+$-\infty$ et $+\infty$. 
+
+\end{enumerate}
+
+On notera qu'il est également possible d'utiliser \texttt{variations} avec
+plain \TeX, en chargeant le fichier \texttt{variations.tex}.
+
+\section{Description des macros}
+
+Les macros suivantes sont utilisables au sein d'un environnement
+\texttt{variations} :
+
+\begin{itemize}
+
+\mac{c} Flèche croissante.
+\mac{ch} Flèche croissante pour point d'inflexion (position haute).
+\mac{cb} Flèche croissante pour point d'inflexion (position basse).
+\mac{cl} Flèche croissante longue.
+\mac{d} Flèche décroissante.
+\mac{dh} Flèche décroissante pour point d'inflexion (position haute).
+\mac{db} Flèche décroissante pour point d'inflexion (position basse).
+\mac{dl} Flèche décroissante longue.
+\mac{e} Flèche horizontale (position médiane).
+\mac{eh} Flèche horizontale (position haute).
+\mac{eb} Flèche horizontale (position basse).
+\mac{el} Flèche horizontale longue (position médiane).
+\mac{elh} Flèche horizontale longue (position haute).
+\mac{elb} Flèche horizontale longue (position basse).
+\mac{h} Place l'argument en haut de la ligne médiane.
+\mac{b} Place l'argument en bas de la ligne médiane.
+\mac{l} Filet vertical.
+\mac{n} Argument barré d'un filet vertical.
+\mac{z} Zéro barré d'un filet vertical.
+\mac{bb} Double barre.
+\mac{bg} Filet vertical justifié à gauche.
+\mac{bd} Filet vertical justifié à droite.
+\mac{ga} Décale l'argument vers la gauche (occupe deux colonnes).
+\mac{dr} Décale l'argument vers la droite (occupe deux colonnes).
+\mac{ha} Hachures de taille fixe.
+\mac{hv} Hachures de taille variable.
+\mac{mI} Abréviation pour $-\infty$.
+\mac{pI} Abréviation pour $+\infty$.
+
+\end{itemize}
+
+\bigskip\noindent
+Pour obtenir les traits correspondants aux différents types de flèches, il
+suffit d'ajouter la lettre \texttt{t} au début du nom de la macro associée.
+
+\section{Deux exemples plus élaborés}
+
+Le tableau ci-dessous :
+
+$$
+\variations
+  x   & \mI  &    &  -1 &      &       0    &     &   1   &     \\
+f'(x) &     \ga-  & \z  &  +   &      \z    &     \dr+    & \bd \\
+f(x)  & \h1  & \d & \b0 & \tcb & \frc{1}{2} & \ch & \h\pI & \bd \\
+\fin
+$$
+
+\noindent
+a été obtenu à l'aide du code suivant :
+
+\begin{quote}
+\begin{verbatim}
+\variations
+  x   & \mI  &    &  -1 &      &       0    &     &   1   &     \\
+f'(x) &     \ga-  & \z  &  +   &      \z    &     \dr+    & \bd \\
+f(x)  & \h1  & \d & \b0 & \tcb & \frc{1}{2} & \ch & \h\pI & \bd \\
+\fin
+\end{verbatim}
+\end{quote}
+
+On remarquera en particulier l'utilisation des macros \verb+\tcb+ et \verb+\ch+
+pour le point d'inflexion, des macros \verb+\ga+ et \verb+\dr+ pour le premier
+signe et le troisième signe de la dérivée, enfin de la macro \verb+\bd+ pour la
+double barre sur le bord droit du tableau.
+
+\goodbreak
+Le tableau ci-dessous :
+
+$$
+\variations
+  x   &     -2     &     &  -1 &     & \;1 &     &   2          \\
+f'(x) &            &  -  &     & \ha &     &  +  &              \\
+f(x)  & \h{\sqrt3} & \dl & \b0 & \hv & \b0 & \cl & \h{\sqrt3\;} \\
+\fin
+$$
+
+\noindent
+a été obtenu à l'aide du code suivant :
+
+\begin{quote}
+\begin{verbatim}
+\variations
+  x   &     -2     &     &  -1 &     & \;1 &     &   2          \\
+f'(x) &            &  -  &     & \ha &     &  +  &              \\
+f(x)  & \h{\sqrt3} & \dl & \b0 & \hv & \b0 & \cl & \h{\sqrt3\;} \\
+\fin
+\end{verbatim}
+\end{quote}
+
+On notera l'utilisation des macros \verb+\ha+ et \verb+\hv+ pour hachurer un
+intervalle dans la ligne des signes et la ligne des variations, de l'espace
+mathématique \verb+\;+ afin d'élargir certaines colonnes, ainsi que des macros
+\verb+\dl+ et \verb+\cl+, versions allongées des flèches de variations.
+
+\end{document}

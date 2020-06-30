@@ -1,0 +1,38 @@
+\documentclass[french,12pt]{report}
+\input preambule_2015
+\input{perso_cecile_2015}
+\input{commandes_2015}
+
+\usepackage{manfnt}
+
+\newgeometry{includeheadfoot,headsep=0.2cm,top=0.5cm,bottom=0.8cm,right=1.5cm,left=1.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+
+
+\begin{document}
+\ReglePied
+
+\fancypagestyle{garde}{
+\pieddepage{2015-2016 - TS}{}{\thepage / \pageref{LastPage}}}
+
+\pieddepage{2015-2016 - TS}{Ch ? : titre }{\thepage / \pageref{LastPage}}
+
+
+
+\chapter{Chapitre ? \\ Titre}
+\thispagestyle{garde}
+
+\bigskip
+
+
+
+
+\newpage
+ 
+ blabla
+ 
+
+
+
+\end{document}

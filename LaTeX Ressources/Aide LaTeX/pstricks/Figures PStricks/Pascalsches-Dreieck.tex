@@ -1,0 +1,74 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ngerman} % neue deutsche Rechtschreibung
+\usepackage[ngerman]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[light]{kpfonts}%  f\"{u}r Mathezeichen
+\usepackage{libertine}% f\"{u}r rm und sf
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{color} %% Farben sind im Dokument LatexGraphik.pdf definiert
+\usepackage{pstricks-add}
+
+
+\begin{document}
+
+\section*{Das Pascalsche Dreieck}
+
+Benannt nach Blaise Pascal (19. Juni 1623 in Clermont-Ferrand; $\dagger$ 19. August 1662 in Paris)
+
+\newcommand*{\kastB}[2][0.2]{\psframebox[linecolor=blue,framearc= #1, framesep=1pt, fillcolor=blue,%
+fillstyle=solid]{\color{white}\textsf{#2}}}%
+\newcommand*{\kastG}[2][0.2]{\psframebox[linecolor=yellow, framearc= #1, framesep=1pt,%
+fillcolor=yellow, fillstyle=solid]{\color{blue}\textsf{#2}}}%
+{\psset{arrows=->, nodesep=3pt, linewidth=1pt,rowsep=.4cm, colsep=0.75cm}%
+\begin{pspicture}[shift=-1](-0.5,-0.5)(8,9)
+\begin{psmatrix}[mnodesize=0pt]
+&        &  &  &  &  &  &  & 1&  &  &  &  &  &  & &\\
+&        &  &  &  &  &  & 1&  & 1&  &  &  &  &  & &\\
+&        &  &  &  &  & 1&  & 2&  & \rnode{A}{\kastB{1}}&  &  &  &  & &\\
+&        &  &  &  & 1&  & 3&  & \rnode{B}{\kastB{3}}&  & 1&  &  &  & &\\
+&        &  &  & 1&  & 4&  & \rnode{C}{\kastB{6}}&  & 4&  & 1&  &  & &\\
+&      &  & 1&  & 5&  & \rnode{D}{\kastB{10}}&  & 10&  & 5&  & 1&  & &\\
+&     & 1&  & 6&  & \rnode{E}{\kastB{15}}&  & 20&  & 15&  & 6&  & 1& &\\
+   & 1&  & 7&  & 21&  & \rnode{F}{\kastG{35}}&  & 35&  & 21&  & 7&  & 1 & \\
+1 & & 8 & & 28 & & 56 & & 70 & & 56 & & 28 & & 8 & & 1 \\
+{\psset{linecolor=green,arrowinset=0.1,nodesep=2pt,labelsep=2pt}
+\ncLine{->}{A}{B}\nbput{\textcolor{green}{$\scriptscriptstyle +$}}%
+\ncLine{->}{B}{C}\nbput{\textcolor{green}{$\scriptscriptstyle +$}}%
+\ncLine{->}{C}{D}\nbput{\textcolor{green}{$\scriptscriptstyle +$}}%
+\ncLine{->}{D}{E}\nbput{\textcolor{green}{$\scriptscriptstyle +$}}%
+\ncLine{->}{E}{F}%
+}
+%\psline(A)(B)
+\end{psmatrix}
+\end{pspicture}
+}%
+
+Beweise mit Hilfe der vollst\"{a}ndigen Induktion die Gleichung
+\begin{equation*}
+    \binom{k}{k} + \binom{k+1}{k} + \dotsb + \binom{n}{k} = \binom{n+1}{k+1} \quad \text{f\"{u}r} \quad  n=k,
+    k+1,k+2, \dotsc
+\end{equation*}
+und veranschauliche sie im Pascalschen Dreieck.
+
+\subsection*{L\"{o}sung}
+
+\quad 1. \  $n=k$: \qquad $\dbinom{k}{k} = \dbinom{k+1}{k+1} = 1 $ \qquad OK $\checkmark $\\
+Es gilt nun schon
+\begin{equation*}%\label{}
+  \begin{split}
+                    &\binom{k}{k} + \binom{k+1}{k} + \dotsb + \binom{n-1}{k} = \binom{n}{k+1}\\[0.3cm]
+  \Rightarrow \quad &\binom{k}{k} + \binom{k+1}{k} + \dotsb + \binom{n-1}{k} + \binom{n}{k}
+                  = \binom{n}{k+1} + \binom{n}{k}\\[0.3cm]
+                  = &\frac{n!}{(k+1)!\cdot (n-k-1)!} +\frac{n!}{k!\cdot (n-k)!}
+                  =\frac{n!\cdot (n-k) + n!\cdot (k+1)}{(k+1)!\cdot (n-k)!}\\[0.3cm]
+                  = &\frac{n!\cdot[(n-k) + (k+1)]}{(k+1)!\cdot (n-k)!}
+                  = \frac{n!\cdot[n+1]}{(k+1)!\cdot (n-k)!}\\[0.3cm]
+                  = &\frac{(n+1)!}{(k+1)!\cdot (n+1-(k+1))!} = \binom{n+1}{k+1}
+  \end{split}
+\end{equation*}
+
+%
+
+
+
+\end{document}

@@ -1,0 +1,103 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreAlgo{i.1}{Comprendre un algorithme}
+
+\exo
+
+On donne ci-dessous un algorithme écrit en langage courant :
+
+\begin{center}
+\small
+    \psframebox{
+    \parbox{0.4\linewidth}{
+        \textbf{Variables}
+
+            \quad $n$ : un nombre réel
+
+            \quad $q$ : un nombre réel
+
+        \textbf{Entrée}
+
+            \quad Saisir $n$
+
+        \textbf{Traitement}
+
+            \quad Affecter à $q$ la valeur $(n+2) \times (n+2)$
+
+            \quad Affecter à $q$ la valeur $q - (n+4)$
+
+            \quad Affecter à $q$ la valeur $q/(n+3)$
+
+        \textbf{Sortie}
+
+            \quad Afficher $q$
+    }}
+\end{center}
+
+\begin{enumerate}
+    \item Tester cet algorithme pour $n = 4$ puis pour $n = -7$.
+    \item Un élève a saisi $n = -3$. Que se passe-t-il ? Pourquoi ?
+    \item \'Emettre une conjecture sur le résultat fourni par cet algorithme.
+    \item Démontrer cette conjecture.
+\end{enumerate}\[*\]
+
+\exo
+
+\begin{enumerate}
+    \item Dans l'algorithme suivant, montrer que l'on pourrait exprimer $y$ directement en fonction de $x$ avec une instruction ne comportant qu'une seule opération.\par
+    \'Ecrire alors cette instruction sous la forme d'une expression mathématique $A(x)$ dépendant de $x$ et le plus simplement possible.
+
+\begin{center}
+\small
+    \psframebox{
+    \parbox{0.4\linewidth}{
+        \textbf{Variables}
+
+            \quad $a$ : un nombre réel
+
+            \quad $b$ : un nombre réel
+
+            \quad $c$ : un nombre réel
+
+            \quad $d$ : un nombre réel
+
+            \quad $x$ : un nombre réel
+
+            \quad $y$ : un nombre réel
+
+        \textbf{Entrée}
+
+            \quad Saisir $x$
+
+        \textbf{Traitement}
+
+            \quad Affecter à $a$ la valeur $x+2$
+
+            \quad Affecter à $b$ la valeur $a \times a$
+
+            \quad Affecter à $c$ la valeur $x-2$
+
+            \quad Affecter à $d$ la valeur $c \times c$
+
+            \quad Affecter à $y$ la valeur $(b - d)/4$
+
+        \textbf{Sortie}
+
+            \quad Afficher $y$
+    }}
+\end{center}
+
+    \item Modifier alors la partie \textbf{Traitement} de l'algorithme.
+    \item Quelles sont les seules variables nécessaires ?
+\end{enumerate}
+
+
+\end{document} 

@@ -1,0 +1,265 @@
+\documentclass{article}
+\usepackage[frenchstyle]{kpfonts}%  f\"{u}r Mathezeichen
+%\usepackage{libertine}% f\"{u}r rm und sf
+\usepackage{libertine-type1}% f\"{u}r rm und sf
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage[%
+   web={usetemplates,pro,german,latextoc,centertitlepage,designv,tight},
+    attachsource={tex},
+    uselayers,eforms,ocganime,
+    graphicxsp={showembeds},
+    aebxmp
+]{aeb_pro}
+
+\embedEPS[transparencyGroup]{p0}{mathevii_screen_ng}
+\usepackage[nomessages]{fp}
+%
+\usepackage[distiller]{pstricks}
+\usepackage{pst-grad}
+%\usepackage{pst-func}
+\usepackage{pst-tools}
+\usepackage{pstricks-add}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{fancyvrb}
+
+\definecolor{randnotiz}{rgb}{0.545,0.271,0.075}
+
+\DeclareDocInfo
+{
+    title=Animation zu Scheitel- und Wechselwinkeln,
+    author=J\"{u}rgen Gilg und Thomas S\"{o}ll,
+    university=Rh\"{o}n-Gymnasium Bad Neustadt,
+    email=Thomas.Soell@lehrer.uka.de,
+    subject=Animation,
+    keywords={Adobe Acrobat, JavaScript, OCG, Layers, animation},
+    talksite=,
+    prepared={\today},
+%    talkdate={Mai 29, 2012},
+    copyrightStatus=True,
+    copyrightNotice={Copyright (C) \the\year, T. S\"{o}ll},
+    copyrightInfoURL=
+}
+
+
+
+\begin{docassembly}
+\insertPreDocAssembly
+%\executeSave()
+aebTrustedFunctions(this, aebSaveAs, "Save");
+\end{docassembly}
+
+\newcommand{\Geodreieck}{%
+\psset{unit=1.6,dimen=middle}
+%\begin{pspicture}(-5,0)(5,0)
+%\SpecialCoor
+%
+\scriptsize
+\pspolygon[linewidth=0pt,fillstyle=solid,fillcolor=lightgray!30,linestyle=none,opacity=0.3](-4.675,0.125)(4.675,0.125)(0,4.8)%
+%
+\begin{psclip}%
+{\pspolygon[linestyle=none](5,0)(4.85,0)(-0.15,5)(0,5)}%
+\multido{\n=1+1}{89}{%
+\rput[l]{\n}(!\n\space dup sin exch cos div dup 1 add 5 exch div exch 1 index mul)%
+{\psline[linewidth=.25\pslinewidth](0,0)(-.2,0)}%
+}%
+\end{psclip}%
+\begin{psclip}%
+{\pspolygon[linestyle=none](-5,0)(-4.85,0)(0.15,5)(0,5)}%
+\multido{\n=1+1}{89}{%
+\rput[l]{-\n}(!\n\space dup sin exch cos div dup 1 add 5 exch div neg exch 1 index mul neg)%
+{\psline[linewidth=.25\pslinewidth](0,0)(.2,0)}%
+}%
+\end{psclip}%
+\multido{\n=5+10}{9}{%
+\rput[l]{\n}(!\n\space dup sin exch cos div dup 1 add 5 exch div exch 1 index mul)%
+{\psline[linewidth=.5\pslinewidth](0,0)(-.4,0)}%
+\rput[l]{-\n}(!\n\space dup sin exch cos div dup 1 add 5 exch div neg exch 1 index mul neg)%
+{\psline[linewidth=.5\pslinewidth](0,0)(.4,0)}%
+}%
+\multido{\n=10+10}{8}{%
+\psline(3.15;\n)(!\n\space dup sin exch cos div dup 1 add 5 exch div exch 1 index mul)%
+\psline(-3.15;-\n)(!\n\space dup sin exch cos div dup 1 add 5 exch div neg exch 1 index mul neg)%
+}%
+\multido{\n=6+1}{84}{%
+\psline[linewidth=.5\pslinewidth](-2.77;-\n)(-2.7;-\n)%
+\psline[linewidth=.5\pslinewidth](2.77;\n)(2.7;\n)%
+}%
+\multido{\n=5+5}{17}{%
+\psline(2.81;\n)(2.7;\n)%
+\psline(-2.81;-\n)(-2.7;-\n)%
+}
+\psline[linestyle=dashed,dash=7pt 4pt](-2.6;-45)(-.5;-45)%
+\psline[linestyle=dashed,dash=7pt 4pt](2.6;45)(.5;45)%
+%
+\pscustom[fillstyle=solid,fillcolor=yellow!70,linestyle=none,opacity=0.3]{%
+\psarc(0,0){2.85}{7}{173}%
+\psarcn(0,0){3.15}{173}{7}%
+}%
+{\multido{\n=10+10}{17}{\rput{0}(3;\n){\n}}}%
+\multido{\n=0+1}{8}{\rput{180}(!\n\space 0.625 mul 0.25){\n}}%
+\multido{\n=1+1}{7}{\rput{180}(!\n\space 0.625 mul neg 0.25){\n}}%
+\multido{\n=-70+1}{141}{\rput{180}(!\n\space 0.0625 mul neg 0){\psline[linewidth=0.5\pslinewidth](0,0)(0,-0.08)}}%
+\multido{\n=-14+1}{29}{\rput{180}(!\n\space 0.3125 mul neg 0){\psline(0,0)(0,-0.13)}}%
+%
+\multido{\n=3+1}{30}{\rput{180}(!0 \n\space 0.0625 mul 0.03 add){%
+\psline[linewidth=0.5\pslinewidth](-1.625,0)(-1.5,0)%
+\psline[linewidth=0.5\pslinewidth](1.625,0)(1.5,0)%
+}}%
+%
+\begin{psclip}%
+{\pscircle[linestyle=none](0,0){2.6}}%
+\multido{\n=1+1}{7}{\rput{180}(!0 \n\space 0.3125 mul 0.03 add){%
+\psline(-2.6,0)(-1.69,0)%
+\psline(2.6,0)(1.69,0)%
+\psline(1.625,0)(1.4375,0)%
+\psline(-1.625,0)(-1.4375,0)%
+\psline(1.1875,0)(0.15,0)%
+\psline(-1.1875,0)(-0.15,0)%
+}}%
+\multido{\n=1+1}{3}{%
+\rput{180}(!1.3 \n\space 0.625 mul 0.03 add){\n}%
+\rput{180}(!-1.3 \n\space 0.625 mul 0.03 add){\n}%
+}%
+\end{psclip}%
+%
+\psline(0.4;90)(2.85;90)%
+\psline(3.15;90)(5;90)%
+\pspolygon(5,0)(0,5)(-5,0)%
+%\end{pspicture}
+}
+
+\newcommand{\Stift}[4]{%
+\definecolor{Holzfarbe}{rgb}{1,0.937,0.835}
+{\psset{unit=#1}
+\begin{pspicture}[showgrid=false](-1,0)(1,20)
+\def\farbA{#2}%
+\def\farbB{#3}%
+\def\farbC{#4}%
+\def\r{0.5}
+\def\lang{20}
+%
+\pspolygon[fillstyle=solid,fillcolor=Holzfarbe](0,0)(0.6,2.4)(-0.6,2.4)%
+\pspolygon[fillstyle=solid,fillcolor=\farbA](0,0)(0.2,0.8)(-0.2,0.8)%
+\pscustom[fillstyle=solid,fillcolor=\farbB,linecolor=\farbC,opacity=1]{%
+\psarc(!0 0.2 \r\space dup mul 0.2 dup mul sub sqrt atan cos \r\space mul 2.4 add){\r}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan neg 90 sub}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan 90 sub}%
+\psline(0.2,\lang)(-0.2,\lang)(!-0.2 2.4)
+}%
+\pscustom[fillstyle=solid,fillcolor=\farbB,linecolor=\farbC,opacity=1]{%
+\psarc(!-0.4 0.2 \r\space dup mul 0.2 dup mul sub sqrt atan cos \r\space mul 2.4 add){\r}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan neg 90 sub}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan 90 sub}%
+\psline(-0.2,\lang)(-0.6,\lang)(!-0.6 2.4)
+}%
+\pscustom[fillstyle=solid,fillcolor=\farbB,linecolor=\farbC,opacity=1]{%
+\psarc(!0.4 0.2 \r\space dup mul 0.2 dup mul sub sqrt atan cos \r\space mul 2.4 add){\r}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan neg 90 sub}{!0.2 \r\space dup mul 0.2 dup mul sub sqrt atan 90 sub}%
+\psline(0.6,\lang)(0.2,\lang)(!0.2 2.4)
+}%
+\end{pspicture}
+}}
+
+
+\universityLayout{fontsize=LARGE,fontseries=bfseries,color=randnotiz}
+\titleLayout{fontsize=Huge,fontseries=bfseries,color=orange}
+\authorLayout{fontsize=large,fontseries=bfseries,color=randnotiz}
+
+\sectionLayout{
+fontfamily=sffamily,
+fontseries=bfseries,
+fontsize=Large,
+color=randnotiz
+}
+\subsectionLayout{
+fontfamily=sffamily,
+fontseries=bfseries,
+fontsize=Large,
+color=randnotiz,
+numdingcolor=randnotiz
+}
+\subsubsectionLayout{%
+fontfamily=sffamily,
+fontseries=bfseries,
+fontsize=Large,
+color=randnotiz,
+numdingcolor=randnotiz
+}
+
+\input{aeb_pro_icon.def}
+
+\placeAnimeCtrlBtnFaces{\myIconPath}{Scheitelw1}
+\begin{document}
+\template[name=p0]{mathevii_screen_ng}
+\maketitle
+
+\section*{Scheitel- und Nebenwinkel}
+
+
+\btnAnimeCtrlPresets{%
+\BG{randnotiz}% Buttonfarbe
+\S{B} %Linien-Stil: B=beveled (abgefast), S=solid, I=inset, U=underlined, D=dashed
+\H{O} %Highlighting: I=invert, O=outline, P=push, N=none
+}%
+\animeSetup{%
+controls=skin1,
+%usetworows,
+%nospeedcontrol,
+ctrlbdrywidth=thin,%thin, medium, thick
+ctrlbdrycolor=orange,
+ctrlwidth=11bp+3bp,
+ctrlheight=7bp+4bp,
+ocgAnimeName=Scheitelw1,
+nFrames=180,
+speed=1
+}%
+\begin{minipage}[b]{0.4\linewidth}
+\ \fcolorbox{randnotiz}{webyellow}{\parbox{\linewidth}{\centering \textcolor{orange}{\emph{\textbf{Animationsbuttons}}}\\[4pt]\insertCtrlButtons}} \\[8pt]
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\begin{ocgAnime}{ocgAnimeName=Scheitelw1,controls=none}%,type=loop}
+\FPdiv{\myDeltaA}{180}{180}%
+%--------------------------------------------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------------------------------------------
+\def\thisframe{%
+\animeBld%
+\rput{!\xi\space 90 add}(-3,5){\Stift{0.42}{red}{red}{black}}%
+%---------------------------------------------------------------------------
+\pswedge*[linecolor=cyan,opacity=0.5](-3,5){3}{0}{!\xi}
+\psarc[linewidth=1.2pt,arrowsize=0.2,arrowinset=0.1]{->}(-3,5){3}{0}{!\xi}
+\pswedge*[linecolor=cyan,opacity=0.5](-3,5){3}{180}{!\xi\space 180 add}
+\psarc[linewidth=1.2pt,arrowsize=0.2,arrowinset=0.1]{->}(-3,5){3}{180}{!\xi\space 180 add}
+%---------------------------------------------------------------------------
+\pswedge*[linecolor=magenta!40,opacity=0.5](-3,5){2.5}{!\xi}{180}
+\psarc[linewidth=1.2pt,arrowsize=0.2,arrowinset=0.1]{->}(-3,5){2.5}{!\xi}{180}
+\pswedge*[linecolor=magenta!40,opacity=0.5](-3,5){2.5}{!\xi\space 180 add}{0}
+\psarc[linewidth=1.2pt,arrowsize=0.2,arrowinset=0.1]{->}(-3,5){2.5}{!\xi\space 180 add}{0}
+%---------------------------------------------------------------------------
+\rput{!\xi}(-3,5){\psline[linecolor=black,linewidth=1.0pt](-3.5,0)(3.2,0)}
+\psline[linecolor=black,linewidth=1.0pt](-6.5,5)(0.2,5)
+\rput(-3,5){\psdot}
+%---------------------------------------------------------------------------------------------------------------------------------------
+\uput{1.5}[!\xi\space 2 div 0 add](-3,5){\psframebox[fillstyle=solid,fillcolor=yellow!20,opacity=0.8,linestyle=none]{\makebox[2em][l]{\strut \psPrintValue[fontscale=12,dot,PSfont=Symbol,postString=\string\260]{\xi\space cvi}}}}
+%---------------------------------------------------------------------------------------------------------------------------------------
+\uput{1.5}[!\xi\space 2 div 180 add](-3,5){\psframebox[fillstyle=solid,fillcolor=yellow!20,opacity=0.8,linestyle=none]{\makebox[2em][l]{\strut \psPrintValue[fontscale=12,dot,PSfont=Symbol,postString=\string\260]{\xi\space cvi}}}}
+%---------------------------------------------------------------------------------------------------------------------------------------
+\uput{1.3}[!\xi\space 2 div 90 add](-3,5){\psframebox[fillstyle=solid,fillcolor=yellow!20,opacity=0.8,linestyle=none]{\makebox[2em][l]{\strut \psPrintValue[fontscale=12,dot,PSfont=Symbol,postString=\string\260]{180 \xi\space sub cvi}}}}
+%---------------------------------------------------------------------------------------------------------------------------------------
+\uput{1.3}[!\xi\space 2 div 270 add](-3,5){\psframebox[fillstyle=solid,fillcolor=yellow!20,opacity=0.8,linestyle=none]{\makebox[2em][l]{\strut \psPrintValue[fontscale=12,dot,PSfont=Symbol,postString=\string\260]{180 \xi\space sub cvi}}}}
+\eBld%
+}
+\def\xi{0}
+%----------------------------------------------------------------------------------------------------------------
+\psscalebox{0.65}{%
+\begin{pspicture}[showgrid=false](-6,-3)(2,12)
+\rput{0}(-3,5){\Geodreieck}
+\rput{-180}(-3,5){\Geodreieck}
+\rput{90}(-3,5){\Stift{0.42}{black!80}{blue!50}{black}}\rput{0}(-3,5){\psdot}
+%----------------------------------------------------------------------------------------------------------------
+\multido{\i=0+1}{180}{\FPadd{\xi}{\xi}{\myDeltaA}\thisframe}%
+\end{pspicture}
+}
+%
+\end{ocgAnime}
+\end{minipage}
+
+
+\end{document}

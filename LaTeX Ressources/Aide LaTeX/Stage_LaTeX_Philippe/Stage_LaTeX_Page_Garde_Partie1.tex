@@ -1,0 +1,58 @@
+\definecolor{BleuLogo}{RGB}{79,129,150}
+\definecolor{MarronLogo}{RGB}{210,163,128}
+\definecolor{RoseLogo}{RGB}{250,207,187}
+
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture,overlay,
+        every shadow/.style={opacity=.6,fill=black!50,shadow xshift=5pt, shadow yshift=-5pt}]
+
+% vague colorée
+    \fill[color=BleuLogo!25]
+        ($(current page.south west)$)..controls+(0:20)and+(-160:5)..($(current page.east)$)--
+        ($(current page.south east)$)--cycle;
+
+% courbe colorée sur la vague
+    \draw[line width=3pt,color=BleuLogo!100,shorten <=-5pt]
+        ($(current page.south west)$)..controls+(0:20)and+(-160:5)..($(current page.east)$)
+        node[pos=0.75] (c) {\tikz{\fill(0,0) circle (.2cm);}}; % pour le point
+
+% titre
+    \node[anchor=north east,font=\itshape\Huge,color=MarronLogo,inner sep=10pt,scale=3]
+        at ($(current page.north east)$) {{\hminfamily Initiation}};
+
+% Logo JPT
+    \node[anchor=north west,inner sep=4pt,scale=0.75] (logo)
+        at ($(current page.north west)+(1cm,-0.5cm)$)
+            {\begin{tabular}{c}
+                \includegraphics[width=4.5cm]{JPT} \\
+                \makebox[4.5cm][s]{\bfseries Lycée Jean-Pierre \bsc{Timbaud}}
+            \end{tabular}};
+
+% Auteur
+    \node[anchor=south east,inner sep=10pt,scale=1.5,color=black!100] (auteur)
+        at ($(current page.south east)$)
+        {\bfseries Philippe \bsc{De Sousa}};
+
+% 2e Courbe colorée + node avec cadre exemple maths
+    \draw[line width=3pt,color=BleuLogo,shorten <=-5pt]
+        (c)..controls+(110:30)and+(-70:23)..($(current page.north west)+(0,-0.1\paperheight)$)
+        node[pos=0.9,color=black,fill=white,draw=RoseLogo!50,rounded corners=15pt,
+                    inner sep=10pt,drop shadow,anchor=west,scale=1.5]
+            {
+              $\int_a^b f(x)dx = F(b) - F(a)$
+            };
+
+% LaTeX
+    \node[scale=30,color=black!15,rotate=45,opacity=0.65] (latex)
+        at ($(current page.center)+(1cm,0)$) {\LaTeX};
+
+% cadre Partie 1
+    \node[line width=3pt,color=black,fill=white,draw=RoseLogo!50,rounded corners=15pt,
+                inner sep=10pt,drop shadow,anchor=east,scale=2.5]
+        at (latex.south)
+            {%
+              \bfseries\scshape 1\up{\upshape ère} Partie
+            } ;
+
+\end{tikzpicture} 

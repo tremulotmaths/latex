@@ -1,0 +1,16 @@
+\begin{center}
+\begin{tikzpicture}[scale=2,>=stealth]
+\tkzInit[xmin=-2,xmax=5,ymin=-2,ymax=4]
+\tkzGrid
+\tkzDefPoint(2,3){A}\tkzDefPoint(4,2){B}
+\tkzDefPointWith[orthogonal,K=-2](A,B)\tkzGetPoint{C}%AC=2*AB et (AB,AC)=-pi/2
+\tkzDefPointWith[linear,K=2/3](A,C)\tkzGetPoint{D}%\vect{AD}=2/3*\vect{AC}
+\tkzDefPointWith[colinear=at B,K=1/2](A,C)\tkzGetPoint{E}%\vect{BE}=1/2\vect{AC}
+\tkzDrawPoints[shape=cross out,color=red,size=16pt](A,B,C)
+\tkzDrawPoints[shape=cross,color=red,size=16pt](D)
+\tkzDrawPoints[color=red,size=16pt](E)
+\tkzLabelPoints[above right=3pt,font=\boldmath](A,B,C,D)
+\tkzLabelPoints[below right=3pt,font=\boldmath,color=blue](E)
+\tkzDrawSegment[->,color=blue,line width=1.5pt](B,E)
+\end{tikzpicture}
+\end{center}

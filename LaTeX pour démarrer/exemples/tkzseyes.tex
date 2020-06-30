@@ -1,0 +1,23 @@
+\begin{center}
+\begin{tikzpicture}
+[line width=0.3mm, >=stealth, x=1cm, y=1cm,line cap=round, line join=round, scale=1]
+\quadrillageSeyes{(-3.2,-2.4)}{(6.4,3.2)} 
+\tkzDefPoint(0.8,1.6){A}\tkzLabelPoints[font=\boldmath,above left,color=blue](A)
+\tkzDefPoint(2.4,0.8){B}\tkzLabelPoints[font=\boldmath,below right,color=blue](B)
+\tkzDefPoint(0,0){C}\tkzLabelPoints[font=\boldmath,above=4pt,color=blue](C)
+\tkzDefPointWith[colinear=at C,K=1](B,A)\tkzGetPoint{E}%\vect{CE}=\vect{BA}
+\tkzLabelPoints[font=\boldmath,above left,color=blue](E)
+\tkzDefPointWith[colinear=at B,K=1](C,B)\tkzGetPoint{F}%\vect{BF}=\vect{CB}
+\tkzLabelPoints[font=\boldmath,above right,color=blue](F)
+\tkzDrawPoints[size=2,color=blue](A,B,C,E,F)
+\tkzDrawVectors[color=blue,line width=1.5pt,>=stealth](C,E B,A)
+\tkzDrawVectors[color=red,line width=1.5pt,>=stealth](B,F C,B)
+
+\tkzDefPointWith[colinear=at C,K=1](A,C)\tkzGetPoint{G}%\vect{CG}=\vect{AC}
+\tkzDrawVectors[color=OliveGreen,line width=1.5pt,style=dotted,>=stealth](B,C C,G)
+\tkzDrawVector[color=OliveGreen,line width=1.5pt,>=stealth](B,G)
+\tkzLabelSegment[below right,color=OliveGreen,font=\boldmath](B,G){$\vect{u}$}
+\tkzLabelSegment[left=4pt,color=OliveGreen](C,G){$\vect{AC}$}
+
+\end{tikzpicture}
+\end{center}

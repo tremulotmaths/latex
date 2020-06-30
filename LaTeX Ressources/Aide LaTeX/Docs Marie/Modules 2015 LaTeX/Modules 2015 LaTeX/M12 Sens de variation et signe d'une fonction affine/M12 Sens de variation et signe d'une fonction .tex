@@ -1,0 +1,118 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\input{algorithme}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Initiation à l'algorithmique\\ Logiciel Algobox}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 12}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Sens de variation et signe d'une fonction affine}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Présentation}}
+\begin{enumerate}
+\item Algorithme\\[7pt]
+Un \emph{algorithme} est une suite d'instructions élémentaires. Ces instructions s'appliquent dans un ordre déterminé à des données et fournissent des résultats clairement définis.\\[7pt]
+\emph{Recherche à effectuer}.
+\begin{enumerate}
+\item Faire une brève présentation du mathématicien \textsc{Al-Khuwarizmi}.
+\item Le flocon de \textsc{Koch}
+	\begin{itemize}
+	\item Présenter l'algorithme de dessin récursif permettant de tracer le flocon de \textsc{Koch}.
+	\item Représenter le \og flocon \fg\  obtenu à la quatrième étape de ce processus.
+	\item Quelle est la particularité de la figure obtenue si on répète le processus à l'infini?
+	\end{itemize}
+\end{enumerate}
+\vspace{20pt}
+\item Préparation d'un algorithme\\[7pt]
+L'objectif est d'obtenir d'une machine (calculatrice, ordinateur, robot, distributeur automatique de billets, ...) qu'elle exécute certaines tâches. Pour cela il faut décrire à cette machine, dans un langage approprié, l'ensemble des opérations à effectuer pour obtenir le résultat souhaité.\\
+ Le \emph{langage de programmation} diffère selon la machine utilisée, mais le programme utilise des instructions et des structures communes. Ce sont elles qui constituent l'\emph{algorithme}, indépendamment du langage employé. \\[7pt]
+\begin{center}
+\fcolorbox{blue!40}{blue!5}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Bilan}\\[5pt]
+Pour écrire un algorithme, on doit envisager:
+\begin{itemize}
+\item une phase préparatoire: on y repère en particulier les informations à demander à l'utilisateur (nombres, mots, points, liste de nombres, etc.). \\
+Ce sont les \emph{entrées}.
+\item le traitement: c'est la liste d'\emph{instructions} qui seront appliquées aux données (on fait des calculs, on effectue des test, on crée des points, des fonctions etc.).
+\item la sortie des résultats: ils seront affichés à l'écran. (Ce sont des nombres, des mots, des graphiques, des animations, etc.).\\
+Ce sont les \emph{sorties}.
+\end{itemize}
+\vspace{10pt}
+\end{minipage}}
+\end{center}
+\end{enumerate}
+\vspace{15pt}
+\newpage
+%_______________
+\textcolor{blue}{\textbf{II. Ecriture des algorithmes}}
+
+\begin{enumerate}
+
+\item Situation étudiée\\[7pt]
+On considère une fonction affine définie sur $\R$ par $f:x\mapsto ax+b$.\\
+On dispose dans le cours de résultats donnant le sens de variation de la fonction affine $f$, ainsi que le signe de cette fonction. On souhaite construire un algorithme simple permettant d'afficher ces résultats.
+\vspace{10pt}
+\item Problème 1\\
+Ecrire un algorithme donnant le sens de variation d'une fonction affine définie sur $\R$ par $f:x\mapsto ax+b$.
+\vspace{10pt}
+\item Problème 2\\
+Ecrire un algorithme donnant la valeur qui annule une fonction affine définie sur $\R$ par $f:x\mapsto ax+b$.
+\vspace{10pt}
+\item Problème 3\\
+Ecrire un algorithme donnant le signe d'une fonction affine définie sur $\R$ par $f:x\mapsto ax+b$.
+\end{enumerate}
+\vspace{15pt}
+\textsc{Avec le logiciel Algobox}\\
+Algorithme donnant le sens de variation d'une fonction affine
+\begin{algobox}
+\Variables
+\Ligne a EST\_DU\_TYPE NOMBRE
+\Ligne b EST\_DU\_TYPE NOMBRE
+\DebutAlgo
+\Ligne LIRE a
+\Ligne LIRE b
+\Si{(a==0)}
+\DebutSi
+\Ligne AFFICHER "La fonction est constante"
+\FinSi
+\Si{(a>0)}
+\DebutSi
+\Ligne AFFICHER "La fonction est croissante"
+\FinSi
+\Sinon
+\DebutSinon
+\Ligne AFFICHER "La fonction est décroissante"
+\FinSinon
+\FinAlgo
+
+\end{algobox}
+
+\end{document}
+

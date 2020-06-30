@@ -1,0 +1,592 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-mat}[07/03/2010 version 1.1]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-graphes.sty
+
+
+
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsmat}
+\setboolean{windowsmat}{false}
+\newboolean{xcasmat}
+\setboolean{xcasmat}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasmat}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsmat}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsmat}}
+{%
+\ifthenelse{\boolean{xcasmat}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasmat}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+\RequirePackage{tikz}
+\usetikzlibrary{%
+    arrows,%
+    calc,%
+    topaths,%
+    matrix,%
+    positioning}
+ \RequirePackage{amsmath}
+
+\RequirePackage{color}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem enteteMP.cfg enteteTEX.cfg *.user  *.mpx *.giac XCAS*.cxx  XCAS*.mp mptextmp.mp XCAS*.tex}}
+     
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% ECRIRE UNE MATRICE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{VerbatimOut}{XCASmatmat.cxx}
+matmat(A):={
+Reponse:=
+"\\begin{tikzpicture}[>=latex]
+% defintion of matrices
+\\matrix (A) [matrix of math nodes,%
+             %nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (0,0)
+{%
+  ";
+
+for(k:=0;k<size(A);k++){
+     for(j:=0;j<size(A[0]);j++){
+   if(j==size(A[0])-1){
+Reponse:=Reponse+latex(A[k][j])+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(A[k][j])+" & "}
+}}
+Reponse:=Reponse+"};  
+
+\\end{tikzpicture} 
+";
+
+
+
+sortie:=fopen("XCASmatmat.tex");
+fprint(sortie,Unquoted,Reponse);
+fclose(sortie);
+
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASmatmat.giac}
+maple_mode(0);
+read("XCASmatmat.cxx");
+read("XCASmatmat.user");
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{CptXCASmatmat}
+\newcommand{\mmat}{\theCptXCASmatmat}
+%% \mattt change a chaque figure
+
+\newenvironment{matmat}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASmatmat.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASmatmat.tex}
+\executGiacmp{XCASmatmat.giac}
+\immediate\write18{\rem \nomtravail_XCASmatmat\mmat.tex}
+
+  \immediate\write18{\cat XCASmatmat.tex >> \nomtravail_XCASmatmat\mmat.tex}
+
+\begin{center}
+    \input{\nomtravail_XCASmatmat\mmat}
+\end{center}
+\stepcounter{CptXCASmatmat}
+}
+
+\newenvironment{matmat*}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASmatmat.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+    \input{\nomtravail_XCASmatmat\mmat}
+\end{center}
+%\stepcounter{CptXCASmatmat}
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+% produits de matrices
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{VerbatimOut}{XCASpromat.cxx}
+promat(A,B,L):={
+local C;
+if(size(L[0])==3){
+nomA:=L[0][0];
+nomB:=L[0][1];
+nomC:=L[0][2];
+};
+if(size(L[0])==2){
+nomA:=L[0][0];
+nomB:=L[0][1];
+};
+C:=simplify(A*B);
+Reponse:=
+"\\begin{tikzpicture}[>=latex]
+
+% defintion of matrices
+\\matrix (A) [matrix of math nodes,%
+             %nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (0,0)
+{%
+  ";
+
+for(k:=0;k<size(A);k++){
+     for(j:=0;j<size(A[0]);j++){
+   if(j==size(A[0])-1){
+Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(A[k][j])}else{simplify(A[k][j])})+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(A[k][j])}else{simplify(A[k][j])})+" & "}
+}}
+Reponse:=Reponse+"};"+ 
+if(size(L[0])>0){"\\node [draw,below] at (A.south) { $"+nomA+"$};"}else{""};
+Reponse:=Reponse+"
+\\makeatletter	
+\\newdimen\\largeurmat
+	\\pgfpointdiff{\\pgfpointanchor{A}{west}}%
+                 {\\pgfpointanchor{A}{east}}%
+    \\largeurmat=\\pgf@x%
+
+
+
+
+
+\\makeatletter
+\\matrix (C) [matrix of math nodes,%
+             left delimiter  = (,%
+             right delimiter = )] at (\\largeurmat+1cm,0)
+{% 
+";
+
+for(k:=0;k<size(C);k++){
+     for(j:=0;j<size(C[0]);j++){
+   if(j==size(C[0])-1){Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(C[k][j])}else{simplify(C[k][j])})+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(C[k][j])}else{simplify(C[k][j])})+" & "}
+}}
+
+Reponse:=Reponse+"};"+ 
+if(size(L[0])==3){"\\node  [draw,below]  at  (C.south)  {$  "+ nomC+" $ };"}else{""};
+Reponse:=Reponse+"  
+
+\\makeatletter	
+\\newdimen\\hauteurmat
+    \\pgfpointdiff{\\pgfpointanchor{C}{south}}%
+                 {\\pgfpointanchor{C}{north}}%
+       \\hauteurmat=\\pgf@y%
+
+
+
+\\makeatletter
+\\matrix (B) [matrix of math nodes,%
+             %nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter =)] at (\\largeurmat +1cm,\\hauteurmat)
+{%
+";
+
+for(k:=0;k<size(B);k++){
+     for(j:=0;j<size(B[0]);j++){
+   if(j==size(B[0])-1){Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(B[k][j])}else{simplify(B[k][j])})+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(B[k][j])}else{simplify(B[k][j])})+" & "}
+}}
+Reponse:=Reponse+"};"+ 
+if(size(L[0])>0){"\\node [draw,above] at (B.north) { $"+nomB+"$};"}else{""};
+Reponse:=Reponse+"  
+
+\\end{tikzpicture} 
+";
+
+
+sortie:=fopen("XCASpromat.tex");
+fprint(sortie,Unquoted,Reponse);
+fclose(sortie);
+
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASpromat.giac}
+maple_mode(0);
+read("XCASpromat.cxx");
+read("XCASpromat.user");
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{CptXCASmattt}
+\newcommand{\matttt}{\theCptXCASmattt}
+%% \mattt change a chaque figure
+
+\newenvironment{promat}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASpromat.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASpromat.tex}
+\executGiacmp{XCASpromat.giac}
+\immediate\write18{\rem \nomtravail_XCASpromat\matttt.tex}
+
+  \immediate\write18{\cat XCASpromat.tex >> \nomtravail_XCASpromat\matttt.tex}
+
+\begin{center}
+    \input{\nomtravail_XCASpromat\matttt}
+\end{center}
+\stepcounter{CptXCASmattt}
+}
+
+
+\newenvironment{promat*}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASpromat.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+    \input{\nomtravail_XCASpromat\matttt}
+\end{center}
+%\stepcounter{CptXCASmattt}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+% Déterminant de matrice
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{VerbatimOut}{XCASdetmat.cxx}
+detmat(A,L):={
+local D;
+D:=simplify(det(A));
+if(D==0){
+Reponse:="La matrice n'est pas inversible"}
+else{
+if(member(factor,L)!=0){D:=factor(D)}
+Reponse:="
+\\begin{displaymath}
+\\begin{vmatrix}"
+
+for(k:=0;k<size(A);k++){
+     for(j:=0;j<size(A[0]);j++){
+   if(j==size(A[0])-1){Reponse:=Reponse+latex(A[k][j])+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(A[k][j])+" & "}
+}}
+
+Reponse:=Reponse+"
+
+\\end{vmatrix}="+latex(D)+" 
+\\end{displaymath}";
+}
+
+sortie:=fopen("XCASdetmat.tex");
+fprint(sortie,Unquoted,Reponse);
+fclose(sortie);
+
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASdetmat.giac}
+maple_mode(0);
+read("XCASdetmat.cxx");
+read("XCASdetmat.user");
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{CptXCASmatdet}
+\newcommand{\matdet}{\theCptXCASmatdet}
+%% \mattt change a chaque figure
+
+\newenvironment{detmat}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASdetmat.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASdetmat.tex}
+\executGiacmp{XCASdetmat.giac}
+\immediate\write18{\rem \nomtravail_XCASdetmat\matdet.tex}
+
+  \immediate\write18{\cat XCASdetmat.tex >> \nomtravail_XCASdetmat\matdet.tex}
+
+\begin{center}
+    \input{\nomtravail_XCASdetmat\matdet}
+\end{center}
+\stepcounter{CptXCASmatdet}
+}
+
+
+
+
+
+\newenvironment{detmat*}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASdetmat.user}}
+{\end{VerbatimOut}
+
+
+\begin{center}
+    \input{\nomtravail_XCASdetmat\matdet}
+\end{center}
+%\stepcounter{CptXCASmatdet}
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+% Inverse de matrice
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+\begin{VerbatimOut}{XCASinvmat.cxx}
+invmat(A):={
+local D,Am;
+D:=simplify(det(A));
+if(D==0){
+Reponse:="La matrice n'est pas inversible"}
+else{
+Am:=simplify(inv(A));
+Reponse:="
+\\begin{displaymath}
+\\begin{pmatrix}"
+
+for(k:=0;k<size(A);k++){
+     for(j:=0;j<size(A[0]);j++){
+   if(j==size(A[0])-1){Reponse:=Reponse+latex(A[k][j])+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(A[k][j])+" & "}
+}}
+Reponse:=Reponse+"
+\\end{pmatrix}^{-1}
+=
+\\begin{pmatrix}"
+for(k:=0;k<size(Am);k++){
+     for(j:=0;j<size(Am[0]);j++){
+   if(j==size(Am[0])-1){Reponse:=Reponse+latex(simplify(Am[k][j]))+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(simplify(Am[k][j]))+" & "}
+}}
+Reponse:=Reponse+"
+\\end{pmatrix}
+\\end{displaymath}";
+}
+
+sortie:=fopen("XCASinvmat.tex");
+fprint(sortie,Unquoted,Reponse);
+fclose(sortie);
+
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASinvmat.giac}
+maple_mode(0);
+read("XCASinvmat.cxx");
+read("XCASinvmat.user");
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{CptXCASmatinv}
+\newcommand{\matinv}{\theCptXCASmatinv}
+%% \mattt change a chaque figure
+
+\newenvironment{invmat}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASinvmat.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASinvmat.tex}
+\executGiacmp{XCASinvmat.giac}
+\immediate\write18{\rem \nomtravail_XCASinvmat\matinv.tex}
+
+  \immediate\write18{\cat XCASinvmat.tex >> \nomtravail_XCASinvmat\matinv.tex}
+
+\begin{center}
+    \input{\nomtravail_XCASinvmat\matinv}
+\end{center}
+\stepcounter{CptXCASmatinv}
+}
+
+
+\newenvironment{invmat*}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASinvmat.user}}
+{\end{VerbatimOut}
+
+
+\begin{center}
+    \input{\nomtravail_XCASinvmat\matinv}
+\end{center}
+%\stepcounter{CptXCASmatinv}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%
+% Puissance de matrice
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+\begin{VerbatimOut}{XCASpuimat.cxx}
+puimat(A,n,L):={
+local D,Am;
+
+Am:=simplify(A^n);
+Reponse:="
+\\begin{displaymath}
+\\begin{pmatrix}"
+
+for(k:=0;k<size(A);k++){
+     for(j:=0;j<size(A[0]);j++){
+   if(j==size(A[0])-1){Reponse:=Reponse+latex(A[k][j])+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(A[k][j])+" & "}
+}}
+Reponse:=Reponse+"
+\\end{pmatrix}^{"+n+"}
+=
+\\begin{pmatrix}"
+for(k:=0;k<size(Am);k++){
+     for(j:=0;j<size(Am[0]);j++){
+   if(j==size(Am[0])-1){Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(Am[k][j])}else{simplify(Am[k][j])})+"  \\\\\ 
+"}else{Reponse:=Reponse+latex(if(member(trigo,L)!=0){tcollect(Am[k][j])}else{simplify(Am[k][j])})+" & "}
+}}
+Reponse:=Reponse+"
+\\end{pmatrix}
+\\end{displaymath}";
+
+
+sortie:=fopen("XCASpuimat.tex");
+fprint(sortie,Unquoted,Reponse);
+fclose(sortie);
+
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASpuimat.giac}
+maple_mode(0);
+read("XCASpuimat.cxx");
+read("XCASpuimat.user");
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{CptXCASmatpui}
+\newcommand{\matpui}{\theCptXCASmatpui}
+%% \mattt change a chaque figure
+
+\newenvironment{puimat}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASpuimat.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASpuimat.tex}
+\executGiacmp{XCASpuimat.giac}
+\immediate\write18{\rem \nomtravail_XCASpuimat\matpui.tex}
+
+  \immediate\write18{\cat XCASpuimat.tex >> \nomtravail_XCASpuimat\matpui.tex}
+
+\begin{center}
+    \input{\nomtravail_XCASpuimat\matpui}
+\end{center}
+\stepcounter{CptXCASmatpui}
+}
+
+\newenvironment{puimat*}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCASpuimat.user}}
+{\end{VerbatimOut}
+
+
+\begin{center}
+    \input{\nomtravail_XCASpuimat\matpui}
+\end{center}
+%\stepcounter{CptXCASmatpui}
+}
+

@@ -1,0 +1,9 @@
+﻿Mettre à jour les packages de TexLive :
+
+
+tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+
+puis
+
+tlmgr update --self --all
+

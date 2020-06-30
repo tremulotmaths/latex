@@ -1,0 +1,103 @@
+%Time-stamp: <31/10/12>
+\documentclass{scrartcl}
+\KOMAoptions{paper=a4, fontsize=11pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% Dyslexie %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%   Les trois options suivantes sont    %%% 
+%%%   sp√©cifiques aux classes Komascript  %%%
+
+% Augmentation de la taille de la police des sections et sous-sections
+\setkomafont{section}{\Huge}
+\setkomafont{subsection}{\Large}
+
+% Augmentation de l'espace entre les lignes
+\linespread{2}
+
+% Appel √  la police Opendyslexic et augmentation
+% des espaces entre les lettres et entre les mots
+\usepackage{fontspec}
+\setmainfont[LetterSpace=30,  WordSpace=2, Mapping=tex-text]{OpenDyslexic}
+
+% Appel √  la police math√©matique Asana
+% et augmentation de la taille de la police
+\usepackage{unicode-math}
+\setmathfont[Scale=1.2]{Asana Math}
+
+% Pour les figures (tikz) : √©paisseurs des traits
+\usepackage{tikz}
+\tikzset{every picture/.style={line width=1.5pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%% babel et autres  %%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[francais]{babel}
+
+% test
+\usepackage{blindtext}
+\blindmathtrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Exercice}
+
+  On consid√®re un cube $ABCDEFGH$ d'ar√™te 2~cm et l'on d√©signe par $I$
+  le milieu de $[FG]$ et par $M$ un point quelconque du segment
+  $[BF]$.\par On note $x=BM$.\par On s'int√©resse √  la fonction $f$
+  qui, √  $x$, associe la longueur $AM+MI$.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=1.5]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (5,0);
+    \coordinate (F) at  (5,5);
+    \coordinate (E) at  (0,5);
+    
+    \coordinate (D) at  (2,2);
+    \coordinate (C) at  (7,2);
+    \coordinate (G) at  (7,7);
+    \coordinate (H) at  (2,7);
+
+    \coordinate (M) at (5,1);
+    \coordinate (I) at (6,6);
+
+    \draw (A) node[below left]{$A$};
+    \draw (B) node[below right]{$B$};
+    \draw (F) node[above]{$F$};
+    \draw (E) node[above left]{$E$};
+    \draw (D) node[below]{$D$};
+    \draw (C) node[right]{$C$};
+    \draw (G) node[above right]{$G$};    
+    \draw (H) node[above left]{$H$};
+    \draw (M) node[right]{$M$};
+    \draw (I) node[above]{$I$};
+    \draw (A) -- (B) -- (F) -- (E) -- cycle;
+    \draw (E) -- (H) -- (G) -- (F)  (G) -- (C) -- (B);
+    \draw[dotted] (A)--(D)--(C) (D)--(H);
+    \draw (A)--(M)--(I);
+  \end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item En mettant √  plat les 2 faces $EFBA$ et $BFGC$ du patron du
+  cube, faire une figure et la coder.
+\item Quelles sont les valeurs prises par $x$?
+\end{enumerate}
+
+\section{blindtext}
+
+\blindtext
+
+\end{document}
+
+%%% Local Variables: ***
+%%% mode: latex ***
+%%% TeX-engine: xetex ***
+%%% TeX-PDF-mode: t ***
+%%% End: ***

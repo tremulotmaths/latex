@@ -1,0 +1,45 @@
+
+			 The VARIATIONS package
+
+1. Purpose
+
+The 'variations' package provides macros for typesetting tables showing
+variations of functions according to French usage. These macros may be
+used both with LaTeX and plain TeX. The syntax is close to the one of
+the 'tabular' environment.
+
+2. Licence
+
+You may freely use and distribute this package under the terms of the
+GNU General Public License version 3 (see file COPYING).
+
+3. Content of the folder
+
+  README	     This file.
+  ALIRE		     The French version of this file.
+  COPYING	     The GNU General Public License.
+  variations         The folder containing the macro definition files.
+  variations.mac     The main source file for the macros.
+  variations.sty     The LaTeX package definition.
+  variations.tex     The plain TeX interface.
+  variations.mf      The source file for the specific characters.
+  docvariations.pdf  A short documentation in French.
+  docvariations.tex  The source for the documentation.
+
+4. Installation
+
+On Unix like systems, copy folder 'variations' into
+'/usr/share/texmf/tex/generic', create folder
+'/usr/share/texmf/fonts/source/variations' and copy file 'variations.mf'
+to it, then run 'mktexlsr'.
+
+With MiKTeX, copy folder 'variations' into
+'C:\Program Files\MiKTeX x.y\tex\generic', create folder
+'C:\Program Files\MiKTeX x.y\fonts\source\variations' and copy file
+'variations.mf' to it. Run 'MiKTeX Options' and in the
+'File name database' section, click on 'Refresh now'.
+
+5. Contact
+
+The author of the 'variations' package is Christian Obrecht. To contact him
+use: obrecht at eukleides dot org.

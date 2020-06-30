@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[french]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{babel}
+
+% Le package `glossaries' est l'un de ceux qui doivent exceptionnellement être
+% chargés après `babel' (et même après `hyperref')
+\usepackage[xindy]{glossaries}
+
+% Commande responsable de la création du glossaire et du classement alphabétique
+% des termes
+\makeglossaries
+
+% Style du glossaire
+\setglossarystyle{listgroup}
+
+% Définition des termes du glossaire :
+\newglossaryentry{rpc}
+{
+  name={réaction physico-chimique},
+  description={OK OK}
+}
+\newglossaryentry{pores}
+{
+  name={pores},
+  description={OK OK}
+}
+\newglossaryentry{microbes}
+{
+  name={microbes},
+  description={OK OK}
+}
+\newglossaryentry{phc}
+{
+  name={phosphate de calcium},
+  description={OK OK}
+}
+\newglossaryentry{proteines}
+{
+  name={protéines},
+  description={OK OK}
+}
+%
+\begin{document}
+Bla bla \gls{proteines} bla bla.
+
+Bla bla \gls{phc} bla bla.
+
+Bla bla \gls{rpc} bla bla.
+
+Bla bla \gls{microbes} bla bla.
+
+Bla bla \gls{pores} bla bla.
+
+%\printglossary[title=Ma belle liste] % Sans « title = ... », le titre serait « Glossaire »
+
+\printglossary
+\end{document}

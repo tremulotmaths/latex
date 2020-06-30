@@ -1,0 +1,39 @@
+\documentclass{article}
+%Thomas Söll
+%Thomas.Soell@onlinehome.de
+\usepackage{pst-solides3d}
+
+\begin{document}
+\begin{center}
+\begin{pspicture}(-2,-5)(8,8)
+\psset{viewpoint=20 40 15 rtp2xyz,lightsrc=20 45 50 rtp2xyz,Decran=30}
+\psset{solidmemory}
+%------------------------------------ Zylinder -------------------------------------------------------------------------
+\psSolid[opacity=0.5,incolor=red,fillcolor=cyan!50,object=cylindre,h=5,r=0.8,ngrid=20 120,grid=false,action=none,name=Z1](0,0,0)
+\psSolid[object=anneau,fillcolor=green!50!cyan!60,incolor=yellow,h=0.5,R=1.2,r=1,ngrid=150,grid=false,action=none,name=R1](0,0,4.5)%
+%--------------------------------------- wire -----------------------------------------------------------------------------
+{\defFunction[algebraic]{helice}(t){0.95*cos(80*t)}{0.95*sin(80*t)}{4.5*t}
+\psSolid[object=courbe,r=0,range=0 0.58905,linecolor=red!60,linewidth=0.5pt,resolution=720,
+function=helice,action=none,name=wendel1,r=0.05,fillcolor=red!60,incolor=red!60,ngrid=360 40](0,0,0)}%
+%------------------------------------ Compose -------------------------------------------------------------------------
+\psSolid[object=fusion,base=Z1 R1 wendel1,grid=false,linecolor=gray,name=ThomsonRing,RotX=-90,RotY=90]
+\composeSolid
+%
+\psSolid[object=line,linewidth=3pt,linecolor=black,args=0.5 4.5 1.1 1.5 4.5 5]
+\psSolid[object=line,linewidth=3pt,linecolor=black,args=-0.5 4.5 1.1 -1.5 4.5 5]
+\end{pspicture}
+\end{center}
+\begin{center}
+\begin{pspicture}(-4,-1)(4,9)
+\psset{viewpoint=20 90 10 rtp2xyz,lightsrc=20 45 50 rtp2xyz,Decran=30}
+\psset{solidmemory}
+\psSolid[opacity=0.5,incolor=red,fillcolor=cyan!50,object=cylindre,h=5,r=0.8,ngrid=20 120,grid=false,action=none,name=Z1](0,0,0)
+\psSolid[object=anneau,fillcolor=green!50!cyan!60,incolor=yellow,h=0.5,R=1.2,r=1,ngrid=150,grid=false,action=none,name=R1](0,0,4.5)%
+\psSolid[object=fusion,base=Z1 R1,grid=false,linecolor=gray,name=ThomsonRing,RotX=-90,RotY=90]
+\composeSolid
+%
+\psSolid[object=line,linewidth=3pt,linecolor=black,args=0.5 4.5 1.1 1.5 4.5 5]
+\psSolid[object=line,linewidth=3pt,linecolor=black,args=-0.5 4.5 1.1 -1.5 4.5 5]
+\end{pspicture}
+\end{center}
+\end{document}

@@ -1,0 +1,219 @@
+%%
+%%
+%%  package cours - quelques icones et environnement pour un cours
+%%
+%%  icones : question (\iconequestion), remarque (\iconeremarque), attention ou 
+%%           important (\iconeimportant ou \iconetriangleimportant).
+%%
+%%  environnement : pour chaque icone il y a un environnement avec l'icone à gauche
+%%                  et le texte à droite de la couleur de l'icone.
+%%
+%%  packages requis : tikz
+%%
+%%  libre d'utiliser, modifier, diffuser
+%%
+%%  Germain Vallverdu <germain.vallverdu@univ-pau.fr>
+%%  20/10/2010
+%%
+%% 
+\ProvidesPackage{cours}[20/10/2010 icones et environnements pour un cours]
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+% 
+% Prérequis 
+%
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\RequirePackage{tikz}
+\usetikzlibrary{shadows}
+
+% ombre circulaire autour des icones = +/- pgfmanual.pdf page 310
+\tikzstyle{ombre circulaire perso} = [shadow scale=1.15, 
+shadow xshift=0pt, 
+shadow yshift=0pt,
+fill=black!45, 
+path fading={circle with fuzzy edge 15 percent},
+every shadow]
+
+\RequirePackage{xcolor}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+% 
+%  couleurs par defaut
+%
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\definecolor{CouleurQuestion}{RGB}{65,105,225}  % bleu
+\definecolor{CouleurAttention}{RGB}{255,140,0}  % orange
+\definecolor{CouleurRemarque}{RGB}{0,100,0}     % vert
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+% 
+%  modification des couleurs par defaut
+%
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+% commande \SetCouleurXXX[2]
+% -----------------------------------------------------------------------------
+% Modifie la couleur de l'environnement ou de l'icone XXXX
+%       #1 : (optionel) syteme de couleur (rgb, RGB, cmyk ...)
+%       #2 : specification de la couleur 
+%
+% exemples : \SetCouleurQuestion{20,40,80}
+%            \SetCouleurQuestion[rgb]{0.90,0.40,0.80}
+
+\newcommand{\SetCouleurQuestion}[2][RGB]{
+    \definecolor{CouleurQuestion}{#1}{#2}
+}
+
+\newcommand{\SetCouleurAttention}[2][RGB]{
+    \definecolor{CouleurAttention}{#1}{#2}
+}
+
+\newcommand{\SetCouleurRemarque}[2][RGB]{
+    \definecolor{CouleurRemarque}{#1}{#2}
+}
+
+% commande \SetCouleurDefaut
+% -----------------------------------------------------------------------------
+% Restaure les couleurs par defaut
+\newcommand{\SetCouleurDefaut}{
+    \definecolor{CouleurQuestion}{RGB}{65,105,225}  % bleu
+    \definecolor{CouleurAttention}{RGB}{255,140,0}  % orange
+    \definecolor{CouleurRemarque}{RGB}{0,100,0}     % vert
+}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+% 
+%  icones
+%
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newcommand{\iconequestion}{%
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}
+\begin{tikzpicture}
+	\node[circle, thick,
+		draw=CouleurQuestion,
+		general shadow=ombre circulaire perso,
+		top color=CouleurQuestion!95,bottom color=CouleurQuestion!50,
+		shading angle=30,
+		text=CouleurQuestion!5,
+		] at (0,0) {\fontfamily{ptm}\selectfont\LARGE\bfseries\itshape?} ;
+\end{tikzpicture}
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newcommand{\iconeattention}{%
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}
+\begin{tikzpicture}
+	\node[circle, thick,
+		draw=CouleurAttention,
+		general shadow=ombre circulaire perso,
+		top color=CouleurAttention!95,bottom color=CouleurAttention!50,
+		shading angle=30,
+		text=CouleurAttention!5]
+		at (0,0) {\fontfamily{ptm}\selectfont\LARGE\bfseries\itshape!} ;
+\end{tikzpicture}
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newcommand{\iconetriangleattention}{%
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}
+\begin{tikzpicture}[scale=0.8]
+	\path[draw=CouleurAttention, thick,
+		top color=CouleurAttention!95,
+		bottom color=CouleurAttention!50,
+		shading angle=30,
+		general shadow={shadow scale=1.15, 
+				shadow xshift=0pt, shadow yshift=0.5pt,
+				fill=black!20}] 
+		plot[smooth cycle,tension=0.3] coordinates{(-0.5,-0.33) (0.5,-0.33) (0,0.7)} ;
+		
+	\node[text=CouleurAttention!5] at (0,0.05) 
+		{\fontfamily{ptm}\selectfont\LARGE\bfseries\itshape!} ;
+
+\end{tikzpicture}
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newcommand{\iconeremarque}{%
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}
+\begin{tikzpicture}
+	\node[circle, thick,
+		draw=CouleurRemarque!85,
+		general shadow=ombre circulaire perso,
+		top color=CouleurRemarque!80,bottom color=CouleurRemarque!40,
+		shading angle=30,
+		text=CouleurRemarque!5]
+		at (0,0) {\fontfamily{ptm}\selectfont\LARGE\bfseries\itshape i} ;
+\end{tikzpicture}
+\vspace*{1.5ex plus 0.5ex minus 0.5ex}}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+% 
+%  environnement question, attention, remarque
+%
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+% largeur des environnements, on utilise columnwidth pour que les environnements soient utilisable
+% dans un document avec plusieurs colonnes.
+% \largeur est la largeur à utiliser
+\newlength\largeur
+
+\newenvironment{question}{
+\setlength{\largeur}{\columnwidth}
+\addtolength{\largeur}{-20mm}
+
+\noindent
+\hspace*{5mm}
+\begin{minipage}[c]{1cm}
+	\iconequestion
+\end{minipage}
+\hspace*{1mm}
+\begin{minipage}[c]{\largeur}
+\color{CouleurQuestion!95}
+}{
+\end{minipage}
+}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newenvironment{attention}{
+\setlength{\largeur}{\columnwidth}
+\addtolength{\largeur}{-20mm}
+
+\noindent
+\hspace*{5mm}
+\begin{minipage}[c]{1cm}
+	\iconetriangleattention
+\end{minipage}
+\hspace*{1mm}
+\begin{minipage}[c]{\largeur}
+\color{CouleurAttention!95}
+}{
+\end{minipage}
+}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+\newenvironment{remarque}{
+\setlength{\largeur}{\columnwidth}
+\addtolength{\largeur}{-20mm}
+
+\noindent
+\hspace*{5mm}
+\begin{minipage}[c]{1cm}
+	\iconeremarque
+\end{minipage}
+\hspace*{1mm}
+\begin{minipage}[c]{\largeur}
+\color{CouleurRemarque!80}\itshape\sffamily
+}{
+\end{minipage}
+}
+
+% * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+

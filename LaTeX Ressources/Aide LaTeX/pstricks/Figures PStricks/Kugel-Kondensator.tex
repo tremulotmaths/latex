@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{article}
+%\usepackage[dvipsnames]{xcolor} % Farben sind im Dokument xcolor.pdf definiert
+%\usepackage{pst-node}
+\usepackage{pst-slpe}
+\usepackage{pst-grad}
+\usepackage{pstricks-add}
+
+\DeclareMathSymbol{,}{\mathord}{letters}{"3B}
+
+\begin{document}
+
+\newpsstyle{Kugel2}{linecolor=gray!40,slopebegin=gray!15,sloperadius=0.15,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+
+\def\alf{20}
+\def\bet{-70}
+\def\gam{-80}
+\begin{pspicture}[shift=0cm](-3,-2)(6,7)
+%\psgrid
+\psframe[linestyle=none,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70,dimen=inner](-1.2,6)(2.5,6.5)%
+\psframe[linestyle=none,fillstyle=hlines,hatchwidth=0.9pt,hatchangle=55,hatchsep=4pt,hatchcolor=black!90](-1.2,6)(2.5,6.5)%
+\pnode(1,0){A}%
+\pnode(A|0,6){B}%
+\rput(B){\pnode(6;\bet){C}}%
+\pnode(6,0|C){D}%
+\pnode(C|0,1.3){E}%
+\pnode(D|0,1.3){F}%
+\pnode([nodesep=0.15cm]D){G}%
+\pnode([nodesep=-0.15cm,offset=-2cm]D){H}%
+\psarc[linewidth=0.7pt,linestyle=dashed,dash=2pt 1pt](B){6}{-90}{\bet}%
+\psarc[linewidth=0.7pt](B){2.5}{-90}{\bet}%
+\uput{2cm}[\gam]{0}(B){$\alpha$}%
+\pcline[linewidth=0.5pt,offset=1.9cm,tbarsize=5pt,arrowscale=1.9]{|<->|}(A)(B)%
+\ncput*{$l$}
+\pcline[linewidth=0.5pt,linestyle=dashed,dash=2pt 1pt](C)(A|C)%
+\psline[linewidth=0.7pt,linestyle=dashed,dash=2pt 1pt](A)(B)%
+\psline[linewidth=0.7pt](B)(C)%
+\psframe[linestyle=none,framearc=0,fillstyle=gradient,gradangle=90,gradmidpoint=0.7,
+gradbegin=black!90,gradend=gray!20](-2.15,-2)(-1.85,2)%
+\psframe[linestyle=none,framearc=0,fillstyle=gradient,gradangle=90,gradmidpoint=0.70,
+gradbegin=black!90,gradend=gray!20](4.85,-2)(5.15,2)%
+\rput(A){\psBall[style=Kugel2](0,0){gray!25}{.25}}
+\rput(C){\psBall[style=Kugel2](0,0){gray!50}{.25}}
+\rput{\alf}(C){\pswedge*[linecolor=gray!90](0,0.24){2pt}{-5}{185}}
+\rput{0}(A){\pswedge*[linecolor=gray!60](0,0.24){2pt}{-5}{185}}
+\rput(B){\pscircle[linewidth=0.7pt,fillstyle=solid,fillcolor=black](0,0){.05}}
+%
+\psbrace*[linecolor=red,ref=C,rot=180,nodesepA=-4pt,braceWidthInner=2pt,braceWidthOuter=2pt,braceWidth=0.6pt]%
+(.5,0|C)(.5,0|A){\color{red}{$h$}}%
+\psbrace*[linecolor=green!70!black!80,ref=C,rot=180,nodesepA=-13pt,braceWidthInner=2pt,braceWidthOuter=3pt,braceWidth=0.6pt]%
+(.5,0|B)(.5,0|C){\color{green!70!black!80}{$l-h$}}%
+\rput(C){\pcline[linewidth=0.9pt,linecolor=green!70!black!90]{->}(0,0)(2;\bet)%
+\naput{\color{green!70!black!90}{$F_{S}$}}}%
+\rput(C){\pcline[linewidth=0.9pt,linecolor=magenta]{->}(0,0)(!0 2 \alf\space cos mul neg)%
+\nbput{\color{magenta}{$F_{G}$}}}%}%
+\rput(C){\pcline[linewidth=0.9pt,linecolor=blue]{->}(!0 2 20 cos mul neg)(!2 \alf\space sin mul 2 \alf\space cos mul neg)%
+\nbput{\color{blue}{$F_{el}$}}}%
+\psarc[linewidth=0.7pt](C){1.2}{-90}{\bet}%
+\uput{0.8cm}[\gam]{0}(C){$\alpha$}%
+\psbrace*[linecolor=blue,ref=C,rot=-90,nodesepB=-6pt,braceWidthInner=4pt,braceWidthOuter=3pt,braceWidth=0.6pt]%
+(C)(A|C){\color{blue}{$d$}}%
+\end{pspicture}
+
+\rput[l](1,-0.5){\textcolor{red}{Es gilt: $\displaystyle \tan (\alpha ) = \frac{d}{l} = \frac{F_{el}}{F_{G}} \quad \Rightarrow \quad d= \frac{F_{el}}{F_{G}}\cdot l$}}
+\rput[l](1,-2){\textcolor{red}{$\displaystyle \quad \Rightarrow \quad d= \frac{q\cdot E}{m\cdot g}\cdot l$}}
+
+\end{document}

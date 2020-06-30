@@ -1,0 +1,186 @@
+\documentclass[xcolor={dvipsnames,svgnames,table}]{beamer}
+
+\input philippe2013_beamer
+
+\title[\'Evolution]{{\small Chapitre 1}\\ \textbf{\'Evolution}}
+\date{}
+\author{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Variations}
+
+\begin{frame}
+On considère une quantité ayant une valeur $y_1$, exprimée dans une unité de mesure. Cette quantité est modifiée et on lui affecte une nouvelle valeur $y_2$, exprimée dans la même unité de mesure.\par
+Il y a donc une variation entre $y_1$ et $y_2$.
+\end{frame}
+
+\subsection{Variation absolue}
+
+\begin{frame}
+    \begin{Definition}
+        La \alert{variation absolue} est définie par : \[y_2 - y_1.\]
+        Si ce nombre est positif, on parlera d'une \textbf{hausse} ou d'une \textbf{augmentation}. Sinon, on parlera d'une \textbf{baisse} ou d'une \textbf{diminution}.
+    \end{Definition}\pause
+
+    \begin{Rmq}
+       La variation absolue est exprimée dans la même unité de mesure que la quantité.
+    \end{Rmq}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+        \begin{description}
+            \item[En Essonne :] En $\np{1990}$, l'Essonne comptait $\np{1084824}$ habitants. En $\np{2010}$, ont été comptabilisés $\np{1215340}$ habitants.\par
+            \invisible{La variation absolue est donc égale à : $\np{1215340} - \np{1084824} = \np{130516}$. Cette variation est positive donc la population en Essonne a augmenté de $\np{130516}$ habitants en $20$ ans.}
+            \item[En France :] En $\np{1990}$, la France comptait $\np{58 040 660}$ habitants. En $\np{2010}$, ont été comptabilisés $\np{64 612 940}$ habitants.\par
+            \invisible{La variation absolue est donc égale à : $\np{64 612 940} - \np{58 040 660} = \np{6572280}$. Cette variation est positive donc la population en France a augmenté de $\np{6572280}$ habitants en $20$ ans.}
+        \end{description}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}{Remarque}
+    \'Evidemment, la variation absolue du nombre d'habitants en France est plus importante que celle du nombre d'habitants en Essonne.\par Comment peut-on alors comparer ces deux évolutions ? En Essonne, l'évolution du nombre d'habitant correspond-elle à l'évolution du nombre d'habitants en France ?
+\end{frame}
+
+\subsection{Variation relative}
+
+\begin{frame}
+    \begin{Examples}
+        \begin{itemize}[<+->]
+            \item Durant les soldes, un article coûte \EUR{$10$}. À la fin des soldes, l'article coûte \EUR{$20$}. Le prix a doublé : \invisible{$t = 100\%$.}\par\bigskip
+            \item Dans une station service, le Sans Plomb 95 coûte \EUR{$1,52$}. Le lendemain, le prix affiché est de \EUR{$1,52$}. Le prix n'a pas changé donc : \invisible{$t = 0\%$.}\bigskip
+            \item Ce matin, il y avait $60$ croissants à la boulangerie. À midi, il en restait $30$. Le nombre de croissants a diminué de moitié donc :\invisible{$t = -50\%$.}\bigskip
+        \end{itemize}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}{Remarque}
+    \begin{alertblock}{Important !}
+        Sauf indication contraire, on supposera maintenant et jusqu'à la fin du chapitre que $y_1 \neq 0$.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}
+    \begin{Definition}
+        La \alert{variation relative} ou \alert{taux d'évolution} $t$ est calculée à partir de la formule suivante : \[t = \frac{y_2 - y_1}{y_1}.\]
+        Une fois encore, un nombre positif indique une augmentation et un nombre négatif indique une diminution.
+    \end{Definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+        \begin{description}
+            \item[En Essonne :]$t = $\invisible{$\frac{\np{1215340} - \np{1084824}}{\np{1084824}} = \frac{\np{130516}}{\np{1084824}}\approx \np{0,1203}$.\par\medskip
+            Le taux d'évolution est donc environ égal à $\np{0,1203}$ : la population a augmenté d'environ $12,03\%$.}\medskip
+            \item[En France :]$t = $\invisible{$\frac{\np{64 612 940} - \np{58 040 660}}{\np{58 040 660}} = \frac{\np{6572280}}{\np{58 040 660}}\approx \np{0,1132}$.\par\medskip
+            Le taux d'évolution est donc environ égal à $\np{0,1132}$ : la population a augmenté d'environ $11,32\%$.}\medskip
+            \item[Conclusion :]En Essonne, \invisible{l'augmentation de population entre $\np{1990}$ et $\np{2010}$ a été légèrement plus importante qu'en France.}
+        \end{description}
+    \end{Examples}
+\end{frame}
+
+\subsection{Lorsque l'on connaît le taux de variation}
+
+\begin{frame}
+    \begin{Example}
+        Un commerçant de meubles a vendu $125$ chaises ce mois-ci. Son contrat stipule qu'il doit augmenter ses ventes d'au moins $3\%$ chaque mois.\par
+        Combien doit-il vendre de chaises le mois prochain ?
+        
+        \rule{0pt}{5cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Bilan de l'exemple :}
+
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}
+        Lorsque l'on passe de la valeur $y_1$ à la valeur $y_2$ avec une variation relative égale à $t$, on a :
+        \[y_2 = (1 + t) \times y_1.\]
+    \end{Prop}
+\pause
+    \begin{Proof}
+\rule{0pt}{3cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Definition}
+        Le nombre $1 + t$ est appelé \alert{c{\oe}fficient multiplicateur} de $y_1$ à $y_2$.\par
+        Un \coef supérieur à $1$ traduit une augmentation, inférieur à $1$ une diminution. S'il est égal à $1$, il n'y a pas de variation.
+    \end{Definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Dans une usine, le coût de production $c_1$ d'un objet est égal à \EUR{$\np{2530}$}.\par
+        Afin d'augmenter les bénéfices, le gérant décide de diminuer le coût de production de $2\%$. Quel est alors le nouveau de coût de production $c_2$ ?\medskip
+
+        \rule{0pt}{4cm}
+    \end{Example}
+\end{frame}
+
+\section{Taux d'évolution successifs}
+
+\begin{frame}
+    \begin{Example}
+        Dans une commune, le maire décide d'augmenter les impôts locaux de $5\%$.\par
+        Ses conseillers lui suggèrent \textit{d'y aller en douceur} en augmentant les impôts seulement de $2\%$ la première année puis de $3\%$ la seconde année.\par
+        Le maire doit-il suivre l'avis de ses conseillers ?
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}
+        On considère une quantité qui évolue de $y_1$ à $y_2$ puis de $y_2$ à $y_3$ avec $y_2 \neq 0$.\par
+        On appelle $t_1$ le taux d'évolution de $y_1$ à $y_2$, $t_2$ le taux d'évolution de $y_2$ à $y_3$.\par
+        Le taux d'évolution global $t$ permettant de passer de $y_1$ à $y_3$ est tel que :\[1+t = (1 + t_1)(1 + t_2).\]
+    \end{Prop}
+\pause
+    \begin{Proof}
+        \rule{0pt}{2.5cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Calculons la véritable augmentation des impôts prévus par les conseillers :
+        
+        \rule{0pt}{4cm}
+    \end{Example}
+\end{frame}
+
+\section{Taux d'évolution réciproque}
+
+\begin{frame}
+    \begin{Example}
+        Afin de faire des économies, un patron décide de baisser les salaires de $4\%$.\par
+        Le mois suivant, les ouvriers entrent en grève pour retrouver leur ancien salaire. Le patron accepte et décide alors d'augmenter les salaires de $4\%$ pour qu'ils retrouvent leur valeur d'origine.\par
+        La grève doit-elle continuer ?
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}
+        On considère une quantité de valeur $y_1 \neq 0$ qui passe à la valeur $y_2 \neq 0$ avec un taux égal à $t$.\par
+        Afin de passer de $y_2$ à $y_1$, il faut utiliser le coefficient $t'$ tel que : \[1 + t' = \frac{1}{1 + t}.\]
+    \end{Prop}
+\pause
+    \begin{Proof}
+        \rule{0pt}{3cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        \rule{0pt}{6cm}
+    \end{Example}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,225 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-edt}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+% --- Propre à cette doc
+
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage{tabularx}
+
+% ----------------------
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-edt} }\\[3mm]
+{\large Version 2.04 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+L'extension \texttt{pas-edt} a été conçue dans le but de créer facilement des emplois du temps. 
+
+\medskip
+
+Cette extension charge automatiquement les extensions suivantes :
+
+\medskip
+
+\begin{quote}
+tikz \\
+xkeyval\\
+multido
+\end{quote}
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-edt.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-edt/latex/pas-edt.sty
+./texlive/texmf-local/tex/latex/pas-edt/doc/pas-edt.tex
+./texlive/texmf-local/tex/latex/pas-edt/doc/pas-edt.pdf
+./texlive/texmf-local/tex/latex/pas-edt/doc/doc.codes.tex
+./texlive/texmf-local/tex/latex/pas-edt/doc/doc.styles.tex
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+\newpage
+
+\section{Les commandes}
+
+\subsection{Entrée des jours}
+
+\begin{tcblisting}{codeTEX}
+\jours{jour_1,jour_2,...,jour_n}
+\end{tcblisting}
+
+\medskip
+
+Cette commande stockera les jours dans l'ordre dans lequel vous les avez écrits. \texttt{\textbackslash Jour\{i\}} sortira le i-ème jour.
+
+\subsection{Création du planning vierge}
+
+\begin{tcblisting}{codeTEX}
+\begin{tikzpicture}
+\planning[<options>]
+\end{tikzpicture}
+\end{tcblisting}
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{start} & (entier) & Heure où le planning doit commencer. Par défaut, start=8 (pour 8h00).\\
+\hline
+\texttt{end} & (entier) & Heure où le planning doit se terminer. Par défaut, end=20 (pour 20h00).\\
+\hline
+\texttt{bgcolor} & (texte) & Couleur de fond du planning. Par défaut, bgcolor est vide.\\
+\hline
+\texttt{bordercolor} & (texte) & Couleur des traits du planning. Par défaut, bordercolor=black.\\
+\hline
+\texttt{dashedcolor} & (texte) & Couleur des traits de séparation des demi-heures. Par défaut, dashedcolor=gray.\\
+\hline
+\texttt{dottedcolor} & (texte) & Couleur des traits de séparation des quarts d'heure. Par défaut, dottedcolor=gray.\\
+\hline
+\texttt{borderdays} & (texte) & Couleur des cadres des étiquettes \og jours \fg. Par défaut, borderdays=black.\\
+\hline
+\texttt{bgdays} & (texte) & Couleur de fond des étiquettes \og jours \fg. Par défaut, borderdays=gray!10.\\
+\hline
+\texttt{colordays} & (texte) & Couleur du texte des jours. Par défaut, colordays=black.\\
+\hline
+\texttt{lwdays} & (texte) & Epaisseur du cadre des jours. Vous avez le choix entre \emph{thin}, \emph{very thin}, \emph{thick} et \emph{very thick}. Par défaut, lwdays=thin.\\
+\hline
+\texttt{demiheures} & (booléen) & Indique d'insérer les séparations des demi-heures. Par défaut, demiheures=false.\\
+\hline
+\texttt{quartheures} & (booléen) & Indique d'insérer les séparations des quarts d'heures. Par défaut, quartheures=false.\\
+\hline
+\end{tabularx}
+
+\begin{tcblisting}{listing}
+\jours{Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche}
+\begin{tikzpicture}[yscale=0.5,every node/.style={yscale=0.5,xscale=0.85}]
+\planning[demiheures,quartheures,end=12]
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Ajouter une case}
+
+\begin{tcblisting}{codeTEX}
+\creneau[<options>]
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{day} & (entier) & Numéro de la position du jour où doit être mise la case. Par exemple, \og jour=1 \fg\ désignera le premier jour que vous avez mis. Si \og jour=all \fg, alors la case sera mis sur tous les jours. Pas de valeur par défaut.\\
+\hline
+\texttt{start} & (décimal) & Heure décimale où la case doit commencer (de la forme \og 10.25 \fg\ pour 10h15). Pas de valeur par défaut.\\
+\hline
+\texttt{end} & (décimal) & Heure décimale où la case doit se terminer. Pas de valeur par défaut.\\
+\hline
+\texttt{color} & (texte) & Couleur de fond de la case. Par défaut, color=gray!10.\\
+\hline
+\texttt{opacity} & (réel) & Coefficient compris entre 0 et 1 désignant l'opacité de la case (0 pour transparente, 1 pour pleine). Par défaut, opacity=1.\\
+\hline
+\texttt{week} & (texte) & \og triangleleft \fg, \og triangleright \fg, \og rectleft \fg{} ou \og rectright \fg{}  pour désigner respectivement une demi-case à droite (en forme de triangle), à gauche (en forme de triangle), à gauche (en forme de rectangle) ou à droite (en forme de rectangle). Par défaut, la case est entière si cette option n'est pas renseignée.\\
+\hline
+\texttt{name} & (texte) & Nom de la case. Par défaut, name=cxy où \og x \fg\ est le numéro du jour et \og y \fg\ l'heure du début. Cette option est utile si l'on veut faire référence à une case grâce à TiKZ (comme le montre l'exemple dans la section 3 : \og Remarque \fg).\\
+\hline
+\end{tabularx}
+
+\begin{tcblisting}{listing}
+\jours{Lundi,Mardi,Mercredi,Jeudi,Vendredi}
+\begin{tikzpicture}[yscale=0.8]
+\planning[demiheures,quartheures,end=12]
+\creneau[day=all,start=9,end=10.5,week=triangleleft]{Corentin}
+\creneau[day=all,start=9,end=10.5,week=triangleright,color=gray!50]{Mathieu}
+\creneau[day=2,start=11,end=12,color=gray!30,week=rectleft]{Hugo}
+\creneau[day=2,start=11,end=12,color=gray!50,week=rectright]{Julie}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\section{Remarques}
+
+Du fait que le planning s'appelle dans un environnement TiKZ, vous pouvez ajouter d'autres objets, comme des flèches par exemple.
+
+\begin{tcblisting}{listing}
+\jours{Lundi,Mardi,Mercredi,Jeudi,Vendredi}
+\begin{tikzpicture}
+\planning[demiheures,quartheures,end=12,bordercolor=red!50!black,bgdays=red!10,bgcolor=red!5,
+dashedcolor=red!70!black,dottedcolor=red!60!black,colordays=purple,borderdays=purple,lwdays=very thick]
+\creneau[day=all,start=9,end=10.5,week=rectleft,color=purple!50]{\bfseries\scshape Jules}
+\draw[thick,<-,red] (c29.north) to[bend left=30] ($(c29)+(2,2.5)$) node[right,rectangle,
+thick,fill=purple!10,draw=purple,rounded corners] {Penser à amener le sujet de 2009};
+\creneau[day=all,start=9,end=10.5,week=triangleright,color=purple]{\color{white}\bfseries Mathieu}
+\draw[thick,<-,blue!50!black] (c29) to[bend right=30] (3,-6) node[right,rectangle,thick,
+fill=blue!10,draw=blue!50!black,rounded corners] {Penser à amener le sujet de 2010};
+\end{tikzpicture}
+\end{tcblisting}
+
+\medskip
+
+Remarquez ici que lorsque l'on définit deux demi-cases au même emplacement, elles portent le même nom ; ainsi, si l'on veut mettre une annotation aux deux cases, il faut mettre celle qui porte sur l'un d'elles à la suite de sa construction.
+
+\bigskip
+
+\paragraph*{Coordonnées :} 
+\begin{itemize}
+\item[$\bullet$] Le coin supérieur gauche est le point de coordonnées $(0;0)$.
+\item[$\bullet$] Le coin supérieur droit est le point de coordonnées $(0.9\backslash\textrm{textwidth};0)$.
+\item[$\bullet$] Le coin inférieur droit est le point de coordonnées $(0;2\times(\textrm{start}-\textrm{end}))$.
+\end{itemize}
+
+\paragraph*{Dimensions :} Chaque colonne a une largeur égale à $\dfrac{0.9\backslash\textrm{textwidth}}{n}$, où $n$ est le nombre de jours.
+\end{document}

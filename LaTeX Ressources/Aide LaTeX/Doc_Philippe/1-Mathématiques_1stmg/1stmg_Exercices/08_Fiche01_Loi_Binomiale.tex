@@ -1,0 +1,56 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreExo{\bsc{viii}.1}{Loi binomiale}
+
+\exo Une machine fabrique plusieurs milliers de bouchons cylindriques par jour.
+La probabilité qu'un bouchon soit défectueux est $p = 0,04$.\par
+On prélève au hasard un échantillon de $100$ bouchons et on nomme $X$ la variable aléatoire qui compte le nombre de bouchons défectueux dans un tel échantillon.
+
+\begin{enumerate}
+    \item Quelle est la loi suivie par la variable aléatoire $X$ ? Donner les paramètres.
+    \item Calculer $p(X = 5)$. Donner la valeur décimale arrondie à $10^{-4}$ près puis sous forme d'un pourcentage.
+    \item Interpréter par une phrase le résultat précédent.
+    \item Calculer l'espérance de $X$, notée $E(X)$. Interpréter par une phrase le résultat.
+\end{enumerate}\[*\]
+
+\exo Une fabrique artisanale de jouets en bois vérifie la qualité de sa production avant sa commercialisation.\par
+Chaque jouet produit par l'entreprise est soumis à deux contrôle : d'une part l'aspect du jouet est examiné afin de vérifier qu'il ne présente pas de défaut de finition, d'autre part sa solidité est testée.\par\medskip
+
+Il s'avère, à la suite d'un grand nombre de vérifications, que :
+\begin{itemize}[label=\textbullet]
+    \item $92\%$ des jouets sont sans défaut de finition ;
+    \item parmi les jouets qui sont sans défaut de finition, $95\%$ réussissent le test de solidité ;
+    \item parmi les jouets qui ont des défauts de finition, $25\%$ ne réussissent pas le test de solidité.
+\end{itemize}\medskip
+
+On prend au hasard un jouet parmi les jouets produits. On note :
+\begin{itemize}[label=\textbullet]
+    \item $F$ l'événement : << le jouet est sans défaut de finition >> ;
+    \item $S$ l'événement : << le jouet réussit le test de solidité >>.
+\end{itemize}\medskip
+
+\begin{enumerate}
+    \item Construire l'arbre pondéré correspondant à cette situation.
+    \item Démontrer que $p(S) = 0,934$.
+    \item Les jouets ayant satisfait aux deux contrôles rapportent un bénéfice de \EUR{$10$}, ceux qui n'ont pas satisfait au test de solidité sont mis au rebut, les autres rapportent un bénéfice de \EUR{$5$}.\par
+        On désigne par $B$ la variable aléatoire qui associe à chaque jouet le bénéfice rapporté.
+        \begin{enumerate}
+            \item Déterminer la loi de probabilité de la variable aléatoire $B$.
+            \item Calculer l'espérance mathématiques de la variable aléatoire $B$. Interpréter le résultat.
+        \end{enumerate}
+    \item On prélève au hasard dans la production de l'entreprise un lot de $10$ jouets.\par On désigne par $X$ la variable aléatoire égale au nombre de jouets de ce lot subissant avec succès le test de solidité. On suppose que la quantité fabriquée est suffisamment importante pour que tous les tirages soient considérés comme indépendants les uns des autres.
+        \begin{enumerate}
+            \item Calculer l'espérance mathématique de $X$, sa variance et son écart-type.\par
+            \textit{On donnera des valeurs approchées à $10^{-3}$ près de ces nombres.}
+            \item Calculer la probabilité que tous les jouets réussissent le test $S$ ?
+            \item À l'aide de la calculatrice, donner la probabilité qu'au moins $8$ jouets réussissent le test $S$.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document} 

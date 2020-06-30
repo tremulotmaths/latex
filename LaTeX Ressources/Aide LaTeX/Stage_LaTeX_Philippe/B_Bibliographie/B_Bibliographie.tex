@@ -1,0 +1,52 @@
+\thispagestyle{empty}
+\chead{\sffamily\textbf{Bibliographie}}
+
+\newcommand\MaNote[1]{
+    \begin{center}
+        \parbox{.75\linewidth}{\footnotesize #1}
+    \end{center}
+}
+
+\defbibnote{apprentissage}{\MaNote{
+    Pour ceux qui souhaitent apprendre à utiliser \LaTeX, les livres suivants doivent faire parti de leur table de chevet. \par Je me suis beaucoup appuyé sur le premier pour construire mes fiches : l'écriture est claire et les exemples nombreux. La première partie du second est également très riche et peut être consultée très régulièrement.
+}}
+
+\defbibnote{references}{\MaNote{
+    Ces ouvrages sont des références pour quiconque souhaite maîtriser davantage \LaTeX. Ils listent des centaines d'extensions différentes pour personnaliser vos documents. On ne peut que regretter l'absence d'édition plus récente.
+}}
+
+\defbibnote{sorcellerie}{\MaNote{
+    Pour tous ceux qui souhaitent approfondir leurs connaissances et entrer dans les profondeurs de \LaTeX. Le livre de \bsc{Lozano} a déjà été cité : ici, c'est la seconde partie de cet ouvrage qui nous intéresse.
+}}
+
+\defbibnote{packages}{\MaNote{
+    Ici, vous trouverez une liste non exhaustive des documentations des packages mentionnés au cours des différentes fiches. Pour bien connaître un package, le plus simple est de se référer à sa documentation : parfois technique, souvent en anglais, toujours complète. Dès que vous recherchez des informations sur un package, il suffit de visiter le site du \bsc{ctan} (\textit{Comprehensive TeX Archive Network}) : \url{http://www.ctan.org/}. Le moteur de recherche vous aidera à trouver ce que vous souhaitez.\par
+    De plus, \texstudio possède un menu très intéressant : \texttt{Aide $\to$ Aide sur les packages...} Il vous suffit alors d'entrer le nom d'un package connu et \texstudio vous trouvera alors sa documentation.
+}}
+
+\defbibnote{divers}{\MaNote{
+    Ces quelques documents apporteront des connaissances supplémentaires sur \LaTeX{} ainsi que quelques conseils avisés.
+}}
+
+%\printbibliography
+
+\printbibheading
+
+\printbibliography[keyword=apprentissage,heading=subbibliography,title=Apprentissage,prenote=apprentissage]
+
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+\printbibliography[keyword=companion,heading=subbibliography,title=Références,prenote=references]
+
+\printbibliography[keyword=sorcellerie,heading=subbibliography,title=Dans les entrailles,prenote=sorcellerie]
+
+\printbibliography[keyword=package,heading=subbibliography,title=Documentations,prenote=packages]
+
+\printbibliography[keyword=divers,heading=subbibliography,title=Compléments,prenote=divers]
+%\printbibliography[keyword=package,heading=subbibliography,title=Documentation des packages]
+%\printbibliography[keyword=divers,heading=subbibliography,title=Divers]
+%\printbibliography[keyword=Internet,heading=subbibliography,title=Trouvés sur Internet]
+
+%\printbibliography[heading=subbibliography,title=Tout]
+
+%\end{document}

@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{pst-circ,pst-grad}
+\usepackage[a4paper,margin=2cm]{geometry}
+% Expérience de Franck et Hertz
+\begin{document}
+\psset{unit=0.75}
+\definecolor{Glasblau}{rgb}{0.1176,0.5647,1}% Dodger blau
+%--------- Definition eines Zylinders mit Gradientenf\"{u}llung -----------------------------
+\newcommand{\Zylinder}[9]{%  #1 L\"{a}nge, #2 Radius, #3 gradbegin, #4 gradend, #5 gradmidpoint
+\pscustom[dimen=#9,fillstyle=gradient,gradbegin=#3,gradend=#4,gradmidpoint=#5,gradangle=90,linecolor=#6,linewidth=#7,linestyle=#8]{%
+\psellipticarc(0,0)(!#2 #2 0.3 mul){180}{360}
+\psellipticarcn(0,#1)(!#2 #2 0.3 mul){0}{-180}
+\closepath
+}
+\psellipse[fillstyle=solid,fillcolor=#6,linestyle=none](0,#1)(!#2 #2 0.3 mul)
+}
+%-----------------------------------------------------------------------------------------
+\begin{pspicture}[showgrid=false](-1,0)(16,15)
+%----------- Kasten ---------------------------
+\pnode(1,1){A}
+\pnode(7,1){B}
+\pnode(7,12){C}
+\pnode(1,12){D}
+\pnode(2,2){A1}
+\pnode(8,2){B1}
+\pnode(8,13){C1}
+\pnode(2,13){D1}
+\psframe[fillstyle=solid,fillcolor=gray!50,linestyle=none](A1)(C1)
+\pspolygon[fillstyle=solid,fillcolor=gray!30,linestyle=none](A)(A1)(D1)(D)
+\pspolygon[fillstyle=solid,fillcolor=black!70,linestyle=none,opacity=0.7](B)(B1)(C1)(C)
+\pspolygon[fillstyle=solid,fillcolor=gray!50,linestyle=none,opacity=0.4](D)(C)(C1)(D1)
+%----------- Thermometer und Anzeige --------------------
+\pspolygon[linearc=0.1,dimen=outer,fillstyle=gradient,gradbegin=black,gradend=white,gradmidpoint=0.63,gradangle=45,linestyle=none]%
+(4,12.55)(4.4,12.95)(4.4,13.9)(2.48,13.9)(2.,13.45)(2,13)
+\psframe[fillstyle=solid,fillcolor=gray!30,framearc=0.2,linecolor=black!50,linewidth=0.6pt](2,12.5)(4,13.5)
+\psframe[fillstyle=solid,fillcolor=white,framearc=0.2,linecolor=black!50,linewidth=0.6pt](2.1,12.6)(3.9,13.4)
+\psframe[fillstyle=solid,fillcolor=black,framearc=0.05,linestyle=none](2.25,12.75)(3.3,13.25)
+\rput(3.6,13){\small $^{\circ}\text{C}$}
+%--------------- Digits ------------------------------------------------------
+\rput(2.52,13){%
+\rput{80}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{-100}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+}
+\rput(2.65,13){%
+\rput{80}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{-100}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0.025,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0.05,0.16){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0,-0.16){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{-100}(0.22,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+}
+\rput(2.98,13){%
+\rput{80}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+%\rput{-100}(0,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0.025,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0.05,0.16){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{0}(0,-0.16){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+\rput{-100}(0.22,0){\psline[linewidth=1.0pt,linecolor=orange]{cc-cc}(0.005,0)(0.165,0)}
+}
+%-----------------------------------------------------------------------------------
+\rput{-90}(4.3,13.1){\Zylinder{0.2}{0.1}{red!80}{red!10}{0.3}{red}{1pt}{none}{middle}}
+\rput(6.5,11.0){\Zylinder{1.25}{.2}{black!40}{gray!30}{0.3}{black!70}{1pt}{none}{middle}}
+\rput(6.5,12.25){\Zylinder{1.25}{.2}{black!80}{gray!10}{0.3}{gray!30}{1pt}{none}{middle}}
+\psellipticarcn[linewidth=0.5pt,linecolor=gray!30](6.5,12.25)(!0.202 0.202 0.3 mul){360}{180}
+\rput(6.5,13.5){\Zylinder{0.25}{.08}{black!80}{gray!10}{0.3}{gray!30}{1pt}{none}{middle}}
+\psbezier[linewidth=1.2pt,linecolor=black!40]{cc-cc}(4.5,13.1)(5.7,13.0)(6.4,14.3)(6.5,13.75)
+%----------- Sockel mit unteren Anschl\"{u}ssen -----------
+\rput(4.5,2.25){\Zylinder{0.5}{0.2}{black!80}{gray!10}{0.3}{gray!90}{1pt}{none}{middle}}
+\rput(4,2.35){\Zylinder{0.5}{0.06}{black!80}{gray!10}{0.3}{gray!90}{1pt}{none}{middle}}
+\rput(5,2.35){\Zylinder{0.5}{0.06}{black!80}{gray!10}{0.3}{gray!90}{1pt}{none}{middle}}
+\rput(4.5,3){\Zylinder{2}{1.15}{black!80}{gray!10}{0.3}{black!70}{1pt}{solid}{outer}}
+%----------- Spitze der R\"{o}hre -------------------
+\rput(4.5,10){%
+\pscustom[dimen=outer,fillstyle=gradient,gradbegin=Glasblau!20,gradend=Glasblau!60,gradmidpoint=0.2,gradangle=-30,linecolor=gray!10,linewidth=1pt]{%
+\psellipticarc(0,0.1)(!1.05 1.05 0.3 mul){185}{355}
+\psbezier(1,0.65)(0,0.65)(0,1)
+\psbezier(0,0.65)(-1,0.65)(-1,0)
+\closepath
+}
+}
+%-------------- R\"{o}hre mit F\"{u}llung -----------------------------
+\rput(4.5,5){%
+\pscustom[dimen=outer,fillstyle=gradient,gradbegin=Glasblau!50,gradend=white,gradmidpoint=0.75,gradangle=-90,linecolor=gray!10,linewidth=1pt]{%
+\psellipticarc(0,0)(!1 1 0.3 mul){180}{360}
+\psellipticarcn(0,5.1)(!1.05 1.05 0.3 mul){355}{185}
+\closepath
+}
+}
+%---------- Anode, Gitter, Kathode-----------------------
+%
+%---------- Kathode und Draht + Durchgang ----------------------------------------------
+\psellipse[fillstyle=gradient,gradbegin=black!40,gradend=black!30,gradmidpoint=0.75,gradangle=-30,linestyle=none](4.5,5)(!0.94 0.94 0.27 mul)
+\psellipse[fillstyle=gradient,gradbegin=Glasblau!60,gradend=Glasblau!20,gradmidpoint=0.75,gradangle=-30,linecolor=Glasblau!80,linewidth=1pt]%
+(4.5,5)(!0.4 0.4 0.25 mul)
+\psline[linecolor=black!40,linewidth=1pt](4.4,4.92)(4.4,6)
+\psline[linecolor=black!40,linewidth=1pt](4.6,4.92)(4.6,6)
+\rput(4.5,5.8){\Zylinder{0.3}{0.3}{black!40}{gray!10}{0.3}{gray!60}{1pt}{none}{middle}}
+\psline[linecolor=black!40,linewidth=1pt,linearc=0.15](4.25,4.94)(4.25,5.5)(3.65,5.5)(3.65,9.25)
+\psline[linecolor=black!40,linewidth=1pt,linearc=0.15](4.75,4.94)(4.75,5.5)(5.25,5.5)(5.25,9)
+%-------- Gitter + Anode ------------------------
+{\psset{linewidth=0.8pt,linecolor=black!50}
+\begin{psclip}{\psellipse[fillstyle=none,linewidth=1pt,linecolor=black!50](4.5,9)(!0.75 0.75 0.25 mul)}
+\psline(3.86,9.1)(3.7,8.93)
+\psline(3.9,9.11)(3.75,8.91)
+\psline(3.94,9.13)(3.8,8.89)
+\psline(3.98,9.13)(3.85,8.87)
+\psline(4.02,9.15)(3.9,8.86)
+\psline(4.06,9.16)(3.95,8.86)
+\psline(4.1,9.16)(4.0,8.85)
+\psline(4.14,9.17)(4.05,8.83)
+\psline(4.18,9.17)(4.1,8.83)
+\psline(4.22,9.17)(4.15,8.83)
+\psline(4.26,9.17)(4.2,8.83)
+\psline(4.3,9.17)(4.25,8.83)
+\psline(4.34,9.17)(4.3,8.83)
+\psline(4.38,9.17)(4.35,8.83)
+\psline(4.42,9.17)(4.4,8.83)
+\psline(4.46,9.17)(4.45,8.83)
+\psline(4.5,9.17)(4.5,8.83)
+\psline(4.54,9.17)(4.55,8.83)
+\psline(4.58,9.17)(4.60,8.83)
+\psline(4.62,9.17)(4.65,8.83)
+\psline(4.66,9.17)(4.7,8.83)
+\psline(4.7,9.17)(4.75,8.83)
+\psline(4.74,9.17)(4.8,8.83)
+\psline(4.78,9.17)(4.85,8.83)
+\psline(4.82,9.17)(4.9,8.83)
+\psline(4.86,9.16)(4.95,8.85)
+\psline(4.9,9.16)(5,8.86)
+\psline(4.94,9.15)(5.05,8.86)
+\psline(4.98,9.14)(5.1,8.87)
+\psline(5.02,9.14)(5.15,8.89)
+\psline(5.06,9.12)(5.2,8.91)
+\psline(5.1,9.11)(5.25,8.93)
+\psline(5.14,9.1)(5.26,8.99)
+\end{psclip}
+}
+\psellipse[fillstyle=gradient,gradbegin=black!50,gradend=black!30,gradmidpoint=1,gradangle=10,linestyle=none](4.5,9.25)(!0.85 0.85 0.25 mul)
+\psellipticarcn[linewidth=1pt,linecolor=black!70](4.5,9.25)(!0.85 0.85 0.25 mul){360}{180}
+\psline[linewidth=1.2pt,linecolor=black!70]{c-}(4.5,9.25)(4.5,11)
+\psline[linewidth=1.2pt,linecolor=black]{c-}(4.5,11.0)(4.5,11.5)
+%--------------------------------------------------------------------------------------------------
+%-------- Quecksilbertropfen ----------------------
+\rput{15}(3.8,5){%
+\psellipse[fillstyle=gradient,gradbegin=white,gradend=black!70,GradientPos={(-0.05,0.1)},GradientScale=1.4,GradientCircle=true,linestyle=none](0,0)(0.2,0.13)}
+%---------- Heizschlange --------------------------------
+\psline[linewidth=1.2pt,linecolor=black,arrowscale=1.5]{o-}(0,1.4)(1,1.4)
+\psline[linewidth=1.2pt,linecolor=black,arrowscale=1.5]{o-}(0.4,2)(1,2)
+\psline[linewidth=1.2pt,linecolor=black!50,arrowscale=1.5](1,2)(1.8,2)
+\rput{-90}(0.75,1.4){\Zylinder{0.45}{0.12}{red!80}{red!10}{0.3}{red}{1pt}{none}{middle}}
+\rput{-90}(1.35,2){\Zylinder{0.45}{0.12}{red!40}{red!10}{0.3}{red!50}{1pt}{none}{middle}}
+\psline[linewidth=1.4pt,linecolor=red!60,linearc=0.04](1.8,2)(6.6,2)(6.4,1.8)(2.4,1.8)(2.2,1.6)(6.2,1.6)(6,1.4)(1.2,1.4)
+\psframe[linewidth=1.2pt,linecolor=black!80,dimen=middle,framearc=0.008](A)(C)
+\rput[l](-1,1.8){\small $230\,\text{V}$}
+\rput[l](-1,6){\small\shortstack[l]{Goutte\strut\\[-5pt]de\strut\\[-5pt] mercure\strut}}
+\psline[linewidth=0.5pt](3.8,5)(2,6)(0.3,6)
+\rput[l](-1,7.7){\small Cathode}
+\psline[linewidth=0.5pt](4.3,6)(2,7.65)(0.5,7.65)
+\rput[l](-1,9){\small Grille}
+\psline[linewidth=0.5pt](3.8,9)(0.2,9)
+\rput[l](-1,10){\small Anode}
+\psline[linewidth=0.5pt](3.7,9.25)(2,10)(0.2,10)
+\rput[l](-1,14.5){\small Thermom\`{e}tre}
+\psline[linewidth=0.5pt](1.4,14.45)(6.5,14.45)(6.5,14.0)
+%------------------ 2d -----------------------------------------------
+\rput(10.5,4){%
+\pnode(0,9){El1}
+\pnode(3.5,9){El2}
+\pnode(3.5,5){El3}
+\pnode(3.5,-2){El4}
+\pnode(0.6,5){El5}
+\pscustom[linecolor=black,linewidth=1pt]{%
+\psarc(0,5.5){1.5}{0}{180}
+\psarc(0,0.5){1.5}{180}{360}
+\closepath
+}
+\psline[linewidth=2pt,linecolor=black!60](-1,0.5)(-1,2.2)
+\psline[linewidth=2pt,linecolor=black!60](1,0.5)(1,2.2)
+\psline[linewidth=0.7pt,linecolor=black,linearc=0.05](-1,0.5)(-1,0.1)(1,0.1)(1,0.5)
+\psline[arrowscale=1.8]{o-}(-0.6,-2.5)(-0.6,1.2)
+\psarcn(0,1.2){0.6}{180}{0}
+\psline[arrowscale=1.8]{-o}(0.6,1.2)(0.6,-2.5)
+\rput(0,1.2){\pnode(0.6;50){M}}
+\rput(M){\psline(0,0)(0.2;50)}
+\psarc(0,1.2){0.8}{50}{130}
+\psline[linestyle=dashed,dash=2pt 2pt,linewidth=0.7pt,linecolor=black](-1,5)(1.5,5)
+\psline[linewidth=1pt,linecolor=black](-0.4,5.3)(0.4,5.3)
+\psline[linewidth=1pt,linecolor=black](0,5.3)(El1)
+\circledipole[labeloffset=0,radius=0.4cm](El1)(El2){\small\textbf{A}}
+\battery[labeloffset=-1.15](El3)(El2){\rput{-45}(-0.5,0.4){\psline[arrowinset=0.05]{->}(0,-0.5)(0,0.5)}\small\shortstack[c]{$U_{\text{g}}$\strut\\[-1pt]$0\ldots 2\,\text{V}$\strut}}
+\psline[linewidth=1pt,linecolor=black]{-*}(1.5,5)(El3)
+\battery[labeloffset=1.15](El3)(El4){\rput{-45}(-0.4,0.35){\psline[arrowinset=0.05]{->}(0,-0.5)(0,0.5)}\small\shortstack[c]{$U_{\text{a}}$\strut\\[-1pt]$0\ldots 40\,\text{V}$\strut}}
+\psline{*-*}(0.6,-2)(El4)
+}
+\end{pspicture}
+\end{document}

@@ -1,0 +1,117 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Géométrie dynamique\\ Logiciel GeoGebra}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 6}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Résolution d'un problème d'égalité}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-10pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Présentation de la situation}}\\[15pt]
+On considère un rectangle $ABCD$ tel que $AB=6$ et $AD=4$.\\
+$H$ et $K$ sont des points vérifiant $DH=BK$ et tels que $B$ soit sur le segment $[AK]$ et $D$ sur le segment $[AH]$.
+On trace le rectangle $AKJH$, et on colorie le polygone $BCDHJK$.\\[10pt]
+On se propose de chercher la position du point $H$ pour que l'aire du domaine coloré soit égale à celle du rectangle $ABCD$.\\
+On note $d$ la distance $DH$.
+\begin{center}
+   \definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4,-1.8) rectangle (7,5.5);
+\fill[color=zzttqq,fill=zzttqq!20,fill opacity=0.1] (-3.,0.) -- (4.,0.) -- (4.,5.) -- (3.,5.) -- (3.,1.) -- (-3.,1.) -- cycle;
+\draw (-3.,5.)-- (3.,5.);
+\draw (3.,5.)-- (3.,1.);
+\draw (3.,1.)-- (-3.,1.);
+\draw (-3.,1.)-- (-3.,5.);
+\draw[line width=4.pt,color=qqqqff!25] (-3.06,-1.1) -- (0.94,-1.1);
+\draw (-3.,1.)-- (-3.,0.);
+\draw (3.,5.)-- (4.,5);
+\draw [color=zzttqq] (-3.,0.)-- (4.,0.);
+\draw [color=zzttqq] (4.,0.)-- (4.,5.);
+\draw [color=zzttqq] (4.,5.)-- (3.,5.);
+\draw [color=zzttqq] (3.,5.)-- (3.,1.);
+\draw [color=zzttqq] (3.,1.)-- (-3.,1.);
+\draw [color=zzttqq] (-3.,1.)-- (-3.,0.);
+\begin{scriptsize}
+\draw [fill=qqqqff] (-3.,5.) circle (0.5pt);
+\draw[color=qqqqff] (-3.35,5.2) node {$A$};
+\draw [fill=qqqqff] (3.,5.) circle (0.5pt);
+\draw[color=qqqqff] (3.15,5.2) node {$B$};
+\draw [fill=qqqqff] (3.,1.) circle (0.5pt);
+\draw[color=qqqqff] (3.15,0.8) node {$C$};
+\draw [fill=qqqqff] (-3.,1.) circle (0.5pt);
+\draw[color=qqqqff] (-3.35,0.8) node {$D$};
+\draw [fill=qqqqff] (-2.26,-1.1) circle (2.5pt);
+\draw[color=qqqqff] (-2.18,-1.5) node {$d = 1$};
+\draw [fill=qqqqff] (-3.,0.) circle (0.5pt);
+\draw[color=qqqqff] (-3.35,-0.24) node {$H$};
+\draw [fill=qqqqff] (4.,5.) circle (0.5pt);
+\draw[color=qqqqff] (4.24,5.2) node {$K$};
+\draw [fill=qqqqff] (4.,0.) circle (0.5pt);
+\draw[color=qqqqff] (4.24,-0.24) node {$J$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\vspace{-19pt}
+\begin{enumerate}
+\item Réaliser une figure avec $d=1$.
+\item Calculer l'aire du domaine coloré dans ce cas.
+\end{enumerate}
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Recherche d'une solution à l'aide d'un logiciel de géométrie}}\\[1pt]
+\begin{enumerate}
+\item Réaliser cette figure dans le cas général à l'aide d'un logiciel de géométrie dynamique.
+	\begin{enumerate}
+	\item Créer un curseur représentant la variable $d$.
+	\item Quelles sont les valeurs possibles pour $d$?
+	\item Afficher l'aire $\mathcal{A}$ du domaine coloré.
+	\end{enumerate}
+\item Conjecturer la position du point $H$ répondant au problème.
+	\begin{enumerate}
+	\item Piloter au clavier la position du point $H$ à l'aide du curseur.
+	\item Observer les valeurs prises par $\mathcal{A}$ et déterminer la valeur cherchée de $d$ .
+	\end{enumerate}
+\end{enumerate}
+\newpage
+\vspace{35pt}
+
+%_______________
+\textcolor{blue}{\textbf{III. Recherche d'une solution exacte à l'aide d'une fonction}}\\[10pt]
+\begin{enumerate}
+\item Démontrer que l'aire du domaine coloré est donnée par la formule:
+\[\mathcal{A}(d)=d^2+10d.\]
+\item Vérifier l'égalité $d^2+10d=(d+5)^2-25$.
+\item Justifier que l'équation $\mathcal{A}(d)=24$ s'écrit aussi $(d+5)^2-7^2=0$.
+\item  En déduire la solution exacte du problème posé.
+\end{enumerate}
+
+\end{document}
+

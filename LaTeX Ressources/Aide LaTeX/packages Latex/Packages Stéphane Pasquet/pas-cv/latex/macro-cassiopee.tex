@@ -1,0 +1,95 @@
+\def\modele@cassiopee{cassiopee}
+\def\cv@h@cassiopee{4}
+
+% =============== FOND ===============
+\newcommand*\fond@cassiopee{%
+	% cadre horizontal haut
+	\fill[color=\cmdPAS@bg@bgcolor!50] (0,{-\cv@h@cassiopee-2}) rectangle +(.75\paperwidth,4);
+	\fill[color=\cmdPAS@bg@bgcolor] (0,{-\cv@h@cassiopee-1.5}) rectangle +(.75\paperwidth,3);
+	% Poste
+	\node[color=\cmdPAS@bg@postecolor] at ({0.325\paperwidth},-\cv@h@cassiopee) {\scshape\cmdPAS@bg@postesize\bfseries\cmdPAS@bg@poste};
+	% cadre bas
+	\fill[color=\cmdPAS@bg@bgcolor!50] (0,{-\paperheight+1.9cm}) rectangle +(\paperwidth,-1.6);
+	\fill[color=\cmdPAS@bg@bgcolor] (0,{-\paperheight+1.6cm}) rectangle +(\paperwidth,-1);
+	% cadre droit (exp. pro)
+	\fill[color=\cmdPAS@bg@bordercolor] (0.97\paperwidth,{-\cv@h@cassiopee-2.3}) rectangle+(-0.4\paperwidth,-1.5);
+	\fill[color=\cmdPAS@bg@bordercolor] (0.57\paperwidth,{-\cv@h@cassiopee-2.3}) rectangle+(1.5,{-(\paperwidth-\cv@h@cassiopee cm+2cm)});
+	\draw[thick,white] (0.97\paperwidth,{-\cv@h@cassiopee-2.6}) -- ({0.57\paperwidth+0.3cm},{-\cv@h@cassiopee-2.6}) -- ({0.57\paperwidth+0.3cm},{-\cv@h@cassiopee cm-4.4cm-\paperwidth+\cv@h@cassiopee cm)});
+	% Cadre photo
+	\fill[color=\cmdPAS@bg@borderpic] (0.9\paperwidth,{-\cv@h@cassiopee+2.5}) rectangle+(-0.25\paperwidth,-0.25\paperwidth);
+	\draw[color=\cmdPAS@bg@borderpic,line width=5pt] 
+		({0.9\paperwidth+0.2cm},{-\cv@h@cassiopee+2.7}) -- 
+		({0.65\paperwidth-0.2cm},{-\cv@h@cassiopee+2.7}) -- 
+		({0.65\paperwidth-0.2cm},{-\cv@h@cassiopee cm+2.3cm-0.25\paperwidth}) -- 
+		({0.9\paperwidth+0.2cm},{-\cv@h@cassiopee cm+2.3cm-0.25\paperwidth}) -- cycle;
+	% Photo
+	\ifx\cmdPAS@bg@pic\@empty%
+	\else
+		\ifx\cmdPAS@bg@borderpic\@empty
+			\node[below left] at ({0.9\paperwidth-0.5},{-\cv@h@cassiopee+2.3}) {\includegraphics[scale=\cmdPAS@bg@scalepic]{\cmdPAS@bg@pic}};
+		\else
+			\node[below left,draw=\cmdPAS@bg@borderpic,very thick,inner sep=1pt] at ({0.9\paperwidth-0.2cm},{-\cv@h@cassiopee+2.3}) {\includegraphics[scale=\cmdPAS@bg@scalepic]{\cmdPAS@bg@pic}};
+		\fi
+	\fi
+}
+
+%=============== INFO GAUCHE ===============
+\newcommand*\infoLeft@cassiopee[1]{%
+	\AddToShipoutPicture
+	{%
+		\AtPageLowerLeft
+		{%
+			\begin{tikzpicture}
+				\clip (0,0) rectangle+(\paperwidth,-\paperheight);
+				\node[below right] at ({0.63\paperwidth+5mm},{-\cv@h@cassiopee+1.7}){
+					\begin{minipage}{0.25\paperwidth}
+						#1
+					\end{minipage}};
+			\end{tikzpicture}
+		}
+	}
+}
+
+%=============== INFO DROITE ===============
+\newcommand*\infoRight@cassiopee[1]{%
+	\AddToShipoutPicture
+	{%
+		\AtPageLowerLeft
+		{%
+			\begin{tikzpicture}
+				\clip (0,0) rectangle+(\paperwidth,-\paperheight);
+				\node[above right] at ({0.63\paperwidth+5mm},{-\cv@h@cassiopee-2.7}){
+					\begin{minipage}{0.25\paperwidth}
+						#1
+					\end{minipage}};
+			\end{tikzpicture}
+		}
+	}
+}
+
+%=============== TITRE ===============
+\newcommand*\title@cassiopee[1]{%
+	\noindent
+	\begin{tikzpicture}
+		\fill[\cmdPAS@title@color] (0,0.5) -- (-0.5,0) -- (0,-0.5) -- (0.5,0) -- cycle;
+		\fill[\cmdPAS@title@bordercolor,opacity=0.5] (0,-0.25) -- (-0.25,-0.5) -- (0,-0.75) -- (0.25,-0.5) -- cycle;
+		\draw[line width=2pt,\cmdPAS@title@bordercolor]  (0,-0.25) -- (-0.25,-0.5) -- (0,-0.75) -- (0.25,-0.5) -- cycle;
+		\draw[line width=1pt,\cmdPAS@title@bordercolor]  (0,-0.15) -- (-0.35,-0.5) -- (0,-0.85) -- (0.35,-0.5) -- cycle;
+		\node[right,text=\cmdPAS@title@color] at (.4,0) {\scshape\bfseries #1};
+	\end{tikzpicture}
+}
+
+%=============== MARGES ===============
+\newcommand*\margins@cassiopee{%
+\FPeval\result{clip(\cv@h@cassiopee+4)}
+\newgeometry{tmargin=\result cm,bmargin=2cm,lmargin=0.5cm,rmargin=0.5cm}
+}
+
+%=============== CLEARPAGE ===============
+\newcommand*\clearpage@cassiopee{%
+	\fill[color=\cmdPAS@bg@bgcolor!50] (0,{-\paperheight+1.9cm}) rectangle +(\paperwidth,-1.6);
+	\fill[color=\cmdPAS@bg@bgcolor] (0,{-\paperheight+1.6cm}) rectangle +(\paperwidth,-1);
+}
+\newcommand*\clearmargins@cassiopee{%
+	\newgeometry{tmargin=2cm,bmargin=2cm,lmargin=0.5cm,rmargin=0.5cm}
+}

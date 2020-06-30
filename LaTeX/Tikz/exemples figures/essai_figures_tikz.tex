@@ -1,0 +1,1062 @@
+\documentclass[12pt,french]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2013}
+\input{perso_dom_2014_2015}
+%\input{section_dom_2014_2015}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+\fancyhead[C]{\small\textbf{Ti\textit{k}Z} \hfill \small \textbf{Année 2013-2014}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\begin{tikzpicture}
+\node[shading=ball,ball color=OliveGreen,rectangle,draw=black,rounded corners,thick]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Exemples de graphiques avec Ti\textit{k}Z}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+
+\noindent 
+\vspace{-6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pour l'exercice 1
+
+% commande pour la version améliorée de Tikz (section 3)
+\newcommand{\Noeud}[1]{%
+    \tikz[remember picture]{\node[inner sep=0pt,outer sep=4pt](#1){$#1$};}
+}
+
+% "outer sep" pour la distance de la flèche par rapport au point.
+% j'interprète "inner sep" comme étant la taille du noeud. En mettant cette taille à 0pt, le noeud reste sur la ligne et cela évite l'utilisation de \raisebox
+% La commande n'a qu'un seul argument.
+% Le nom du noeud est écrit entre parenthèse et n'apparaît pas dans le texte. Mais c'est ce nom là qui est utilisé pour les calculs des dimensions des "boîtes" par LaTeX.
+% Le nom spécifié entre accolades est le texte qui apparaîtra pour de vrai. Pour nos besoins, ce nom est du texte mathématiques et correspond au nom du noeud.
+%
+% Les noms spécifiés dans un environnement Tikz ne servent que pour la figure en cours.
+% L'option "remember picture" permet de sauvegarder le nom des noeuds qui seront utilisés dans d'autres figures (ici, les figures pour dessiner les flèches).
+
+\tikzset{Perso/.style={line cap=round,line join=round, line width=1pt,>=stealth}} % permet d'écrire Perso dans les commandes tikz pour éviter de tout écrire et tout modifier si nécessaire.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{Ti\textit{k}Z}{\thepage / \pageref{LastPage}}{Année 2013-2014}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{1}
+
+\textbf{Avec Pstricks : version Philippe année 2007}
+
+{\small
+
+\[\rnode{K}{k} \times (\rnode{A}{a}+\rnode{B}{b}) = \textcolor{red}{k\times a}+\textcolor{blue}{k\times b}\]
+\ncarc[linecolor=red,arcangle=90]{->}{K}{A}
+\ncarc[linecolor=blue,arcangle=-90]{->}{K}{B}
+
+
+Voici la formule de la distributivité :
+$\rnode{K}{k} \times (\rnode{A}{a}+\rnode{B}{b}) = \textcolor{red}{k\times a}+\textcolor{blue}{k\times b}$
+\ncarc[linecolor=red,arcangle=90]{->}{K}{A}
+\ncarc[linecolor=blue,arcangle=-90]{->}{K}{B}
+vue en 5\ieme.\bigskip
+
+
+\[(\rnode{A}{a}+\rnode{B}{b})\times(\rnode{C}{c}+\rnode{D}{d})=\textcolor{red}{a\times c}+\textcolor{blue}{a\times d}+b\times c+\textcolor{Peach}{b\times d}\]
+\ncarc[linecolor=red,arcangle=90]{->}{A}{C}
+\ncarc[linecolor=blue,arcangle=90]{->}{A}{D}
+\ncarc[arcangle=-90]{->}{B}{C}
+\ncarc[linecolor=Peach,arcangle=-90]{->}{B}{D}
+
+Voici la formule de la distributivité :
+$(\rnode{A}{a}+\rnode{B}{b})\times(\rnode{C}{c}+\rnode{D}{d})=\textcolor{red}{a\times c}+\textcolor{blue}{a\times d}+b\times c+\textcolor{Peach}{b\times d}$
+\ncarc[linecolor=red,arcangle=90]{->}{A}{C}
+\ncarc[linecolor=blue,arcangle=90]{->}{A}{D}
+\ncarc[arcangle=-90]{->}{B}{C}
+\ncarc[linecolor=Peach,arcangle=-90]{->}{B}{D}
+vue en 4\ieme.
+}
+
+\textbf{Avec Tikz : version Dominique}
+
+\begin{center}
+\begin{tikzpicture}[scale=1,x=1.0cm]
+\draw (0,0) node [right] {$a\times (b+c)=\textcolor{blue}{a\times b}+\textcolor{red}{a\times c}$};
+\draw[Perso,->,color=blue](0.25,0.25) to[bend left] (1,0.25);
+\draw[Perso,->,color=red](0.25,0.25) to[bend left] (1.7,0.25);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=1,x=1.0cm]
+\draw (0,0) node [right] {$(a+b)\times (c+d)=\textcolor{blue}{a\times c}+\textcolor{blue}{a\times d}+\textcolor{red}{b\times c}+\textcolor{red}{b\times d}$};
+\draw[Perso,->,color=blue](0.4,0.25) to[bend left] (1.9,0.25);
+\draw[Perso,->,color=blue](0.4,0.25) to[bend left] (2.5,0.25);
+\draw[Perso,->,color=red](1,-0.25) to[bend right] (1.9,-0.25);
+\draw[Perso,->,color=red](1,-0.25) to[bend right] (2.5,-0.25);
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+Au milieu d'un texte :
+\end{center}
+Voici la formule de la simple distributivité :
+\raisebox{-4pt}{
+\begin{tikzpicture}[scale=1,x=1.0cm]
+\draw (0,0) node [right] {$a\times (b+c)=\textcolor{blue}{a\times b}+\textcolor{red}{a\times c}$};
+\draw[Perso,->,color=blue](0.25,0.25) to[bend left] (1,0.25);
+\draw[Perso,->,color=red](0.25,0.25) to[bend left] (1.7,0.25);
+\end{tikzpicture}}
+(vue en 5\up{ème}).
+
+Voici la formule de la double distributivité :
+\raisebox{-12pt}{
+\begin{tikzpicture}[scale=1,x=1.0cm]
+\draw (0,0) node [right] {$(a+b)\times (c+d)=\textcolor{blue}{a\times c}+\textcolor{blue}{a\times d}+\textcolor{red}{b\times c}+\textcolor{red}{b\times d}$};
+\draw[Perso,->,color=blue](0.4,0.25) to[bend left] (1.9,0.25);
+\draw[Perso,->,color=blue](0.4,0.25) to[bend left] (2.5,0.25);
+\draw[Perso,->,color=red](1,-0.25) to[bend right] (1.9,-0.25);
+\draw[Perso,->,color=red](1,-0.25) to[bend right] (2.5,-0.25);
+\end{tikzpicture}}
+(vue en 4\up{ème}).
+
+\textbf{Avec Tikz : version améliorée}
+
+{\small
+
+\[\Noeud{a} \times (\Noeud{b}+\Noeud{c}) = \textcolor{blue}{a\times b}+\textcolor{red}{a\times c}\]
+% pour tracer les flèches :
+\begin{tikzpicture}[remember picture,overlay,>=stealth]
+    \draw[Perso,->,blue] (a.south) to[out=-75,in=-120,distance=0.25cm]  (b.south);
+    \draw[Perso,->,red] (a.north) to[bend left=50]  (c.north);
+\end{tikzpicture}
+
+% on spécifie d'où par la flèche et d'où elle arrive en nommant le noeud.
+% chaque noeud est encadré par un rectangle et on peut accéder à des points particulier avec les commandes .north, .south, .west, .east.
+% on peut être plus précis en écrivant .18 qui est l'angle en degré par rapport à l'horizontal et dans le sens trigonométrique
+%
+% la commande distance=0.25cm permet de gérer la distance de la courbure de la flèche. Faîtes des tests pour mieux comprendre.
+%
+% la commande bend left (ou bend right) permet de courber la courbe dans un sens ou dans l'autre.
+% pour bend left, la courbure est placée à gauche du chemin en ligne droite dans le sens du parcours.
+% le nombre indiqué est l'angle par rapport à l'horizontal au point de départ et à celui d'arrivée.
+%
+% pour être plus précis, on peut spécifier l'angle au départ : out=50 et celui à l'arrivée : in=120 (toujours en degré, par rapport à l'horizontal dans le sens trigo)
+
+\[(\Noeud{a} + \Noeud{b}) \times (\Noeud{c} + \Noeud{d}) = \textcolor{blue}{a\times c}+\textcolor{blue}{a\times d}+\textcolor{red}{b\times c}+\textcolor{red}{b\times d}\]
+% pour tracer les flèches :
+\begin{tikzpicture}[remember picture,overlay,>=stealth]
+    \draw[Perso,->,blue] (a.north) to[bend left = 50]  (c.north);
+    \draw[Perso,->,blue] (a.north) to[bend left=50]  (d.north);
+    \draw[Perso,->,red] (b.south) to[bend right = 50]  (c.south);
+    \draw[Perso,->,red] (b.south) to[bend right= 50]  (d.south);
+\end{tikzpicture}
+
+\begin{center}
+    Au milieu d'un texte :
+\end{center}
+
+
+Voici la formule de la simple distributivité : $\Noeud{a} \times (\Noeud{b}+\Noeud{c}) = \textcolor{blue}{a\times b}+\textcolor{red}{a\times c}$ (vue en 5\up{ème}).\vspace{1cm}
+% pour tracer les flèches :
+\begin{tikzpicture}[remember picture,overlay,>=stealth]
+    \draw[Perso,->,blue] (a.south) to[out=-75,in=-120,distance=0.25cm]  (b.south);
+    \draw[Perso,->,red] (a.north) to[bend left=50]  (c.north);
+\end{tikzpicture}
+
+Voici la formule de la double distributivité : $(\Noeud{a} + \Noeud{b}) \times (\Noeud{c} + \Noeud{d}) = \textcolor{blue}{a\times c}+\textcolor{blue}{a\times d}+\textcolor{red}{b\times c}+\textcolor{red}{b\times d}$ (vue en 4\up{ème}).
+% pour tracer les flèches :
+\begin{tikzpicture}[remember picture,overlay,>=stealth]
+    \draw[Perso,->,blue] (a.north) to[bend left = 50]  (c.north);
+    \draw[Perso,->,blue] (a.north) to[bend left=50]  (d.north);
+    \draw[Perso,->,red] (b.south) to[bend right = 50]  (c.south);
+    \draw[Perso,->,red] (b.south) to[bend right= 50]  (d.south);
+\end{tikzpicture}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage\Exercice{1bis} Graphes probabilistes
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\tikzstyle{every path}=[line width=1pt];
+\node [draw,circle,fill=gray!50] (A) at (0,0) {A};
+\node [draw,circle,fill=gray!50] (B) at (4,0) {B};
+\draw (A) to [bend left]  node[midway,sloped,above] {$0,9$} node[midway,sloped]{>} (B);
+\draw (B) to [bend left] node[midway,sloped,below] {$0,7$} node [midway,sloped] {<} (A);
+\draw (B) .. controls +(1.5,-1) and +(1.5,1) .. node[midway,right]{$0,3$} node [midway,sloped] {>} (B) ;
+\draw (A) .. controls +(-1.5,-1) and +(-1.5,1) .. node[midway,left]{$0,1$} node [midway,sloped] {>} (A) ;
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\tikzstyle{every path}=[>=stealth,->,line width=1pt];
+\node [draw,circle,fill=gray!50] (A) at (0,0) {A};
+\node [draw,circle,fill=gray!50] (B) at (4,0) {B};
+\draw[->] (A) to [bend left]  node[midway,sloped,above] {\dots}(B);
+\draw[->] (B) to [bend left] node[midway,sloped,above] {\dots} (A);
+\draw[->] (B) .. controls +(1.5,-1) and +(1.5,1) .. node[midway,right]{\dots} (B) ;
+\draw[->] (A) .. controls +(-1.5,-1) and +(-1.5,1) .. node[midway,left]{\dots} (A) ;
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\tikzstyle{every path}=[>=stealth,->,line width=1pt];
+\node [draw,circle,fill=gray!50] (A) at (0,0) {1};
+\node [draw,circle,fill=gray!50] (B) at (4,0) {2};
+\node [draw,circle,fill=gray!50] (C) at (2,-3) {3};
+\draw[->] (A) to [out=20,in=160]  node[midway,sloped,above] {$0,3$}(B);
+\draw[->] (A) to [out=-40,in=115]  node[midway,sloped,above] {$0,2$}(C);
+\draw[->] (B) to [out=-160,in=-20] node[midway,sloped,above] {$0,3$} (A);
+\draw[->] (B) to [out=-140,in=75] node[midway,sloped,above] {$0,3$} (C);
+\draw[->] (C) to [out=150,in=-90] node[midway,sloped,above] {$0,2$} (A);
+\draw[->] (C) to [out=30,in=-90] node[midway,sloped,above] {$0,3$} (B);
+\draw[->] (B) .. controls +(1.5,-1) and +(1.5,1) .. node[midway,right]{$0,4$} (B) ;
+\draw[->] (A) .. controls +(-1.5,-1) and +(-1.5,1) .. node[midway,left]{$0,5$} (A) ;
+\draw[->] (C) .. controls +(-1,-1.5) and +(1,-1.5) .. node[midway,below]{$0,5$} (C) ;
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[x={(1cm,0cm)},y={(0.5cm,1cm)}]    
+    \draw[color=black,line width=1.5pt](-1,0)--(5,0);
+    \draw[color=black,line width=1.5pt](0,-1)--(0,5);
+    \draw (0,0) node [above left] {A};
+    \draw (1,-12pt) node {I};
+    \draw[line width=1.5pt](1,0) -- ++(0pt,3pt)-- ++(0pt,-6pt);
+    \draw (0,1) node [above left] {J};
+    \draw[line width=1.5pt](0,1) -- ++(-2pt,2pt) -- ++(4pt,-4pt);
+\end{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{3}
+\begin{center}
+\begin{tikzpicture}
+    	\tkzTabInit[nocadre]{$x$/1,Signe de \\ $3x$/1.5,Signe de \\ $x-2$/1.5, Signe de \\ $3x(x-2)$/1.5}{$-\infty$,$0$,$2$,$+\infty$}
+        \tkzTabLine{,-,z,,+,}
+        \tkzTabLine{,,-,,z,+,}
+        \tkzTabLine{,+,z,-,z,+,}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+    	\tkzTabInit[lgt=3]{$x$/1,Signe de \\ $3x$/1.5,Signe de \\ $x-2$/1.5, Signe de \\ $3x(x-2)$/1.5,Variations de \\$f$ /3}{$-\infty$,$0$,$2$,$+\infty$}
+        \tkzTabLine{,-,z,,+,}
+        \tkzTabLine{,,-,,z,+,}
+        \tkzTabLine{,+,z,-,z,+,}
+        \tkzTabVar{+/$+\infty$,-/$-\dfrac{1}{2}$,+/$\dfrac{17}{128}$,-/$-\infty$}
+	\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{12pt}
+\[\star\star\star\star\star\star\star\star\star\star\star\star\star\star\star\star\]
+\vspace*{12pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{4}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,x=1.0cm]
+\draw[>=stealth,->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
+\draw[{]-]},line width=3pt,color=red] (-2.5,0) -- (3,0);
+\foreach \x in {-5,...,5}
+\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt);
+\foreach \x in {-5,...,5}
+\draw (\x,-7pt) node[below,font=\bfseries] {\x};
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{4bis}
+
+\textbf{Segments définis avec les lettres}
+
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\coordinate (A) at (0,0);\node [font=\bfseries,color=blue,below left] at (A) {A};
+\coordinate (B) at (5,0);\node [font=\bfseries,color=blue,below right] at (B) {B};
+\coordinate (C) at (5,3);\node [font=\bfseries,color=blue,above right] at (C) {C};
+\coordinate (D) at (0,3);\node [font=\bfseries,color=blue,above left] at (D) {D};
+\coordinate (M) at (2,0);\node [font=\bfseries,color=OliveGreen,below right] at (M) {M};
+\coordinate (N) at (5,2);\node [font=\bfseries,color=OliveGreen,above right] at (N) {N};
+\coordinate (P) at (3,3);\node [font=\bfseries,color=OliveGreen,above left] at (P) {P};
+\coordinate (Q) at (0,1);\node [font=\bfseries,color=OliveGreen,above left] at (Q) {Q};
+\draw [color=black, line width=1pt,fill=pink!50] (A)--(B)--(C)--(D)--cycle;
+\draw [color=black, line width=1.5pt] (A)--(M) node[midway,sloped] {||};
+\draw [color=black, line width=1.5pt] (B)--(N) node[midway,sloped] {||};
+\draw [color=black, line width=1.5pt] (C)--(P) node[midway,sloped] {||};
+\draw [color=black, line width=1.5pt] (D)--(Q) node[midway,sloped] {||};
+\draw [color=red, line width=1pt,fill=pink] (M)--(N)--(P)--(Q)--cycle;
+\draw [line width=1.5pt] (M)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [line width=1.5pt] (N)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [line width=1.5pt] (P)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [line width=1.5pt] (Q)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{5}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
+\draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
+\foreach \x in {-5,...,5}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
+\foreach \y in {-5,...,5}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+%\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+\clip(-5.5,-5.5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-5.5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{5bis}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=0.2cm,y=1.0cm]
+\draw [color=gray!75, xstep=5,ystep=0.5] (80,-1) grid (150,4);
+\draw[->,line width=2pt,color=blue] (80,0) -- (150,0);
+\foreach \x in {90,100,110,120,130,140}
+\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\draw [color=blue, line width=2pt](89,1)--(89,3);
+\draw [color=blue, line width=2pt](89,2)--(103,2);
+\draw [color=blue, line width=2pt](103,1)--(103,3)--(121,3)--(121,1)--cycle;
+\draw [color=blue, line width=2pt](121,2)--(139,2);
+\draw [color=blue, line width=2pt](139,1)--(139,3);
+\draw [color=red, line width=2pt](110,1)--(110,3);
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{6}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\clip(0,0) circle (2);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
+\draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
+\foreach \x in {-5,...,5}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
+\foreach \y in {-5,...,5}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+%\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+\draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{7}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
+\draw [color=gray!, xstep=1,ystep=1,line width=1.5pt] (-5.5,-5.5) grid (5.5,5.5);
+\draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
+\foreach \x in {-5,...,5}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
+\foreach \y in {-5,...,5}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+%\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{8}
+\begin{center}
+\begin{tikzpicture}[scale=0.15,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=5,ystep=5] (-55,-55) grid (55,55);
+\draw [color=gray!, xstep=10,ystep=10,line width=1.5pt] (-55,-55) grid (55,55);
+\draw[->,line width=1.5pt,color=blue] (-55,0) -- (55,0);
+\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,line width=1.5pt,color=blue] (0,-55) -- (0,55);
+\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+%\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-30:40,line width=2pt,color=red] plot(\x,{50*sin(50*\x)});
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{9}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=0.15cm,y=0.15cm]
+\draw [color=gray!50, xstep=5,ystep=5] (-55,-55) grid (55,55);
+\draw [color=gray!, xstep=10,ystep=10,line width=1.5pt] (-55,-55) grid (55,55);
+\draw[->,line width=1.5pt,color=blue] (-55,0) -- (55,0);
+\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,line width=1.5pt,color=blue] (0,-55) -- (0,55);
+\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+%\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-30:40,line width=2pt,color=red] plot(\x,{50*sin(50*\x)});
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{10}
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=0.02cm,y=0.1cm]
+\draw [color=gray!50, xstep=25,ystep=5] (0,0) grid (510,105);
+\draw [color=gray!, xstep=50,ystep=10,line width=1.5pt] (0,0) grid (510,105);
+\draw[->,line width=1.5pt,color=blue] (-25,0) -- (510,0);
+\foreach \x in {50,100,150,200,250,300,350,400,450,500}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,line width=1.5pt,color=blue] (0,-5) -- (0,105);
+\foreach \y in {10,20,30,40,50,60,70,80,90,100}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+%\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=0:500,line width=2pt,color=red] plot(\x,{100/(\x+1)});
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{11}
+\begin{center}
+\begin{tikzpicture}[scale=1.1,line cap=round,line join=round,>=stealth,x=0.015cm,y=0.075cm]
+\draw [color=gray!50, xstep=25,ystep=5] (0,0) grid (1000,100);
+\draw [color=gray!, xstep=50,ystep=10,line width=1.5pt] (0,0) grid (1000,100);
+\draw[->,line width=1.5pt,color=blue] (0,0) -- (1000,0);
+\foreach \x in {0,50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,line width=1.5pt,color=blue] (0,0) -- (0,100);
+\foreach \y in {0,10,20,30,40,50,60,70,80,90}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+%\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
+\clip(0,0) rectangle (1000,98);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=0:1000,line width=2pt,color=red] plot(\x,{89.5-8.9*ln(\x+0.3)});
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{12}
+\begin{center}
+\begin{tikzpicture}[scale=2,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\foreach \x in {-2,...,2}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};
+\foreach \y in {-1,...,2}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};
+\clip(-2.5,-1) rectangle (2.5,3);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=red] plot(\x,{(2-\x)*exp(\x)});
+\draw(1.5,2) node[below left] {\calig{C}};
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=OliveGreen] plot(\x,{2+\x});
+\draw(-1.5,0.5) node[below right] {\calig{T}};
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=OliveGreen,style=dashed] plot(\x,{exp(1)});
+%aire grisée
+\draw[fill=gray!50]
+	(0,0)
+	--(0,2)
+	-- plot [domain=0:1] (\x,{(2-\x)*exp(\x)})
+	--(1,0)
+	--cycle;
+\draw (0.5,1.5) node [font=\bfseries] {$S$};
+\draw [color=gray, xstep=0.5,ystep=0.5,style=dashed] (-2.5,-1) grid (2.5,3);
+\draw [color=gray, xstep=1,ystep=1,line width=1.5pt] (-2.5,-1) grid (2.5,3);
+\draw[->,line width=2.5pt,color=blue] (-2.5,0) -- (2.5,0);
+\draw[->,line width=2.5pt,color=blue] (0,-1) -- (0,3);
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{13}
+L'ordre des instructions est important pour le rendu souhaité !!
+
+\begin{center}
+\begin{tikzpicture}[scale=2,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray, xstep=0.5,ystep=0.5,style=dashed] (-2.5,-1) grid (2.5,3);
+\draw [color=gray, xstep=1,ystep=1,line width=1.5pt] (-2.5,-1) grid (2.5,3);
+\foreach \x in {-2,...,2}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};
+\foreach \y in {-1,...,2}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};
+\clip(-2.5,-1) rectangle (2.5,3);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=red] plot(\x,{(2-\x)*exp(\x)});
+\draw(1.5,2) node[below left] {\calig{C}};
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=OliveGreen] plot(\x,{2+\x});
+\draw(-1.5,0.5) node[below right] {\calig{T}};
+\draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=OliveGreen,style=dashed] plot(\x,{exp(1)});
+%aire grisée
+\draw[fill=gray!50]
+	(0,0)
+	--(0,2)
+	-- plot [domain=0:1] (\x,{(2-\x)*exp(\x)})
+	--(1,0)
+	--cycle;
+\draw (0.5,1.5) node [font=\bfseries] {$S$};
+\draw[->,line width=2.5pt,color=blue] (-2.5,0) -- (2.5,0);
+\draw[->,line width=2.5pt,color=blue] (0,-1) -- (0,3);
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{14}
+\begin{center}
+\begin{tikzpicture}[scale=1.2,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5,dashed] (-4,-4.5) grid (8,6.5);
+\draw [color=gray!, xstep=1,ystep=1] (-4,-4.5) grid (8,6.5);
+\draw[->,line width=1.5pt,color=blue] (-4,0) -- (8,0);
+\foreach \x in {-4,...,7}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};
+\draw[->,line width=1.5pt,color=blue] (0,-4.5) -- (0,6.5);
+\foreach \y in {-4,...,5}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};
+\draw[color=black] (8,-3pt) node[below] {$x$};
+\draw[color=black] (-2pt,6) node[left] {$y$};
+%%%%%%%%%%%%%%%%%%%%%%Points
+\draw (2.8,0.7) node [font=\bfseries] {A};
+\draw [line width=1.5pt] (3,1)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (6,2) node [below right,font=\bfseries] {B};
+\draw [line width=1.5pt] (6,2)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (2,4) node [above left,font=\bfseries] {C};
+\draw [line width=1.5pt] (2,4)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [line width=1.5pt,color=red] (3,1)-- (6,2)-- (2,4)-- cycle;
+\draw (4,3) node [above right,font=\bfseries] {K};
+\draw [line width=1.5pt] (4,3)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [color=OliveGreen, line width=1.5pt] (4,3) circle (2.236);
+\draw (-0.3,-0.3) node [font=\bfseries] {O};
+\draw [line width=1.5pt] (0,0)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw [color=red, line width=1.5pt](0,0)-- (3,1);
+\draw [color=red, line width=1.5pt](4,-2)-- (3,1);
+\draw [color=red, line width=1.5pt](0,0)-- (2,4);
+\draw [color=red, line width=1.5pt](0,0)-- (4,-2);
+\draw [color=red, line width=1.5pt](4,-2)-- (6,2);
+\draw (4,-2) node [below right,font=\bfseries] {D};
+\draw [line width=1.5pt] (4,-2)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+%%%%%%%%%%%%%%%%marques sur les segments
+\draw [color=red, line width=1.5pt] (2,4)-- (4,3) node[midway,sloped] {||};
+\draw [color=red, line width=1.5pt] (6,2)-- (4,3) node[midway,sloped] {||};
+\draw [color=red, line width=1.5pt] (2,4)-- (3,1) node[midway,sloped] {|||};
+\draw [color=red, line width=1.5pt] (4,-2)-- (3,1) node[midway,sloped] {|||};
+\draw [color=red, line width=1.5pt] (0,0)-- (3,1) node[midway,sloped] {|||};
+\draw [color=red, line width=1.5pt] (6,2)-- (3,1) node[midway,sloped] {|||};
+%%%%%%%%%%%%%%%%%%%%angle droit
+\draw [color=red, line width=1.5pt]  (3.27,1.09) -- (3.18,1.36) -- (2.91,1.27) -- (3,1) -- cycle; 
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{15}
+\begin{center}
+\begin{tikzpicture}[scale=0.8,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-3,-3) grid (8.5,8.5);
+\draw [color=gray, xstep=1.0,ystep=1.0] (-3,-3) grid (8.5,8.5);
+\draw[->,line width=1.5pt,color=blue] (-3,0) -- (8.5,0);
+\foreach \x in {-3,...,8}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};
+\draw[->,line width=1.5pt,color=blue] (0,-3) -- (0,8.5);
+\foreach \y in {-3,...,8}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};
+\clip(-3,-3) rectangle (8.5,8.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-2*\x+5});
+\draw (1,3) node [above right,font=\bfseries] {A};
+\draw [line width=1.5pt] (1,3)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (-1,7) node [below left,font=\bfseries] {B};
+\draw [line width=1.5pt] (-1,7)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (2,1) node [above right,font=\bfseries] {C};
+\draw [line width=1.5pt] (2,1)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\draw (3.5,-2) node [above right,font=\bfseries] {D};
+\draw [line width=1.5pt] (3.5,-2)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\end{tikzpicture}
+\end{center}
+
+\Exercice{16}
+\begin{center}
+\begin{tikzpicture}[xscale=1000,yscale=10,line cap=round,line join=round,>=stealth]
+\draw[->,line width=1.5pt,color=blue] (0,0) -- (0.0101,0);
+\foreach \x in {0,0.002,0.004,0.006,0.008,0.01}
+\draw (\x,-0.2pt) node[below,font=\bfseries] {\x};
+\draw[->,line width=1.5pt,color=blue] (0,0) -- (0,1);
+\foreach \y in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
+\draw (-0.002pt,\y) node[left,font=\bfseries] {\y};
+\clip(0,0) rectangle (0.0101,1);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+\draw [color=gray, xstep=0.001,ystep=0.1] (0,0) grid (0.011,1);
+\draw[smooth,samples=200,domain=0:0.01,line width=2pt,color=red] plot(\x,{1-exp(-710*(\x))});
+\draw[smooth,samples=200,domain=0:0.01,line width=2pt,color=OliveGreen] plot(\x,{710*(\x)});
+\draw [->,line width=2pt, style=dashed] (0,0.5)--(0.000976,0.5);
+\draw [->,line width=2pt, style=dashed] (0.000976,0.5)--(0.000976,0);
+\draw (0.0008,0.75) node [font=\bfseries] {T};
+\draw (0.0025,0.75) node [font=\boldmath] {$\calig{C}$};
+\end{tikzpicture}
+\end{center}
+
+\Exercice{16-1}
+\begin{center}
+\begin{tikzpicture}[scale=0.6,>=stealth]
+            \draw[gray] (-9,-4)grid(8,5);
+            \draw[->,line width=1.5pt,color=blue] (-9,0)--(8,0)node[below] {$x$};
+            \foreach \x in {-8,-7,-6,-5,-4,-3,-2,-1,2,3,4,5,6,7}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+            \draw[->,line width=1.5pt,color=blue] (0,-4)--(0,5)node[left] {$y$};
+            \foreach \y in {-3,-2,-1,2,3,4}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+            \coordinate (O) at (0,-2pt); \draw (O) node[below,font=\bfseries,color=blue] {O};
+            \coordinate (I) at (1,-2pt); \draw (I) node[below,font=\bfseries,color=blue] {I}; \foreach \x in {-9,...,7}  \draw[line width=0.7pt] (\x,-0.1)--(\x,0.1);
+            \coordinate (J) at (-2pt,1); \draw (J) node[left,font=\bfseries,color=blue] {J}; \foreach \x in {-3,...,4} \draw[line width=0.7pt] (-0.1,\x)--(0.1,\x);
+            \draw[line width=1pt] plot[smooth=200,mark=+,mark options={scale =1.5}] coordinates{(-8,0)(-6,2)(-3,3.5)(-2,4)(-1,3)(0,-2)(2,-3)(4,-2)(5,-1)(7,0)} node[above right]{$\calig C_h$};
+            \draw[dashed, line width=1pt] plot[smooth=200,mark=+,mark options={scale =1.5}] coordinates{(-8,4)(-6,2)(-1,3)(5,-1)(7,-3)} node[above right]{$\calig C_k$};
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip\Exercice{16bis}
+
+\begin{tikzpicture}
+\begin{scope}[fill opacity=0.5]
+%scope permet de fusionner les figures en une seule, pour par exemple les décaler ensuite
+  \fill[red!90!black]   ( 90:.6) circle (1);
+  \fill[green!80!black] (210:.6) circle (1);
+  \fill[blue!90!black] (330:.6) circle (1);
+\end{scope}
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip\Exercice{16ter}
+
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(45:2cm) circle (1.5cm)}
+\def\thirdcircle{(0:2cm) circle (1.5cm)}
+
+\begin{tikzpicture}
+    \draw \firstcircle node[below] {$A$};
+    \draw \secondcircle node [above] {$B$};
+    \draw \thirdcircle node [below] {$C$};
+
+    % Now we want to highlight the intersection of the first and the
+    % second circle:
+
+    \begin{scope}
+      \clip \firstcircle;
+      \fill[red] \secondcircle;
+    \end{scope}
+
+    % Next, we want the highlight the intersection of all three circles:
+
+    \begin{scope}
+      \clip \firstcircle;
+      \clip \secondcircle;
+      \fill[green] \thirdcircle;
+    \end{scope}
+
+    % The intersection trick works pretty well for intersections. If you need
+    % the set-theoretic difference between two sets, things are a little more
+    % complicated:
+
+    % Suppose we want to highlight the part of the first circle that is not 
+    % also part of the second circle. For this, we need to clip against the 
+    % "complement" of the second circle. The trick is to add a large rectangle
+    % that encompasses everything and then use the even-odd filling rule 
+    % (see the manual again):
+
+    \begin{scope}[shift={(6cm,0cm)}]
+        \begin{scope}[even odd rule]% first circle without the second
+            \clip \secondcircle (-3,-3) rectangle (3,3);
+        \fill[yellow] \firstcircle;
+        \end{scope}
+        \draw \firstcircle node {$A$};
+        \draw \secondcircle node {$B$};
+    \end{scope}
+    
+    % When using the above, you will notice that the border lines of the
+    % original circles are erased by the intersection parts. To solve this
+    % problem, either use a background layer (see the manual) or simply draw
+    % the border lines after everything else has been drawn.
+    
+    % The last trick is to cheat and use transparency
+    \begin{scope}[shift={(3cm,-5cm)}, fill opacity=0.5]
+        \fill[red] \firstcircle;
+        \fill[green] \secondcircle;
+        \fill[blue] \thirdcircle;
+        \draw \firstcircle node[below] {$A$};
+        \draw \secondcircle node [above] {$B$};
+        \draw \thirdcircle node [below] {$C$};
+    \end{scope}
+
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\textbf{Exemple 17.0 : Arbre probabiliste}
+
+%:-+-+-+- Engendré par : http://math.et.info.free.fr/TikZ/Arbre/
+\begin{center}
+% Racine à Gauche, développement vers la droite
+\begin{tikzpicture}[xscale=1,yscale=1]
+% Styles (MODIFIABLES)
+\tikzstyle{fleche}=[->,>=latex,thick,color=blue]
+\tikzstyle{score}=[->,>=latex,thick,style=dotted,color=red]
+\tikzstyle{noeud}=[fill=white]%,circle,draw]
+\tikzstyle{feuille}=[fill=white]%,circle,draw]
+\tikzstyle{feuillescore}=[fill=white,text=red]%,circle,draw]
+\tikzstyle{etiquette}=[midway,fill=white]%,draw]
+% Dimensions (MODIFIABLES)
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{2}
+% Dimensions calculées (NON MODIFIABLES)
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1.6666666666666665)*\DistanceInterNiveaux}
+\def\NiveauC{(3)*\DistanceInterNiveaux}
+\def\NiveauD{(4)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+\node[noeud] (R) at ({\NiveauA},{(5.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(2.5)*\InterFeuilles}) {Face};
+\node[noeud] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$1$};
+\node[feuillescore] (Raaa) at ({\NiveauD},{(0)*\InterFeuilles}) {$2$};
+\node[noeud] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$2$};
+\node[feuillescore] (Raba) at ({\NiveauD},{(1)*\InterFeuilles}) {$4$};
+\node[noeud] (Rac) at ({\NiveauC},{(2)*\InterFeuilles}) {$3$};
+\node[feuillescore] (Raca) at ({\NiveauD},{(2)*\InterFeuilles}) {$6$};
+\node[noeud] (Rad) at ({\NiveauC},{(3)*\InterFeuilles}) {$4$};
+\node[feuillescore] (Rada) at ({\NiveauD},{(3)*\InterFeuilles}) {$8$};
+\node[noeud] (Rae) at ({\NiveauC},{(4)*\InterFeuilles}) {$5$};
+\node[feuillescore] (Raea) at ({\NiveauD},{(4)*\InterFeuilles}) {$10$};
+\node[noeud] (Raf) at ({\NiveauC},{(5)*\InterFeuilles}) {$6$};
+\node[feuillescore] (Rafa) at ({\NiveauD},{(5)*\InterFeuilles}) {$12$};
+\node[noeud] (Rb) at ({\NiveauB},{(8.5)*\InterFeuilles}) {Pile};
+\node[noeud] (Rba) at ({\NiveauC},{(6)*\InterFeuilles}) {$1$};
+\node[feuillescore] (Rbaa) at ({\NiveauD},{(6)*\InterFeuilles}) {$5$};
+\node[noeud] (Rbb) at ({\NiveauC},{(7)*\InterFeuilles}) {$2$};
+\node[feuillescore] (Rbba) at ({\NiveauD},{(7)*\InterFeuilles}) {$6$};
+\node[noeud] (Rbc) at ({\NiveauC},{(8)*\InterFeuilles}) {$3$};
+\node[feuillescore] (Rbca) at ({\NiveauD},{(8)*\InterFeuilles}) {$7$};
+\node[noeud] (Rbd) at ({\NiveauC},{(9)*\InterFeuilles}) {$4$};
+\node[feuillescore] (Rbda) at ({\NiveauD},{(9)*\InterFeuilles}) {$8$};
+\node[noeud] (Rbe) at ({\NiveauC},{(10)*\InterFeuilles}) {$5$};
+\node[feuillescore] (Rbea) at ({\NiveauD},{(10)*\InterFeuilles}) {$9$};
+\node[noeud] (Rbf) at ({\NiveauC},{(11)*\InterFeuilles}) {$6$};
+\node[feuillescore] (Rbfa) at ({\NiveauD},{(11)*\InterFeuilles}) {$10$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (R)--(Ra) node[etiquette] {$\dfrac{1}{2}$};
+\draw[fleche] (Ra)--(Raa) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Raa)--(Raaa);
+\draw[fleche] (Ra)--(Rab) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rab)--(Raba);
+\draw[fleche] (Ra)--(Rac) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rac)--(Raca);
+\draw[fleche] (Ra)--(Rad) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rad)--(Rada);
+\draw[fleche] (Ra)--(Rae) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rae)--(Raea);
+\draw[fleche] (Ra)--(Raf) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Raf)--(Rafa);
+\draw[fleche] (R)--(Rb) node[etiquette] {$\dfrac{1}{2}$};
+\draw[fleche] (Rb)--(Rba) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rba)--(Rbaa);
+\draw[fleche] (Rb)--(Rbb) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rbb)--(Rbba);
+\draw[fleche] (Rb)--(Rbc) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rbc)--(Rbca);
+\draw[fleche] (Rb)--(Rbd) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rbd)--(Rbda);
+\draw[fleche] (Rb)--(Rbe) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rbe)--(Rbea);
+\draw[fleche] (Rb)--(Rbf) node[etiquette] {$\dfrac{1}{6}$};
+\draw[score] (Rbf)--(Rbfa);
+\end{tikzpicture}
+\end{center}
+%:-+-+-+-+- Fin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\Exercice{17}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,rectangle,draw=black,rounded corners,thick]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{18}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,rounded rectangle,draw=black,thick]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{19}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,chamfered rectangle,draw=black,thick]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{20}
+
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,star,draw=black,thick]{%
+\begin{minipage}{0.3\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{21}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,star,star points=12,draw=black,thick]{%
+\begin{minipage}{0.3\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{22}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=OliveGreen,diamond,draw=black,thick]{%
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{23}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=OliveGreen,diamond,shape aspect=3,draw=black,thick]{%
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{24}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,cylinder,draw=black,thick]{%
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{25}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,cloud,aspect=2.5,draw=black,thick]{%
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{26}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=red,tape,draw=black,thick]{%
+\begin{minipage}{0.7\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Exercice{27}
+
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,double arrow,draw=black,thick]{%
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{28}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,arrow box,draw=black,thick]{%
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{29}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,cloud callout,callout pointer start size=3,callout pointer end size=7,aspect=2.5,draw=black,thick]{%
+\begin{minipage}{0.3\linewidth}
+\begin{center}
+%\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+%\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{30}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,rectangle callout,rounded corners,draw=black,thick]{%
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\Exercice{31}
+\begin{center}
+\begin{tikzpicture}
+\node[shading=ball,ball color=blue!50,ellipse callout,callout absolute pointer={(2.south)},draw=black,thick]{%
+\begin{minipage}{0.5\linewidth}
+\begin{center}
+\vspace*{9pt}
+\Large \textsc{\textbf{Remarques sur le devoir maison n°2}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}
+    \path [decorate,decoration={text along path,
+        text={Decorations can draw text that follows an arbitrary curve}}]
+        (0,0) sin (1,1) cos (2,0) sin (3,-1) cos (4,0) sin (7,-1);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, align=center, rounded corners=2pt,
+      rectangle] at (2.6,-1.7) (c22) {Further Rectangle};
+
+\node[rectangle callout,draw,rounded corners=2pt,inner sep=2pt,color=red,align=center,
+      callout absolute pointer=(c22.east),
+      above right= -25pt and 120pt of c22.north west]
+      {no workarounds;  \\
+       no exceptions    \\
+       to optimizations};
+\end{tikzpicture}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{spacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

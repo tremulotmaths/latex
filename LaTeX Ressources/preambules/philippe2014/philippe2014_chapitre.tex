@@ -1,0 +1,32 @@
+%===
+%===    Commandes "philippe2014_chapitre" version du 07.07.2014
+%===
+
+%___________________________
+%===    Mise en forme des chapitres
+%------------------------------------------------------
+\newcommand\PartProgramme{Fonctions}
+\newlength\LongueurPartProgramme
+\newlength{\LongueurCompteur}
+\newcommand\Taille{\Large}
+\newcommand\taille{0.9\linewidth}
+
+\newcommand{\pbs}[1]{\let\tmp\\#1\let\\\tmp}
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+\settowidth{\LongueurPartProgramme}{\Taille\textbf{\Fontlukas\PartProgramme}}
+    {\color{\MaCouleur}
+        \settowidth{\LongueurCompteur}{\bfseries\itshape\fontsize{70}{0}\selectfont\thechapter}
+        \addtolength{\LongueurCompteur}{10pt}
+        \hspace{-\LongueurCompteur}
+        \begin{tabular}{@{}m{\LongueurCompteur}@{}m{\taille}@{}}%
+        {\bfseries\itshape\fontsize{70}{0}\selectfont\thechapter} &
+        \parbox{\taille}{\raggedright\Huge \bfseries #1\par\nobreak}
+        \end{tabular}
+        \par\nobreak
+        \vspace*{10pt}
+        \textcolor{\MaCouleur!25}{\hspace{-1em}\hrulefill[0.5ex]} \parbox{\LongueurPartProgramme}{\centering\Taille\textbf{\Fontlukas\PartProgramme}}
+    }
+    \vspace*{20pt}
+}
+\makeatother 

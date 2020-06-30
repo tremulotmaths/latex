@@ -1,0 +1,172 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\input{algorithme}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Initiation à l'algorithmique\\ Logiciel Algobox}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 19}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Marche aléatoire}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Présentation}}
+\begin{enumerate}
+\item Marche aléatoire\\
+Une \emph{marche aléatoire} est un déplacement constitué de pas successifs, aléatoires et indépendants. Les applications des marches aléatoires sont multiples dans des domaines variés.\\[7pt]
+\emph{Recherche à effectuer}
+\begin{enumerate}
+\item Faire une présentation du botaniste \textsc{Robert Brown}.
+\item Le mouvement brownien
+\begin{itemize}
+\item Présenter la recherche de Robert Brown à l'origine de cette description
+\item Préciser une utilisation de ce mouvement en physique, et une en mathématiques financières 
+\end{itemize}
+\end{enumerate}
+
+\item Situation\\
+Une puce se déplace sur un axe gradué; elle part de l'origine et, à chaque saut, elle se déplace de manière aléatoire de une unité, vers la gauche ou vers la droite.
+\end{enumerate}
+\vspace{20pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Simulation de quatre sauts}}\\[5pt]
+Chaque suite de quatre sauts est appelée \emph{promenade de quatre sauts}.
+\begin{enumerate}
+\item Simuler un saut\\
+Proposer une façon de simuler un saut, puis une instruction à saisir dans la calculatrice.
+\item  Promenade de quatre sauts
+	\begin{enumerate}
+	\item Simuler cinq promenades de quatre sauts et indiquer la position d'arrivée pour chacune d'entre elles.
+	\item La puce peut-elle atteindre toutes les positions? Justifier la réponse.
+	\end{enumerate}
+\item  Modélisation
+	\begin{enumerate}
+	\item A l'aide d'un arbre, obtenir toutes les promenades de quatre sauts et, pour chacune d'entre elles, indiquer la position d'arrivée correspondante.
+	\item Calculer la probabilité associée à chacune de ces positions d'arrivée.\\
+	 Présenter la loi de probabilité de cette expérience dans le tableau ci-dessous:
+\vspace{5pt}
+ \begin{center}
+   \begin{tabularx}{0.9\linewidth}{|c|*{5}{>{\centering \arraybackslash}X|}}
+      \hline 
+      Position d'arrivée  & &&&&\\
+           \hline
+      Probabilité  &&&&& \\
+      \hline 
+   \end{tabularx} 
+   \end{center} 
+   \vspace{4pt}
+   \item Qu'observe-t-on?	
+	\end{enumerate}
+\end{enumerate}
+\vspace{12pt}
+
+%\newpage
+%_______________
+\textcolor{blue}{\textbf{III. Simulation de dix sauts}}\\[5pt]
+On considère maintenant des promenades de dix sauts.
+\begin{enumerate}
+\item Si on construisait un arbre pour représenter l'expérience et décrire ces promenades aléatoires, combien aurait-il de branches à son extrémité?\\
+\emph{Observer les arbres représentant les promenades de deux sauts, de trois sauts, ... }
+\item Compte tenu du très grand nombre de résultats possibles, on se propose d'utiliser un algorithme pour simuler ces promenades de dix sauts, puis estimer une loi de probabilité à partir des fréquences obtenues.\\[3pt]
+\newpage
+\textsc{Avec le logiciel Algobox}\\
+Marche aléatoire de dix sauts
+\begin{center}
+   \begin{algobox}
+\Variables
+\Ligne x EST\_DU\_TYPE NOMBRE
+\Ligne n EST\_DU\_TYPE NOMBRE
+\Ligne s EST\_DU\_TYPE NOMBRE
+\DebutAlgo
+\Ligne x PREND\_LA\_VALEUR 0
+\Pour{n}{1}{10}
+\DebutPour
+\Ligne s PREND\_LA\_VALEUR ALGOBOX\_ALEA\_ENT(0,1)
+\Si{(s==1)}
+\DebutSi
+\Ligne x PREND\_LA\_VALEUR x+1
+\FinSi
+\Sinon
+\DebutSinon
+\Ligne x PREND\_LA\_VALEUR x-1
+\FinSinon
+\FinPour
+\Ligne AFFICHER "La puce se trouve au point d'abscisse: "
+\Ligne AFFICHER x
+\FinAlgo
+\end{algobox}
+\end{center}
+	\begin{enumerate}
+	\item Réfléchir aux  variables\\
+Indiquer ce que représentent les variables $x$ et $s$ dans cet algorithme.
+	\item Réfléchir à la structure de l'algorithme\\
+	L'algorithme nécessite:
+	\begin{itemize}
+\item une \emph{instruction itérative}, appelée \emph{boucle}, du type \textsc{pour} $\ldots$ \textsc{allant de} $\ldots$ \textsc{à} $\ldots$
+\item une \emph{instruction alternative} du type \textsc{si} $\ldots$ \textsc{alors} $\ldots$ \textsc{sinon} $\ldots$
+\end{itemize}
+Repérer la boucle dans l'écriture de l'algorithme ci-dessus.
+	\end{enumerate}
+\item A l'aide de l'algorithme, effectuer la simulation de 50 promenades de 10 sauts et noter les positions d'arrivée.\\
+ Regrouper les résultats dans le tableau, ci-dessous.
+ \vspace{5pt}
+ \begin{center}
+   \begin{tabularx}{0.9\linewidth}{|c|*{11}{>{\centering \arraybackslash}X|}}
+      \hline 
+      Position d'arrivée  & &&&&&&&&&&\\
+           \hline
+      Effectif  &&&&&&&&&&& \\
+      \hline 
+      Fréquence  &&&&&&&&&&& \\
+      \hline 
+   \end{tabularx} 
+   \end{center} 
+   \vspace{20pt}
+\item Le calcul des probabilités permet d'obtenir la loi ci-dessous:
+ \vspace{-3pt}
+ \begin{flushleft}
+   \begin{tabularx}{1.1\linewidth}{|c|*{11}{>{\centering \arraybackslash}X|}}
+      \hline 
+      Position d'arrivée  &-10 &-8&-6&-4&-2&0&2&4&6&8&10\\
+           \hline
+      Probabilité  &0,001&0,01&0,044&0,117&0,205&0,246&0,205&0,117&0,044&0,01&0,001 \\
+      \hline 
+   \end{tabularx} 
+   \end{flushleft} 
+   \vspace{15pt}
+   Calculer la probabilité des événement suivants:
+\begin{enumerate}
+\item \ev{A}{la puce finit sa promenade au point d'abscisse 4 ou -4}
+\item \ev{B}{la puce finit sa promenade à plus de trois unités de l'origine}
+\item \ev{C}{la puce s'est toujours déplacée dans le même sens}
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,80 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\input preambule_2013
+
+\newcommand\TitreActivite[2]{%
+    \setcounter{exo}{0}
+        \begin{center}
+            \psframebox[shadow=true,shadowcolor=gray!75,shadowsize=3pt,%
+            framearc=0.3,%
+            fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!60!yellow!40,gradend= white]{%
+                \parbox{0.5\linewidth}{%
+                    \begin{center}
+                        \Large\bfseries
+                        \uuline{Activité \bsc{#1}}\par
+                        #2
+                    \end{center}}}
+        \end{center}\bigskip
+}
+
+\pagestyle{empty}
+
+\begin{document}
+{\small
+\TitreActivite{ii.1}{Suites arithmétiques \par Suites géométriques}
+
+\section*{Une suite arithmétique}
+D'après \texttt{Wikipedia}, un individu moyen perd environ $60$ cheveux par jour en automne, $45$ au printemps et de $20$ à $25$ en hiver et en été.\par
+Le 1\ier novembre, Paulo avait \np{110000} cheveux sur la tête. Pour simplifier, on supposera qu'aucun cheveu ne pousse sur la tête de Paulo.\par
+On note $c_0$ le nombre de cheveux au premier jour : le 1\ier novembre. On note $c_1$ le nombre de cheveux le jour suivant, $c_2$ le jour d'après etc. On note enfin $c_n$ le nombre de cheveux au jour $n+1$.\par On a ainsi défini la suite $(c_n)$ pour tout $n \in \N$.
+
+\begin{enumerate}
+    \item Au mois de novembre, en quelle saison sommes-nous ?
+    \item Donner la valeur de $c_0$.
+    \item Calculer les quatre termes suivants de la suite $(c_n)$.
+    \item Donner l'expression de $c_{n +1}$ en fonction de $c_n$.
+    \item Peut-on calculer $c_2$ directement à partir de $c_0$ ? Expliquer comment.
+    \item Donner l'expression de $c_3$ en fonction de $c_0$.
+    \item Donner l'expression de $c_n$ en fonction de $c_0$.
+    \item L'automne dure approximativement $90$ jours. Combien de cheveux aura Paulo à ce moment là ?
+\end{enumerate}
+
+\section*{Une suite géométrique}
+
+Un capital $A_0$ de \EUR{$\np{5000}$} est placé à intérêts composés avec un taux annuel de $5\%$, c'est-à-dire que les intérêts d'une année s'ajoutent au capital pour le calcul des intérêts de l'année suivante.\par
+On note $A_1$ le capital obtenu l'année suivante, $A_2$ l'année d'après etc. On note $A_n$ le capital cumulé à l'année $n+1$.\par
+On a ainsi défini la suite $(A_n)$ pour tout $n \in \N$.
+
+\begin{enumerate}
+    \item Calculer $A_1$.
+    \item Expliquer pourquoi $A_2 = \np{5512.5}$.
+    \item Donner une valeur approchée à l'unité de $A_3$.
+    \item Donner l'expression de $A_{n+1}$ en fonction de $A_n$.
+    \item Peut-on calculer $A_2$ directement à partir de $A_0$ ? Expliquer comment ?
+    \item Donner l'expression de $A_3$ en fonction de $A_0$.
+    \item Donner l'expression de $A_n$ en fonction de $A_0$.
+    \item À l'aide de la calculatrice, déterminer au bout de combien d'année le capital initial aura doublé.
+\end{enumerate}
+
+\section*{Exercice supplémentaire}
+On veut étudier l'évolution d'une population de bactéries. On place $100$ bactéries dans un récipient.\par
+Le relevé quotidien du nombre de bactéries permet de constater le phénomène suivant : chaque jour, le nombre de bactéries triple, après quoi disparaissent $50$ bactéries.\par
+On note $b_n$ le nombre de bactéries après $n$ jours. Ainsi, $b_0 = 100$.
+
+\begin{enumerate}
+    \item Expliquer pourquoi $b_1 = 250$.
+    \item Calculer $b_2$, $b_3$ et $b_4$.
+    \item Exprimer $b_{n+1}$ en fonction de $b_n$.
+    \item La suite $(b_n)$ est-elle arithmétique ? Justifier.
+    \item La suite $(b_n)$ est-elle géométrique ? Justifier.
+    \item Pour tout entier $n$, on pose $u_n = b_n - 25$.
+    \begin{enumerate}
+        \item Calculer $u_0$, $u_1$ et $u_2$.
+        \item Démontrer que $u_{n+1} = 3b_n - 75$.
+        \item Démontrer que $u_{n+1} = 3u_n$.
+        \item Quelle est la nature de la suite $(u_n)$ ?
+    \end{enumerate}
+    \item \'Ecrire $u_n$ en fonction de $n$ puis $b_n$ en fonction de $n$.
+    \item Combien de bactéries contiendra le récipient au bout de $10$ jours ?
+\end{enumerate}
+}
+\end{document} 

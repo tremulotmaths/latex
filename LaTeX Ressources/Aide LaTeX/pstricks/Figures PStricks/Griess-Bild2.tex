@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{multido}  
+\usepackage{pst-slpe}
+\usepackage{pst-electricfield}
+
+
+\SpecialCoor
+\def\fieldlines{%
+         /xP \nx\space def
+         /yP \ny\space def
+         /r1 xP xA sub dup mul yP dup mul add sqrt def
+         /r2 xP xA add dup mul yP dup mul add sqrt def
+%        /V q1 r1 div
+%           q2 r2 div
+%           add def
+%        Ex=-dV/dx
+         /Ex q1 xP xA sub mul r1 3 exp div
+              q2 xP xA add mul r2 3 exp div
+              add def
+%        Ey=-dV/dy
+         /Ey yP
+             q1 r1 3 exp div
+             q2 r2 3 exp div
+             add mul def
+         /NormeE Ex dup mul Ey dup mul add sqrt def
+         /uEx Ex NormeE div K mul def
+         /uEy Ey NormeE div K mul def
+         /wink uEy uEx atan def
+}
+
+\def\Gries{%
+\psellipse[linewidth=0.7pt,linecolor=brown!70,fillstyle=radslope,slopebegin=yellow!40,slopeend=yellow,slopeangle=0,sloperadius=0.1,slopecenter=0.5 0.5](0,0)(0.2,0.1)%
+%\psline[linecolor=red,linewidth=0.6pt](-0.16,0)(-0.04,0)
+%\psline[linecolor=red,linewidth=0.6pt](0.16,0)(0.04,0)\psline[linecolor=red,linewidth=0.6pt](0.1,-0.06)(0.1,0.06)
+}%
+
+\begin{document}
+
+
+\psset{yunit=1cm,xunit=1cm, dotscale=0.75, arrowscale=1.2}%
+\newpsstyle{Kugel1}{linecolor=cyan!30,slopebegin=cyan!30,sloperadius=0.4,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+\newpsstyle{KugelRot}{linecolor=black!80,slopebegin=magenta!40,sloperadius=0.5,linewidth=0.1pt,slopecenter=0.7 0.7,linestyle=solid}%
+\newpsstyle{Kugel2}{linecolor=black!70,slopebegin=cyan!50,sloperadius=0.1,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+\newpsstyle{KugelB1}{linecolor=cyan!30,slopebegin=cyan!30,sloperadius=0.3,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+\newpsstyle{KugelR1}{linecolor=black!80,slopebegin=magenta!40,sloperadius=0.4,linewidth=0.1pt,slopecenter=0.7 0.7,linestyle=solid}%
+
+
+
+\begin{pspicture}(-5,-5)(5,6)
+\multido{\nx=-5+0.5}{22}{%
+\multido{\ny=-4+0.5}{18}{%
+\pstVerb{/q1 1 def
+         /q2 -1 q1 mul def
+         /K 0.5 def
+         /xA 2.6 def
+         \fieldlines}
+\rput(\nx,\ny){%
+%\psline{->}(0,0)(!uEx uEy)%
+\rput{!wink}(0,0){\psellipse[linewidth=0.7pt,linecolor=brown!70,fillstyle=radslope,slopebegin=yellow!40,slopeend=yellow,
+slopeangle=0,sloperadius=0.1,slopecenter=0.5 0.5](0,0)(0.2,0.1)}}
+}}
+\rput(!xA 0){\psBall[style=KugelB1](0,0){black!90}{.3}}%
+\rput(!xA 0){\color{blue}{$+$}}%
+\rput(!xA neg 0){\psBall[style=KugelR1](0,0){black!90}{.3}}%
+\rput(!xA neg 0){\color{red}{$-$}}%
+\end{pspicture}
+
+
+\end{document} 

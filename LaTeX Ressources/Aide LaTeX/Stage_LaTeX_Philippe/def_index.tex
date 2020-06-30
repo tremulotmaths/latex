@@ -1,0 +1,12 @@
+%\usepackage{index}
+%\makeindex
+%\newindex{jarg}{jdx}{jnd}{Termes sp\'ecifiques}
+%\newindex{pack}{pdx}{pnd}{Packages mentionn\'es}
+%\newindex{com}{cdx}{cnd}{Commandes et environnements employ\'es}
+
+\usepackage{imakeidx}
+\makeindex
+\makeindex[name=jarg,title={Termes particuliers},columns=3,options=-s myhead]
+\makeindex[name=com,title={Commandes, environnements et packages mentionn\'es},columns=3,options=-s myhead]
+
+\indexsetup{level=\section*,toclevel=section,noclearpage}

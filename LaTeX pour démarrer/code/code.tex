@@ -1,0 +1,40 @@
+\chapter{Insérer du code}\label{code}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Insérer du code Scratch}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Pour insérer du code Scratch, j'utilise l'excellent \jargon{package} \verb!scratch! que l'on charge dans le préambule avec l'instruction \verb!\usepackage{scratch}!.
+
+Voici un exemple de code et son rendu :
+
+\begin{SideBySideExample}
+\begin{scratch}
+\initmoreblocks{définir \namemoreblocks{carre}}
+\blockpen{stylo en position écriture}
+\blockrepeat{répéter \ovalnum{4} fois}
+{
+\blockmove{avancer de \ovalnum{100} pas}
+\blockmove{tourner \turnleft{} de \ovalnum{90} degrés}
+}
+\blockpen{relever le stylo}
+\end{scratch}
+\end{SideBySideExample}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Insérer du code Python}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+On peut insérer du code (et notamment du code \python) contenu dans un fichier, en utilisant le \jargon{package} \verb!listings!  de la façon suivante :
+
+
+\begin{SideBySideExample}
+\lstinputlisting[language=Python]%, firstline=1, lastline=18]
+{essai.py}
+\end{SideBySideExample}
+
+\begin{Rmq}[]
+La commande \backslash\verb!lstinputlisting! comporte des arguments optionnels tels que \verb!firstline! et \verb!lastline! qui permettent par exemple de sélectionner un bout du code contenu dans le fichier.
+\end{Rmq}

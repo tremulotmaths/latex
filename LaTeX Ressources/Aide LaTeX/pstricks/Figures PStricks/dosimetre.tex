@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{pst-grad,multido}
+\SpecialCoor
+\begin{document}
+\definecolor{LinsenF}{rgb}{0.529,0.808,0.98}
+\psset{unit=0.75}
+\begin{center}
+\begin{pspicture}(-11.5,-6)(6,5.5)
+\psframe(-11.5,-6)(7,5.5)
+\rput(-6.5,0){%
+\begin{psclip}{\pscircle[linewidth=2pt,fillstyle=solid,fillcolor=LinsenF!50](0,0){4.75}}\psline[linecolor=gray](-2.3,-4)(-2.3,4)
+\end{psclip}
+\rput(0,1.25){\Large $\mu$Sv}
+\uput[0](-2.3,-3){Image du fil de quartz}
+\multido{\rA=-4+0.4}{21}{%
+\psline(\rA,-0.15)(\rA,0.15)
+}
+\multido{\rB=-4+2}{5}{%
+\psline[linewidth=1pt](\rB,-0.25)(\rB,0.25)
+}
+\uput[90](-4,0.25){0}
+\uput[90](-2,0.25){50}
+\uput[90](0,0.25){100}
+\uput[90](2,0.25){150}
+\uput[90](4,0.25){200}
+}
+%% Geh\"{a}use
+\pspolygon*(-0.5,5.2)(-0.7,5.2)(-0.7,4.75)(-0.8,4.75)(-0.8,3.4)(-0.7,3.4)(-0.7,-5.5)(-0.3,-5.5)(-0.3,-5.2)(-0.5,-5.2)
+\pspolygon*(0.5,5.2)(0.7,5.2)(0.7,4.75)(0.8,4.75)(0.8,3.4)(0.7,3.4)(0.7,-5.5)(0.3,-5.5)(0.3,-5.2)(0.5,-5.2)
+\pscurve[linewidth=3pt](0.75,4.7)(1.1,5.3)(1.3,5)(0.85,2)
+\psline[linewidth=1pt](-0.7,5.2)(0.7,5.2)
+\psline[linewidth=1pt](-0.7,-5.5)(0.7,-5.5)
+%% Optik
+\pspolygon[linejoin=1,fillstyle=solid,fillcolor=gray](-0.5,5.2)(-0.5,2.8)(-0.35,2.8)(-0.35,1.2)(-0.2,1.2)(-0.2,3)(-0.3,3)(-0.3,4.75)
+\pspolygon[linejoin=1,fillstyle=solid,fillcolor=gray](0.5,5.2)(0.5,2.8)(0.35,2.8)(0.35,1.2)(0.2,1.2)(0.2,3)(0.3,3)(0.3,4.75)
+\psellipse[fillstyle=gradient,gradbegin=white,gradend=LinsenF,gradmidpoint=0.5,gradangle=2](0,4.65)(0.3,0.1)
+\psellipse[fillstyle=gradient,gradbegin=white,gradend=LinsenF,gradmidpoint=0.5,gradangle=2](0,1.2)(0.2,0.1)
+\psline[linewidth=1pt](-0.3,3.15)(0.3,3.15)
+\psline(-0.2,3)(0.2,3)
+%%Federbalg
+\psline(-0.2,-5)(-0.3,-4.8)(-0.2,-4.7)(-0.3,-4.6)(-0.2,-4.5)(-0.3,-4.4)(-0.2,-4.3)(-0.25,-4.2)
+\psframe(-0.25,-4.2)(0.25,-3.9)
+\psline(0.2,-5)(0.3,-4.8)(0.2,-4.7)(0.3,-4.6)(0.2,-4.5)(0.3,-4.4)(0.2,-4.3)(0.25,-4.2)
+\psline(-0.2,-5)(0.2,-5)
+\psframe[fillstyle=solid,fillcolor=gray](-0.5,-5.2)(0.5,-5)
+\psframe[fillstyle=solid,fillcolor=white](-0.25,-5.2)(0.25,-5)
+\psline[linewidth=2pt](0,-5)(0,-3.75)
+%%Ionisationskammer
+\psline(-0.5,-3.8)(0.5,-3.8)
+\pscustom[fillstyle=solid,fillcolor=gray]{%
+\psline(-0.1,0.8)(-0.1,0.5)
+\psarc(-0.1,0.25){0.25}{90}{180}
+\psline(-0.35,0.25)(-0.35,-3.8)
+\psline(-0.5,-3.8)(-0.5,0.8)
+\psline(-0.5,0.8)(-0.1,0.8)
+}
+\pscustom[fillstyle=solid,fillcolor=gray]{%
+\psline(0.1,0.8)(0.1,0.5)
+\psarcn(0.1,0.25){0.25}{90}{0}
+\psline(0.35,0.25)(0.35,-3.8)
+\psline(0.5,-3.8)(0.5,0.8)
+\psline(0.5,0.8)(0.1,0.8)
+}
+\pscurve[linewidth=1.5pt](0.2,-0.2)(0.15,-1.2)(0,-3.6)
+\pscurve[linewidth=1.5pt](0.2,-0.2)(0.3,0.2)(0.1,0.3)(-0.2,-0.8)
+\psline[linewidth=1.5pt](0,-3.6)(-0.25,-3.6)
+\psframe[fillstyle=solid,fillcolor=white](-0.45,-0.8)(0.45,-1.75)
+
+\rput[l](2,4.7){Oculaire}
+\rput[l](2,3.1){R\'{e}ticule gradu\'{e}}
+\rput[l](2,2.3){Optique}
+\rput[l](2,1.2){Objectif}
+\rput[l](2,0.4){Fil de Quartz}
+\rput[l](2,-0.3){Chambre d'ionisation}
+\rput[l](2,-1.3){Isolant}
+\rput[l](2,-2.5){Chambre d'ionisation}
+\rput[l](2,-4.5){Soufflet de chargement}
+%\psgrid
+\end{pspicture}
+\end{center}
+\end{document} 

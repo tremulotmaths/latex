@@ -1,0 +1,130 @@
+\documentclass[10pt,french]{article}
+\input preambule_2013
+\pagestyle{empty}
+
+\renewcommand*\trou[1]{%
+\settowidth\lgtrou{#1}%
+\makebox[2\lgtrou]{\dotfill}}
+
+\begin{document}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,framearc=0.5,fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{
+\parbox[c]{0.5\linewidth}{
+\begin{center}
+\Large\bfseries
+Séance informatique\par
+\uuline{Simulation d'un schéma de Bernoulli}
+\end{center}}}
+\end{center}\bigskip
+
+\textbf{\'Enoncé de départ :}\par
+On lance $4$ fois de suite un dé non pipé à six faces numérotées de $1$ à $6$.\par
+On appelle << succès >> la sortie du chiffre $2$ lors d'un lancer de dé ; on le note $S$.
+
+\subsection*{Réfléchir au problème}
+
+\begin{enumerate}
+    \item Définir, pour ce cas, ce que représente << l'échec >>, noté $E$, lors d'un lancer du dé.\par\bigskip\dotfill
+    \item Quelle est la probabilité de $S$ ? Quelle est la probabilité de $E$ ?\par\bigskip\dotfill
+    \item Les quatre lancers du dé sont-ils indépendants ? Justifier.\par\bigskip\dotfill\par\bigskip\dotfill
+    \item Compléter les phrases suivantes.\par
+    \begin{spacing}{1.75}
+        On répète \trou{$4$} fois de suite, de manière \trou{indépendante} la même expérience :\par \trou{le lancer d'un dé}.\par
+        Chaque expérience n'a que \trou{$2$} issues possibles :
+        \begin{itemize}
+            \item le succès << obtenir \trou{le chiffre $2$} >>, dont la probabilité est égale à \trou{$\frac 16$} ;
+            \item l'échec << obtenir \trou{un chiffre différent de $2$} >>, dont la probabilité est égale à \trou{$\frac 56$}.\par
+            On définit ainsi un \trou{schéma de Bernoulli}.
+        \end{itemize}
+    \end{spacing}
+\end{enumerate}
+\vspace{-1.1cm}
+
+\subsection*{Utilisation du tableur}
+\subsubsection*{Feuille 1}
+\begin{enumerate}
+    \item Sur le tableur, reproduire le tableau suivant :
+        {\small\begin{center}
+        \begin{tabular}{c|c|c|c|}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}}  \\
+            \cline{2-4}
+            \texttt 1 & Lancer \no 1 & \verb!=ALEA.ENTRE.BORNES(1;6)! & \verb!=SI(B1=2;"S";"E")! \\
+            \cline{2-4}
+            \texttt 2 & Lancer \no 2 & &  \\
+            \cline{2-4}
+            \texttt 3 & Lancer \no 3 & &  \\
+            \cline{2-4}
+            \texttt 4 & Lancer \no 4 & &  \\
+            \cline{2-4}
+            \texttt 5 &  & &  \\
+        \end{tabular}
+    \end{center}}
+    \item Que fais la formule en \verb!B1! ? \dotfill\par La recopier jusqu'en \verb!B4!.
+    \item Que fais la formule en \verb!C1! ? \dotfill\par La recopier jusqu'en \verb!C4!.
+    \item Pour compter le nombre total de succès, entrer en \verb!C6! la formule \verb!=NB.SI(C1:C4;"S")!.
+    \item Entrer dans la cellule \verb!D1! la formule \verb!=SI(C1="E";5/6;1/6)! et la recopier vers le bas jusqu'en \verb!D4!.
+    \item Dans la cellule \verb!D6!, écrire la formule \verb!=PRODUIT(D1:D4)!.
+    \item À l'aide d'une phrase et du contexte du problème, donner la signification du résultat affiché en \verb!D6!.\par\bigskip\dotfill\par\bigskip\dotfill
+    \item Appuyer plusieurs fois sur la touche \verb!F9! pour simuler d'autres séries de $4$ lancers du dé.
+\end{enumerate}\clearpage
+
+%%%%%
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,framearc=0.5,fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{
+\parbox[c]{0.5\linewidth}{
+\begin{center}
+\Large\bfseries
+Séance informatique\par
+\uuline{Définir une probabilité à l'aide des fréquences}
+\end{center}}}
+\end{center}\bigskip
+
+\textbf{\'Enoncé de départ :}\par
+On lance un dé non pipé à six faces numérotées de $1$ à $6$.\par
+Si l'on demande à quelqu'un la probabilité d'obtenir le chiffre $1$, il répondra naturellement : << une chance sur six >>.
+
+\subsection*{Qu'est-ce que cela signifie ?}
+
+Dire si les phrases suivantes sont vraies ou fausses :
+\begin{enumerate}
+    \item Je lance le dé 6 fois. J'obtiendrai \textbf{obligatoirement} une fois le chiffre $1$ : V ou F
+    \item Je lance le dé 100 fois. J'obtiendrai \textbf{obligatoirement} au moins une fois le chiffre $1$ : V ou F
+    \item Sur un très grands nombres de lancers (supérieur à 1000), la fréquence d'apparition du chiffre $1$ est environ $\frac 1 6$, soit environ $0,167$ : V ou F
+    \item Je lance le dé 100 fois. Il est possible de ne \textbf{jamais} obtenir le chiffre $1$ : V ou F
+\end{enumerate}
+
+\subsection*{Utilisation du tableur}
+
+\begin{enumerate}
+    \item Sur le tableur, reproduire le tableau suivant :
+        {\small\begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}} & \multicolumn{1}{c}{\texttt{D}} & \multicolumn{1}{c}{\texttt{E}} & \multicolumn{1}{c}{\texttt{F}}  \\
+            \cline{2-7}
+            \texttt 1 & 1 & \verb!=ALEA.ENTRE.BORNES(1;6)! & \verb!=SI(B1=1;1;0)! & \verb!=C1! & \verb!=D1/A1! & \verb!=0,167! \\
+            \cline{2-7}
+            \texttt 2 & 2 & & & \verb!=C2+D1! & &  \\
+            \cline{2-7}
+            \texttt 3 & 3 & & & & &  \\
+        \end{tabular}
+    \end{center}}
+    \item Colonne A : sélectionner les trois premières lignes et faire glisser pour obtenir tous les nombres de $1$ à $\np{2000}$. Cela représente le nombre de lancer effectué.
+    \item Colonne B : recopier la formule jusqu'à \verb!B2000!.
+    \item Colonne C : recopier la formule jusqu'à \verb!C2000!.
+    \item Colonne D : recopier la formule de la cellule \verb!D2! jusqu'à \verb!D2000!.
+    \item Colonne E : recopier la formule jusqu'à \verb!E2000!.
+    \item Colonne F : recopier le nombre $0,167$ jusqu'à la cellule \verb!F2000!
+    \item Construire un graphique en choisissant << Ligne >> pour le type de graphique.\par
+    Les abscisses sont les valeurs de la colonne A.\par
+    Il y a deux séries à dessiner : la colonne E et la colonne F.\par
+    Voilà la forme du graphique qu'il faut obtenir :
+        \[\includegraphics[width=0.8\linewidth]{Proba_Frequence.eps}\]
+    \item Comment interpréter le graphique ?
+\end{enumerate}
+
+
+
+
+\end{document} 

@@ -1,0 +1,77 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreAlgo{i.2}{Inéquations}
+
+\exo
+Une société veut imprimer des livres. La location de la machine revient à \EUR{$750$} par jour et les frais de fabrication s'élèvent à \EUR{$3{,}75$} par livre.\par
+La société souhaite savoir le nombre de livre à imprimer pour que le prix de revient d'un livre soit inférieur ou égal à \EUR{$6$}. Pour cela, elle utilise la formule suivante :
+\[\text{Prix de revient} = \frac{\text{Prix total}}{\text{Nombre total de livres}}\]
+Elle utilise également l'algorithme suivant :
+
+\begin{center}
+\small
+    \psframebox{
+    \parbox{0.5\linewidth}{
+        \textbf{Variables}
+
+            \quad $Livre$ : un entier naturel
+
+            \quad $Total$ : un nombre réel
+            
+            \quad $Revient$ : un nombre réel
+
+        \textbf{Entrée}
+
+            \quad Saisir $Livre$
+
+        \textbf{Traitement}
+
+            \quad Affecter à $Total$ la valeur $750 + 3{,}50 \times Livre$
+
+            \quad Affecter à $Revient$ la valeur $Total/Livre$
+
+        \textbf{Sortie}
+
+            \quad Si $Revient > 6$
+
+                \qquad Alors Afficher "Le prix de revient est trop élevé !"
+            
+                \qquad Sinon Afficher "Le prix de revient est correct !"
+                
+            \quad FinSi
+    }}
+\end{center}
+
+\begin{enumerate}
+    \item Comment la société doit-elle utiliser cet algorithme ?
+    \item Déterminer par le calcul le nombre minimum de livres à imprimer pour répondre aux contraintes énoncées.
+\end{enumerate}
+
+\[*\]
+
+\exo
+Deux chauffeurs de taxi proposent à leurs clients des tarifs différents :
+\begin{description}
+    \item[Chauffeur A :] Une prise en charge de \EUR{$4{,}80$} et un coût supplémentaire de \EUR{$1{,}15$} par kilomètre parcouru.
+    \item[Chauffeur B :] Une prise en charge de \EUR{$3{,}20$} et un coût supplémentaire de \EUR{$1{,}20$} par kilomètre parcouru.
+\end{description}
+
+\begin{enumerate}
+    \item Paulette a besoin d'effectuer un parcours de $15~km$. Quel chauffeur a-t-elle intérêt à choisir ?
+    \item Déterminer les nombres de kilomètres pour lesquels Paulette a intérêt à choisir le chauffeur A. \'Ecrire le résultat sous forme d'un intervalle.
+    \item \'Ecrire un algorithme qui affiche le prix payé à chaque chauffeur en fonction du nombre de kilomètres parcourus.
+    \item Améliorer cet algorithme pour qu'il affiche une phrase déterminant le chauffeur qu'il faut choisir en fonction des kilomètres à parcourir ; par exemple :
+    \begin{center}
+        \texttt{Pour parcourir ... kilomètres, le chauffeur ... coûte moins cher.}
+    \end{center}
+\end{enumerate}
+
+\end{document}

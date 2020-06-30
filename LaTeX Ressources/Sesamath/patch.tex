@@ -1,0 +1,360 @@
+%% ajout 
+
+\newcommand\UniteGras[1]{{\bfseries \boldmath #1}} 
+\newunit{T}{\text{T}}
+\colorlet{couleurProprieteInterieur}{F2}
+\newcommand{\degremm}{\mbox{\degre}}
+
+\renewcommand*\ListeMethodeTitleFont{\fontsize{8}{8.1}%\sffamily
+}
+\colorlet{ListeMethodeTitleColor}{B1}
+\renewcommand*\ListeMethodePageFont{\fontsize{8}{8.1}%\sffamily
+}
+\newcommand*\ListeProprietes[1]{%
+  \psframebox*[fillcolor=TablePropertyTitleTextColor]{%
+    \ProprieteFont 
+    \textcolor{TablePropertyTitleBkgColor}{\MakeUppercase{\bfseries \StringPropriete}~#1}%
+  }%
+} 
+\definecolor{B1prime}                {cmyk}{0.00, 1.00, 0.00, 0.50}
+\definecolor{H1prime}                {cmyk}{0.50, 0.00, 1.00, 0.00}
+
+\makeatletter
+% Définition de couleur et de longueur pour \l@methode
+\colorlet{TriangleMethodeColor}{B2} % inutile pour l'instant
+\def\AfterMethodeVSpace{3pt}
+\def\TriangleMethodeSize{1ex}
+
+% Redéfinition de \l@methode pour le triangle initial
+% et l'espacement vertical entre les méthodes.
+\renewcommand*\l@methode[2]{%
+  \begin{minipage}[b]{\linewidth-1.5cm}
+    \raggedright
+    \ListeMethodeTitleFont
+    \begin{pspicture}(0,0)(\TriangleMethodeSize,\TriangleMethodeSize)
+      \pspolygon*[linecolor=\CorrigeChapterFrameColor]
+                 (0,0)(0,\TriangleMethodeSize)
+                 (\TriangleMethodeSize,\dimexpr\TriangleMethodeSize/2)
+    \end{pspicture}
+    \textcolor{ListeMethodeTitleColor}{#1}%
+    \rdotfill
+  \end{minipage}\kern-0.44em
+  {\ListeMethodePageFont \rdotfill#2\strut}%
+  \par\addvspace{\AfterMethodeVSpace}
+} 
+
+
+\renewcommand*\smc@activite@partie[1][]{%
+  \colorlet{smc@curr@partiecolor}{ActivitePartieColor}%
+  \colorlet{smc@curr@partiebkgcolor}{Blanc}%
+  \let\smc@curr@partiefont\ActivitePartieFont
+  \par\addvspace{\BeforeActivitePartieVSpace}
+  \refstepcounter{partie}%
+  \@ifmtarg{#1}
+    {%
+      \textcolor{ActivitePartieColor}
+                {\ActivitePartieFont \StringPartie{} \thepartie}
+    }
+    {%
+      \textcolor{ActivitePartieColor}
+                {\ActivitePartieFont \StringPartie{} \thepartie{} : #1}
+    }
+  \par\nobreak\addvspace{\AfterActivitePartieVSpace}
+}
+\renewcommand*\smc@exercice@partie[1][]{%
+  \colorlet{smc@curr@partiecolor}{ExercicePartieColor}%
+  \colorlet{smc@curr@partiebkgcolor}{Blanc}%
+  \let\smc@curr@partiefont\ExercicePartieFont
+  \par\addvspace{\BeforeExercicePartieVSpace}
+  \refstepcounter{partie}%
+  \@ifmtarg{#1}
+    {%
+      \textcolor{ExercicePartieColor}
+                {\ExercicePartieFont \textsc{\StringPartie} \Alph{partie}}
+    }
+    {%
+      \textcolor{ExercicePartieColor}
+                {\ExercicePartieFont \textsc{\StringPartie} \Alph{partie} : #1}
+    }
+  \par\nobreak\addvspace{\AfterExercicePartieVSpace}
+}
+\renewcommand*\smc@recreation@partie[1][]{%
+  \colorlet{smc@curr@partiecolor}{RecreationPartieColor}%
+  \colorlet{smc@curr@partiebkgcolor}{Blanc}%
+  \let\smc@curr@partiefont\RecreationPartieFont
+  \par\addvspace{\BeforeRecreationPartieVSpace}
+  \refstepcounter{partie}%
+  \@ifmtarg{#1}
+    {%
+      \textcolor{RecreationPartieColor}
+                {\RecreationPartieFont \StringPartie{} \Alph{partie}}
+    }
+    {%
+      \textcolor{RecreationPartieColor}
+                {\RecreationPartieFont \StringPartie{} \Alph{partie} :}
+      \textcolor{RecreationPartieColor}{\RecreationPartieTitleFont #1}
+    }
+  \par\nobreak\addvspace{\AfterRecreationPartieVSpace}
+}
+\renewcommand\smc@annexe@partie[1][]{%
+  \colorlet{smc@curr@partiecolor}{AnnexePartieColor}%
+  \colorlet{smc@curr@partiebkgcolor}{Blanc}%
+  \let\smc@curr@partiefont\AnnexePartieFont
+  \par\addvspace{\BeforeAnnexePartieVSpace}
+  \refstepcounter{partie}%
+  \@ifmtarg{#1}
+    {%
+      \textcolor{AnnexePartieColor}
+                {\AnnexePartieFont \textsc{\StringPartie} \Alph{partie}}
+    }
+    {%
+      \textcolor{AnnexePartieColor}
+                {\AnnexePartieFont \textsc{\StringPartie} \Alph{partie} : #1}
+    }
+  \par\nobreak\addvspace{\AfterAnnexePartieVSpace}
+} 
+
+
+\renewenvironment{smc@acquisitemize}{%
+  \ifnum\@listdepth=\z@
+    \list{\textcolor{AcquisItemColor}{\footnotesize$\blacktriangleright$}}
+         {\smc@setalllist}%
+  \else
+    \list{\textcolor{AcquisItemColor}{$\bullet$}}
+         {\smc@setalllist}%
+  \fi
+}
+{\endlist} 
+\newcommand\tabX[1][\ht\@arstrutbox,\dp\@arstrutbox]{%
+  \smc@GetVTabX#1,,\@nil
+  \vrule width0pt height\smc@htTabX depth-\smc@dpTabX
+  \pnode(-\tabcolsep,\smc@htTabX){ul} % sup gauche
+  \pnode(-\tabcolsep,\smc@dpTabX){dl} % inf gauche
+  \hspace*{\stretch{1}}%
+  \pnode(\tabcolsep,\smc@htTabX){ur}  % sup droit
+  \pnode(\tabcolsep,\smc@dpTabX){dr}  % inf droit
+  \psline(ul)(dr)
+  \psline(dl)(ur)
+}
+\def\smc@GetVTabX#1,#2,{%
+  \edef\smc@htTabX{\the\dimexpr#1}%
+  \edef\smc@dpTabX{-\the\dimexpr#2}%
+  \smc@gobblenil
+}
+\def\smc@gobblenil#1\@nil{} 
+
+\renewcommand*\QCMautoevaluation[1]{%
+  \def\smc@currpart{QCM}%
+  \par\addvspace{\BeforeQCMAEVSpace}
+  \begingroup
+    \def\FrameSep{0pt}%
+    \edef\FrameArc{\QCMAETitleHeight}%
+    \minipage[b][\QCMAETitleHeight]{\QCMAETitleWidth}%
+      \begin{smc@cadre}[5,0,5,5]{QCMAEFrameColor}%
+        \minipage[b][\QCMAETitleHeight]{\QCMAETitleWidth}%
+          \begin{pspicture}(1pt,0)(\QCMAETitleHeight,\QCMAETitleHeight)
+            \pscircle*[linecolor=QCMAETitleCircle1Color]
+                      (\dimexpr\QCMAETitleHeight/2,
+                       \dimexpr\QCMAETitleHeight/2)
+                      {\dimexpr\QCMAETitleHeight/2}
+            \pscircle*[linecolor=QCMAETitleCircle2Color]
+                      (\dimexpr\QCMAETitleHeight*5/12,
+                       \dimexpr\QCMAETitleHeight*7/12)
+                      {\dimexpr\QCMAETitleHeight*5/12}
+            \pscircle*[linecolor=QCMAETitleCircle3Color]
+                      (\dimexpr\QCMAETitleHeight/3,
+                       \dimexpr\QCMAETitleHeight*2/3)
+                      {\dimexpr\QCMAETitleHeight/3}
+            \rput[Bl](\QCMAETitleLeftSpace,\dimexpr\QCMAETitleHeight/6)
+{\textcolor{QCMAETitleColor}{\QCMAETitleFont\StringQCMAE}}
+          \end{pspicture}%
+        \endminipage
+      \end{smc@cadre}
+    \endminipage
+  \endgroup
+  \hspace*{\stretch{1}}%
+  \begin{minipage}[b]{\QCMAEManuelWidth}
+    \raggedright
+    \QCMAEManuelFont
+    \StringManuel
+    \par\vspace*{\AfterQCMAEManuelVSpace}
+  \end{minipage}%
+  \hspace{\QCMAEManuelRightSpace}%
+  \raisebox{\AfterQCMAEManuelVSpace}
+           {\psscaleboxto(\AELogoManuelWidth,0){\LogoManuel}}%
+  \par\nobreak\vspace{\AfterQCMAETitleVSpace}
+  {\QCMAETextAfterTitleFont #1\par\nobreak}
+  \par\nobreak\addvspace{\AfterQCMAETextVSpace}
+} 
+
+
+\fancypagestyle{annexe}{%
+  \fancyhf{}
+  \fancyhead[LE]{%
+    \smc@headevenannexe{AnnexeHeadFrameColor}%
+  }
+  \fancyhead[RO]{%
+    \smc@headoddannexe{AnnexeHeadFrameColor}
+  }
+  \fancyfoot[LE]{%
+    {\FootAnnexePageFont \thepage}
+    {\FootAnnexeTxtFont \MakeUppercase{\smc@TitleAnnexe}}%
+  }
+  \fancyfoot[RO]{%
+    {\FootAnnexeTxtFont \MakeUppercase{\smc@TitleAnnexe}}
+    {\FootAnnexePageFont \thepage}%
+  }
+}
+
+\definecolor{FootFonctionColor}{cmyk}{0.50, 0.00, 0.00, 0.00}
+\definecolor{FootGeometrieColor}{cmyk}{0.40, 0.40, 0.00, 0.00}
+\definecolor{FootStatistiqueColor}{cmyk}{0.30, 0.48, 0.00, 0.10}
+\definecolor{FootStatistiqueOLDColor}{cmyk}{0.48, 0.30, 0.10, 0.00}
+\definecolor{FootStatistique*Color}{cmyk}{0.20, 0.00, 0.00, 0.00}
+\definecolor{ActiviteFootColor}{cmyk}{0.50, 0.00, 0.25, 0.00}
+\definecolor{CoursFootColor}{cmyk}{0.15, 0.00, 0.00, 0.03}
+\definecolor{ExoBaseFootColor}{cmyk}{0.00, 0.25, 0.50, 0.00}
+\definecolor{ExoApprFootColor}{cmyk}{0.00, 0.25, 0.50, 0.00}
+\colorlet{ConnFootColor}{F2}
+\definecolor{TPFootColor}{cmyk}{0.00, 0.30, 0.00, 0.10}
+\definecolor{RecreationFootColor}{cmyk}{0.20, 0.00, 0.50, 0.05}
+\renewcommand*\smc@themaFColor{%
+  \def\CorrigeChapterFrameColor{PartieFonction}%
+  \def\CorrigeChapterTextColor{Blanc}%
+  \colorlet{ChapterNumFrameColor}{PartieFonction}%
+  \colorlet{FootTitleHeadColor}{PartieFonction}%
+  \colorlet{ChapterTopFrameColor}{A3}%
+  \colorlet{ChapterNumSquare4Color}{A3}%
+  \colorlet{ChapterNumSquare5Color}{PartieFonction}%
+  \colorlet{FirstChapterFootColor}{FootFonctionColor}%
+}
+\renewcommand*\smc@themaGColor{%
+  \def\CorrigeChapterFrameColor{PartieGeometrie}%
+  \def\CorrigeChapterTextColor{Blanc}%
+  \colorlet{ChapterNumFrameColor}{PartieGeometrie}%
+  \colorlet{FootTitleHeadColor}{PartieGeometrie}%
+  \colorlet{ChapterTopFrameColor}{G3}%
+  \colorlet{ChapterNumSquare4Color}{G3}%
+  \colorlet{ChapterNumSquare5Color}{PartieGeometrie}%
+  \colorlet{FirstChapterFootColor}{FootGeometrieColor}%
+}
+\renewcommand*\smc@themaSColor{%
+  \def\CorrigeChapterFrameColor{PartieStatistique}%
+  \def\CorrigeChapterTextColor{Blanc}%
+  \colorlet{ChapterNumFrameColor}{PartieStatistique}%
+  \colorlet{FootTitleHeadColor}{PartieStatistique}%
+  \colorlet{ChapterTopFrameColor}{U2}%
+  \colorlet{ChapterNumSquare4Color}{U2}%
+  \colorlet{ChapterNumSquare5Color}{PartieStatistique}%
+  \colorlet{FirstChapterFootColor}{FootStatistiqueColor}%
+} 
+
+\renewcommand\smc@corrigeautoeval{%
+  \let\itemize\smc@corrAEitemize
+  \let\enditemize\endsmc@corrAEitemize
+  \let\colitemize\smc@AEcolitemize
+  \let\endcolitemize\endsmc@AEcolitemize
+  \let\enumerate\smc@corrAEenumerate
+  \let\endenumerate\endsmc@corrAEenumerate
+  \let\colenumerate\smc@AEcolenumerate
+  \let\endcolenumerate\endsmc@AEcolenumerate
+  \let\partie\smc@nopartie
+  \def\smc@currpart{CorrigeAE}%
+  \def\smc@BeforeCorrige{%
+    \par\addvspace{\BeforeCorrigePartieTitleVSpace}
+    \textcolor{CorrigeAETitleColor}
+              {\CorrigePartieFont \StringAE}
+    \par
+    \def\smc@BeforeCorrige{\par}%
+  }%
+  \colorlet{CorrigeNumExerciceFrameBkg}{J1}%
+  \colorlet{CorrigeNumExerciceFrameTxt}{Blanc}%
+} 
+
+
+% 
+\definecolor{Blanc}             {cmyk}{0.00, 0.00, 0.00, 0.00}
+\definecolor{Gris1}             {cmyk}{0.00, 0.00, 0.00, 0.20}
+\definecolor{Gris2}             {cmyk}{0.00, 0.00, 0.00, 0.40}
+\definecolor{Gris3}             {cmyk}{0.00, 0.00, 0.00, 0.50}
+\definecolor{Noir}              {cmyk}{0.00, 0.00, 0.00, 1.00}
+
+\renewcommand*\ChangeAnnexe[3]{%
+  \colorlet{AnnexeHeadFrameColor}{#1}%
+  \colorlet{AnnexeSectionRuleColor}{#2}%
+  \colorlet{AnnexeItemColor}{#2}%
+  \colorlet{AnnexeExerciceCorrigeNumFrameColor}{#2}
+  \colorlet{AnnexeExerciceNumFrameColor}{#2}
+  \colorlet{AnnexeSectionTitleColor}{#3}%
+  \colorlet{AnnexeExerciceTitleColor}{#3}
+  \colorlet{AnnexeExerciceNumColor}{Blanc}
+}
+\renewcommand*\ExerciceRefMethode[1]{%
+  \begingroup
+  \quad
+  \begin{pspicture}(0,0)(0.8em,1.2ex)
+    \pspolygon*[linewidth=0pt, linecolor=MethodeTitleFrameColor]
+               (0,0)(0,1.2ex)(0.8em,0.6ex)
+  \end{pspicture}~%
+  \psframebox*[fillcolor=ExerciceRefMethodeColor]
+              {%
+                \textcolor{Blanc}{%
+                  {%
+                    \ExerciceRefMethodeFont
+                    \StringMETHODE~\ref{#1}%
+                  }%
+                }%
+              }%
+  \textcolor{Noir}{%
+    {%
+      \normalfont
+      \ExercicePageRefMethodeFont
+      ~p.~\pageref{#1}%
+    }%
+  }%
+  \endgroup
+}
+\renewcommand{\tableau}[1][c]{%
+  \arrayrulecolor{Gris3}%
+  \renewcommand\tabularxcolumn[1]{>{\centering\arraybackslash}m{##1}}%
+  \ifcsname#1tableau\endcsname
+    \expandafter\let\expandafter\smc@next\csname#1tableau\endcsname
+    \expandafter\let\expandafter\endtableau\csname end#1tableau\endcsname
+  \else
+    \ClassError{Sesacah}
+              {Le type de tableau #1 n'existe pas}
+              {Les types possibles sont 't', 'c', 'l', 'cl', 'T', 'C',
+                'L', 'CL' et 'pr'.}%
+    \let\smc@next\ctableau
+    \let\endtableau\endctableau
+  \fi
+  \par\addvspace{\BeforeTableVSpace}
+  \smc@next
+}
+\renewcommand\sudoku[2][\SudokuWidth]{%
+  \begingroup
+    \psset{unit=#1, dimen=middle, linewidth=0.3pt, linecolor=Gris3}
+    \begin{pspicture}(0,0)(10,10)
+      \multido{\n=1+1}{9}{%
+        \rput[B](\n.5,9.25){\symbol{\numexpr 96+\n}}
+        \rput[B](0.5,\dimexpr\n\psyunit-0.75\psyunit)
+                {\symbol{\numexpr 74-\n}}
+      }
+      \def\x{1}\def\y{8}%
+      \let\smc@next\smc@parsesudoku
+      \smc@next#2\@nil\@@nil
+      \psset{linewidth=1.2pt}
+      \multido{\n=0+3,\nn=1+3}{4}{%
+        \psline(1,\n)(10,\n)
+        \psline(\nn,-0.5\pslinewidth)
+               (\nn,\dimexpr 9\psyunit+0.5\pslinewidth)
+      }
+    \end{pspicture}%
+  \endgroup
+} 
+\AtBeginDocument{\def\default@color{cmyk 0 0 0 1}\normalcolor}
+\color{Noir} 
+%\normalcolor
+\makeatother
+
+%%%% fin ajout

@@ -1,0 +1,954 @@
+%\documentclass[a4paper,DIV=12]{scrartcl}
+\documentclass[12pt]{article}
+
+
+\usepackage{fourier}
+\usepackage[latin1]{inputenc}    
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{enumerate} % pour pouvoir changer la numérotation des listes
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx,bm} %bm : pour mettre en gras dans une formule de maths
+
+%packages permettant d'augmenter le nombre de registres de dimension et donc d'éviter les erreurs de compilation dûs aux packages tikz, pstricks and co
+\usepackage{etex}
+
+
+
+%redéfinition de fractions, limites, sommes, intégrales, coefficients binomiaux en displaystyle, limites de suites
+\let\binomOld\binom
+\renewcommand{\binom}{\displaystyle\binomOld}
+\let\fracOld\frac
+\renewcommand{\frac}{\displaystyle\fracOld}
+\let\limOld\lim
+\renewcommand{\lim}{\displaystyle\limOld}
+\newcommand{\limn}{\lim_{n\to +\infty}}
+\newcommand{\limm}{\lim_{x\to -\infty}}
+\newcommand{\limp}{\lim_{x\to +\infty}}
+\newcommand{\limz}{\lim_{x\to 0}}
+\newcommand{\limzm}{\lim_{\substack{x \to 0\\ x < 0}}}
+\newcommand{\limzp}{\lim_{\substack{x \to 0\\ x > 0}}}
+\let\sumOld\sum
+\renewcommand{\sum}{\displaystyle\sumOld}
+\let\intOld\int
+\renewcommand{\int}{\displaystyle\intOld}
+
+%Calligraphie spéciale
+%\usepackage[mathscr]{euscript}
+\usepackage{mathrsfs}
+\newcommand{\scr}{\mathscr}
+
+%ssi
+\newcommand{\lr}{\leftrightarrow}
+\newcommand{\llr}{\longleftrightarrow}
+\newcommand{\Lr}{\Leftrightarrow}
+\newcommand{\LLr}{\LongLeftrightarrow}
+
+%Nombres complexes
+\let\Reold\Re
+\renewcommand{\Re}{~\text{Re}~}
+\let\Imold\Im
+\renewcommand{\Im}{~\text{Im}~}
+
+%style des pages
+\usepackage{fancybox,cancel}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+%redéfinition du style plain
+\fancypagestyle{plain}{%
+\fancyhf{} %vide l'en-tête et le pied de page
+%\fancyfoot[C]{\bfseries \thepage / \pageref{LastPage}} %numéro de la page en gras et centré
+\fancyfoot[C]{\thepage / \pageref{LastPage}} %numéro de la page centré
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.2pt}}
+
+%redéfinition des marges par défaut
+%\usepackage[top=0cm, bottom=3cm, left=1.5cm, right=2cm]{geometry}
+\setlength\paperheight{297mm}
+\setlength\paperwidth{210mm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{-0.5cm}
+\setlength{\topmargin}{-2cm}
+\setlength{\headsep}{0cm}
+\setlength{\headheight}{0.7cm}
+\setlength{\textheight}{25.2cm}
+\setlength{\textwidth}{17cm}
+
+%TABLEAU
+%diminuer la taille des caractères dans un tableau
+%Pour aérer un tableau, il est possible de redéfinir l'espacement entre les lignes d'un tableaux et l'espacement entre les colonnes, par exemple :
+\usepackage{array}
+%\setlength{\tabcolsep}{1cm}
+\renewcommand{\arraystretch}{1.5}
+%colonnes centrées verticalement et horizontalement permettant d'écrire des paragraphes de largeur fixée du type M{3cm}
+\newcolumntype{M}[1]{>{\centering}m{#1}}
+%couleurs cellules, colonnes, lignes
+\usepackage{color,colortbl}
+\usepackage[table]{xcolor}
+
+
+%ALGORITHME avec Algobox
+\usepackage{ucs}
+%\usepackage{xcolor}
+\usepackage{framed}
+\definecolor{fond}{gray}{0.95}
+\newenvironment{cadrecode}{%
+  \def\FrameCommand{{\color[HTML]{888888}\vrule width 3pt}\colorbox{fond}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\usepackage{alltt}
+
+%arbres
+\usepackage{pstricks,pst-plot,pst-text,pst-tree,pstricks-add}
+
+%tabvar %packages à ajouter aux précédents
+\usepackage{pst-eps,pst-fill,pst-node,pst-math}
+%\input tabvar %ajouter le fichier tabvar.tex dans le même dossier que le fichier actuel
+%à utiliser uniquement lors d'un tableau de signes et de variations
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   […]
+%\end{spacing}
+
+%IMAGES
+\usepackage{graphicx} %inclure des graphiques
+\usepackage{picins} %grahique avec texte entourant avec la commande \parpic[r]{\includegraphics[width=5cm]{ex41p218.eps}} par exemple
+\usepackage{caption}
+\usepackage{subfig}
+
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{soul} %pour utiliser \ul pour souligner
+\usepackage{pifont}
+\usepackage{slashbox}
+\usepackage{textcomp}
+\usepackage{pst-plot}
+
+\usepackage[np]{numprint}
+
+
+%QCM
+\usepackage{alterqcm}					%%Permet de créer des QCM
+%\begin{alterqcm}
+%\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+%\end{alterqcm}
+
+
+%ENCADRES
+\usepackage{pstricks}
+\usepackage{pst-grad}
+\usepackage{xkeyval}
+\usepackage{pst-coil}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\usepackage{pst-blur}
+\usepackage{bclogo}
+%doc ici :
+%http://www.tug.org/texlive/Contents/live/texmf-dist/doc/latex/bclogo/bclogo-doc.pdf
+
+%figures tikz
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+%\usepackage{tkz-tab,tkz-fct,tkz-tukey}
+%\usepackage{tkz-euclide}
+%\usetkzobj{all}
+%\usepackage[tikz]{bclogo}
+%\usetikzlibrary{arrows,shadows,decorations.pathmorphing,patterns}
+%\usepackage{bbm,amsthm,tkz-bbpage}
+%\tikzset{every picture/.style={execute at begin picture={\shorthandoff{:;!?};}}}
+
+
+
+%liens hypertexte
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue]{hyperref}
+%\href{mailto:mail@exemple.com}{Mon mail} % Lien email
+%\href{http://exemple.com}{Mon site web}  % Lien web
+%\href{fichier.pdf}{Mon fichier}          % Lien vers un fichier
+
+\newcommand{\euro}{\texteuro{}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+%Ensembles de nombres
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\e}{\mathrm {e}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+
+%Arc de cercles
+\newlength{\longarc}
+\newcommand{\arc}[1]{\settowidth{%
+\longarc}{$#1$}
+\addtolength{\longarc}{-0.5em}%
+\unitlength \longarc \ensuremath{%
+\stackrel{\begin{picture}(1,0.2)
+\qbezier(0,0)(0.5,0.2)(1,0)
+\end{picture}}{#1}}}
+%l'arc AB s'obtient par \arc{AB} en mode mathématiques ou non
+%autre possibilité avec deux lettres : \overset{\displaystyle\frown}{AB}
+
+
+%Repères
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+
+%Symboles Casio dans les programmes
+\usepackage{pifont} % ça c'est pour le retour chariot
+\newcommand{\RetourChariot}{\Pisymbol{psy}{191}}
+
+
+
+
+% Ecrire sur plusieurs colonnes
+\usepackage{multicol}
+\setlength{\columnseprule}{0.5pt}
+%exemple
+%\begin{multicols}{3}[Titre sur une seule colonne.]
+%   3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées
+%\end{multicols}
+%\begin{multicols}{2}[\section{Titre numéroté.}]
+%   blabla sur deux colonnes, c'est plus sérieux. C'est le style qui est généralement utilisé pour écrire des articles.
+%saut de colonne forcé : 
+%\columnbreak
+%djhskjdhjsq
+%sdkksqjhd
+%\end{multicols}
+%Pour ajouter un titre numéroté qui apparaisse sur toute la largeur de la page, il faut utiliser l'option [\section{Titre.}] juste après \begin{multicols}{nb-col}.
+%Remarques :
+%+ Pour qu'une ligne de séparation apparaisse entre les colonnes, il faut utiliser : \setlength{\columnseprule}{1pt}.
+
+%+ Pour redéfinir la largeur de l'espace inter-colonnes, il faut utiliser \setlength{\columnsep}{30pt}.
+
+
+%Texte en filigrane
+
+\usepackage[some]{background}
+\SetBgScale{1} 
+\SetBgContents{\parbox{17cm}{% 
+\fontsize{100}{100}\selectfont OBLIGATOIRE \\[0cm]\rotatebox{180}{}}} \SetBgColor{gray} \SetBgAngle{45} \SetBgOpacity{0.5}
+
+%Filigrane sur tout un document
+
+%\usepackage{draftwatermark}
+%\SetWatermarkLightness{0.5}
+%\SetWatermarkAngle{25}
+%\SetWatermarkScale{2}
+%\SetWatermarkFontSize{2cm}
+%\SetWatermarkText{Texte en filigrane}
+
+%Numérotation des sections
+\renewcommand{\thesection}{\Roman{section}}
+%\renewcommand{\thesubsection}{\thesection .\Alph{subsection}} %lettres majuscules
+\renewcommand{\thesubsubsection}{\thesubsection .\alph{subsubsection}} %lettres minuscules
+
+
+%Permettre la même numérotation beamer
+%\newcounter{MonPetitCompteur}
+%\setbeamertemplate{section in toc}{%
+%\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsectionnumber}}\MaDefTemp%
+%\Roman{MonPetitCompteur} - \inserttocsection\par}
+
+%\setbeamertemplate{subsection in toc}{%
+%\leavevmode\leftskip=1.5em%
+%\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsubsectionnumber}}\MaDefTemp%
+%\arabic{MonPetitCompteur}) \inserttocsubsection\par}
+
+
+%\usepackage{mathtools} %pour l'alignement des termes d'une matrice
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\newcommand{\tete}{
+	{\noindent
+      \textbf{TS 1}     	            %% Auteur
+      \hfill \textbf{Année 2012-2013}   \\  	            	%% Année
+	}
+	%{\noindent
+  %    \url{tremulot.maths@gmail.com}                 	%% Module
+  %    \hfill \textbf{\today}   \\  % Numero de la feuille
+	%}
+	\hrule
+	\begin{center} 
+	\Large \textsc{\textbf{Chapitre 13 : Fluctuation et estimation}}
+	\end{center}
+	\hrule
+	\noindent 
+\medskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête contrôle
+
+\newcommand{\controle}{
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|X|c|}
+%{@{\extracolsep{\fill}} |l c r|}
+		\hline
+		TSTG2 & \centering Contrôle de mathématiques n° 8 (durée : 55 minutes) & Année 2012/2013 \\
+		\hline
+		\multicolumn{3}{|c|}{Mercredi 24 avril} \\
+		\hline
+		\multicolumn{3}{|l|}{NOM, Prénom : \dotfill} \\
+		\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+%\textbf{Sujet B}
+%\end{center}
+%\begin{center}
+\textit{La qualité et la précision de la rédaction seront prises en compte dans l'appréciation des copies.\\ Faites des phrases simples et précices.\\
+Les calculatrices électroniques de poche sont autorisées, conformément à la règlementation en vigueur.}
+\end{center}
+
+\noindent
+%\vspace{1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête DM
+
+\newcommand{\dm}{
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|X|c|}
+%{@{\extracolsep{\fill}} |l c r|}
+		\hline
+		TSTG 2 & \centering Devoir maison de mathématiques n° 7 & Année 2012/2013 \\
+		\hline
+		\multicolumn{3}{|c|}{\`A rendre, sur feuille, au plus tard le 15/05} \\
+		\hline
+		\multicolumn{3}{|l|}{NOM, Prénom : \dotfill} \\
+		\hline
+\end{tabularx}
+\end{center}
+\begin{center}
+\textbf{Vous pouvez poser vos questions dans les commentaires de l'\href{http://www.tremulotmaths.fr/spip.php?article308}{article sur le site}.}
+\end{center}
+\noindent
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%entête bac blanc
+
+\newcommand{\bacblanc}{
+Lycée Jean-Pierre Timbaud \hfill Février 2013
+
+\BgThispage
+
+.\dotfill
+\vspace{2cm}
+\begin{center}
+\textbf{\LARGE{SESSION 2013}}\\
+\vspace{1cm}
+\textbf{\LARGE{BACCALAUR\'EAT G\'EN\'ERAL BLANC}}\\
+\vspace{1cm}
+\textbf{\LARGE{Série SCIENTIFIQUE}}\\
+\vspace{1cm}
+\textbf{\LARGE{MATH\'EMATIQUES}}
+
+\end{center}
+
+\vspace{1cm}
+
+Durée : 4 heures 
+\hfill
+Coefficient 7
+
+\vspace{1cm}
+
+\dotfill
+\begin{center}
+L'usage des calculatrices est autorisé pour cette épreuve.\\
+\end{center}
+\dotfill
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{bf}
+
+Le candidat doit traiter les quatre exercices.\\
+Le candidat est invité à faire figurer sur la copie toute trace de recherche, même incomplète ou non fructueuse, qu'il aura developpée.\\
+\vspace{12pt}
+Il est rappelé que la qualité de la rédaction, la clarté et la précision des raisonnements entreront pour une part importante dans l'appréciation des copies.\\
+\vspace{12pt}
+Dès que le sujet vous est remis, assurez-vous qu'il est complet, que toutes les pages sont imprimées.\\
+Le sujet comporte 5 pages.\\
+
+\end{bf}
+\end{center}
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lmodern}
+%\usepackage[crop=off]{auto-pst-pdf}%compilation automatique en ps, puis pdf
+%\usepackage{ifpdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\tete 		%entête classique
+%\controle		%entête contrôle
+%\dm 		%entête DM
+%\enlargethispage{2cm}
+%\bacblanc 		%entête bac blanc
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage / \pageref{LastPage}}
+%\lfoot{Lycée Jean-Pierre Timbaud}
+%\rfoot{F\'evrier 2013}
+
+%\thispagestyle{empty} %annuler le style pour la page en cours, soit la première page, ici
+
+
+%\title{BACCALAUR\'EAT BLANC}
+%\date{}%supprime la date si on n'entre rien entre les accolades
+
+%\maketitle %impose le style plain à la page
+%\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+
+%Modèle propriété :
+%\fbox{%
+%   \begin{minipage}{\textwidth}
+%   \textbf{\ul{Définition :}} \\
+%   L'ensemble des matrices d'ordre $(n,p)$ à coefficients réels se note $\mathcal{M}_{n,p}(\R)$.
+%   \end{minipage}%
+%}
+
+
+%Autre possibilité avec les packages de la partie ENCADRES
+%\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Théorème}
+%Soit $M$ la matrice de transition d'un graphe probabiliste.
+%Soit $P_0$ la matrice ligne décrivant l'état initial.
+%La matrice ligne $P_n$ décrivant l'état probabiliste à l'étape $n$ vérifie :
+%$\bullet P_{n+1}=P_n\times M$
+%$\bullet P_n=P_0\times M^n$
+%\end{bclogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\parpic[r]{\includegraphics[width=5cm]{fig.eps}}
+
+\section{Introduction}
+
+\subsection{Identification de la situation}
+
+On se situe, dans ce chapitre, dans deux domaines des statistiques, qui sont ceux de \og l'échantillonnage\fg~ et de \og l'estimation\fg~.
+
+Apprenons à reconnaître les différents contextes d'applications.
+
+\medskip
+
+\textbf{\textit{Exemples :}}
+
+On considère deux urnes $U_1$ et $U_2$ contenant chacune un très grand nombre de boules, rouges ou bleues.
+
+\begin{enumerate}
+\item Dans l'urne $U_1$, \textbf{on connaît la proportion $p$ de boules rouges}.
+
+On procède à des tirages avec remise de $n$ boules, et on observe la fréquence d'apparition d'une boule rouge.
+
+Cette fréquence observée appartient \og en général\fg~ à un \og intervalle de fluctuation \fg~ de centre $p$, dont la longueur diminue lorsque $n$ augmente.
+
+Cet intervalle est un \og intervalle de fluctuation \fg~.
+
+On est ici dans le domaine de \textbf{l'échantillonnage} et de l'\textbf{intervalle de fluctuation}.
+
+\item Dans l'urne $U_2$, \textbf{on ignore la proportion de boules rouges}.
+
+En procédant à des tirages avec rmise de $n$ boules, on va essayer d'estimer la proportion $p$ de boules rouges dans l'urne.
+
+Cette estimation se fait au moyen d'un \og intervalle de confiance \fg~.
+
+Cet intervalle dépend d'un coefficient, le \og niveau de confiance\fg~, que l'on attribue à l'estimation.
+
+On est ici dans le domaine de l'\textbf{estimation}, et de l'\textbf{intervalle de confiance}.
+
+\medskip
+
+\begin{alterqcm}
+\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+\end{alterqcm}
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Intervalle de fluctuation ou intervalle de confiance ?}
+
+On s'intéresse à une population, dont on étudie un caractère particulier.
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Deux cas}
+\begin{itemize}
+\item[$\bullet$] \textbf{\'Echantillonnage}
+
+On utilise un \textbf{intervalle de fluctuation} quand :
+	\begin{itemize}
+	\item on \textbf{connaît la proportion} $p$ de présence du caractère étudié dans la population,
+	\item OU, on \textbf{fait une hypothèse sur la valeur de cette proportion} (on est alors dans le cas de la \og prise de décision\fg~ .
+	\end{itemize}
+
+\item[$\bullet$] \textbf{Estimation}
+
+On utilise un \textbf{intervalle de confiance} quand :
+
+on \textbf{ignore la valeur de la proportion} $p$ de présence du caractère dans la population, et on ne formule pas d'hypothèse sur cette valeur.
+\end{itemize}
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Exemples :}}
+\begin{enumerate}
+\item On dispose d'une pièce de monnaie.
+
+Comment décider qu'elle est \og équilibrée\fg~ ou pas ?
+
+On va ici faire l'hypothèse que la fréquence d'apparition de \og Pile\fg~, par exemple, est égale à 0,5, et on va tester cette hypothèse.
+
+On est dans une \textbf{situation d'échantillonnage}.
+
+\item Une usine fabrique des fusées de feux d'artifice.
+
+Sur 100 fusées choisies au hasard à l'issue du processus de fabrication et mises à feu, on trouve 12 fusées qui ne fonctionnent pas.
+
+Comment se faire une idée de la proportion de fusées défectueuses dans la production ?
+
+On est dans une \textbf{situation d'estimation} : on n'a, au départ, aucune idée de la valeur de la proportion étudiée dans la production.
+\end{enumerate}
+
+\medskip
+
+\begin{bclogo}[couleur = blue!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Exercice :}
+
+Un enfant a réalisé $\np{4040}$ lancers d'une pièce de monnaie, et il a obtenu $\np{2048}$ fois le résultat \og Pile\fg~.
+
+Nous allons nous intéresser au problème suivant : \og Peut-on considérer que la pièce utilisée est équilibrée ?\fg~
+
+\begin{enumerate}
+\item Prendre une décision en utilisant l'intervalle de fluctuation au seuil de 95\% sous la forme étudiée en classe de 2\up{nde}.
+\item Reprendre le même travail, en utilisant un intervalle de fluctuation au seuil 95\% obtenu à partir de la loi binomiale vue en classe de 1\up{ère}.
+\end{enumerate}
+\end{bclogo}
+
+
+\newpage
+
+\textbf{\textit{Solution :}}
+
+\begin{enumerate}
+\item En classe de 2\up{nde}, on a vu que pour $n>25$ et $0,2<p<0,8$, l'intervalle $\left[p-\frac{1}{\sqrt{n}};p+\frac{1}{\sqrt{n}}\right]$ constitue un intervalle de fluctuation au seuil 95\%.
+
+Ici, si on appelle $p$ la \og proportion théorique\fg~ de résultats \og Pile\fg~ obtenus sur un très grand nombre de lancers, on veut tester l'hypothèse selon laquelle la pièce est équilibrée, c'est-à-dire l'hypothèse $p=0,5$.
+
+Pour l'échantillon considéré, on a $n=\np{4040}$ ; les conditions d'application sont donc réalisées, et on obtient l'intervalle de fluctuation 
+\[\left[0,5-\frac{1}{\sqrt{\np{4040}}};0,5+\frac{1}{\sqrt{\np{4040}}}\right]\]
+En arrondissant à $10^{-4}$ près, on obtient l'intervalle de fluctuation $I_1=[\np{0,4843};\np{0,5157}]$.
+
+La fréquence observée dans l'échantillon est donnée par :
+\[f=\frac{\np{2048}}{\np{4040}}\approx \np{0,5069}~\text{à}~10^{-4}~\text{près}\]
+
+Ainsi, on a $f\in I_1$, donc on accepte l'hypothèse de pièce équilibrée au seuil de confiance de 95\%.
+
+\item En supposant que la pièce est équilibrée, la variable aléatoire $X$ qui dénombre les résultat \og Pile\fg~ obtenus parmi les $\np{4040}$ lancers réalisés suit une loi binomiale de paramètres $n=\np{4040}$ et $p=0,5$.
+
+On a vu en classe de 1\up{ère} que l'ntervalle de fluctuation à 95\% associé à la variable aléatoire $X$ est l'intervalle $I_2=\left[\frac{k_1}{n};\frac{k_2}{n}\right]$, où $k_1$ est le plus petit entier $k$ vérifiant $P(X\leq k)> 0,025$ et $k_2$ le plus petit entier $k$ vérifiant $P(X\leq k)\geq 0,975$.
+
+On détermine $k_1$ et $k_2$ à l'aide d'un tableur (ou d'une calculatrice...mais le tableau est très long, ici).
+
+On obtient $k_1=\np{1958}$ et $k_2=\np{2082}$, qui donnent comme intervalle de fluctuation :
+\[I_2=\left[\frac{\np{1958}}{\np{4040}};\frac{\np{2082}}{\np{4040}}\right]\]
+soit en arrondissant à $10^{-4}$ près $I_2=[\np{0,4847};\np{0,5153}]$.
+
+La fréquence observée $f\approx \np{0,5069}$ vérifie $f\in I_2$.
+
+On est ici aussi conduit à accepter l'hypothèse de pièce équilibrée au seuil de confiance de 95\%.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Intervalles de fluctuation}
+
+\subsection{Intervalle de fluctuation asymptotique}
+
+On dispose d'un urne contenant un très grand nombre de boules rouges et bleues.
+
+On sait que la proportion de boules rouges dans l'urne est égale à $p=0,4$.
+
+Si on tire, successivement avec remise, $n$ boules dans l'urne ($n$ entier naturel non nul), et si on appelle $X_n$ la variable aléatoire dénombrant les boules rouges tirées, alors $X_n$ suit une loi binomiale $\scr{B}(n;p)$.
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Théorème et définition}
+
+Soit $X_n$ une variable aléatoire suivant une loi binomiale $\scr{B}(n;p)$, et $\alpha$ un réel tel que $0<\alpha<1$.
+
+Si $X$ est une variable aléatoire suivant la loi normale centrée réduite $\scr{N}(0;1)$, on appelle $u_{\alpha}$ l'unique réel tel que :
+\[P(-u_{\alpha}\leq X\leq u_{\alpha})=1-\alpha\]
+\begin{itemize}
+\item[$\bullet$] On appelle $I_n$ l'intervalle :
+\[I_n=\left[p-u_{\alpha}\frac{\sqrt{p(1-p)}}{\sqrt{n}};p+u_{\alpha}\frac{\sqrt{p(1-p}}{\sqrt{n}}\right]\]
+Alors,
+\[\limn P\left(\frac{X_n}{n}\in I_n=1-\alpha\right)\]
+
+\item[$\bullet$] L'intervalle $I_n$ contient la fréquence $F_n=\frac{X_n}{n}$ avec une probabilité qui se rapproche de $1-\alpha$ lorsque $n$ augmente : 
+
+on dit que c'est l'\textbf{intervalle de fluctuation asymptotique de $F_n$ au seuil $1-\alpha$}.
+\end{itemize}
+\end{bclogo}
+
+\bigskip
+
+\begin{bclogo}[couleur = yellow!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Démonstration (exigible) :}
+
+On pose $Z_n=\frac{X_n-np}{\sqrt{np(1-p)}}$ et on applique le théorème de Moivre-Laplace.
+
+Si $X$ suit la loi normale $\scr{N}(0;1)$ : $\limn P\left(Z_n\in [-u_{\alpha};u_{\alpha}]\right)=P(X\in [-u_{\alpha};u_{\alpha}]=1-\alpha$.
+
+Or, $Z_n\in [-u_{\alpha};u_{\alpha}] \Lr -u_{\alpha}\leq \frac{X_n-np}{\sqrt{np(1-p)}}\leq u_{\alpha} \Lr np-u_{\alpha}\sqrt{np(1-p}\leq X_n \leq np+u_{\alpha}\sqrt{np(1-p)}$.
+
+$Z_n\in [-u_{\alpha};u_{\alpha}] \Lr p-u_{\alpha}\frac{\sqrt{p(1-p}}{\sqrt{n}}\leq \frac{X_n}{n}\leq p+u_{\alpha}\frac{\sqrt{p(1-p)}}{\sqrt{n}}$.
+
+Donc, $Z_n\in [-u_{\alpha};u_{\alpha}] \Lr \frac{X_n}{n}\in I_n$.
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Exemple :}}
+
+On tire 50 boules de l'urne décrite ci-dessus, et on souhaite déterminer un intervalle de fluctuation au seuil 0,9 (c'est-à-dire $\alpha=0,1$).
+
+À l'aide de la calculatrice, on trouve 1,645 comme valeur approchée à $10^{-3}$ près de $u_{0,1}$.
+
+On obtient donc comme intervalle de fluctuation :
+\[I_{50}=\left[0,4-u_{0,1}\frac{\sqrt{0,4\times 0,6}}{\sqrt{50}};0,4+u_{0,1}\frac{\sqrt{0,4\times 0,6}}{\sqrt{50}}\right]\]
+soit $I_{50}=[0,286;0,514]$.
+
+Ainsi, en effectuant 50 tirages dans cette urne, la fréquence d'apparition d'une boule rouge est comprise entre 0,28 et 0,514 avec une probabilité d'environ 0,9.
+
+Pour 500 tirages, au même seuil de 0,9, on obtient $I_{500}=[0,364;0,436]$.
+
+\medskip
+
+\textbf{\textit{Remarque :}}
+
+La longueur de l'intervalle a, pour un même seuil, été divisée par plus de 3 en passant de 50 à 500 tirages \quad !!
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Propriété}
+
+L'intervalle de fluctuation asymptotique au seuil de 95\% pour une variable aléatoire $X_n$ suivant une loi binomiale $\scr{B}(n;p)$ est l'intervalle :
+\[I_n=\left[p-1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}};p+1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}}\right]\]
+
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Démonstration :}}
+
+Cette propriété découle de celle vue au chapitre 11 concernant la loi normale.
+
+On a vu en effet que $u_{0,05}\approx 1,96$.
+
+\medskip
+
+\textbf{\textit{Remarque :}}
+
+En majorant $1,96\sqrt{p(1-p)}$ par 1, on retrouve l'intervalle de fluctuation présenté en classe de 2\up{nde}.
+
+La majoration précédente résulta de ce qui suit :
+
+$p(1-p)=-p^2+p$ est un trinôme du second degré.
+
+Il admet un maximum en $p=0,5$, qui est égal à 0,25.
+
+Ainsi, pour tout $p\in [0;1], 0\leq p(1-p)\leq 0,25$.
+
+La fonction racine carrée étant croissante sur $\R_+$, on en déduit : $0\leq \sqrt{p(1-p)}\leq 0,5$, 
+
+puis $0\leq 1,96\sqrt{p(1-p)}\leq 1,95\times 0,5\leq 2\times 0,5=1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exercice}
+
+\begin{bclogo}[couleur = blue!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{\'Enoncé}
+
+Dans un casino, il a été décidé que les \og machines à sous\fg~ doivent être réglées sur une fréquence de gain du joueur de $g=0,06$.
+
+Une fréquence inférieure est supposée faire \og fuir \fg~ le client, et une fréquence supérieure est susceptible de ruiner le casino.
+
+Trois contrôleurs différents vérifient une même machine.
+
+Le premier a joué 50 fois et gagné 2 fois,
+
+le second a joué 120 fois et gagné 14 fois,
+
+le troisième a joué 400 fois et gagné 30 fois.
+
+En utilisant des intervalles de fluctuation asymptotiques au seuil 95\%, examiner dans chaque cas la décision à prendre par le contrôleur, à savoir accepter ou rejeter l'hypothèse $g=0,06$.
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Solution :}}
+
+\begin{itemize}
+\item[$\bullet$] \textbf{Premier contrôleur}
+Le contrôle a porté sur 50 parties, donc $n=50$.
+
+On a bien $n\geq 30$, mais $np=50\times 0,06=3$ et donc $np<5$.
+
+On n'est pas dans les conditions d'application d'un intervalle de fluctuation asymptotique.
+
+Ce contrôle ne peut rien donner de probant en termes de prise de décision.
+
+\item[$\bullet$] \textbf{Deuxième contrôleur}
+
+Le contrôle a porté sur 120 parties, donc $n=120, np=7,2$ et $n(1-p)=112,8$.
+
+Les conditions d'utilisation d'un intervalle de fluctuation asymptotique sont donc réunies.
+
+L'intervalle de fluctuation asymptotique au seuil 95\% pour un échantillon de taille $n=120$ est égal à :
+\[I_{120}=\left[0,06-1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{120}};0,06+1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{120}}\right]\]
+soit en arrondissant les bornes à $10^{-4}$ près : $I_{120}=[\np{0,0175};\np{0,1025}]$.
+
+La fréquence observée par le deuxième contrôleur est $f_2=\frac{14}{120}\approx \np{0,1167}$.
+
+Cette fréquence est à l'extérieur de l'intervalle de fluctuation $I_{120}$, et le second contrôleur est conduit à rejeter l'hypothèse $g=0,06$.
+
+\item[$\bullet$] \textbf{Troisième contrôleur}
+
+La contrôle a porté sur 400 parties, donc $n=400, np=24$ et $n(1-p)=376$.
+
+Les conditions d'utilisation d'un intervalle de fluctuation asymptotique sont donc réunies.
+
+L'intervalle de fluctuation asymptotique au seuil 95\% pour un échantillon de taille $n=400$ est égal à :
+
+\[I_{400}=\left[0,06-1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{400}};0,06+1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{400}}\right]\]
+soit en arrondissant les bornes à $10^{-4}$ près : $I_{400}=[\np{0,0367};\np{0,0833}]$.
+
+La fréquence observée par le deuxième contrôleur est $f_3=\frac{30}{400}= \np{0,075}\in I_{400}$.
+
+Ce dernier est donc amené à accepter l'hypothèse $g=0,06$.
+
+\end{itemize}
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Remarques}
+
+\begin{enumerate}
+\item Pour tester une hypothèse à l'aide d'un intervalle de fluctuation asymptotique, on doit vérifier ses conditions d'utilisation :
+\[n\geq 30, \quad np\geq 5, \quad n(1-p)\geq 5\]
+
+Ces conditions vérifiées, on détermine l'intervalle de fluctuation $I_n$ au seuil demandé (souvent 95\%).
+
+Si la fréquence observée $f$ n'appartient pas à $I_n$, on rejette l'hypothèse.
+
+\item L'intervalle de fluctuation étudié est \og bilatéral\fg~ : on est conduit à rejeter l'hypothèse dans le cas où la fréquence observée est \og trop grande\fg~, ou \og trop petite \fg~.
+\end{enumerate}
+\end{bclogo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\medskip
+\section{Estimation}
+
+\subsection{Notion d'intervalle de confiance}
+
+On dispose d'une urne contenant un très grand nombre de boules rouges et bleues.
+
+On ignore quelle est la proportion $p$ de boules rouges dans l'urne, et rien ne permet de faire une hypothèse sur la valeur de $p$.
+
+L'\og estimation\fg~ consiste à chercher à \og deviner (ou estimer)\fg~, avec un certain niveau de confiance, quelle valeur peut prendre $p$, en s'appuyant sur les informations recueillies en procédant à des tirages au sort aléatoires.
+
+On supposera les trois conditions d'approximation remplies :
+\[n\geq 30; \quad np\geq 5 ; \quad n(1-p)\geq 5\]
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Théorème}
+
+Soit $X_n$ une variable aléatoire suivant une loi binomiale $\scr{B}(n;p)$ où $p$ est la proportion inconnue d'apparition d'un caractère, et $F_n=\frac{X_n}{n}$ la fréquence associée à $X_n$.
+
+Alors, pour $n$ assez grand, $p$ appartient à l'intervalle $\left[F_n-\frac{1}{\sqrt{n}};F_n+\frac{1}{\sqrt{n}}\right]$ avec une probabilité supérieure ou égale à 0,95.
+
+\end{bclogo}
+
+\bigskip
+
+\begin{bclogo}[couleur = yellow!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Démonstration (exigible)}
+
+On sait que $P\left(p-1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}}\leq F_n\leq p+1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}}\right)\approx 0,95$.
+
+Suite à la dernière remarque du II - 1), 
+
+$\left[p-1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}};p+1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}}\right] \subset \left[p-\frac{1}{\sqrt{n}};p+\frac{1}{\sqrt{n}}\right]$.
+
+On a donc : $P\left(p-\frac{1}{\sqrt{n}}\leq F_n\leq p+\frac{1}{\sqrt{n}}\right)\geq 0,95$.
+
+Or, $p-\frac{1}{\sqrt{n}}\leq F_n\leq p+\frac{1}{\sqrt{n}}\Lr -\frac{1}{\sqrt{n}}\leq F_n-p\leq \frac{1}{\sqrt{n}}\Lr -F_n-\frac{1}{\sqrt{n}}\leq -p\leq -F_n+\frac{1}{\sqrt{n}}$
+
+$\Lr F_n-\frac{1}{\sqrt{n}}\leq p\leq F_n+\frac{1}{\sqrt{n}}$.
+
+Ainsi, $P\left(F_n-\frac{1}{\sqrt{n}}\leq p\leq F_n+\frac{1}{\sqrt{n}}\right)\geq 0,95$.
+
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Exemple :}}
+
+Dans l'urne ci-dessus, on réalise un trage de 100 boules.
+
+On obtient 59 rouges et 41 bleues ; la fréquence observée de sortie du rouge est donc 0,59.
+
+L'intervalle $\left[0,59-\frac{1}{\sqrt{100}};0,59+\frac{1}{\sqrt{100}}\right]=[0,49;0,69]$ est un intervalle de confiance de la proportion de boules rouges dans l'urne au niveau de confiance 95\%.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Précision d'une estimation et taille de l'échantillon}
+
+On a vu précédemment qu'en tirant 100 boules de l'urne, l'intervalle de confiance obtenu est de longueur 0,2.
+
+On peut trouver cet intervalle \og trop grand \fg~.
+
+En procédant à un tirage de 400 boules, si $f$ est la fréquence observée de sortie du rouge, on obtient un intervalle de confiance au niveau 95\% égal à :
+\[\left[f-\frac{1}{\sqrt{400}};f+\frac{1}{\sqrt{400}}\right]=[f-0,05;f+0,05]\]
+
+Son amplitude, deux fois moins grande que la précédente, est de 0,1.
+
+Plus généralement, on retiendra :
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{\`A retenir}
+
+Un intervalle de confiance au niveau 95\% est d'amplitude $\frac{2}{\sqrt{n}}$.
+
+Plus la taille de l'échantillon est grande, plus les intervalles de confiance obtenus sont précis.
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Exemple :}}
+
+Pour obtenir un intervalle de confiance d'amplitude inférieure à 0,01 de a proportion de boules rouges dans l'urne, il faut procéder à des tirages de $n$ boules, avec $\frac{2}{\sqrt{n}}\leq 0,01$, soit $\frac{4}{n}\leq 10^{-4}$, ou encore $n  \geq 4\times 10^4$.
+
+Pour obtenir des intervalles de confiance au niveau 0,95 d'amplitude inférieure à 0,01, il fut procéder à au moins \np{40000} tirages...
+
+\subsection{Exercice}
+
+\begin{bclogo}[couleur = blue!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{\'Enoncé}
+
+Une usine fabrique des pièces métalliques, qui son censées résister à certaines contraintes mécaniques.
+
+Le responsable de fabrication souhaite estimer le taux de pièces défectueuses concernant la résistance mécanique dans la production.
+
+
+Pour cela, il utilise la méthode par intervalle e confiance au niveau 95\%, en extrayant au hasard $n$ pièces en fin de production, qui sont soumises à contrainte mécanique jusqu'à la rupture.
+
+En fonction du niveau de confiance à la rupture, on décide de la nature défectueuse ou pas de la pièce.
+
+\begin{enumerate}
+\item Chaque pièce testée étant détruite, le responsable souhaite limiter la taille de l'échantillon testé, tout en ayant un intervalle de confiance de longueur inférieure à 0,1.
+
+Quelle taille d'échantillon peut-on lui conseiller ?
+
+\item Il est finalement décidé de mener l'étude sur 500 pièces ; on en trouve 40 défectueuses.
+
+Quel intervalle de confiance, au niveau de confiance 95 \%, obtient-on ?
+
+\item L'année précédente, à l'issue d'un problème grave de rupture d'une pièce, une large étude avait débouché sur 130 pièces défectueuses dans un échantillon de \np{1000}.
+
+Peut-on supposer que la mise en place de nouvelles procédures de fabrication a vraiment diminué la proportion de pièces défectueuses ?
+\end{enumerate}
+
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Solution :}}
+
+\begin{enumerate}
+ \item La longueur d'un intervalle de confiance à 95 \% est égale à $\frac{2}{\sqrt{n}}$.
+ 
+ On doit donc résoudre l'inéquation : $\frac{2}{\sqrt{n}}\leq 0,1$, soit $\frac{4}{n}\leq 10^{-2}$, ou encore $n\geq \np{400}$.
+ 
+ Pour obtenir un intervalle de confiance de longueur inférieure ou égale à 0,1, il faut prendre $n$ au moins égal à 400.
+ 
+ On peut donc conseiller, pour limiter les coûts de l'étude, de procéder à un tirage de 400 pièces.
+ 
+ \item La fréquence observée est : $f=\frac{40}{500}=0,08$.
+ 
+ L'intervalle de confiance au niveau 95 \% obtenu ici est :
+ \[\left[0,08-\frac{1}{\sqrt{500}};0,08+\frac{1}{\sqrt{500}}\right]\]
+ 
+ En arrondissant les bornes à $10^{-4}$ près, on obtient $I_1=[\np{0,0353};\np{0,1247}]$.
+ 
+ \newpage
+ \item Si on déterminer l'intervalle de confiance à 95 \% correspondant à l'échantillon décrit, on obtient une fréquence observée de 
+ $f'=\frac{130}{\np{1000}}=0,13$, d'où un intervalle de confiance 95 \% égal à :
+ \[\left[0,13-\frac{1}{\sqrt{\np{1000}}};0,13+\frac{1}{\sqrt{\np{1000}}}\right]\]
+ soit en arrondissant les bornes à $10^{-4}$ : $I_2=[\np{0,0984};\np{0,1616}]$.
+ 
+ Les deux intervalles de confiance obtenus, $I_1$ et $I_2$, ne sont pas disjoints ; par exemple, une proportion de 10 \% de pièces défectueuses
+ dans la production est compatible avec les deux intervalles de confiance obtenus.
+ 
+ Malgré les résultats assez différents obtenus par les deux études (fréquences observées de 8 \% et de 13 \% pour les pièces défectueuses), il est possible que la proportion de 
+ pièces défectueuses dans la production n'ait pas changé.
+ 
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{spacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,40 @@
+\vspace*{50\lineskip}
+{\color{MarronLogo}
+\hfill\fontsize{50}{15}\selectfont\bfseries\hminfamily{Conventions}
+\addcontentsline{toc}{chapter}{Conventions}}
+\vspace*{50\lineskip}
+
+
+Afin d'essayer de rendre mes explications les plus claires possibles, il m'a semblé important de mettre en relief certaines parties du texte. Voilà ici la liste des conventions typographiques que j'ai choisies :\bigskip
+
+\begin{description}\itemsep20pt
+    \item[Vocabulaire spécifique :] les termes techniques sont écrits en \textit{italique} les premières fois qu'ils apparaissent et qu'ils sont expliqués. On les retrouve dans l'index de la page \pageref{index-jarg}.
+
+    \item[Informations :] les points d'informations sont signalés à l'aide d'un encadré de couleurs :
+        \begin{info}
+            Mmmmh, voilà une information fort utile.
+        \end{info}
+
+    \item[Les exemples :] les exemples sont encadrés par deux réglures horizontales de couleur et le texte du code est écrit dans une \texttt{fonte à chasse fixe de type machine à écrire}.
+{
+\begin{Verbatim}
+    Exemple intéressant
+\end{Verbatim}
+}
+
+Les lignes sont numérotées et il arrive parfois qu'à gauche du texte du code apparaisse le résultat qui doit apparaître à l'écran après compilation. {\fontfamily{jkpf}\selectfont Le texte du résultat est alors écrit en utilisant une autre police d'écriture légèrement différente de celle des explications du manuel (celle utilisée pour écrire cette phrase).}
+\end{description} \bigskip
+
+{\NewFont
+\begin{SideBySideExample}
+    Exemple \textbf{passionnant !}
+\end{SideBySideExample}
+}\bigskip
+
+\begin{description}
+    \item[Les extensions :] \LaTeX{} est agrémenté de plusieurs milliers d'extensions appelées aussi packages. Le nom des packages commentés dans ce manuel est reporté dans l'index page \pageref{index-pack} et sera écrit en {\small\sffamily \textbf{gras sans empattement}}. Les options seront indiquées avec la \texttt{fonte de type machine à écrire}.
+
+    \item[Les commandes :] une commande est reconnaissable à l'utilisation de la contre-oblique \symbol{92} et la \texttt{fonte de type machine à écrire} sera encore utilisée : \verb!\textbf!. Les commandes sont également reportés dans l'index final.
+
+    \item[Les environnements :] un environnement est un objet particulier de \LaTeX{} et le nom d'un environnement (présent également dans l'index) est écrit en {\small\textit{\textsf{caractères inclinés sans empattement}}}.
+\end{description}

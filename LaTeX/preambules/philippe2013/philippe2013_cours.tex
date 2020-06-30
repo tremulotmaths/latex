@@ -1,0 +1,96 @@
+%___________________________
+%===    Environnements de cours
+%------------------------------------------------------
+
+%___________________________
+%===    Définitions
+%------------------------------------------------------
+\newcounter{defi}[chapter]
+\newenvironment{Defi}[1][]{%
+\refstepcounter{defi}
+\begin{bclogo}[couleurBarre=Orchid,barre=snake,arrondi=0.1,ombre=true,couleurOmbre=Orchid,epOmbre=0.05,noborder=true,logo=\bcinfo]%
+{\normalsize\sffamily\color{Orchid}\underbar{\itshape\textbf{Définition \thedefi}} \itshape{#1}}%
+}
+{
+\end{bclogo}\medskip
+}
+%___________________________
+%===    Propriétés
+%------------------------------------------------------
+\newcounter{propri}[chapter]
+\newenvironment{Prop}[1][]{%
+\refstepcounter{propri}
+\begin{bclogo}[couleurBarre=orange,barre=snake,arrondi=0.1,ombre=true,couleurOmbre=orange,epOmbre=0.05,noborder=true,logo=\bccrayon]%
+{\normalsize\sffamily\color{orange}\underbar{\itshape\textbf{Propriété \thepropri}} \itshape{#1}}%
+}
+{
+\end{bclogo}\medskip
+}
+%___________________________
+%===    Théorèmes
+%------------------------------------------------------
+\newcounter{thm}[chapter]
+\newenvironment{Thm}[1][]{%
+\refstepcounter{thm}
+\begin{bclogo}[couleurBarre=red,barre=snake,arrondi=0.1,ombre=true,couleurOmbre=red,epOmbre=0.05,noborder=true,logo=\bclampe]%
+{\normalsize\sffamily\color{red}\underbar{\itshape\textbf{Théorème \thethm}} \itshape{#1}}%
+}
+{
+\end{bclogo}\medskip
+}
+%___________________________
+%===    Remarques
+%------------------------------------------------------
+\newenvironment{Rmq}[1][]{%
+\begin{bclogo}[barre=snake,arrondi=0.1,ombre=true,couleurOmbre=gray,epOmbre=0.05,noborder=true,logo=\bcloupe]%
+{\normalsize\sffamily\underbar{\itshape\textbf{Remarque#1}}}%
+\itshape
+}
+{
+\end{bclogo}\medskip
+}
+
+%___________________________
+%===    Démonstration
+%------------------------------------------------------
+\newenvironment{Demo}[1][]{%
+\begin{bclogo}[barre=none,noborder=true,logo=\bcpanchant]%
+{\normalsize\sffamily\underbar{\itshape\textbf{Démonstration}}}%
+}
+{
+\strut\hfill$\square$\end{bclogo}\medskip
+}
+
+%___________________________
+%===    Exemples du cours
+%------------------------------------------------------
+\newenvironment{Exemple}[1][]
+{\noindent\sffamily\small\color{gray!125} \textbf{Exemple#1} \textbullet\quad
+\begin{minipage}[t]{0.85\textwidth}
+}
+{\end{minipage}\normalsize\par\medskip}
+
+%___________________________
+%===    Environnements pour les fiches méthodes
+%------------------------------------------------------
+
+\newenvironment{FMDefi}[1][]{%
+\begin{bclogo}[barre=snake,noborder=true,logo=\bcbook,couleurBarre=Orchid]{\fontfamily{pzc}\selectfont \color{Orchid}\underbar{\textbf{Définition}} \itshape{#1}}%
+}
+{
+\end{bclogo}
+}
+
+\newenvironment{FMExo}[1][]{%
+\begin{bclogo}[barre=none,noborder=true,logo=\bccrayon]{{\fontfamily{pzc}\selectfont\underbar{\textbf{Exercice}} \itshape{#1}}}%
+}
+{
+\end{bclogo}
+}
+
+\newenvironment{FMProp}[1][]{%
+\begin{bclogo}[barre=snake,noborder=true,logo=\bclampe,couleurBarre=Orange]{\fontfamily{pzc}\selectfont \color{orange}\underbar{\textbf{Propriété}} \itshape{#1}}%
+}
+{
+\end{bclogo}
+}

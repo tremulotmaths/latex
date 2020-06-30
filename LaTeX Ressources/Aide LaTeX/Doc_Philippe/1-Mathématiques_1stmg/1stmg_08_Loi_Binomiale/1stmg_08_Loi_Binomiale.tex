@@ -1,0 +1,116 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Stats/Probas}
+\renewcommand\MaCouleur{Melon!150}
+
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+
+
+\setcounter{chapter}{7}
+\begin{document}
+\chapter[Loi binomiale]{Probabilités \bsc{ii}\\ Loi binomiale}\label{loi_binomiale}
+
+\section{Compter le nombre de succès dans un schéma de Bernoulli}
+On considère un schéma de Bernoulli de paramètres $n$ et $p$ et de succès $S$.\medskip
+
+\subsection{C{\oe}fficients binomiaux}
+
+\begin{Defi}
+    Soit $n$ un entier naturel et $k$ un entier naturel compris entre $0$ et $n$.\par
+    On considère une expérience aléatoire constituée de la répétition de $n$ épreuves de Bernoulli identiques et indépendantes, représentée par un arbre.\par
+    Le \ipt{c{\oe}fficient binomial} noté $\binom n k$ (lire << $k$ parmi $n$ >> ) est le nombre de chemins de l'arbre réalisant k succès pour les $n$ répétitions de l'épreuve.
+\end{Defi}
+
+\begin{Exemple}[s]
+    Certains \coef binomiaux sont faciles à calculer :
+    \begin{enumerate}
+        \item On réalise $4$ épreuves. Combien de chemins réalisent exactement $1$ succès ? Il y en a $4$ donc $\binom 4 1 = 4$.
+        \item On réalise $100$ épreuves. Combien de chemins réalisent exactement $1$ succès ? Il y en a $100$ donc $\binom{100}{1} = 100$.
+        \item On réalise $18$ épreuves. Combien de chemins réalisent exactement $0$ succès ? Il y en a $1$ donc $\binom{18}{0} = 1$.
+        \item Combien de combinaisons à $6$ nombres différents existent-il avec $49$ nombres différents ?
+    \end{enumerate}
+\end{Exemple}
+
+\begin{Rmq}
+    On réalise $10$ épreuves. Combien de chemins réalisent exactement $6$ succès ?\par
+    On pourrait faire un arbre de probabilité et compter les chemins un par un mais ce serait trop long : l'arbre possède $2^{10} = \np{1024}$ chemins différents !\par
+    On utilise donc la calculatrice pour trouver $210$.
+\end{Rmq}
+
+\subsection{Variable aléatoire}
+
+\begin{Defi}
+    On note $X$ la fonction qui, à chaque issue du schéma de Bernoulli, associe le nombre de succès obtenus.\par
+    On dit que $X$ est la \ipt{variable aléatoire} associé à ce schéma de Bernoulli.
+\end{Defi}
+
+\begin{Rmq}
+    La variable aléatoire $X$ peut donc prendre toutes les valeurs comprises entre $0$ et $n$.
+\end{Rmq}
+
+\begin{Exemple}
+    On lance dix fois un dé non pipé à $6$ faces. On cherche à obtenir le $3$.\par
+    La variable aléatoire $X$ compte le nombre de $3$ obtenus au bout des $10$ lancers. On peut donc avoir $X = 0$, $X = 1$, $\ldots$, $X = 10$.
+\end{Exemple}
+
+\begin{Defi}
+    On appelle \ipt{loi de probabilité} de $X$ la donnée de toutes les probabilités de $X$ résumées dans le tableau ci-dessous.
+    \begin{center}
+        \begin{tabular}{|*{5}{c|}}
+            \hline
+                $k$ & $0$ & $1$ & $\cdots$ & $n$ \\
+            \hline
+                $p_k$ & $p(X = 0)$ & $p(X = 1)$ & $\cdots$ & $p(X = n)$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{Defi}
+
+\begin{Prop}
+    Pour tout entier naturel $k$ tel que $0 \leq k \leq n$, la probabilité $p_k$ que l'événement $S$ soit réalisé exactement $k$ fois à l'issue de $n$ épreuves de Bernoulli indépendantes est donnée par :
+    \[p_k = p(X = k) = \binom n k \times p^k \times (1-p)^{n - k}.\]
+\end{Prop}
+
+\begin{Exemple}
+    On lance un dé à $6$ faces dix fois de suite. Le succès est $S$ : << obtenir le nombre $3$ >> tel que $p(S) = \dfrac 16$. On a donc un schéma de Bernoulli de paramètres $n = 10$ et $p = \frac 1 6$.\par
+    On cherche la probabilité d'obtenir exactement $6$ fois le nombre $3$.\par Autrement dit, on cherche $p(X = 6)$ :
+    \[p(X = 6) = \binom{10}{6} \times \left(\dfrac 1 6\right)^6 \times \left(\dfrac 5 6\right)^4 \approx \np{0,002170635} \approx 0,22\%.\]
+\end{Exemple}
+
+\section{Loi binomiale}
+
+\begin{Defi}
+    On considère un schéma de Bernoulli de paramètres $n$ et $p$ et $X$ la variable aléatoire qui compte le nombre de succès.\par
+    On appelle \ipt{loi binomiale} de paramètres $n$ et $p$ la loi de probabilité, notée $\calig B(n\pv p)$, définie par :
+    \[p(\{X = k\}) = \binom n k \times p^k \times (1-p)^{n - k} \quad \text{pour tout}\quad 0 \leq k \leq n.\]
+    On dit que $X$ suit la loi binomiale.
+\end{Defi}
+
+\begin{Defi}
+    Soit $\Omega$ l'univers associé à une expérience aléatoire.\par
+    On suppose $\Omega$ fini ; on note $n$ le nombre d'éléments de $\Omega$ ($n$ entier naturel non nul).\par
+    On suppose de plus que les $n$ issues $x_1, x_2, \ldots, x_n$ sont des nombres réels et qu'une loi de probabilité est définie sur $\Omega$ ; pour tout entier naturel $i$ compris entre $1$ et $n$, on note $p_i$ la probabilité de l'événement élémentaire $\{x_i\}$.\par
+    L'\ipt{espérance} de la loi de probabilité est le nombre $E$ défini par : \[E = \sum_{i = 1}^n p_i x_i.\]
+\end{Defi}
+
+\begin{Rmq}
+    $\sum_{i = 1}^n p_i = 1$ donc on peut écrire $E = \dfrac{\sum_{i = 1}^n p_i x_i}{\sum_{i = 1}^n p_i}$ et on retrouve la formule d'une moyenne statistique.\par
+    L'espérance d'une loi de probabilité est la valeur que l'on peut espérer obtenir en moyenne \textit{dans le cas d'un grand nombre de répétitions}.
+\end{Rmq}
+
+\begin{Prop}
+    Soit $\calig B(n \pv p)$ la loi binomiale de paramètres $n$ et $p$.\par
+    L'espérance $E$ de $\calig B(n \pv p)$ est $E = np$.
+\end{Prop}
+\end{document}

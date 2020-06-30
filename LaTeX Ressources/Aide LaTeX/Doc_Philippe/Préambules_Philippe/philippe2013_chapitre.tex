@@ -1,0 +1,49 @@
+%===
+%===    Commandes "philippe2013_chapitre" version du 08.07.2013
+%===
+
+%___________________________
+%===    Mise en forme des chapitres
+%------------------------------------------------------
+\newcommand\PartProgramme{Fonctions}
+\newlength\LongueurPartProgramme
+\newcommand\Taille{\LARGE}
+
+\newcommand{\pbs}[1]{\let\tmp\\#1\let\\\tmp}
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+\settowidth{\LongueurPartProgramme}{\Taille\textbf{\PartProgramme}}
+    {\color{\MaCouleur}
+       \vspace*{10\p@}%
+        \begin{minipage}[c]{\textwidth}
+        \rule{\textwidth}{1ex}
+        \par\nobreak
+        \vspace*{15\p@}%
+        \begin{tabular}{@{}>{\pbs{\raggedright}}m{0.16\textwidth}@{}>{\pbs{\raggedleft}}m{0.84\textwidth}@{}}%
+            \bfseries\itshape\fontsize{70}{0}\selectfont\thechapter&
+            \parbox{0.84\textwidth}{\raggedleft\Huge \bfseries #1\par\nobreak}
+         \end{tabular}
+        \par\nobreak
+        \vspace*{15\p@}%
+        \rule{\textwidth}{1ex}
+         \end{minipage}
+        \marginpar{\raisebox{\LongueurPartProgramme}{\rotatebox{-90}{\centering\Taille\uuline{\textbf{\PartProgramme}}}}}
+    \vskip 40\p@}
+  }
+%
+%\renewcommand{\thechapter}{\arabic{chapter}}
+%\edef\PstAtCode{\the\catcode`\@}
+%\catcode`\@=11\relax
+%===
+%\definecolor{\MaCouleur}{rgb}{0.145,0.490,0.882}
+%\newcommand{\pbs}[1]{\let\tmp\\#1\let\\\tmp}
+%%===
+%\def\@makechapterhead#1{\leavevmode\vbox to200pt{%
+%  \begin{tabular}{@{}>{\pbs{\raggedright}}p{\textwidth}@{}}%
+%    \color{\MaCouleur}%
+%    \bfseries\textsc{blabla}\\[-30pt]
+%    \color{\MaCouleur!50}%
+%    \hspace*{2cm}\bfseries\itshape\fontsize{90}{0}\selectfont\thechapter\\[-40pt]
+%    \Huge\bfseries\spaceskip=.5ex #1
+%  \end{tabular}}\par\vspace*{-4cm}}
+%%=== 

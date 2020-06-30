@@ -1,0 +1,49 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+
+\usepackage{docmute}
+
+\pagestyle{empty}
+
+\begin{document}
+
+%_________________________________________
+%===    Page de garde
+%------------------------------------------------------
+
+\frontmatter
+
+\input{2nde_Page_Titre_Exercices}
+
+\pieddepage{}{}{}
+\entete{}{}{}
+
+\mainmatter
+
+\entete{}{{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}}{}
+\pieddepage{}{\color{\MaCouleur}$\stackrel{***}{\thepage}$}{}
+
+%------ Chapitre 01 - Equations, inéquations
+        \input{01_Fiche01_Nombres_(In)equations.tex}\clearpage
+%------ Chapitre 02 - Coordonnées
+        \input{02_Fiche02_Coordonnees.tex}\clearpage
+%------ Chapitre 03 - Généralités sur les fonctions
+        \input{03_Fiche03_Generalites_Fonctions}
+
+\clearpage
+\strut
+\pieddepage{}{}{}
+\entete{}{}{}
+\vspace{\stretch{1}}
+
+\[***\]
+
+\begin{center}
+\'Ecrit par Philippe \bsc{De Sousa}.\par
+Dernière modification le \today.
+\end{center}
+
+\end{document} 

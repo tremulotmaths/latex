@@ -1,0 +1,88 @@
+\documentclass{beamer}
+%Pour la francisation
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[frenchb]{babel}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+\newcommand{\euro}{\texteuro{}}
+
+%Ensembles de nombres
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+%Repères
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+
+%
+\usetheme{Warsaw}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \title{Correction de la question a) de l'ex 24 p 73}
+  \author{D. Trémulot}\institute{Lycée Jean Pierre Timbaud}
+
+  \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+  \titlepage
+  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{frame}
+  \begin{itemize}
+  
+  \item<1-5> $v$ est la suite arithmétique de premier terme $v_0$ telle que $v_1 = 4$ et $v_2=-8$.
+
+  \item<2-5> Notons $a$ la raison de la suite $v$.\\
+On a alors : $v_2=v_1+a$, donc $a=v_2-v_1=-8-4=-12$.
+
+  \item<3-5> Par conséquent, comme $v_1=v_0+a$, on obtient $v_0=v_1-a=4-(-12)=4+12=16$.
+
+  \item<4-5> $v$ est donc la suite arithmétique de premier terme $v_0=16$ et de raison $a=-12$.
+
+  \item<5> Par conséquent, pour tout $n \in \N$ :\\
+$v_n=v_0+n\times a=16+n \times (-12)=-12n+16$
+  
+  \end{itemize}
+  \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\begin{frame}
+	\begin{itemize}
+
+	\item<1-5> Pour tout $n \in \N$ :\\
+$v_n=-12n+16$
+
+	\item<2-5> La somme cherchée est :\\
+$v_0+v_1+v_2+...+v_{48}+v_{49}=50 \times \dfrac{v_0+v_{49}}{2}$
+
+	\item<3-5> Or, $v_{49}=-12\times 49+16=-572$.
+
+	\item<4-5> Donc,
+$v_0+v_1+v_2+...+v_{48}+v_{49}=50 \times \dfrac{16+(-572)}{2}=-13900$
+
+	\item<5> La somme des 50 premiers termes de la suite $v$ vaut $-13900$.
+
+	\end{itemize}
+	\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \end{document}

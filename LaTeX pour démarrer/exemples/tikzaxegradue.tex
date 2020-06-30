@@ -1,0 +1,10 @@
+\begin{center}
+\begin{tikzpicture}[scale=1,line cap=round,line join=round,x=1.0cm]
+\draw[>=stealth,->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
+\draw[{]-]},line width=3pt,color=red] (-2.5,0) -- (3,0);
+\foreach \x in {-5,...,5}
+\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt);
+\foreach \x in {-5,...,5}
+\draw (\x,-7pt) node[below,font=\bfseries] {\x};
+\end{tikzpicture}
+\end{center}

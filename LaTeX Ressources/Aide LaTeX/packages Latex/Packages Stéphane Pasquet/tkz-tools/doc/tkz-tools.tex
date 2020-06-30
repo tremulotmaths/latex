@@ -1,0 +1,225 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+\usepackage{tkz-tools}
+\usepackage{titlesec}
+\usepackage{tabularx}
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{tkz-tools} }\\[3mm]
+{\large Version 1.01 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction}
+
+Tout commença lorsque je lu un article sur l'extension \texttt{pst-geometrictools}; ce fut le déclic. Je cherchai alors l'équivalent sous TiKZ, mais en vain !...
+
+\subsection{Que fait cette extension ?}
+
+Elle permet :
+\begin{itemize}
+\item de dessiner un crayon ;
+\item de dessiner une règle;
+\item de dessiner une équerre.
+\end{itemize}
+
+\subsection{Où mettre ce fichier sty ?}
+
+Je vous conseille, si cela n'est déjà fait, de créer un répertoire personnel dans lequel vous pourrez mettre toutes les extensions téléchargées sur divers sites (comme \texttt{tkz-tools} par exemple). Par exemple, sous Windows :
+\begin{verbatim}
+C:\texmf\tex\latex\personnelles\tkz-tools
+\end{verbatim}
+Le principe est le même sous Linux ou iOS je présume.
+
+N'oubliez-pas de lancer le manager de MikTex (sous windows) et de faire un \og Refresh FNDB \fg{} (ou un \emph{texhash} dans la console, quelle que soit l'OS sous lequel vous travaillez).
+
+\newpage
+
+\subsection{Appel de l'extension}
+
+C'est logique, mais dans le préambule, il faut mettre la ligne suivante :
+
+\begin{tcblisting}{codeTEX,title={Changement de l'extension}}
+\usepackage{tkz-tools}
+\end{tcblisting}
+
+
+\section{Les commandes}
+
+\subsection{La règle graduée : \textbackslash tkzRule}
+
+\begin{tcblisting}{codeTEX,title={Dessiner une règle}}
+\tkzRule[<options>]{coordonnées}
+\end{tcblisting}
+
+\begin{center}
+\begin{tabularx}{0.8\linewidth}{|>{\ttfamily}c|X|}
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Options}\\
+\hline
+angle & par rapport à l'horizontal, en degré. Par défaut : 0.\\
+\hline
+color & couleur de la règle.\\
+\hline
+width & longueur de la règle (en cm).\newline Par défaut : 10.\\
+\hline
+height & hauteur de la règle (en cm).\newline Par défaut : 1.5.\\
+\hline
+opacity & coefficient d'opacité (de transparence).\newline Par défaut : 0.6.\\
+\hline
+delta & marge avant et après les graduations (en cm).\newline Par défaut : 0.3.\\
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Les coordonnées}\\
+\hline
+\multicolumn{2}{|c|}{De la forme : \{x,y\}}\\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{tcblisting}{codeTEX,title={Exemple}}
+\begin{tikzpicture}
+\tkzRule[width=6,height=1,angle=20]{0,0}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\begin{center}
+\begin{tikzpicture}
+\tkzRule[width=6,height=1,angle=20]{0,0}
+\end{tikzpicture}
+\end{center}
+
+\subsection{L'équerre : \textbackslash tkzSquare}
+
+\begin{tcblisting}{codeTEX,title={Dessiner une équerre}}
+\tkzSquare[<options>]{coordonnées}
+\end{tcblisting}
+
+\begin{center}
+\begin{tabularx}{0.8\linewidth}{|>{\ttfamily}c|X|}
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Options}\\
+\hline
+angle & par rapport à l'horizontal, en degré. Par défaut : 0.\\
+\hline
+color & couleur de l'équerre.\\
+\hline
+width & longueur du côté \og horizontal \fg{}  (en cm).\newline Par défaut : 5.\\
+\hline
+height & hauteur de l'équerre (en cm), c'est-à-dire longueur du côté \og vertical \fg.\newline Par défaut : 5.\\
+\hline
+opacity & coefficient d'opacité (de transparence).\newline Par défaut : 0.6.\\
+\hline
+delta & marge avant et après les graduations (en cm).\newline Par défaut : 0.3.\\
+\hline
+Dx, Dy & décalage du vide à l'intérieur de l'équerre (si nécessaire).\\
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Les coordonnées}\\
+\hline
+\multicolumn{2}{|c|}{De la forme : \{x,y\}. Coordonnées de l'angle droit de l'équerre.}\\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{tcblisting}{codeTEX,title={Exemple}}
+\begin{tikzpicture}
+\tkzSquare[width=7,height=5,angle=20]{0,0}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\begin{center}
+\begin{tikzpicture}
+\tkzSquare[width=10,height=5,angle=20]{0,0}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+\subsection{Le crayon de couleur : \textbackslash tkzPen}
+
+\begin{tcblisting}{codeTEX,title={Dessiner un crayon de couleur}}
+\tkzPen[<options>]{coordonnées}
+\end{tcblisting}
+
+\begin{center}
+\begin{tabularx}{0.8\linewidth}{|>{\ttfamily}c|X|}
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Options}\\
+\hline
+angle & par rapport à la verticale, en degré. Par défaut : 0 (donc par défaut, le crayon sera à $90^\circ$ par rapport à l'horizontale).\\
+\hline
+color & couleur de la mine. Par défaut : red.\\
+\hline
+xscale & coefficient permettant de jouer sur la largeur du crayon.\newline Compris entre 0 et 1 (par défaut : 1).\\
+\hline
+yscale & coefficient permettant de jouer sur la longueur du crayon.\newline Compris entre 0 et 1 (par défaut : 1).\\
+\hline
+\hline\rowcolor{gray!10}
+\multicolumn{2}{|c|}{Les coordonnées}\\
+\hline
+\multicolumn{2}{|c|}{De la forme : \{x,y\}. Coordonnées de la mine.}\\
+\hline
+\end{tabularx}
+\end{center}
+
+\begin{tcblisting}{codeTEX,title={Exemple}}
+\begin{tikzpicture}
+\foreach \a/\couleur in 
+{-90/red,-45/yellow,0/blue,45/green,90/purple}
+{
+\tkzPen
+[angle=\a,color=\couleur,xscale=0.5,
+yscale=0.75]{0,0}
+}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\begin{center}
+\begin{tikzpicture}
+\foreach \angle/\couleur in {-90/red,-45/yellow,0/blue,45/green,90/purple}
+{
+\tkzPen[angle=\angle,color=\couleur,xscale=0.5,yscale=0.75]{0,0}
+}
+\end{tikzpicture}
+\end{center}
+
+\section{Historique de l'extension}
+
+\begin{tcolorbox}[histo]
+2017/07/15\\
+2017/07/16
+\tcblower
+Naissance de la version 1.00 avec \textbackslash tkzPen.\\
+v1.01 : \textbackslash tkzRule et \textbackslash tkzSquare.
+\end{tcolorbox}
+
+\end{document}

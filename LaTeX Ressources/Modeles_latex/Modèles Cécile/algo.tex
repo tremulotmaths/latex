@@ -1,0 +1,91 @@
+\documentclass[french,12pt]{report}
+\input{preambule_2014_v2}
+\input{commandes_2014}
+\input{perso_cecile_2014}
+
+%réglages marges
+\geometry{includeheadfoot,headsep=0.2cm,top=0.5cm,bottom=0.8cm,right=1.5cm,left=1.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+
+
+\begin{document}
+
+\ReglePied
+
+\pieddepage{2014-2015 - Classe}{Ch  : Titre}{\thepage / \pageref{LastPage}}
+
+\psframebox[fillstyle=solid,fillcolor= white,linewidth=0.4pt,linecolor=blue,linearc=0.05,cornersize=absolute]{
+\begin{minipage}{17.7cm}
+\begin{center}
+\textcolor{blue}{\Large \textsc{\textbf{}}} \par
+\textcolor{blue}{\Large \textsc{\textbf{}}} \par
+\end{center}
+\end{minipage}
+}
+\bigskip
+
+\'Evidemment, la version la plus simple est celle sans le trait !\bigskip
+
+\begin{center}
+\begin{tabular}{|p{3cm} p{8cm} p{1cm}|}
+\hline
+Variables :         & $a, b$ et $m$ sont des nombres réels.                 & (1)\\
+Initialisation :    & Affecter à $a$ la valeur $0$.                                 & (2) \\
+	                     & Affecter à $b$ la valeur 1.                                     & (3)\\
+Traitement :      & Tant que $b - a > 0,1$                                          &(4)\\
+                         & \qquad Affecter à $m$ la valeur $\dfrac{1}{2}(a + b)$.      & (5)\\
+                         & \qquad Si $f(m) < 1$ alors Affecter à $a$ la valeur $m$.    & (6)\\
+                         & \qquad Sinon Affecter à $b$ la valeur $m$.                      & (7)\\
+                        & \qquad Fin de Si.                                                                & (8)\\
+                        &Fin de Tant que.                                                       &(9)\\
+Sortie :            &Afficher $a$.                                                              &(10)\\
+                        & Afficher $b$.                                                             &(11)\\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+Pour la deuxième possibilité, Tikz vient à notre secours en utilisant la chose suivante :\bigskip
+
+\begin{tikzpicture}[overlay, remember picture]
+    \node[anchor=west] (test-tq) at (0,0) {\psframebox{Tant que}};
+\end{tikzpicture}\vspace*{1cm}
+
+\begin{tikzpicture}[overlay, remember picture]
+    \node[anchor=west] (test-ftq) at (0,0) {\psframebox{Fin Tant que}};
+\end{tikzpicture}
+
+\begin{tikzpicture}[overlay, remember picture]
+    \draw (test-tq.south) -- (test-ftq.north);
+\end{tikzpicture}\bigskip
+
+Ce qui donne dans le tableau :\bigskip
+
+\begin{center}
+\begin{tabular}{|p{3cm} p{8cm} p{1cm}|}
+\hline
+Variables :         & $a, b$ et $m$ sont des nombres réels. & (1)\\
+Initialisation :    & Affecter à $a$ la valeur $0$.  & (2) \\
+	                     & Affecter à $b$ la valeur 1. & (3)\\
+Traitement :      & \begin{tikzpicture}[overlay, remember picture]
+                                \node[anchor=west] (tq) at (0,0) {Tant que $b - a > 0,1$};
+                            \end{tikzpicture}&(4)\\
+                         & \qquad Affecter à $m$ la valeur $\dfrac{1}{2}(a + b)$.& (5)\\
+                         & \qquad Si $f(m) < 1$ alors Affecter à $a$ la valeur $m$.& (6)\\
+                         & \qquad Sinon Affecter à $b$ la valeur $m$. & (7)\\
+                        & \qquad Fin de Si.& (8)\\
+                        &\begin{tikzpicture}[overlay, remember picture]
+                                \node[anchor=west] (ftq) at (0,0) {Fin de Tant que.};
+                            \end{tikzpicture} &(9)\\
+Sortie :            &Afficher $a$.  &(10)\\
+                        & Afficher $b$.   &(11)\\
+\hline
+\end{tabular}
+\end{center}\bigskip
+
+\begin{tikzpicture}[overlay, remember picture]
+    \draw[line width=1pt] ($(tq.south west)+(0.5,0)$) -- ($(ftq.north west)+(0.5,0)$);
+\end{tikzpicture}\bigskip
+
+
+\end{document} 

@@ -1,0 +1,4380 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-courbes}[117/12/2011]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-courbes.sty
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowscourbes}
+\setboolean{windowscourbes}{false}
+\newboolean{xcascourbes}
+\setboolean{xcascourbes}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcascourbes}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowscourbes}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowscourbes}}
+{%
+\ifthenelse{\boolean{xcascourbes}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcascourbes}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+
+\RequirePackage{tabularx}
+\RequirePackage{calc}
+ 
+ 
+\newlength\savedwidthpro
+\newcommand\prohline{\noalign{\global\savedwidthpro\arrayrulewidth
+                                             \global\arrayrulewidth 1pt}%
+                                 \hline
+                                 \noalign{\global\arrayrulewidth\savedwidthpro}}
+
+\newcolumntype{J}{!{\vrule width 1pt}}
+
+\setlength\extrarowheight{4pt}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}  % pour centrer verticalement
+\newcolumntype{C}{>{\centering\arraybackslash}X} % pour centrer horizontalement
+\newcolumntype{D}[1]{JcJC*{#1}{|C} J}
+
+\newlength{\aprotab}
+\newlength{\bprotab}
+\newlength{\cprotab}
+
+\newcommand{\vtabpro}[1]{\rule[-0.9em]{0pt}{1.0ex*\real{#1}}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem enteteMP.cfg enteteTEX.cfg   *.mpx *.giac  XCAS*.mp mptextmp.mp XCAS*.tex XCAS*.cxx *.user}}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Courbe d une fonction
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbefn.cxx}
+Ucourbe(L):={
+local F,f,B;
+local j,dx,nbp,P;
+local xmin,xmax,ymin,ymax,ux,uy,cx,cy,gx,gy;
+local textp,ip,etatc,val;
+local T,N,V,textt;
+local t,a,b,xtmin,xtmax,dt,tmin,tmax,df;
+local li,g,sol,texts;
+local texta,Q,texti,grillage;
+local xg,xd;
+
+F:=L[0];
+
+xmin:=L[1];
+xmax:=L[2];
+ymin:=L[3];
+ymax:=L[4];
+
+ux:=L[5];
+uy:=L[6];
+cx:=L[7];
+cy:=L[8];
+gx:=L[9];
+gy:=L[10];
+
+T:=L[11];
+
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) dashed evenly withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) dashed evenly withcolor gris;
+";
+
+
+f:=unapply(F[0],x);
+df:=unapply(deriver(F[0]),x);
+
+if (size(F)==3) then
+{
+  B:=F[2];
+  xtmin:=max(xmin,B[0]);
+  xtmax:=min(xmax,B[1]);
+}
+else
+{
+  xtmin:=xmin;
+  xtmax:=xmax;
+}
+
+nbp:=200;
+dx:=evalf((xtmax-xtmin)/nbp);
+P:=makemat(0,1,nbp+1);
+
+
+etatc:=0;
+nbc:=0;
+textp:=("");
+
+for (j:=0;j<=nbp;j++)
+{
+  x:=evalf(xtmin+j*dx);
+  if (abs(x)<0.0001) then
+  {
+    x:=0;
+  }
+  val:=f(x);
+  if (abs(val)<0.0001) then
+  {
+    val:=0;
+  } 
+  if ((val>ymin-5) and (val<ymax+5)and (val!=infinity) and (im(val)==0))
+  {
+    if (etatc==0) then
+    {
+      etatc:=1;
+      nbc:=nbc+1;
+      ip:=1;
+      P[0]:=[x,val];     
+      textp:=concat(textp,"P[1]:=("+evalf(x)+","+evalf(val)+");
+"); 
+    }
+    else
+    {
+      P[ip]:=[x,val];
+      ip:=ip+1;
+      textp:=concat(textp,"P["+(ip)+"]:=("+evalf(x)+","+evalf(val)+");
+");     
+    }
+   }
+   else
+   {
+     if (etatc==1) then
+     {
+       etatc:=0;
+       textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+       textp:=concat(textp,""+ip+"");
+       textp:=concat(textp,":
+  ..P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.bp;
+
+");
+     }
+   }
+}
+
+if (etatc==1) then
+{
+  etatc:=0;
+  textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+textp:=concat(textp,""+ip+"");
+textp:=concat(textp,":
+  ..P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.bp;
+
+");
+}
+
+// dessin des extremites
+
+if (size(F)==3) then
+{
+  B:=F[2];
+  if (size(B)==3) then
+  {
+    if ((B[2]=="ff") or (B[2]=="fo")) then
+    {
+      tmin:=f(xtmin);
+      if (abs(tmin)<0.0001) then
+      {
+        tmin:=0;
+      } 
+      textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmin)+","+evalf(tmin)+")placer) withcolor  "+F[1]+";
+");
+    }
+    if ((B[2]=="ff") or (B[2]=="of")) then
+    {
+      tmax:=f(xtmax);
+      if (abs(tmax)<0.0001) then
+      {
+        tmax:=0;
+      }     
+      textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmax)+","+evalf(tmax)+")placer) withcolor  "+F[1]+";
+");
+    }
+  }
+}
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+N:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (N!=0) then
+{
+  for(j:=0;j<=N-1;j++)
+  {
+    V:=T[j];
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+
+
+
+
+////////////////////    grille  ///////////////////////////////////////////////
+
+    if (V[0]=="grille") then
+    {
+      if (V[1]=="millimetre") then
+      {
+        grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.5) withcolor gris_V  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.5)  withcolor gris_V  ;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,1) withcolor gris_III  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,1)  withcolor gris_III  ;
+";
+      }
+      else
+      {
+        colg:="gris";
+        if (V[1]=="plein") then 
+        {
+          typetrace:=" "
+        };
+        if (V[1]=="hachure") then 
+        {
+          typetrace:=" dashed evenly"
+        };
+        if (V[1]=="pointille") then 
+        {
+          typetrace:=" dashed withdots withpen pencircle scaled 1.2bp"
+        };
+        if (size(V)==3) then
+        {
+          colg:=V[2]
+        };
+        grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) withcolor "+colg+typetrace+";
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) withcolor "+colg+typetrace+";";
+     }
+   };
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+    if (V[0]=="tangente") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Tangente %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=V[1];
+      a:=df(t);
+      dt:=V[5]; 
+      xtmin:=evalf(t-dt);
+      xtmax:=evalf(t+dt);   
+      tmin:=evalf(a*(xtmin-t)+f(t));
+      if (abs(tmin)<0.0001) then
+      {
+        tmin:=0;
+      }   
+      tmax:=evalf(a*(xtmax-t)+f(t));
+      if (abs(tmax)<0.0001) then
+      {
+        tmax:=0;
+      }  
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      }        
+      textt:=concat(textt,"drawdblarrow ("+xtmin+","+tmin+") placer--("+xtmax+","+tmax+") placer withcolor "+V[4]+";
+");
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+t+","+evalf(val)+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+t+","+evalf(f(t))+") placer shifted (-0.1cm,0)--("+t+","+evalf(val)+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+t+","+evalf(f(t))+") placer shifted (0,-0.1cm)--("+t+","+evalf(val)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      if (size(V)==7) then
+      {
+        if ((V[6,0]=="x") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+t+",0) placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (f(t)>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" $"+latex(t)+"$ \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" $"+latex(t)+"$ \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (f(t)>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[6,1]+" \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[6,1]+" \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[6,0]=="y") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+evalf(val)+") placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" $"+latex(simplifier(f(t)))+"$ \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\" $"+latex(simplifier(f(t)))+"$ \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[6,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[6,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point sur courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      }        
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+t+","+evalf(val)+") placer) withcolor "+V[4]+";
+"); 
+      textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (-0.1cm,0)--("+t+","+evalf(val)+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+          textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (0,-0.1cm)--("+t+","+evalf(val)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");    
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+t+",0) placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1])+" $\"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(V[1])+" $\"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[5,1]+" \"),("+t+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+evalf(val)+") placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(evalf(val))+" $\"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+latex(evalf(val))+" $\"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[5,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+xtmin+","+tmin+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (-0.1cm,0)--("+xtmin+","+tmin+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (0,-0.1cm)--("+xtmin+","+evalf(tmin)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+xtmin+",0) placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          
+          if (size(V[5])==1) then
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+tmin+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="droite-verti") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Droite verticale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      textt:=concat(textt,"draw ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[2]+";
+");
+
+    }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-verti") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote verticale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"drawdblarrow ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[3]+";
+");
+        textt:=concat(textt,"drawdblarrow ("+t+","+ymin+")placer shifted(0,1.1*ahlength)--("+t+","+ymax+") placer shifted(0,-1.1*ahlength) withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"drawarrow ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+t+","+ymin+")placer--("+t+","+ymax+") placer shifted(0,-1.1*ahlength) withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"drawarrow ("+t+","+ymax+") placer--("+t+","+ymin+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+t+","+ymax+")placer--("+t+","+ymin+") placer shifted(0,1.1*ahlength) withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-hori") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote horizontale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"drawdblarrow ("+xmin+","+t+") placer--("+xmax+","+t+") placer withcolor "+V[3]+";
+");
+        textt:=concat(textt,"drawdblarrow ("+xmin+","+t+")placer shifted(1.1*ahlength,0)--("+xmax+","+t+") placer shifted(-1.1*ahlength,0) withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"drawarrow ("+xmin+","+t+") placer--("+xmax+","+t+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+xmin+","+t+")placer--("+xmax+","+t+") placer shifted(-1.1*ahlength,0) withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"drawarrow ("+xmax+","+t+") placer--("+xmin+","+t+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+xmax+","+t+")placer--("+xmin+","+t+") placer shifted(1.1*ahlength,0) withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-obli") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote oblique %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      g:=unapply(V[1],x);
+      tmin:=evalf(g(xmin));
+
+      // test de la borne gauche
+      if (tmin<ymin) then
+      {
+        sol:=solve(g(x)=ymin,x);
+        xtmin:=sol[0];
+      }
+      if ((tmin>=ymin)and(tmin<=ymax)) then
+      {
+        xtmin:=xmin;
+      }
+      if (tmin>ymax) then
+      {
+        sol:=solve(g(x)=ymax,x);
+        xtmin:=sol[0];
+      }
+      tmax:=evalf(g(xmax));      
+      // test de la borne droite
+      if (tmax<ymin) then
+      {
+        sol:=solve(g(x)=ymin,x);
+        xtmax:=sol[0];
+      }
+      if ((tmax>=ymin)and(tmax<=ymax)) then
+      {
+        xtmax:=xmax;
+      }
+      if (tmax>ymax) then
+      {
+        sol:=solve(g(x)=ymax,x);
+        xtmax:=sol[0];
+      }
+      xtmin:=evalf(xtmin);       
+      xtmax:=evalf(xtmax);    
+      tmin:=evalf(g(xtmin));
+      if (abs(tmin)<0.0001) then
+      {
+        tmin:=0;
+      }      
+      tmax:=evalf(g(xtmax));
+      if (abs(tmax)<0.0001) then
+      {
+        tmax:=0;
+      }      
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"
+a:=("+xtmin+","+tmin+") placer;
+b:=("+xtmax+","+tmax+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;
+d:=a-(a-b)/abs(a-b)*1.1*ahlength;   
+drawdblarrow a--b withcolor "+V[3]+";
+drawdblarrow d--c withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"
+a:=("+xtmin+","+tmin+") placer;
+b:=("+xtmax+","+tmax+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;  
+drawarrow a--b withcolor "+V[3]+";
+drawarrow a--c withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"
+a:=("+xtmax+","+tmax+") placer;
+b:=("+xtmin+","+tmin+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;  
+drawarrow a--b withcolor "+V[3]+";
+drawarrow a--c withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte lie a la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=V[1];
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      } 
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+evalf(t)+","+evalf(val)+") placer);
+");
+    }  
+
+   
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") placer);
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax) placer shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="aire-sous-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Aire sous la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1]);
+      xtmax:=evalf(V[2]);
+      texta:=("");
+      nbp:=50;
+      dx:=evalf((xtmax-xtmin)/nbp);
+      for (k:=0;k<=nbp;k++)
+      {
+        x:=evalf(xtmin+k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        } 
+        val:=f(x);
+        if (abs(val)<0.0001) then
+        {
+          val:=0;
+        }   
+        texta:=concat(texta,"P["+(k+1)+"]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      }
+ 
+      textt:=concat(textt,texta);
+      if (size(V)==4) then
+      {
+         textt:=concat(textt,"aire:=
+("+xtmin+",0) placer--P[1] placer
+for i:=2 upto 51:
+  ..P[i] placer
+endfor
+--("+xtmax+",0) placer --cycle;
+fillcolor:=1.3"+V[3]+";
+transparence aire;
+draw aire;
+");
+     }
+     else
+     {
+        textt:=concat(textt,"aire:=
+("+xtmin+",0) placer--P[1] placer
+for i:=2 upto 51:
+  ..P[i] placer
+endfor
+--("+xtmax+",0) placer --cycle;
+draw hachurage(aire,30,4mm,0)"+V[3]+";
+draw aire;
+");
+     }
+
+
+
+ 
+    }      
+   
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="base") then      
+    {
+       textt:=concat(textt,"
+label.bot(TEX(\"$\\vec{\\imath}$\"),(0.5,0)placer);
+drawarrow (0,0)placer--(1,0)placer;
+label.lft(TEX(\"$\\vec{\\jmath}$\"),(0,0.5)placer);
+drawarrow (0,0)placer--(0,1)placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+")
+    };
+
+
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="riemann") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% somme de Riemann %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1]);
+      xtmax:=evalf(V[2]);
+      texta:=("");    
+      nbp:=V[3];
+      Q:=makemat(0,1,nbp);
+      dx:=evalf((xtmax-xtmin)/nbp);
+      for (k:=0;k<nbp;k++)
+      {
+        x:=evalf(xtmin+k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        }
+        if (V[4]=="min") then
+        {
+          if (f(x)<=f(x+dx)) then
+          {
+            tmin:=f(x);
+          }
+          else
+          {
+            tmin:=f(x+dx);
+          }
+        }
+        if (V[4]=="max") then
+        {
+          if (f(x)>=f(x+dx)) then
+          {
+            tmin:=f(x);
+          }
+          else
+          {
+            tmin:=f(x+dx);
+          }
+        } 
+        if (V[4]=="centre") then
+        {
+          tmin:=(f(x)+f(x+dx))/2
+        } 
+        tmin:=evalf(tmin);
+        if (abs(tmin)<0.0001) then
+        {
+          tmin:=0;
+        } 
+        Q[k]:=tmin;
+      }
+      textt:=concat(textt,"aire:=("+xtmin+",0) placer");
+      for (k:=0;k<nbp;k++)
+      {
+        xg:=xtmin+k*dx;
+        if (abs(xg)<0.0001) then
+        {
+          xg:=0;
+        }
+        xd:=xtmin+(k+1)*dx;
+        if (abs(xd)<0.0001) then
+        {
+          xd:=0;
+        }
+        textt:=concat(textt,"--("+xg+","+Q[k]+") placer--("+xd+","+Q[k]+") placer");
+      }
+      if (size(V)==6) then
+      {
+         textt:=concat(textt,"--("+(xtmax)+",0) placer--cycle;
+fillcolor:=1.3"+V[5]+";
+transparence aire;
+draw aire;      
+");
+      }
+      else
+      {
+         textt:=concat(textt,"--("+(xtmax)+",0) placer--cycle;
+draw hachurage(aire,30,4mm,0)"+V[5]+";
+draw aire;      
+");
+      }   
+      for (k:=1;k<nbp;k++)
+      {
+        xg:=xtmin+k*dx;
+        if (abs(xg)<0.0001) then
+        {
+          xg:=0;
+        }
+        textt:=concat(textt,"draw("+xg+",0) placer--("+xg+","+Q[k]+") placer;
+");
+      }
+     }      
+   
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+numeric carx,cary,gradx,grady;
+xmin:="+xmin+";
+xmax:="+xmax+";
+ymin:="+ymin+";
+ymax:="+ymax+";
+dx:=1cm/"+ux+";
+dy:=1cm/"+uy+";
+carx:="+cx+";
+cary:="+cy+";
+gradx:="+gx+";
+grady:="+gy+";
+
+pair a,b,c,d;
+path aire;
+
+
+beginfig(0);
+
+
+
+"+grillage+"
+
+
+
+draw(xmin,ymin) placer--(xmin,ymax) placer --(xmax,ymax) placer --(xmax,ymin) placer --cycle withpen pencircle scaled 1bp withcolor gris;
+
+draw(xmin,0) placer--(xmax,0) placer;
+draw(0,ymin) placer--(0,ymax) placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+
+
+pair P[];
+
+"+textp+"
+
+
+"+textt+"
+
+path limite;
+limite:=(xmin*dx,ymin*dy)--(xmax*dx,ymin*dy)--(xmax*dx,ymax*dy)--(xmin*dx,ymax*dy)--cycle;
+clip currentpicture to limite;
+
+graduationstatx.bot(xmin,xmax,ymin,ymax,dx,dy,carx);
+graduationstaty.lft(xmin,xmax,ymin,ymax,dx,dy,cary);
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) placer shifted (0,0.1cm) --(xmax,ymax) placer shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) placer shifted (0,1.3cm)--(xmax,ymax) placer shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbefn.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCAScourbefn.cxx");
+Sortie:=fopen("XCAScourbefn.mp");
+donnees:=read("XCAScourbefn.user");
+Resultat:=string("Ucourbe(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptucourbe}
+\newcommand{\cb}{\theCptucourbe}
+%% \cb change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbefn}[1]
+{\setcounter{Cptucourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScourbefn.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScourbefn.mp}
+\executGiacmp{XCAScourbefn.giac}
+\IfFileExists{\nomtravail_courbefn\cb.mp}{\immediate\write18{\rem \nomtravail_courbefn\cb.mp}}{}
+\immediate\write18{\cat XCAScourbefn.mp >> \nomtravail_courbefn\cb.mp}
+\immediate\write18{mpost \nomtravail_courbefn\cb.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_courbefn\cb.mp}{\immediate\write18{mpost \nomtravail_courbefn\cb.mp}}{% 
+\PackageError{pro-courbes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_courbefn\cb.mp ou bien disposer de XCas.}}}
+\begin{center}
+  \includegraphics{\nomtravail_courbefn\cb.0}
+\end{center}
+%\stepcounter{Cptucourbe}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbefn*}[1]
+{\setcounter{Cptucourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScourbefn.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_courbefn\cb.0}
+\end{center}
+%\stepcounter{Cptucourbe}
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Tableau de valeurs
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStableval.cxx}
+Tableval(L):={
+local Nomx,Nomf,f,typtab,vdebut,vfin,paas,typval;
+local N,j,val,ff,textx,textff,texti,textf;
+local X,precision,larg;
+maxl:=0;
+vtabB:=4;
+vtabH:=4;
+Nomx:=L[0,0];
+Nomf:=L[0,1];
+f:=L[0,2];
+ff:=unapply(f,x);
+typtab:=L[1,0];
+typval:=L[2,0];
+if (typval=="arrondi") then
+{
+  precision:=L[2,1]:;
+}
+
+//-----------------------------------------auto
+if (typtab=="auto") then
+{
+	vdebut:=L[1,1];
+	vfin:=L[1,2];
+  	paas:=L[1,3];
+	if(type(paas)==DOM_RAT) then {vtabH:=4};
+  	N:=(vfin-vdebut)/paas;
+
+  	textx:=("\\vtabpro{"+vtabH+"} "+Nomx+" & ");
+  	for(j:=0;j<N;j++)
+  	{
+    	val:=vdebut+j*paas;
+		maxl:=max(maxl,size(string(val)));
+		maxl:=max(maxl,4);
+		if(type(paas)==DOM_FLOAT or type(vdebut)==DOM_FLOAT)
+		{
+ 			textx:=concat(textx,"$"+round(val,precision)+"$ & ");
+		}
+		else
+		{
+			maxl:=max(maxl,size(string(val)));
+    		textx:=concat(textx,"$"+latex(simplifier(val))+"$ & ");
+  		}
+  	}
+	if(type(paas)==DOM_FLOAT or type(vfin)==DOM_FLOAT)
+	{
+		maxl:=max(maxl,size(string(vfin)));
+ 		textx:=concat(textx,"$"+round(vfin,precision)+"$ \\\\ ");
+	}
+	else
+	{  
+		textx:=concat(textx,"$"+latex(simplifier(vfin))+"$ \\\\ ");
+	}
+	//----------------------auto et exact
+ 	if (typval=="exact") then
+ 	{
+		for(j:=0;j<N;j++)
+		{
+			if(type(ff(val))==DOM_RAT)then{vtabB:=4};
+		}
+	};
+
+
+  	textff:=("\\vtabpro{"+vtabB+"} "+Nomf+" & ");
+  	for(j:=0;j<N;j++)
+  	{
+    	val:=vdebut+j*paas;maxl:=max(maxl,size(string(val)));
+    	if (typval=="exact") then
+    	{
+    		maxl:=max(maxl,size(string(simplifier(ff(val)))));
+      		if(type(ff(val))==DOM_RAT)then{vtabB:=4};
+      		textff:=concat(textff,"$"+latex(simplifier(ff(val)))+"$ & ");
+    	}
+    	if (typval=="arrondi") then
+    	{
+    		maxl:=max(maxl,size(string(round(ff(val),precision))));
+       		textff:=concat(textff,"$"+round(ff(val),precision)+"$ & ");
+    	}
+    	if (typval=="vide") then
+    	{
+    		maxl:=max(maxl,size(L[2,1]));
+       		textff:=concat(textff,"\\phantom{"+L[2,1]+"} & ");
+    	}
+  	}
+  	
+  	
+  	if (typval=="exact") then
+  	{
+    	textff:=concat(textff,"$"+latex(simplifier(ff(vfin)))+"$ \\\\ ");
+  	}
+  	if (typval=="arrondi") then
+  	{
+  		maxl:=max(maxl,size(string(round(ff(vfin),precision))));
+    	textff:=concat(textff,"$"+round(ff(vfin),precision)+"$ \\\\ ");
+  	}
+  	if (typval=="vide") then
+  	{
+  		maxl:=max(maxl,size(L[2,1]));
+     	textff:=concat(textff,"\\phantom{"+L[2,1]+"} \\\\ ");
+  	}
+}
+//---------------------------------manuel
+else
+{
+  	X:=tail(L[1]);
+  	N:=size(X);
+ 	if (typval=="exact") then
+ 	{
+		for(j:=0;j<N;j++)
+		{
+			if(type(ff(X[j]))==DOM_RAT)then{vtabB:=4};
+		}
+	};
+
+
+	for(j:=0;j<N;j++)
+	{
+		if(type(X[j])==DOM_RAT)then{vtabB:=4};
+	};
+
+	textx:=("\\vtabpro{"+vtabH+"} "+Nomx+" & ");
+	for(j:=0;j<N-1;j++)
+	{
+		val:=X[j];
+		maxl:=max(maxl,size(string(val)));
+		maxl:=max(maxl,4);
+		if(type(val)==DOM_RAT)then{vtabH:=4};
+    
+    	textx:=concat(textx,"$"+latex(simplifier(val))+"$ & ");
+	}
+	textx:=concat(textx,"$"+latex(simplifier(X[N-1]))+"$ \\\\ ");
+	maxl:=max(maxl,size(string(X[N-1])));
+	textff:=("\\vtabpro{"+vtabB+"} "+Nomf+" & ");
+	for(j:=0;j<N-1;j++)
+	{
+    	val:=X[j];
+		maxl:=max(maxl,size(string(ff(val))));
+    	if (typval=="exact") then
+    	{
+    		if(type(ff(val))==DOM_RAT)then{vtabH:=4};
+      		textff:=concat(textff,"$"+latex(simplifier(ff(val)))+"$ & ");
+    	}
+    	if (typval=="arrondi") then
+    	{
+    		maxl:=max(maxl,size(string(round(ff(val),precision))));
+       		textff:=concat(textff,"$"+round(ff(val),precision)+"$ & ");
+    	}
+    	if (typval=="vide") then
+    	{ 
+    		maxl:=max(maxl,size(L[2,1]));
+       		textff:=concat(textff,"\\phantom{"+L[2,1]+"} & ");
+    	}
+	}
+
+	maxl:=max(maxl,size(string(X[N-1])));
+
+	if (typval=="exact") then
+	{
+		maxl:=max(maxl,size(string(simplifier(ff(X[N-1])))));
+    	textff:=concat(textff,"$"+latex(simplifier(ff(X[N-1])))+"$ \\\\ ");
+	}
+  
+	if (typval=="arrondi") then
+	{
+		maxl:=max(maxl,size(string(round(ff(X[N-1]),precision))));
+    	textff:=concat(textff,"$"+round(ff(X[N-1]),precision)+"$ \\\\ ");
+	}
+  
+	if (typval=="vide") then
+	{ 
+		maxl:=max(maxl,size(L[2,1]));
+    	textff:=concat(textff,"\\phantom{"+L[2,1]+"} \\\\ ");
+	}
+  
+	N:=N-1;
+
+}
+
+
+texti:=" 
+
+\\hline
+
+";
+
+textf:=" 
+
+\\prohline
+
+\\end{tabularx} 
+\\end{center}
+\\renewcommand{\\arraystretch}{1.}
+";
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+if(typtab=="manuel"){
+for(j:=0;j<N;j++){
+if(type(X[j])==DOM_RAT or type(X[j])==DOM_SYMBOLIC )then{maxl:=min(maxl,6)};
+};}
+
+if(typval=="exact"){maxl:=min(maxl,6)};
+largt:=evalf((exact(N+1))*(maxl)+4);
+if(N!=floor(N)){N:=floor(N)+1};
+
+I:="
+
+%\\renewcommand{\\arraystretch}{1.5}
+
+
+\\setlength{\\aprotab}{"+evalf(largt)+"em}
+\\setlength{\\bprotab}{\\linewidth}
+\\ifthenelse{\\lengthtest{\\aprotab<\\bprotab}}{\\setlength{\\cprotab}{"+largt+"em}}{\\setlength{\\cprotab}{\\linewidth}}
+
+\\begin{center}
+\\begin{tabularx}{\\cprotab}{D{"+exact(N)+"}}
+
+\\prohline
+
+";
+
+I:=concat(I,textx);
+I:=concat(I,texti);
+I:=concat(I,textff);
+I:=concat(I,textf);
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAStableval.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCAStableval.cxx");
+Sortie:=fopen("XCAStableval.tex");
+donnees:=read("XCAStableval.user");
+Resultat:=string("Tableval(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cpttableval}
+\newcommand{\tbv}{\theCpttableval}
+%% \tbv change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-tableval}[1]
+{\setcounter{Cpttableval}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStableval.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAStableval.tex}
+\executGiacmp{XCAStableval.giac}
+\IfFileExists{\nomtravail_tableval\tbv.tex}{\immediate\write18{\rem \nomtravail_tableval\tbv.tex}}{}
+\immediate\write18{\cat XCAStableval.tex >> \nomtravail_tableval\tbv.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_tableval\tbv.tex}{}{% 
+\PackageError{pro-courbes}{Fichier \nomtravail_tableval\tbv.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_tableval\tbv.tex}
+%\stepcounter{Cpttableval}
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-tableval*}[1]
+{\setcounter{Cpttableval}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAStableval.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_tableval\tbv.tex}
+%\stepcounter{Cpttableval}
+}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Courbes de fonctions
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbemulti.cxx}
+Multicourbe(L):={
+local Fns,F,f,B;
+local jj,dx,nbp,P;
+local xmin,xmax,ymin,ymax,ux,uy,cx,cy,gx,gy;
+local textp,ip,etatc,val;
+local T,N,No,V,textt;
+local t,a,b,xtmin,xtmax,dt,tmin,tmax,df;
+local li,g,sol,texts;
+local texta,Q,texti;
+local G,g,grillage;
+local xg,xd;
+
+Fns:=L[0];
+N:=size(Fns);
+
+
+
+xmin:=L[1];
+xmax:=L[2];
+ymin:=L[3];
+ymax:=L[4];
+
+ux:=L[5];
+uy:=L[6];
+cx:=L[7];
+cy:=L[8];
+gx:=L[9];
+gy:=L[10];
+
+T:=L[11];
+
+
+
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) dashed evenly withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) dashed evenly withcolor gris;
+";
+
+
+
+
+
+
+textp:=("");
+
+for(jj:=0;jj<N;jj++)
+{
+  F:=Fns[jj];
+  f:=unapply(F[0],x);
+  df:=unapply(deriver(F[0]),x);
+
+  if (size(F)==3) then
+  {
+    B:=F[2];
+    xtmin:=max(xmin,B[0]);
+    xtmax:=min(xmax,B[1]);
+  }
+  else
+  {
+    xtmin:=xmin;
+    xtmax:=xmax;
+  }
+
+  nbp:=200;
+  dx:=evalf((xtmax-xtmin)/nbp);
+  P:=makemat(0,1,nbp+1);
+
+
+  etatc:=0;
+  nbc:=0;
+
+
+  for (j:=0;j<=nbp;j++)
+  {
+    x:=evalf(xtmin+j*dx);
+    if (abs(x)<0.0001) then
+    {
+      x:=0;
+    }
+    val:=f(x);
+    if (abs(val)<0.0001) then
+    {
+      val:=0;
+    } 
+    if ((val>ymin-5) and (val<ymax+5)and (val!=infinity) and (im(val)==0))
+    {
+      if (etatc==0) then
+      {
+        etatc:=1;
+        nbc:=nbc+1;
+        ip:=1;
+        P[0]:=[x,val];     
+        textp:=concat(textp,"P[1]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      }
+      else
+      {
+        P[ip]:=[x,val];
+        ip:=ip+1;
+        textp:=concat(textp,"P["+(ip)+"]:=("+evalf(x)+","+evalf(val)+");
+");     
+      }
+     }
+     else
+     {
+       if (etatc==1) then
+       {
+         etatc:=0;
+         textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+       textp:=concat(textp,""+ip+"");
+       textp:=concat(textp,":
+  ..P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.bp;
+
+");
+       }
+     }
+  }
+
+  if (etatc==1) then
+  {
+    etatc:=0;
+    textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+textp:=concat(textp,""+ip+"");
+textp:=concat(textp,":
+  ..P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.bp;
+
+");
+  }
+
+// dessin des extremites
+
+  if (size(F)==3) then
+  {
+    B:=F[2];
+    if (size(B)==3) then
+    {
+      if ((B[2]=="ff") or (B[2]=="fo")) then
+      {
+        tmin:=f(xtmin);
+        if (abs(tmin)<0.0001) then
+        {
+          tmin:=0;
+        } 
+        textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmin)+","+evalf(tmin)+")placer) withcolor  "+F[1]+";
+");
+      }
+      if ((B[2]=="ff") or (B[2]=="of")) then
+      {
+        tmax:=f(xtmax);
+        if (abs(tmax)<0.0001) then
+        {
+          tmax:=0;
+        }     
+        textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmax)+","+evalf(tmax)+")placer) withcolor  "+F[1]+";
+");
+      }
+    }
+}
+
+}//fin du for
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=T[j];
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+
+
+
+
+
+
+////////////////////    grille  ///////////////////////////////////////////////
+
+     if (V[0]=="grille") then
+     {
+        if (V[1]=="millimetre") then 
+        {
+          grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.5) withcolor gris_V  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.5)  withcolor gris_V  ;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,1) withcolor gris_III  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,1)  withcolor gris_III  ;
+";
+        }
+        else
+        {
+          colg:="gris";
+          if (V[1]=="plein") then
+          {
+            typetrace:=" "
+          };
+          if (V[1]=="hachure") then
+          {
+            typetrace:=" dashed evenly"
+          };
+          if (V[1]=="pointille") then 
+          {
+            typetrace:=" dashed withdots withpen pencircle scaled 1.2bp"
+          };
+          if (size(V)==3) then
+          {
+            colg:=V[2]
+          };
+          grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) withcolor "+colg+typetrace+";
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) withcolor "+colg+typetrace+";";
+       }
+     };
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+
+
+    if (V[0]=="tangente") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Tangente %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      df:=unapply(deriver(F[0]),x);
+      t:=V[2];
+      a:=df(t);
+      dt:=V[6]; 
+      xtmin:=evalf(t-dt);
+      xtmax:=evalf(t+dt);   
+      tmin:=evalf(a*(xtmin-t)+f(t));
+      if (abs(tmin)<0.0001) then
+      {
+        tmin:=0;
+      }   
+      tmax:=evalf(a*(xtmax-t)+f(t));
+      if (abs(tmax)<0.0001) then
+      {
+        tmax:=0;
+      }  
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      }        
+      textt:=concat(textt,"drawdblarrow ("+xtmin+","+tmin+") placer--("+xtmax+","+tmax+") placer withcolor "+V[5]+";
+");
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" "+V[3]+" \"),("+t+","+evalf(val)+") placer) withcolor "+V[5]+";
+");
+      textt:=concat(textt,"draw("+t+","+evalf(f(t))+") placer shifted (-0.1cm,0)--("+t+","+evalf(val)+") placer shifted (0.1cm,0) withcolor "+V[5]+";
+");
+      textt:=concat(textt,"draw("+t+","+evalf(f(t))+") placer shifted (0,-0.1cm)--("+t+","+evalf(val)+") placer shifted (0,0.1cm) withcolor "+V[5]+";
+");
+      if (size(V)==8) then
+      {
+        if ((V[7,0]=="x") or (V[7,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+t+",0) placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[7])==1) then
+          {
+            if (f(t)>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" $"+latex(t)+"$ \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" $"+latex(t)+"$ \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (f(t)>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[7,1]+" \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[7,1]+" \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+          }          
+        }
+        if ((V[7,0]=="y") or (V[7,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+evalf(val)+") placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[7])==1) then
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" $"+latex(simplifier(f(t)))+"$ \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\" $"+latex(simplifier(f(t)))+"$ \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[7,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[7,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point sur courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      t:=V[2];
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      }        
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" "+V[3]+" \"),("+t+","+evalf(val)+") placer) withcolor "+V[5]+";
+"); 
+      textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (-0.1cm,0)--("+t+","+evalf(val)+") placer shifted (0.1cm,0) withcolor "+V[5]+";
+");
+          textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (0,-0.1cm)--("+t+","+evalf(val)+") placer shifted (0,0.1cm) withcolor "+V[5]+";
+");    
+      if (size(V)==7) then
+      {
+        if ((V[6,0]=="x") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+t+",0) placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(t)+" $\"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(t)+" $\"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[6,1]+" \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[6,1]+" \"),("+t+",0) placer) withcolor  "+V[5]+";
+");
+            }
+          }          
+        }
+        if ((V[6,0]=="y") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+evalf(val)+") placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+evalf(val)+" $\"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+evalf(val)+" $\"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[6,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[6,2]+" \"),(0,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+xtmin+","+tmin+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (-0.1cm,0)--("+xtmin+","+tmin+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (0,-0.1cm)--("+xtmin+","+evalf(tmin)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+xtmin+",0) placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          
+          if (size(V[5])==1) then
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+tmin+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="droite-verti") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Droite verticale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      textt:=concat(textt,"draw ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[2]+";
+");
+
+    }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-verti") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote verticale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"drawdblarrow ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[3]+";
+");
+        textt:=concat(textt,"drawdblarrow ("+t+","+ymin+")placer shifted(0,1.1*ahlength)--("+t+","+ymax+") placer shifted(0,-1.1*ahlength) withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"drawarrow ("+t+","+ymin+") placer--("+t+","+ymax+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+t+","+ymin+")placer--("+t+","+ymax+") placer shifted(0,-1.1*ahlength) withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"drawarrow ("+t+","+ymax+") placer--("+t+","+ymin+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+t+","+ymax+")placer--("+t+","+ymin+") placer shifted(0,1.1*ahlength) withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-hori") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote horizontale %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      t:=evalf(V[1]);
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"drawdblarrow ("+xmin+","+t+") placer--("+xmax+","+t+") placer withcolor "+V[3]+";
+");
+        textt:=concat(textt,"drawdblarrow ("+xmin+","+t+")placer shifted(1.1*ahlength,0)--("+xmax+","+t+") placer shifted(-1.1*ahlength,0) withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"drawarrow ("+xmin+","+t+") placer--("+xmax+","+t+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+xmin+","+t+")placer--("+xmax+","+t+") placer shifted(-1.1*ahlength,0) withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"drawarrow ("+xmax+","+t+") placer--("+xmin+","+t+") placer withcolor "+V[3]+";
+");
+          textt:=concat(textt,"drawarrow ("+xmax+","+t+")placer--("+xmin+","+t+") placer shifted(1.1*ahlength,0) withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="asymp-obli") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Asymptote oblique %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      g:=unapply(V[1],x);
+      tmin:=evalf(g(xmin));
+
+      // test de la borne gauche
+      if (tmin<ymin) then
+      {
+        sol:=solve(g(x)=ymin,x);
+        xtmin:=sol[0];
+      }
+      if ((tmin>=ymin)and(tmin<=ymax)) then
+      {
+        xtmin:=xmin;
+      }
+      if (tmin>ymax) then
+      {
+        sol:=solve(g(x)=ymax,x);
+        xtmin:=sol[0];
+      }
+      tmax:=evalf(g(xmax));      
+      // test de la borne droite
+      if (tmax<ymin) then
+      {
+        sol:=solve(g(x)=ymin,x);
+        xtmax:=sol[0];
+      }
+      if ((tmax>=ymin)and(tmax<=ymax)) then
+      {
+        xtmax:=xmax;
+      }
+      if (tmax>ymax) then
+      {
+        sol:=solve(g(x)=ymax,x);
+        xtmax:=sol[0];
+      }
+      xtmin:=evalf(xtmin);       
+      xtmax:=evalf(xtmax);    
+      tmin:=evalf(g(xtmin));
+      if (abs(tmin)<0.0001) then
+      {
+        tmin:=0;
+      }      
+      tmax:=evalf(g(xtmax));
+      if (abs(tmax)<0.0001) then
+      {
+        tmax:=0;
+      }      
+      li:=V[2];
+      if (size(li)==2) then
+      {
+        textt:=concat(textt,"
+a:=("+xtmin+","+tmin+") placer;
+b:=("+xtmax+","+tmax+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;
+d:=a-(a-b)/abs(a-b)*1.1*ahlength;   
+drawdblarrow a--b withcolor "+V[3]+";
+drawdblarrow d--c withcolor "+V[3]+";
+");
+      }
+      else
+      {
+        if (li[0]==+infinity) then
+        {
+          textt:=concat(textt,"
+a:=("+xtmin+","+tmin+") placer;
+b:=("+xtmax+","+tmax+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;  
+drawarrow a--b withcolor "+V[3]+";
+drawarrow a--c withcolor "+V[3]+";
+");
+        }
+        else
+        {
+          textt:=concat(textt,"
+a:=("+xtmax+","+tmax+") placer;
+b:=("+xtmin+","+tmin+") placer;
+c:=b-(b-a)/abs(b-a)*1.1*ahlength;  
+drawarrow a--b withcolor "+V[3]+";
+drawarrow a--c withcolor "+V[3]+";
+");
+        }       
+      }
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte lie a la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      t:=V[2];
+      val:=f(t);
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      } 
+      texts:=V[3];
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[5]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+evalf(t)+","+evalf(val)+") placer);
+");
+    }  
+
+   
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") placer);
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax) placer shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="aire-sous-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Aire sous la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      xtmin:=evalf(V[2]);
+      xtmax:=evalf(V[3]);
+      texta:=("");
+      nbp:=50;
+      dx:=evalf((xtmax-xtmin)/nbp);
+      for (k:=0;k<=nbp;k++)
+      {
+        x:=evalf(xtmin+k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        } 
+        val:=f(x);
+        if (abs(val)<0.0001) then
+        {
+          val:=0;
+        }   
+        texta:=concat(texta,"P["+(k+1)+"]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      }
+ 
+      textt:=concat(textt,texta);
+      if (size(V)==5) then
+      {
+        textt:=concat(textt,"aire:=
+("+xtmin+",0) placer--P[1] placer
+for i:=2 upto 51:
+  ..P[i] placer
+endfor
+--("+xtmax+",0) placer --cycle;
+fillcolor:=1.3"+V[4]+";
+transparence aire;
+draw aire;
+"); 
+      }
+      else
+      {
+        textt:=concat(textt,"aire:=
+("+xtmin+",0) placer--P[1] placer
+for i:=2 upto 51:
+  ..P[i] placer
+endfor
+--("+xtmax+",0) placer --cycle;
+draw hachurage(aire,30,4mm,0)"+V[4]+";
+draw aire;
+"); 
+      }
+
+
+    }      
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="valeur-aire-sous-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Aire sous la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      xtmin:=V[2];
+      xtmax:=V[3];
+
+      texts:=V[5];
+      texts:=concat(texts," $"+abs(round(evalf(integrate(F[0],x,xtmin,xtmax)),3))+"$");
+
+      textt:=concat(textt,"label."+V[6]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[7]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+V[4,0]+","+V[4,1]+") placer);
+"); 
+
+
+    } 
+
+   
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="riemann") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% somme de Riemann %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      xtmin:=evalf(V[2]);
+      xtmax:=evalf(V[3]);
+      texta:=("");    
+      nbp:=V[4];
+      Q:=makemat(0,1,nbp);
+      dx:=evalf((xtmax-xtmin)/nbp);
+      for (k:=0;k<nbp;k++)
+      {
+        x:=evalf(xtmin+k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        }
+        if (V[5]=="min") then
+        {
+          if (f(x)<=f(x+dx)) then
+          {
+            tmin:=f(x);
+          }
+          else
+          {
+            tmin:=f(x+dx);
+          }
+        }
+        if (V[5]=="max") then
+        {
+          if (f(x)>=f(x+dx)) then
+          {
+            tmin:=f(x);
+          }
+          else
+          {
+            tmin:=f(x+dx);
+          }
+        } 
+        if (V[5]=="centre") then
+        {
+          tmin:=(f(x)+f(x+dx))/2
+        } 
+        tmin:=evalf(tmin);
+        if (abs(tmin)<0.0001) then
+        {
+          tmin:=0;
+        } 
+        Q[k]:=tmin;
+      }
+      textt:=concat(textt,"aire:=("+xtmin+",0) placer");
+      for (k:=0;k<nbp;k++)
+      {
+        xg:=xtmin+k*dx;
+        if (abs(xg)<0.0001) then
+        {
+          xg:=0;
+        }
+        xd:=xtmin+(k+1)*dx;
+        if (abs(xd)<0.0001) then
+        {
+          xd:=0;
+        }
+        textt:=concat(textt,"--("+xg+","+Q[k]+") placer--("+xd+","+Q[k]+") placer");
+      }
+      if (size(V)==7) then
+      {
+         textt:=concat(textt,"--("+(xtmax)+",0) placer--cycle;
+fillcolor:=1.3"+V[6]+";
+transparence aire;
+draw aire;      
+");
+      }
+      else
+      {
+         textt:=concat(textt,"--("+(xtmax)+",0) placer--cycle;
+draw hachurage(aire,30,4mm,0)"+V[6]+";
+draw aire;      
+");
+      }   
+      for (k:=1;k<nbp;k++)
+      {
+        xg:=xtmin+k*dx;
+        if (abs(xg)<0.0001) then
+        {
+          xg:=0;
+        }
+        textt:=concat(textt,"draw("+xg+",0) placer--("+xg+","+Q[k]+") placer;
+");
+      }
+     }     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////  
+    
+    if (V[0]=="aire-entre-courbes") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Aire entre courbes  %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      G:=Fns[V[2]-1];
+      g:=unapply(G[0],x);
+      xtmin:=evalf(V[3]);
+      xtmax:=evalf(V[4]);
+      texta:=("");
+      nbp:=50;
+      dx:=evalf((xtmax-xtmin)/nbp);
+
+      for (k:=0;k<=nbp;k++)
+      {
+        x:=evalf(xtmin+k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        } 
+        val:=f(x);
+        if (abs(val)<0.0001) then
+        {
+          val:=0;
+        }   
+        texta:=concat(texta,"P["+(k+1)+"]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      }
+
+      for (k:=0;k<=nbp;k++)
+      {
+        x:=evalf(xtmax-k*dx);
+        if (abs(x)<0.0001) then
+        {
+          x:=0;
+        } 
+        val:=g(x);
+        if (abs(val)<0.0001) then
+        {
+          val:=0;
+        }   
+        texta:=concat(texta,"P["+(k+52)+"]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      } 
+      textt:=concat(textt,texta);
+
+      if (size(V)==6) then
+      {
+        textt:=concat(textt,"aire:=
+P[1] placer
+for i:=2 upto 102:
+  --P[i] placer
+endfor
+ --cycle;
+fillcolor:=1.3"+V[5]+";
+transparence aire;
+draw aire;
+");
+      }
+      else
+      {
+         textt:=concat(textt,"aire:=
+P[1] placer
+for i:=2 upto 102:
+  --P[i] placer
+endfor
+ --cycle;
+draw hachurage(aire,30,4mm,0)"+V[5]+";
+draw aire;
+");
+      }
+
+ 
+    }      
+
+ 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="base") then      
+    {
+      textt:=concat(textt,"
+label.bot(TEX(\"$\\vec{\\imath}$\"),(0.5,0)placer);
+drawarrow (0,0)placer--(1,0)placer;
+label.lft(TEX(\"$\\vec{\\jmath}$\"),(0,0.5)placer);
+drawarrow (0,0)placer--(0,1)placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+")
+    };
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="valeur-aire-entre-courbes") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Aire sous la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      G:=Fns[V[2]-1];
+      g:=unapply(G[0],x);
+      xtmin:=V[3];
+      xtmax:=V[4];
+      val:=abs(round(evalf(integrate(F[0],x,xtmin,xtmax)-integrate(G[0],x,xtmin,xtmax)),3));
+      texts:=V[6];
+      texts:=concat(texts," $"+val+"$");
+
+      textt:=concat(textt,"label."+V[7]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[8]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+V[5,0]+","+V[5,1]+") placer);
+"); 
+
+
+    } 
+
+   
+
+
+
+   
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+numeric carx,cary,gradx,grady;
+xmin:="+xmin+";
+xmax:="+xmax+";
+ymin:="+ymin+";
+ymax:="+ymax+";
+dx:=1cm/"+ux+";
+dy:=1cm/"+uy+";
+carx:="+cx+";
+cary:="+cy+";
+gradx:="+gx+";
+grady:="+gy+";
+
+pair a,b,c,d;
+path aire;
+
+
+beginfig(0);
+
+
+
+
+"+grillage+"
+
+
+
+
+draw(xmin,ymin) placer--(xmin,ymax) placer --(xmax,ymax) placer --(xmax,ymin) placer --cycle withpen pencircle scaled 1bp withcolor gris;
+
+draw(xmin,0) placer--(xmax,0) placer;
+draw(0,ymin) placer--(0,ymax) placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+
+pair P[];
+
+"+textp+"
+
+
+"+textt+"
+
+path limite;
+limite:=(xmin*dx,ymin*dy)--(xmax*dx,ymin*dy)--(xmax*dx,ymax*dy)--(xmin*dx,ymax*dy)--cycle;
+clip currentpicture to limite;
+
+graduationstatx.bot(xmin,xmax,ymin,ymax,dx,dy,carx);
+graduationstaty.lft(xmin,xmax,ymin,ymax,dx,dy,cary);
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) placer shifted (0,0.1cm) --(xmax,ymax) placer shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) placer shifted (0,1.3cm)--(xmax,ymax) placer shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbemulti.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCAScourbemulti.cxx");
+Sortie:=fopen("XCAScourbemulti.mp");
+donnees:=read("XCAScourbemulti.user");
+Resultat:=string("Multicourbe(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptmulticourbe}
+\newcommand{\cmf}{\theCptmulticourbe}
+%% \cmf change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbemulti}[1]
+{\setcounter{Cptmulticourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScourbemulti.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScourbemulti.mp}
+\executGiacmp{XCAScourbemulti.giac}
+\IfFileExists{\nomtravail_courbemulti\cmf.mp}{\immediate\write18{\rem \nomtravail_courbemulti\cmf.mp}}{}
+\immediate\write18{\cat XCAScourbemulti.mp >> \nomtravail_courbemulti\cmf.mp}
+\immediate\write18{mpost \nomtravail_courbemulti\cmf.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_courbemulti\cmf.mp}{\immediate\write18{mpost \nomtravail_courbemulti\cmf.mp}}{% 
+\PackageError{pro-courbes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_courbemulti\cmf.mp ou bien disposer de XCas.}}}
+\begin{center}
+  \includegraphics{\nomtravail_courbemulti\cmf.0}
+\end{center}
+%\stepcounter{Cptmulticourbe}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbemulti*}[1]
+{\setcounter{Cptmulticourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScourbemulti.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_courbemulti\cmf.0}
+\end{center}
+%\stepcounter{Cptmulticourbe}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Courbes de fonctions sur papier semilog
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbesemilog.cxx}
+Multicourbe(L):={
+local Fns,F,f,B;
+local jj,dx,nbp,P;
+local xmin,xmax,ymin,ymax,ux,uy,cx,cy,gx,gy;
+local textp,ip,etatc,val;
+local T,N,No,V,textt;
+local t,a,b,xtmin,xtmax,dt,tmin,tmax,df;
+local li,g,sol,texts;
+local texta,Q,texti;
+local G,g;
+local valmin,valmax,nmod,hoteur,bmin,bmax,dl,legendey,legendex,modmin,modmax;
+
+Fns:=L[0];
+N:=size(Fns);
+
+
+
+xmin:=L[1];
+xmax:=L[2];
+valmin:=L[3];
+valmax:=L[4];
+
+ux:=L[5];
+cx:=L[6];
+gx:=L[7];
+
+hoteur:=L[8];
+
+
+T:=L[9];
+
+modmin:=simplifier(log10(valmin));
+modmax:=simplifier(log10(valmax));
+nmod := simplifier(log10(valmax/valmin));
+dl:=evalf(hoteur/(nmod*ln(10)));
+bmin:=simplifier(dl*ln(valmin));
+bmax:=simplifier(dl*ln(valmax));
+
+legendey:=("");
+val:=valmin;
+ycor:=evalf(dl*ln(val));
+if (abs(ycor)<0.001) then
+{
+  ycor:=0;
+}
+
+for(jj:=0;jj<=nmod;jj++)
+{
+  legendey:=concat(legendey,"label.lft(TEX(\" $ "+val+" $ \"),("+xmin+","+ycor+") placer);
+");
+  val:=val*10;
+}
+
+legendex:=("graduationstatx.bot(xmin,xmax,ymin+dv*modmin,ymax+dv*modmin,dx,dy,carx);
+");
+
+
+textp:=("");
+
+for(jj:=0;jj<N;jj++)
+{
+  F:=Fns[jj];
+  f:=unapply(F[0],x);
+  df:=unapply(deriver(F[0]),x);
+
+  if (size(F)==3) then
+  {
+    B:=F[2];
+    xtmin:=max(xmin,B[0]);
+    xtmax:=min(xmax,B[1]);
+  }
+  else
+  {
+    xtmin:=xmin;
+    xtmax:=xmax;
+  }
+
+  nbp:=200;
+  dx:=evalf((xtmax-xtmin)/nbp);
+  P:=makemat(0,1,nbp+1);
+
+
+  etatc:=0;
+  nbc:=0;
+
+
+  for (j:=0;j<=nbp;j++)
+  {
+    x:=evalf(xtmin+j*dx);
+    if (abs(x)<0.0001) then
+    {
+      x:=0;
+    }
+    val:=ln(f(x))*dl;
+    if (abs(val)<0.0001) then
+    {
+      val:=0;
+    } 
+    if ((val>bmin) and (val<bmax)and (val!=infinity) and (im(val)==0))
+    {
+      if (etatc==0) then
+      {
+        etatc:=1;
+        nbc:=nbc+1;
+        ip:=1;
+        P[0]:=[x,val];     
+        textp:=concat(textp,"P[1]:=("+evalf(x)+","+evalf(val)+");
+"); 
+      }
+      else
+      {
+        P[ip]:=[x,val];
+        ip:=ip+1;
+        textp:=concat(textp,"P["+(ip)+"]:=("+evalf(x)+","+evalf(val)+");
+");     
+      }
+     }
+     else
+     {
+       if (etatc==1) then
+       {
+         etatc:=0;
+         textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+       textp:=concat(textp,""+ip+"");
+       textp:=concat(textp,":
+  ..P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.5bp;
+
+");
+       }
+     }
+  }
+
+  if (etatc==1) then
+  {
+    etatc:=0;
+    textp:=concat(textp,"
+
+draw P[1] placer
+for i:=2 upto ");
+textp:=concat(textp,""+ip+"");
+textp:=concat(textp,":
+  .. P[i] placer
+endfor
+withcolor "+F[1]+" withpen pencircle scaled 1.5bp;
+
+");
+  }
+
+// dessin des extremites
+
+  if (size(F)==3) then
+  {
+    B:=F[2];
+    if (size(B)==3) then
+    {
+      if ((B[2]=="ff") or (B[2]=="fo")) then
+      {
+        tmin:=f(xtmin);
+        if (abs(tmin)<0.0001) then
+        {
+          tmin:=0;
+        } 
+        textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmin)+","+evalf(dl*ln(tmin))+")placer) withcolor  "+F[1]+";
+");
+      }
+      if ((B[2]=="ff") or (B[2]=="of")) then
+      {
+        tmax:=f(xtmax);
+        if (abs(tmax)<0.0001) then
+        {
+          tmax:=0;
+        }     
+        textp:=concat(textp,"dotlabel(TEX(\" \"),("+evalf(xtmax)+","+evalf(dl*ln(tmax))+")placer) withcolor  "+F[1]+";
+");
+      }
+    }
+}
+
+}//fin du for
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=T[j];
+    
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point sur courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      t:=V[2];
+      val:=evalf(dl*ln(f(t)));
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      }        
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" "+V[3]+" \"),("+t+","+val+") placer) withcolor "+V[5]+";
+"); 
+      textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (-0.1cm,0)--("+t+","+val+") placer shifted (0.1cm,0) withcolor "+V[5]+";
+");
+          textt:=concat(textt,"draw("+t+","+evalf(val)+") placer shifted (0,-0.1cm)--("+t+","+val+") placer shifted (0,0.1cm) withcolor "+V[5]+";
+");    
+      if (size(V)==7) then
+      {
+        if ((V[6,0]=="x") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+t+","+evalf(dl*ln(valmin))+") placer--("+t+","+val+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(t)+" $\"),("+t+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(t)+" $\"),("+t+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (val>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[6,1]+" \"),("+t+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[6,1]+" \"),("+t+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[5]+";
+");
+            }
+          }          
+        }
+        if ((V[6,0]=="y") or (V[6,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(xmin,"+evalf(val)+") placer--("+t+","+evalf(val)+") placer dashed evenly withcolor  "+V[5]+";
+");
+          if (size(V[6])==1) then
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+round(evalf(f(t)),3)+" $\"),(xmin,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+round(evalf(f(t)),3)+" $\"),(xmin,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+          }
+          else
+          {
+            if (t>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[6,2]+" \"),(xmin,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[6,2]+" \"),(xmin,"+evalf(val)+") placer) withcolor  "+V[5]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(dl*ln(V[1,1]));
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+xtmin+","+tmin+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (-0.1cm,0)--("+xtmin+","+tmin+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (0,-0.1cm)--("+xtmin+","+evalf(tmin)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+xtmin+","+evalf(dl*ln(valmin))+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          
+          if (size(V[5])==1) then
+          {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[4]+";
+");
+          }
+          else
+          {
+
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+xtmin+","+evalf(dl*ln(valmin))+") placer) withcolor  "+V[4]+";
+");
+
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(xmin,"+tmin+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(V[1,1])+" $\"),(xmin,"+tmin+") placer) withcolor  "+V[4]+";
+");
+
+          }
+          else
+          {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(xmin,"+tmin+") placer) withcolor  "+V[4]+";
+");
+          
+          }          
+        }        
+      }
+    }  
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte lie a la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      F:=Fns[V[1]-1];
+      f:=unapply(F[0],x);
+      t:=V[2];
+      val:=evalf(dl*ln(f(t)));
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      } 
+      texts:=V[3];
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[5]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+evalf(t)+","+val+") placer);
+");
+    }  
+
+   
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      val:=evalf(dl*ln(tmin));
+      if (abs(val)<0.0001) then
+      {
+        val:=0;
+      } 
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+val+") placer);
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax+dv*modmin) placer shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax+dv*modmin) placer shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax+dv*modmin) placer shifted (0,0.7cm));
+");
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="sans-legende-y") then      
+    {
+      legendey:=("");
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="sans-legende-x") then      
+    {
+      legendex:=("");
+    }
+
+
+   
+           
+ 
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+vardef ln expr x = (mlog x) / 256 enddef;
+
+vardef placerlog(expr a,b)=
+(a*dx,(ln(b))*dl*dy)
+enddef;
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+numeric carx,cary,gradx,grady;
+xmin:="+xmin+";
+xmax:="+xmax+";
+ymin:=0;
+ymax:="+hoteur+";
+dx:=1cm/"+ux+";
+dy:=1cm;
+carx:="+cx+";
+gradx:="+gx+";
+
+
+numeric ybase;
+ybase:=1;
+
+numeric nmod,dv,dl,N,modmin,modmax;
+modmin:="+modmin+";
+modmax:="+modmax+";
+nmod:="+nmod+";
+dv:=(ymax-ymin)/nmod;
+dl:=dv/(ln(10));
+
+N:=xmax-xmin;
+
+beginfig(0);
+
+
+
+path PH,PV;
+PH := (xmin,ymin) placer -- (xmax,ymin) placer;
+PV := (xmin,ymin) placer --(xmin,ymax) placer;
+
+
+% lignes verticales
+
+
+for i:=0 upto (N-1) :
+  draw PV shifted (i*1cm,modmin*dv*1cm);
+  for j:=1 upto 9 :
+    draw PV shifted (j*0.1cm,modmin*dv*1cm) shifted (i*1cm,0)  withpen pencircle scaled 0.5bp withcolor gris;
+  endfor;
+  draw PV shifted (0.5cm,modmin*dv*1cm) shifted (i*1cm,0)  withpen pencircle scaled 1bp withcolor gris;
+endfor;
+draw PV shifted (N*1cm,modmin*dv*1cm);
+
+% lignes horizontales
+
+for i:=modmin upto (modmax-1) :
+  draw PH shifted (0,dv*i*1cm) withpen pencircle scaled 1.5bp;
+  for j:=1 upto 9 :
+    draw PH shifted (0,dl*(ln(j))*1cm) shifted (0,dv*i*1cm) withpen pencircle scaled 0.5bp;
+    draw PH shifted (0,dl*(ln(j+0.5))*1cm) shifted (0,dv*i*1cm) withpen pencircle scaled 0.5bp withcolor gris;
+  endfor; 
+endfor;
+draw PH shifted (0,dv*modmax*1cm) withpen pencircle scaled 1.5bp;
+
+% axe des ordonnes
+if ((xmin <0)and(xmax>0)):
+   draw (0,ymin) placer shifted (0,dv*modmin*1cm) --(0,ymax) placer shifted (0,dv*modmin*1cm) withpen pencircle scaled 1.5bp;
+fi;
+
+pair P[];
+
+"+textp+"
+
+
+path limite;
+limite:=(xmin*dx,ymin*dy)--(xmax*dx,ymin*dy)--(xmax*dx,ymax*dy)--(xmin*dx,ymax*dy)--cycle;
+%clip currentpicture to limite;
+
+
+"+textt+" 
+
+"+legendex+"
+
+"+legendey+"
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax+dv*modmin) placer shifted (0,0.1cm) --(xmax,ymax+dv*modmin) placer shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax+dv*modmin) placer shifted (0,1.3cm)--(xmax,ymax+dv*modmin) placer shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbesemilog.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCAScourbesemilog.cxx");
+Sortie:=fopen("XCAScourbesemilog.mp");
+donnees:=read("XCAScourbesemilog.user");
+Resultat:=string("Multicourbe(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptsemilogcourbe}
+\newcommand{\cmsl}{\theCptsemilogcourbe}
+%% \cmsl change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbesemilog}[1]
+{\setcounter{Cptsemilogcourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScourbesemilog.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScourbesemilog.mp}
+\executGiacmp{XCAScourbesemilog.giac}
+\IfFileExists{\nomtravail_courbesemilog\cmsl.mp}{\immediate\write18{\rem \nomtravail_courbesemilog\cmsl.mp}}{}
+\immediate\write18{\cat XCAScourbesemilog.mp >> \nomtravail_courbesemilog\cmsl.mp}
+\immediate\write18{mpost \nomtravail_courbesemilog\cmsl.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_courbesemilog\cmsl.mp}{\immediate\write18{mpost \nomtravail_courbesemilog\cmsl.mp}}{% 
+\PackageError{pro-courbes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_courbesemilog\cmsl.mp ou bien disposer de XCas.}}}
+\begin{center}
+  \includegraphics{\nomtravail_courbesemilog\cmsl.0}
+\end{center}
+%\stepcounter{Cptsemilogcourbe}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbesemilog*}[1]
+{\setcounter{Cptsemilogcourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScourbesemilog.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_courbesemilog\cmsl.0}
+\end{center}
+%\stepcounter{Cptsemilogcourbe}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% BEZIER
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCAScourbebezier.cxx}
+Bezier(L):={
+local X,Y,N,j,text,Nc;
+local xmin,xmax,ymin,ymax,ux,uy,cx,cy,gx,gy;
+local xa,ya,xb,yb,ad,bd;
+local T,V,xtmin,tmin,textt,texts,texti,No;
+local g,xtmax,tmax,sol;
+local Xm,Ym,p,k,Nm,jj,l,ten;
+local CourbureDebut,CourbureFin,grillage;
+
+Nc:=size(L[0]);
+X:=[0$Nc];
+Y:=[0$Nc];
+
+for(kk:=0;kk<Nc;kk++){
+  X[kk]:=[0$size(L[0][kk])];
+  Y[kk]:=[0$size(L[0][kk])];
+}
+
+
+for(kk:=0;kk<Nc;kk++){
+  for(jj:=0;jj<size(L[0][kk]);jj++){
+    X[kk]:=subsop(X[kk],jj=L[0][kk][jj][0]);
+    Y[kk]:=subsop(Y[kk],jj=L[0][kk][jj][1]);
+   };
+}
+
+xmin:=L[1];
+xmax:=L[2];
+ymin:=L[3];
+ymax:=L[4];
+
+ ux:=evalf((L[2]-L[1])/L[5]);
+ uy:=evalf((L[4]-L[3])/L[6]);
+cx:=L[7];
+cy:=L[8];
+gx:=L[9];
+gy:=L[10];
+ ten:=L[11];
+ coul:=L[12];
+T:=L[13];
+
+ N:=[seq(size(X[k]),k=0..Nc-1)];
+
+
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) dashed evenly withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) dashed evenly withcolor gris;
+";
+
+
+CourbureDebut:=[[]$Nc];
+CourbureFin:=[[]$Nc]
+
+
+for(kk:=0;kk<Nc;kk++)
+{
+   CourbureDebut[kk]:="";
+   CourbureFin[kk]:="";
+}
+
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=T[j];
+    
+
+////////////////////////// croix ou pas croix /////////////////////////////////////////////////////
+
+    if(V[0]=="croix") then 
+    {
+     for(kk:=0;kk<Nc;kk++){
+      for(jj:=0;jj<N[kk];jj++)
+      {
+         textt:=concat(textt,"
+draw marquecroix(("+X[kk][jj]+","+Y[kk][jj]+") placer)  withcolor "+ coul[kk] +" withpen pencircle scaled 1bp;
+");
+      };
+     } 
+    }
+
+    //////////////////////////
+ 
+    if (V[0]=="texte-courbe") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte lie a la courbe %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      
+      texts:=V[3];
+      textt:=concat(textt,"label."+V[4]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[5]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+V[1]+","+V[2]+") placer);
+");
+    }  
+
+    
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+xtmin+","+tmin+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (-0.1cm,0)--("+xtmin+","+tmin+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (0,-0.1cm)--("+xtmin+","+evalf(tmin)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+xtmin+",0) placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          
+          if (size(V[5])==1) then
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+tmin+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+ 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") placer);
+");
+    }      
+     
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-abscisses") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte des abscisses %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=xmax;
+      tmin:=ymin;
+      textt:=concat(textt,"label.ulft(TEX(\" \\colorbox\{white\}\{"+V[1]+" \} \"),("+xtmin+","+tmin+") placer);
+");
+    }   
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-ordonnees") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte des ordonnees %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=xmin;
+      tmin:=ymax;
+      textt:=concat(textt,"label.lrt(TEX(\" \\colorbox\{white\}\{"+V[1]+" \} \"),("+xtmin+","+tmin+") placer);
+");
+    }        
+     
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax) placer shifted (0,0.7cm));
+");
+    };  
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="base") then      
+    {
+       textt:=concat(textt,"
+label.bot(TEX(\"$\\vec{\\imath}$\"),(0.5,0)placer);
+drawarrow (0,0)placer--(1,0)placer;
+label.lft(TEX(\"$\\vec{\\jmath}$\"),(0,0.5)placer);
+drawarrow (0,0)placer--(0,1)placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+")
+    };
+
+           
+
+//////////////////////////////////////////////////////////////////////
+
+//%%%%%%%%%%%%%%%%%% reglage de la courbure
+    
+   if(V[0]=="courbure")then
+   {
+      for(kk:=1;kk<=Nc;kk++)
+      {
+         CourbureDebut[kk-1]:="{curl "+V[kk][0]+"}";
+         CourbureFin[kk-1]:="{curl "+V[kk][1]+"}";
+      }
+   };
+
+
+
+////////////////////    grille  ///////////////////////////////////////////////
+
+if(V[0]=="grille")then{
+
+
+
+if(V[1]=="millimetre")then{
+
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.5) withcolor gris_V  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.5)  withcolor gris_V  ;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,1) withcolor gris_III  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,1)  withcolor gris_III  ;
+";
+}else{
+colg:="gris";
+if(V[1]=="plein")then{typetrace:=" "};
+if(V[1]=="hachure")then{typetrace:=" dashed evenly"};
+if(V[1]=="pointille")then{typetrace:=" dashed withdots withpen pencircle scaled 1.2bp"};
+if(size(V)==3)then{colg:=V[2]};
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) withcolor "+colg+typetrace+";
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) withcolor "+colg+typetrace+";";
+}
+};
+
+
+
+
+///////////////////////
+
+};};
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+text:=("");
+for(kk:=0;kk<Nc;kk++){
+ text:=concat(text,"draw ("+X[kk][0]+","+Y[kk][0]+") placer"+CourbureDebut[kk]);
+  for(jj:=1;jj<N[kk]-1;jj++)
+ {
+    text:=concat(text,"..tension "+ten+"..("+X[kk][jj]+","+Y[kk][jj]+") placer ");
+ }
+ text:=concat(text,"..tension "+ten+".."+CourbureFin[kk]+"("+X[kk][N[kk]-1]+","+Y[kk][N[kk]-1]+") placer withcolor "+ coul[kk] +";
+
+
+ ");
+}  
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+numeric carx,cary,gradx,grady;
+xmin:="+xmin+";
+xmax:="+xmax+";
+ymin:="+ymin+";
+ymax:="+ymax+";
+dx:=1cm/"+ux+";
+dy:=1cm/"+uy+";
+carx:="+cx+";
+cary:="+cy+";
+gradx:="+gx+";
+grady:="+gy+";
+
+
+
+beginfig(0);
+
+
+"+grillage+"
+
+draw(xmin,ymin) placer--(xmin,ymax) placer withpen pencircle scaled 1.5bp withcolor gris;
+draw(xmin,ymin) placer--(xmax,ymin) placer withpen pencircle scaled 1.5bp withcolor gris;
+
+draw(xmin,0) placer--(xmax,0) placer;
+draw(0,ymin) placer--(0,ymax) placer;
+
+
+
+
+                  % eventuelle courbe supplementaire
+%vardef ln(expr t) = mlog(t)/256 enddef;
+%vardef f(expr t) = 0.60*(ln(t-3))+7.61 enddef;
+%numeric ddx,nv;
+%numeric xdebut,xfin;
+%xdebut:=4; 
+%xfin:=xmax;
+%nv:=50;
+%ddx:=(xfin-xdebut)/nv; 
+%draw (4,f(4)) placer
+%for i:=1 upto nv:
+%  ..(xdebut+i*ddx,f(xdebut+i*ddx))placer
+%endfor
+%withcolor blue;
+
+
+path limite;
+limite:=(xmin*dx,ymin*dy)--(xmax*dx,ymin*dy)--(xmax*dx,ymax*dy)--(xmin*dx,ymax*dy)--cycle;
+clip currentpicture to limite;
+
+graduationstatx.bot(xmin,xmax,ymin,ymax,dx,dy,carx);
+graduationstaty.lft(xmin,xmax,ymin,ymax,dx,dy,cary);
+
+
+         % trace des points
+
+"+text+"
+
+         % options
+
+"+textt+"
+
+         % titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) placer shifted (0,0.1cm) --(xmax,ymax) placer shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) placer shifted (0,1.3cm)--(xmax,ymax) placer shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+
+endfig;
+end
+";
+}:;
+
+
+
+\end{VerbatimOut}
+
+           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCAScourbebezier.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCAScourbebezier.cxx");
+Sortie:=fopen("XCAScourbebezier.mp");
+donnees:=read("XCAScourbebezier.user");
+Resultat:=string("Bezier(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptbeziercourbe}
+\newcommand{\cmbz}{\theCptbeziercourbe}
+%% \cmbz change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbebezier}[1]
+{\setcounter{Cptbeziercourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCAScourbebezier.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCAScourbebezier.mp}
+\executGiacmp{XCAScourbebezier.giac}
+\IfFileExists{\nomtravail_courbebezier\cmbz.mp}{\immediate\write18{\rem \nomtravail_courbebezier\cmbz.mp}}{}
+\immediate\write18{\cat XCAScourbebezier.mp >> \nomtravail_courbebezier\cmbz.mp}
+\immediate\write18{mpost \nomtravail_courbebezier\cmbz.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_courbebezier\cmbz.mp}{\immediate\write18{mpost \nomtravail_courbebezier\cmbz.mp}}{% 
+\PackageError{pro-courbes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_courbebezier\cmbz.mp ou bien disposer de XCas.}}}
+\begin{center}
+  \includegraphics{\nomtravail_courbebezier\cmbz.0}
+\end{center}
+%\stepcounter{Cptbeziercourbe}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-courbebezier*}[1]
+{\setcounter{Cptbeziercourbe}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCAScourbebezier.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_courbebezier\cmbz.0}
+\end{center}
+%\stepcounter{Cptbeziercourbe}
+
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% REPERE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{VerbatimOut}{XCASrepere.cxx}
+Repere(L):={
+local X,Y,N,j,text;
+local xmin,xmax,ymin,ymax,ux,uy,cx,cy,gx,gy;
+local xa,ya,xb,yb,ad,bd;
+local T,V,xtmin,tmin,textt,texts,texti,No;
+local g,xtmax,tmax,sol;
+local Xm,Ym,p,k,Nm,jj,l,ten,grillage;
+
+xmin:=L[0];
+xmax:=L[1];
+ymin:=L[2];
+ymax:=L[3];
+
+ ux:=evalf((L[1]-L[0])/L[4]);
+ uy:=evalf((L[3]-L[2])/L[5]);
+cx:=L[6];
+cy:=L[7];
+gx:=L[8];
+gy:=L[9];
+T:=L[10];
+
+
+
+
+
+grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) dashed evenly withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) dashed evenly withcolor gris;
+";
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=T[j];
+    
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="point-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Point libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=evalf(V[1,0]);
+      tmin:=evalf(V[1,1]);
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" "+V[2]+" \"),("+xtmin+","+tmin+") placer) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (-0.1cm,0)--("+xtmin+","+tmin+") placer shifted (0.1cm,0) withcolor "+V[4]+";
+");
+      textt:=concat(textt,"draw("+xtmin+","+tmin+") placer shifted (0,-0.1cm)--("+xtmin+","+evalf(tmin)+") placer shifted (0,0.1cm) withcolor "+V[4]+";
+");
+      
+      if (size(V)==6) then
+      {
+        if ((V[5,0]=="x") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw("+xtmin+",0) placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          
+          if (size(V[5])==1) then
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\"$ "+latex(V[1,0])+" $\"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (tmin>0) then
+            {
+              textt:=concat(textt,"label.bot(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.top(TEX(\" "+V[5,1]+" \"),("+xtmin+",0) placer) withcolor  "+V[4]+";
+");
+            }
+          }          
+        }
+        if ((V[5,0]=="y") or (V[5,0]=="xy")) then
+        {
+          textt:=concat(textt,"draw(0,"+tmin+") placer--("+xtmin+","+tmin+") placer dashed evenly withcolor  "+V[4]+";
+");
+          if (size(V[5])==1) then
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {         
+              textt:=concat(textt,"label.rt(TEX(\"$ "+latex(V[1,1])+" $\"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+          }
+          else
+          {
+            if (xtmin>0) then
+            {
+              textt:=concat(textt,"label.lft(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }
+            else
+            {        
+              textt:=concat(textt,"label.rt(TEX(\" "+V[5,2]+" \"),(0,"+tmin+") placer) withcolor  "+V[4]+";
+");
+            }          
+            
+          }          
+        }        
+      }
+    }  
+
+ 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") placer);
+");
+    }      
+     
+ 
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-abscisses") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte des abscisses %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=xmax;
+      tmin:=ymin;
+      textt:=concat(textt,"label.ulft(TEX(\" \\colorbox\{white\}\{"+V[1]+" \} \"),("+xtmin+","+tmin+") placer);
+");
+    }   
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-ordonnees") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte des ordonnees %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=xmin;
+      tmin:=ymax;
+      textt:=concat(textt,"label.lrt(TEX(\" \\colorbox\{white\}\{"+V[1]+" \} \"),("+xtmin+","+tmin+") placer);
+");
+    }        
+     
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax) placer shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax) placer shifted (0,0.7cm));
+");
+    };  
+           
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+    if (V[0]=="base") then      
+    {
+      textt:=concat(textt,"
+label.bot(TEX(\"$\\vec{\\imath}$\"),(0.5,0)placer);
+drawarrow (0,0)placer--(1,0)placer;
+label.lft(TEX(\"$\\vec{\\jmath}$\"),(0,0.5)placer);
+drawarrow (0,0)placer--(0,1)placer;
+label.llft(TEX(\"$O$\"),(0,0)placer);
+")
+    };
+
+
+////////////////////    grille  //////////////////////////////////////////////////////////////////
+
+     if (V[0]=="grille") then
+     {
+       if(V[1]=="millimetre") then
+      {
+        grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.1)  withcolor gris;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,0.5) withcolor gris_V  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,0.5)  withcolor gris_V  ;
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,1) withcolor gris_III  ;
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,1)  withcolor gris_III  ;
+";
+      }
+      else
+      {
+        colg:="gris";
+        if (V[1]=="plein") then
+        {
+          typetrace:=" "
+        };
+        if (V[1]=="hachure") then
+        {
+           typetrace:=" dashed evenly"
+        };
+        if (V[1]=="pointille") then
+        {
+           typetrace:=" dashed withdots withpen pencircle scaled 1.2bp"
+        };
+        if (size(V)==3) then 
+        {
+           colg:=V[2]
+        };
+        grillage:="
+draw grillehori(xmin,xmax,ymin,ymax,dx,dy,grady) withcolor "+colg+typetrace+";
+draw grilleverti(xmin,xmax,ymin,ymax,dx,dy,gradx) withcolor "+colg+typetrace+";";
+     }
+   };
+
+
+
+
+
+};};
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax,dx,dy;
+numeric carx,cary,gradx,grady;
+xmin:="+xmin+";
+xmax:="+xmax+";
+ymin:="+ymin+";
+ymax:="+ymax+";
+dx:=1cm/"+ux+";
+dy:=1cm/"+uy+";
+carx:="+cx+";
+cary:="+cy+";
+gradx:="+gx+";
+grady:="+gy+";
+
+
+
+beginfig(0);
+
+
+
+"+grillage+"
+
+
+draw(xmin,ymin) placer--(xmin,ymax) placer withpen pencircle scaled 1.5bp withcolor gris;
+draw(xmin,ymin) placer--(xmax,ymin) placer withpen pencircle scaled 1.5bp withcolor gris;
+
+draw(xmin,0) placer--(xmax,0) placer;
+draw(0,ymin) placer--(0,ymax) placer;
+
+
+
+
+                  % eventuelle courbe supplementaire
+%vardef ln(expr t) = mlog(t)/256 enddef;
+%vardef f(expr t) = 0.60*(ln(t-3))+7.61 enddef;
+%numeric ddx,nv;
+%numeric xdebut,xfin;
+%xdebut:=4; 
+%xfin:=xmax;
+%nv:=50;
+%ddx:=(xfin-xdebut)/nv; 
+%draw (4,f(4)) placer
+%for i:=1 upto nv:
+%  ..(xdebut+i*ddx,f(xdebut+i*ddx))placer
+%endfor
+%withcolor blue;
+
+
+path limite;
+limite:=(xmin*dx,ymin*dy)--(xmax*dx,ymin*dy)--(xmax*dx,ymax*dy)--(xmin*dx,ymax*dy)--cycle;
+clip currentpicture to limite;
+
+graduationstatx.bot(xmin,xmax,ymin,ymax,dx,dy,carx);
+graduationstaty.lft(xmin,xmax,ymin,ymax,dx,dy,cary);
+
+
+
+         % options
+
+"+textt+"
+
+         % titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) placer shifted (0,0.1cm) --(xmax,ymax) placer shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) placer shifted (0,1.3cm)--(xmax,ymax) placer shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASrepere.giac}
+maple_mode(0);
+angle_radian :=1;
+read("XCASrepere.cxx");
+Sortie:=fopen("XCASrepere.mp");
+donnees:=read("XCASrepere.user");
+Resultat:=string("Repere(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptrepere}
+\newcommand{\cmrep}{\theCptrepere}
+%% \cmrep change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-repere}[1]
+{\setcounter{Cptrepere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASrepere.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASrepere.mp}
+\executGiacmp{XCASrepere.giac}
+\IfFileExists{\nomtravail_repere\cmrep.mp}{\immediate\write18{\rem \nomtravail_repere\cmrep.mp}}{}
+\immediate\write18{\cat XCASrepere.mp >> \nomtravail_repere\cmrep.mp}
+\immediate\write18{mpost \nomtravail_repere\cmrep.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_repere\cmrep.mp}{\immediate\write18{mpost \nomtravail_repere\cmrep.mp}}{% 
+\PackageError{pro-courbes}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_repere\cmrep.mp ou bien disposer de XCas.}}}
+\begin{center}
+  \includegraphics{\nomtravail_repere\cmrep.0}
+\end{center}
+%\stepcounter{Cptrepere}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-repere*}[1]
+{\setcounter{Cptrepere}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASrepere.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_repere\cmrep.0}
+\end{center}
+%\stepcounter{Cptrepere}
+
+}
+
+

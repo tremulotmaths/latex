@@ -1,0 +1,138 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\usepackage{tipfr}
+\newcommand\tc[1]{\psframebox[framearc=0.6,fillstyle=solid,fillcolor=gray!60]{\sffamily\textcolor{white}{#1}}}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Calculatrice\\graphique}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{\thepage}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 3}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Résolution graphique d'équations}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+
+
+Le plan est muni d'un repère \Oij .\\[15pt]
+%_______________________________________________________
+\textcolor{blue}{\textbf{I. Représentation graphique d'une fonction}}\\[-5pt]
+%________________________________________________________
+\begin{enumerate}
+\item La définition du cours\\
+Rappeler ce qu'est la représentation graphique d'une fonction
+\item Obtenir une courbe à l'écran de la calculatrice\\
+$f$ est la fonction définie sur $\Iff{-2}{6}$ par $f(x)=x^2+4x-8$.
+\begin{enumerate}
+\item Editer la fonction dans la calculatrice
+\item Editer le tableau de valeurs de $f$ avec un pas égal à 2
+\item Obtenir la courbe représentative de $f$ à l'écran de la calculatrice
+\item Reproduire ce tracé
+\end{enumerate}
+\end{enumerate}
+\vspace{5pt}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour la calculatrice \bsc{Ti}}\\[-8pt]
+\begin{itemize}
+\item Définir la fonction $f$ dans la calculatrice: en $Y_1$ saisir la fonction. \\
+Appuyer sur \tc{$f(x)$}, pour la variable $x$ on utilise la touche \tc{$x,t,\theta,n$}.\\
+ 
+\vspace{8pt}
+\item Régler le tableau de valeurs: on enregistre la valeur initiale et le pas\\
+Appuyer sur  \tc{2nde}   \tc{déf table}\\
+\vspace{8pt}
+\item Afficher le tableau de valeurs\\
+Appuyer sur  \tc{2nde}   \tc{table}\\ \vspace{8pt}
+\item Régler la fenêtre d'affichage: on enregistre les valeurs définissant la fenêtre graphique\\
+Appuyer sur \tc{fenêtre}\\
+
+\vspace{8pt}
+\item Obtenir la courbe\\
+Appuyer sur \tc{graphe}\\
+\end{itemize}
+\end{minipage}}
+   \end{center}
+
+
+%avec la touche \Touche[principal={$x,t,\theta,n$},seconde={Echanger},fontsize=7pt,position=0.8] 
+%\Touche[principal={$x^2$},seconde={\racine},alpha={I}]
+%\Touche[style=operation,principal={+},seconde={mÃ©m},alpha={"}]
+%\Touche[style=chiffre,principal={4},seconde={L4},alpha={T}]
+%\Touche[principal={$x,t,\theta,n$},seconde={Echanger},fontsize=7pt,position=0.8] 
+%\Touche[style=operation,principal={$-$},seconde={]},alpha={W}]
+%\Touche[style=chiffre,principal={8},seconde={$v_n$},alpha={P}]
+
+\newpage
+%_______________________________________________________
+\textcolor{blue}{\textbf{II. Résoudre une équation du type $f(x)=k$}}\\[8pt]
+%________________________________________________________
+$f$ est la fonction définie précédemment.
+\begin{enumerate}
+\item Résoudre graphiquement l'équation $f(x)=0$.
+\item Résoudre graphiquement l'équation $f(x)=5$.
+\end{enumerate}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour la calculatrice \bsc{Ti}}\\[5pt]
+Appuyer sur  \tc{trace}\\
+On déplace le curseur approximativement jusqu'aux points d'intersections cherchés et on lit leurs abscisses au bas de l'écran.\\
+%\vspace{2pt}
+\end{minipage}}
+ \end{center}
+
+
+%_______________________________________________________
+\textcolor{blue}{\textbf{III. Résoudre une équation du type $f(x)=g(x)$}}\\%[-8pt]
+%________________________________________________________
+
+On considère les fonctions définies sur $\R$ par:
+\[f(x)=x^2-3x+5 \quad \text{et}\quad g(x)=7-3x.\]
+On note $\mathcal{C}_f$ et $\mathcal{C}_g$ leurs courbes représentatives.
+\begin{enumerate}
+\item Conjecturer à l'aide de la calculatrice
+	\begin{enumerate}
+	\item Tracer les deux courbes à l'écran de la calculatrice.
+	\item Indiquer le nombre de points d'intersections observés, ainsi que leurs abscisses.
+	\end{enumerate}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour la calculatrice \bsc{Ti}}\\[5pt]
+Appuyer sur  \tc{2nde}   \tc{calculs}, puis  dans le menu, choisir \fbox{intersect}.\\
+On sélectionne la courbe 1 et la courbe 2, puis une valeur inférieure à l'abscisse cherchée.\\
+%\vspace{2pt}
+\end{minipage}}
+ \end{center}
+ \item Justifier par le calcul
+ \begin{enumerate}
+\item Retrouver les valeurs exactes des abscisses recherchées à l'aide d'une équation.
+\item Déterminer les coordonnées des points d'intersection des deux courbes.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

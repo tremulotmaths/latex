@@ -1,0 +1,194 @@
+\chapter{Composer un document}
+
+
+\section{Le préambule}
+
+Décortiquons le préambule de ce simple rapport.
+
+\lat
+
+La classe, l'encodage:
+
+\begin{lstlisting}
+\documentclass[11pt,a4paper,twoside,french,svgnames]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\end{lstlisting}
+
+Le format de la page:
+
+\begin{lstlisting}
+\usepackage[papersize={21cm,29.7cm},margin=1.5cm,bottom=1.5cm]{geometry}
+\end{lstlisting}
+
+Les fontes:
+
+\begin{lstlisting}
+%\usepackage[upright]{fourier}
+%\usepackage{lmodern}
+\usepackage[boldsans]{ccfonts}
+\usepackage{stmaryrd}
+% optionnel : pour avoir de plus belles fontes à chasse fixe et en gras
+\IfFileExists{bold-extra.sty}{\usepackage{bold-extra}}{}
+\IfFileExists{luximono.sty}{\usepackage[scaled=0.9]{luximono}}{}
+\end{lstlisting}
+
+
+Puis un certain nombre de chargement d'extensions, d'options, de macros (voir le
+fichier source principal de ce document \verb+ExempleRapport.tex+).
+
+Enfin le titre:
+
+\begin{lstlisting}
+\title{UN RAPPORT EN \LaTeX{} \\
+\scalebox{0.75}[0.75]{\emph{Pour les débutatnts}}
+}
+
+\author{Guillaume \textsc{Connan}\thanks{ Université de Nantes}}
+
+\date{Atelier Linux Nantes - 8 février 2014}
+\end{lstlisting}
+
+
+\section{Le corps du document}
+
+\begin{lstlisting}
+\begin{document}
+
+% Insertion du titre
+\maketitle
+% TDM
+\tableofcontents
+% les chapitres inclus
+\renewcommand\chaptername{Atelier \No}
+\include{chap-01}
+\include{chap-02}
+% biblio  
+\renewcommand{\bibname}{Un exemple de bibliographie}
+\bibliography{ExempleBiblio}
+% index
+\addcontentsline{toc}{chapter}{Un exemple d'index}
+{
+\thispagestyle{empty}
+\printindex
+}
+% glossaire
+\addcontentsline{toc}{chapter}{Un exemple de glossaire}
+{
+\thispagestyle{empty}
+\printglossary
+}
+
+\end{document}
+\end{lstlisting}
+
+\section{La bibliographie}
+
+Elle se crée dans un fichier à  part d'extension \verb+bib+ et se compile à part
+avec, par exemple, le moteur BiB\TeX{}.
+
+
+Un extrait du fichier :
+
+\begin{lstlisting}
+@BOOK{toutLatex, 
+	AUTHOR		= {Lozano , Vincent},
+	TITLE		= {Tout ce que vous avez toujours voulu savoir sur {\LaTeX} sans jamais oser le demander} ,
+	PUBLISHER	= {In Libro Veritas} ,
+	MONTH		= oct ,
+	YEAR		= 2008 ,
+	ISBN		= {2-352-09149-7} ,
+	URL		= {http://www.framabook.org/latex.html} ,
+	LANGUAGE	= {french} ,
+}
+\end{lstlisting}
+
+
+\shell
+
+On compile avec BiB\TeX{}:
+
+\begin{lstlisting}
+$ bibtex ExempleRapport
+
+Running `BibTeX' on `ExempleRapport' with ``bibtex ExempleRapport''
+This is BibTeX, Version 0.99d (TeX Live 2013)
+The top-level auxiliary file: ExempleRapport.aux
+The style file: cyclope.bst
+A level-1 auxiliary file: chap-01.aux
+A level-1 auxiliary file: chap-02.aux
+Database file #1: ExempleBiblio.bib
+
+BibTeX finished at Sat Feb  8 00:42:08
+\end{lstlisting}
+
+Puis on compile  deux fois avec PDF\LaTeX{} pour avoir  les références prises en
+compte.
+
+\lat
+
+On cite un  livre avec la commande \lstinline+\cite+  ou \lstinline+\citep+ pour
+avoir des parenthèses:
+
+\begin{lstlisting}
+Le livre que j'ai  le plus consulté est le \textit{\LaTeX{}  par la pratique} de
+Christian  \textsc{Rolland} \citep{rolland1999}  mais la  \og bible\fg{}  est le
+\LaTeX{} Companion \citep{companionfr}.
+\end{lstlisting}
+
+
+\section{Index}
+
+
+Les  mots indexés  doivent  être dans  une  commande \lstinline+\index{mot}+  ou
+\lstinline+\index{mot@mot       tel       qu'il      sera       classé+       ou
+  \lstinline+\index{catégorie!mot}+   ou   pour   toute   une   plage   indexée:
+  \lstinline+\index{mot|()+ au début puis \lstinline+\index{mot|)+ pour 
+ marquer la fin.
+
+On compilera  avec \lstinline+texindy+  qui permet de  tenir compte  des accents
+français:
+
+\shell
+
+\begin{lstlisting}
+$ texindy -L french ExempleRapport.idx
+\end{lstlisting}
+
+
+\section{Glossaire}
+
+Il se fabrique dans un fichier à part d'extension \texttt{tex}.
+
+ Par exemple:
+
+\lat
+
+\begin{lstlisting}
+\newglossaryentry{latex}{%
+name = \LaTeX{},
+description = votre meilleur ami mais aussi votre pire ennemi,
+sort = latex
+}
+\end{lstlisting}
+
+
+puis dans le fichier source, on fait appel au mot du glossaire:
+
+\begin{lstlisting}
+\gls{latex}
+\end{lstlisting}
+
+\shell
+
+On compile avec:
+
+\begin{lstlisting}
+$ makeglossaries ExempleRapport
+\end{lstlisting}
+
+
+%%% Local Variables: 
+%%% TeX-master: "ExempleRapport"
+%%% End: 

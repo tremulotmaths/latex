@@ -1,0 +1,89 @@
+\documentclass[10pt,french,openright,twoside]{book}
+\input philippe2013
+\entete{1\iere \bsc{Sti2d}}{Loi binomiale}{Correction}
+\pieddepage{}{}{}
+\RegleEntete
+
+\begin{document}
+\textbf{SUJET A}\medskip
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		\item $X$ suit la loi binomiale de paramètres $n = 4$ et $p = 0,2$.
+		\item $\begin{array}[t]{rcl}
+					p(X = 2) & = & \binom 4 2 \times 0,2^2 \times 0,8^2 \\[8pt]
+							& \approx & 0,154
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(X \geq 2) & = & p(X = 2) + p(X = 3) + p(X = 4) \\[8pt]
+								& \approx & 0,154 + 0,026 + 0,002 \\[8pt]
+								& \approx & 0,182
+				\end{array}$
+		\item $E(X) = np = 4 \times 0,2 = 0,8$.\par
+		Sur un très grand nombre de groupes de $4$ personnes, en moyenne, $0,8$ personnes seront embauchées dans chaque groupe.
+	\end{enumerate}
+
+	\item Cette fois-ci, $Y$ suit la loi binomiale de paramètres $n = 10$ et $p = 0,2$.
+	\begin{enumerate}
+		\item $\begin{array}[t]{rcl}
+					p(Y = 4) & = & \binom{10}{4} \times 0,2^4 \times 0,8^6 \\[8pt]
+							& \approx & 0,088
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(Y \leq 2) & = & p(X = 0) + p(X = 1) + p(X = 2) \\[8pt]
+								& \approx & 0,107 + 0,268 + 0,302 \\[8pt]
+								& \approx & 0,677
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(Y \geq 3) & = & 1 - p(Y \leq 2) \\[8pt]
+								& \approx & 0,323
+				\end{array}$
+		\item $E(Y) = np = 10 \times 0,2 = 2$.\par
+		Sur un très grand nombre de groupes de $10$ personnes, en moyenne, $2$ personnes seront embauchées dans chaque groupe.
+	\end{enumerate}
+\end{enumerate}
+
+\noindent\dotfill
+
+\textbf{SUJET B}\medskip
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		\item $X$ suit la loi binomiale de paramètres $n = 5$ et $p = 0,3$.
+		\item $\begin{array}[t]{rcl}
+					p(X = 3) & = & \binom 5 3 \times 0,3^3 \times 0,7^2 \\[8pt]
+							& \approx & 0,132
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(X \geq 3) & = & p(X = 3) + p(X = 4) + p(X = 5) \\[8pt]
+								& \approx & 0,132 + 0,028 + 0,002 \\[8pt]
+								& \approx & 0,162
+				\end{array}$
+		\item $E(X) = np = 5 \times 0,3 = 1,5$.\par
+		Sur un très grand nombre de groupes de $5$ personnes, en moyenne, $1,5$ personnes seront embauchées dans chaque groupe.
+	\end{enumerate}
+
+	\item Cette fois-ci, $Y$ suit la loi binomiale de paramètres $n = 9$ et $p = 0,3$.
+	\begin{enumerate}
+		\item $\begin{array}[t]{rcl}
+					p(Y = 5) & = & \binom{9}{5} \times 0,3^5 \times 0,7^4 \\[8pt]
+							& \approx & 0,074
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(Y \leq 2) & = & p(Y = 0) + p(Y = 1) + p(Y = 2) \\[8pt]
+								& \approx & 0,040 + 0,156 + 0,267 \\[8pt]
+								& \approx & 0,463
+				\end{array}$
+		\item $\begin{array}[t]{rcl}
+					p(Y \geq 3) & = & 1 - p(Y \leq 2) \\[8pt]
+								& \approx & 0,537
+				\end{array}$
+		\item $E(Y) = np = 9 \times 0,3 = 2,7$.\par
+		Sur un très grand nombre de groupes de $9$ personnes, en moyenne, $2,7$ personnes seront embauchées dans chaque groupe.
+	\end{enumerate}
+\end{enumerate}
+
+
+\end{document}

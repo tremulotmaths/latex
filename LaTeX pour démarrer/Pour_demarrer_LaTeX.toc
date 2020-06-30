@@ -1,0 +1,101 @@
+\select@language {french}
+\select@language {french}
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Installation et premiers conseils}{1}{chapter.1}
+\contentsline {section}{\numberline {I}Principes g\IeC {\'e}n\IeC {\'e}raux}{1}{section.1.1}
+\contentsline {section}{\numberline {II}Les distributions}{1}{section.1.2}
+\contentsline {section}{\numberline {III}\'Editeurs de textes}{2}{section.1.3}
+\contentsline {section}{\numberline {IV}Afficher le fichier .pdf obtenu apr\IeC {\`e}s compilation dans TexMaker}{3}{section.1.4}
+\contentsline {section}{\numberline {V}Personnalisation de TexMaker}{4}{section.1.5}
+\contentsline {section}{\numberline {VI}Installer un nouveau package non pr\IeC {\'e}sent dans la distribution}{6}{section.1.6}
+\contentsline {subsection}{\numberline {A}\FB@og \IeC {\`A} la main \FB@fg \xspace {} }{6}{subsection.1.6.1}
+\contentsline {subsubsection}{\numberline {1}Les packages en .sty, m\IeC {\'e}thode simple}{6}{subsubsection.1.6.1.1}
+\contentsline {subsubsection}{\numberline {2}Les packages en .ins, m\IeC {\'e}thode en deux temps}{7}{subsubsection.1.6.1.2}
+\contentsline {subsection}{\numberline {B}V\IeC {\'e}rifier si un package est pr\IeC {\'e}sent dans la distribution avec TeX Live Manager}{7}{subsection.1.6.2}
+\contentsline {section}{\numberline {VII}Sites sur lesquels on trouve des documents \IeC {\'e}crits avec \LaTeX }{8}{section.1.7}
+\contentsline {section}{\numberline {VIII}Logiciels ou sites permettant d'extraire du code \LaTeX }{9}{section.1.8}
+\contentsline {chapter}{\numberline {2}Premier document}{11}{chapter.2}
+\contentsline {section}{\numberline {I}Mon premier document \LaTeX {}}{11}{section.2.1}
+\contentsline {subsection}{\numberline {A}\'Ecrire un fichier source}{11}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {B}Premi\IeC {\`e}res remarques}{12}{subsection.2.1.2}
+\contentsline {section}{\numberline {II}Explication rapide du code source}{12}{section.2.2}
+\contentsline {subsection}{\numberline {A}Structure du code source}{12}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {B}Explication du pr\IeC {\'e}ambule}{13}{subsection.2.2.2}
+\contentsline {section}{\numberline {III}Commandes}{15}{section.2.3}
+\contentsline {subsection}{\numberline {A}Arguments d'une commande}{15}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {B}Commandes semi-globales}{16}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {C}Les packages}{17}{subsection.2.3.3}
+\contentsline {section}{\numberline {IV}Les caract\IeC {\`e}res sp\IeC {\'e}ciaux}{17}{section.2.4}
+\contentsline {chapter}{\numberline {3}Mise en forme}{19}{chapter.3}
+\contentsline {section}{\numberline {I}Mise en forme de base}{19}{section.3.1}
+\contentsline {subsection}{\numberline {A}Un premier exemple}{19}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {B}Police et fontes}{20}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {C}Changement de la taille des fontes}{21}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {D}Alignement}{22}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {E}Espaces}{23}{subsection.3.1.5}
+\contentsline {subsubsection}{\numberline {1}Espaces horizontales}{23}{subsubsection.3.1.5.1}
+\contentsline {subsubsection}{\numberline {2}Espaces verticales}{24}{subsubsection.3.1.5.2}
+\contentsline {section}{\numberline {II}Couleur}{26}{section.3.2}
+\contentsline {section}{\numberline {III}Mise en page}{28}{section.3.3}
+\contentsline {subsection}{\numberline {A}Dimensions de la page}{28}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {B}Multicolonnes}{29}{subsection.3.3.2}
+\contentsline {section}{\numberline {IV}Structurer un document}{30}{section.3.4}
+\contentsline {subsection}{\numberline {A}Listes structur\IeC {\'e}es}{30}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {B}Sectionnement}{32}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {C}R\IeC {\'e}f\IeC {\'e}rences crois\IeC {\'e}es}{34}{subsection.3.4.3}
+\contentsline {section}{\numberline {V}Renvois}{35}{section.3.5}
+\contentsline {chapter}{\numberline {4}Math\IeC {\'e}matiques}{36}{chapter.4}
+\contentsline {section}{\numberline {I}Un premier exemple}{36}{section.4.1}
+\contentsline {subsection}{\numberline {A}Utilisation de \texttt {\textbackslash usepackage}{\ttfamilyFB [autolanguage,np]\{numprint\}}}{37}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {B}Utilisation de \texttt {\textbackslash usepackage}\{{\ttfamilyFB xlop}\}}{38}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {C}Utilisation de \texttt {\textbackslash usepackage}\{{\ttfamilyFB cancel}\}}{39}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {D}Utilisation \texttt {\textbackslash usepackage}\{{\ttfamilyFB dsfont}\}}{40}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {E}Fontes math\IeC {\'e}matiques}{40}{subsection.4.1.5}
+\contentsline {section}{\numberline {II}Les modes math\IeC {\'e}matiques}{41}{section.4.2}
+\contentsline {subsection}{\numberline {A}En ligne ou hors du texte ?}{41}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {B}Du texte dans des formules}{42}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {C}Les espaces}{43}{subsection.4.2.3}
+\contentsline {section}{\numberline {III}\'Ecrire des math\IeC {\'e}matiques de la sixi\IeC {\`e}me \IeC {\`a} la terminale}{45}{section.4.3}
+\contentsline {subsection}{\numberline {A}Au coll\IeC {\`e}ge}{45}{subsection.4.3.1}
+\contentsline {subsubsection}{\numberline {1}En Sixi\IeC {\`e}me}{45}{subsubsection.4.3.1.1}
+\contentsline {subsubsection}{\numberline {2}En Cinqui\IeC {\`e}me}{46}{subsubsection.4.3.1.2}
+\contentsline {subsubsection}{\numberline {3}En Quatri\IeC {\`e}me}{47}{subsubsection.4.3.1.3}
+\contentsline {subsubsection}{\numberline {4}En Troisi\IeC {\`e}me}{49}{subsubsection.4.3.1.4}
+\contentsline {subsection}{\numberline {B}Au lyc\IeC {\'e}e}{50}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {1}En 2nde}{50}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {2}En premi\IeC {\`e}re}{52}{subsubsection.4.3.2.2}
+\contentsline {subsubsection}{\numberline {3}En Terminale}{53}{subsubsection.4.3.2.3}
+\contentsline {subsection}{\numberline {C}En licence}{54}{subsection.4.3.3}
+\contentsline {section}{\numberline {IV}Aligner des \IeC {\'e}galit\IeC {\'e}s}{55}{section.4.4}
+\contentsline {section}{\numberline {V}\IeC {\'E}crire un syst\IeC {\`e}me}{56}{section.4.5}
+\contentsline {chapter}{\numberline {5}Tableaux}{57}{chapter.5}
+\contentsline {section}{\numberline {I}Composer un tableau}{57}{section.5.1}
+\contentsline {subsection}{\numberline {A}Cr\IeC {\'e}er des lignes et des colonnes}{57}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {B}Fusionner des colonnes}{58}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {C}Sp\IeC {\'e}cificateurs de colonne suppl\IeC {\'e}mentaires}{59}{subsection.5.1.3}
+\contentsline {section}{\numberline {II}Les tableaux en math\IeC {\'e}matiques}{60}{section.5.2}
+\contentsline {subsection}{\numberline {A}L'environnement \texttt {array}}{60}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {B}Les syst\IeC {\`e}mes}{60}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {C}Les matrices}{61}{subsection.5.2.3}
+\contentsline {section}{\numberline {III}Tableaux de signes et tableaux de variations}{62}{section.5.3}
+\contentsline {subsection}{\numberline {A}Tableaux de signes}{63}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {B}Tableaux de variations}{65}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {C}Un m\IeC {\'e}lange}{66}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {D}Un dernier exemple}{67}{subsection.5.3.4}
+\contentsline {section}{\numberline {IV}Compl\IeC {\'e}ment : le tableur}{67}{section.5.4}
+\contentsline {chapter}{\numberline {6}Images}{70}{chapter.6}
+\contentsline {section}{\numberline {I}Ins\IeC {\'e}rer une image}{70}{section.6.1}
+\contentsline {section}{\numberline {II}Modifier une image}{70}{section.6.2}
+\contentsline {section}{\numberline {III}Les environnements \textit {wrapfigure}\xspace et \textit {minipage}\xspace }{71}{section.6.3}
+\contentsline {section}{\numberline {IV}Une image dans du texte}{74}{section.6.4}
+\contentsline {chapter}{\numberline {7}Graphiques et g\IeC {\'e}om\IeC {\'e}trie}{76}{chapter.7}
+\contentsline {section}{\numberline {I}Diff\IeC {\'e}rentes m\IeC {\'e}thodes }{76}{section.7.1}
+\contentsline {section}{\numberline {II}Pr\IeC {\'e}sentation g\IeC {\'e}n\IeC {\'e}rale de TikZ et TkZ}{76}{section.7.2}
+\contentsline {section}{\numberline {III}Exemples de figures utilisant TikZ}{78}{section.7.3}
+\contentsline {section}{\numberline {IV}Exemples en ligne}{85}{section.7.4}
+\contentsline {section}{\numberline {V}Exemples de figures utilisant TkZ}{86}{section.7.5}
+\contentsline {chapter}{\numberline {8}Arbres pond\IeC {\'e}r\IeC {\'e}s}{102}{chapter.8}
+\contentsline {chapter}{\numberline {9}QR codes}{108}{chapter.9}
+\contentsline {chapter}{\numberline {10}Ins\IeC {\'e}rer du code}{109}{chapter.10}
+\contentsline {section}{\numberline {I}Ins\IeC {\'e}rer du code Scratch}{109}{section.10.1}
+\contentsline {section}{\numberline {II}Ins\IeC {\'e}rer du code Python}{109}{section.10.2}

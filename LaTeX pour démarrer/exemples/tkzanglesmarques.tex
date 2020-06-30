@@ -1,0 +1,13 @@
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\tkzDefPoint(0,0){A}\tkzLabelPoints[font=\boldmath,below left,color=blue](A)
+\tkzDefPoint(3,0){B}\tkzLabelPoints[font=\boldmath,below right,color=blue](B)
+\tkzDefPoint(3,5){C}\tkzLabelPoints[font=\boldmath,above right,color=blue](C)
+\tkzDefPoint(0,1.5){D}\tkzLabelPoints[font=\boldmath,above left,color=blue](D)
+\tkzMarkRightAngle[fill=red!50](B,A,D)
+\tkzMarkRightAngle[fill=red!50](C,B,A)
+\tkzMarkAngle[fill=red!50,size=0.8cm](D,C,B)
+\tkzLabelAngle[pos=1.2](D,C,B){50\degres}
+\tkzDrawPolygon[line width=1.5pt,color=blue](A,B,C,D)
+\end{tikzpicture}
+\end{center}

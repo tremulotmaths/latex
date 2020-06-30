@@ -1,0 +1,297 @@
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage{pas-diagtext}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+% --- Propre à cette doc
+
+\usepackage{lipsum}
+\usepackage{tabularx}
+
+% ----------------------
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-diagtext} }\\[3mm]
+{\large Version 1.00 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+L'extension \texttt{pas-diagtext} a été conçue dans le but de créer facilement des bo\^ites avec un texte en fond. 
+
+\medskip
+
+Cette extension charge automatiquement les extensions suivantes :
+
+\medskip
+
+\begin{quote}
+xkeyval\\
+eso-pic\\
+multido\\
+tikz (avec la librairie : calc)
+\end{quote}
+
+\medskip
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-diagtext.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-diagtext/latex/pas-diagtext.sty
+./texlive/texmf-local/tex/latex/pas-diagtext/doc/pas-diagtext.tex
+./texlive/texmf-local/tex/latex/pas-diagtext/doc/pas-diagtext.pdf
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+
+\section{Les commandes}
+
+\subsection{Du texte en diagonale sur toute une page}
+
+\subsubsection{Écritures}
+
+\begin{tcblisting}{codeTEX}
+\backpage[<options>]{texte}
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{angle} & (en degrés) & Angle selon lequel le texte sera écrit. Par défaut, angle=30.\\
+\hline
+\texttt{color} & (texte) & Couleur du texte. Par défaut, color=gray!10.\\
+\hline
+\texttt{times} & (entier) & Nombre de fois que le texte est répété. Par défaut, times=250.\\
+\hline
+\end{tabularx}
+
+\medskip
+
+Par défaut, le texte sera affiché en arrière plan sur toutes les pages du document.
+Si vous ne souhaitez pas voir le texte apparaître au-delà d'une certaine page, vous pouvez utiliser la commande suivante du package \texttt{eso-pic}  :
+
+\medskip
+
+\begin{tcblisting}{codeTEX}
+\ClearShipoutPicture
+\end{tcblisting}
+
+\medskip
+
+Vous pouvez vous reporter à la documentation du package \texttt{eso-pic} pour différentes manipulations.
+
+
+\subsubsection{Programmation dans le fichier STY}
+
+\begin{tcblisting}{codeTEX,title={Le code}}
+\define@cmdkey [PAS] {backpage} {angle}{}
+\define@cmdkey [PAS] {backpage} {color}{}
+\define@cmdkey [PAS] {backpage} {times}{}
+\presetkeys    [PAS] {backpage} {angle=30,color=gray!10,times=250}{}
+\newcommand*{\backpage}[2][]
+{%
+\setkeys[PAS]{backpage}{#1}
+\AddToShipoutPicture
+{
+\put(\LenToUnit{0cm},\LenToUnit{0cm})
+{%
+\begin{tikzpicture}
+	\clip (0,0) rectangle (21.5,-29.7cm);
+	\begin{scope}[yshift=-23cm]
+	\node[rotate=\cmdPAS@backpage@angle,inner sep=0pt] at (0,0)
+	{
+		\begin{minipage}{60cm}
+		\Huge\color{\cmdPAS@backpage@color} 
+		\multido{\i=1+1}{\cmdPAS@backpage@times}{#2\ }
+		\end{minipage}
+	};
+	\end{scope}
+\end{tikzpicture}
+}
+}
+}
+\end{tcblisting}
+
+\subsection{Du texte dans une boîte}
+
+\subsubsection{Écritures}
+
+\begin{tcblisting}{codeTEX}
+\begin{tikzpicture}
+\tikzstyle{pasbox}=[<options TiKZ de la boîte>]
+\tikzstyle{pastext}=[<options TiKZ de la boîte>]
+\pasbox[<options>]{Texte en diagonale}{Contenu de la boîte}
+\end{tikzpicture}
+\end{tcblisting}
+
+\medskip
+
+Les options de la commande \texttt{pasbox} sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{angle} & (en degrés) & Angle selon lequel le texte en diagonale sera écrit. Par défaut, angle=30.\\
+\hline
+\texttt{textbgcolor} & (texte) & Couleur du texte en diagonale. Par défaut, textbgcolor=gray!10.\\
+\hline
+\texttt{times} & (entier) & Nombre de fois que le texte en diagonale est répété. Par défaut, times=50.\\
+\hline
+\texttt{width} & (texte) & Largeur de la boîte. Par défaut, width=19cm. \color{red}Attention : veillez à ce que l'unité soit collée au nombre.\\
+\hline
+\texttt{widthB} & (texte) & Il faut que cette valeur soit plus grande que la largeur de la boîte, par exemple 4 cm de plus, sinon le texte en diagonale ne recouvrira pas entièrement la boîte. Par défaut, widthB=25cm.\\
+\hline
+\end{tabularx}
+
+\medskip
+
+\paragraph*{Remarque concernant les styles TiKZ.} Comme vous pourrez le voir sur la programmation de la commande, il y a 3 n\oe uds qui sont construits. \\
+Pour le premier (pasbox), vous devez informer la couleur du fond ainsi que celle du texte, qui doivent être identiques. Ensuite, vous pouvez éventuellement informer les marges internes (inner sep).\\
+Pour le second, il contiendra le texte en diagonale.\\
+Pour le troisième (pastext), il faut mettre les informations concernant le bord (thick, very thick, draw=<couleur>), éventuellement la forme des coins (rounded corners), la couleur du texte (text=<couleur>) et les marges internes s'il y a lieu (inner sep).
+
+\subsubsection{Programmation dans le fichier STY}
+
+\begin{tcblisting}{codeTEX,title={Le code}}
+\define@cmdkey [PAS] {pasbox} {angle}{}
+\define@cmdkey [PAS] {pasbox} {textbgcolor}{}
+\define@cmdkey [PAS] {pasbox} {times}{}
+\define@cmdkey [PAS] {pasbox} {width}{}
+\define@cmdkey [PAS] {pasbox} {widthB}{}
+\presetkeys [PAS] {pasbox} {angle=30,textbgcolor=gray!10,times=50,width=19cm,widthB=25cm}{}
+
+\newcommand*{\pasbox}[3][] % #1 = options, #2 = texte en diagonale, #3 = contenu de la boîte
+{%
+\setkeys[PAS]{pasbox}{#1}
+\node[pasbox] (text) {
+\begin{minipage}{\cmdPAS@pasbox@width}
+#3
+\end{minipage}
+};
+\clip (text.south west) rectangle (text.north east);
+\node[rotate=\cmdPAS@pasbox@angle,inner sep=0pt,below right] at ($(text.north west)+(-5,0)$)
+{
+\begin{minipage}{\cmdPAS@pasbox@widthB}
+	\color{\cmdPAS@pasbox@textbgcolor}\multido{\i=1+1}{\cmdPAS@pasbox@times}{#2\ }
+\end{minipage}
+};
+\node[below right,pastext] at (text.north west) {
+\begin{minipage}{\cmdPAS@pasbox@width}
+#3
+\end{minipage}
+};
+}
+\end{tcblisting}
+
+
+\section{Exemple complet}
+
+\begin{tcblisting}{codeTEX}
+\documentclass{article}
+\usepackage[frenchb]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{pas-diagtext}
+\usepackage{lipsum}
+\begin{document}
+% Met le texte "Documentation" en fond de la page, en diagonale
+\backpage[color=blue!10,angle=20,times=400]{Documentation}
+
+% Créé une boîte avec le texte "exemple" en fond, en diagonale
+% La largeur de la boîte est ici fixée à 5 cm
+\begin{tikzpicture}
+\tikzstyle{pasbox}=[draw=red,fill=yellow!20,color=yellow!20,rounded corners,inner sep=10pt]
+\tikzstyle{pastext}=[draw=red,text=green!50!black,rounded corners,thick,inner sep=10pt]
+\pasbox[angle=10,textbgcolor=red!20,times=200,width=5cm,widthB=8cm]{exemple}{%
+\lipsum[1]
+}
+\end{tikzpicture}
+
+\newpage % On change de page
+
+\ClearShipoutPicture % On efface le texte en fond de page
+
+% On créé une boîte avec "exemple" écrit en diagonale
+% Largeur de la boîte : 5 cm
+
+\begin{tikzpicture}
+\tikzstyle{pasbox}=[fill=blue!5,color=blue!5,inner sep=10pt]
+\tikzstyle{pastext}=[draw=red,text=blue!50!black,rounded corners,thick,inner sep=10pt]
+\pasbox[angle=20,textbgcolor=blue!15,times=250,width=5cm,widthB=8cm]{exemple}{%
+\lipsum[1]
+}
+\end{tikzpicture}
+\end{document}
+\end{tcblisting}
+
+\medskip
+
+\section{Exemples de boîtes que l'on peut obtenir}
+
+\begin{tikzpicture}
+\tikzstyle{pasbox}=[fill=green!5,color=green!5,inner sep=10pt]
+\tikzstyle{pastext}=[draw=green!50!black,text=green!50!black,rounded corners,thick,inner sep=10pt]
+\pasbox[angle=10,textbgcolor=green!25,times=250,width=10cm,widthB=15cm]{exemple}{%
+\lipsum[1]
+}
+\end{tikzpicture}
+
+\medskip
+
+\begin{tikzpicture}
+\tikzstyle{pasbox}=[fill=blue!5,color=blue!5,inner sep=10pt]
+\tikzstyle{pastext}=[draw=red,text=blue!50!black,rounded corners,thick,inner sep=10pt]
+\pasbox[angle=20,textbgcolor=blue!15,times=250,width=5cm,widthB=8cm]{exemple}{%
+\lipsum[1]
+}
+\end{tikzpicture}
+
+
+\end{document}

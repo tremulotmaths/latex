@@ -1,0 +1,188 @@
+﻿martine.salmon1@ac-versailles.fr
+
+
+
+Editeur de LaTeX : TeXmaker
+
+
+Sujet de la journée : Fabrication de diaporamas
+Classe "Beamer"
+
+
+
+Par défaut taille des caractères : 11 pt
+
+
+Par défaut, le texte est centré verticalement dans les diapositives.
+
+
+Si l'on veut le texte en haut de page \documentclass[12pt,t]{beamer}
+
+Si l'on veut le texte en bas de page \documentclass[12pt,b]{beamer}
+
+
+
+On peut choisir un thème par la commande  : \usetheme{Boadilla}
+
+
+On peut modifier la couleur par : \usecolortheme[named=blue]{structure}
+
+
+
+Dans le préambule (avant \begin{document})
+
+Titre : \title[Terminale 2012]{Programmes de terminale - Rentrée 2012}
+
+Entre crochets, le titre est en bas.
+
+Entre accolades, le titre est au centre de la diapo
+
+Date : \date{} %ici la date ne s'affiche pas.
+
+Sous-titre ou "institut" \institute{Stage académique - Niveau 2}
+
+Auteur : \author{Martine Salmon}
+
+
+
+Affichage de la diapo de titre :
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+Pour modifier la largeur du texte, dans le préambule :
+\setlength{\textwidth}{10.7cm}
+
+par défaut : 12.8 cm
+
+
+Pour une diapositive
+\begin{frame}
+\end{frame}
+
+
+
+titre d'une diapositive : 
+\frametitle{Introduction}
+
+
+
+Créer des blocks
+\begin{block}{Un bloc normal}
+
+\end{block}
+
+
+
+Ajouter une ombre
+\setbeamertemplate{blocks}[rounded]
+[shadow=true]
+\begin{block}{Un bloc ombré}
+
+\end{block}
+
+
+L'ombre est valable pour toutes les diapositives suivantes.
+
+Pour l'annuler :
+\setbeamertemplate{blocks}[rounded]
+[shadow=false]
+
+
+
+Blocks d'Alerte :
+\begin{alertblock}
+\end{alertblock}
+
+
+
+Commande de pause pour ne pas afficher toute la diapo d'un coup.
+\pause
+
+
+
+Lien vers un autre fichier :
+\href{run:simul_fluctu2.xlsx}{tableur}
+la commande "run" demande à Excel d'ouvrir le fichier en question
+les secondes accolades donne le message affiché dans la diapo
+
+
+
+Pour afficher le code sans l'interpréter
+\begin{verbatim}
+\end{verbatim}
+
+Nécessite le package verbatim
+
+
+
+Certains thèmes (comme Boadilla) ne possède pas de sommaire :
+
+
+Ajouter dans le préambule :
+
+\AtBeginSection[]
+{
+\begin{frame}<beamer>
+\frametitle{Plan}
+\tableofcontents[currentsection,currentsubsection]
+\end{frame}
+}
+
+\AtBeginSubsection[]
+{
+\begin{frame}<beamer>
+\frametitle{Plan}
+\tableofcontents[currentsection,currentsubsection]
+\end{frame}
+}
+
+
+Cela insère une diapo avec le plan avant chaque section et sous-section
+
+
+
+Minipage
+\begin{minipage}{0.45\linewidth}
+...
+\end{minipage}
+\hspace{0.05\linewidth}
+\begin{minipage}{0.45\linewidth}
+...
+\end{minipage}
+
+
+
+
+
+Mettre tout un paragraphe en couleur :
+\color{blue}
+
+Pour l'annuler :
+\color{black}
+
+
+
+
+Pour autoriser le découpage du texte sur plusieurs diapos :
+\begin{frame}[allowframebreaks]
+\end{frame}
+
+
+
+
+Créer des liens vers d'autres diapos :
+\hyperlink{cible}{\beamerbutton{Fonctions associées}} : 
+créer un bouton de style "beamerbutton" indiqué "Fonctions associés" et qui pointe vers le \label{cible} situé ailleurs dans le document
+
+Autres types de boutons :
+
+\beamergotobutton
+\beamerskipbutton
+\beamerreturnbutton
+
+
+Pour demander au diaporama de s'afficher directement en plein écran
+\hypersetup{pdfpagemode=FullScreen}

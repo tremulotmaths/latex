@@ -1,0 +1,192 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Construction\\
+Utilisation de Geospace}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 5}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Section d'un volume par un plan}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Le tétraèdre}}\\[5pt]
+Un \emph{tétraèdre} est un volume dont les quatre faces sont des triangles.\\
+Un tétraèdre est dit \emph{régulier} lorsque chacune de ses faces est un triangle équilatéral.
+\begin{enumerate}
+\item Représenter un tétraèdre en perspective cavalière.
+\item Construire un patron du tétraèdre régulier $ABCD$ d'arête 4 cm.
+\end{enumerate}
+
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Section du tétraèdre}}\\[5pt]
+L'objectif est de construire la section d'un tétraèdre par un plan.\\[5pt]
+\textbf{ Observation sur le logiciel \textsc{Géospace}}
+\vspace{-10pt}
+\begin{center}
+   \definecolor{ffwwqq}{rgb}{1.,0.4,0.}
+\begin{tikzpicture}[scale=0.9, line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3,0) rectangle (7,4.5);
+\fill[line width=0.pt,color=ffwwqq!20,fill=ffwwqq!12,fill opacity=0.1] (-1.4061243789617959,2.637410313517218) -- (-0.6931799506984389,0.9119638455217748) -- (1.0632,1.0224) -- (1.6069930224605216,3.2440462214493824) -- cycle;
+\draw (0.02,4.28)-- (-2.22,1.7);
+\draw (-2.22,1.7)-- (0.26,0.42);
+\draw (0.02,4.28)-- (0.26,0.42);
+\draw (0.26,0.42)-- (2.9,2.4);
+\draw (2.9,2.4)-- (0.02,4.28);
+\draw [ dash pattern=on 3pt off 3pt] (-2.22,1.7)-- (2.9,2.4);
+\draw [line width=0.7pt, dash pattern=on 2pt off 3pt,color=ffwwqq] (-1.4061243789617959,2.637410313517218)-- (1.6069930224605216,3.2440462214493824);
+\draw [line width=0.7pt, color=ffwwqq] (-1.4061243789617959,2.637410313517218)-- (-0.6931799506984389,0.9119638455217748);
+\draw [line width=0.7pt, dash pattern=on 2pt off 3pt,color=ffwwqq] (-0.6931799506984389,0.9119638455217748)-- (1.0632,1.0224);
+\draw [line width=0.7pt, color=ffwwqq] (1.0632,1.0224)-- (1.6069930224605216,3.2440462214493824);
+\end{tikzpicture}
+\end{center}
+\vspace{-15pt}
+\textbf{Méthode}\\[3pt]
+Chacune des faces du tétraèdre définit un plan.\\
+Pour déterminer la section d'un tétraèdre par un plan $\mathcal{P}$, 
+\begin{itemize}
+\item on détermine la droite d'intersection de chacune des faces du tétraèdre avec ce plan 
+\item on laisse visible la trace du plan $\mathcal{P}$ sur chacune des faces du tétraèdre.
+\end{itemize}
+\vspace{10pt}
+\textbf{Situation}\\[3pt]
+$ABCD$ est un tétraèdre régulier.\\
+Le point $I$ est un point de l'arête $[AC]$, le point $J$ est sur la face $ACD$ et le point $K$ sur la face $ABD$.\\
+Les points $I$, $J$ et $K$ définissent un plan noté $\mathcal{P}$.\\[5pt]
+Le but ici est de construire la section du tétraèdre par ce plan $\mathcal{P}$.
+\begin{center}
+   \definecolor{ffwwqq}{rgb}{1.,0.4,0.}
+ \definecolor{zzwwff}{rgb}{0.6,0.4,1.}
+\definecolor{wwqqcc}{rgb}{0.4,0.,0.8}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\begin{tikzpicture}[scale=0.8, line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3,-1.5) rectangle (8,5);
+\fill[line width=0.pt,color=ffwwqq!20,fill=ffwwqq!12,fill opacity=0.1] (1.64,4.38) -- (-0.9,1.2) -- (1.82,-0.34) -- cycle;
+\draw (1.64,4.38)-- (-0.9,1.2);
+\draw (-0.9,1.2)-- (1.82,-0.34);
+\draw (1.82,-0.34)-- (5.52,1.94);
+\draw (5.52,1.94)-- (1.64,4.38);
+\draw (1.64,4.38)-- (1.82,-0.34);
+\draw [dash pattern=on 4pt off 4pt] (-0.9,1.2)-- (5.52,1.94);
+\begin{scriptsize}
+\draw [fill=qqqqff] (1.64,4.38) circle (0.5pt);
+\draw[color=qqqqff] (1.6739489677333843,4.666215166315831) node {$A$};
+\draw [fill=qqqqff] (-0.9,1.2) circle (0.5pt);
+\draw[color=qqqqff] (-1.3061159690655655,1.0272413992698786) node {$B$};
+\draw [fill=qqqqff] (5.52,1.94) circle (0.5pt);
+\draw[color=qqqqff] (5.822079558152023,1.8059518350163377) node {$C$};
+\draw [fill=qqqqff] (1.82,-0.34) circle (0.5pt);
+\draw[color=qqqqff] (1.7937505732328396,-0.724857081159654) node {$D$};
+\draw [fill=ffwwqq] (0.38,1.88) circle (1.0pt);
+\draw[color=ffwwqq] (0.2,1.6) node {$K$};
+\draw [fill=ffwwqq] (4.414658035034273,2.6351119573495807) circle (1.0pt);
+\draw[color=wwqqcc] (4.7,2.8092902810742753) node {$I$};
+\draw [fill=ffwwqq] (3.84,1.22) circle (1.0pt);
+\draw[color=ffwwqq] (4.1,1.4) node {$J$};
+\end{scriptsize}
+\end{tikzpicture}  
+\end{center}
+\begin{enumerate}
+\item Question de cours\\
+Rappeler les résultats concernant la position relative de deux plans.\\
+En particulier, énoncer une propriété concernant deux plans non parallèles.
+\item Reproduire la figure ci-dessus.
+\item Déterminer et tracer successivement les intersections suivantes:
+	\begin{enumerate}
+	\item $\mathcal{P}\cap (ADC)$
+	\item $\mathcal{P}\cap (ABD)$
+	\item $\mathcal{P}\cap (ABC)$
+	\item $\mathcal{P}\cap (BCD)$
+	\end{enumerate}
+\item Représenter la trace du plan $\mathcal{P}$ sur le tétraèdre $ABCD$.
+
+\end{enumerate}
+
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{III. Section d'un pavé}}\\[5pt]
+
+\textbf{Situation}\\[3pt]
+$ABCDEFGH$ est un pavé droit.\\
+On considère un point $M$ du segment $[AD]$, un point $K$ du segment $[HG]$ et un point $N$ de la face $(ABC)$.\\
+Les points $M$, $N$ et $K$ définissent un plan noté $\mathcal{P}$.
+\begin{center}
+\vspace{-20pt}
+   \definecolor{ffwwqq}{rgb}{1.,0.4,0.}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\begin{tikzpicture}[scale=0.8, line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4,-3) rectangle (12,6.3);
+\fill[line width=0.pt,color=ffwwqq!20,fill=ffwwqq!12,fill opacity=0.1] (-2.,0.) -- (4.,-2.) -- (7.,-1.) -- (1.,1.) -- cycle;
+\draw (-2.,3.)-- (-2.,0.);
+\draw [dash pattern=on 5pt off 5pt] (-2.,0.)-- (1.,1.);
+\draw [dash pattern=on 5pt off 5pt] (1.,1.)-- (1.,4.);
+\draw (1.,4.)-- (-2.,3.);
+\draw (1.,4.)-- (7.,2.);
+\draw (7.,2.)-- (7.,-1.);
+\draw (7.,-1.)-- (4.,-2.);
+\draw (4.,-2.)-- (4.,1.);
+\draw (4.,1.)-- (7.,2.);
+\draw [dash pattern=on 5pt off 5pt] (1.,1.)-- (7.,-1.);
+\draw (4.,-2.)-- (-2.,0.);
+\draw (-2.,3.)-- (4.,1.);
+\begin{scriptsize}
+\draw [fill=qqqqff] (-2.,0.) circle (0.5pt);
+\draw[color=qqqqff] (-2.3,-0.18) node {$A$};
+\draw [fill=qqqqff] (4.,-2.) circle (0.5pt);
+\draw[color=qqqqff] (4.02,-2.34) node {$B$};
+\draw [fill=qqqqff] (7.,-1.) circle (0.5pt);
+\draw[color=qqqqff] (7.3,-1.26) node {$C$};
+\draw [fill=qqqqff] (1.,1.) circle (0.5pt);
+\draw[color=qqqqff] (1.12,0.64) node {$D$};
+\draw [fill=qqqqff] (-2.,3.) circle (0.5pt);
+\draw[color=qqqqff] (-2.2,3.28) node {$E$};
+\draw [fill=qqqqff] (4.,1.) circle (0.5pt);
+\draw[color=qqqqff] (4.14,1.32) node {$F$};
+\draw [fill=qqqqff] (7.,2.) circle (0.5pt);
+\draw[color=qqqqff] (7.14,2.28) node {$G$};
+\draw [fill=qqqqff] (1.,4.) circle (0.5pt);
+\draw[color=qqqqff] (1.04,4.28) node {$H$};
+\draw [fill=ffwwqq] (5.044,2.652) circle (1.5pt);
+\draw[color=ffwwqq] (5.18,2.94) node {$K$};
+\draw [fill=ffwwqq] (-1.232,0.256) circle (1.5pt);
+\draw[color=ffwwqq] (-1.1,0.54) node {$M$};
+\draw [fill=ffwwqq] (4.7,-1.24) circle (1.5pt);
+\draw[color=ffwwqq] (4.84,-0.96) node {$N$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+\item Reproduire la figure ci dessus.
+\item Construire la section du pavé par le plan $\mathcal{P}$.
+\end{enumerate}
+
+
+\end{document}
+

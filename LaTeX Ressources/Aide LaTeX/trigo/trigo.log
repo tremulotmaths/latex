@@ -1,0 +1,1683 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=latex 2013.1.8)  6 SEP 2013 22:14
+entering extended mode
+**trigo.tex
+("F:\Dropbox\Aide LaTeX\trigo\trigo.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\cp1252.def"
+File: cp1252.def 2008/03/30 v1.1d Input encoding file
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\helvet.sty"
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/02/06 v6.82o Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
+Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
+Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
+Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
+Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count87
+\Hy@pagecounter=\count88
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/02/06 v6.82o Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count89
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 3925.
+Package hyperref Info: Hyper figures OFF on input line 4046.
+Package hyperref Info: Link nesting OFF on input line 4051.
+Package hyperref Info: Hyper index ON on input line 4054.
+Package hyperref Info: Plain pages OFF on input line 4061.
+Package hyperref Info: Backreferencing OFF on input line 4066.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4284.
+\c@Hy@tempcnt=\count90
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4637.
+\Fld@menulength=\count91
+\Field@Width=\dimen104
+\Fld@charsize=\dimen105
+Package hyperref Info: Hyper figures OFF on input line 5757.
+Package hyperref Info: Link nesting OFF on input line 5762.
+Package hyperref Info: Hyper index ON on input line 5765.
+Package hyperref Info: backreferencing OFF on input line 5772.
+Package hyperref Info: Link coloring ON on input line 5775.
+Package hyperref Info: Link coloring with OCG OFF on input line 5782.
+Package hyperref Info: PDF/A mode OFF on input line 5787.
+LaTeX Info: Redefining \ref on input line 5827.
+LaTeX Info: Redefining \pageref on input line 5831.
+\Hy@abspage=\count92
+\c@Item=\count93
+\c@Hfootnote=\count94
+)
+
+Package hyperref Message: Driver: hdvips.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hdvips.def"
+File: hdvips.def 2012/02/06 v6.82o Hyperref driver for dvips
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pdfmark.def"
+File: pdfmark.def 2012/02/06 v6.82o Hyperref definitions for pdfmark specials
+\pdf@docset=\toks17
+\pdf@box=\box26
+\pdf@toks=\toks18
+\pdf@defaulttoks=\toks19
+\Fld@listcount=\count95
+\c@bookmark@seq@number=\count96
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip43
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count97
+\Gm@cntv=\count98
+\c@Gm@tempcnt=\count99
+\Gm@bindingoffset=\dimen106
+\Gm@wd@mp=\dimen107
+\Gm@odd@mp=\dimen108
+\Gm@even@mp=\dimen109
+\Gm@layoutwidth=\dimen110
+\Gm@layoutheight=\dimen111
+\Gm@layouthoffset=\dimen112
+\Gm@layoutvoffset=\dimen113
+\Gm@dimlist=\toks20
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty"
+Package: framed 2007/10/04 v 0.95: framed or shaded text with page breaks
+\fb@frw=\dimen114
+\fb@frh=\dimen115
+\FrameRule=\dimen116
+\FrameSep=\dimen117
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+\fancy@headwidth=\skip44
+\f@ncyO@elh=\skip45
+\f@ncyO@erh=\skip46
+\f@ncyO@olh=\skip47
+\f@ncyO@orh=\skip48
+\f@ncyO@elf=\skip49
+\f@ncyO@erf=\skip50
+\f@ncyO@olf=\skip51
+\f@ncyO@orf=\skip52
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\fancybox\fancybox.sty"
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box27
+\shadowsize=\dimen118
+\@Sbox=\box28
+\do@VerbBox=\toks21
+\the@fancyput=\toks22
+\this@fancyput=\toks23
+\EndVerbatimTokens=\toks24
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read1
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count100
+\mult@box=\box29
+\multicol@leftmargin=\dimen119
+\c@unbalance=\count101
+\c@collectmore=\count102
+\doublecol@number=\count103
+\multicoltolerance=\count104
+\multicolpretolerance=\count105
+\full@width=\dimen120
+\page@free=\dimen121
+\premulticols=\dimen122
+\postmulticols=\dimen123
+\multicolsep=\skip53
+\multicolbaselineskip=\skip54
+\partial@page=\box30
+\last@line=\box31
+\mult@rightbox=\box32
+\mult@grightbox=\box33
+\mult@gfirstbox=\box34
+\mult@firstbox=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\c@columnbadness=\count106
+\c@finalcolumnbadness=\count107
+\last@try=\dimen124
+\multicolovershoot=\dimen125
+\multicolundershoot=\dimen126
+\mult@nat@firstbox=\box53
+\colbreak@box=\box54
+\multicol@sort@counter=\count108
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvips.def"
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+)
+\Gin@req@height=\dimen127
+\Gin@req@width=\dimen128
+)
+\epsfxsize=\dimen129
+\epsfysize=\dimen130
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ntheorem\ntheorem.sty"
+Style `ntheorem', Version 1.31 <2011/02/16>
+Package: ntheorem 2011/02/16 1.31
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\theorem@style=\toks25
+\theorem@@style=\toks26
+\theorembodyfont=\toks27
+\theoremnumbering=\toks28
+\theorempreskipamount=\skip55
+\theorempostskipamount=\skip56
+\theoremframepreskipamount=\skip57
+\theoremframepostskipamount=\skip58
+\theoremindent=\dimen131
+\theorem@indent=\dimen132
+\theoremheaderfont=\toks29
+\theoremseparator=\toks30
+\theoremprework=\toks31
+\theorempostwork=\toks32
+\theoremsymbol=\toks33
+\qedsymbol=\toks34
+\theoremkeyword=\toks35
+\qedsymbol=\toks36
+\thm@topsepadd=\skip59
+\shadecolor=\toks37
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2008/07/08 v3.8m The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\frenchb.ldf"
+Language: frenchb 2009/03/16 v2.3d French support from the babel system
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2008/07/08 v3.8m Babel common definitions
+\babel@savecnt=\count109
+\U@D=\dimen133
+)
+Package babel Info: Making : an active character on input line 120.
+Package babel Info: Making ; an active character on input line 121.
+Package babel Info: Making ! an active character on input line 122.
+Package babel Info: Making ? an active character on input line 123.
+\FB@Mht=\dimen134
+\std@mcc=\count110
+\dec@mcc=\count111
+\parindentFFN=\dimen135
+
+*************************************
+* Local config file frenchb.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\frenchb.cfg")))
+("C:\Program Files\MiKTeX 2.9\tex\latex\carlisle\scalefnt.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\soul\soul.sty"
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks38
+\SOUL@lasttoken=\toks39
+\SOUL@cmds=\toks40
+\SOUL@buffer=\toks41
+\SOUL@token=\toks42
+\SOUL@spaceskip=\skip60
+\SOUL@ttwidth=\dimen136
+\SOUL@uldp=\dimen137
+\SOUL@ulht=\dimen138
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ulem\ulem.sty"
+\UL@box=\box55
+\UL@hyphenbox=\box56
+\UL@skip=\skip61
+\UL@hook=\toks43
+\UL@height=\dimen139
+\UL@pe=\count112
+\UL@pixel=\dimen140
+\ULC@box=\box57
+Package: ulem 2011/03/18
+\ULdepth=\dimen141
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks44
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3names.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3bootstrap.sty"
+Package: l3bootstrap 2011/12/29 v3110 L3 Experimental bootstrap code
+)
+Package: l3names 2011/12/30 v3113 L3 Experimental namespace for primitives
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\misc\etex.sty"
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count113
+)
+Package: expl3 2012/02/08 v3343 L3 Experimental code bundle wrapper
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3basics.sty"
+Package: l3basics 2012/02/06 v3317 L3 Experimental basic definitions
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3expan.sty"
+Package: l3expan 2012/01/15 v3196 L3 Experimental argument expansion
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3tl.sty"
+Package: l3tl 2012/02/06 v3316 L3 Experimental token lists
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3seq.sty"
+Package: l3seq 2012/01/09 v3158 L3 Experimental sequences and stacks
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3int.sty"
+Package: l3int 2012/02/06 v3315 L3 Experimental integers
+\c_max_int=\count114
+\l_tmpa_int=\count115
+\l_tmpb_int=\count116
+\l_tmpc_int=\count117
+\g_tmpa_int=\count118
+\g_tmpb_int=\count119
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3quark.sty"
+Package: l3quark 2012/01/08 v3148 L3 Experimental quarks
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3prg.sty"
+Package: l3prg 2012/02/08 v3338 L3 Experimental control structures
+\g_prg_map_int=\count120
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3clist.sty"
+Package: l3clist 2012/01/09 v3157 L3 Experimental comma separated lists
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3token.sty"
+Package: l3token 2012/02/06 v3316 L3 Experimental token manipulation
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3prop.sty"
+Package: l3prop 2012/01/09 v3158 L3 Experimental property lists
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3msg.sty"
+Package: l3msg 2012/02/06 v3316 L3 Experimental messages
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3io.sty"
+Package: l3io 2012/01/28 v3245 L3 Experimental input-output operations
+\l_iow_stream_int=\count121
+\l_iow_line_length_int=\count122
+\l_iow_target_length_int=\count123
+\l_iow_current_line_int=\count124
+\l_iow_current_word_int=\count125
+\l_iow_current_indentation_int=\count126
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3file.sty"
+Package: l3file 2012/01/31 v3287 L3 Experimental file operations
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3skip.sty"
+Package: l3skip 2012/02/06 v3313 L3 Experimental dimensions and skips
+\l_tmpa_dim=\dimen142
+\l_tmpb_dim=\dimen143
+\l_tmpc_dim=\dimen144
+\g_tmpa_dim=\dimen145
+\g_tmpb_dim=\dimen146
+\l_tmpa_skip=\skip62
+\l_tmpb_skip=\skip63
+\l_tmpc_skip=\skip64
+\g_tmpa_skip=\skip65
+\g_tmpb_skip=\skip66
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3keys.sty"
+Package: l3keys 2011/12/22 v3086 L3 Experimental key-value interfaces
+\g_keyval_level_int=\count127
+\l_keys_choice_int=\count128
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3fp.sty"
+Package: l3fp 2012/02/06 v3315 L3 Experimental floating-point operations
+\c_one_million=\count129
+\c_one_hundred_million=\count130
+\c_five_hundred_million=\count131
+\c_one_thousand_million=\count132
+\c_fp_pi_by_four_decimal_int=\count133
+\c_fp_pi_by_four_extended_int=\count134
+\c_fp_pi_decimal_int=\count135
+\c_fp_pi_extended_int=\count136
+\c_fp_two_pi_decimal_int=\count137
+\c_fp_two_pi_extended_int=\count138
+\l_fp_count_int=\count139
+\l_fp_div_offset_int=\count140
+\l_fp_exp_integer_int=\count141
+\l_fp_exp_decimal_int=\count142
+\l_fp_exp_extended_int=\count143
+\l_fp_exp_exponent_int=\count144
+\l_fp_input_a_sign_int=\count145
+\l_fp_input_a_integer_int=\count146
+\l_fp_input_a_decimal_int=\count147
+\l_fp_input_a_exponent_int=\count148
+\l_fp_input_b_sign_int=\count149
+\l_fp_input_b_integer_int=\count150
+\l_fp_input_b_decimal_int=\count151
+\l_fp_input_b_exponent_int=\count152
+\l_fp_input_a_extended_int=\count153
+\l_fp_input_b_extended_int=\count154
+\l_fp_mul_a_i_int=\count155
+\l_fp_mul_a_ii_int=\count156
+\l_fp_mul_a_iii_int=\count157
+\l_fp_mul_a_iv_int=\count158
+\l_fp_mul_a_v_int=\count159
+\l_fp_mul_a_vi_int=\count160
+\l_fp_mul_b_i_int=\count161
+\l_fp_mul_b_ii_int=\count162
+\l_fp_mul_b_iii_int=\count163
+\l_fp_mul_b_iv_int=\count164
+\l_fp_mul_b_v_int=\count165
+\l_fp_mul_b_vi_int=\count166
+\l_fp_mul_output_int=\count167
+\l_fp_output_sign_int=\count168
+\l_fp_output_integer_int=\count169
+\l_fp_output_decimal_int=\count170
+\l_fp_output_exponent_int=\count171
+\l_fp_output_extended_int=\count172
+\l_fp_round_position_int=\count173
+\l_fp_round_target_int=\count174
+\l_fp_split_sign_int=\count175
+\l_fp_internal_int=\count176
+\l_fp_trig_octant_int=\count177
+\l_fp_trig_sign_int=\count178
+\l_fp_trig_decimal_int=\count179
+\l_fp_trig_extended_int=\count180
+\l_fp_internal_dim=\dimen147
+\l_fp_internal_skip=\skip67
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3box.sty"
+Package: l3box 2012/01/09 v3158 L3 Experimental boxes
+\l_tmpb_box=\box58
+\l_box_top_dim=\dimen148
+\l_box_bottom_dim=\dimen149
+\l_box_left_dim=\dimen150
+\l_box_right_dim=\dimen151
+\l_box_top_new_dim=\dimen152
+\l_box_bottom_new_dim=\dimen153
+\l_box_left_new_dim=\dimen154
+\l_box_right_new_dim=\dimen155
+\l_box_internal_box=\box59
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3coffins.sty"
+Package: l3coffins 2012/01/08 v3155 L3 Experimental coffin code layer
+\l_coffin_internal_box=\box60
+\l_coffin_internal_dim=\dimen156
+\l_coffin_offset_x_dim=\dimen157
+\l_coffin_offset_y_dim=\dimen158
+\l_coffin_x_dim=\dimen159
+\l_coffin_y_dim=\dimen160
+\l_coffin_x_prime_dim=\dimen161
+\l_coffin_y_prime_dim=\dimen162
+\l_coffin_Depth_dim=\dimen163
+\l_coffin_Height_dim=\dimen164
+\l_coffin_TotalHeight_dim=\dimen165
+\l_coffin_Width_dim=\dimen166
+\c_empty_coffin=\box61
+\l_coffin_aligned_coffin=\box62
+\l_coffin_aligned_internal_coffin=\box63
+\l_coffin_bounding_shift_dim=\dimen167
+\l_coffin_left_corner_dim=\dimen168
+\l_coffin_right_corner_dim=\dimen169
+\l_coffin_bottom_corner_dim=\dimen170
+\l_coffin_top_corner_dim=\dimen171
+\l_coffin_scaled_total_height_dim=\dimen172
+\l_coffin_scaled_width_dim=\dimen173
+\l_coffin_display_coffin=\box64
+\l_coffin_display_coord_coffin=\box65
+\l_coffin_display_pole_coffin=\box66
+\l_coffin_display_offset_dim=\dimen174
+\l_coffin_display_x_dim=\dimen175
+\l_coffin_display_y_dim=\dimen176
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3color.sty"
+Package: l3color 2011/09/07 v2776 L3 Experimental colour support
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3luatex.sty"
+Package: l3luatex 2012/01/09 v3158 L3 Experimental LuaTeX-specific functions
+\g_cctab_allocate_int=\count181
+\g_cctab_stack_int=\count182
+))
+Package: siunitx 2012/01/26 v2.4j A comprehensive (SI) units package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks45
+\ex@=\dimen177
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen178
+\extrarowheight=\dimen179
+\NC@list=\toks46
+\extratabsurround=\skip68
+\backup@length=\skip69
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\l3keys2e\l3keys2e.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty"
+Package: xparse 2012/02/08 v3342 L3 Experimental document command parser
+\l_xparse_current_arg_int=\count183
+\l_xparse_m_args_int=\count184
+\l_xparse_mandatory_args_int=\count185
+\l_xparse_processor_int=\count186
+\l_xparse_v_nesting_int=\count187
+)
+Package: l3keys2e 2012/02/08 v3342 LaTeX2e option processing using LaTeX3 keys
+)
+\l_siunitx_tmp_box=\box67
+\l_siunitx_tmp_dim=\dimen180
+\l_siunitx_tmp_int=\count188
+Variant \prop_get:NVNT already defined; not changing it on line 363
+Variant \prop_get:NVNF already defined; not changing it on line 364
+Variant \prop_get:NVNTF already defined; not changing it on line 365
+\l_siunitx_number_mantissa_length_int=\count189
+\l_siunitx_number_uncert_length_int=\count190
+\l_siunitx_round_int=\count191
+\l_siunitx_process_decimal_int=\count192
+\l_siunitx_process_uncertainty_int=\count193
+\l_siunitx_process_fixed_int=\count194
+\l_siunitx_process_integer_min_int=\count195
+\l_siunitx_process_precision_int=\count196
+\l_siunitx_group_min_int=\count197
+\l_siunitx_angle_marker_box=\box68
+\l_siunitx_angle_unit_box=\box69
+\l_siunitx_angle_marker_dim=\dimen181
+\l_siunitx_angle_unit_dim=\dimen182
+\l_siunitx_unit_int=\count198
+\l_siunitx_unit_denominator_int=\count199
+\l_siunitx_unit_numerator_int=\count200
+\l_siunitx_unit_prefix_int=\count201
+Normal \count register pool exhausted, switching to extended pool.
+\l_siunitx_unit_prefix_base_int=\count277
+\l_siunitx_unit_prefix_gram_int=\count278
+\l_siunitx_number_product_int=\count279
+\c_siunitx_one_fill_skip=\skip70
+\l_siunitx_table_unit_align_skip=\skip71
+\l_siunitx_table_exponent_dim=\dimen183
+\l_siunitx_table_integer_dim=\dimen184
+\l_siunitx_table_mantissa_dim=\dimen185
+\l_siunitx_table_marker_dim=\dimen186
+\l_siunitx_table_result_dim=\dimen187
+\l_siunitx_table_uncert_dim=\dimen188
+\l_siunitx_table_fill_pre_dim=\dimen189
+\l_siunitx_table_fill_post_dim=\dimen190
+\l_siunitx_table_fill_mid_dim=\dimen191
+\l_siunitx_table_pre_box=\box70
+\l_siunitx_table_post_box=\box71
+\l_siunitx_table_mantissa_box=\box72
+\l_siunitx_table_result_box=\box73
+\l_siunitx_table_number_align_skip=\skip72
+\l_siunitx_table_text_align_skip=\skip73
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareBinaryPrefix with arg. spec. 'mmm' on line
+. 6955.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIPostPower with arg. spec. 'mm' on line
+. 6958.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIPrefix with arg. spec. 'mmm' on line
+. 6961.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIPrePower with arg. spec. 'mm' on line
+. 6964.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIQualifier with arg. spec. 'mm' on line
+. 6967.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIUnit with arg. spec. 'O{}mm' on line
+. 6970.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \DeclareSIUnitWithOptions with arg. spec. 'mmm' on
+. line 6973.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \ang with arg. spec. 'o>{\SplitArgument {2}{;}}m'
+. on line 6988.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \num with arg. spec. 'om' on line 6996.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \numlist with arg. spec. 'o>{\SplitList {;}}m' on
+. line 7004.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \numrange with arg. spec. 'omm' on line 7012.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \SIlist with arg. spec. 'o>{\SplitList {;}}mm' on
+. line 7023.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \SIrange with arg. spec. 'ommm' on line 7034.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \SI with arg. spec. 'omom' on line 7045.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \sisetup with arg. spec. 'm' on line 7048.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tablenum with arg. spec. 'om' on line 7060.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \si with arg. spec. 'om' on line 7071.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_num:w with arg. spec. 'om' on
+. line 7115.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_numrange:w with arg. spec. 'omm'
+. on line 7117.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_SI:w with arg. spec. 'omom' on
+. line 7119.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_SIlist:w with arg. spec. 'omm'
+. on line 7121.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_SIrange:w with arg. spec. 'ommm'
+. on line 7123.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \siunitx_bookmark_si:w with arg. spec. 'om' on
+. line 7124.
+.................................................
+\g_ior_internal_ior=\read2
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\beamer\base\translator\translator.sty"
+Package: translator 2010/06/12 ver 1.10
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\beamer\base\translator\translator-langu
+age-mappings.tex"))) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\pifont.sty"
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upzd.fd"
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\dingbat\dingbat.sty"
+Package: dingbat 2001/04/27 v1.00 Hands and other dingbats
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pstricks\pstricks.sty"
+Package: pstricks 2011/10/31 v0.52 LaTeX wrapper for `PSTricks' (RN,HV)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks47
+\XKV@tempa@toks=\toks48
+\XKV@depth=\count280
+File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex"
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count281
+\pstFP@xia=\count282
+\pstFP@xib=\count283
+\pstFP@xfa=\count284
+\pstFP@xfb=\count285
+\pstFP@rega=\count286
+\pstFP@regb=\count287
+\pstFP@regs=\count288
+\pstFP@times=\count289
+)
+\psLoopIndex=\count290
+
+`PSTricks' v2.24  <2012/02/09> (tvz)
+\pst@dima=\dimen192
+\pst@dimb=\dimen193
+\pst@dimc=\dimen194
+\pst@dimd=\dimen195
+\pst@dimg=\dimen196
+\pst@dimh=\dimen197
+\pst@dimm=\dimen198
+\pst@dimn=\dimen199
+\pst@dimo=\dimen200
+\pst@dimp=\dimen201
+\pst@hbox=\box74
+\pst@ibox=\box75
+\pst@boxg=\box76
+\pst@cnta=\count291
+\pst@cntb=\count292
+\pst@cntc=\count293
+\pst@cntd=\count294
+\pst@cntg=\count295
+\pst@cnth=\count296
+\pst@cntm=\count297
+\pst@cntn=\count298
+\pst@cnto=\count299
+\pst@cntp=\count300
+\@zero=\count301
+\pst@toks=\toks49
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.con")
+Normal \dimen register pool exhausted, switching to extended pool.
+\psunit=\dimen256
+\psxunit=\dimen257
+\psyunit=\dimen258
+\pst@C@@rType=\count302
+\pslinewidth=\dimen259
+\psk@startLW=\dimen260
+\psk@endLW=\dimen261
+\pst@customdefs=\toks50
+\pslinearc=\dimen262
+\pst@symbolStep=\dimen263
+\pst@symbolWidth=\dimen264
+\everypsbox=\toks51
+\psframesep=\dimen265
+\pslabelsep=\dimen266
+\pst@shift=\dimen267
+\theoverlaybox=\box77
+)
+File: pstricks.tex 2012/02/09 v2.24 `PSTricks' (tvz,hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex")
+File: pst-fp.tex 2012/02/09 v2.24 `PST-fp' (hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-plot\pst-plot.sty"
+Package: pst-plot 2011/06/05 v1.00 LaTeX wrapper for `pst-plot' (HV)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\pst-xkey.sty"
+Package: pst-xkey 2005/11/25 v1.6 package wrapper for pst-xkey.tex (HA)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\multido\multido.sty"
+Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\multido\multido.tex"
+ v1.42, 2010/05/14 <tvz>
+\multido@count=\count303
+\multidocount=\count304
+\multido@stuff=\toks52
+)
+File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
+)
+Package: pst-plot 2011/04/13 package wrapper for pst-plot.tex (hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-plot\pst-plot.tex"
+ v1.34, 2011/11/07 (tvz,hv)
+\pstRadUnit=\dimen268
+\pstRadUnitInv=\dimen269
+\pst@linecnt=\count305
+\psxlabelsep=\dimen270
+\psylabelsep=\dimen271
+\psk@subticksize=\dimen272
+\pst@xticksizeA=\dimen273
+\pst@xticksizeB=\dimen274
+\pst@xticksizeC=\dimen275
+\pst@yticksizeA=\dimen276
+\pst@yticksizeB=\dimen277
+\pst@yticksizeC=\dimen278
+\@digitcounter=\count306
+\psk@llx=\dimen279
+\psk@lly=\dimen280
+\psk@urx=\dimen281
+\psk@ury=\dimen282
+\pst@xunit=\dimen283
+\pst@yunit=\dimen284
+)
+File: pst-plot.tex 2011/11/07 1.34 `pst-plot' (tvz,hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-text\pst-text.sty"
+Package: pst-text 2006/01/01 package wrapper for pst-text.tex (hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-text\pst-text.tex"
+ v1.00, 2006/11/05(tvz,hv))
+File: pst-text.tex 2006/11/05 1.00 `pst-text' (tvz)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pstricks-add\pstricks-add.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-node\pst-node.sty"
+Package: pst-node 2011/06/05 v1.00 LaTeX wrapper for `pst-node' (HV)
+Package: pst-node 2010/04/22 package wrapper for pst-node.tex
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-node\pst-node.tex"
+ v1.22, 2012/02/12
+\psrow=\count307
+\pscol=\count308
+\psmatrixcnt=\count309
+\psrowsep=\skip74
+\pscolsep=\skip75
+\pst@args=\count310
+\num@pts=\count311
+\pst@argcnt=\count312
+)
+File: pst-node.tex 2012/02/12 1.22 `pst-node' (tvz)
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\pst-3d\pst-3d.sty"
+Package: pst-3d 2009/07/28 package wrapper for pst-3d.tex (hv)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-3d\pst-3d.tex"
+`PST-3d' v1.11, 2010/02/14 (tvz))
+File: pst-3d.tex 2010/02/14 v1.11 `PST-3d' (hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-math\pst-math.sty"
+Package: pst-math 2009/01/20 package wrapper for PSTricks pst-math.tex
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-math\pst-math.tex"
+`pst-math' v0.62 , (CJ,hv))
+File: pst-math.tex 2010/10/20 v0.62 `PST-math' (hv)
+)
+Package: pstricks-add 2010/02/11 v. 0.14 package wrapper for pstricks-add.tex (
+hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks-add\pstricks-add.tex"
+`pstricks-add' v3.55, 2011/12/11 (dr,hv)
+\pshooklength=\dimen285
+\pshookwidth=\dimen286
+\pst@cntC=\count313
+\chart@ColorIndex=\dimen287
+\chart@ColorStep=\dimen288
+\pst@chartHeight=\dimen289
+\pst@chartStackDepth=\dimen290
+\pst@chartStackWidth=\dimen291
+\chart@Toggle=\count314
+\psVectorCtr=\count315
+)
+File: pstricks-add.tex 2011/12/11 v3.55 `PSTricks-add' (hv)
+Package pstricks-add Info: Local config file pstricks-add.cfg used on input lin
+e 20.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pstricks-add\pstricks-add.cfg"
+File: pstricks-add.cfg 2005/01/10 v0.1 addtional user stuff (hv)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-eucl\pst-eucl.sty"
+Package: pst-eucl 2011/08/04 package wrapper for PSTricks pst-eucl.tex
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-eucl\pst-eucl.tex"
+`PST-Euclide v1.42, 2011/12/22 (Dominique RODRIGUEZ)
+ This version uses the pst-xkey package for managing parameters
+ Please read the doc, some macros have a new syntax
+ use option old for upward compatibility
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"))
+File: pst-eucl.tex 2011/12/22 v1.42 `PST-eucl' (dr)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2011/11/10 v3.2e Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2011/11/01 v1.4a caption3 kernel (AR)
+\captionmargin=\dimen292
+\captionmargin@=\dimen293
+\captionwidth=\dimen294
+\caption@indent=\dimen295
+\caption@parindent=\dimen296
+\caption@hangindent=\dimen297
+)
+\c@ContinuedFloat=\count316
+Package caption Info: hyperref package is loaded.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+\TX@col@width=\dimen298
+\TX@old@table=\dimen299
+\TX@old@col=\dimen300
+\TX@target=\dimen301
+\TX@delta=\dimen302
+\TX@cols=\count317
+\TX@ftn=\toks53
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty"
+Package: colortbl 2001/02/13 v0.1j Color table columns (DPC)
+\everycr=\toks54
+\minrowclearance=\skip76
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip77
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen303
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count318
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count319
+\leftroot@=\count320
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count321
+\DOTSCASE@=\count322
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box78
+\strutbox@=\box79
+\big@size=\dimen304
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count323
+\c@MaxMatrixCols=\count324
+\dotsspace@=\muskip11
+\c@parentequation=\count325
+\dspbrk@lvl=\count326
+\tag@help=\toks55
+\row@=\count327
+\column@=\count328
+\maxfields@=\count329
+\andhelp@=\toks56
+\eqnshift@=\dimen305
+\alignsep@=\dimen306
+\tagshift@=\dimen307
+\tagwidth@=\dimen308
+\totwidth@=\dimen309
+\lineht@=\dimen310
+\@envbody=\toks57
+\multlinegap=\skip78
+\multlinetaggap=\skip79
+\mathdisplay@stack=\toks58
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\bm.sty"
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup4
+\symboldletters=\mathgroup5
+\symboldsymbols=\mathgroup6
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2009/06/22 v3.00
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\symAMSa=\mathgroup7
+\symAMSb=\mathgroup8
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\mathrsfs.sty"
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup9
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty"
+Package: numprint 2008/02/17 v1.38 Print numbers (HH)
+\c@nprt@mantissa@digitsbefore=\count330
+\c@nprt@mantissa@digitsafter=\count331
+\c@nprt@exponent@digitsbefore=\count332
+\c@nprt@exponent@digitsafter=\count333
+\nprt@digitwidth=\skip80
+\nprt@sepwidth=\skip81
+\nprt@decimalwidth=\skip82
+\nprt@blockwidth=\skip83
+\nprt@digittoks=\toks59
+\nprt@pretoks=\toks60
+\nprt@posttoks=\toks61
+\nprt@thisdigit=\count334
+\nprt@curpos=\count335
+\nprt@rndpos=\count336
+\c@nprt@digitsfirstblock=\count337
+\c@nprt@blockcnt=\count338
+\c@nprt@cntprint=\count339
+
+No configuration file `numprint.cfg' found.)
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fourier.sty"
+Package: fourier 2005/01/01 1.4 fourier-GUTenberg package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fourier-orns.sty"
+Package: fourier-orns 2004/01/30 1.1 fourier-ornaments package
+)
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 50.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> T1/futs/m/n on input line 50.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> T1/futs/m/n on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  T1/futs/m/n --> T1/futs/b/n on input line 51.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 86.
+LaTeX Font Info:    Encoding `OML' has changed to `FML' for symbol font
+(Font)              `letters' in the math version `normal' on input line 86.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/lmm/m/it --> FML/futm/m/it on input line 86.
+LaTeX Font Info:    Encoding `OML' has changed to `FML' for symbol font
+(Font)              `letters' in the math version `bold' on input line 86.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/lmm/b/it --> FML/futm/m/it on input line 86.
+\symotherletters=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  FML/futm/m/it --> FML/futm/b/it on input line 88.
+LaTeX Font Info:    Overwriting symbol font `otherletters' in version `bold'
+(Font)                  FML/futmi/m/it --> FML/futmi/b/it on input line 89.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 90.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 91.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 92.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 94.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 95.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 96.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 99.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 100.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 113.
+LaTeX Font Info:    Encoding `OMS' has changed to `FMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 113.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/lmsy/m/n --> FMS/futm/m/n on input line 113.
+LaTeX Font Info:    Encoding `OMS' has changed to `FMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 113.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/lmsy/b/n --> FMS/futm/m/n on input line 113.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 114.
+LaTeX Font Info:    Encoding `OMX' has changed to `FMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+14.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/lmex/m/n --> FMX/futm/m/n on input line 114.
+LaTeX Font Info:    Encoding `OMX' has changed to `FMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 114
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/lmex/m/n --> FMX/futm/m/n on input line 114.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 115.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 116.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 117.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> T1/futs/m/it on input line 117.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/lmr/bx/it --> T1/futs/m/it on input line 117.
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 118.
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 119.
+LaTeX Font Info:    Redeclaring math symbol \leqslant on input line 125.
+LaTeX Font Info:    Redeclaring math symbol \geqslant on input line 126.
+LaTeX Font Info:    Redeclaring math symbol \vDash on input line 129.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleleft on input line 13
+0.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleright on input line 1
+31.
+LaTeX Font Info:    Redeclaring math symbol \nleqslant on input line 132.
+LaTeX Font Info:    Redeclaring math symbol \ngeqslant on input line 133.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 134.
+LaTeX Font Info:    Redeclaring math symbol \nparallel on input line 135.
+LaTeX Font Info:    Redeclaring math symbol \nvDash on input line 137.
+LaTeX Font Info:    Redeclaring math symbol \intercal on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \hslash on input line 139.
+LaTeX Font Info:    Redeclaring math symbol \nexists on input line 140.
+LaTeX Font Info:    Redeclaring math symbol \complement on input line 141.
+LaTeX Font Info:    Redeclaring math symbol \varsubsetneq on input line 142.
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 148.
+LaTeX Font Info:    Redeclaring math symbol \smallsetminus on input line 149.
+LaTeX Font Info:    Redeclaring math symbol \subsetneqq on input line 150.
+LaTeX Font Info:    Redeclaring math symbol \rightrightarrows on input line 151
+.
+LaTeX Font Info:    Redeclaring math symbol \leftleftarrows on input line 152.
+LaTeX Font Info:    Redeclaring math symbol \square on input line 153.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowleft on input line 154.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowright on input line 155.
+
+LaTeX Font Info:    Redeclaring math symbol \blacksquare on input line 156.
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 186.
+LaTeX Font Info:    Redeclaring math symbol \varvarrho on input line 187.
+LaTeX Font Info:    Redeclaring math delimiter \Vert on input line 210.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 215.
+LaTeX Font Info:    Redeclaring math delimiter \lvert on input line 217.
+LaTeX Font Info:    Redeclaring math delimiter \rvert on input line 219.
+LaTeX Font Info:    Redeclaring math delimiter \lVert on input line 221.
+LaTeX Font Info:    Redeclaring math delimiter \rVert on input line 223.
+LaTeX Font Info:    Redeclaring math delimiter \Downarrow on input line 225.
+LaTeX Font Info:    Redeclaring math delimiter \backslash on input line 227.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 229.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 231.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 233.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 235.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 237.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 239.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 241.
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 243.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 247.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 248.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 249.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 250.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 251.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 252.
+LaTeX Font Info:    Redeclaring math accent \check on input line 253.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 254.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 255.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 256.
+\symUfutm=\mathgroup11
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\alterqcm\alterqcm\latex\alterqcm.sty"
+Package: alterqcm 2011/06/01 v3.6 qcm creation
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count340
+\calc@Bcount=\count341
+\calc@Adimen=\dimen311
+\calc@Bdimen=\dimen312
+\calc@Askip=\skip84
+\calc@Bskip=\skip85
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count342
+\calc@Cskip=\skip86
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen313
+)
+\aq@randomi=\count343
+\c@aq@identRow=\count344
+\c@aq@identCol=\count345
+\aq@tmp=\count346
+\aq@ranval=\count347
+\aq@tdml@a=\toks62
+\aq@tdml@b=\toks63
+\aq@alea=\count348
+\aq@n@arg=\count349
+\aq@tempbox=\box80
+\aq@hauteurquest=\dimen314
+\aq@hauteurprop=\dimen315
+\aq@wdquest=\dimen316
+\aq@wdprop=\dimen317
+\aq@dimtmpa=\dimen318
+\aq@dimtmpb=\dimen319
+\aq@dimtmp=\dimen320
+\c@AQ@numquestion=\count350
+\c@aq@numb=\count351
+\c@AQ@numprop=\count352
+\c@alea@numfirst=\count353
+\c@alea@numlast=\count354
+)
+\longarc=\skip87
+\c@Th=\count355
+\c@Prop=\count356
+\c@Def=\count357
+\c@Ex=\count358
+\c@Exo=\count359
+\c@Rem=\count360
+
+("F:\Dropbox\Aide LaTeX\trigo\trigo.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 132.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 132.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmlfutm.fd"
+File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
+)
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 132.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmsfutm.fd"
+File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
+)
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 132.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmxfutm.fd"
+File: fmxfutm.fd futm-extension
+)
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+\AtBeginShipoutBox=\box81
+Package hyperref Info: Link coloring ON on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count361
+)
+LaTeX Info: Redefining \ref on input line 132.
+LaTeX Info: Redefining \pageref on input line 132.
+LaTeX Info: Redefining \nameref on input line 132.
+
+("F:\Dropbox\Aide LaTeX\trigo\trigo.out")
+("F:\Dropbox\Aide LaTeX\trigo\trigo.out")
+\@outlinefile=\write4
+
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \degres on input line 132.
+LaTeX Info: Redefining \dots on input line 132.
+LaTeX Info: Redefining \up on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\beamer\base\translator\dicts\translator
+-basic-dictionary-English.dict"
+Dictionary: translator-basic-dictionary, Language: English 
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\config\siunitx-abbreviations.cf
+g"
+File: siunitx-abbreviations.cfg 2012/01/26 v2.4j siunitx: Abbreviated units
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\config\siunitx-binary.cfg"
+File: siunitx-binary.cfg 2012/01/26 v2.4j siunitx: Binary units
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+\c_siunitx_mathsf_int=\count362
+LaTeX Font Info:    Try loading font information for T1+futs on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\t1futs.fd"
+File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
+)
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 132.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 132.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 132.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 132.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 132.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 132.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 13
+2.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmlfutmi.fd"
+File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
+)
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 132.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 132.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 132.
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
+File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+\c_siunitx_mathtt_int=\count363
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 132
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
+File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+("F:\Dropbox\Aide LaTeX\trigo\trigo.toc")
+\tf@toc=\write5
+ [1
+
+]
+Package hyperref Info: bookmark level for unknown Def defaults to 0 on input li
+ne 171.
+Package hyperref Info: bookmark level for unknown Prop defaults to 0 on input l
+ine 174.
+Package hyperref Info: bookmark level for unknown Ex defaults to 0 on input lin
+e 177.
+ [2]
+Overfull \hbox (90.22491pt too wide) in paragraph at lines 232--281
+[]$[]$ $[]$ $[]$
+ []
+
+[3] [4]
+Overfull \hbox (30.88605pt too wide) in paragraph at lines 377--404
+[]$[]$ $[]$
+ []
+
+
+Overfull \hbox (30.88605pt too wide) in paragraph at lines 405--437
+[]$ $[]$ 
+ []
+
+[5] [6]
+Package hyperref Info: bookmark level for unknown Rem defaults to 0 on input li
+ne 486.
+
+Overfull \hbox (2.4333pt too wide) in paragraph at lines 491--509
+$[]$ $[]$ 
+ []
+
+[7] [8]
+Overfull \hbox (59.3388pt too wide) in paragraph at lines 569--632
+[]$ $[]$
+ []
+
+[9] [10]
+\tf@thm=\write6
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 778.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 778.
+ ("F:\Dropbox\Aide LaTeX\trigo\trigo.aux")
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 778.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 778.
+Package rerunfilecheck Info: File `trigo.out' has not changed.
+(rerunfilecheck)             Checksum: 61CDB75E82329F6ABBBE475D73CFD053;891.
+ ) 
+Here is how much of TeX's memory you used:
+ 21994 strings out of 494046
+ 391815 string characters out of 3148399
+ 569609 words of memory out of 3000000
+ 24846 multiletter control sequences out of 15000+200000
+ 94947 words of font info for 77 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 53i,18n,92p,585b,1093s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on trigo.dvi (11 pages, 222036 bytes).

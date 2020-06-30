@@ -1,0 +1,137 @@
+% Numéro de section dans la marge
+\renewcommand\thesection{\arabic{section}}
+\makeatletter
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+  \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\unnumberedsection{\@ifnextchar[%]
+  \unnumberedsectionwithtwoarguments\unnumberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsectionwithoneargument#1{\unnumberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{section}%
+           \hspace{-30pt}
+           \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=sectioncolor,rectangle,rounded corners=5pt,anchor=south west] (sectionnumber) at (0,0)
+	    {\bfseries\Large\textcolor{white}{\thesection.}};
+	    \node[anchor=south west] (sectiontitle) [right = of sectionnumber]
+	    {\bfseries\Large\textsc{#1}};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hspace{-30pt}\hrule height 1pt depth 0pt width \hsize \black
+%   \vskip 2mm\nobreak
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+  \ignorespaces
+ % \medskip
+  }
+\def\unnumberedsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{section}%
+           \hspace{-30pt}
+           \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=sectioncolor,rectangle,rounded corners=5pt,anchor=south west] (sectionnumber) at (0,0)
+	    {\bfseries\Large\textcolor{white}{\thesection.}};
+	    \node[anchor=south west] (sectiontitle) [right = of sectionnumber]
+	    {\bfseries\Large\textsc{#1}};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hrule height 1pt depth 0pt width \hsize \black
+%   \vskip 2mm\nobreak
+   \ignorespaces
+  }
+\makeatother
+
+
+% redefinition soussection
+\makeatletter
+\def\subsection{\@ifstar\unnumberedsubsection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[%]
+  \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\unnumberedsubsection{\@ifnextchar[%]
+  \unnumberedsubsectionwithtwoarguments\unnumberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsubsectionwithoneargument#1{\unnumberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{subsection}%
+            \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=subsectioncolor,rectangle,rounded corners=5pt,anchor=south west] (subsectionnumber) at (0,0)
+	    {\bfseries\large\textcolor{white}{\thesubsection.}};
+	    \node[anchor=south west] (subsectiontitle) [right = of subsectionnumber]
+	    {\bfseries\large #1};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hrule height 1pt depth 0pt width \hsize \black
+%  \vskip 2mm\nobreak
+  \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#1}%
+  \ignorespaces
+  }
+\def\unnumberedsubsectionwithtwoarguments[#1]#2{%
+   \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{subsection}%
+            \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=subsectioncolor,rectangle,rounded corners=5pt,anchor=south west] (subsectionnumber) at (0,0)
+	    {\bfseries\large\textcolor{white}{\thesubsection.}};
+	    \node[anchor=south west] (subsectiontitle) [right = of subsectionnumber]
+	    {\bfseries\large #1};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hrule height 1pt depth 0pt width \hsize \black
+%   \vskip 2mm\nobreak
+   \ignorespaces
+  }
+\makeatother
+
+
+% redefinition sous-sous-section
+\makeatletter
+\def\subsubsection{\@ifstar\unnumberedsubsubsection\numberedsubsubsection}
+\def\numberedsubsubsection{\@ifnextchar[%]
+  \numberedsubsubsectionwithtwoarguments\numberedsubsubsectionwithoneargument}
+\def\unnumberedsubsubsection{\@ifnextchar[%]
+  \unnumberedsubsubsectionwithtwoarguments\unnumberedsubsubsectionwithoneargument}
+\def\numberedsubsubsectionwithoneargument#1{\numberedsubsubsectionwithtwoarguments[#1]{#1}}
+\def\unnumberedsubsubsectionwithoneargument#1{\unnumberedsubsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsubsectionwithtwoarguments[#1]#2{%
+  \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{subsubsection}%
+            \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=subsectioncolor,rectangle,rounded corners=5pt,anchor=south west] (subsubsectionnumber) at (0,0)
+	    {\bfseries\large\textcolor{white}{\thesubsubsection.}};
+	    \node[anchor=south west] (subsubsectiontitle) [right = of subsubsectionnumber]
+	    {\bfseries\large #1};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hrule height 1pt depth 0pt width \hsize \black
+%  \vskip 2mm\nobreak
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}%
+  \ignorespaces
+  }
+\def\unnumberedsubsubsectionwithtwoarguments[#1]#2{%
+   \ifhmode\par\fi
+  \removelastskip
+  \vskip 3ex\goodbreak
+  \refstepcounter{subsubsection}%
+            \begin{tikzpicture}[node distance=0 cm]
+	    \node[fill=subsubsectioncolor,rectangle,rounded corners=5pt,anchor=south west] (subsubsectionnumber) at (0,0)
+	    {\bfseries\large\textcolor{white}{\thesubsubsection.}};
+	    \node[anchor=south west] (subsubsectiontitle) [right = of subsubsectionnumber]
+	    {\bfseries\large #1};
+	    \end{tikzpicture}
+	    %petite ligne en dessous
+	    %\black \hrule height 1pt depth 0pt width \hsize \black
+%   \vskip 2mm\nobreak
+   \ignorespaces
+  }
+\makeatother

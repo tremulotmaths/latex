@@ -1,0 +1,231 @@
+\setlength{\oddsidemargin}{-0.5cm}% Marge gauche sur pages impaires
+
+
+% Environnement enumerate
+\renewcommand{\theenumi}{\bf\textsf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\bf\textsf{\theenumi.}}
+\renewcommand{\theenumii}{\bf\textsf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\bf\textsf{\theenumii.}}
+\renewcommand{\theenumiii}{\bf\textsf{\roman{enumiii}}}
+\renewcommand{\labelenumiii}{\bf\textsf{\theenumiii.}}
+
+
+
+\usetikzlibrary{shadows,trees}
+
+
+%definition des couleurs
+\definecolor{fondpaille}{cmyk}{0,0,0.1,0}%\pagecolor{fondpaille}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{1,0,0}
+\definecolor{bleu}{rgb}{0,0,1}
+\definecolor{vert}{rgb}{0,1,0}
+\definecolor{deficolor}{HTML}{2D9AFF}
+\definecolor{backdeficolor}{HTML}{EDEDED}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{036DD0}%F4404D%rouge
+\definecolor{backtheocolor}{HTML}{D3D3D3}
+\definecolor{methcolor}{HTML}{008800}%12BB05}
+\definecolor{backmethcolor}{HTML}{FFFACD}
+\definecolor{backilluscolor}{HTML}{EDEDED}
+\definecolor{sectioncolor}{HTML}{B2B2B2}%vert : {HTML}{008800}%{HTML}{2D9AFF}
+\definecolor{subsectioncolor}{HTML}{B2B2B2}%vert : {HTML}{008800}%{rgb}{0.5,0,0}
+\definecolor{engcolor}{HTML}{D4D7FE}
+\definecolor{exocolor}{rgb}{0,0.6,0}
+\definecolor{exosoltitlecolor}{rgb}{0,0.6,0}
+\definecolor{titlecolor}{rgb}{1,1,1}
+
+%commande pour enlever les couleurs avant impression
+\newcommand{\nocolor}
+{\pagecolor{white}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{0,0,0}
+\definecolor{bleu}{rgb}{0,0,0}
+\definecolor{vert}{rgb}{0,0,0}
+\definecolor{deficolor}{HTML}{B2B2B2}
+\definecolor{backdeficolor}{HTML}{EEEEEE}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{B2B2B2}
+\definecolor{backtheocolor}{HTML}{EEEEEE}
+\definecolor{methcolor}{HTML}{B2B2B2}
+\definecolor{backmethcolor}{HTML}{EEEEEE}
+\definecolor{backilluscolor}{HTML}{EEEEEE}
+\definecolor{sectioncolor}{HTML}{B2B2B2}
+\definecolor{subsectioncolor}{HTML}{B2B2B2}
+\definecolor{engcolor}{HTML}{EEEEEE}
+\definecolor{exocolor}{HTML}{3B3838}
+\definecolor{exosoltitlecolor}{rgb}{0,0,0}
+\definecolor{titlecolor}{rgb}{0,0,0}
+}
+
+
+
+
+%Exercices résolus dans le cours
+%#1 : énoncé
+%#2 : solution
+\newcounter{exosol}
+\newcommand{\exosol}[2]{
+\stepcounter{exosol}
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=backilluscolor,rounded corners=2pt,anchor=south west] (illus) at (0,-0.02)
+{\it \textbf{\textcolor{exosoltitlecolor}{Exercice résolu \arabic{exosol}~:~}}};
+\node[fill=backilluscolor,rounded corners=2pt,anchor=north west]at(0,0)
+{\parbox{\columnwidth-10pt}{#1\par\medskip{\it \textbf{\textcolor{exosoltitlecolor}{Solution~:~}}}#2 }};
+\end{tikzpicture}
+\bigskip
+}
+
+\newcommand{\suite}[1]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=backilluscolor,rounded corners=2pt,anchor=north west]at(0,0)
+{\parbox{\columnwidth-10pt}{{\it \textbf{\textcolor{exosoltitlecolor}{Suite de la solution~:}}}\par#1}};
+\end{tikzpicture}
+\bigskip
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Encadrés pour Propriétés, Théorème, Définitions, exemples, exercices
+
+\usepackage{environ}
+
+%\newcounter{propr}
+%\newenvironment{propr}{\refstepcounter{propr}\begin{bclogo}[%noborder=true , 
+%couleur = white , arrondi = 0.1 ,logo = \bccrayon , barre = snake , tailleOndu = 1.5 , ombre = true , epOmbre = 0.15 , couleurOmbre = black!30]{Propriété \thepropr}}{\end{bclogo}}
+
+\NewEnviron{Prop}[1][]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{Propriété~:~#1}};
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\bigskip
+}
+
+%\newcommand{\propr}[2]{
+%\begin{tikzpicture}[node distance=0 cm]
+%\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+%{\textcolor{titlecolor}{Propriété~:~#1}};
+%\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+%{\black\parbox{\columnwidth-12pt}{#2}};
+%\end{tikzpicture}
+%\bigskip
+%}
+
+%\newenvironment{propr}[1][]{\begin{bclogo}[noborder=true , 
+%couleur = white , arrondi = 0.1 , barre = none , ombre = true , epOmbre = 0.15 , couleurOmbre = black!30]{Propriété {\bf \xspace : #1}}}{\end{bclogo}}
+%
+%
+%\newcounter{theo}
+%\newenvironment{theo}{\refstepcounter{theo}\begin{bclogo}[%noborder=true , 
+%couleur = white , arrondi = 0.1 ,logo = \bcbook , barre = snake , tailleOndu = 1.5 , ombre = true , epOmbre = 0.15 , couleurOmbre = orange]{Théorème \thetheo}}{\end{bclogo}}
+
+%Théorème
+\NewEnviron{Thm}[1][]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{Théorème~:~#1}};
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\bigskip
+}
+
+
+
+%\newcounter{defi}
+%\newenvironment{defi}{\refstepcounter{defi}\begin{bclogo}[%noborder=true , 
+%couleur = white , arrondi = 0.1 ,logo = \bcinfo , barre = snake , tailleOndu = 1.5 , ombre = true , epOmbre = 0.15 , couleurOmbre = blue]{Définition \thedefi}}{\end{bclogo}}
+\NewEnviron{Defi}[1][]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{Définition~:~#1}};
+\node[draw,drop shadow,color=deficolor,very thick,fill=backdeficolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\bigskip
+}
+
+%\newcounter{methode}
+%\newenvironment{methode}{\refstepcounter{methode}\begin{bclogo}[%noborder=true , 
+%couleur = white , arrondi = 0.1 ,logo = \bccrayon , barre = snake , tailleOndu = 1.5 , ombre = true , epOmbre = 0.15 , couleurOmbre = red]{Méthode \themethode}}{\end{bclogo}}
+\NewEnviron{Methode}[1][]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
+{\textcolor{titlecolor}{Méthode~:~#1}};
+\node[draw,drop shadow,color=methcolor,very thick,fill=backmethcolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\BODY}};
+\end{tikzpicture}
+\bigskip
+}
+
+
+%chapitres
+\makeatletter
+
+\renewcommand{\@makechapterhead}[1]{
+\begin{tikzpicture}
+\node[fill=theocolor,rectangle,rounded corners=5pt]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\textcolor{titlecolor}{\Large \textsc{\textbf{Chapitre \thechapter \ : \ #1}}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+}
+
+\makeatother
+
+\NewEnviron{Exemple}[1][]{
+\begin{tikzpicture}[node distance=0 cm]
+\node[draw,drop shadow,color=methcolor,very thick,fill=backmethcolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\columnwidth-12pt}{\textbf{Exemple~:~#1}\\
+\BODY}};
+\end{tikzpicture}
+\bigskip
+}
+
+\newcounter{exemple}\newcommand{\exemple}{\refstepcounter{exemple}\textbf{Exemple \theexemple \ :}\xspace}
+\newcounter{exercice}\newcommand{\exercice}{\refstepcounter{exercice}\textbf{\large{Exercice \theexercice \ :}}\xspace}
+
+\newcounter{probleme}\newcommand{\probleme}{\refstepcounter{probleme}\textbf{\large{Problème \theprobleme \ :}}\xspace}
+\newcounter{remarque}\newcommand{\remarque}{\refstepcounter{remarque}\textbf{Remarque \theremarque \ :}\xspace}
+
+\NewEnviron{Rmq}{
+\textbf{\large{Remarque :}}\par
+\BODY
+\bigskip
+}
+
+\newcounter{rem}\newcommand{\rem}{\refstepcounter{rem}\textbf{R \therem \ :}\xspace}
+
+%Exercices sans numérotation automatique
+%\newcommand{\Exercice}[1]{\textbf{\large{Exercice #1 :}\xspace}}
+%Exercices du contrôle numérotés
+\newcounter{exercice}
+\NewEnviron{Exercice}{
+\refstepcounter{exercice}\textbf{\large{Exercice \theexercice \ :}}\par
+\BODY
+\bigskip
+}
+
+%Exercices non numérotés
+\NewEnviron{Exo}[1][]{
+\textbf{\large{Exercice #1 \ :}}\par
+\BODY
+\bigskip
+}
+
+
+%\Leftrightarrow
+\newcommand{\Lr}{\Leftrightarrow}
+
+\pagecolor{white}
+
+%Sommaire dans les chapitres
+\usepackage{minitoc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

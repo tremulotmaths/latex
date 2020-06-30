@@ -1,0 +1,16 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Qu'est-ce que \textlatin {\LaTeX }{}?}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}L'origine}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Principe}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Installation}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Quel \IeC {\'e}diteur?}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Quel moteur?}{4}{section.1.5}
+\contentsline {chapter}{\numberline {2}Composer un document}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Le pr\IeC {\'e}ambule}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Le corps du document}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}La bibliographie}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Index}{7}{section.2.4}
+\contentsline {section}{\numberline {2.5}Glossaire}{7}{section.2.5}
+\contentsline {chapter}{Un exemple de bibliographie}{8}{chapter*.1}
+\contentsline {chapter}{Un exemple d'index}{8}{chapter*.1}
+\contentsline {chapter}{Un exemple de glossaire}{10}{chapter*.1}

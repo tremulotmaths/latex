@@ -1,0 +1,72 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+
+
+\begin{document}
+%\small
+\pagestyle{empty}
+
+\subsubsection{Inéquations du premier degré à une inconnue}
+
+\begin{Prop}
+    On peut ajouter un même nombre à chaque membre d'une inégalité pour obtenir ainsi une inégalité équivalente :
+    \[a < b \qLRq a \rouge{\ +\ c } < b \rouge{\ +\ c}\]
+\end{Prop}
+
+\begin{Exemple}[s]
+$x + 4 \leq 5 \hspace{1cm} x - 3 > 0$.
+\end{Exemple}
+
+\begin{Demo}
+    $a$, $b$ et $c$ sont trois nombres tels que $a < b$. Donc :
+    \[a - b < 0 \Leftrightarrow a - b + \underbrace{c - c}_{= 0} < 0 \Leftrightarrow a + c - (b + c) < 0 \Leftrightarrow \pfr{a + c < b + c}\]
+\end{Demo}
+
+\begin{Prop}
+    On multiplie ou on divise les deux membres d'une inégalité par un même nombre $k$ non nul :
+    \begin{itemize}
+        \item si $k > 0$, alors : \quad $a < b \qLRq ka < kb$ ;
+        \item si $k < 0$, alors : \quad $a < b \qLRq ka > kb$.
+    \end{itemize}
+\end{Prop}
+
+\begin{Exemple}[s]
+$3x + 4 < 2 \hspace{1cm} \dfrac{x}{-2} +6\geq 0$
+\end{Exemple}
+
+\begin{Demo}
+    On considère trois nombres $a$, $b$ et $k$ tels que $a > b$.\par
+    $a - b$ est donc un nombre positif.\par
+    On rappelle que le produit de deux nombres de même signe est positif, négatif sinon.
+    \[\begin{array}{c@{\hspace*{3cm}}c}
+        \underbar{\text{Si } k > 0} & \underbar{\text{Si } k < 0} \\[5pt]
+        k(a - b) > 0 & k(a - b) < 0 \\
+        \Leftrightarrow ka - kb > 0 & \Leftrightarrow ka - kb < 0 \\
+        \Leftrightarrow \pfr{ka > kb} & \Leftrightarrow \pfr{ka < kb}
+    \end{array}\]
+\end{Demo}\medskip
+
+\subsubsection{Résolution de problèmes}
+
+\begin{Exemple}
+    Dans un club de gym, deux formules sont proposées :
+    \begin{description}
+        \item[Formule A :] abonnement mensuel de \EUR{$18$} et \EUR{$5$} la séance.
+        \item[Formule B :] abonnement mensuel de \EUR{$30$} et \EUR{$3$} la séance.
+    \end{description}
+    Déterminer par le calcul le nombre de séances minimum pour lequel la formule B est plus avantageuse.
+\end{Exemple}\medskip
+
+Voici les étapes de la résolution d'un problème en utilisant les inéquations :
+\begin{enumerate}
+    \item choix de l'inconnue ;
+    \item trouver l'inéquation correspondant au problème ;
+    \item résolution de l'inéquation ;
+    \item réponse au problème.
+\end{enumerate}\medskip
+
+\end{document} 

@@ -1,0 +1,63 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+
+\usepackage{docmute}
+
+\pagestyle{empty}
+
+\begin{document}
+\renewcommand\MaCouleur{Purple}
+
+%___________________________
+%===    Page de garde
+%------------------------------------------------------
+
+\frontmatter
+
+\input{1sti2d_Page_Titre_Activites}
+
+\pieddepage{}{}{}
+\entete{}{}{}
+
+\mainmatter
+
+\entete{}{{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}}{}
+\pieddepage{}{\color{\MaCouleur}$\stackrel{***}{\thepage}$}{}
+
+%------ Chapitre 01 - Statistiques
+    %------------------ Activité 1
+        \input{01_Act01_Moyenne}\clearpage
+    %------------------ Activité 2
+        \input{01_Act02_Indicateurs_Position}\clearpage
+    %------------------ Activité 3
+        \input{01_Act03_Indicateurs_Dispersion}\clearpage
+
+%------ Chapitre 02 - Etudes de fonctions
+    %------------------ Activité 1
+        \input{02_Act01_Fonction_inverse}\clearpage
+    %------------------ Activité 2
+        \input{02_Act02_Fonction_valeur_absolue}\clearpage
+    %------------------ Activité 3
+        \input{02_Act03_Fonctions_composees}\clearpage
+        
+%------ Chapitre 03 - Cercle trigonométrique
+    %------------------ Activité 1
+        \input{03_Act01_Cercle_Cos_Sin}
+
+\clearpage
+\strut
+\pieddepage{}{}{}
+\entete{}{}{}
+\vspace{\stretch{1}}
+
+\[***\]
+
+\begin{center}
+\'Ecrit par Philippe \bsc{De Sousa}.\par
+Dernière modification le \today.
+\end{center}
+
+\end{document} 

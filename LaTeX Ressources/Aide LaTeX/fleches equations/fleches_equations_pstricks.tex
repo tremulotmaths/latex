@@ -1,0 +1,93 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2018}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Résolution des équations avec des flèches}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+
+%utilise le package tcolorbox
+\newtcolorbox{mybox}[2][]{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,enhanced,
+attach boxed title to top left={xshift=2mm,yshift=-2mm},
+title=#2,#1}
+
+\newtcolorbox{module}[2][]{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,enhanced,
+attach boxed title to bottom right={xshift=-5mm,yshift=+2mm},
+title=#2,#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pour ajouter des flèches autour des équations
+\makeatletter
+\newcommand\add@node[2]{%
+   \rput(0,0.75ex){\Rnode{#2u@#1}{\vphantom(}}
+   \rput(0,0.35ex){\Rnode{#2d@#1}{\vphantom(}}}
+\newcommand\addLnode[1]{\add@node{#1}l}
+\newcommand\addRnode[1]{\add@node{#1}r}
+\newcommand\linkRnode[3]{\ncbar[angleA=0,angleB=0,arm=5ex,linecolor=red]{->}{rd@#1}{ru@#2}\naput{\red #3}}
+\newcommand\linkLnode[3]{\ncbar[angleA=180,angleB=180,arm=5ex,linecolor=red]{->}{ld@#1}{lu@#2}\nbput{\red #3}}
+\newcommand\linkboth[3]{\linkRnode{#1}{#2}{#3}\linkLnode{#1}{#2}{#3}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\dots}{\thepage / \pageref{LastPage}}{Année 2017-2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Les commandes utilisées nécessitent PsTricks.
+
+
+\[
+\begin{aligned}
+7x-4    &=5x+12  &\addRnode{A}\\
+7x-4-5x &=12     &\addRnode{B}\linkRnode{A}{B}{-5x}\\
+2x      &=12+4   &\addRnode{C}\linkRnode{B}{C}{+4}\\
+x       &=16\div4&\addRnode{D}\linkRnode{C}{D}{\div4}
+\end{aligned}\]
+
+\[
+\begin{aligned}
+\addLnode{A}&&7x-4    &=5x+12  &\addRnode{A}\\
+\addLnode{B}&&7x-4-5x &=12     &\addRnode{B}\linkboth{A}{B}{-5x}\\
+\addLnode{C}&&2x      &=12+4   &\addRnode{C}\linkboth{B}{C}{+4}\\
+\addLnode{D}&&x       &=16\div4&\addRnode{D}\linkboth{C}{D}{\div4}
+\end{aligned}\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,138 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[distiller]{pstricks}
+\usepackage{pst-eucl,pstricks-add}
+
+\SpecialCoor%
+\makeatletter
+\pst@addfams{pst-eucl}
+\define@key[psset]{pst-eucl}{DecimalN}{\def\psk@DecimalN{#1}}%
+% Linecolor
+\define@key[psset]{pst-eucl}{ArcColor}{\def\psk@ArcColor{#1}}%
+% fillcolor for wedge
+\define@key[psset]{pst-eucl}{WedgeColor}{\def\psk@WedgeColor{#1}}%
+% fillcolor for wedge
+\define@key[psset]{pst-eucl}{WedgeOpacity}{\def\psk@WedgeOpacity{#1}}%
+% x Labelsep
+\define@key[psset]{pst-eucl}{xLabelSep}{\def\psk@xLabelSep{#1}}%
+% y Labelsep
+\define@key[psset]{pst-eucl}{yLabelSep}{\def\psk@yLabelSep{#1}}%
+% Fontsize Values
+\define@key[psset]{pst-eucl}{FontSizeV}{\def\psk@FontSizeV{#1}}%
+%----------------------------------------------------------------------
+\define@boolkey[psset]{pst-eucl}[Pst@]{AngleValue}[false]{} % show angle value
+\define@boolkey[psset]{pst-eucl}[Pst@]{AngleArc}[true]{} % show angle arcShowWedge
+\define@boolkey[psset]{pst-eucl}[Pst@]{ShowWedge}[true]{} % show wedge
+%---------------------------------------------------------------------
+%   Default Parameter
+\psset[pst-eucl]{%
+DecimalN=2,ArcColor=black,WedgeColor=blue,WedgeOpacity=0.2,AngleValue=false,AngleArc=true,xLabelSep=0,yLabelSep=0,FontSizeV=8,ShowWedge=true
+}
+%------------- Distance of 2 points -----------------------
+%---------------------------------------------------------------------
+\def\psSpaceV{\pst@object{pstpsSpaceV}}%
+\def\pstpsSpaceV@i(#1)(#2)#3#4{%
+\begingroup%
+\pst@killglue
+\use@par
+\pst@getcoor{#1}\pst@tempA
+\pst@getcoor{#2}\pst@tempB
+\pnode(! %
+/Helvetica findfont \psk@FontSizeV\space scalefont setfont
+/laenge {10 #4 exp mul round 10 #4 exp div 15 string cvs stringwidth } def
+/Wert {10 #4 exp mul round 10 #4 exp div 15 string cvs dot2comma show } def
+\pst@tempA \tx@UserCoor /y1 ED /x1 ED
+\pst@tempB \tx@UserCoor /y2 ED /x2 ED
+\pst@tempA /y3 ED /x3 ED
+\pst@tempB /y4 ED /x4 ED
+x3 x4 sub y3 y4 sub Pyth laenge /dx ED
+x3 x4 add 2 div dx 2 div sub \psk@xLabelSep\space add y3 y4 add 2 div \psk@yLabelSep\space add
+moveto %
+x1 x2 sub y1 y2 sub Pyth Wert
+x1 x2 add 2 div y1 y2 add 2 div){#3}
+\endgroup
+\ignorespaces
+}
+%--------------------------------------------------------------------
+%------------- angle mark and calculate the value -----------
+%---------------------------------------------------------------------
+\def\psAngleMark{\@ifnextchar[\Pst@AngleMark{\Pst@AngleMark[]}}%
+\def\Pst@AngleMark[#1](#2)(#3)(#4)#5{%
+\def\pst@par{#1}%
+\begingroup%
+\pst@killglue
+\use@par
+\pst@getcoor{#2}\pst@tempA
+\pst@getcoor{#3}\pst@tempB
+\pst@getcoor{#4}\pst@tempC
+\pst@Verb{%
+\pst@tempA \tx@UserCoor /y1 ED /x1 ED
+\pst@tempB \tx@UserCoor /y2 ED /x2 ED
+\pst@tempC \tx@UserCoor /y3 ED /x3 ED
+y1 y2 sub x1 x2 sub Atan neg /delta1 ED
+y3 y2 sub x3 x2 sub Atan neg /delta2 ED
+delta1 delta2 le {180 delta2 delta1 add 2 div neg add /WiM ED} {delta2 delta1 add 2 div neg /WiM ED} ifelse
+}
+\ifPst@ShowWedge
+\pswedge[fillstyle=solid,fillcolor=\psk@WedgeColor,opacity=\psk@WedgeOpacity](#3){\psk@MarkAngleRadius}{! delta1}{! delta2}%
+\else \fi
+\ifPst@AngleArc
+\psarc[linecolor=\psk@ArcColor](#3){\psk@MarkAngleRadius}{! delta1}{! delta2}%
+\else \fi
+%
+\pnode(! %
+/dec \psk@DecimalN\space def
+/Helvetica findfont \psk@FontSizeV\space scalefont setfont
+/s1 { /Symbol findfont \psk@FontSizeV\space scalefont setfont } bind def
+/laenge {10 dec exp mul round 10 dec exp div 15 string cvs stringwidth } def
+/WertZeigen {10 dec exp mul round 10 dec exp div 15 string cvs dot2comma show s1 (\string\260) show} def
+\pst@tempA \tx@UserCoor /y1 ED /x1 ED
+\pst@tempB \tx@UserCoor /y2 ED /x2 ED
+\pst@tempC \tx@UserCoor /y3 ED /x3 ED
+y1 y2 sub x1 x2 sub Atan neg /delta1 ED
+y3 y2 sub x3 x2 sub Atan neg /delta2 ED
+delta1 delta2 le {360 delta2 delta1 sub abs sub /WiWert ED} {delta2 delta1 sub abs /WiWert ED} ifelse
+delta1 delta2 le {180 delta2 delta1 add 2 div neg add /WiM ED} {delta2 delta1 add 2 div neg /WiM ED} ifelse
+\psk@MarkAngleRadius\space delta2 delta1 add 2 div PtoC \pst@tempB exch pop add /ym1 ED \pst@tempB pop add /xm1 ED
+xm1 \psk@MarkAngleRadius\space WiM cos mul \pst@number\psxunit mul add \psk@xLabelSep\space add ym1 \psk@MarkAngleRadius\space WiM sin mul \pst@number\psxunit mul add \psk@yLabelSep\space add moveto %
+\ifPst@AngleValue
+WiWert WertZeigen
+\else \fi
+x2 0.8 WiM cos mul add y2 0.8 WiM sin mul add){#3-M}
+\uput{\psk@LabelSep}[! WiM]{0}(#3){#5}
+\endgroup
+\ignorespaces
+}
+\makeatother
+
+\begin{document}
+
+\begin{pspicture}(-12,-8)(1,1)
+\psgrid[gridlabels=0pt,subgriddiv=2,gridwidth=0.4pt,subgridwidth=0.2pt,gridcolor=black!60,subgridcolor=black!40]
+\def\seitec{6}
+\def\seitea{7}
+\def\seiteb{8}
+\psset{PointSymbol=none,linejoin=1,linewidth=0.4pt,PtNameMath=false,labelsep=0.07,MarkAngleRadius=1.1,DecimalN=1}
+    \pstGeonode[PosAngle={90,90}](0,0){A}(6;190){B}
+%    \pstGeonode[PosAngle={225,-75}](0,0){A}(\seitec;10){B}
+    \psset{PointName=}
+    \pstInterCC[RadiusA=\pstDistVal{\seiteb},RadiusB=\pstDistVal{\seitea},PosAngle=-90,PointNameA=C]{A}{}{B}{}{C}{C-}
+    \pstInterCC[RadiusA=\pstDistAB{A}{B},RadiusB=\pstDistAB{B}{C}]{C}{}{A}{}{D-}{D}
+    \pstInterLC[Radius=\pstDistAB{A}{C}]{C}{D}{C}{}{A'-}{A'}
+    \pstInterCC[RadiusA=\pstDistAB{A}{B},RadiusB=\pstDistAB{B}{C}]{A'}{}{C}{}{B'}{B'-}
+    \pstInterLL[PosAngle=90,PointName=default]{B'}{C}{A}{B}{E}
+    \pspolygon(A)(B)(C)
+    \pspolygon[fillstyle=solid,fillcolor=magenta,opacity=0.1](C)(E)(B)
+
+\psAngleMark[ArcColor=blue,WedgeColor=blue!20,AngleValue=true,LabelSep=0.7,arrows=->](B)(A)(C){}
+\psAngleMark[AngleValue=true,ArcColor=red,arrows=->,WedgeOpacity=0.6,WedgeColor=yellow,LabelSep=0.5](C)(B)(A){$\beta$}
+\psAngleMark[LabelSep=0.7,WedgeColor=green,xLabelSep=-6,yLabelSep=-10](A)(C)(B){$\gamma$}
+\psAngleMark[LabelSep=0.7,AngleArc=false,WedgeColor=green,arrows=->,xLabelSep=-15,yLabelSep=0](C)(E)(B){\color{green}$\gamma$}
+\psAngleMark[AngleValue=true,MarkAngleRadius=1.0,LabelSep=0.5,ShowWedge=false,xLabelSep=-5,yLabelSep=7,arrows=->](E)(B)(C){}
+
+\pcline[linestyle=none](A)(B)\nbput{\seitec}
+\pcline[linestyle=none](C)(B)\naput{\seitea}
+\psSpaceV[xLabelSep=-8,yLabelSep=4](B)(E){MW}{2}
+\psSpaceV[FontSizeV=15,xLabelSep=-20](A)(C){MAC}{1}
+\psSpaceV[xLabelSep=-17](E)(C){MEC}{1}
+\end{pspicture}
+\end{document}

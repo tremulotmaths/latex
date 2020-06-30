@@ -1,0 +1,55 @@
+=>PYTHONTEX#py#default#default#0#code#####15#
+n = 10
+def trianglePascal(n):
+    T = [[0] * (n+1) for p in range(n+1)]
+    for n in range(n+1):
+        if n == 0:
+            T[n][0] = 1
+        else:
+            for k in range(n+1):
+                if k == 0:
+                    T[n][0] = 1
+                else:
+                    T[n][k] = T[n-1][k-1] + T[n-1][k]
+    return T
+T = trianglePascal(n)
+print('\\begin{tabular}{|>{\\columncolor{orange!10}}c|*{',n,'}{c!{\\dashed}}c|}\\rowcolor{orange!10}\\hline\\diagbox[height=8mm]{$n$}{$k$}')
+for k in range(n+1):
+    print('&',k)
+
+for j in range(n+1):
+    print('\\\\\\hline ',j)
+    for k in range(n+1):
+        if k == 0:
+            print('&1')
+        else:
+            if T[j][k] != 0:
+                print('&',T[j][k])
+            else:
+                print('&')
+print('\\\\\\hline\\end{tabular}')
+=>PYTHONTEX:SETTINGS#
+version=0.16
+outputdir=pythontex-files-triangle_pascal_python
+workingdir=.
+workingdirset=false
+gobble=none
+rerun=default
+hashdependencies=default
+makestderr=false
+stderrfilename=full
+keeptemps=none
+pyfuture=default
+pyconfuture=none
+pygments=true
+pygglobal=:GLOBAL||
+fvextfile=-1
+pyconbanner=none
+pyconfilename=stdin
+depythontex=false
+pygfamily=py|python|
+pygfamily=pycon|pycon|
+pygfamily=sympy|python|
+pygfamily=sympycon|pycon|
+pygfamily=pylab|python|
+pygfamily=pylabcon|pycon|

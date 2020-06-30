@@ -1,0 +1,192 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Ensembles\\Raisonnement}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 2}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Intervalles de $\R$\\ Ensemble de définition}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+
+%_______________
+\textcolor{blue}{\textbf{I. Intervalles de $\R$}}\\[-8pt]
+\begin{enumerate}
+\item Rappel\\
+L'ensemble des réels peut être représenté par la \emph{droite numérique}.\\
+A tout point de la droite numérique correspond un nombre réel, et à tout segment correspond un \emph{intervalle}.
+\vspace{5pt}
+\item Intervalles de $\R$\\
+Les différents types d'intervalles sont représentés dans le tableau suivant.\\[3pt]
+\renewcommand{\arraystretch}{2} 
+\begin{center}
+   \begin{tabularx}{0.9\linewidth}{|c|*{2}{>{\centering \arraybackslash}X|}}
+      \hline 
+      Intervalle noté: & Ensemble des réels $x$ tels que: & Représenté par:  \\
+      \hline 
+      $\Iff{a}{b}$& $a\leqslant x \leqslant b$ & \\ 
+      \hline 
+      $\Ioo{a}{b}$& $a<x<b$  & \\ 
+      \hline 
+      $\Ifo{a}{b}$& $a\leqslant x < b$ & \\ 
+      \hline 
+      $\Ifo{a}{+\infty}$& $a\leqslant x$ & \\ 
+      \hline 
+      $\Ioo{-\infty}{b}$& $x<b$  & \\ 
+      \hline 
+   \end{tabularx} 
+\end{center} 
+\vspace{20pt}
+\bsc{Notations}\\
+Le symbole \og$\infty$\fg désigne l'infini.\\
+L'intervalle $\Iff{a}{b}$ est un intervalle \emph{fermé}.\\
+L'intervalle $\Ioo{a}{b}$ est un intervalle \emph{ouvert}.\\[5pt]
+Exemple
+\begin{enumerate}
+\item Définir l'intervalle $I=\Ifo{-0,5}{3}$ puis le représenter.
+\item Cet intervalle contient-il les réels $-1$, $\sqrt{7}$, $-\dfrac{7}{4}$ et $\dfrac{1}{0,5^2}$?
+\end{enumerate}
+\vspace{5pt}
+\item Intersection d'intervalles \\
+Définition\\
+L'\emph{intersection} de deux intervalles $I$ et $J$, notée $I\cap J$, est définie par:
+\[x\in I\cap J \quad \text{\ssi } \quad x\in I \quad \text{et} \quad x\in J.\]
+Exemple
+\begin{enumerate}
+\item Sur un axe gradué, représenter les intervalles $I=\Ifo{-2}{5}$ et $J=\Ifo{0}{+\infty}$.
+\item Déterminer alors leur intersection $I\cap J$.
+\end{enumerate}
+\end{enumerate}
+\newpage
+
+%_______________________________________________________________
+\textcolor{blue}{\textbf{II. Ensemble de définition d'une fonction}}\\[2pt]
+\begin{enumerate}
+\item La définition du cours\\
+Rappeler ce qu'est l'ensemble de définition d'une fonction.
+\vspace{5pt}
+\item Détermination graphique\\
+Sur chacun des exemples suivants, lire l'ensemble de définition $D_f$ de la fonction $f$ représentée.\\[6pt]
+\begin{minipage}{0.36\linewidth}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+            \tkzFct[color=blue, line width=0.8pt]{x**3+2}
+            \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+   \vspace{30pt}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+              \tkzFct[color=blue, line width=0.8pt, domain=-4:2.5]{sin(x)}
+              \tkzSetUpPoint[size=4]
+              \tkzDefPointByFct[draw](2.5)
+               %\tkzGetPoint{A} 
+               %\tkzDrawPoint(A)
+            \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\linewidth}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+              \tkzFct[color=blue, line width=0.8pt, domain=-2:4]{0.25*(x-1)*(x+1)*(x-2)}
+              \tkzSetUpPoint[size=4]
+              \tkzDefPointByFct[draw](-2)
+            \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+   \vspace{30pt}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+            \tkzFct[color=blue, line width=0.8pt, domain=-4:4]{0.5+0.1/(x*x)}
+            \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.33\linewidth}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+            \tkzFct[color=blue, line width=0.8pt, domain=-4:3]{2-0.4*x}
+              \tkzSetUpPoint[size=4]
+              \tkzDefPointByFct[draw](-4)
+               \tkzDefPointByFct[draw](3)
+            \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+   \vspace{30pt}
+\begin{tikzpicture}[scale=0.6]
+	\tkzInit[xmin=-4,xmax=4,ymin=-4,ymax=4]
+            \tkzGrid
+            \tkzAxeXY[font=\scriptsize]
+            \tkzFct[color=blue, line width=0.8pt, domain=-2:4]{(x)**0.5}
+             \end{tikzpicture} 
+\begin{flushleft}
+   $f$ est définie pour $\ldots$\\
+   On note $D_f=\ldots$
+\end{flushleft}
+\end{minipage}
+\vspace{10pt}
+\item Exemples algébriques\\
+On considère la fonction définie par $f :x\mapsto\dfrac{1}{x}$.\\
+On peut calculer l'image d'un réel $x$, à condition que celui-ci soit non nul.\\
+On note $\R^\star$ ou $\R\backslash\{0\}$ l'ensemble de tous les réels non nuls.\\
+D'où ici $D_f=\R^\star$.\\
+%\newpage
+En procédant de la même manière, déterminer l'ensemble de définition des fonctions suivantes:
+\vspace{-5pt}
+\begin{multicols}{2}
+\begin{enumerate}
+\item $f(x)=\dfrac{1}{x-1}$
+\item $f(x)=\sqrt{x}$
+\item $f(x)=\sqrt{x+2}$
+\item $f(x)=\dfrac{1}{x^2+3}$
+\end{enumerate}
+\end{multicols}
+\end{enumerate}
+
+\end{document}
+

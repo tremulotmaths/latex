@@ -1,0 +1,98 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\newcommand{\euro}{\eurologo{}}
+%Tapuscrit : Denis Vergès
+%Sujet aimablement fourni par Clotilde Rouchon et Virginie Picavet
+\usepackage{pst-plot,pst-tree}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\usepackage{geometry,atbegshi}
+\geometry{a4paper, height = 25.5cm,hmargin=2.5cm,marginparwidth=2cm,headheight=20pt,headsep=16.5pt,bottom=2cm,footskip=30pt,footnotesep=30pt}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O},~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+\setlength{\voffset}{-1,5cm}
+\usepackage{fancyhdr}
+\usepackage[frenchb]{babel}
+\usepackage[np]{numprint}
+\begin{document}
+\footnotesize
+
+\setlength\parindent{0mm}
+\pagestyle{fancy}
+\thispagestyle{empty}
+\begin{center}{\large\decofourleft~\textbf{Baccalauréat Nouvelle-Calédonie} (14 novembre 2013)~\decofourright}
+\end{center}
+
+\textbf{\textsc{Exercice 3} \hfill 8 points}
+
+\medskip
+
+Dans un lycée un groupe d’élèves participant à un club de presse a réalisé un journal et décidé de l’imprimer pour le vendre.
+
+Les coûts d’impression en euros en fonction du nombre $x$  de journaux sont estimés à l’aide de la fonction $C$ définie par :
+\[C(x) =  0,005x^2 - 0,6x +  200\quad  \text{pour $x$ élément de l’intervalle } [0~;~500].\]
+
+La courbe représentative de la fonction $C$ est tracée sur l’annexe.
+
+
+Pour soutenir l’action des élèves du club de presse, le foyer leur donne une subvention de $150$~\euro. On décide alors de fixer le prix de vente du journal à $1,20$~\euro.
+
+En vendant $x$  journaux, les revenus en euros seront donnés  par la fonction $R$ définie par :
+
+\[R(x) =  150 + 1,2x\quad  \text{pour $x$ élément de l’intervalle } [0~;~500].\]
+
+\begin{enumerate}
+\item Calculer les revenus correspondant à la vente de $250$~ journaux.
+
+Tracer sur l'annexe la représentation graphique de la fonction $R$.
+\item  À l'aide du graphique déterminer l'intervalle dans lequel doit se trouver le nombre de journaux que le club presse du lycée réalise un bénéfice.
+\item On désigne par $B$ la fonction estimant le bénéfice en euros réalisé par le club presse du lycée pour la vente de $x$  journaux. Montrer que la fonction est définie sur [0~;~500] par :
+
+\[B(x) =  - 0,005x^2 + 1,8x -  50.\]
+
+\item \'Etablir le tableau de variation de la fonction $B$ sur l'intervalle [0~;~500]
+\item
+	\begin{enumerate}
+		\item Déterminer le nombre de journaux à vendre pour que le bénéfice soit maximal.
+		\item Calculer ce bénéfice.
+	\end{enumerate}
+\end{enumerate}
+
+
+\begin{center}
+\psset{unit=0.025cm}
+\begin{pspicture*}(-35,-25)(425,650)
+\psaxes[linewidth=1.5pt,Dx=25,Dy=25]{->}(0,0)(-24,-24)(425,650)
+\multido{\n=0.0+12.5}{35}{\psline[linewidth=0.2pt,linecolor=orange](\n,0)(\n,650)}
+\multido{\n=0.0+12.5}{53}{\psline[linewidth=0.2pt,linecolor=orange](0,\n)(425,\n)}
+\psplot[plotpoints=5000,linewidth=1.25pt,linecolor=blue]{0}{375}{x dup mul 0.005 mul 0.6 x mul sub 200 add}
+\uput[d](420,0){$x$}
+\uput[l](0,645){$y$}\uput[dl](0,0){O}
+\end{pspicture*}
+\end{center}
+\end{document} 

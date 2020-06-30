@@ -1,0 +1,58 @@
+\documentclass[french,10pt]{book}
+
+\input{preambule_2016}
+\input{commandes_2016}
+\input{presentation_fiche_2016}
+
+\usepackage{exsheets}
+
+
+ % permet d'insérer des sous-titres pour les exos (voir exo de synthèse)
+\SetupExSheets[question]{print=false, headings=block-subtitle}
+\SetupExSheets[solution]{name=Exercice\!\!} % \!\! permet de réduire l'espace après Exercice
+\SetupExSheets[points]{name=pt, name-plural=pts}  % écrit 1pt mais 2pts. Problème avec 1.5 pts et 0.5 pts
+
+
+
+\begin{document}
+
+\ReglePied
+\entete{}{}{}
+\pieddepage{2016 - 2017 - 2nde}{Chapitre 2 - Exemples BTS Enoncé}{\thepage / \pageref{LastPage}}
+
+\newgeometry{includeheadfoot, top=1cm, bottom=0.8cm, right=1.5cm, left=1.5cm}
+
+
+
+%------------------------------------------------
+%------------------------------------------------
+%       LES ÉNONCÉS
+%------------------------------------------------
+%------------------------------------------------
+
+\Chapitre{2}{Un exemple en BTS}
+
+
+
+\begin{question}
+un premier exo
+\end{question}
+
+\begin{solution}
+solution 1
+\end{solution}
+
+
+\begin{question}
+un second exo
+\end{question}
+
+\begin{solution}
+solution 2
+\end{solution}
+
+
+\printsolutions
+
+
+\end{document}

@@ -1,0 +1,426 @@
+\documentclass[xcolor={dvipsnames,svgnames,table}]{beamer}
+
+\usepackage{mathpazo,textcomp}
+\usepackage[euler-digits]{eulervm} %-> police maths
+\usefonttheme{serif}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\uselanguage{French}
+\languagepath{French}
+
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.pathreplacing}
+
+\usepackage[np]{numprint}
+\setlength{\parindent}{0pt}
+
+
+\usetheme{Copenhagen}
+\usecolortheme{orchid}
+\useoutertheme{shadow,tree}
+
+%Numérotation des sections
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}.} %lettres majuscules
+%\renewcommand{\thesubsubsection}{\thesubsection .\alph{subsubsection}} %lettres minuscules
+
+%Permettre la même numérotation beamer
+\newcounter{MonPetitCompteur}
+\setbeamertemplate{section in toc}{%
+\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsectionnumber}}\MaDefTemp%
+\Roman{MonPetitCompteur} - \inserttocsection\par}
+
+\setbeamertemplate{subsection in toc}{%
+\leavevmode\leftskip=1.5em%
+\edef\MaDefTemp{\noexpand\setcounter{MonPetitCompteur}{\inserttocsubsectionnumber}}\MaDefTemp%
+\Alph{MonPetitCompteur}) \inserttocsubsection\par}
+
+\AtBeginSection{
+   \begin{frame}%{\textcolor{red}{\shadowbox{Plan}}}
+   \Large%
+   \tableofcontents[currentsection,currentsubsection]
+   \end{frame}}
+
+\AtBeginSubsection{
+  \begin{frame}%{\textcolor{red}{\shadowbox{Plan}}}
+   \Large%
+ \tableofcontents[currentsection,currentsubsection]
+   \end{frame}}
+
+\newcommand{\intervalleff}[2]{\left[#1\,;#2\right]}
+\newcommand{\intervallefo}[2]{\left[#1\,;#2\right[}
+\newcommand{\intervalleof}[2]{\left]#1\,;#2\right]}
+\newcommand{\intervalleoo}[2]{\left]#1\,;#2\right[}
+
+\setbeamertemplate{navigation symbols}{}
+
+\title[Statistiques descriptives]{{\small Chapitre 1}\\[0.5cm] \textbf{Statistiques descriptives}}
+\date{}
+\author{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Vocabulaire}
+
+\begin{frame}
+
+\uncover<+->{Une \alert{étude statistique} a pour but d'obtenir une information, appelée \alert{caractère}, sur une population à partir de \alert{données} recueillies sur un \alert{échantillon} de cette population.}
+
+\uncover<+->{%
+\begin{Definition}
+    Le caractère étudié peut être :
+    \begin{description}[<+->]
+        \item[quantitatif :] les valeurs du caractère s'expriment avec des nombres (ex : températures, pointures, salaires\ldots) ;
+        \item[qualitatif :] les valeurs ne s'expriment pas par des nombres (ex : couleurs, type d'essence\ldots) ;
+        \item[discret :] les valeurs du caractère sont isolés (ex : notes\ldots) ;
+        \item[continu :] les valeurs sont regroupées par classes (ou intervalles de nombre) (par ex : durée, distance parcourue,
+    \end{description}
+\end{Definition}}
+\end{frame}
+
+\begin{frame}{Remarque.}
+    Dans la suite du cours, on considère que le caractère est quantitatif.
+\end{frame}
+
+\begin{frame}
+\uncover<+->{%
+    \begin{Definition}
+        Lorsque les valeurs d'une série statistique sont regroupés par classe de type $\intervallefo a b$, on appelle \alert{centre de classe} le nombre défini par $\dfrac{a + b}{2}$.
+    \end{Definition}
+}
+
+\uncover<+->{%
+    \begin{Example}
+        Le centre de la classe $\intervallefo{150}{300}$ est égal à \[\frac{150 + 300}{2} = \frac{450}{2} = 225.\]
+    \end{Example}
+}
+\end{frame}
+
+\section{Indicateurs de position}
+\subsection{Moyenne}
+
+\begin{frame}
+    \begin{Definition}
+        On considère une série qui possède des valeurs différentes $x_1, x_2, \ldots, x_p$ chacune affectée de leur effectif. L'effectif total est égal à $N$.\par
+        On appelle \alert{moyenne} d'une série le nombre $\overline{m}$ tel que :
+        \[\overline{m} = \frac{n_1x_1 + n_2x_2 + n_3x_3 + \cdots + n_px_p}{n_1 + n_2 + \cdots + n_p} = \invisible{\frac{\displaystyle\sum_{i =1}^{p}n_ix_i}{N}}\]
+    \end{Definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+    \uncover<+->{%
+        Un élève souhaite calculer la moyennes de ses notes sur $20$ : $8 ; 10 ; 14 ; 13 ; 10 ; 14 ; 10$.
+        \invisible{\[\overline m = \dfrac{8 + 10 + 14 + 13 + 10 + 14 + 10}{7} = \frac{79}{7} \approx 11,29.\]}
+    }
+    \uncover<+->{%
+        Parfois, les valeurs sont regroupées dans un tableau :
+            \begin{center}
+                \begin{tabular}{*{5}{|c}|}
+                \hline
+                    Notes & $8$ & $10$ & $13$ & $14$ \\
+                \hline
+                    Effectifs & $1$ & $3$ & $1$ & $2$ \\
+                \hline
+                \end{tabular}
+            \end{center}
+            
+        On peut alors utiliser la formule : \invisible{\[\overline m = \frac{1 \times 8 + 3 \times 10 + 1 \times 13 + 2 \times 14}{1 + 3 + 1 + 2} = \frac{79}{7} \approx 11,29.\]}
+        }
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Remarques}
+\pause
+    \begin{enumerate}[<+->]
+        \item En règle générale, la moyenne n'est pas une valeur de la série. On peut la considérer comme le \textnormal{point d'équilibre} des valeurs. Par conséquent, la moyenne est sensible aux valeurs extrêmes.\par
+            Pour reprendre l'exemple, si la prochaine note du contrôle est très élevée alors la moyenne va augmenter.
+        \item Lorsque les valeurs sont regroupés par classe, au lieu d'utiliser les $x_i$, on utilise les centres de classe.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Le tableau ci-dessous regroupe le temps de parcours des habitants d'un village entre leur domicile et leur lieu de travail. Le maire cherche à calculer le temps moyen.
+        \begin{center}
+        \renewcommand\arraystretch{1.5}
+            \begin{tabular}{|>\small p{1.5cm}*{6}{|>\small c}|}
+                \hline
+                    Durée en min & $[0 ; 10[$ & $[10 ; 20[$ & $[20 ; 30[$ & $[30 ; 50[$ & $[50 ; 70[$ & Total \\
+                \hline
+                    Effectif & $18$ & $35$ & $25$ & $112$ & $80$ & $270$ \\
+                \hline
+                    Centre de classe & $5$ & $15$ & $25$ & $40$ & $60$ & \\
+                \hline
+            \end{tabular}
+        \renewcommand\arraystretch{1}
+        \end{center}
+        \invisible{\[\overline m = \frac{18 \times 5 + 35 \times 15 + 25 \times 25 + 112 \times 40 + 80 \times 60}{270}.\]}
+    \end{Example}
+\end{frame}
+
+\subsection{Médiane}
+
+\begin{frame}
+    \begin{Definition}
+    \pause
+        On considère une série statistique dont l'effectif total est égal à $N$. Les valeurs sont rangées dans l'ordre croissant.
+
+        \textbf{Une} \alert{médiane} $Me$ est un nombre réel qui permet de partager la série statistique en deux séries de même valeur.
+
+        Autrement dit, la moitié ($50\%$) des valeurs de la série est inférieure ou égale à $Me$ et l'autre moitié est supérieure ou égale à $Me$.
+\pause
+    \begin{center}
+        \begin{tikzpicture}
+            \draw (0,0)--(5,0) node[midway] {|} node[midway,above=5pt] {$Me$};
+            \draw (0,0) node {|} node[above=2pt] {\scriptsize $\min$}; \draw (5,0) node {|} node[above=2pt] {\scriptsize $\max$};
+            \uncover<4->{%
+            \draw[color=blue,decorate,decoration={brace,raise=0.25cm}] (2.45,0) -- (0.05,0) node[below=0.5cm,pos=0.5] {$50\%$};
+            }\uncover<5->{%
+            \draw[color=blue,decorate,decoration={brace,raise=0.25cm}] (4.95,0) -- (2.55,0) node[below=0.5cm,pos=0.5] {$50\%$};
+            }
+        \end{tikzpicture}
+    \end{center}
+    \end{Definition}
+\end{frame}
+
+\begin{frame}{Méthode de calcul :}
+\pause
+Par définition, la médiane dépend de l'effectif de la série :
+\pause
+\begin{itemize}[<+->]
+    \item Si $N$ est impair, alors on calcule $\frac{N + 1}{2}$ et le résultat correspond à la position de la médiane choisie dans la série.
+    \item Si $N$ est pair, alors la médiane choisie est égale à la moyenne de la valeur situé à la position $\frac N 2$ et la valeur suivante.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+    On considère le relevé des températures en janvier et en février dans une ville :
+    \begin{center}
+    \renewcommand\arraystretch{1.5}
+        \begin{tabular}{*{10}{|c}|}
+            \hline
+                \multicolumn{10}{|c|}{Janvier}\\
+            \hline
+                Valeurs & $-3\degres$ & $-2\degres$ & $-1\degres$ & $0\degres$ & $1\degres$ & $2\degres$ & $3\degres$ & $4\degres$ & Total \\
+            \hline
+                Effectifs & $3$ & $5$ & $8$ & $5$ & $4$ & $3$ & $2$ & $1$ & $31$\\
+            \hline
+                \multicolumn{10}{|c|}{Février}\\
+            \hline
+                Valeurs & $-3\degres$ & $-2\degres$ & $-1\degres$ & $0\degres$ & $1\degres$ & $2\degres$ & $3\degres$ & $4\degres$ & Total \\
+            \hline
+                Effectifs & $1$ & $2$ & $3$ & $3$ & $5$ & $9$ & $3$ & $2$ & $28$\\
+                \hline
+        \end{tabular}
+    \renewcommand\arraystretch{1}
+    \end{center}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+    \begin{description}[<+->]
+        \item[En janvier :]$N = 31$ \invisible{donc $\frac{N+1}{2} = 16$ : une médiane possible est la $16$\ieme valeur donc $Me = -1\degres$. En janvier, il a fait moins de $-1\degres$ la moitié du mois.}
+        \item[En févier :]$N = 28$ \invisible{donc $\frac{N}{2} = 14$ : la $14\ieme$ est $1\degres$ et la suivante est égale à $2\degres$. Donc la moyenne des deux est $\frac{1+2}{2} = 1,5$. Une médiane possible est égale à $1,5\degres$ donc durant la moitié du mois, la température a été supérieure à $1,5\degres$.}
+    \end{description}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Remarque}
+    Contrairement à la moyenne, la médiane n'est pas sensible aux valeurs extrêmes. En effet, dans notre exemple, si la dernière température était égale à $20\degres$ au lieu de $4\degres$, la moyenne augmenterait alors que la médiane resterait identique car l'effectif total n'a pas changé.
+\end{frame}
+
+\subsection{Quartiles}
+
+\begin{frame}
+    \begin{Definition}
+        On considère une série statistique $S$ dont l'effectif total est égal à $N$. Les valeurs sont rangées dans l'ordre croissant.\pause
+        \begin{itemize}[<+->]
+            \item Le \alert{premier quartile}\index{quartile} $Q_1$ de $S$ est le plus petit élément $a$ de $S$ tel qu'au moins $25\%$ des données soient inférieures ou égales à $a$.
+            \item Le \alert{troisième quartile}\index{quartile} $Q_3$ de $S$ est le plus petit élément $b$ de $S$ tel qu'au moins $75\%$ des données soient inférieures ou égales à $b$.
+        \end{itemize}
+\uncover<4->{%
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{small}
+                \draw (0,0)--(5,0) node[midway] {|} node[midway,above=5pt] {$Me$} node[pos=0.75,above=5pt] {$Q_3$} node[pos=0.25,above=5pt] {$Q_1$};
+                \draw (0,0)--(5,0) node[pos=0.25] {|}; \draw (0,0)--(5,0) node[pos=0.75] {|};
+                \end{small}
+                \begin{scriptsize}
+                \draw (0,0) node {|} node[above=2pt] {$\min$}; \draw (5,0) node {|} node[above=2pt] {$\max$};
+                \uncover<5->{%
+                \draw[color=blue,decorate,decoration={brace,raise=0.25cm}] (1.2,0) -- (0.05,0) node[below=0.4cm,pos=0.5] {$25\%$};
+                }\uncover<6->{%
+                \draw[color=red,decorate,decoration={brace,raise=0.75cm}] (3.7,0) -- (0.05,0) node[below=0.9cm,pos=0.5] {$75\%$};
+                }
+                \end{scriptsize}
+            \end{tikzpicture}
+        \end{center}}
+    \end{Definition}
+\end{frame}
+
+\begin{frame}{Méthode de calcul :}
+\pause
+Par définition, les quartiles dépendent de l'effectif de la série :\pause
+\begin{description}[<+->]
+    \item[Premier quartile :] On arrondit le nombre $\frac{N}{4}$ à l'unité par excès et cela donne la position de $Q_1$ dans la série $S$.
+    \item[Troisième quartile :] On arrondit le nombre $3\times\frac{N}{4}$ à l'unité par excès et cela donne la position de $Q_3$ dans la série $S$.
+\end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        On reprend les températures du moins de janvier de l'exemple précédent.\pause
+        \begin{description}[<+->]
+            \item[Premier quartile :] $N = 31$ \invisible{donc $\frac N 4 = 7,75 \approx 8$ donc la $8\ieme$ valeur est $Q_1 = -2\degres$.}
+            \item[Troisième quartile :] $N = 31$ \invisible{donc $3\times\frac N 4 = 23,25 \approx 24$ donc la $24\ieme$ valeur donne $Q_3 = 1\degres$.}
+        \end{description}\pause
+        Conclusion :\par
+        \invisible{Ainsi, $25\%$ des valeurs sont inférieures ou égales à $-2\degres$ et $75\%$ des valeurs sont inférieures ou égales à $1\degres$. On peut dire aussi que $25\%$ des valeurs sont supérieures ou égales à $1\degres$.}
+    \end{Example}
+\end{frame}
+
+\section{Indicateurs de dispersion}
+
+\begin{frame}
+Dans les classes antérieures, l'\alert{étendue} était un indicateur de dispersion utilisé dont voici rappelée la définition :
+
+\begin{Definition}
+    Dans une série statistique, l'\alert{étendue} est la différence entre la valeur maximale et la valeur minimale.
+\end{Definition}
+\end{frame}
+
+\begin{frame}{Remarque}
+    Une valeur élevée de l'étendue signifie qu'au moins une des valeurs extrêmes de la série est éloignée de la médiane et le risque de dispersion des valeurs est donc plus important.\par
+    Dans l'exemple précédent, l'étendue de la série \textnormal{janvier} était identique à celle de la série \textnormal{février} ce qui montre les besoins d'avoir d'autres indicateurs.\par
+    Les quartiles nous permettent d'obtenir d'autres indicateurs de dispersion lié à la médiane.
+\end{frame}
+
+\subsection{Intervalle et écart interquartile}
+
+\begin{frame}
+    \begin{Definition}
+        On appelle l'\alert{intervalle interquartile} l'intervalle $\intervalleff{Q_1}{Q_3}$.\par
+        On appelle l'\alert{écart interquartile} le nombre $Q_3 - Q_1$.
+    \end{Definition}\pause
+    
+        \begin{center}
+        \begin{tikzpicture}
+            \begin{small}
+            \draw (0,0)--(5,0) node[midway] {|} node[midway,above=5pt] {$Me$} node[pos=0.75,above=5pt] {$Q_3$} node[pos=0.25,above=5pt] {$Q_1$};
+            \draw (0,0)--(5,0) node[pos=0.25] {|}; \draw (0,0)--(5,0) node[pos=0.75] {|};
+            \end{small}
+            \begin{scriptsize}
+            \draw (0,0) node {|} node[above=2pt] {$\min$}; \draw (5,0) node {|} node[above=2pt] {$\max$};
+            \uncover<3->{\draw[color=blue,decorate,decoration={brace,raise=0.75cm}] (0.05,0) -- (1.2,0) node[above=0.9cm,pos=0.5] {$25\%$};
+            \draw[color=blue,decorate,decoration={brace,raise=0.75cm}] (3.7,0) -- (4.95,0) node[above=0.9cm,pos=0.5] {$25\%$};}
+            \uncover<4->{\draw[red,line width=2pt] (1.25,0)--(3.75,0) node[midway,below] {intervalle interquartile};}
+            \uncover<5->{\draw[color=red,decorate,decoration={brace,raise=0.55cm}] (3.7,0) -- (1.3,0) node[below=0.9cm,pos=0.5] {$50\%$};}
+            \end{scriptsize}
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Remarque}
+\pause
+Un écart interquartile faible impose que les valeurs soient regroupées proches de la médiane et donc peu dispersée pour la moitié d'entre elles.
+\end{frame}
+
+\subsection{Variance et écart-type}
+
+\begin{frame}
+    \begin{Definition}
+        Soit $S$ une série statistique de valeurs $x_1$, $x_2, \ldots, x_n$ et de moyenne $\overline m$. La \alert{variance} est le nombre positif ou nul $V$ défini par :
+        \[V = \invisible{\frac{(x_1 - \overline m)^2 + (x_2 - \overline m)^2 + \cdots + (x_3 - \overline m)^2}{n} = \frac1n \sum_{i = 1}^{n}(x_i - \overline m)^2.}\]
+    \end{Definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Prenons une série de notes :
+        \begin{center}
+        \renewcommand\arraystretch{1.5}
+            \begin{tabular}{|c|*{6}{m{1cm}|}}
+                \hline
+                    Notes & $7$ & $9$ & $12$ & $13$ & $15$ & $18$ \\
+                \hline
+                    Effectifs & $1$ & $2$ & $1$ & $2$ & $4$ & $2$ \\
+                \hline
+                    \multicolumn{7}{|c|}{} \\
+                \hline
+                    $(x_i - \overline m)$ & &&&& \\
+                \hline
+                    $(x_i - \overline m)^2$  & &&&&  \\
+                \hline
+                    \multicolumn{7}{|c|}{} \\
+                \hline
+            \end{tabular}
+        \renewcommand\arraystretch{1}
+        \end{center}
+        \invisible{La moyenne des carrés des écarts est donc égale à $11,1875$.}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{theorem}[de König-Huygens (admis)]
+        Soit $S$ une série statistique de valeurs $x_1$, $x_2, \ldots, x_n$ et de moyenne $\overline m$.\par
+        On pose $\overline n = \frac{x_1^2 + x_2^2 + \cdots + x_n^2}{n}$ (moyenne des carrés des valeurs).\par
+        La variance $V$ de la série statistique est alors égale à :
+        \[V = \overline n - (\overline m)^2.\]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Prenons une série de notes :
+            \begin{center}
+            \renewcommand\arraystretch{1.5}
+                \begin{tabular}{|c|*{6}{m{1cm}|}}
+                    \hline
+                        Notes & $7$ & $9$ & $12$ & $13$ & $15$ & $18$ \\
+                    \hline
+                        Effectifs & $1$ & $2$ & $1$ & $2$ & $4$ & $2$ \\
+                    \hline
+                        \multicolumn{7}{|c|}{} \\
+                        \multicolumn{7}{|c|}{} \\
+                    \hline
+                        $(x_i)^2$ & $49$ & $81$ & $144$ & $169$ & $225$ & $324$ \\
+                    \hline
+                        \multicolumn{7}{|c|}{} \\
+                    \hline
+                        \multicolumn{7}{|c|}{} \\
+                    \hline
+                \end{tabular}
+            \renewcommand\arraystretch{1}
+            \end{center}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    Cela n'est cependant pas exploitable car l'unité de mesure n'est plus la même depuis que l'on a utilisé des nombres au carré. On s'intéresse donc surtout à l'indicateur suivant :\medskip
+
+    \begin{Definition}
+        Soit $S$ une série statistique de variance $V$. L'\alert{écart-type} $\sigma$ est le nombre réel positif défini par : \invisible{\[\sigma = \sqrt V.\]}
+    \end{Definition}
+\end{frame}
+
+\begin{frame}{Remarque}
+    L'écart-type est un nombre réel positif qui caractérise la dispersion des valeurs d'une série statistiques par rapport à la moyenne.\par
+    Plus l'écart-type est petit et plus les valeurs sont proches de la moyenne (dispersion faible). Au contraire, si l'écart-type est grand alors les valeurs sont éloignés de la moyenne (dispersion élevée).
+\pause
+
+\begin{Example}
+    Dans l'exemple précédent, on obtient $\sigma = \sqrt{11,1875} \approx 3,34$.\par
+    Cela donne une indication de la répartition moyenne des notes autour de la moyenne $\overline m$.
+\end{Example}
+\end{frame}
+
+
+\end{document}

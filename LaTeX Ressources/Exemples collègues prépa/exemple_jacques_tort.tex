@@ -1,0 +1,500 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{graphics}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage[french]{babel}
+\usepackage{enumerate}
+\usepackage{tikz}
+
+\usepackage[a4paper]{geometry}
+\geometry{lmargin=2cm,rmargin=2cm,tmargin=0.5cm,bmargin=1cm}
+
+\pagestyle{empty}
+\def\R{\mathbb{R}}
+\def\K{\mathbb{K}}
+\def\D{\mathbb{D}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\ch{\text{ch}}
+\def\sh{\text{sh}}
+\def\argsh{\text{argsh}}
+\def\Inf{\hbox{Inf}\,}
+\def\dsp{\displaystyle}
+\def\U{{\mathcal U}}
+\def\V{{\mathcal V}}
+\def\eps{\varepsilon}
+\def\Ima{{\mathcal I}\mbox{m }}
+\def\Ker{{\mathcal K}\mbox{er }}
+\def\Vect{{\mathcal V}\mbox{ect }}
+\newcommand{\mM}{{\mathcal M}}
+\newcommand{\mC}{{\mathcal C}}
+\newcommand{\dv}{\Big |}
+
+\newcounter{exo}
+\newcounter{num}[exo]
+\newenvironment{exercice}{\begin{list} {{\bf \underline{Exercice}} {\bf \arabic{exo} :}}
+{\usecounter{exo}}} {\end{list}}
+\newcounter{equa}[exo]
+\newcommand{\cont}{\noindent \stepcounter{equa}\mbox{\ \ \theequa . }\noindent}
+\newcounter{subequa}[equa]
+\newcommand{\scont}{\indent  \stepcounter{subequa} \mbox{\ \ \alph{subequa}.\ }}
+
+
+\usepackage{framed}
+\usepackage[framed]{ntheorem}
+
+
+
+\newframedtheorem{theo}{Théorème}[subsection]
+
+\newframedtheorem{prop}{Proposition}[subsection]
+
+\newframedtheorem{cor}{Corollaire}[subsection]
+
+\newtheorem{exemp}{Exemple}[subsection]
+
+\newtheorem{propo}{Propriété}[subsection]
+
+\newtheorem{axi}{Axiome}[subsection]
+
+\newtheorem{lem}{Lemme}[subsection]
+
+\newtheorem{rem}{Remarque}
+
+\begin{document}
+
+
+
+\fbox{\parbox{15cm}{\begin{center}\huge \bf Chapitre 10: Calcul Matriciel. Résolution de systèmes \end{center}}}
+
+\medskip
+
+
+\noindent $\K=\R$ ou $\C$. Les éléments de $\K$ sont appelés les \underline{scalaires}. 
+
+\section{Ensemble $\mathcal M_{n,p}(\K)$}
+
+\subsection{Définition d'une matrice}
+
+\noindent Soit $(n,p)\in \N^\star \times \N^\star$. Une \underline{matrice à $n$ lignes et $p$ colonnes}, à coefficients dans $\K$, est une famille de $n\times p$ éléments de $\K$ $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$. 
+
+\medskip
+
+\noindent \underline{Notations}:
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\item théorique: $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$
+
+\smallskip
+
+\item sous forme de tableau:
+\[
+A= \begin{pmatrix}
+a_{1,1} & a_{1,2} & \dots & \dots & a_{1,p} \\
+a_{2,1} & a_{2,2} & \dots & \dots & a_{2,p} \\
+ \vdots &   \vdots   &      &     &   \vdots \\
+a_{n,1} &   a_{n,2}    &  \dots   &        &  a_{n,p}
+\end{pmatrix}
+\]
+$i$ est l'indice de \underline{ligne} de la matrice, $j$ est l'indice de \underline{colonnes}. $n\times p$ est la \underline{taille} de la matrice. Les $a_{i,j}$ sont les \underline{coefficients} de la matrice $A$. 
+
+\smallskip
+
+\item Ensembles de matrices:
+\begin{align*}
+\mathcal M_{n,p}(\K) &= \text{ ensemble des matrices à $n$ lignes et $p$ colonnes} \\
+\mathcal M_{n}(\K) &= \text{ ensemble des matrices à $n$ lignes et $n$ colonnes}
+\end{align*} 
+\end{itemize}
+
+
+\noindent Lorsque $p=1$, une matrice de taille $n\times 1$ est dite \underline{matrice colonne}. Lorsque $n=1$, une matrice de taille $1\times p$ est dite \underline{matrice ligne}. 
+
+\medskip
+
+\noindent \underline{Egalité de deux matrices}: Soient $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ et $B=\Big(b_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ deux matrices {\bf de même taille}. 
+\[
+A=B \Longleftrightarrow \forall (i,j)\in \{1,...n\} \times \{1,...,p\}, \, a_{i,j}=b_{i,j}.
+\]
+
+\noindent \underline{Matrices remarquables}:
+
+\smallskip
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\item Soit $(n,p)\in \N^\star \times \N^\star$. La \underline{matrice nulle} de taille $n\times p$, $\boxed{0_{\mathcal M_{n,p}(\K)}}$ est la matrice où tous les coefficients sont nuls. 
+\item Soit $(n,p)\in \N^\star \times \N^\star$. Soit $(i_0,j_0) \in \{1,...,n\} \times \{1,...p\}$. La \underline{matrice élémentaire} $\boxed{E^{i_0,j_0}}=\Big(e_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ est définie par: 
+\[
+e_{i,j}=\begin{cases}
+& 1   \text{ si } (i,j)=( i_0,j_0) \\
+& 0   \text{ sinon }
+\end{cases}
+\]
+\item Soit $n\geq 1$. Soient $(\lambda_1,...,\lambda_n)\in \K^n$. La matrice \underline{diagonale} $\boxed{diag(\lambda_1,...,\lambda_n)}=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ est définie par 
+\[
+a_{i,j}=\begin{cases}
+& \lambda_i   \text{ si } i=j \\
+& 0   \text{ sinon }
+\end{cases}
+\]
+Cas particulier: $diag(1,...,1)=\boxed{I_n}$ est appelée \underline{\bf matrice identité de taille $n$}.
+\item Soit $n\geq 1$. $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ est dite \underline{triangulaire supérieure} lorsque: $\forall (i,j) \in \{1,...,n\}^2,$
+\[
+i>j \Longrightarrow a_{i,j}=0.
+\]
+$A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ est dite \underline{triangulaire inférieure} lorsque: $\forall (i,j) \in \{1,...,n\}^2,$
+\[
+i<j \Longrightarrow a_{i,j}=0.
+\]
+\end{itemize}
+
+\subsection{Somme de matrices} 
+
+\noindent Soit $(n,p)\in \N^\star \times \N^\star$. Soient $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ et $B=\Big(b_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$ deux matrices {\bf de même taille}. La somme de $A$ et $B$ est la matrice notée $\boxed{A+B}$ définie par 
+\[
+A+B=\Big(a_{i,j}+b_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}.
+\]
+On somme les coefficients \og position par position \fg. 
+
+\begin{prop}[Propriétés de $+$ dans $\mathcal M_{n,p}(\K)$] Soit $(n,p)\in \N^\star \times \N^\star$.
+\begin{enumerate}
+\item {\bf [Associativité]} Soit $(A,B,C)\in \Big(\mathcal M_{n,p}(\K) \Big)^3$. Alors 
+\[
+A+(B+C)=(A+B)+C.
+\]
+\item {\bf [Neutre pour $+$]} Soit $A\in \mathcal M_{n,p}(\K)$. Alors 
+\[
+A+0_{\mathcal M_{n,p}(\K)}=0_{\mathcal M_{n,p}(\K)}+A=A.
+\]
+\item {\bf [Existence d'un opposé]} Soit $A\in \mathcal M_{n,p}(\K)$. On note $-A$ la matrice $-A=\Big(-a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}$. Alors 
+\[
+A+(-A)=0_{\mathcal M_{n,p}(\K)}=-A+A.
+\]
+\item {\bf [Commutativité]} Soit $(A,B)\in \Big(\mathcal M_{n,p}(\K) \Big)^2$. Alors 
+\[
+A+B=B+A.
+\]
+\end{enumerate}
+\end{prop}
+
+\subsection{Multiplication scalaire externe}
+
+\noindent Soit $(n,p)\in \N^\star \times \N^\star$. Soit $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}\in \mathcal M_{n,p}(\K)$. Soit $\lambda\in \K$. La matrice multiplication scalaire de $A$ par $\lambda$, notée $\boxed{\lambda A}$, est définie par: 
+\[
+\lambda A= \Big(\lambda a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}.
+\]
+
+\begin{prop}[Décomposition d'une matrice par les matrices élémentaires] Soit $(n,p)\in \N^\star \times \N^\star$. Soit $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}\in \mathcal M_{n,p}(\K)$. Alors 
+\[
+A=\sum_{i=1}^n \sum_{j=1}^p a_{i,j}E^{i,j}.
+\]
+\end{prop}
+
+\subsection{Produit matriciel}
+
+\subsubsection{Produit ligne colonne}
+
+\noindent Soit $p\geq 1$. On considère la matrice ligne $1 \times p $, $L=(a_1 \dots \dots a_p)$ et la matrice colonne $p\times 1$,  $C=\begin{pmatrix} b_1 \\ \vdots \\ \vdots \\b_p \end{pmatrix}$.  Le \underline{produit de la ligne $L$ et de la colonne $C$}, noté $\boxed{L\times C}$ est le scalaire défini par: 
+\[
+L\times C=(a_1 \dots \dots a_p) \times \begin{pmatrix} b_1 \\ \vdots \\ \vdots \\b_p \end{pmatrix}= \boxed{\sum_{k=1}^p a_k b_k } \in \K.
+\]
+
+\subsubsection{Produit de deux matrices}
+
+\noindent Soit $(n,p,m)\in (\N^\star )^3$. Soient $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}\in \mathcal M_{n,{\bf p}}(\K)$ et $B=\Big(b_{i,j}\Big)_{\tiny \substack{1\leq i \leq p \\ 1\leq j \leq m}}\mathcal M_{{\bf p},m}(\K)$. Le produit de $A$ et $B$ a un sens sous réserve que la condition suivante soit vérifiée:
+\[
+\boxed{\bf \text{Nombre colonnes de $A$ } = \text{Nombre lignes de $B$ }}
+\]
+On note $L_1,...,L_n$ les lignes de $A$ et $C_1,...,C_m$ les colonnes de $B$. La \underline{matrice produit de $A$ et $B$}, notée $\boxed{A\times B}$ est la matrice $A\times B=\Big(c_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}}\in \mathcal M_{\boxed{ \bf n,m}}(\K)$ définie par: 
+\[
+\forall (i,j)\in \{1,...n\} \times \{1,...,m\}, \, c_{i,j}=\boxed{L_i \times C_j=\sum_{k=1}^p a_{i,k} b_{k,j}}.
+\]
+
+\begin{rem} Dans $\mathcal M_n(\K)$, tous les produits de matrices ont un sens \end{rem}
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Produit de matrice élémentaire]} Soit $n\geq 1$. Soient $(i_0,j_0,k_0,l_0) \in \{1,...,n\}^4$. Soient $E^{i_0,j_0}$ et $E^{k_0,l_0}$ deux matrices élémentaires de $\mathcal M_n(\K)$. Calculer $E^{i_0,j_0} \times E^{k_0,l_0}$.
+\end{exemp}}}
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Produit de matrices diagonales]} Soit $n\geq 1$. Calculer le produit de deux matrices diagonales de $\mathcal M_n(\K)$
+\end{exemp}}}
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Produit de matrices triangulaires]} Soit $n\geq 1$. Montrer que le produit de deux matrices triangulaires supérieures  (respectivement inférieures) de $\mathcal M_n(\K)$ est une matrice triangulaire supérieure (resp. inférieure) de $\mathcal M_n(\K)$.
+\end{exemp}}}
+
+\begin{prop}[Propriétés de $\times$] Soit $(n,p,m,q)\in (\N^\star)^4$.
+\begin{enumerate}
+\item {\bf [Associativité]} Soit $(A,B,C)\in \mathcal M_{n,p}(\K)\times  \mathcal M_{p,m}(\K) \times \mathcal M_{m,q}(\K)$. Alors les produits ci-dessous ont un sens et: 
+\[
+A\times(B \times C)=(A\times B) \times C.
+\]
+\item {\bf [Neutre pour $\times$]} Soit $A\in \mathcal M_{n,p}(\K)$. Alors 
+\[
+A \times I_p= A \text{ et } I_n \times A=A
+\]
+\item {\bf [$0$ est absorbant]} Soit $A\in \mathcal M_{n,p}(\K)$. Alors 
+\[
+A \times 0_{\mathcal M_{p,m}(\K)}=0_{\mathcal M_{n,m}(\K)} \text{ et } 0_{\mathcal M_{q,n}(\K)} \times A=0_{\mathcal M_{q,p}(\K)}.
+\]
+\item {\bf [Produit et multiplication scalaire externe] } Soit $(A,B)\in \mathcal M_{n,p}(\K)\times  \mathcal M_{p,m}(\K)$. Soit $\lambda \in \K$. Alors les produits ci-dessous ont un sens et
+\[
+A \times (\lambda B)= (\lambda A) \times B = \lambda A \times B.
+\]
+\item {\bf [Distributivité à gauche de $\times$ sur $+$] } Soit $(A,B,C)\in \mathcal M_{n,p}(\K)\times  \mathcal M_{p,m}(\K)\times  \mathcal M_{p,m}(\K)$.  Alors les produits ci-dessous ont un sens et
+\[
+A \times (B+C)=  A \times B + A \times C.
+\]
+\item {\bf [Distributivité à droite de $\times$ sur $+$] } Soit $(A,B,C)\in \mathcal M_{n,p}(\K)\times  \mathcal M_{n,p}(\K)\times  \mathcal M_{p,m}(\K)$.  Alors les produits ci-dessous ont un sens et
+\[
+(A +B) \times C=  A \times C + B \times C.
+\]
+\end{enumerate}
+\end{prop}
+
+
+\begin{rem} Soit $n\geq 2$. Le produit matriciel n'est pas commutatif, c'est-à-dire:
+\[
+\exists (A,B) \in \mathcal M_n(\K)^2: \, A\times B \neq B \times A.
+\]
+Il en existe même beaucoup. Mais il existe aussi beaucoup de matrices qui \underline{commuttent}, c'est-à-dire qui vérifient $A\times B= B\times A$.  
+\end{rem}
+
+ \begin{rem} Soit $n\geq 2$. Dans $\mathcal M_n(\K)$, la propriété
+ \[
+ A \times B= 0 \Longrightarrow A=0 \text{ ou } B=0
+ \]
+ est FAUSSE
+\end{rem}
+
+
+\subsubsection{Puissances de matrices}
+
+\noindent On se place dans $\mathcal M_n(\K)$ pour $n\geq 1$.
+
+\bigskip
+
+\noindent Soient $A \in \mathcal M_n(\K)$ et $k \in \N$. La matrice \underline{puissance $k$-ième} de $A$, notée $A^k$ est définie par: 
+\[
+A^k= \begin{cases}
+& I_n \quad \text{ si } k=0 \\
+& A \times A^{k-1} \text{ si } k\geq 1
+\end{cases}
+\]
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Calcul de puissance à la main]} Calculer les puissances de la matrice 
+\[
+A=\begin{pmatrix}
+1 & 0 & 1 \\ 
+0& 1 & 1 \\
+0 & 0 & 1
+\end{pmatrix}
+\]
+\end{exemp}}}
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Puissances d'une matrice diagonale]} Calculer les puissances d'une matrice diagonale. 
+\end{exemp}}}
+
+\begin{prop}[Sommes et puissances] Soit $p\geq 1$. Soit $n\geq 1$. Soient $(A,B) \in \mathcal M_n(\K)^2$ telles que 
+\[
+A \times B= B\times A \quad \text{( c-a-d $A$ et $B$ commuttent)}
+\]
+Alors 
+\begin{enumerate}
+\item {\bf [Formule du binome]} 
+\[
+(A+B)^p= \sum_{k=0}^p \binom{p}{k} A^k B^{p-k}= \sum_{k=0}^p \binom{p}{k} B^k A^{p-k}.
+\]
+\item {\bf [Formule de factorisation]}
+\[
+A^p-B^p=(A-B) \times \sum_{k=0}^{p-1} A^{p-1-k} B^k=(A-B) \times \sum_{k=0}^{p-1} A^{k} B^{p-1-k}.
+\]
+\end{enumerate}
+\end{prop}
+
+
+\noindent $A\in \mathcal M_n(\K)$ est dite \underline{nilpotente} lorsque: 
+\[
+\boxed{\exists k \in \N: \, A^k=0_{\mathcal M_n(\K)}.}
+\]
+L'\underline{ordre (ou indice) de nilpotence} de $A$ est le \underline{plus petit} entier $p$ tel que $A^p=0_{\mathcal M_n(\K)}$. On a alors: 
+\[
+\forall k \geq p, \, A^k=0_{\mathcal M_n(\K)}.
+\]
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Calcul de puissance par décomposition $D+N$]} Calculer les puissances de la matrice 
+\[
+A=\begin{pmatrix}
+3 & 0 & 1 \\ 
+0& 2 & 0 \\
+0 & 0 & 3
+\end{pmatrix}
+\]
+en décomposant $A$ comme une somme d'une matrice diagonale et d'une matrice nilpotente
+\end{exemp}}}
+
+\newpage
+
+\subsubsection{Matrices inversibles} 
+
+\noindent On se place dans $\mathcal M_n(\K)$ pour $n\geq 1$.
+
+\bigskip
+
+\noindent $A \in \mathcal M_n(\K)$ est dite \underline{inversible} lorsque: 
+\[
+\boxed{ \exists B \in \mathcal M_n(\K): \, A \times B= B \times A=I_n.}
+\]
+On dit alors que $B$ est \underline{une} inverse pour $A$.
+
+\medskip
+
+\noindent L'ensemble des matrices inversibles de $\mathcal M_n(\K)$ est noté $\boxed{ GL_n(\K)}$. 
+
+\begin{rem} $I_n \in GL_n(\K)$ car $I_n \times I_n =I_n$.
+\end{rem}
+
+\begin{prop}[Unicité de l'inverse] Soit $A \in \mathcal M_n(\K)$ une matrice inversible. Alors $A$ admet une unique matrice inverse, appelée \underline{la matrice inverse de $A$} et notée $\boxed{ A^{-1}}$. On a alors $A^{-1}$ inversible et $(A^{-1})^{-1}=A$. 
+\end{prop}
+
+\begin{prop}[Inverse et produit] Soit $n\geq 1$. 
+\begin{enumerate}
+\item Soient $(A,B) \in  GL_n(\K)^2$. Alors $A\times B$ est inversible et 
+\[
+\boxed{(A\times B)^{-1}=B^{-1} \times A^{-1}.}
+\]
+\item Soit $A \in GL_n(\K)$ et $k \in \N$. Alors $A^k$ est inversible et 
+\[
+(A^k)^{-1}=(A^{-1})^k.
+\]
+\end{enumerate}
+\end{prop}
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Inversibilité d'une matrice diagonale]} Déterminer une CNS d'inversibilité pour une matrice diagonale. 
+\end{exemp}}}
+
+\subsection{Transposition}
+
+\noindent Soient $(n,p)\in \N^\star \times \N^\star$ et $A=\Big(a_{i,j}\Big)_{\tiny \substack{1\leq i \leq n \\ 1\leq j \leq p}} \in \mathcal M_{n,p}(\K)$. On appelle \underline{matrice transposée de $A$} et on note $\boxed{{}^tA}$ ou $A^T$ la matrice ${}^tA=\Big(b_{k,l}\Big)_{\tiny \substack{1\leq k \leq p \\ 1\leq l \leq n}} \in \mathcal M_{\boxed{p,n}}(\K)$ définie par: 
+\[
+\forall (k,l) \in \{1,...,p\} \times \{1,...,n\}, \, b_{k,l}=a_{l,k}.
+\]
+Les lignes de $A$ sont les colonnes de ${}^tA$ et les colonnes de $A$ sont les lignes de ${}^t A$. 
+
+
+\begin{prop}[Transposition et opérations] Soient $(n,p)\in \N^\star \times \N^\star$.
+\begin{enumerate}
+\item {\bf [Involution]} Soit $A \in \mathcal M_{n,p}(\K)$. Alors 
+\[
+{}^t ({}^t A)=A.
+\]
+\item {\bf [Combinaison linéaire]} Soient $(A,B) \in \mathcal M_{n,p}(\K)$ et $\lambda \in \K$. Alors 
+\[
+{}^t (A+\lambda B)= {}^t A+ \lambda {}^t B.
+\]
+\item {\bf [Produit]} Soient $(A,B) \in \mathcal M_{n,p}(\K) \times \mathcal M_{p,m}(\K)$. Alors 
+\[
+{}^t (A \times B)= {}^t B \times {}^t A.
+\]
+\item {\bf [Inverse]} Soit $A\in GL_n(\K)$. Alors ${}^t A$ est inversible et 
+\[
+({}^t A)^{-1}={}^t (A^{-1}).
+\]
+\end{enumerate}
+\end{prop}
+
+\noindent Une matrice $A\in \mathcal M_n(\K)$ est dite \underline{symétrique} lorsque ${}^t A= A$, \underline{antisymétrique} lorsque ${}^t A=-A$.
+
+\medskip
+
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Inversibilité d'une matrice diagonale]} Démontrer que toute matrice $A \in \mathcal M_n(\K)$ se décompose en une somme d'une matrice symétrique et d'une matrice antisymétrique. 
+\end{exemp}}}
+
+\section{Résolution des systèmes linéaires}
+
+\subsection{Forme générale}
+
+\noindent Un \underline{système linéaire} de $n$ équations à $p$ inconnues, à coefficients dans $\K$ s'écrit 
+\[
+(S): \, \begin{cases}
+a_{1,1} x_1 + a_{1,2} x_2 + \dots + \dots + a_{1,p} x_p & = b_1 \\
+a_{2,1} x_1 + a_{2,2} x_2 + \dots + \dots + a_{2,p} x_p & = b_2 \\
+\vdots       \hspace{1.5cm}      \vdots                                      &  \vdots  \\
+a_{n,1} x_1 + a_{n,2} x_2 + \dots + \dots + a_{n,p} x_p & = b_n
+\end{cases}
+\]
+où 
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\item $x_1$,...,$x_p$ sont les \underline{inconnues} du système,
+\item $b_1$,...,$b_p$ forment le \underline{second membre} du système,
+\item $(a_{i,j})$ sont les \underline{coefficients} du système,
+\item $a_{i,1}x_1+ a_{i,2} x_2+\dots+ \dots + a_{i,p} x_p$ est la \underline{ligne $i$} du système.
+\end{itemize}
+
+\medskip
+
+
+\noindent \underline{Forme matricielle du système} 
+\[
+(x_1,...,x_p) \text{ est solution de } (S) \Longleftrightarrow A X=B \quad \text{(forme matricielle de $(S)$)},
+\]
+où $ A=\Big(a_{i,j}\Big)_{\substack{1 \leq i \leq n \\ 1 \leq j \leq p}} \text{ \underline{matrice du système}}$, $ X=\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ \vdots \\ x_p \end{pmatrix} \in \mathcal M_{p,1}(\K) \text{ \underline{colonne des inconnues}}$, et
+  $ B= \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ \vdots \\ b_n \end{pmatrix} \in \mathcal M_{n,1}(\K)  \text{ \underline{colonne second membre}. }$
+
+
+\noindent Lorsque le second membre est nul, on dit que le système est \underline{homogène}.
+
+
+\subsection{Résolution d'un système linéaire par pivot de Gauss}
+
+
+\noindent L'algorithme du pivot de Gauss est basé sur la proposition suivante, que l'on démontrera plus tard. 
+
+
+\begin{prop}[Opérations élémentaires sur un système] L'ensemble des solutions du système linéaire $(S)$ ne change pas lorsqu'on effectue les opérations suivantes: 
+\begin{enumerate}
+\item Echanger deux lignes du systèmes: opération codée par $L_i \leftrightarrow L_j$.
+\item Multiplier une ligne par un scalaire \fbox{non nul} $\lambda$: opération codée par $L_i \leftarrow \lambda L_i$
+\item Ajouter à une ligne donnée une combinaison linéaire des autres lignes: opération codée par $\displaystyle{L_i \leftarrow L_i+ \sum_{j\neq i} \lambda_j L_j}$.
+\end{enumerate}
+\end{prop}
+
+\noindent \parbox{16cm}{\underline{Algorithme du pivot de Gauss}: 
+\begin{itemize}
+\item Etape 1: dans la 1ère colonne de coefficients, repérer le coefficient le plus simple ($\pm 1$, ou $2$, ou...) et remonter la ligne correspondante en ligne 1. C'est le premier \og pivot \fg. Eliminer alors les autres coefficients par des opérations de la forme $L_i \rightarrow L_i+\lambda L_1$. On ne touche plus à la ligne 1.
+\item Etape 2: Recommencer la même opération sur la deuxième colonne en démarrant de la ligne 2. 
+\item Stopper l'algorithme quand le système est \underline{échelonné}, c-a-d chaque ligne commence par {\bf au moins un zéro de plus} que la précédente.
+\item Deux possibilités à la dernière ligne. Ou bien on a une inconnue= valeur, ou bien une inconnue s'exprime en fonction des autres. 
+\item Remonter ensuite les lignes.
+\end{itemize}}
+
+ 
+\fcolorbox[gray]{0.1}{0.9}{\parbox{16cm}{\begin{exemp} {\bf [Résolution par pivot]} Résoudre à l'aide d'un pivot de Gauss les systèmes suivants: 
+\begin{align*}
+&(S_1): \, \begin{cases}
+x +2y-z&=1 \\
+2x+3y+z&=2 \\
+x-4y-6z&= 2
+\end{cases}  
+& (S_2): \, \begin{cases}
+2x +y -2z +3w & =1 \\
+3x + 2y -z +2w & = 4 \\
+3x + 3y+3z -3 w & =5
+\end{cases} & 
+& (S_3): \, \begin{cases}
+x - 3y +4 z -2 w &= 5 \\
+x - y +9z -w & =7 \\
+x -2y +7 z -2 w & =9
+\end{cases}
+\end{align*}
+\end{exemp}}}
+
+
+
+
+
+\end{document}

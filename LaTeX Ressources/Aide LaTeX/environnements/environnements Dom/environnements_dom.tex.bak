@@ -1,0 +1,239 @@
+\documentclass[12pt,french,oneside]{book}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\portrait
+%\paysage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{\dots}
+\newcommand{\anneescol}{Année \dots}
+
+%entête contrôle
+%\nocolor
+\fancypagestyle{garde_controle}{% 
+\fancyhead[C]{\textbf{Nom,  Prénom : }\makebox[5cm]{\dotfill}\hfill \textbf{\classe}}
+\renewcommand{\headrulewidth}{0cm}}
+
+
+\newcommand{\controle}{
+\thispagestyle{garde_controle}
+
+\chapitre{
+Exemples pour mes environnements\\[6pt]
+\normalsize\textit{\today}
+}
+\vspace*{-24pt}
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\textit{L'usage de la calculatrice est autorisé.\\
+La qualité de la rédaction, la clarté et la précision des raisonnements seront prises en compte dans l'appréciation de la copie.
+Le barème est indicatif.}
+\end{center}
+\end{minipage}
+\end{center}
+
+\noindent
+%\vspace{1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\controle		%entête contrôle
+
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\classe}{\thepage / \pageref{LastPage}}{\anneescol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Premier paragraphe}
+
+\subsection{Premier sous-paragraphe}
+
+Il est vide !
+
+
+\subsection{Environnements définis}
+
+\subsubsection{Environnements numérotés}
+
+\begin{itemize}
+\item[$\star$] \verb=\begin{Thm}[Théorème de Pythagore]...\end{Thm}=\,
+
+\item[$\star$] \verb=\begin{Prop}[s]{Théorème de Pythagore}...\end{Prop}=\,
+
+\item[$\star$] \verb=\begin{Defi}[]{Théorème de Pythagore}...\end{Defi}=\,
+
+\item[$\star$] \verb=\begin{Methode}[]{}...\end{Methode}=\,
+
+\item[$\star$] \verb=\begin{Exercice}[]{}...\end{Exercice}=\,
+
+\item[$\star$] \verb=\begin{Exercise}[]{}...\end{Exercise}=\,
+
+\item[$\star$] \verb=\begin{Exemple}[]{Théorème de Pythagore}...\end{Exemple}=\,
+
+\item[$\star$] \verb=\begin{Rmq}[s]...\end{Rmq}=\,
+
+\item[$\star$] \verb=\begin{Demo}[]...\end{Demo}=\,
+
+\item[$\star$] \verb=\begin{Vocab}[]...\end{Vocab}=\,
+
+\item[$\star$] \verb=\begin{Regle}[]{}...\end{Regle}=\,
+
+\item[$\star$] \verb=\begin{Cons}[]{}...\end{Cons}=\,
+
+\item[$\star$] \verb=\begin{Cor}[]{}...\end{Cor}=\,
+
+\end{itemize}
+
+\begin{Thm}[Théorème de Pythagore]
+Avec ou sans titre
+\end{Thm}
+
+\begin{Prop}[s]{Théorème de Pythagore}
+Avec ou sans s, avec ou sans titre
+\end{Prop}
+
+
+\begin{Defi}[]{Théorème de Pythagore}
+Avec ou sans s, avec ou sans titre
+\end{Defi}
+
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+Texte en-dessous pour vérifier l'alignement. 
+
+\bigskip
+
+\begin{Methode}[]{}
+Avec ou sans s, avec ou sans titre
+\end{Methode}
+
+\begin{Exercise}[(6 points)]
+Hello exercice !
+
+Barème optionnel en fin de ligne
+\end{Exercise}
+
+
+
+\begin{Exercise}
+Hello exercise!
+\end{Exercise}
+
+\begin{Exemple}[]{Théorème de Pythagore}
+Avec ou sans s, avec ou sans titre
+\end{Exemple}
+
+\begin{Rmq}[s]
+Avec ou sans s
+\end{Rmq}
+
+\begin{Demo}
+C'est à cause du frère de la tante de la s{oe}ur de la belle-mère de leur cousine germaine mariée volontairement de force contre son gré après avoir dit que \[1 + 1 = 2\] sans démontrer proprement que $1 + 0 = 1$ alors depuis, il y a des problèmes de famille non résolus d'autant plus que \bsc{Freud} a lâchement décidé de les laisser se débrouiller sous prétexte qu'il n'est pas né à leur époque.
+\end{Demo}
+
+\begin{Vocab}[Essai]
+Essai
+\end{Vocab}
+
+\begin{Regle}[s]{Essai}
+Essai
+\end{Regle}
+
+\begin{Cons}[s]{Essai}
+Essai
+\end{Cons}
+
+\begin{Cor}[Essai]
+Essai
+\end{Cor}
+
+\subsubsection{Environnements non numérotés}
+
+\begin{itemize}
+
+\item[$\star$] \verb=\begin{Exo}[12 p 152]...\end{Exo}=\,
+
+\item[$\star$] \verb=\begin{Exoa}[12 p 152]...\end{Exoa}=\,
+
+\end{itemize}
+
+\begin{Exo}[12 p 152]
+Voici un superbe énoncé !
+\end{Exo}
+
+\begin{Exoa}[12 p 152]
+Here is an awesome exercise!
+\end{Exoa}
+
+\subsection{Cadre}
+
+\begin{itemize}
+\item[$\star$] \verb=\begin{Cadre}...\end{Cadre}=\,
+
+\item[$\star$] \verb!\begin{CadreColor}...\end{CadreColor}!
+
+\item[$\star$] \verb!\begin{CadreAlgo}{0.5\linewidth}{Essai}Essai\end{CadreAlgo}!
+
+\item[$\star$] \verb!\begin{CadreModule}{Essai}Essai\end{CadreModule}!
+
+\end{itemize}
+
+\begin{Cadre}
+\dotfill
+\end{Cadre}
+
+\begin{CadreColor}
+\dotfill
+\end{CadreColor}
+
+\medskip
+
+\begin{CadreAlgo}{0.5\linewidth}{Essai}
+Essai
+\end{CadreAlgo}
+
+\begin{CadreModule}{Essai}
+Essai
+\end{CadreModule}
+
+
+\section{Deuxième paragraphe}
+
+Il est vide !
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{pst-node}
+\usepackage{pst-electricfield}
+\makeatletter
+\pst@addfams{pst-vectorE}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-vectorE}{QXY}{\def\psk@vectorQXY{#1}}
+\psset[pst-vectorE]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-vectorE}{K}{\def\psk@vectorEK{#1 }}
+%% coefficient de longueur
+\psset[pst-vectorE]{K=3}
+\def\psvectorE{\pst@object{psvectorE}}
+\def\psvectorE@i(#1){{% (x,y)
+  \use@par
+% le point où on calcule le champ
+\pst@getcoor{#1}\pst@tempA%
+\pnode(!
+    \pst@tempA
+    /yP exch \pst@number\psyunit div def
+    /xP exch \pst@number\psxunit div def
+    xP yP
+    ){Point}
+\pnode(!
+    /getX { xCoor exch get } def
+    /getY { yCoor exch get } def
+    /getQ { Qcharges exch get } def
+% les distances au point considéré
+    /Radius {xP i getX sub yP i getY sub Pyth} def
+% tableau des charges et positions
+    /QXY [\psk@vectorQXY] def
+% extraction des donnees = qi, xi, yi, Ni
+        /NoQ QXY length 1 sub def % nombre de charges -1
+% le tableau des charges
+       /Qcharges [ % les charges
+ 0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 0 get}
+ for
+ ] def
+% le tableau des abscisses
+    /xCoor [
+     0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 1 get}
+    for
+    ] def
+% le tableau des ordonnées
+    /yCoor [
+     0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 2 get}
+     for
+    ] def
+% le calcul du champ
+  0 0
+  0 1 NoQ { /i ED
+    i getQ xP i getX sub mul Radius 3 exp Div add exch
+    i getQ yP i getY sub mul Radius 3 exp Div add exch
+  } for
+  /Ex ED  /Ey ED
+  /K \psk@vectorEK def
+         0 0){datas}
+%\psdots[linecolor=red](!xA yA)(!xB yB)
+%\psdot(!xP yP)
+\psline{->}(!xP yP)(! xP Ex K mul add yP Ey K mul add)
+}}
+\makeatother
+\SpecialCoor
+
+\begin{document}
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\psset[pst-electricfield]{N=10}
+\psElectricfield[Q={[2 2 0][2 -1 1.732][2 -1 -1.732]},linecolor=red]%
+\pnode(0.6,-0.8){P}\psdot(P)
+\psvectorE[linecolor=blue,QXY={[2 2 0][2 -1 1.732][2 -1 -1.732]}](P)
+\pnode(0.45,2){P}\psdot(P)
+\psvectorE[linecolor=blue,QXY={[2 2 0][2 -1 1.732][2 -1 -1.732]}](P)
+\pnode(-2,-0.6){P}\psdot(P)
+\psvectorE[linecolor=blue,QXY={[2 2 0][2 -1 1.732][2 -1 -1.732]}](P)
+\end{pspicture*}
+\end{center}
+
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\rput{90}(0,0){\psElectricfield[Q={[1 0 2][1 0 -2]}, linecolor=red,radius=5pt,N=15,points=1000,Pas=0.025,posArrow=0.1]%
+                \pnode(-1.3,-0.75){P}\psdot(P)
+                \psvectorE[linecolor=blue,QXY={[2 0 2][2 0 -2]}](P)}
+\end{pspicture*}
+\end{center}
+\end{document}
+
+/NArray { % holds the coordinates and on top of stack the showpoints boolean
+  /showpoints ED
+  counttomark 2 div dup cvi /n ED  	% n 2 div on stack
+  n eq not { exch pop } if		% even numbers of points? delete one
+  ] aload /Points ED
+  showpoints not { Points aload pop } if
+} def
+
+/BOC { IC CC x2 y2 x1 y1 ArrowA CP 4 2 roll x y curveto } def
+/NC { CC x1 y1 x2 y2 x y curveto } def
+/EOC { x dx sub y dy sub 4 2 roll ArrowB 2 copy curveto } def
+
+/OpenCurve {
+  NArray n 3 lt
+    { n { pop pop } repeat }
+    { BOC /n n 3 sub def n { NC } repeat EOC } ifelse
+} def
+

@@ -1,0 +1,227 @@
+\setlength{\parindent}{10pt}
+
+\addto\captionsfrench{%
+\renewcommand\contentsname{
+            \color{MarronJPT}\fontfamily{augie}\fontsize{40}{20}\selectfont \hfill Sommaire
+}
+\renewcommand\chaptername{Fiche\xspace}
+}
+
+\titlecontents{chapter}[6pc]
+    {\addvspace{0.8pc}\Large\bfseries}
+    {\contentslabel
+        [\thecontentslabel]{1.5pc}}
+     {}{\hfill\contentspage}
+     [\addvspace{0.5pt}]
+     
+%___________________________
+%===    TITRE CHAPITRE
+%------------------------------------------------------
+
+
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+    \begin{tikzpicture}[remember picture, overlay,shift={(current page.north east)}]
+        \node at (0.1,0.1) [below left,draw=\MaCouleur, very thick,rounded corners, inner sep=10pt, inner ysep=10pt,fill=gray!20,text width=3cm, align=center]%
+            {\small\color{\MaCouleur}
+            \bfseries \bsc{\chaptername \thechapter}};
+    \end{tikzpicture}\vspace*{-2cm}
+
+    \begin{center}
+        \begin{tikzpicture}[color={\MaCouleur}]
+            \draw (0,0) -- (0.8\linewidth,0)
+                node[midway,above] {\fontfamily{pzc}\selectfont\scalefont{3}#1}
+                node[midway,above,yscale=-1, opacity=0.5] {\fontfamily{pzc}\selectfont\scalefont{3}#1};
+        \end{tikzpicture}
+    \end{center}
+}
+\makeatother
+
+\RegleEntete
+\pieddepage{\footnotesize Philippe \sc{De Sousa}}{\small -- \thepage/\pageref{TotPages} --}{\footnotesize Lycée J.-P. \bsc{Timbaud}}
+
+\usepackage{fancyvrb}
+\usepackage{fvrb-ex}
+\fvset{framerule=1pt,frame=lines,framesep=3mm,gobble=4,rulecolor=\color{\MaCouleur},fontsize=\footnotesize,%
+xrightmargin=0.5\linewidth,numbers=left,numbersep=7pt,showtabs=true,tabsize=4,obeytabs=true}
+%frame=leftline
+
+
+\newcounter{SaveSection}[chapter]
+
+\makeatletter
+\renewcommand{\thesection}{\color{red}\Roman{section}.\hspace{-0.5em}}
+\renewcommand{\section}{%
+    \@startsection{section}%
+    {1}%
+    {0pt}%
+    {-15pt \@plus -1ex \@minus -.2ex}%
+    {10pt \@plus .2ex \@minus .2ex}%
+    {\normalfont\Large\bfseries\color{red}\refstepcounter{SaveSection}}%
+}
+\makeatother
+
+\newcounter{Code}[chapter]
+\newcommand\NumCode{%
+\refstepcounter{Code}%
+Code \Roman{chapter}.\theCode\xspace
+}
+
+%\NewEnviron{CadreExemple}
+%{
+%\fontfamily{jkpf}
+%\selectfont
+%\noindent\begin{center}\psframebox[shadow=true,linearc=0.15,cornersize=absolute]{
+%\begin{minipage}{0.85\linewidth}
+%\BODY
+%\end{minipage}}
+%\end{center}}
+
+\NewEnviron{CadreExemple}
+{
+\fontfamily{jkpf}
+\selectfont
+\noindent\begin{center}
+\begin{tikzpicture}[every shadow/.style={opacity=.6,fill=black!50,shadow xshift=3pt, shadow yshift=-3pt}]
+\node[draw=black,color=black,fill=white,rounded corners=5pt,inner sep=10pt,drop shadow] at (0,0) {
+\begin{minipage}{0.85\linewidth}
+\BODY
+\end{minipage}};
+\end{tikzpicture}
+\end{center}}
+
+
+%\NewEnviron{info}
+%{
+%\footnotesize\sffamily
+%\noindent\begin{center}
+%\psframebox[fillstyle=solid,fillcolor=\MaCouleur!15,linewidth=0.4pt,linecolor=\MaCouleur!15,linearc=0.15,cornersize=absolute]{
+%\begin{tabular}{c|m{0.7\linewidth}}%
+%\large\Info & \BODY
+%\end{tabular}
+%}
+%\end{center}
+%}
+
+\NewEnviron{info}
+{
+\fontsize{8pt}{10pt}\selectfont\sffamily
+\noindent\begin{center}
+\begin{tikzpicture}
+\node[color=black,fill=\MaCouleur!15,rounded corners=5pt,inner sep=5pt] at (0,0) {
+\begin{tabular}{c|m{0.7\linewidth}}%
+\large\Info & \BODY
+\end{tabular}};
+\end{tikzpicture}
+\end{center}
+}
+
+
+\makeatletter\newcommand{\reset}%
+{
+\everymath{\textstyle}
+\setenumerate[1]{font=\mdseries,label=\arabic*.,ref=\arabic*}
+\setenumerate[2]{font=\upshape,label=(\alph*),ref=\theenumi\alph*}
+\setitemize[1]{label=$-$}
+}
+\makeatother
+
+\newcommand\NewFont{\fontfamily{jkpf}\selectfont\everymath{\textstyle}}
+
+\newcommand{\texlive}{\TeX {\sffamily Live}\xspace}
+\newcommand{\windows}{{\sffamily Windows}\xspace}
+\newcommand{\mac}{{\sffamily Mac}\xspace}
+\newcommand{\linux}{{\sffamily Linux}\xspace}
+\newcommand{\texstudio}{{\sffamily TeXstudio}\xspace}
+\newcommand*{\jargon}[1]{\emph{#1}\index[jarg]{#1}\xspace}
+\newcommand*{\ordi}[1]{{\ttfamily #1}}
+\newcommand\tbs{\textbackslash\xspace}
+\newcommand*\pdflatex{\textsc{pdf}\LaTeX\xspace}
+
+\newcommand{\OptPack}[1]{{\ttfamily #1}}
+
+\makeatletter
+\newcommand{\Arg@star}[2][]{%
+	{\normalfont\footnotesize%
+		\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}}}%
+
+\newcommand{\Arg@nostar}[2][]{%
+	{\normalfont\small%
+		\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}}}%
+
+\newcommand\Arg{\@ifstar{\Arg@star}{\Arg@nostar}}
+\makeatother
+
+\makeatletter
+\newcommand{\ArgOpt@star}[2][]{%
+	{\normalfont\footnotesize%
+		{\ttfamily [}\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}{\tt]}}}%
+
+\newcommand{\ArgOpt@nostar}[2][]{%
+	{\normalfont\small%
+		{\ttfamily [}\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}{\tt]}}}%
+
+\newcommand\ArgOpt{\@ifstar{\ArgOpt@star}{\ArgOpt@nostar}}
+\makeatother
+
+\makeatletter
+\newcommand{\ArgObl@star}[2][]{%
+	{\normalfont\footnotesize%
+		{\ttfamily \{}\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}{\tt\}}}}%
+
+\newcommand{\ArgObl@nostar}[2][]{%
+	{\normalfont\small%
+		{\ttfamily \{}\textsl{$\langle$#2%
+			\ifthenelse{\equal{#1}{}}{}%
+			{$_\mathrm{#1}$}%
+			$\rangle$}{\tt\}}}}%
+
+\newcommand\ArgObl{\@ifstar{\ArgObl@star}{\ArgObl@nostar}}
+\makeatother
+
+\makeatletter
+\newcommand{\NomPack@nostar}[1]{{\small\textbf{\textsf{#1}}}\index[com]{#1@\protect\textsf{\bfseries #1} (pack.)}}
+\newcommand{\NomPack@star}[1]{{\fontsize{8pt}{10pt}\selectfont\textbf{\textsf{#1}}}\index[com]{#1@\protect\textsf{\bfseries #1} (pack.)}}
+\newcommand\NomPack{\@ifstar{\NomPack@star}{\NomPack@nostar}}
+%	\protect\index{extensions!\protect\texttt{#1}}%
+%	\protect\index{#1@\protect\textsf{#1 extension}}
+
+\newcommand{\NomEnv@nostar}[1]{{\small\textit{\textsf{#1}}}\index[com]{#1@\protect\textsf{\itshape #1} (env.)}}
+\newcommand{\NomEnv@star}[1]{{\fontsize{8pt}{10pt}\selectfont\textsl{\textsf{#1}}}\index[com]{#1@\protect\textsf{\itshape #1} (env.)}}
+\newcommand\NomEnv{\@ifstar{\NomEnv@star}{\NomEnv@nostar}}
+%	\protect\index{extensions!\protect\texttt{#1}}%
+%	\protect\index{#1@\protect\textsf{#1 extension}}
+
+
+\newcommand{\Nom@Com}[1]{\texttt{\symbol{92}#1}}
+\newcommand{\NomCom}[1]{%
+	\Nom@Com{#1}\index[com]{#1@\protect\texttt{\symbol{92}#1}}%
+}
+\makeatother
+
+\newcounter{CountExoFiche}[chapter]
+\setcounter{CountExoFiche}{0}
+\newcommand\ExoFiche{%
+\refstepcounter{CountExoFiche}%
+Exercice \arabic{CountExoFiche}}
+
+\newcounter{CountExo}[chapter]
+\newcommand\NumExo{%
+\refstepcounter{CountExo}%
+\Roman{chapter}.\theCountExo\xspace
+} 

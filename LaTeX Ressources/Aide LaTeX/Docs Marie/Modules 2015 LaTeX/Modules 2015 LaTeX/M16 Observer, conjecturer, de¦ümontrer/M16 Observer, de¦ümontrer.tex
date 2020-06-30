@@ -1,0 +1,108 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Géométrie dynamique\\ Logiciel GeoGebra}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 16}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Observer, conjecturer\\ Démontrer}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+
+
+%%%%%%%%%%%%%%%%%
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Situation}}\\[10pt]
+%
+$ABCD$ est un carré.
+\begin{enumerate}
+\item Construire le point $I$, situé à l'intérieur du carré, tel que le triangle $DCI$ soit équilatéral.
+\item Construire le point $J$, situé à l'extérieur du carré, tel que le triangle $BCJ$ soit équilatéral.
+\item Que remarque-t-on?
+\end{enumerate}
+\vspace{20pt}
+
+%%%%%%%%%%%
+%_______________
+\textcolor{blue}{\textbf{II. Observer, conjecturer}}\\[5pt]
+On utilise ici le logiciel \textsc{GeoGebra}.
+\begin{enumerate}
+\item Tracer un carré $ABCD$ de côté variable, noté $a$.
+\item Construire les points $I$ et $J$ définis dans la situation ci-dessus.
+\item Tracer la droite $(AI)$.
+\item Faire varier le côté du carré et établir une conjecture au sujet des points $A$, $I$ et $J$.
+\end{enumerate}
+\vspace{-20pt}
+\begin{center}
+   \definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffwwqq}{rgb}{1.,0.4,0.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.2cm,y=1.2cm]
+\clip(-4.241392648625777,1) rectangle (7.181564310764592,6.189500722929848);
+\draw[line width=2.pt,color=ffwwqq!50] (2.4616852026955556,2.2757265472956285) -- (5.461685202695556,2.2757265472956285);
+\draw (-3.,5.)-- (-0.3,5.);
+\draw (-0.3,5.)-- (-0.3,2.3);
+\draw (-0.3,2.3)-- (-3.,2.3);
+\draw (-3.,5.)-- (-3.,2.3);
+\draw (-0.3,5.)-- (-0.3,2.3);
+\draw (-0.3,2.3)-- (-3.,2.3);
+\draw (-3.,2.3)-- (-1.65,4.638268590217985);
+\draw (-1.65,4.638268590217985)-- (-0.3,2.3);
+\draw (-0.3,2.3)-- (2.038268590217985,3.65);
+\draw (2.038268590217985,3.65)-- (-0.3,5.);
+\begin{scriptsize}
+\draw [fill=ffwwqq] (4.081685202695556,2.2757265472956285) circle (2.5pt);
+\draw[color=ffwwqq] (4.286435564160482,2.7232241283562204) node {$a = 2.7$};
+\draw [fill=qqqqff] (-3.,5.) circle (1.0pt);
+\draw[color=qqqqff] (-3.2,5.2) node {$A$};
+\draw [fill=qqqqff] (-0.3,5.) circle (1.0pt);
+\draw[color=qqqqff] (-0.1,5.2) node {$B$};
+\draw [fill=qqqqff] (-0.3,2.3) circle (1.0pt);
+\draw[color=qqqqff] (-0.1,2.1) node {$C$};
+\draw [fill=qqqqff] (-3.,2.3) circle (1.0pt);
+\draw[color=qqqqff] (-3.2,2.1) node {$D$};
+\draw [fill=ffwwqq] (2.038268590217985,3.65) circle (1.0pt);
+\draw[color=ffwwqq] (2.2,3.9) node {$J$};
+\draw [fill=ffwwqq] (-1.65,4.638268590217985) circle (1.0pt);
+\draw[color=ffwwqq] (-1.4,4.8) node {$I$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+\vspace{-20pt}
+
+%%%%%%%%%%
+%_______________
+\textcolor{blue}{\textbf{III. Démontrer}}\\[5pt]
+On se place dans le repère $(D\,; \,C\,,\,A)$.
+\begin{enumerate}
+\item Justifier que ce repère est orthonormé.
+\item Déterminer les coordonnées des sommets du carré dans ce repère.
+\item Calculer les coordonnées des points $I$ et $J$ dans ce repère.
+\item Démontrer la conjecture faite précédemment.
+\end{enumerate}
+
+\end{document}
+

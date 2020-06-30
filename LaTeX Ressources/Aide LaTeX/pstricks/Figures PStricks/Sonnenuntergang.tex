@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{pst-slpe}
+\usepackage{pstricks-add}
+
+\begin{document}
+%--------------- Sonnenuntergang -------------------------------------------
+\begin{pspicture}(-6,-3)(6,3)
+%\psset{fading,endfading=0.5,linecolor=black!40}
+\psframe[slopesteps=1000,fillstyle=solid,fillcolor=blue!10!black,linestyle=none,linewidth=0pt](-6,-3)(6,3)
+%\psframe[fillstyle=solid,fillcolor=yellow,linestyle=none,linewidth=0pt](-6,-3)(6,1)
+\begin{psclip}%
+{\psframe[linestyle=none,fillstyle=none](-6,-3)(6,2)}
+\psframe[fillstyle=ccslope,sloperadius=14.3,slopeangle=-90,slopebegin=blue!10!white,slopeend=blue!10!black,linestyle=none,%
+slopecenter={0.4 0},slopesteps=2000,linewidth=0pt,fading=true,startfading=0,endfading=1](-6,-12)(6,6)
+\end{psclip}
+\psframe[fillstyle=slope,slopesteps=2000,slopeangle=90,slopebegin=orange!80!yellow,
+slopeend=orange!80!yellow,linestyle=none,linewidth=0pt,fading=true,startfading=0,endfading=0.3](-6,-4)(6,-2.4)
+\psframe[fillstyle=slope,slopesteps=2000,slopeangle=90,slopebegin=orange, slopeend=orange!80!yellow,opacity=0.2,linestyle=none,linewidth=0pt,fading=true,startfading=0,endfading=0.2](-6,-3)(6,-2.65)
+%----------- Horizont -------------------
+\pscustom[fillstyle=solid,linestyle=none,linewidth=0pt,fillcolor=black]{%
+\pslineByHand[linecolor=blue,VarStepEpsilon=1,varsteptol=0.3](-6,-2.7)(-2,-2.7)
+%\pslineByHand[linecolor=blue,VarStepEpsilon=1.6,varsteptol=1](-2,-2.7)(2,-2.7)
+\pslineByHand[linecolor=blue,VarStepEpsilon=1,varsteptol=0.4](-2,-2.7)(6,-2.7)
+\psline(6,-3.5)(-6,-3.5)(-6,-2.7)
+\closepath%
+}
+\psframe*(-4,-2.8)(-3.9,-2.55)
+\psframe*(-3.95,-2.8)(-3.7,-2.65)
+\psframe*(-3.5,-2.8)(-3.4,-2.6)
+\psframe*(-3.3,-2.8)(-3.1,-2.65)
+\psframe*(-2.9,-2.8)(-2.8,-2.55)
+\pspolygon[fillstyle=solid,fillcolor=black,linestyle=none](-2.7,-2.8)(-2.68,-2.1)(-2.66,-2.1)(-2.64,-2.8)
+\pspolygon[fillstyle=solid,fillcolor=black,linestyle=none](-2.73,-2.4)(-2.74,-2.3)(-2.6,-2.3)(-2.61,-2.4)
+%---- Stern ---
+\pscircle*[linecolor=white](3.6,1){0.018}
+\end{pspicture}
+
+\newpage
+\begin{pspicture}(-6,-3)(6,3)
+%\psset{fading,endfading=0.5,linecolor=black!40}
+\psframe[slopesteps=1000,fillstyle=solid,fillcolor=blue!10!black,linestyle=none,linewidth=0pt](-6,-3)(6,3)
+%\psframe[fillstyle=solid,fillcolor=yellow,linestyle=none,linewidth=0pt](-6,-3)(6,1)
+\begin{psclip}%
+{\psframe[linestyle=none,fillstyle=none](-6,-3)(6,2)}
+\psframe[fillstyle=ccslope,sloperadius=14.3,slopeangle=-90,slopebegin=blue!10!white,slopeend=blue!10!black,linestyle=none,%
+slopecenter={0.4 0},slopesteps=2000,linewidth=0pt,fading=true,startfading=0,endfading=1](-6,-12)(6,6)
+\end{psclip}
+\psframe[fillstyle=slope,slopesteps=2000,slopeangle=90,slopebegin=orange!80!yellow,
+slopeend=orange!80!yellow,linestyle=none,linewidth=0pt,fading=true,startfading=0,endfading=0.3](-6,-4)(6,-2.3)
+\psframe[fillstyle=slope,slopesteps=2000,slopeangle=90,slopebegin=orange, slopeend=orange!80!yellow,opacity=0.2,linestyle=none,linewidth=0pt,fading=true,startfading=0,endfading=0.2](-6,-3)(6,-2.62)
+%----------- Horizont -------------------
+\pscustom[fillstyle=solid,linestyle=none,linewidth=0pt,fillcolor=black]{%
+\pslineByHand[linecolor=blue,VarStepEpsilon=1,varsteptol=0.3](-6,-2.7)(-2,-2.7)
+%\pslineByHand[linecolor=blue,VarStepEpsilon=1.6,varsteptol=1](-2,-2.7)(2,-2.7)
+\pslineByHand[linecolor=blue,VarStepEpsilon=1,varsteptol=0.4](-2,-2.7)(6,-2.7)
+\psline(6,-3.5)(-6,-3.5)(-6,-2.7)
+\closepath%
+}
+\psframe*(-4,-2.8)(-3.9,-2.55)
+\psframe*(-3.95,-2.8)(-3.7,-2.65)
+\psframe*(-3.5,-2.8)(-3.4,-2.6)
+\psframe*(-3.3,-2.8)(-3.1,-2.65)
+\psframe*(-2.9,-2.8)(-2.8,-2.55)
+\pspolygon[fillstyle=solid,fillcolor=black,linestyle=none](-2.7,-2.8)(-2.68,-2.1)(-2.66,-2.1)(-2.64,-2.8)
+\pspolygon[fillstyle=solid,fillcolor=black,linestyle=none](-2.73,-2.4)(-2.74,-2.3)(-2.6,-2.3)(-2.61,-2.4)
+%---- Stern ---
+\pscircle*[linecolor=white](3.6,1){0.014}
+\end{pspicture}
+
+
+
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass[10pt,french]{article}
+\input preambule_2013
+\pagestyle{empty}
+\begin{document}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,framearc=0.5,fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{
+\parbox[c]{0.5\linewidth}{
+\begin{center}
+\Large\bfseries
+Séance informatique\par
+\uuline{Suites numériques}
+\end{center}}}
+\end{center}\bigskip
+
+\section*{\'Enoncé de départ}
+
+Une entreprise propose à un employé deux types de contrat de travail pour un emploi commençant le 1\ier janvier \np{2014}.\par
+\begin{description}
+    \item[Contrat \no 1 :] le salaire mensuel initial est de \EUR{\np{1150}} puis augmentation le 1\ier janvier de chaque année de \EUR{$40$}.
+    \item[Contrat \no 2 :] le salaire mensuel initial est de \EUR{\np{1020}} puis une augmentation le 1\ier janvier de chaque année de $5\%$.
+\end{description}
+Pour le contrat \no 1, on note $u_1$ le salaire mensuel la première année, $u_2$ le salaire mensuel de la deuxième et ainsi de suite jusqu'à $u_n$ le salaire mensuel pour l'année $n$.\par
+Pour le contrat \no 2, on note $v_1$ le salaire mensuel la première année, $v_2$ le salaire mensuel de la deuxième et ainsi de suite jusqu'à $v_n$ le salaire mensuel pour l'année $n$.\par
+
+\section*{Préparation des feuilles de calculs}
+
+\begin{enumerate}
+    \item Ouvrir \texttt{Excel}.
+    \item Sur la première ligne, donner les noms suivants aux colonnes :
+    {\small\begin{center}
+        \begin{tabular}{c|r|>\centering m{2.75cm}|>{\centering\arraybackslash}m{2.75cm}|}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}}  \\
+            \cline{2-4}
+            \texttt 1 & \centering Année $n$ & Salaire mensuel avec le contrat 1 & Salaire mensuel avec le contrat 2 \\
+            \cline{2-4}
+            \texttt 2 & $1$ & &  \\
+            \cline{2-4}
+            \texttt 3 & $2$ & &  \\
+            \cline{2-4}
+            \texttt 4 & $3$ & &  \\
+            \cline{2-4}
+            \texttt 5 & $4$ & &  \\
+            \cline{2-4}
+            \texttt 6 & $5$ & &  \\
+        \end{tabular}
+    \end{center}}
+    \item Compléter la colonne \texttt{Année} avec les nombres de $1$ à $20$.
+\end{enumerate}
+
+\section*{Questions}
+\begin{enumerate}
+    \item Que faut-il écrire dans la cellule {\tt B2} ? \dotfill\bigskip
+    \item Que faut-il écrire dans la cellule {\tt C2} ? \dotfill\bigskip
+    \item Parmi les formules suivantes, quelles sont celles que l'on doit respectivement écrire dans les cellules {\tt B3} et {\tt C3}, puis recopier vers le bas ?
+        \begin{itemize}
+            \item \texttt{=A2 + 40} \qetq \texttt{=1,05 * B2}.
+            \item \texttt{=1,05*C2} \qetq \texttt{=C2 + 40}.
+            \item \texttt{=B2 + 40} \qetq \texttt{=1,05 * C2}.
+            \item \texttt{=A2 + 40} \qetq \texttt{=1,05 * A2}.
+        \end{itemize}
+    \item Compléter avec le tableur le salaire des deux contrats jusqu'à la vingtième année.\bigskip
+    \item Donner les valeurs de $u_1$, $u_2$ et $u_3$ : \dotfill\par\bigskip
+    \item Calculer $u_2 - u_1$ puis $u_3 - u_2$. Que remarque-t-on ? Est-ce toujours valable pour le premier contrat ? \dotfill\par\bigskip\dotfill\par\bigskip\dotfill\bigskip
+    \item Donner les valeurs de $v_1$, $v_2$ et $v_3$ : \dotfill\par\bigskip
+    \item Calculer $v_2 \div v_1$ puis $v_3 \div v_2$. Que remarque-t-on ? Est-ce toujours valable pour le deuxième contrat ? \dotfill\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill\bigskip
+    \item Quel serait le salaire mensuel de l'employé la dixième année pour chacun des deux contrats ? \par\bigskip\dotfill
+\end{enumerate}
+
+\section*{Plus précisément}
+
+Après réflexion, l'employé complète sa feuille de calcul comme suit :
+    {\footnotesize\begin{center}
+        \begin{tabular}{c|r|*{6}{>{\centering\arraybackslash}m{2cm}|}}
+           \multicolumn{1}{c}{} & \multicolumn{1}{c}{\texttt{A}} & \multicolumn{1}{c}{\texttt{B}} & \multicolumn{1}{c}{\texttt{C}}  & \multicolumn{1}{c}{\texttt{D}} & \multicolumn{1}{c}{\texttt{E}} & \multicolumn{1}{c}{\texttt{F}} & \multicolumn{1}{c}{\texttt{G}} \\
+            \cline{2-8}
+            \texttt 1 & \centering Année $n$ & Salaire mensuel avec le contrat 1 & Salaire mensuel avec le contrat 2 & Salaire annuel Contrat 1 & Total des salaires annuels Contrat 1 & Salaire annuel Contrat 2 & Total des salaires annuels Contrat 2\\
+            \cline{2-8}
+            \texttt 2 & $1$ & &  &&&&\\
+            \cline{2-8}
+            \texttt 3 & $2$ & &  &&&&\\
+        \end{tabular}
+    \end{center}}
+    
+\begin{enumerate}
+    \item Reproduire la feuille de calcul à l'aide du tableau ci-dessus et compléter les $20$ premières années.
+    \item L'employé envisage de ne rester que dix ans dans l'entreprise ; quel contrat a-t-il intérêt à choisir ? Donner les cellules dans lesquelles sont lues les informations qui permettent de justifier sa décision.\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill
+    \item Une autre personne se voit proposer le même choix de contrat. Désirant construire une maison, cette personne espère rester au moins quinze ans dans l'entreprise. Quel contrat a-t-elle intérêt à choisir ? Donner les cellules dans lesquelles sont lues les informations qui permettent de justifier sa décision.\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill\par\bigskip\dotfill
+\end{enumerate}
+
+\section*{Représentation graphique}
+Sélectionner les trois premières colonnes pour les $20$ années calculées. À l'aide du menu \texttt{Insertion -> Graphique}, représenter les courbes représentant les salaires mensuels pour chaque contrat. Quelle est l'allure des courbes ?\par\bigskip\dotfill\par\bigskip\dotfill
+
+
+\end{document} 

@@ -1,0 +1,97 @@
+\documentclass[10pt,french]{book}
+
+\input preambule_2013
+
+\entete{\today}{Avez-vous bien appris ?}{Sujet A}
+\RegleEntete
+
+\pieddepage{\seconde $\np{1356}$}{Page \thepage\ sur un total de \pageref{LastPage}.}{Prix : \EUR{$\np{35468}$}}
+
+\usepackage{skull} % pour utiliser la commande \skull -> voir à la fin
+
+\newenvironment{exoB}[1]%
+{\refstepcounter{exo}
+$\triangleright$ \textbf{Exercice \theexo.} [#1]\par}%
+{\[*\]}
+
+\newenvironment{exoC}[1]%
+{\refstepcounter{exo}
+\hspace*{\stretch{1}}\textbf{Exercice \theexo.} [#1]\hspace*{\stretch{1}}\par}%
+{\[*\]}
+
+\newenvironment{exoD}[1]%
+{\refstepcounter{exo}
+\hspace*{\stretch{1}}\textbullet \textbf{Exercice \theexo.} [#1]\hspace*{\stretch{3}}\par}%
+{\[*\]}
+
+\newenvironment{exoE}[1]%
+{\refstepcounter{exo}
+{\fontfamily{augie}\fontsize{10}{8}\selectfont Exercice \theexo. [#1]}\par}%
+{\[*\]}
+
+\newenvironment{exoF}[1]%
+{\refstepcounter{exo}
+\psovalbox{\textbf{Exercice \theexo.}}\hfill \psovalbox{#1}\par}%
+{\[*\]}
+
+\newenvironment{exoG}[1]%
+{\refstepcounter{exo}
+\pfr{\textbf{Exercice \theexo.}} [#1]\par}%
+{\[*\]}
+
+\newenvironment{exoH}[1]%
+{\refstepcounter{exo}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\draw[inner color=red,outer color=yellow](0,0)ellipse(10 and 5) node {\color{blue}\textbf{Exercice \theexo.}};
+\draw[ball color=white]++(17,0)circle(5) node{\small\textbf{#1}} ;
+\end{tikzpicture}\par}
+{\[*\]}
+
+\begin{document}
+
+\begin{center}
+\psframebox[shadow=true,shadowcolor=gray!75,shadowsize=5pt,% gestion de l'ombre
+framearc=-0.5,%arrondi de l'encadrement valeur=0 : rectangle. 0 < valeur < 1 : coin de + en + arrondi. valeur >=1 : demi-cercle. Valeur négative : voir résultat.
+fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!80!yellow!40,gradend= white]{% gestion du dégradé
+\parbox[c][30pt]{0.5\linewidth}{% c = texte centré dans la boîte, 30pt = hauteur de la boîte, 0.5\linewidth = longueur de la boîte
+\begin{center}
+\Large\bfseries
+\uuline{Devoir sur table}
+\end{center}}}
+\end{center}\bigskip
+
+\begin{exo}
+    Racontez vos vacances... Mais uniquement la partie intéressante.
+\end{exo}
+
+\begin{exoB}{3 pts}
+    Expliquez en 20 lignes pourquoi votre professeur de maths est vraiment le meilleur.
+\end{exoB}
+
+\begin{exoC}{3 pts}
+    C'est en forgeant que l'on devient forgeron. Doit-on jouer dans une fanfare pour devenir fanfaron ?
+\end{exoC}
+
+\begin{exoD}{3 pts}
+    Le menuiser a-t-il souvent la gueule de bois ?
+\end{exoD}
+
+\begin{exoE}{3 pts}
+    Considérons un fan de sudoku. Que possède-t-il au nord ?
+\end{exoE}
+
+\begin{exoF}{3 pts}
+    Une femme qui s'épile est-elle l'opposé d'une femme qui s'efface ?
+\end{exoF}
+
+\begin{exoG}{3 pts}
+    Est ce que Pikachu s'appelle Pikachu parce qu'il n'arrête pas de dire Pikachu, ou est ce qu'il n'arrête pas de dire Pikachu parce qu'il s'appelle Pikachu? 
+\end{exoG}
+
+\begin{exoH}{3 pts}
+    Quelle note espérez-vous obtenir à ce contrôle ?
+\end{exoH}
+
+{\Large\[\skull \qquad \skull \qquad \skull\]}
+
+\end{document} 

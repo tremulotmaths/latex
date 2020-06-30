@@ -1,0 +1,40 @@
+﻿Dossier contenant les packages :
+
+/usr/share/texlive/2013/texmf-dist/tex/latex/
+ou /usr/local/texlive/2013/texmf-dist/tex/latex/
+
+
+packages n'étant pas dans texlive :
+- picins
+- slashbox
+- background
+
+Après ajout de packages, lancer texhash pour que la distribution prenne en compte les modifications.
+
+
+Répertoire des cours :
+/host/Dropbox/Cours\ Année\ 2012-2013\ Lycée\ Jean\ Pierre\ Timbaud/
+
+
+Installation de texlive2012 dans le répertoire :
+/usr/local/texlive/2012
+
+
+Sur l'installation actuelle, dans le fichier /etc/texmf/texmf.cnf
+
+TEXMFLOCAL = /usr/local/share/texmf
+
+
+Sur le pc en B307, les packages sont installés dans le répertoire 
+/usr/local/texlive/2013/texmf-dist/tex/latex
+
+Les préambules sont dans le répertoire /usr/local/texlive/texmf-local/tex/latex
+
+
+Sous Windows 7, j'ai copié les préambules dans le dossier contenant les packages.
+
+Après avoir modifié ces dossiers, taper la commande texhash pour la prise en compte de ces modifications.
+
+Sous Linux Mint 18
+Les packages sont installés dans le dossier /usr/share/texlive/texmf-dist/tex/latex/
+

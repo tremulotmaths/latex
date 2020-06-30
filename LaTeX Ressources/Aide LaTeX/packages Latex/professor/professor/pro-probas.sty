@@ -1,0 +1,2765 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-probas}[23/09/2008 version provisoire 2]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-courbes.sty
+
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsprobas}
+\setboolean{windowsprobas}{false}
+\newboolean{xcasprobas}
+\setboolean{xcasprobas}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasprobas}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsprobas}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsprobas}}
+{%
+\ifthenelse{\boolean{xcasprobas}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasprobas}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+\RequirePackage{colortbl}
+\RequirePackage{tabularx,amsmath,amssymb}
+
+%% LES COMPTEURS
+
+
+
+\newcounter{Cptloiprob}
+\newcommand{\lprob}{\theCptloiprob}
+
+
+
+\newcounter{Cptprobacon}
+\newcommand{\pc}{\theCptprobacon}
+
+
+
+\newcounter{Cpttablprob}
+\newcommand{\tprob}{\theCpttablprob}
+
+
+
+
+
+%% INITIALISATION
+
+\newcommand{\initprob}{%
+
+\setcounter{Cptloiprob}{0}
+\setcounter{Cptprobacon}{0}
+\setcounter{Cpttablprob}{0}
+
+\ifthenelse{\boolean{xcas}}%    Avec l'option XCas
+{\IfFileExists{\nomtravail_prob.mp}%      Si Tableaux.mp est present...
+        {\immediate\write18{\rem \nomtravail_prob.mp}}%  le detruire
+        {}%   
+ \immediate\write18{\cp  enteteMP.cfg \nomtravail_prob.mp}% Reconstituer l'entête de Tableaux.mp
+} 
+{\IfFileExists{\nomtravail_prob.mp}%      Sans l'option XCas, si
+                                %      Tableaux.mp existe
+{\immediate\write18{mpost -interaction=batchmode \nomtravail_prob}}% l'executer pour reconstituer les figures
+{\PackageWarning{pro-babilitor}{Pas de source metapost pour creer les figures.}}% sinon message d'erreur
+                                % (mais pas d'arret car les tableaux
+                                % peuvent être presents )
+}
+}
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% pour nettoyer les fichiers auxiliaires 
+
+\AtEndDocument{\immediate\write18{\rem enteteMP.cfg enteteTEX.cfg *.user  *.mpx *.giac XCAS*.cxx  XCAS*.mp mptextmp.mp XCAS*.tex queue.mp loiprob.cxx config.cxx}}
+     
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Arbre 2x2
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre22.cxx}
+Arbre(L):={
+local A,B,T;
+local xtmin,xtmax,tmin,tmax;
+local texts,textt;
+local textn,textf,nom,val;
+
+A:=L[0];
+B:=L[1];
+T:=L[2];
+
+textf:=makelist(0,0,2);
+
+// premier niveau
+textn:=("");
+nom:=A[0];
+val:=A[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[S,T[1]]);
+");
+
+val:=1-val;
+if (size(A)==2) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),T[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[2]]);
+");
+}
+else
+{
+  nom:=A[2];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[2]]);
+");
+}
+textf[0]:=textn;
+
+
+
+// deuxieme niveau haut
+textn:=("");
+nom:=B[0];
+val:=B[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[1],U[1]]);
+");
+
+val:=1-val;
+if (size(B)==3) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),U[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[1],U[2]]);
+");
+}
+else
+{
+  nom:=B[3];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[1],U[2]]);
+");
+}
+textf[1]:=textn;
+
+
+
+// deuxieme niveau bas
+textn:=("");
+nom:=B[0];
+val:=B[2];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[3]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[2],U[3]]);
+");
+
+val:=1-val;
+if (size(B)==3) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),U[4]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[2],U[4]]);
+");
+}
+else
+{
+  nom:=B[3];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[4]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[2],U[4]]);
+");
+}
+textf[2]:=textn;
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+N:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (N!=0) then
+{
+  for(j:=0;j<=N-1;j++)
+  {
+    V:=T[j];
+    
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") );
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax)  shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax;
+
+xmin:=-1cm;
+xmax:=8cm;
+ymin:=-8cm;
+ymax:=0cm;
+
+
+
+beginfig(0);
+
+numeric u;
+u:=1cm;
+pair S,T[],U[];
+
+numeric dx,dh,cr;
+dx:=3;
+dh:=1.5;
+cr:=0.1;
+
+for i:=1 upto 4:
+ U[i]:=(2*dx*u,-i*dh*u);
+endfor
+
+T[1]:= 0.5[U[1],U[2]] shifted(-dx*u,0);
+T[2]:= 0.5[U[3],U[4]] shifted(-dx*u,0);
+
+S:= 0.5[T[1],T[2]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+
+%----------- premier niveau
+"+textf[0]+"
+
+%----------- deuxieme niveau superieur
+"+textf[1]+"
+
+%----------- deuxieme niveau inferieur
+"+textf[2]+"
+
+
+
+
+"+textt+"
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) shifted (0,0.1cm) --(xmax,ymax) shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre22.giac}
+maple_mode(0);
+read("XCASarbre22.cxx");
+Sortie:=fopen("XCASarbre22.mp");
+donnees:=read("XCASarbre22.user");
+Resultat:=string("Arbre(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+\newcounter{Cptarbre}
+\newcommand{\arb}{\theCptarbre}
+%% \arb change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre22}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASarbre22.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASarbre22.mp}
+\executGiacmp{XCASarbre22.giac}
+\IfFileExists{\nomtravail_arbre22-\arb.mp}{\immediate\write18{\rem \nomtravail_arbre22-\arb.mp}}{}
+\immediate\write18{\cat XCASarbre22.mp >> \nomtravail_arbre22-\arb.mp}
+\immediate\write18{mpost \nomtravail_arbre22-\arb.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_arbre22-\arb.mp}{\immediate\write18{mpost \nomtravail_arbre22-\arb.mp}}{% 
+\PackageError{pro-probas}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_arbre22-\arb.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre22-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre22*}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASarbre22.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre22-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Arbre 3x2
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre32.cxx}
+Arbre(L):={
+local A,B,T;
+local xtmin,xtmax,tmin,tmax;
+local texts,textt;
+local textn,textf,nom,val;
+
+
+A:=L[0];
+B:=L[1];
+T:=L[2];
+
+textf:=makelist(0,0,3);
+
+// premier niveau
+textn:=("");
+nom:=A[0];
+val:=A[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[S,T[1]]);
+");
+
+nom:=A[2];
+val:=A[3];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[2]);
+label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[2]]);
+");
+
+nom:=A[4];
+val:=simplifier(1-(A[1]+A[3]));
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[3]);
+label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[3]]);
+");
+
+textf[0]:=textn;
+
+
+
+
+// deuxieme niveau haut
+textn:=("");
+nom:=B[0];
+val:=B[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[1],U[1]]);
+");
+
+val:=1-val;
+if (size(B)==4) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),U[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[1],U[2]]);
+");
+}
+else
+{
+  nom:=B[4];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[1],U[2]]);
+");
+}
+textf[1]:=textn;
+
+
+
+// deuxieme niveau centre
+textn:=("");
+nom:=B[0];
+val:=B[2];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[3]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[2],U[3]]);
+");
+
+val:=1-val;
+if (size(B)==4) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),U[4]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[2],U[4]]);
+");
+}
+else
+{
+  nom:=B[4];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[4]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[2],U[4]]);
+");
+}
+textf[2]:=textn;
+
+
+
+// deuxieme niveau bas
+textn:=("");
+nom:=B[0];
+val:=B[3];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[5]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[3],U[5]]);
+");
+
+val:=1-val;
+if (size(B)==4) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),U[6]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[3],U[6]]);
+");
+}
+else
+{
+  nom:=B[4];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[6]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[T[3],U[6]]);
+");
+}
+textf[3]:=textn;
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+N:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (N!=0) then
+{
+  for(j:=0;j<=N-1;j++)
+  {
+    V:=T[j];
+    
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") );
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax)  shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax;
+
+xmin:=-1cm;
+xmax:=8cm;
+ymin:=-10cm;
+ymax:=0cm;
+
+
+
+beginfig(0);
+
+numeric u;
+u:=1cm;
+pair S,T[],U[];
+
+numeric dx,dh,cr;
+dx:=3;
+dh:=1.5;
+cr:=0.1;
+
+for i:=1 upto 6:
+ U[i]:=(2*dx*u,-i*dh*u);
+endfor
+
+T[1]:= 0.5[U[1],U[2]] shifted(-dx*u,0);
+T[2]:= 0.5[U[3],U[4]] shifted(-dx*u,0);
+T[3]:= 0.5[U[5],U[6]] shifted(-dx*u,0);
+
+S:= 0.5[T[1],T[3]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[S,T[3]]--(1-cr)[S,T[3]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+draw cr[T[3],U[5]]--(1-cr)[T[3],U[5]];
+draw cr[T[3],U[6]]--(1-cr)[T[3],U[6]];
+
+%----------- premier niveau
+"+textf[0]+"
+
+%----------- deuxieme niveau superieur
+"+textf[1]+"
+
+%----------- deuxieme niveau central
+"+textf[2]+"
+
+%----------- deuxieme niveau inferieur
+"+textf[3]+"
+
+
+
+
+
+"+textt+"
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) shifted (0,0.1cm) --(xmax,ymax) shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre32.giac}
+maple_mode(0);
+read("XCASarbre32.cxx");
+Sortie:=fopen("XCASarbre32.mp");
+donnees:=read("XCASarbre32.user");
+Resultat:=string("Arbre(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+%\newcounter{Cptarbre}
+%\newcommand{\arb}{\theCptarbre}
+%% \arb change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre32}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASarbre32.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASarbre32.mp}
+\executGiacmp{XCASarbre32.giac}
+\IfFileExists{\nomtravail_arbre32-\arb.mp}{\immediate\write18{\rem \nomtravail_arbre32-\arb.mp}}{}
+\immediate\write18{\cat XCASarbre32.mp >> \nomtravail_arbre32-\arb.mp}
+\immediate\write18{mpost \nomtravail_arbre32-\arb.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_arbre32-\arb.mp}{\immediate\write18{mpost \nomtravail_arbre32-\arb.mp}}{% 
+\PackageError{pro-probas}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier  nomtravail.arbre32-\arb.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre32-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre32*}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASarbre32.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre32-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Arbre 2x3
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre23.cxx}
+Arbre(L):={
+local A,N,T;
+local xtmin,xtmax,tmin,tmax;
+local texts,textt;
+local textn,textf;
+local nom,val;
+
+A:=L[0];
+B:=L[1];
+T:=L[2];
+
+textf:=makelist(0,0,2);
+
+// premier niveau
+textn:=("");
+nom:=A[0];
+val:=A[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[S,T[1]]);
+");
+
+val:=1-val;
+if (size(A)==2) then
+{
+  textn:=concat(textn,"label(TEX(\" $\\overline{"+nom+"}$ \"),T[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[2]]);
+");
+}
+else
+{
+  nom:=A[2];
+  textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),T[2]);
+  label.llft(TEX(\" $"+val+"$ \"),0.6[S,T[2]]);
+");
+}
+textf[0]:=textn;
+
+
+// deuxieme niveau haut
+textn:=("");
+nom:=B[0];
+val:=B[1];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[1]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[1],U[1]]);
+");
+
+nom:=B[3];
+val:=B[4];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[2]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[1],U[2]]);
+");
+
+nom:=B[6];
+val:=simplifier(1-(B[1]+B[4]));
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[3]);
+label.llft(TEX(\" $"+val+"$ \"),0.6[T[1],U[3]]);
+");
+
+textf[1]:=textn;
+
+
+// deuxieme niveau bas
+textn:=("");
+nom:=B[0];
+val:=B[2];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[4]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[2],U[4]]);
+");
+
+nom:=B[3];
+val:=B[5];
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[5]);
+label.ulft(TEX(\" $"+val+"$ \"),0.6[T[2],U[5]]);
+");
+
+nom:=B[6];
+val:=simplifier(1-(B[2]+B[5]));
+textn:=concat(textn,"label(TEX(\" $"+nom+"$ \"),U[6]);
+label.llft(TEX(\" $"+val+"$ \"),0.6[T[2],U[6]]);
+");
+
+textf[2]:=textn;
+
+
+
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+N:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (N!=0) then
+{
+  for(j:=0;j<=N-1;j++)
+  {
+    V:=T[j];
+    
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") );
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax)  shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax;
+
+xmin:=-1cm;
+xmax:=8cm;
+ymin:=-10cm;
+ymax:=0cm;
+
+
+
+beginfig(0);
+
+numeric u;
+u:=1cm;
+pair S,T[],U[];
+
+numeric dx,dh,cr;
+dx:=3;
+dh:=1.5;
+cr:=0.1;
+
+for i:=1 upto 6:
+ U[i]:=(2*dx*u,-i*dh*u);
+endfor
+
+T[1]:= 0.5[U[1],U[3]] shifted(-dx*u,0);
+T[2]:= 0.5[U[4],U[6]] shifted(-dx*u,0);
+
+
+S:= 0.5[T[1],T[2]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[1],U[3]]--(1-cr)[T[1],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+draw cr[T[2],U[5]]--(1-cr)[T[2],U[5]];
+draw cr[T[2],U[6]]--(1-cr)[T[2],U[6]];
+
+
+
+%----------- premier niveau
+"+textf[0]+"
+
+%----------- deuxieme niveau superieur
+"+textf[1]+"
+
+%----------- deuxieme niveau inferieur
+"+textf[2]+"
+
+
+
+
+"+textt+"
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) shifted (0,0.1cm) --(xmax,ymax) shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASarbre23.giac}
+maple_mode(0);
+read("XCASarbre23.cxx");
+Sortie:=fopen("XCASarbre23.mp");
+donnees:=read("XCASarbre23.user");
+Resultat:=string("Arbre(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+%\newcounter{Cptarbre}
+%\newcommand{\arb}{\theCptarbre}
+%% \arb change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre23}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASarbre23.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASarbre23.mp}
+\executGiacmp{XCASarbre23.giac}
+\IfFileExists{\nomtravail_arbre23-\arb.mp}{\immediate\write18{\rem \nomtravail_arbre23-\arb.mp}}{}
+\immediate\write18{\cat XCASarbre23.mp >> \nomtravail_arbre23-\arb.mp}
+\immediate\write18{mpost \nomtravail_arbre23-\arb.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_arbre23-\arb.mp}{\immediate\write18{mpost \nomtravail_arbre23-\arb.mp}}{% 
+\PackageError{pro-probas}{Graphique non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_arbre23-\arb.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre23-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-arbre23*}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASarbre23.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_arbre23-\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Schema de Bernoulli
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASbernoulli.cxx}
+Arbre(L):={
+local A,N,T;
+local No,xtmin,xtmax,tmin,tmax;
+local texts,textt;
+local textn,textf,nom,val;
+local succes,echec,vals,vale;
+
+A:=L[0];
+N:=L[1];
+T:=L[2];
+
+
+textn:=("");
+succes:=A[0];
+vals:=A[1];
+vale:=1-vals;
+
+if (size(A)==2) then
+{
+  echec:=("\\overline{"+succes+"}");
+}
+else
+{
+  echec:=A[2];
+}
+
+switch(N)
+{
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 niveaux
+  case 2 :
+  {
+    textn:=concat(textn,"xmin:=-1cm;
+xmax:=8cm;
+ymin:=-8cm;
+ymax:=0cm;
+
+for i:=1 upto 4:
+ U[i]:=(2*dx*u,-i*dh*u);
+endfor
+
+T[1]:= 0.5[U[1],U[2]] shifted(-dx*u,0);
+T[2]:= 0.5[U[3],U[4]] shifted(-dx*u,0);
+
+S:= 0.5[T[1],T[2]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+
+
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+
+
+string a,na,pa,pna;
+a:=\" $"+succes+"$ \";
+na:=\" $"+echec+"$ \";
+pa:=\" "+vals+" \";
+pna:=\" "+vale+" \";
+
+%----------- premier niveau
+label(TEX a,T[1]);
+label.ulft(TEX pa,0.6[S,T[1]]);
+
+label(TEX na,T[2]);
+label.llft(TEX pna,0.6[S,T[2]]);
+
+%----------- deuxieme niveau superieur
+label(TEX a,U[1]);
+label.ulft(TEX pa,0.6[T[1],U[1]]);
+
+label(TEX na,U[2]);
+label.llft(TEX pna,0.6[T[1],U[2]]);
+
+%----------- deuxieme niveau inferieur
+label(TEX a,U[3]);
+label.ulft(TEX pa,0.6[T[2],U[3]]);
+
+label(TEX na,U[4]);
+label.llft(TEX pna,0.6[T[2],U[4]]);
+");
+    break;
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 niveaux
+  case 3 :
+  {
+    textn:=concat(textn,"xmin:=-1cm;
+xmax:=11cm;
+ymin:=-10cm;
+ymax:=0cm;
+
+for i:=1 upto 8:
+ V[i]:=(3*dx*u,-i*dh*u);
+endfor
+
+U[1]:= 0.5[V[1],V[2]] shifted(-dx*u,0);
+U[2]:= 0.5[V[3],V[4]] shifted(-dx*u,0);
+U[3]:= 0.5[V[5],V[6]] shifted(-dx*u,0);
+U[4]:= 0.5[V[7],V[8]] shifted(-dx*u,0);
+
+T[1]:= 0.5[U[1],U[2]] shifted(-dx*u,0);
+T[2]:= 0.5[U[3],U[4]] shifted(-dx*u,0);
+
+S:= 0.5[T[1],T[2]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+draw cr[U[1],V[1]]--(1-cr)[U[1],V[1]];
+draw cr[U[1],V[2]]--(1-cr)[U[1],V[2]];
+draw cr[U[2],V[3]]--(1-cr)[U[2],V[3]];
+draw cr[U[2],V[4]]--(1-cr)[U[2],V[4]];
+draw cr[U[3],V[5]]--(1-cr)[U[3],V[5]];
+draw cr[U[3],V[6]]--(1-cr)[U[3],V[6]];
+draw cr[U[4],V[7]]--(1-cr)[U[4],V[7]];
+draw cr[U[4],V[8]]--(1-cr)[U[4],V[8]];
+
+
+string a,na,pa,pna;
+a:=\" $"+succes+"$ \";
+na:=\" $"+echec+"$ \";
+pa:=\" "+vals+" \";
+pna:=\" "+vale+" \";
+
+%----------- premier niveau
+label(TEX a,T[1]);
+label.ulft(TEX pa,0.6[S,T[1]]);
+
+label(TEX na,T[2]);
+label.llft(TEX pna,0.6[S,T[2]]);
+
+%----------- deuxieme niveau superieur
+label(TEX a,U[1]);
+label.ulft(TEX pa,0.6[T[1],U[1]]);
+
+label(TEX na,U[2]);
+label.llft(TEX pna,0.6[T[1],U[2]]);
+
+%----------- deuxieme niveau inferieur
+label(TEX a,U[3]);
+label.ulft(TEX pa,0.6[T[2],U[3]]);
+
+label(TEX na,U[4]);
+label.llft(TEX pna,0.6[T[2],U[4]]);
+
+%----------- troisieme niveau part 1
+label(TEX a,V[1]);
+label.ulft(TEX pa,0.6[U[1],V[1]]);
+
+label(TEX na,V[2]);
+label.llft(TEX pna,0.6[U[1],V[2]]);
+
+%----------- troisieme niveau part 2
+label(TEX a,V[3]);
+label.ulft(TEX pa,0.6[U[2],V[3]]);
+
+label(TEX na,V[4]);
+label.llft(TEX pna,0.6[U[2],V[4]]);
+
+%----------- troisieme niveau part 1
+label(TEX a,V[5]);
+label.ulft(TEX pa,0.6[U[3],V[5]]);
+
+label(TEX na,V[6]);
+label.llft(TEX pna,0.6[U[3],V[6]]);
+
+%----------- troisieme niveau part 1
+label(TEX a,V[7]);
+label.ulft(TEX pa,0.6[U[4],V[7]]);
+
+label(TEX na,V[8]);
+label.llft(TEX pna,0.6[U[4],V[8]]);
+");
+    break;
+  }
+
+
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 niveaux
+  case 4 :
+  {
+    textn:=concat(textn,"xmin:=-4cm;
+xmax:=11cm;
+ymin:=-17cm;
+ymax:=0cm;
+
+for i:=1 upto 16:
+ W[i]:=(3*dx*u,-i*dh*u);
+endfor
+
+V[1]:= 0.5[W[1],W[2]] shifted(-dx*u,0);
+V[2]:= 0.5[W[3],W[4]] shifted(-dx*u,0);
+V[3]:= 0.5[W[5],W[6]] shifted(-dx*u,0);
+V[4]:= 0.5[W[7],W[8]] shifted(-dx*u,0);
+V[5]:= 0.5[W[9],W[10]] shifted(-dx*u,0);
+V[6]:= 0.5[W[11],W[12]] shifted(-dx*u,0);
+V[7]:= 0.5[W[13],W[14]] shifted(-dx*u,0);
+V[8]:= 0.5[W[15],W[16]] shifted(-dx*u,0);
+
+
+U[1]:= 0.5[V[1],V[2]] shifted(-dx*u,0);
+U[2]:= 0.5[V[3],V[4]] shifted(-dx*u,0);
+U[3]:= 0.5[V[5],V[6]] shifted(-dx*u,0);
+U[4]:= 0.5[V[7],V[8]] shifted(-dx*u,0);
+
+T[1]:= 0.5[U[1],U[2]] shifted(-dx*u,0);
+T[2]:= 0.5[U[3],U[4]] shifted(-dx*u,0);
+
+S:= 0.5[T[1],T[2]] shifted(-dx*u,0);
+
+draw cr[S,T[1]]--(1-cr)[S,T[1]];
+draw cr[S,T[2]]--(1-cr)[S,T[2]];
+draw cr[T[1],U[1]]--(1-cr)[T[1],U[1]];
+draw cr[T[1],U[2]]--(1-cr)[T[1],U[2]];
+draw cr[T[2],U[3]]--(1-cr)[T[2],U[3]];
+draw cr[T[2],U[4]]--(1-cr)[T[2],U[4]];
+draw cr[U[1],V[1]]--(1-cr)[U[1],V[1]];
+draw cr[U[1],V[2]]--(1-cr)[U[1],V[2]];
+draw cr[U[2],V[3]]--(1-cr)[U[2],V[3]];
+draw cr[U[2],V[4]]--(1-cr)[U[2],V[4]];
+draw cr[U[3],V[5]]--(1-cr)[U[3],V[5]];
+draw cr[U[3],V[6]]--(1-cr)[U[3],V[6]];
+draw cr[U[4],V[7]]--(1-cr)[U[4],V[7]];
+draw cr[U[4],V[8]]--(1-cr)[U[4],V[8]];
+draw cr[V[1],W[1]]--(1-cr)[V[1],W[1]];
+draw cr[V[1],W[2]]--(1-cr)[V[1],W[2]];
+draw cr[V[2],W[3]]--(1-cr)[V[2],W[3]];
+draw cr[V[2],W[4]]--(1-cr)[V[2],W[4]];
+draw cr[V[3],W[5]]--(1-cr)[V[3],W[5]];
+draw cr[V[3],W[6]]--(1-cr)[V[3],W[6]];
+draw cr[V[4],W[7]]--(1-cr)[V[4],W[7]];
+draw cr[V[4],W[8]]--(1-cr)[V[4],W[8]];
+draw cr[V[5],W[9]]--(1-cr)[V[5],W[9]];
+draw cr[V[5],W[10]]--(1-cr)[V[5],W[10]];
+draw cr[V[6],W[11]]--(1-cr)[V[6],W[11]];
+draw cr[V[6],W[12]]--(1-cr)[V[6],W[12]];
+draw cr[V[7],W[13]]--(1-cr)[V[7],W[13]];
+draw cr[V[7],W[14]]--(1-cr)[V[7],W[14]];
+draw cr[V[8],W[15]]--(1-cr)[V[8],W[15]];
+draw cr[V[8],W[16]]--(1-cr)[V[8],W[16]];
+
+
+
+string a,na,pa,pna;
+a:=\" $"+succes+"$ \";
+na:=\" $"+echec+"$ \";
+pa:=\" "+vals+" \";
+pna:=\" "+vale+" \";
+
+%----------- premier niveau
+label(TEX a,T[1]);
+label.ulft(TEX pa,0.6[S,T[1]]);
+
+label(TEX na,T[2]);
+label.llft(TEX pna,0.6[S,T[2]]);
+
+%----------- deuxieme niveau superieur
+label(TEX a,U[1]);
+label.ulft(TEX pa,0.6[T[1],U[1]]);
+
+label(TEX na,U[2]);
+label.llft(TEX pna,0.6[T[1],U[2]]);
+
+%----------- deuxieme niveau inferieur
+label(TEX a,U[3]);
+label.ulft(TEX pa,0.6[T[2],U[3]]);
+
+label(TEX na,U[4]);
+label.llft(TEX pna,0.6[T[2],U[4]]);
+
+%----------- troisieme niveau part 1
+label(TEX a,V[1]);
+label.ulft(TEX pa,0.6[U[1],V[1]]);
+
+label(TEX na,V[2]);
+label.llft(TEX pna,0.6[U[1],V[2]]);
+
+%----------- troisieme niveau part 2
+label(TEX a,V[3]);
+label.ulft(TEX pa,0.6[U[2],V[3]]);
+
+label(TEX na,V[4]);
+label.llft(TEX pna,0.6[U[2],V[4]]);
+
+%----------- troisieme niveau part 3
+label(TEX a,V[5]);
+label.ulft(TEX pa,0.6[U[3],V[5]]);
+
+label(TEX na,V[6]);
+label.llft(TEX pna,0.6[U[3],V[6]]);
+
+%----------- troisieme niveau part 4
+label(TEX a,V[7]);
+label.ulft(TEX pa,0.6[U[4],V[7]]);
+
+label(TEX na,V[8]);
+label.llft(TEX pna,0.6[U[4],V[8]]);
+
+%----------- quatrieme niveau part 1
+label(TEX a,W[1]);
+label.ulft(TEX pa,0.6[V[1],W[1]]);
+
+label(TEX na,W[2]);
+label.llft(TEX pna,0.6[V[1],W[2]]);
+
+%----------- quatrieme niveau part 2
+label(TEX a,W[3]);
+label.ulft(TEX pa,0.6[V[2],W[3]]);
+
+label(TEX na,W[4]);
+label.llft(TEX pna,0.6[V[2],W[4]]);
+
+%----------- quatrieme niveau part 3
+label(TEX a,W[5]);
+label.ulft(TEX pa,0.6[V[3],W[5]]);
+
+label(TEX na,W[6]);
+label.llft(TEX pna,0.6[V[3],W[6]]);
+
+%----------- quatrieme niveau part 4
+label(TEX a,W[7]);
+label.ulft(TEX pa,0.6[V[4],W[7]]);
+
+label(TEX na,W[8]);
+label.llft(TEX pna,0.6[V[4],W[8]]);
+
+%----------- quatrieme niveau part 5
+label(TEX a,W[9]);
+label.ulft(TEX pa,0.6[V[5],W[9]]);
+
+label(TEX na,W[10]);
+label.llft(TEX pna,0.6[V[5],W[10]]);
+
+%----------- quatrieme niveau part 6
+label(TEX a,W[11]);
+label.ulft(TEX pa,0.6[V[6],W[11]]);
+
+label(TEX na,W[12]);
+label.llft(TEX pna,0.6[V[6],W[12]]);
+
+%----------- quatrieme niveau part 7
+label(TEX a,W[13]);
+label.ulft(TEX pa,0.6[V[7],W[13]]);
+
+label(TEX na,W[14]);
+label.llft(TEX pna,0.6[V[7],W[14]]);
+
+%----------- quatrieme niveau part 8
+label(TEX a,W[15]);
+label.ulft(TEX pa,0.6[V[8],W[15]]);
+
+label(TEX na,W[16]);
+label.llft(TEX pna,0.6[V[8],W[16]]);
+");
+    break;
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% autres valeurs
+  default :
+  {
+    textn:=concat(textn,"xmin:=-1cm;
+xmax:=9cm;
+ymin:=-4cm;
+ymax:=0cm;
+
+label(TEX(\"Param\\`etre invalide \"),(4cm,-2cm));
+");
+
+    break;
+  }
+
+
+}
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Traitement des options
+
+No:=size(T);
+textt:=("%%%%%%%%%%%%%%%% Complements %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+texti:=("%%%%%%%%%%%%%%%% titres %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+
+if (No!=0) then
+{
+  for(j:=0;j<=No-1;j++)
+  {
+    V:=T[j];
+    
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="texte-libre") then      
+    {
+      textt:=concat(textt,"%%%%%%%%%%%%%%%% Texte libre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      xtmin:=V[1,0];
+      tmin:=V[1,1];
+      texts:=V[2];
+      textt:=concat(textt,"label."+V[3]+"(TEX(\" \\colorbox\{white\}\{\\textcolor\{"+V[4]+"\}\{");
+      textt:=concat(textt,texts);
+      textt:=concat(textt,"\}\} \"),("+xtmin+","+tmin+") );
+");
+    }      
+    
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-gauche") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a gauche %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.rt(TEX(\" "+V[1]+" \"),(xmin,ymax) shifted (0,0.7cm));
+");
+    }  
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-droite") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre a droite %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label.lft(TEX(\" "+V[1]+" \"),(xmax,ymax)  shifted (0,0.7cm));
+");
+    }  
+    
+    
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////    
+    
+    if (V[0]=="titre-centre") then      
+    {
+      texti:=concat(texti,"%%%%%%%%%%%%%%%% Titre centre %%%%%%%%%%%%%%%%%%%%%%%%
+
+");
+      texti:=concat(texti,"titre:=1;
+");
+      texti:=concat(texti,"label(TEX(\" "+V[1]+" \"),((xmin+xmax)/2,ymax)  shifted (0,0.7cm));
+");
+    }  
+           
+
+    
+  }
+}
+
+
+
+
+
+                        //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //       % Creation du fichier metapost
+
+Dessin:="
+input dlf\_couleurs.mp;
+input dlf\_tex.mp;
+input dlf\_repere.mp;
+
+
+numeric xmin,xmax,ymin,ymax;
+
+xmin:=-1cm;
+xmax:=8cm;
+ymin:=-8cm;
+ymax:=0cm;
+
+
+
+beginfig(0);
+
+numeric u;
+u:=1cm;
+pair S,T[],U[],V[],W[];
+
+numeric dx,dh,cr;
+dx:=3;
+dh:=1;
+cr:=0.1;
+
+
+
+"+textn+"
+
+"+textt+"
+
+path limite;
+limite:=(xmin,ymin)--(xmax,ymin)--(xmax,ymax)--(xmin,ymax)--cycle;
+clip currentpicture to limite;
+
+
+% titre
+numeric titre;
+titre:=0;
+
+"+texti+"
+
+if (titre=1):
+  draw (xmin,ymax) shifted (0,0.1cm) --(xmax,ymax) shifted (0,0.1cm) withpen pencircle scaled 1bp withcolor gris;
+  draw (xmin,ymax) shifted (0,1.3cm)--(xmax,ymax)  shifted (0,1.3cm) withpen pencircle scaled 1bp withcolor gris;
+fi;
+
+
+endfig;
+end
+";
+}:;
+\end{VerbatimOut}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASbernoulli.giac}
+maple_mode(0);
+read("XCASbernoulli.cxx");
+Sortie:=fopen("XCASbernoulli.mp");
+donnees:=read("XCASbernoulli.user");
+Resultat:=string("Arbre(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+%% initialise le compteur
+%\newcounter{Cptarbre}
+%\newcommand{\arb}{\theCptarbre}
+%% \arb change a chaque figure
+
+
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-bernoulli}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASbernoulli.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASbernoulli.mp}
+\executGiacmp{XCASbernoulli.giac}
+\IfFileExists{\nomtravail_bernoulli\arb.mp}{\immediate\write18{\rem \nomtravail_bernoulli\arb.mp}}{}
+\immediate\write18{\cat XCASbernoulli.mp >> \nomtravail_bernoulli\arb.mp}
+\immediate\write18{mpost \nomtravail_bernoulli\arb.mp}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_bernoulli\arb.mp}{\immediate\write18{mpost \nomtravail_bernoulli\arb.mp}}{% 
+\PackageError{pro-probas}{Graphique absent non reconstituable.}
+{Pour compiler il faut le fichier \nomtravail_bernoulli\arb.mp ou bien disposer de XCas.}}}
+
+\begin{center}
+  \includegraphics{\nomtravail_bernoulli\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-bernoulli*}[1]
+{\setcounter{Cptarbre}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASbernoulli.user}}
+{\end{VerbatimOut}
+
+\begin{center}
+  \includegraphics{\nomtravail_bernoulli\arb.0}
+\end{center}
+%\stepcounter{Cptarbre}
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Traitement d'un arbre 2x2
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana22.cxx}
+ana(L):={
+local A,B;
+local noma,nomaa,nomb,nombb;
+local vala,valaa,valb,valbb,valh,valhh;
+local pb,pbb;
+
+A:=L[0];
+B:=L[1];
+
+noma:=A[0];
+vala:=A[1];
+valaa:=1-vala;
+if (size(A)==2) then
+{
+  nomaa:=(" \\overline{"+noma+"} ");
+}
+else
+{
+  nomaa:=A[2];
+}
+
+nomb:=B[0];
+valh:=B[1];
+valhh:=1-valh;
+valb:=B[2];
+valbb:=1-valb;
+if (size(B)==3) then
+{
+  nombb:=(" \\overline{"+nomb+"} ");
+}
+else
+{
+  nombb:=B[3];
+}
+
+pb:=simplifier(vala*valh+valaa*valb);
+pbb:=simplifier(vala*valhh+valaa*valbb);
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+\\underline{Calcul de $P("+nomb+")$}
+
+
+$"+noma+"$ et $"+nomaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nomb+")=P("+noma+" \\cap "+nomb+")+P("+nomaa+" \\cap "+nomb+")
+=P("+noma+") \\times P_{"+noma+"}("+nomb+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nomb+")$\\\\\\
+
+
+$P("+nomb+")="+latex(vala)+" \\times "+latex(valh)+" + "+latex(valaa)+" \\times "+latex(valb)+"
+="+latex(pb)+"$\\\\\\
+
+
+\\underline{Calcul de $P("+nombb+")$}
+
+
+$"+noma+"$ et $"+nomaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nombb+")=P("+noma+" \\cap "+nombb+")+P("+nomaa+" \\cap "+nombb+")
+=P("+noma+") \\times P_{"+noma+"}("+nombb+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nombb+")$\\\\\\
+
+
+$P("+nombb+")="+latex(vala)+" \\times "+latex(valhh)+" + "+latex(valaa)+" \\times "+latex(valbb)+"
+="+latex(pbb)+"$\\\\\\
+
+
+
+\\underline{Probabilit\\'es conditionnelles}
+
+
+$P_{"+nomb+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(vala*valh))+"}{"+latex(pb)+"}="+latex(simplifier((vala*valh)/pb))+"$\\\\\\
+
+
+$P_{"+nomb+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(valaa*valb))+"}{"+latex(pb)+"}="+latex(simplifier((valaa*valb)/pb))+"$\\\\\\
+
+
+
+$P_{"+nombb+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nombb+")}{P("+nombb+")}
+=\\dfrac{"+latex(simplifier(vala*valhh))+"}{"+latex(pbb)+"}="+latex(simplifier((vala*valhh)/pbb))+"$\\\\\\
+
+
+$P_{"+nombb+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nombb+")}{P("+nombb+")}
+=\\dfrac{"+latex(simplifier(valaa*valbb))+"}{"+latex(pbb)+"}="+latex(simplifier((valaa*valbb)/pbb))+"$\\\\\\
+
+
+
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana22.giac}
+maple_mode(0);
+read("XCASana22.cxx");
+Sortie:=fopen("XCASana22.tex");
+donnees:=read("XCASana22.user");
+Resultat:=string("ana(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+\newcounter{Cptana}
+\newcommand{\ana}{\theCptana}
+%% \ana change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-ana22}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana22.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASana22.tex}
+\executGiacmp{XCASana22.giac}
+\IfFileExists{\nomtravail_ana22-\ana.tex}{\immediate\write18{\rem \nomtravail_ana22-\ana.tex}}{}
+\immediate\write18{\cat XCASana22.tex >> \nomtravail_ana22-\ana.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_ana22-\ana.tex}{}{% 
+\PackageError{pro-probas}{Fichier \nomtravail_ana22-\ana.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_ana22-\ana.tex}
+%\stepcounter{Cptana}
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-ana22*}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana22.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_ana22-\ana.tex}
+%\stepcounter{Cptana}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Traitement d'un arbre 3x2
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana32.cxx}
+ana(L):={
+local A,B;
+local noma,nomaa,nomaaa,nomb,nombb;
+local vala,valaa,valaaa,valb,valbb,valh,valhh,valc,valcc;
+local pb,pbb;
+
+A:=L[0];
+B:=L[1];
+
+noma:=A[0];
+vala:=A[1];
+nomaa:=A[2];
+valaa:=A[3];
+nomaaa:=A[4];
+valaaa:=simplifier(1-vala-valaa);
+
+nomb:=B[0];
+valh:=B[1];
+valhh:=1-valh;
+valc:=B[2];
+valcc:=1-valc;
+valb:=B[3];
+valbb:=1-valb;
+if (size(B)==4) then
+{
+  nombb:=(" \\overline{"+nomb+"} ");
+}
+else
+{
+  nombb:=B[4];
+}
+
+pb:=simplifier(vala*valh+valaa*valc+valaaa*valb);
+pbb:=simplifier(vala*valhh+valaa*valcc+valaaa*valbb);
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+\\underline{Calcul de $P("+nomb+")$}
+
+
+$"+noma+"$, $"+nomaa+"$ et $"+nomaaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nomb+")=P("+noma+" \\cap "+nomb+")+P("+nomaa+" \\cap "+nomb+")+P("+nomaaa+" \\cap "+nomb+")
+=P("+noma+") \\times P_{"+noma+"}("+nomb+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nomb+")+P("+nomaaa+") \\times P_{"+nomaaa+"}("+nomb+")$\\\\\\
+
+
+$P("+nomb+")="+latex(vala)+" \\times "+latex(valh)+" + "+latex(valaa)+" \\times "+latex(valc)+" + "+latex(valaaa)+" \\times "+latex(valb)+"
+="+latex(pb)+"$\\\\\\
+
+
+
+\\underline{Calcul de $P("+nombb+")$}
+
+
+$"+noma+"$, $"+nomaa+"$ et $"+nomaaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nombb+")=P("+noma+" \\cap "+nombb+")+P("+nomaa+" \\cap "+nombb+")+P("+nomaaa+" \\cap "+nombb+")
+=P("+noma+") \\times P_{"+noma+"}("+nombb+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nombb+")+P("+nomaaa+") \\times P_{"+nomaaa+"}("+nombb+")$\\\\\\
+
+
+$P("+nombb+")="+latex(vala)+" \\times "+latex(valhh)+" + "+latex(valaa)+" \\times "+latex(valcc)+" + "+latex(valaaa)+" \\times "+latex(valbb)+"
+="+latex(pbb)+"$\\\\\\
+
+
+
+
+\\underline{Probabilit\\'es conditionnelles}
+
+
+$P_{"+nomb+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(vala*valh))+"}{"+latex(pb)+"}="+latex(simplifier((vala*valh)/pb))+"$\\\\\\
+
+
+
+$P_{"+nomb+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(valaa*valc))+"}{"+latex(pb)+"}="+latex(simplifier((valaa*valc)/pb))+"$\\\\\\
+
+
+
+$P_{"+nomb+"}("+nomaaa+")=\\dfrac{P("+nomaaa+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(valaaa*valb))+"}{"+latex(pb)+"}="+latex(simplifier((valaaa*valb)/pb))+"$\\\\\\
+
+
+
+$P_{"+nombb+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nombb+")}{P("+nombb+")}
+=\\dfrac{"+latex(simplifier(vala*valhh))+"}{"+latex(pbb)+"}="+latex(simplifier((vala*valhh)/pbb))+"$\\\\\\
+
+
+
+$P_{"+nombb+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nombb+")}{P("+nombb+")}
+=\\dfrac{"+latex(simplifier(valaa*valcc))+"}{"+latex(pbb)+"}="+latex(simplifier((valaa*valcc)/pbb))+"$\\\\\\
+
+
+
+$P_{"+nombb+"}("+nomaaa+")=\\dfrac{P("+nomaaa+" \\cap "+nombb+")}{P("+nombb+")}
+=\\dfrac{"+latex(simplifier(valaaa*valbb))+"}{"+latex(pbb)+"}="+latex(simplifier((valaaa*valbb)/pbb))+"$\\\\\\
+
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana32.giac}
+maple_mode(0);
+read("XCASana32.cxx");
+Sortie:=fopen("XCASana32.tex");
+donnees:=read("XCASana32.user");
+Resultat:=string("ana(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+%\newcounter{Cptana}
+%\newcommand{\ana}{\theCptana}
+%% \ana change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-ana32}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana32.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASana32.tex}
+\executGiacmp{XCASana32.giac}
+\IfFileExists{\nomtravail_ana32-\ana.tex}{\immediate\write18{\rem \nomtravail_ana32-\ana.tex}}{}
+\immediate\write18{\cat XCASana32.tex >> \nomtravail_ana32-\ana.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_ana32-\ana.tex}{}{% 
+\PackageError{pro-probas}{Fichier \nomtravail_ana32-\ana.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_ana32-\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-ana32*}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana32.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_ana32-\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Traitement d'un arbre 2x3
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana23.cxx}
+ana(L):={
+local A,B;
+local noma,nomaa,nomh,nomc,nomb;
+local vala,valaa,valb,valbb,valh,valhh,valc,valcc;
+local ph,pc,pb;
+
+A:=L[0];
+B:=L[1];
+
+noma:=A[0];
+vala:=A[1];
+valaa:=1-vala;
+if (size(A)==2) then
+{
+  nomaa:=(" \\overline{"+noma+"} ");
+}
+else
+{
+  nomaa:=A[2];
+}
+
+nomh:=B[0];
+valh:=B[1];
+valhh:=B[2];
+nomc:=B[3];
+valc:=B[4];
+valcc:=B[5];
+nomb:=B[6];
+valb:=simplifier(1-valh-valc);
+valbb:=simplifier(1-valhh-valcc);
+
+ph:=simplifier(vala*valh+valaa*valhh);
+pc:=simplifier(vala*valc+valaa*valcc);
+pb:=simplifier(vala*valb+valaa*valbb);
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+\\underline{Calcul de $P("+nomh+")$}
+
+
+$"+noma+"$ et $"+nomaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nomh+")=P("+noma+" \\cap "+nomh+")+P("+nomaa+" \\cap "+nomh+")
+=P("+noma+") \\times P_{"+noma+"}("+nomh+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nomh+")$\\\\\\
+
+
+$P("+nomh+")="+latex(vala)+" \\times "+latex(valh)+" + "+latex(valaa)+" \\times "+latex(valhh)+"
+="+latex(ph)+"$\\\\\\
+
+
+
+\\underline{Calcul de $P("+nomc+")$}
+
+
+$"+noma+"$ et $"+nomaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nomc+")=P("+noma+" \\cap "+nomc+")+P("+nomaa+" \\cap "+nomc+")
+=P("+noma+") \\times P_{"+noma+"}("+nomc+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nomc+")$\\\\\\
+
+
+$P("+nomc+")="+latex(vala)+" \\times "+latex(valc)+" + "+latex(valaa)+" \\times "+latex(valcc)+"
+="+latex(pc)+"$\\\\\\
+
+
+
+
+\\underline{Calcul de $P("+nomb+")$}
+
+
+$"+noma+"$ et $"+nomaa+"$ forment une partition. D'apr\\`es la formule des probabilit\\'es totales,\\\\\\
+
+
+$P("+nomb+")=P("+noma+" \\cap "+nomb+")+P("+nomaa+" \\cap "+nomb+")
+=P("+noma+") \\times P_{"+noma+"}("+nomb+")+P("+nomaa+") \\times P_{"+nomaa+"}("+nomb+")$\\\\\\
+
+
+$P("+nomb+")="+latex(vala)+" \\times "+latex(valb)+" + "+latex(valaa)+" \\times "+latex(valbb)+"
+="+latex(pb)+"$\\\\\\
+
+
+
+
+
+\\underline{Probabilit\\'es conditionnelles}
+
+$P_{"+nomh+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nomh+")}{P("+nomh+")}
+=\\dfrac{"+latex(simplifier(vala*valh))+"}{"+latex(ph)+"}="+latex(simplifier((vala*valh)/ph))+"$\\\\\\
+
+
+$P_{"+nomh+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nomh+")}{P("+nomh+")}
+=\\dfrac{"+latex(simplifier(valaa*valhh))+"}{"+latex(ph)+"}="+latex(simplifier((valaa*valhh)/ph))+"$\\\\\\
+
+$P_{"+nomc+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nomc+")}{P("+nomc+")}
+=\\dfrac{"+latex(simplifier(vala*valc))+"}{"+latex(pc)+"}="+latex(simplifier((vala*valc)/pc))+"$\\\\\\
+
+
+$P_{"+nomc+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nomc+")}{P("+nomc+")}
+=\\dfrac{"+latex(simplifier(valaa*valcc))+"}{"+latex(pc)+"}="+latex(simplifier((valaa*valcc)/pc))+"$\\\\\\
+
+
+$P_{"+nomb+"}("+noma+")=\\dfrac{P("+noma+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(vala*valb))+"}{"+latex(pb)+"}="+latex(simplifier((vala*valb)/pb))+"$\\\\\\
+
+
+$P_{"+nomb+"}("+nomaa+")=\\dfrac{P("+nomaa+" \\cap "+nomb+")}{P("+nomb+")}
+=\\dfrac{"+latex(simplifier(valaa*valbb))+"}{"+latex(pb)+"}="+latex(simplifier((valaa*valbb)/pb))+"$\\\\\\
+
+
+
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASana23.giac}
+maple_mode(0);
+read("XCASana23.cxx");
+Sortie:=fopen("XCASana23.tex");
+donnees:=read("XCASana23.user");
+Resultat:=string("ana(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+%\newcounter{Cptana}
+%\newcommand{\ana}{\theCptana}
+%% \ana change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-ana23}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana23.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASana23.tex}
+\executGiacmp{XCASana23.giac}
+\IfFileExists{\nomtravail_ana23-\ana.tex}{\immediate\write18{\rem \nomtravail_ana23-\ana.tex}}{}
+\immediate\write18{\cat XCASana23.tex >> \nomtravail_ana23-\ana.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_ana32-\ana.tex}{}{% 
+\PackageError{pro-probas}{Fichier nomtravail.ana32-\ana.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_ana23-\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-ana23*}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASana23.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_ana23-\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Traitement d'un schema de Bernoulli
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASanabernoulli.cxx}
+ana(L):={
+local A,N;
+local succes,echec;
+local vals,vale;
+local textn;
+
+A:=L[0];
+N:=L[1];
+
+succes:=A[0];
+vals:=A[1];
+vale:=1-vals;
+if (size(A)==2) then
+{
+  echec:=(" \\overline{"+succes+"} ");
+}
+else
+{
+  echec:=A[2];
+}
+
+switch(N)
+{
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 niveaux
+  case 2:
+  {
+    textn:=("\\begin{center}
+
+\\renewcommand*\\arraystretch{1.5}
+
+\\begin{tabular}{|l|*{3}{@{~~}c@{~~}|}}
+
+\\hline
+
+Nombres de succ\\`es & 0 & 1 & 2 \\\\\\
+
+\\hline
+
+Nombres de branches & 1 & 2 & 1 \\\\\\
+
+\\hline
+
+Probabilit\\'es & $\\left("+latex(vale)+"\\right)^2$ & $2\\left("+latex(vals)+"\\right)\\left("+latex(vale)+"\\right)$ & $\\left("+latex(vals)+"\\right)^2$ \\\\\\
+
+\\hline
+
+Probabilit\\'es & $"+evalf(vale^2)+"$ & $"+evalf(2*vals*vale)+"$ & $"+evalf(vals^2)+"$ \\\\\\
+
+\\hline
+
+\\end{tabular}
+
+\\renewcommand*\\arraystretch{1}
+
+\\end{center}
+");
+    break;
+  }
+
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 niveaux
+  case 3:
+  {
+    textn:=("\\begin{center}
+
+\\renewcommand*\\arraystretch{1.5}
+
+\\begin{tabular}{|l|*{4}{@{~~}c@{~~}|}}
+
+\\hline
+
+Nombres de succ\\`es & 0 & 1 & 2 & 3\\\\\\
+
+\\hline
+
+Nombres de branches & 1 & 3 & 3 & 1 \\\\\\
+
+\\hline
+
+Probabilit\\'es & $\\left("+latex(vale)+"\\right)^3$ & $3\\left("+latex(vals)+"\\right)\\left("+latex(vale)+"\\right)^2$ & $3\\left("+latex(vals)+"\\right)^2\\left("+latex(vale)+"\\right)$& $\\left("+latex(vals)+"\\right)^3$ \\\\\\
+
+\\hline
+
+Probabilit\\'es & $"+evalf(vale^3)+"$ & $"+evalf(3*vals*vale^2)+"$ & $"+evalf(3*vals^2*vale)+"$& $"+evalf(vals^3)+"$ \\\\\\
+
+\\hline
+
+\\end{tabular}
+
+\\renewcommand*\\arraystretch{1}
+
+\\end{center}
+");
+    break;
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 niveaux
+  case 4:
+  {
+    textn:=("\\begin{center}
+
+\\renewcommand*\\arraystretch{1.5}
+
+\\begin{tabular}{|l|*{5}{@{~~}c@{~~}|}}
+
+\\hline
+
+Nombres de succ\\`es & 0 & 1 & 2 & 3 & 4\\\\\\
+
+\\hline
+
+Nombres de branches & 1 & 4 & 6 & 4 & 1 \\\\\\
+
+\\hline
+
+Probabilit\\'es & $\\left("+latex(vale)+"\\right)^4$ & $4\\left("+latex(vals)+"\\right)\\left("+latex(vale)+"\\right)^3$ & $6\\left("+latex(vals)+"\\right)^2\\left("+latex(vale)+"\\right)^2$ & $4\\left("+latex(vals)+"\\right)^3\\left("+latex(vale)+"\\right)$& $\\left("+latex(vals)+"\\right)^4$ \\\\\\
+
+\\hline
+
+Probabilit\\'es & $"+evalf(vale^4)+"$ & $"+evalf(4*vals*vale^3)+"$ & $"+evalf(6*vals^2*vale^2)+"$ & $"+evalf(4*vals^3*vale)+"$ & $"+evalf(vals^4)+"$ \\\\\\
+
+\\hline
+
+\\end{tabular}
+
+\\renewcommand*\\arraystretch{1}
+
+\\end{center}
+");
+    break;
+  }
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% autres valeurs
+  default:
+  {
+    textn:=("Param\\`etre \\`a changer");
+    break;
+  }
+
+
+
+
+}
+
+
+                // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //    %  creation du fichier latex
+
+I:="
+Il y a deux issues :
+\\begin{itemize}
+\\item le succ\\`es, de probabilit\\'e $"+latex(vals)+"$ ;
+\\item l'\\'echec, de probabilit\\'e $"+latex(vale)+"$.
+\\end{itemize}
+
+On r\\'ep\\`ete cette \\'epreuve de Bernoulli "+N+" fois : on obtient le sch\\'ema de Bernoulli de param\\`etres $\\left("+N+"~;~"+latex(vals)+" \\right)$.
+
+La loi de probabilit\\'e comptant les succ\\`es est la loi bin\\^omiale ${\\cal B}\\left("+N+"~;~"+latex(vals)+" \\right)$ r\\'esum\\'ee dans le tableau suivant :\\\\\\
+
+"+textn+"
+
+
+";
+
+
+
+}:;
+\end{VerbatimOut}
+
+             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}{XCASanabernoulli.giac}
+maple_mode(0);
+read("XCASanabernoulli.cxx");
+Sortie:=fopen("XCASanabernoulli.tex");
+donnees:=read("XCASanabernoulli.user");
+Resultat:=string("ana(",donnees);
+Resultat:=string(Resultat,");");
+Resultat:=expr(Resultat);
+fprint(Sortie,Unquoted,Resultat);
+fclose(Sortie);
+\end{VerbatimOut}
+
+
+
+%% initialise le compteur
+%\newcounter{Cptana}
+%\newcommand{\ana}{\theCptana}
+%% \ana change a chaque figure
+
+              %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{pro-anabernoulli}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASanabernoulli.user}}
+{\end{VerbatimOut}
+\ifthenelse{\boolean{xcas}}{
+\immediate\write18{\rem XCASanabernoulli.tex}
+\executGiacmp{XCASanabernoulli.giac}
+\IfFileExists{\nomtravail_anabernoulli\ana.tex}{\immediate\write18{\rem \nomtravail_anabernoulli\ana.tex}}{}
+\immediate\write18{\cat XCASanabernoulli.tex >> \nomtravail_anabernoulli\ana.tex}
+}%
+{% sinon, si le fichier est absent, alerte.
+\IfFileExists{\nomtravail_anabernoulli\ana.tex}{}{% 
+\PackageError{pro-probas}{Fichier \nomtravail_anabernoulli\ana.tex absent.}
+{Pour compiler il faut disposer de XCas.}}}
+
+\input{\nomtravail_anabernoulli\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pro-anabernoulli*}[1]
+{\setcounter{Cptana}{#1}
+\VerbatimEnvironment\begin{VerbatimOut}{XCASanabernoulli.user}}
+{\end{VerbatimOut}
+
+\input{\nomtravail_anabernoulli\ana.tex}
+%\stepcounter{Cptana}
+
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%% Rajouts Guillaume 5 sep 2008
+
+%%
+
+
+
+
+
+%% tableaux loi normale
+
+
+
+%%%%%%% Colonne epaisse
+\newcolumntype{I}{!{\vrule width 2pt}}
+
+\newcommand{\vtabprob}{\rule[-.7em]{0pt}{1.8em}}
+\renewcommand\tabularxcolumn[1]{m{#1}}  % pour centrer verticalement
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % pour centrer horizontalement
+\newcolumntype{Y}[1]{IcIZ*{#1}{|Z} I}
+
+%%%%%%%%%%%%%%% ligne epaisse
+\newlength\savedwidth
+\newcommand\whline{\noalign{\global\savedwidth\arrayrulewidth
+                                             \global\arrayrulewidth 2pt}%
+                                 \hline
+                                 \noalign{\global\arrayrulewidth\savedwidth}}
+
+
+
+\DeclareOption{xcas}{\setboolean{xcas}{true}}
+
+
+ \ProcessOptions\relax
+
+
+
+%% Pour clore les fichiers metapost 
+
+
+  \begin{VerbatimOut}{queue.mp}
+  
+  end
+
+  \end{VerbatimOut}
+
+
+
+
+
+%%% loiprob
+
+\begin{VerbatimOut}{loiprob.cxx}
+loiprob(xs,ps,NomX,Nomx):={
+local nx,X,k,P,loiprobtab,Xxs,Xs,Pps,Ps,nomx,nomX;
+nomX:=string(NomX);
+nomx:=string(Nomx);
+Xxs:=[seq(0,j=0..size(xs)-1)];
+Xxs:=for(k:=0;k<size(xs);k++){Xxs[k]:=string(xs[k])+"&"};
+Xxs[size(xs)-1]:=string(xs[size(xs)-1]);
+Xs:="";
+for(k:=0;k<size(Xxs);k++){Xs:=Xs+Xxs[k]};
+Pps:=[seq(0,j=0..size(ps)-1)];
+Pps:=for(k:=0;k<size(ps);k++){Pps[k]:=string(ps[k])+"&"};
+Pps[size(ps)-1]:=string(ps[size(ps)-1]);
+Ps:="";
+for(k:=0;k<size(Pps);k++){Ps:=Ps+Pps[k]};
+
+
+nx:=size(Xs);
+X:=NULL;
+for(k:=0;k<nx;k:=k+2){X:=X,expr(Xs[k])};
+X:=[X];
+P:=NULL;
+for(k:=0;k<nx;k:=k+2){P:=P,expr(Ps[k])};
+P:=[P];
+nx:=size(X);
+loiprobtab:="
+
+La loi de probabilit\\'e de X est d\\'efinie par le tableau suivant~: \\\\\\
+
+ \\begin{center}
+ \\begin{tabularx}{.75\\textwidth}{Y{"+(nx-1)+"}}
+ \\whline \\vtabprob $"+nomx+"_i$ & "+Xs+" \\\\\\
+ \\whline \\vtabprob $\\mathbb{P}("+nomX+"="+nomx+"_i)$ & "+Ps+" \\\\\\
+ \\whline
+ \\end{tabularx}
+ \\end{center}
+
+ L'esp\\'erance vaut~: $\\mathbb{E}("+nomX+")="+latex(moyenne(xs,ps))+"$";
+
+sortie:=fopen("XCASloiprob.tex");
+fprint(sortie,Unquoted,loiprobtab);
+fclose(sortie);
+}:;
+\end{VerbatimOut}
+
+
+
+\begin{VerbatimOut}{loiprob.giac}
+maple_mode(0);
+read("loiprob.cxx");
+read("loiprob.user");
+\end{VerbatimOut}
+
+
+
+\newenvironment{loiprob}
+{\VerbatimEnvironment\begin{VerbatimOut}{loiprob.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASloiprob.tex}
+\executGiacmp{loiprob.giac}
+\immediate\write18{\rem \nomtravail_loiprob\lprob.tex}
+\immediate\write18{\cat XCASloiprob.tex >> \nomtravail_loiprob\lprob.tex}
+
+\input{\nomtravail_loiprob\lprob}
+         
+\stepcounter{Cptloiprob}
+}
+
+%%%% dressepro
+
+
+
+\newcommand{\dressepro}[2]{%
+\ifthenelse{\boolean{xcas}}{%        Avec l'option "XCas present"
+         \executGiacmp{XCAS#1.giac}% reconstituer le tableau
+                                   % exporter le source mp
+                                   % puis lancer metapost pour creer
+                                   % l'image du tableau
+         \immediate\write18{\cat XCAS#1.mp >> \nomtravail_prob.mp}
+      %   \immediate\write18{\cat enteteMP.cfg >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat init#1.mp >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat XCAS#1.mp >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat queue.mp >> \nomtravail_prob#1.mp}
+    \immediate\write18{mpost -jobname=\nomtravail_prob \nomtravail_prob#1.mp}
+\immediate\write18{\cat \nomtravail_prob#1.mp >> \nomtravail_prob.mp}
+          \immediate\write18{\rem \nomtravail_prob#1.mp}  
+           }%
+         {% sinon, si le tableau est absent, alerte.
+         \IfFileExists{\nomtravail_prob.\pc}{}{% 
+         \PackageError{pro-babilitor}{arbre absent non
+         reconstituable.}{Pour compiler il faut, soit les fichiers d'
+         arbre, soit le fichier \nomtravail_prob.mp, soit disposer de
+         XCas.}}}
+\ifthenelse{\equal{#2}{m}}{%               
+\begin{minipage}[t]{0.45\textwidth}
+\vspace{0cm}
+\begin{flushleft}
+\includegraphics{\nomtravail_prob.\pc}
+\end{flushleft}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}\vspace{-0.5cm}
+\input{XCAS#1x.tex}
+\end{minipage}
+}{%
+ \begin{center}
+   \includegraphics[width=\textwidth]{\nomtravail_prob.\pc}
+ \end{center}
+ \input{XCAS#1x.tex}
+}
+\stepcounter{Cptprobacon}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% L O I N O R M A L E tableau
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{VerbatimOut}{XCAStablenorm.cxx}
+tablenormale(m,s,x):={
+local pp,pd,j,k,t,T,u,Ti,Tbis,TT,XCAStablenormx;
+tt:=evalf((x-m)/s);
+if(tt<0){tp:=-tt}else{tp:=tt};
+
+pp:=trunc(10*(tp));
+pd:=round((tp-pp/10)*100);
+DIGITS:=6;
+pd:=pd+1;
+pp:=pp+1;
+
+T:=[[0,seq(0.00+k*0.01,k=0..9)],seq([0.0+j*0.1,seq(normal_cdf(j*0.1+m*0.01),m=0..9)],j=0..29)];
+u:=seq("c|",k=0..10);
+u[pd]:=">{\\columncolor[gray]{0.7}}c|";
+Ti:="";
+for(k:=0;k<size(u);k++){Ti:=Ti+u[k]};
+Tbis:=[seq([seq(10,j=0..ncols(T)-1)],nrows(T)-1)];
+Tbis:=for(k:=0;k<nrows(T);k++){Tbis[k]:=[seq(string(T[k,j])+"&",j=0..ncols(T)-2),string(T[k,ncols(T)-1])+if(k
+  mod 10 ==0){"\\\\\\hline"}else{" \\\\ "}]};
+Tbis[0]:=subsoP(Tbis[0],0="t &");
+Tbis[pp]:=subsoP(Tbis[pp],0="\\rowcolor[gray]{0.7}"+Tbis[pp,0]);
+TT:="Voici le tableau donnant $\\Phi(t)=\\mathbb{P}(X<t)$ dans le cas $t\\in[0;2.99]$~: 
+{\\small
+\\begin{center}";
+TT:=TT+"\\begin{tabular}{|"+Ti+"}\\hline ";
+for(k:=0;k<=nrows(Tbis)-1;k++){for(j:=0;j<=ncols(Tbis)-1;j++){TT:=TT+Tbis[k,j]}};
+XCAStablenormx:=TT+"\\end{tabular}"+"
+\\end{center}
+}
+\\bigskip
+
+On veut calculer $\\mathbb{P}(X<"+x+")$ sachant que $X\\sim \\mathcal{N}("+m+","+s+")$.  Comme la variable r\\'eduite $T=\\frac{X-"+m+"}{"+s+"}$ suit la loi $\\mathcal{N}(0,1)$ alors $X<"+x+"$
+\\'equivaut \\`a $T<"+latex((x-m)/s)+"$.
+
+"+if(tt<0){"Comme "+tt+" est n\\'egatif, on utilise le fait que $\\Phi(-t)=1-\\Phi(t)$
+
+On lit dans la table de la loi normale $\\mathbb{P}(T<"+latex((x-m)/s)+")\\simeq 1-\\mathbb{P}(T<"+round((tp)*100)/100.0+")\\simeq "+simplify(1-normal_cdf(round((tp)*100)/100)) +"$"}else{
+"On lit dans la table de la loi normale $\\mathbb{P}(T<"+latex((x-m)/s)+")\\simeq \\mathbb{P}(T<"+round((tp)*100)/100.0+")\\simeq "+simplify(normal_cdf(round((tp)*100)/100)) +"$"};
+
+sortix:=fopen("XCAStablenormex.tex");
+fprint(sortix,Unquoted,XCAStablenormx);
+fclose(sortix);
+};
+\end{VerbatimOut}
+
+
+
+
+
+
+\begin{VerbatimOut}{XCAStablenorm.giac}
+read("XCAStablenorm.cxx");
+read("XCAStablenorm.user");
+\end{VerbatimOut}
+
+\newenvironment{tablenormale}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCAStablenorm.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCAStablenormex.tex}
+\executGiacmp{XCAStablenorm.giac}
+\immediate\write18{\rem \nomtravail_tablenorm\tprob.tex}
+\immediate\write18{\cat XCAStablenormex.tex >> \nomtravail_tablenorm\tprob.tex}
+
+
+   \input{\nomtravail_tablenorm\tprob}
+
+
+
+\stepcounter{Cpttablprob}
+ }

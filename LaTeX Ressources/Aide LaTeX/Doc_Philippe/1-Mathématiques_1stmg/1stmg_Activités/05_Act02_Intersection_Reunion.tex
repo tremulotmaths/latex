@@ -1,0 +1,84 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{v.2}{Calcul de proportions \\ Intersections et réunions}
+
+\exo À la fin de l'année, les résultats obtenus par les élèves de troisième sont récapitulés dans le tableau suivant :
+\begin{center}
+\renewcommand\arraystretch{2}
+    \begin{tabular}{|m{3.3cm}|>\centering m{2.5cm}|>\centering m{2.5cm}|c|}
+        \hline
+            Nombre d'élèves de troisième & ayant révisé avec un lycéen & ayant révisé seuls & Total \\
+        \hline
+            ayant réussi le \bsc{d.n.b.} & $33$ & $87$ &  \\
+        \hline
+            ayant raté le \bsc{d.n.b.} & $4$ & $24$ &  \\
+        \hline
+            Total & & & \\
+        \hline
+    \end{tabular}
+    \renewcommand\arraystretch{1}
+\end{center}
+
+\begin{enumerate}
+    \item Compléter le tableau.
+    \item En utilisant le tableau, calculer et arrondir à $1\%$ près les nombres suivants :
+    \begin{enumerate}
+        \item la proportion d'élèves de troisième ayant réussi le \bsc{d.n.b.} parmi l'ensemble des élèves ayant révisé avec un lycéen ;
+        \item la proportion d'élèves de troisième ayant réussi le \bsc{d.n.b.} parmi l'ensemble des élèves ayant révisé seuls.
+    \end{enumerate}
+    \item L'aide apportée par les lycéens a-t-elle été efficace ? Pourquoi ?
+\end{enumerate}\[*\]
+
+\exo Les données de l'exercice précédent sont utilisées.\par On considère les \textbf{populations} suivante :
+\begin{itemize}
+    \item $E$ : l'ensemble des élèves de troisième.
+    \item $A$ : l'ensemble des élèves de troisième ayant révisé seuls.
+    \item $B$ : l'ensemble des élèves de troisième ayant réussi le brevet des collèges.
+\end{itemize}
+
+On peut alors modéliser la situation par le schéma suivant (diagramme de Venn) :
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.5]
+        \def\E{(1,0) ellipse (5 and 3)}
+        \def\A{(0,0) ellipse (2.2 and 1.5)}
+        \def\B{(2.5,0) ellipse (2 and 1.2)}
+        \draw \E;
+        \draw[rotate=25] \A;
+        \draw \B;
+        \draw (-1.4,-1.2) node {\scriptsize $A$};
+        \draw (4,0.2) node {\scriptsize $B$};
+        \draw (1,-2.5) node {\scriptsize $E$};
+    \begin{scope}
+        \clip[rotate=25] \A;
+        \fill[pattern=north west lines] \B;
+    \end{scope}
+    \end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+    \item On rappelle que les données sont celles de l'exercice précédent.
+        \begin{enumerate}
+            \item On note $n_E$, l'effectif de la population $E$. Que vaut $n_E$ ?
+            \item En utilisant les mêmes notations, déterminer $n_A$ puis $n_B$.
+            \item Expliquer par une phrase simple ce que représente la partie hachurée du digramme.\par Doit-on la noter $A \cup B$ ou $A \cap B$ ?
+            \item Déterminer alors $n_{A \cap B}$ puis $n_{A \cap B}$.
+        \end{enumerate}
+    \item En utilisant les notation de la question précédente, calculer sous forme fractionnaire :
+        \begin{enumerate}
+            \item la proportion $p_A$ d'élèves de troisième ayant révisé seuls.
+            \item la proportion $p_B$ d'élèves de troisième ayant réussi le \bsc{d.n.b.}
+            \item la proportion $p_{A\cap B}$ d'élèves de troisième ayant réussi le \bsc{d.n.b.} en révisant seuls.
+            \item la proportion $p_{A\cup B}$ d'élèves de troisième ayant réussi le \bsc{d.n.b.} ou ayant révisant seuls (<<ou>> signifie l'un, l'autre, ou les deux).
+        \end{enumerate}
+    \item En déduire une relation entre $p_A$, $p_B$, $p_{A \cup B}$ et $p_{A \cap B}$.
+\end{enumerate}
+
+\end{document} 

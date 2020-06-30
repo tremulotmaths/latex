@@ -1,0 +1,142 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Stats/Probas}
+\renewcommand\MaCouleur{Melon!150}
+
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+
+\setcounter{chapter}{6}
+
+\begin{document}
+\chapter[Dérivation]{Introduction \\ à la dérivation}\label{ch_derivation}
+
+\section{Fonction dérivée d'une fonction polynôme du second degré}
+\subsection{Définition}
+
+\begin{Defi}
+    Soit $f$ la fonction définie pour tout $x\in \R$ par $f(x) = ax^2 + bx + c$ avec $a \neq 0$.\par
+    La \ipt{dérivée} de $f$ (ou fonction dérivée de $f$) est notée $f'$ et est définie pour tout $x \in \R$ par :
+    \[f'(x) = 2ax + b.\]
+\end{Defi}
+
+\begin{Rmq}
+    La fonction dérivée d'une fonction polynôme du second degré est une fonction affine.
+\end{Rmq}
+
+\begin{Exemple}
+    Si $f(x) = 3x^2 - 4x + 7$ alors $f'(x) = 2 \times 3 x -4 = 6x - 4$.
+\end{Exemple}
+
+\subsection{Lien entre une fonction et sa dérivée}
+
+\begin{Thm}[(admis)]
+    Soit $f$ une fonction polynôme du second degré dont on note $f'$ la dérivée. $I$ est un intervalle.
+    \begin{itemize}
+        \item Si, pour tout $x \in I$, $f' (x)> 0$, alors $f$ est strictement croissante sur $I$.
+        \item Si, pour tout $x \in I$, $f' (x)< 0$, alors $f$ est strictement décroissante sur $I$.
+        \item Si $f'(x) = 0$, alors $f$ admet un maximum ou un minimum en $x$.
+    \end{itemize}
+\end{Thm}
+
+\begin{Rmq}
+    Puisque $f'(x) = 2ax + b$ alors $f'(x) = 0 \qLRq 2ax + b = 0 \qLRq x = \dfrac{-b}{2a}.$\par
+    De plus, le signe de la fonction affine $f'$ dépend du signe du c{\oe}fficient directeur $2a$ et donc uniquement du signe de $a$.
+\end{Rmq}\medskip
+
+\begin{minipage}{0.45\linewidth}
+\begin{center}
+    $a > 0$\medskip
+
+\begin{tikzpicture}[scale=0.8]
+\small
+    \tkzTab[nocadre]{$x$/1.5,Signe de \\ $2ax + b$/1.5,Variations de $f$/1.5}{$-\infty$,$\dfrac{-b}{2a}$,$+\infty$}{,-,z,+}{+/,-/,+/}
+    \draw(5.5,-4.75) node {minimum};
+\end{tikzpicture}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+\begin{center}
+    $a < 0$\medskip
+
+\begin{tikzpicture}[scale=0.8]
+\small
+    \tkzTab[nocadre]{$x$/1.5,Signe de \\ $2ax + b$/1.5,Variations de $f$/1.5}{$-\infty$,$\dfrac{-b}{2a}$,$+\infty$}{,+,z,-}{-/,+/,-/}
+    \draw(5.5,-4.75) node {maximum};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\section{Nombre dérivé et tangente}
+\begin{Defi}
+    Soit $f$ une fonction définie sur $\R$, $f'$ sa dérivée et $a \in \R$.\par
+    On appelle \ipt{nombre dérivé}\index{dérivée!nombre} en $a$ le nombre égal à $f'(a)$.
+\end{Defi}
+
+\begin{Exemple}
+    La fonction $f$ définie par $f(x) = -4x^2 + 5x -1$ admet pour dérivée $f'$ définie par $f'(x) = -8x + 5$.\par
+    Le nombre dérivé en $4$ est alors égal à $f'(4) = -8 \times 4 + 5 = -27$.
+\end{Exemple}
+
+\begin{Defi}
+    Soit $f$ une fonction. On note $\calig C_f$ sa courbe représentative dans un repère. On appelle $A(x_A\pv y_A)$ un point de $\calig C_f$.\par
+    On appelle \ipt{tangente} au point $A$ la droite qui passe par $A$ et qui n'a aucun autre point commun avec $\calig C_f$ dans un voisinage très proche de $A$.
+    \begin{center}
+        \begin{tikzpicture}[scale=.5,xscale=2]
+            \tkzInit[xmin=-3,xmax=3,ymin=-1,ymax=9,xstep=1,ystep=1]
+            \tkzClip
+            \tkzGrid[sub,subxstep=0.5,subystep=0.25,color=brown](-4,-1)(4,9)
+            \tkzGrid
+            \tkzDrawX\tkzDrawY
+            \tkzSetUpPoint[shape=circle, size = 3, color=black, fill=lightgray]
+            \tkzFct[line width=1pt,color=blue]{x**2}
+            \tkzDrawTangentLine[color=red,line width=0.75pt](1)
+            \tkzDefPointByFct[draw,ref=A](1)
+            \tkzLabelPoint[above](A){$A$}
+        \end{tikzpicture}
+    \end{center}
+\end{Defi}
+
+\begin{Prop}[(admise)]
+    Soit $f$ une fonction. On note $\calig C_f$ sa courbe représentative dans un repère. On note $A(x_A\pv y_A)$ un point de $\calig C_f$ et $(T)$ la tangente en $A$.\par
+    Le c{oe}fficient directeur de $(T)$ est alors égale à $f'(x_A)$.
+\end{Prop}
+
+\begin{Exemple}
+    Soit $f$ la fonction définie sur $\R$ par $f(x) = -2x^2 + x + 1$.\par
+    On veut connaître l'équation réduite de la tangente $(T)$ au point $A$ d'abscisse $-1$.\par\smallskip
+    L'ordonnée de $A$ est égale à $f(-1) = -2 \times (-1)^2 + (-1) + 1 = -2$.\par\smallskip
+    L'équation réduite est de la forme $y = mx + p$ avec $m = f'(-1)$. On calcule donc l'expression de $f'$ :
+        $f'(x) = 2 \times (-2x) + 1 = -4x + 1$ donc $m = -4 \times (-1) + 1 = 5$.\par\smallskip
+    Pour finir, on sait que $A\in (T)$ donc ses coordonnées vérifient l'équation réduite de $(T)$ :
+    \[y_A = 5x_A + p \qLRq -2 = 5 \times (-1) + p \qLRq -2 + 5 = p \qLRq p = 3.\]
+    L'équation réduite de $T$ est donc : $y = 5x + 3$.
+\end{Exemple}
+    \begin{center}
+        \begin{tikzpicture}[scale=.5,xscale=2]
+            \tikzset{tan style/.style={-}}
+            \tkzInit[xmin=-2,xmax=2,ymin=-10,ymax=1.5,xstep=1,ystep=1]
+            \tkzClip
+            \tkzGrid[sub,subxstep=0.5,subystep=0.25,color=brown](-2,-10)(2,1.5)
+            \tkzGrid
+            \tkzDrawX\tkzDrawY
+            \tkzSetUpPoint[shape=circle, size = 3, color=black, fill=lightgray]
+            \tkzFct[line width=1pt,color=blue]{(-1)*2*x**2 + x + 1}
+            \tkzDrawTangentLine[line width=0.75pt,color=red,kl=0.6,kr=0.6](-1)
+            \tkzDefPointByFct[draw,ref=A](-1)
+            \tkzLabelPoint[above left](A){\footnotesize $A$}
+        \end{tikzpicture}
+    \end{center}
+
+
+\end{document}

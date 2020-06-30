@@ -1,0 +1,103 @@
+\documentclass[12pt,french,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2015}
+\input{perso_dom_2015_2016}
+%\input{section_dom_2015_2016}
+\input{section_2015_2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Essai avec le package pas-algo}
+
+\noindent 
+%\vspace{-24pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pas-algo}
+\usepackage{tcolorbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{Package pas-algo}{\thepage / \pageref{LastPage}}{Année 2015-2016}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{center}
+\textbf{À compiler en pdfLaTeX}
+\end{center}
+
+
+\begin{center}
+\begin{algo}[somsuitar]{Calcul d'une somme}
+\begin{algoentries}
+r est un nombre réel \\
+u est un nombre réel \\
+n est un entier naturel \\
+i est un entier naturel \\
+S est un nombre réel
+\end{algoentries}
+\begin{algovar}
+r est un nombre réel \\
+u est un nombre réel \\
+n est un entier naturel \\
+i est un entier naturel \\
+S est un nombre réel
+\end{algovar}
+\begin{algoinit}
+Affecter à S la valeur u\\
+Entrer la valeur de r ( raison de la suite arithmétique )\\
+Entrer la valeur de u ( premier terme de la somme )\\
+Entrer la valeur de n ( nombre de termes dans la somme )
+\end{algoinit}
+\begin{algobody}
+\begin{algofor}{i}{1}{n-1}
+Affecter à S la valeur S+(u+i*r)
+\end{algofor}
+\begin{algoif}{i est pair}
+i prend la valeur i/2 -3
+\ifelse
+i prend la valeur i/2 +3
+\end{algoif}
+\end{algobody}
+\begin{algoend}
+Afficher S
+\end{algoend}
+\end{algo}
+\end{center}
+
+
+L'algorithme \ref{algo:somsuitar} permet de calculer la somme 
+$u_p+u_{p +1}+ u_{p +2}+\cdots +u_{p+n -1}$ , où $(u)$ est une suite
+arithmétique de raison $r$. La valeur de $u$ saisie lors de l'initialisation est la valeur de $u_p$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

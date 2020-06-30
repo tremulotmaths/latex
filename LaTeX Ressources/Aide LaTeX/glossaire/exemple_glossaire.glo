@@ -1,0 +1,5 @@
+(indexentry :tkey (("protéines" "\\glossentry{proteines}") ) :locref "{}{1}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("phosphate de calcium" "\\glossentry{phc}") ) :locref "{}{1}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("réaction physico-chimique" "\\glossentry{rpc}") ) :locref "{}{1}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("microbes" "\\glossentry{microbes}") ) :locref "{}{1}" :attr "pageglsnumberformat" ) 
+(indexentry :tkey (("pores" "\\glossentry{pores}") ) :locref "{}{1}" :attr "pageglsnumberformat" ) 

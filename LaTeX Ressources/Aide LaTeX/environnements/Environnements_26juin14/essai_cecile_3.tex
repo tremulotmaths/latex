@@ -1,0 +1,151 @@
+\documentclass[french,10pt]{book}
+\input preambule_2014
+\input{perso_cecile_2014}
+
+\dominitoc %pour pouvoir créer un sommaire du chapitre en cours avec \minitoc
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhf{} %vide entête et pied de page
+
+\setcounter{secnumdepth}{3} %Nombre de sous paragraphes à numéroter
+\setcounter{chapter}{1}%compteur chapitre, indiquer le numéro du ch précédent
+
+
+\chapter{Quelques environnements}
+\setcounter{minitocdepth}{3}    % Show until subsubsections in minitoc
+\minitoc\faketableofcontents
+
+\section{Environnements encadrés}
+
+\subsection{Titres}
+
+%\Fiche [1] [Titre]
+
+\subsection{Définitions}
+
+
+\subsubsection{Sans texte à côté}
+blabla\par 
+\begin{Defi} {}
+1ier argument facultatif s donc on écrit rien ou rien entre les crochets\par
+2ème argument obligatoire donc \{ \}
+\end{Defi}
+
+Exemple : blablabla...\par Blalblabla
+
+\begin{Defi}[s]{}
+1ier argument facultatif s donc on écrit s entre crochets \par
+2ème argument obligatoire donc \{ \}
+\end{Defi}
+Exemple : blablabla...\par Blalblabla
+
+\subsubsection{Avec texte à côté}
+blablablabla\par 
+
+\begin{Defi} {à connaître par coeur}
+1ier argument facultatif s donc on écrit rien \par
+2ème argument obligatoire donc \{  à connaître ...\}
+\end{Defi}
+
+Exemple : blablabla...\par Blalblabla
+
+\begin{Defi}[s]{à connaître...}
+1ier argument facultatif s donc on écrit s entre crochets \par
+2ème argument obligatoire donc \{  à connaître ...\}
+\end{Defi}
+Exemple : blablabla...\par Blalblabla
+
+\subsection{Propriétés}
+
+même principe que pour def \par 
+\begin{Prop}[s] {}
+    En voilà une propriété qu'elle est bien !
+\end{Prop}
+
+\begin{Prop}[]{(admise)}
+    En voilà une propriété qu'elle est trop dure à démontrer à cause de vos petits cerveaux de moineaux !
+\end{Prop}
+
+\subsection{Théorèmes}
+Toujours le même principe pour s et texte\par 
+\begin{Thm}{TVI}
+    Ce théorème là est tellement important qu'on n'a rien compris.
+\end{Thm}
+
+\begin{Thm}[s]{}
+    C'était le frère de \bsc{Thalès} et le neveu d'\bsc{Euclide}... Ou peut-être le contraire...
+\end{Thm}
+
+\section{Environnements avec fond de couleur}
+\subsection{Démonstrations}
+\begin{Demo}
+    C'est à cause du frère de la tante de la s{oe}ur de la belle-mère de leur cousine germaine mariée volontairement de force contre son gré après avoir dit que \[1 + 1 = 2\] sans démontrer proprement que $1 + 0 = 1$ alors depuis, il y a des problèmes de famille non résolus d'autant plus que \bsc{Freud} a lâchement décidé de les laisser se débrouiller sous prétexte qu'il n'est pas né à leur époque.
+\end{Demo}
+
+\begin{Demo}[s]
+\begin{itemize}
+\item 1+1
+\item 2+1
+\end{itemize}
+\end{Demo}
+
+\subsection{Exemples}
+\begin{Exemple}
+Il était une fois....
+\par et ils eurent bcp de petits enfants.
+\end{Exemple}
+
+%\begin{Exemple*}[s]
+%sans numérotation avec s facultatif
+%\end{Exemple*}
+
+
+\section{Environnements bclogo}
+
+\subsection{Méthodes}
+\begin{Methode}
+Blablalblalblalblal
+\par blablalba C'est trop bien les vacances !C'est trop bien les vacances !C'est trop bien les vacances !C'est trop bien les vacances !C'est trop bien les vacances !C'est trop bien les vacances !C'est trop bien les vacances !
+\end{Methode}
+
+\begin{Methode}[s]
+avec un s ça coûte pas plus cher !
+\end{Methode}
+
+\subsection{Remarques}
+
+\begin{Rmq}
+    C'est trop bien les vacances !
+\end{Rmq}
+
+\begin{Rmq}[s]
+    \begin{enumerate}
+        \item c'est la fin de ce chapitre ;
+        \item c'est trop bien \LaTeX ;
+        \item je dois aller faire mon repassage.
+    \end{enumerate}
+\end{Rmq}
+
+
+\section{Exercices}
+
+\begin{Exo}
+sans numérotation avec arg facultatif
+\end{Exo}
+
+\begin{Exo}[15 p 152]
+sans numérotation avec arg facultatif
+\end{Exo}
+
+\begin{Exercice}
+avec numérotation auto et avec arg facultatif
+\end{Exercice}
+
+\begin{Exercice}[\textit{Pour les plus rapides}]
+avec numérotation auto et avec arg facultatif
+\end{Exercice}
+
+\section{Commandes}
+%\Fiche{1}{Titre}
+\end{document}

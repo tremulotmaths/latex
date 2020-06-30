@@ -1,0 +1,194 @@
+\listfiles
+\documentclass{article}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{amsmath,amssymb} % allows multiple maths-environments
+
+\usepackage[dvips,dvipsnames]{xcolor} %% Farben sind im Dokument xcolor.pdf definiert
+%\usepackage[distiller]{pstricks}
+\usepackage{pst-slpe,pst-blur}
+\usepackage{pst-node}
+\usepackage{pst-plot}
+\usepackage{pst-math}
+%\usepackage{pst-3dplot}
+%\usepackage{pst-eucl}
+\usepackage{pst-solides3d}
+\usepackage{pstricks-add}
+
+
+\begin{document}
+
+\psset{viewpoint=45 -35 4 rtp2xyz,Decran=50,lightsrc=30 -15 25}
+\begin{pspicture}[solidmemory](-6,-6)(11,5)
+
+%-------------------------------------------------------------------------------------------------
+%------------------------------- Elektronenkanone ------------------------------------------------
+%-------------------------------------------------------------------------------------------------
+
+\psSolid[object=tronccone,r0=0.3,r1=0.08,h=0.4,fillcolor=cyan!70,mode=4,RotY=90,RotZ=90,ngrid=1 90, grid=false,opacity=0.15,solidmemory=true,action=none,name=Spitze](0,-3.2,0)%
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.02,R=0.28,r=0.06,RotY=90,RotZ=90,linecolor=green!80,ngrid=72,
+grid=false,opacity=0.4,incolor=black,solidmemory=true,action=none,name=lochanode](0,-3.22,0)%
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.02,R=0.28,r=0.06,RotY=90,RotZ=90,linecolor=green!80,ngrid=72,
+grid=false,opacity=0.3,incolor=black,solidmemory=true,action=none,name=wehneltdeckel](0,-3.6,0)%
+
+\psSolid[object=cylindre,h=0.35,r=0.01,fillcolor=black,RotY=90,RotZ=-90,ngrid=2 72, grid=false,opacity=0.1,solidmemory=true,action=none,name=anschlusso](-0.08,-3.8,0.178)
+
+\psSolid[object=cylindre,h=0.35,r=0.01,fillcolor=black,RotY=90,RotZ=-90,ngrid=2 72, grid=false,opacity=0.1,solidmemory=true,action=none,name=anschlussu](0.08,-3.8,-0.175)
+
+\psSolid[object=cylindre,h=0.8,r=0.3,fillcolor=cyan!70,RotY=90,RotZ=90,ngrid=2 72, grid=false,opacity=0.1,solidmemory=true,action=none,name=zylout](0,-4,0)
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.36,R=0.28,r=0.27,RotY=90,RotZ=90,linecolor=green!80,ngrid=72,
+grid=false,opacity=0.1,solidmemory=true,action=none,name=wehnelt](0,-3.8,0)%
+
+{\defFunction[algebraic]{gluehwendel}(t){0.08*cos(80*t)}{0.08*sin(80*t)}{t}
+\psSolid[object=courbe,r=0,range=0 0.35343,linecolor=red,linewidth=0.5pt,resolution=720,
+function=gluehwendel,solidmemory=true,action=none,name=wendel,r=0.01,fillcolor=red,incolor=red,ngrid=60 60](0,-3.8,-0.175)}%
+
+\psSolid[object=fusion,
+base=wendel anschlusso anschlussu wehnelt wehneltdeckel lochanode zylout Spitze,% flugbahnx,
+grid=false,opacity=0.15,name=ekanone,linecolor=red,action=draw**](0,0,-1.88)
+
+\composeSolid
+%--------------------------------------------------------------------------------------------------
+
+\psSolid[object=line,args=0 -3.212 -1.6 0 -3.212 -0.88,action=draw**]
+\psSolid[object=line,args=0 -3.6 -1.6 0 -3.6 -0.48,action=draw**]
+\psSolid[object=line,args=0 -3.8 -1.62 0 -3.8 -0.08,action=draw**]
+\psSolid[object=line,args=-0.08 -4.15 -1.702 0 -4.7 -1.702 0 -4.7 -2.68,action=draw**]
+\psSolid[object=line,args=0.08 -4.15 -2.055 0 -4.2 -2.055 0 -4.2 -3.38,action=draw**]
+\psSolid[object=line,args=0 -4.6 -2.68 0 -4.8 -2.68,action=draw**]
+\psSolid[object=line,args=0 -4.5 -2.78 0 -4.9 -2.78,action=draw**]
+\psSolid[object=line,args=0 -4.7 -2.78 0 -4.7 -3.38 0 -3.85 -3.38,action=draw**]
+\psSolid[object=line,args=0 -3.212 -2.16 0 -3.212 -3.38 0 -3.45 -3.38,action=draw**]
+\psSolid[object=line,args=0 -3.6 -2.16 0 -3.6 -2.58,action=draw**]
+
+\psSolid[object=plan,opacity=0.7,linecolor=black!90,fillcolor=cyan!10,definition=equation,
+args={[0 -1 0 0]},base=-3.2 3.2 -3.2 3.2,plangrid](0,10,0)
+\psSolid[object=plan,opacity=0.7,fillcolor=cyan!10,definition=equation,
+args={[0 -1 0 0]},base=-3.2 3.2 -3.2 3.2,fontsize=8,planmarks](0,10,0)
+
+\psPoint(0,-2,0){P1}  \psPoint(0,10,0){P2}   \psPoint(0,4,0){P3}  \psPoint(-3,0,-2){P4}
+\psPoint(-3,0,2){P5}  \psPoint(3,0,-2.05){P6}\psPoint(3,4,-2.05){P7}\psPoint(0,4,1.16){P8}
+\psPoint(0,10,1.16){P9}\psPoint(0,10,2.7){P10}\psPoint(0,-2,-1.88){P11}\psPoint(0,-1.5,-1.88){P12}
+\psPoint(0,4.5,1.16){P13}\psPoint(0,4.5,1.91){P14}\psPoint(0,10,-1.5){P15}
+\psPoint(0,4,-1.5){P16}\psPoint(0,-2,-1.88){P17}\psPoint(0,-4.7,-2.73){P18}
+\psPoint(0,-3.65,-3.38){P19}\psPoint(0,-3.2,-4){P20}
+\psPoint(0,4.0,1.16){P23}\psPoint(0,4.0,1.91){P24}
+
+%\uput{20pt}[12]{12}(P8){\textcolor{green}{$\alpha$}}
+\uput{8pt}[173]{0}(P18){\scriptsize $U^{}_{\text{H}}$}
+\uput{5pt}[-80]{0}(P19){\scriptsize $U^{}_{\text{b}}$}
+\uput{5pt}[-80]{0}(P20){\scriptsize $U^{}_{\text{a}}$}
+\uput{5pt}[-90]{0}(P17){\scriptsize $m^{}_{e}$ $e$}
+\psbrace(-20,-30)(-20,-30){}
+\pcline[offset=0,arrowscale=1.2,arrowinset=0.1,linecolor=cyan]{->}(P8)(P14)
+\nbput[npos=0.9,labelsep=1pt]{\textcolor{cyan}{$v^{}_{\text{ges}}$}} %$
+\pcline[offset=0,arrowscale=1.2,arrowinset=0.1,linecolor=red]{->}(P8)(P13)
+\nbput[npos=0.7,labelsep=2pt]{\textcolor{red}{$v^{}_{x}$}} %$
+
+\multido{\iA=0+1}{4}{\psSolid[object=vecteur,args=0 -5.5 0,linecolor=magenta!30,opacity=0.75](-2,9.75,-1.9 \iA\space 1.25 mul add)}
+
+\psSolid[object=anneau,fillcolor=green!80,h=0.01,R=0.5,r=0.49,RotX=-90,RotZ=0,linecolor=green!80,ngrid=72,
+grid=false,opacity=0.9,incolor=black](-0.5,10,1.16)%
+
+\psSolid[object=cylindre,h=6,r=0.49,fillcolor=cyan!70,incolor=white,linecolor=cyan!70,RotX=90,ngrid=90 90,linewidth=0.1pt,grid=false,
+name=schrauben-zylinder,solidmemory=true,action=none](-0.5,10,1.16)%
+
+\defFunction[algebraic]{f4}(t){0.5*cos(4.84*0.2*3.14*t)}{1*t}{0.5*sin(4.84*0.2*3.14*t)}
+\psSolid[object=courbe,range=0 6,linecolor=red,linewidth=0.1pt,resolution=1440,grid=false,
+function=f4,name=schraubenbahn,r=0.01,incolor=red,fillcolor=red,solidmemory=true,ngrid=270 20,action=none](-0.5,4,1.16)%
+
+\psSolid[object=fusion,opacity=0.45,
+base=schraubenbahn schrauben-zylinder,linewidth=0.05pt,linecolor=red,%
+name=b-feld-flug,grid=false,action=draw**]
+\composeSolid
+
+\pcline[offset=0,arrowscale=1.2,arrowinset=0.1,linecolor=blue]{->}(P23)(P24)
+\naput[npos=0.5,labelsep=2pt]{\textcolor{blue}{$v^{}_{y}$}} %$
+
+\psbrace[linecolor=blue,braceWidth=0.8pt,braceWidthInner=3pt,braceWidthOuter=3pt,nodesepB=5pt,nodesepA=2pt,rot=0](P2)(P9){$y^{}_{0}$}
+%\pstMarkAngle[arrows=<->]{P9}{P8}{P10}{\small 109,5$^{\mathrm{o}}$}
+\pcline[offset=0,arrowscale=1.2,arrowinset=0.1]{<->}(P16)(P15)\ncput*{$a$}
+\pcline[offset=-0.5,arrowscale=1.2,arrowinset=0.1,tbarsize=6pt]{|<->|}(P6)(P7)\ncput*{$l$}
+\pcline[offset=0,arrowscale=1.2,arrowinset=0.1,tbarsize=6pt]{|<->|}(P4)(P5)\ncput*{$d$}
+%
+\pcline[arrowscale=1.2,arrowinset=0.1,linecolor=magenta]{->}(P11)(P12)
+\naput[labelsep=2pt,npos=0.7]{\textcolor{magenta}{$v^{}_{x}$}}
+\rput(P11){\psBall[linecolor=blue,slopebegin=blue!20,sloperadius=0.1,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid](0,0){blue}{3.0pt}}
+
+\psSolid[object=tronccone,r0=0.08,r1=0.05,h=0.12,fillcolor=black!60,ngrid=5 120,grid=false,opacity=0.5,RotX=180](0,2,-2.1)
+\psSolid[object=line,linewidth=1pt,linecolor=black,args=0 2 -2.1 0 2 -4.0 0 -3 -4.0]
+\psSolid[object=parallelepiped,a=6,b=4,c=0.1,fillcolor=blue!20,opacity=0.96](0,2,-2.05)
+
+%\multido{\iA=0+1}{9}{\psSolid[object=vecteur,args=0 -4 0,linecolor=magenta!30,opacity=0.75](1,10,-2 \iA\space 0.5 mul add)}
+\multido{\iA=0+1}{4}{\psSolid[object=vecteur,args=0 -5.5 0,linecolor=magenta!30,opacity=0.75](2,9.75,-1.9 \iA\space 1.25 mul add)}
+%\multido{\iA=0+1}{5}{\psSolid[object=vecteur,args=0 -4 0,linecolor=magenta!30,opacity=0.75](0,10,-2 \iA\space 1 mul add)}
+%\multido{\iA=0+1}{9}{\psSolid[object=vecteur,args=0 -4 0,linecolor=magenta!30,opacity=0.75](-1,10,-2 \iA\space 0.5 mul add)}
+%\multido{\iA=0+1}{9}{\psSolid[object=vecteur,args=0 -4 0,linecolor=magenta!30,opacity=0.75](-2,10,-2 \iA\space 0.5 mul add)}
+
+%%\multido{\iA=0+1}{7}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](-1,0.15 \iA\space 0.95 mul add,2)}
+%\multido{\iA=0+1}{3}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](-1.0,0.25 \iA\space 1.625 mul add,2)}
+%\multido{\iA=0+1}{3}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](-2.8,0.25 \iA\space 1.625 mul add,2)}
+\psSolid[object=plan,definition=equation,opacity=0.5,args={[1 0 0 0]},base=0 4 -2 2,plangrid,fontsize=8,RotX=90,planmarks](0,0,0)
+%%\multido{\iA=0+1}{7}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](0,0.15 \iA\space 0.95 mul add,2)}
+%%\multido{\iA=0+1}{7}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](1,0.15 \iA\space 0.95 mul add,2)}
+\psSolid[object=line,linestyle=dashed,dash=3pt 3pt,linecolor=black,args=0 -2.7 -1.88 0 -2.1 -1.88]
+\psSolid[object=line,linestyle=dashed,dash=3pt 3pt,linecolor=black,args=0 -1.5 -1.88 0 10 -1.88]
+
+%\multido{\iA=0+1}{3}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](1.0,0.25 \iA\space 1.625 mul add,2)}
+%\multido{\iA=0+1}{3}{\psSolid[object=vecteur,args=0 0 -4,linecolor=brown!50,opacity=0.75](2.8,0.25 \iA\space 1.625 mul add,2)}
+
+
+
+%--------------------------------------------------------------------------------------------------
+\psSolid[object=plan,opacity=0.5,definition=equation,args={[1 0 0 0]},base=-5 15 -4 4,
+  RotX=90,name=Flugebene,action=none](0,0,0)
+
+\psSolid[object=plan,opacity=0.7,linecolor=gray!60,fillcolor=cyan!10,
+  definition=equation,args={[0 -1 0 0]},base=-3.2 3.2 -3.2 3.2,name=Schirm,action=none](0,10,0)
+
+%\psProjection[object=point,plan=Schirm,dotsize=0.1,name=K,text=K,pos=ur,linecolor=green](0,2.7)
+
+\psProjection[object=texte,text=Lochanode,fontsize=8,pos=ur,plan=Flugebene](-3.2,-0.88)
+\psProjection[object=texte,text=Wehneltzylinder,pos=ur,fontsize=8,plan=Flugebene](-3.6,-0.48)
+\psProjection[object=texte,text=Gluehwendel,pos=ur,fontsize=8,plan=Flugebene](-3.8,0.02)
+
+\psProjection[object=texte,text=\string\141,PSfont=Symbol,fontsize=6,linecolor=green,plan=Flugebene](4.2,1.25)
+
+\defFunction[algebraic]{f1}(t){t}{0.05*t^2}{-0.05}
+\defFunction[algebraic]{f2}(x){0.19*x^2-1.88}{}{}
+\defFunction[algebraic]{f3}(x){(x-6)*(3/10)+(9/10)}{}{}
+
+\psSolid[object=plan,args=Flugebene,action=none]
+\psProjection[object=courbe,linecolor=red,range=0 4,resolution=720,function=f2,plan=Flugebene]
+%\psProjection[object=courbe,linecolor=red,range=7.5 12,resolution=720,function=f3,plan=Flugebene]
+\psSolid[object=parallelepiped,a=6,b=4,c=0.1,fillcolor=red!20,opacity=0.96](0,2,2.05)
+\psSolid[object=line,linewidth=1pt,linecolor=black,args=0 2 2.1 0 2 3.0 0 -5.5 3 0 -5.5 -4 0 -3.4 -4]
+\psSolid[object=tronccone,r0=0.08,r1=0.05,h=0.12,fillcolor=black!60,ngrid=5 120,grid=false,opacity=0.5](0,2,2.1)
+\psProjection[object=cercle,linecolor=green,args=4 1.16 0.4,plan=Flugebene,range=0 1.52 1 atan]
+\psProjection[object=texte,fontsize=6,text=-,plan=Flugebene,linecolor=white](-2,-1.88)
+%\psProjection[object=texte,fontsize=6,text=m q,plan=Flugebene](-2,0.2)
+\psProjection[object=cercle,args=0 -3.8 -3.38 0.05,range=0 360,plan=Flugebene]
+\psProjection[object=cercle,args=0 -3.5 -3.38 0.05,range=0 360,plan=Flugebene]
+\psProjection[object=cercle,args=0 -3.35 -4 0.05,range=0 360,plan=Flugebene]
+\psProjection[object=cercle,args=0 -3.05 -4 0.05,range=0 360,plan=Flugebene]
+\psProjection[object=cercle,args=0 -3.6 -2.62 0.05,range=0 360,plan=Flugebene]
+\psProjection[object=texte,fontsize=6,text=-,plan=Flugebene,linecolor=black](-3.6,-2.78)
+\psProjection[object=texte,fontsize=6,text=-,plan=Flugebene,linecolor=black](-3.8,-3.18)
+\psProjection[object=texte,fontsize=6,text=+,plan=Flugebene,linecolor=black](-3.5,-3.18)
+\psProjection[object=texte,fontsize=6,text=+,plan=Flugebene,linecolor=black](-3.35,-3.8)
+\psProjection[object=texte,fontsize=6,text=-,plan=Flugebene,linecolor=black](-3.05,-3.8)
+\psProjection[object=cercle,args=0 -4.2 -3.38 0.035,fillcolor=black,fillstyle=solid,range=0 360,plan=Flugebene]
+\psSolid[object=parallelepiped,a=6,b=4,c=0.1,action=none,fillcolor=blue!20,name=QuadP](0,2,-2.05)
+\psSolid[object=plan,action=none,definition=solidface,args=QuadP 4,name=PP4]
+\psSolid[object=parallelepiped,a=6,b=4,c=0.1,action=none,fillcolor=red!20,name=QuadM](0,2,2.05)
+\psSolid[object=plan,action=none,definition=solidface,args=QuadM 4,name=PM4]
+\psProjection[object=texte,linecolor=blue,fontsize=5,text=
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -  ,plan=PP4,phi=90]%
+\psProjection[object=texte,linecolor=red,fontsize=5,text=
++ + + + + + + + + + + + + + + + + + + + + + + + + + + +  ,plan=PM4,phi=90]%
+%\axesIIID(-3,-1,-3)(4,7.5,3)
+\end{pspicture}
+
+\end{document}

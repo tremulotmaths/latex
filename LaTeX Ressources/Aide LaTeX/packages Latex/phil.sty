@@ -1,0 +1,497 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        %
+% package pour les maths %
+%                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% package inspir\'e de tarassconf
+
+% Informations g\'en\'erales
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{phil}[2007/08/01]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    D\'eclaration des options   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\if@cours \@coursfalse
+\newif\if@exos \@exosfalse
+\newif\if@devoir \@devoirfalse
+\newif\if@oral \@oralfalse
+
+\DeclareOption{cours}{\@courstrue}
+\DeclareOption{exos}{\@exostrue}
+\DeclareOption{devoir}{\@devoirtrue}
+\DeclareOption{oral}{\@oraltrue}
+
+
+\ProcessOptions
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           PACKAGES COMMUNS          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{etex}
+
+\RequirePackage{amsmath}  
+
+\RequirePackage[latin1]{inputenc}
+%\RequirePackage[T1]{fontenc} %appele par fourier
+
+%\RequirePackage{lmodern} % fourier ne fourni pas sans-serif et typewriter
+\renewcommand{\ttdefault}{lmtt}
+\RequirePackage[upright]{fourier}
+\RequirePackage{bm} % \bm pour fourier
+
+\RequirePackage{ifthen, ifpdf}
+
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+
+%\RequirePackage[flushleft,alwaysadjust]{paralist}
+\RequirePackage{enumitem}
+\setenumerate{leftmargin=*}
+\setenumerate[2]{label=\emph{\alph*})}
+
+
+
+\RequirePackage{esvect}
+\RequirePackage{float} % pour fixer les figures avec H
+
+\RequirePackage[%
+                 pdftitle={Math\'ematiques en lyc\'ee},
+                 pdfauthor={Phil Pham},%
+                 colorlinks=true,
+                 linkcolor=black,%
+                 urlcolor=blue,%
+                 pdfpagemode=None,%
+                 pdfstartview=FitH]{hyperref}
+
+\RequirePackage[a4paper,vmargin=3cm,hmargin=3cm]{geometry}
+\RequirePackage[table]{xcolor}	%\RequirePackage{xcolor} 
+\RequirePackage{graphicx}
+
+\RequirePackage{url}
+
+\RequirePackage{tikz}
+
+\ifpdf
+\RequirePackage{pdfcolmk} %pour myCorr et le saut de page
+\else
+\RequirePackage{pstricks-add, pst-tree}
+\fi
+
+\RequirePackage[francais]{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           COURS          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@cours
+
+\RequirePackage{xr} % Ref. a un doc. externe \externaldocument{} en preambule
+\RequirePackage{versions}     %excludeversion{}
+
+%\newenvironment{prof}{\par}{}
+
+%%%%%% pour la TS spe
+%\RequirePackage{algorithme}         % commande constante commentee (old package tabvar)
+%\newcommand{\Stop}{\instruction{\textbf{stop}}}
+
+
+%\RequirePackage{listings}           % pour le code calculatrice 
+%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% les theoremes
+\usetikzlibrary{shapes,snakes}
+
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{myfancytitle} =[fill=red, text=white]
+\tikzstyle{myfancyname} =[fill=blue!20]
+
+\newcommand\mytheotikztitre{} % astuce  pour une option en fin de bloc
+\newcommand\mytheotikznom{}
+\newcommand\myheartsuit{}
+
+\newenvironment{myTheotikz}{%
+  \par\medskip
+  \begin{tikzpicture}%
+    \node [mybox] (box)\bgroup%
+    \begin{minipage}{.94\textwidth}}%
+    {\end{minipage}\egroup;%
+    \node[myfancytitle, rounded corners,right=10pt] at (box.north west){\mytheotikztitre};%
+    \ifthenelse{\equal{\mytheotikznom}{}}%
+       {}%
+       {\node[myfancyname,rounded corners,left=30pt,font=\itshape] at (box.north east){\mytheotikznom};}%
+    \ifthenelse{\equal{\myheartsuit}{}}%
+       {}%
+       {\node[myfancytitle, rounded corners] at (box.east){\myheartsuit};}%
+  \end{tikzpicture}\par\medskip%
+}
+
+
+\newenvironment{definition}[1][]{
+  \renewcommand\mytheotikztitre{D\'efinition}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{Definition}[1][]{%
+  \renewcommand\mytheotikztitre{D\'efinition}%
+  \renewcommand\myheartsuit{$\heartsuit$}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{theoreme}[1][]{%
+  \renewcommand\mytheotikztitre{Th\'eor\`eme}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{Theoreme}[1][]{%
+  \renewcommand\mytheotikztitre{Th\'eor\`eme}%
+  \renewcommand\myheartsuit{$\heartsuit$}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{corollaire}[1][]{%
+  \renewcommand\mytheotikztitre{Corollaire}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{propriete}[1][]{%
+  \renewcommand\mytheotikztitre{Propri\'et\'e}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{Propriete}[1][]{%
+  \renewcommand\mytheotikztitre{Propri\'et\'e}%
+  \renewcommand\myheartsuit{$\heartsuit$}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{proposition}[1][]{%
+  \renewcommand\mytheotikztitre{Propri\'et\'e}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{Proposition}[1][]{%
+  \renewcommand\mytheotikztitre{Propri\'et\'e}%
+  \renewcommand\myheartsuit{$\heartsuit$}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{lemme}[1][]{%
+  \renewcommand\mytheotikztitre{Lemme}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+\newenvironment{axiome}[1][]{%
+  \renewcommand\mytheotikztitre{Axiome}%
+  \renewcommand\myheartsuit{}%
+  \renewcommand\mytheotikznom{#1}%
+  \begin{myTheotikz}}%
+    {\end{myTheotikz}}
+
+
+ \newenvironment{exercice}[1][]{%
+   \pagebreak[3]
+    \textbf{Exercice\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+ \newenvironment{preuve}[1][]{% 
+   \pagebreak[3]
+    \textbf{D\'emonstration\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+\newenvironment{demonstration}[1][]{% 
+   \pagebreak[3]
+    \textbf{D\'emonstration\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+ \newenvironment{remarque}[1][]{% 
+   \pagebreak[3]
+   \textbf{Remarque\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+ \newenvironment{correction}[1][]{% 
+   \pagebreak[3]
+   \textbf{Correction\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+ \newenvironment{exemple}[1][]{% 
+   \pagebreak[3]
+   \textbf{Exemple\ifthenelse{\equal{#1}{}}{}{ \emph{(#1)}}}\par}{\Par}
+
+%%%
+
+\newcommand{\Marge}[1]{%
+  \marginpar{\scriptsize{\textcolor{gray}{#1}}}}
+
+%%%% SECTION en couleurs
+
+\RequirePackage{sectsty}
+
+\newcommand{\sectbox}[1]{%
+  \begin{tikzpicture}
+  \node [draw=red, fill=yellow!20,rounded corners, very thick] (box){\begin{minipage}{.98\textwidth}#1\end{minipage}};
+\end{tikzpicture}}
+
+\sectionfont{\sectbox}
+\subsectionfont{\sectbox}
+\subsubsectionfont{\sectbox}
+
+\else
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           EXOS ET DEVOIRS/FICHES METHODE        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{multicol}
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{cellspace}  % espace verticale Sc, Sl, etc.
+\RequirePackage{slashbox}   % diagonale dans un tableau \backslashbox{}{}
+%\RequirePackage{pifont}     % Police symbole pour \ding
+%\RequirePackage{SIunits}    %\unit{10}{metre}
+
+\RequirePackage{alterqcm,tkz-tab}
+\RequirePackage{fp} % necessaire avec beta de tkz-tab
+ 
+\definecolor{gris}{gray}{0.75}
+
+%%%%%% boite Encadre
+\usetikzlibrary{shapes,snakes}
+
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{myfancytitle} =[fill=red, text=white]
+
+\newcommand\myencadretikznom{}
+
+\newenvironment{Encadre}[1][Cours]{% 
+\renewcommand\myencadretikznom{#1}%
+  \Par
+  \begin{tikzpicture}%
+    \node [mybox] (box)\bgroup%
+    \begin{minipage}{.94\textwidth}}%
+    {\end{minipage}\egroup;%
+    \node[myfancytitle, rounded corners,right=10pt] at (box.north west){\myencadretikznom};%
+  \end{tikzpicture}\Par%
+}
+%%%%%%
+
+\newenvironment{myCorr}[1][black]{%
+\Par\bgroup\color{#1}}{
+\egroup}
+
+
+%% Nouvelle partie
+\newcommand{\partie}[2][]{%
+	\addvspace{1em}
+	
+	\textbf{Partie #2}\qquad\textit{#1}%
+	
+	\nopagebreak[4]}
+
+%vrai-faux %% Passer par alterqcm
+\newcommand{\VF}{%
+	\hfill\makebox[1cm][s]{\textbf {V\hfill F}}
+	}
+	
+\newcommand{\Rep}{%
+  %\hfill\makebox[1cm][s]{\ding{114}\hfill\ding{114}}
+  \hfill
+  \begin{tikzpicture}
+    \draw (0,0) rectangle (.7em,.7em) (.75,0) rectangle +(.7em,.7em);
+  \end{tikzpicture}
+      }
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           EXOS         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@exos
+
+\newcounter{exon}
+\newenvironment{exercice}{%
+  \addtocounter{exon}{1} %
+  \vspace{1em} \par \noindent %
+  \raisebox{-0.7ex}{\fcolorbox {black}{white}{\bf Exercice \arabic{exon}}}%
+                     \hrulefill \par \vspace{0.5em} \noindent}%
+   {}
+\newenvironment{probleme}{%
+  \addtocounter{exon}{1} %
+  \vspace{1em} \par \noindent %
+  \raisebox{-0.7ex}{\fcolorbox {black}{white}{\bf Probl\`eme \arabic{exon}}}%
+                     \hrulefill \par \vspace{0.5em} \noindent}%
+   {}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        DEVOIR/FICHE          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if@devoir
+
+\RequirePackage{framed} % pour ntheorem
+\RequirePackage[amsmath,thmmarks,hyperref,framed]{ntheorem}
+
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+\newtheorem{exercice}{Exercice}
+\newtheorem{correction}{Correction}
+\newtheorem{probleme}{Probl\`eme}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          oral          % sert aussi pour les corrections
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\if@oral
+
+\RequirePackage{versions}
+\RequirePackage{framed} % pour ntheorem
+\RequirePackage[amsmath,thmmarks,hyperref,framed]{ntheorem}
+
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+%\theoremclass{exemple}
+\newtheorem{exercice}{Exercice}
+\newtheorem{correction}{Correction}
+\newenvironment{evaluation}{%
+   \begin{tabular}{|l|l|>{\centering}p{3cm}|c|c|}\hline 
+     Quest. & Composantes \'evalu\'ees & Aide & Comportement & Appr\'eciation \\\hline}%
+   { &&&\\\hline 
+     Obs. & \multicolumn{4}{c|}{} \\\hline \end{tabular}\Par}
+ 
+\newenvironment{sujet}{\hrule}{\hrule \Par}
+\newcommand{\debut}{%
+  \begin{itemize}
+  \item L'\'epreuve orale est constitu\'ee d'une pr\'eparation de 20~min
+    suivie d'un entretien de m\^eme dur\'ee.
+  \item Les exercices du sujet suivant constituent une base
+    d'argumentation pour l'entretien: vous pr\'eparerez des r\'eponses que
+    vous devrez \^etre capable de justifier en pr\'ecisant, lorsque c'est
+    utile, les notions de cours indispensables. (\textbf{Il est inutile de 
+      r\'ediger enti\`erement vos r\'eponses par \'ecrit.})
+  \item Vous pouvez utiliser du brouillon et \emph{la calculatrice est
+      autoris\'ee}.
+  \end{itemize}\Par}
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     D\'efinition des commandes   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{images/}{/home/phil/mesdocs/lycee/images/}}
+
+
+% Footnotes en français
+\FrenchFootnotes
+
+% numerotation des items
+%\setdefaultenum{}{a)}{}{}
+
+%Par défaut pas d'indentation des retours à la ligne
+\setlength{\parindent}{0pt}
+
+\newcommand{\ie}{{}{\textit{i.e.}}}
+\newcommand{\cad}{\hbox{c.-\`a-d. }}
+
+% virgule d\'ecimale pour psaxe
+
+% \def\pshlabel#1{\expandafter\LabelComma#1..\@nil}
+% \def\psvlabel#1{\expandafter\LabelComma#1..\@nil}
+% \def\LabelComma#1.#2.#3\@nil{%
+% 	\ifx#1\@empty0\else#1\fi
+% 	\ifx#2\@empty\else,#2\fi%
+% }
+
+%virgule decimale
+\DecimalMathComma
+
+% les ensemble de nombres
+\newcommand{\GN}{\mathbb{N}}
+\newcommand{\GR}{\mathbb{R}}
+\newcommand{\GC}{\mathbb{C}}
+\newcommand{\GZ}{\mathbb{Z}}
+\newcommand{\GD}{\mathbb{D}}
+\newcommand{\GQ}{\mathbb{Q}}
+
+% symbole
+\let\parallel\parallelslant
+\let\leq\leqslant
+\let\geq\geqslant
+\renewcommand{\phi}{\varphi}
+
+% repere
+\def\oij{\left(O\,;\vv{\imath},\;\vv{\jmath}\right)}
+\def\oijk{\left(O\,;\vv{\imath},\;\vv{\jmath},\;\vv{k}\right)}
+\def\ouv{\left(O\,;\vv{u},\;\vv{v}\right)} 
+
+% pgcd
+\def\pgcd{\qopname\relax o{pgcd}}
+
+% e et i
+\def\e{\qopname\relax o{e}}
+\def\i{\qopname\relax o{i}}
+
+% redefinition de \mod
+\renewcommand{\mod}[1]{\quad \text{(mod}\,\,#1\,\text{)}}    
+
+% % saut pour le probl\`eme du theoreme suivie d'une liste (amsthm)
+% \newcommand\thmlist{%
+%    \leavevmode
+%    \par\vspace*{-1.5\baselineskip}
+% }
+
+% \par avec saut de ligne
+\newcommand{\Par}{\par\medskip}
+\newcommand{\code}[1]{%{xunit=0.8cm,yunit=1cm
+  \textcolor{red}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Ent{\^e}te et bas de page   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\entete}[2]{%
+  \lhead{\large\bf #1}%
+  \rhead{\bf #2}}
+
+ \pagestyle{fancy}
+ \fancyfoot{}
+   \rfoot{\bf Page \thepage\ sur \pageref{LastPage}}
+   \lfoot{\bf Ann\'ee 2007--2008\\ Lyc\'ee Paul Val\'ery}
+   \renewcommand{\footrulewidth}{0.4pt}
+ \fancyhead{}
+
+
+%%% Tableau de variation 
+ \ifpdf
+ \else   
+ \input{tabvar}
+ \fi
+
+
+%%%%% Fin du package %%%%%
+\endinput
+
+%%%%%%%%%%%%%%%%%%%%%% Notes diverses %%%%%%%%%%%%%%

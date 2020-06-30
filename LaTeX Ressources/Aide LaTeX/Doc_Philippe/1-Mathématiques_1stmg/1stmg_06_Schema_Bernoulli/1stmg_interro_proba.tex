@@ -1,0 +1,183 @@
+\documentclass[10pt,french]{book}
+
+\input philippe2013
+\RegleEntete
+
+
+\newcommand\competences{
+\setcounter{exo}{0}
+\begin{tabular}{ll} Nom : \\[5pt] Prénom : \end{tabular}
+\hfill
+\textbf{Note :}\renewcommand\arraystretch{2.3}
+\begin{tabularx}{0.18\linewidth}{|X|}
+\hline
+\slashbox{\Huge\bfseries\phantom{10}}{\Huge\bfseries 10}\\
+\hline
+\end{tabularx}\renewcommand\arraystretch{1}\medskip
+}
+
+\entete{\premiere \stmg}{Probabilités}{A}
+\pieddepage{}{}{}
+
+
+\begin{document}
+\competences
+
+\textbf{Tous les résultats seront arrondis à $10^{-3}$ près.}\[***\]
+
+\exo Une fabrique artisanale de jouets en bois vérifie la qualité de sa production avant sa commercialisation.\par
+Chaque jouet produit par l'entreprise est soumis à deux contrôles : d'une part, l'aspect du jouet est examiné afin de vérifier qu'il ne présente pas de défaut de finition, d'autre part sa solidité est testée.\par
+Il s'avère, à la suite d'un grand nombre de vérifications, que :
+\begin{itemize}
+    \item $92\%$ des jouets sont sans défaut de finition ;
+    \item parmi les jouets qui sont sans défaut de finition, $95\%$ réussissent le test de solidité ;
+    \item parmi les jouets qui ont des défauts de finition, $25\%$ ne réussissent pas le test de solidité.
+\end{itemize}\medskip
+
+On considère les événements suivants :
+\begin{itemize}
+    \item $D$ : << le jouet présente un défaut de finition >> ;
+    \item $S$ : << le jouet a réussi le test de solidité >> ;
+    \item $A$ : << le jouet ne présente pas de défaut de finition \textbf{et} a réussi le test de solidité >> ;
+    \item $B$ : << le jouet a réussi le test de solidité avec ou sans défaut de finition >>.
+\end{itemize}\medskip
+
+\begin{enumerate}
+    \item Compléter l'arbre pondéré des possibles ci-dessous :
+\end{enumerate}
+
+\tikzstyle{level 1}=[level distance=2.5cm, sibling distance=-3cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=-1.5cm]
+\tikzstyle{proba} = [rectangle,fill=white,pos=0.5,inner sep=2pt]
+\tikzstyle{issue} = [circle,fill=black!20,draw=none,circular drop shadow]
+
+\begin{center}
+    \begin{tikzpicture}[grow=right]
+\node at (-3,0){}
+    child{
+        node[issue]{\color{black!20}$F$}
+            child{node[issue](N1){$S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+            child{node[issue](N2){\color{black!20}$\overline S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+    	   edge from parent
+    node[proba] {\color{white} $0,0005$}
+    }
+    child{
+        node[issue]{$D$}
+            child{node[issue](N1){\color{black!20}$S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+            child{node[issue](N2){\color{black!20}$\overline S$}
+                        edge from parent
+                        node[proba] {$0,25$}
+                    }
+    	   edge from parent
+    node[proba] {\color{white} $0,0005$}
+    };
+    \end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[resume]
+    \item Calculer $p(A)$ et $p(B)$.
+\end{enumerate}\[*\]
+
+\exo Pour chacun de ses tirs, un tireur à l'arc débutant atteint la cible avec une probabilité de $0,83$. On s'intéresse de savoir si le tireur va atteindre la cible.\par
+Trois tireurs se présentent devant leur cible. Ils ne réalisent qu'un tir chacun. La probabilité qu'un tireur atteigne la cible ne dépend pas des autres tireurs.
+
+\begin{enumerate}
+    \item Expliquer précisément pourquoi il s'agit d'un schéma de Bernoulli.
+    \item On appelle $A$ l'événement << tous les tireurs atteignent la cible >>. Calculer $p(A)$.
+    \item On appelle $B$ l'événement << un seul tireur exactement atteint la cible >>. Calculer $p(B)$.
+    \item On appelle $C$ l'événement << au moins un tireur n'atteint pas la cible >>. Calculer $p(C)$.
+\end{enumerate}
+
+\clearpage
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%                           SUJET B
+%--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\entete{\premiere \stmg}{Probabilités}{B}
+\competences
+
+\textbf{Tous les résultats seront arrondis à $10^{-3}$ près.}\[***\]
+
+\exo Une fabrique artisanale de jouets en bois vérifie la qualité de sa production avant sa commercialisation.\par
+Chaque jouet produit par l'entreprise est soumis à deux contrôles : d'une part, l'aspect du jouet est examiné afin de vérifier qu'il ne présente pas de défaut de finition, d'autre part sa solidité est testée.\par
+Il s'avère, à la suite d'un grand nombre de vérifications, que :
+\begin{itemize}
+    \item $92\%$ des jouets sont sans défaut de finition ;
+    \item parmi les jouets qui sont sans défaut de finition, $95\%$ réussissent le test de solidité ;
+    \item parmi les jouets qui ont des défauts de finition, $25\%$ ne réussissent pas le test de solidité.
+\end{itemize}\medskip
+
+On considère les événements suivants :
+\begin{itemize}
+    \item $F$ : << le jouet présente un défaut de finition >> ;
+    \item $S$ : << le jouet a réussi le test de solidité >> ;
+    \item $A$ : << le jouet ne présente pas de défaut de finition \textbf{et} a réussi le test de solidité >> ;
+    \item $B$ : << le jouet a réussi le test de solidité avec ou sans défaut de finition >>.
+\end{itemize}\medskip
+
+\begin{enumerate}
+    \item Compléter l'arbre pondéré des possibles ci-dessous :
+\end{enumerate}
+
+\tikzstyle{level 1}=[level distance=2.5cm, sibling distance=-3cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=-1.5cm]
+\tikzstyle{proba} = [rectangle,fill=white,pos=0.5,inner sep=2pt]
+\tikzstyle{issue} = [circle,fill=black!20,draw=none,circular drop shadow]
+
+\begin{center}
+    \begin{tikzpicture}[grow=right]
+\node at (-3,0){}
+    child{
+        node[issue]{$F$}
+            child{node[issue](N1){\color{black!20}$S$}
+                        edge from parent
+                        node[proba] {$0,25$}
+                    }
+            child{node[issue](N2){\color{black!20}$\overline S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+    	   edge from parent
+    node[proba] {\color{white} $0,0005$}
+    }
+    child{
+        node[issue]{\color{black!20} $F$}
+            child{node[issue](N1){\color{black!20}$S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+            child{node[issue](N2){$\overline S$}
+                        edge from parent
+                        node[proba] {\color{white} $0,0005$}
+                    }
+    	   edge from parent
+    node[proba] {\color{white} $0,0005$}
+    };
+    \end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[resume]
+    \item Calculer $p(A)$ et $p(B)$.
+\end{enumerate}\[*\]
+
+\exo Pour chacun de ses tirs, un tireur à l'arc débutant atteint la cible avec une probabilité de $0,83$. On s'intéresse de savoir si le tireur va atteindre la cible.\par
+Trois tireurs se présentent devant leur cible. Ils ne réalisent qu'un tir chacun. La probabilité qu'un tireur atteigne la cible ne dépend pas des autres tireurs.
+
+\begin{enumerate}
+    \item Expliquer précisément pourquoi il s'agit d'un schéma de Bernoulli.
+    \item On appelle $A$ l'événement << aucun tireur n'a atteint la cible >>. Calculer $p(A)$.
+    \item On appelle $B$ l'événement << un seul tireur exactement a raté la cible >>. Calculer $p(B)$.
+    \item On appelle $C$ l'événement << au moins un tireur atteint la cible >>. Calculer $p(C)$.
+\end{enumerate}
+
+\end{document} 

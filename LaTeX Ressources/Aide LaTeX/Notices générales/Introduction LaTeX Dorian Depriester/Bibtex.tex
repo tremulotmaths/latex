@@ -1,0 +1,174 @@
+\documentclass[svgnames,smaller]{beamer}
+\usetheme{Warsaw}
+%\useoutertheme{infolines}
+%\usepackage[final]{movie15}
+%\usepackage{default}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{etex}
+\usepackage[babel=true,kerning=true]{microtype}
+\usepackage{multimedia}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{multirow}
+\usepackage{colortbl}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[version=3]{mhchem}
+\usepackage{caption}
+\usepackage{pdfpages}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\pgfplotsset{compat=1.3}
+\definecolor{lightgray}{gray}{0.95}
+\usepackage{listings}
+	\lstset{backgroundcolor=\color{lightgray},language=[LaTeX]TeX,texcsstyle=\color{blue},commentstyle=\color{gray},
+	literate=
+	{à}{{\`a}}1
+	{é}{{\'e}}1
+	{è}{{\`e}}1}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{breakcites}
+\usepackage[normalem]{ulem}
+\usepackage{nicefrac}
+\usepackage[sort&compress,comma]{natbib}
+\usepackage{dtklogos}
+
+
+
+\def\newblock{}
+\setlength{\unitlength}{1mm}
+\date{février 2012}
+\author{Dorian Depriester}
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+
+
+
+\title{Utilisation de \BibTeX}
+
+\AtBeginSection[]{
+   \begin{frame}
+\begin{block}{}
+   %%% affiche en début de chaque section, les noms de sections et
+   %%% noms de sous-sections de la section en cours.
+   \tableofcontents[currentsection,hideothersubsections]
+\end{block}
+   \end{frame} 
+}
+
+
+
+
+
+    \setbeamertemplate{caption}[numbered]
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+
+\begin{document}
+\maketitle
+
+\section{Qu'est-ce ?}
+\frame{
+	\begin{block}{Principe}
+		Permet une utilisation rapide et automatisée des références bibliographiques dans un document \LaTeX
+	\end{block}
+	\begin{block}{Historique}<2->
+		Conçu en 1985 par Oren Patashnik et Leslie Lamport.
+	\end{block}
+}
+
+\section{Utilisation}
+\frame{
+\begin{block}{Principe}
+	L'ensemble des références bibliographiques est enregistré dans un fichier annexe (\texttt{.bib}). La totalités des informations relatives à chaque entrée est renseignée (auteurs, journal, année etc.).
+\end{block}
+\begin{block}{Utilisation}
+	Dans la source \texttt{.tex}, chaque référence est appelée par sa clé. La mise en forme des citations et des références est gérée par \LaTeX.
+\end{block}
+}
+
+
+
+
+\begin{frame}[fragile]
+
+\frametitle{Exemple minimal}
+	\begin{block}{Dans le \texttt{.bib}}
+		\begin{lstlisting}
+			@book{lamport1994latex,
+			  title={LaTeX$\}$:$\{$A$\}$ Document},
+			  author={Lamport, Leslie},
+			  volume={14},
+			  year={1994},
+			  publisher={pub-AW}
+			}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Dans le \texttt{.tex}}
+		\begin{lstlisting}
+		Comme dit dans~\cite{lamport1994latex}, blabla...
+
+			\bibliographystyle{plain}	% Style de biblio
+			\bibliography{biblio}		% Nom du .bib
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+
+\frame{
+\frametitle{Compilation}
+\begin{block}{1. \texttt{pdflatex}}
+	Génération du \texttt{.aux} : liste des références nécessaires
+\end{block}
+\begin{block}{2. \texttt{bibtex}}<2->
+	Génération du \texttt{.bbl} : enregistrement de la mise en forme des références
+\end{block}
+\begin{block}{3. \texttt{pdflatex}}<3->
+	Modification du \texttt{.aux} : enregistrement de la mise en forme des citations,\\ inclusion des références dans le pdf
+\end{block}
+\begin{block}{4. \texttt{pdflatex}}<4->
+	Mise à jour des citations dans le pdf
+\end{block}
+\begin{alertblock}{C'est toujours le \texttt{.tex} qui est compilé}<5->
+	Même avec \texttt{bibtex}
+\end{alertblock}
+}
+
+
+\section{Bien remplir les champs pour le \texttt{.bib}}
+\frame{
+\begin{block}{Utiliser un logiciel de gestion bibliographique}<1->
+	Zotero, Jabref etc.
+\end{block}
+
+
+
+\visible<2->{
+Directement depuis les sites internet :
+\begin{columns}
+	\begin{column}{0.4\textwidth}
+		\begin{block}{Google Scholar}
+			\includegraphics[width=\textwidth]{GoogleCitation.png}\\
+			\includegraphics[width=0.8\textwidth]{GoogleBibTeX.png}
+		\end{block}
+	\end{column}
+	\begin{column}{0.4\textwidth}
+		\begin{block}{ScienceDirect}
+			\includegraphics[width=\textwidth]{ScienceDirectCite.png}\\
+			\includegraphics[width=0.8\textwidth]{ScienceDirectBibtex.png}
+		\end{block}
+	\end{column}
+\end{columns}}
+}
+\end{document}

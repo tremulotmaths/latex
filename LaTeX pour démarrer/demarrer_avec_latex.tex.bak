@@ -1,0 +1,224 @@
+%___________________________
+%===   Redéfinition des marges par défaut
+%------------------------------------------------------
+%\usepackage[textwidth=18.6cm]{geometry}%à mettre dans le preambule perso
+%\pagestyle{fancy}%à mettre dans le preambule perso
+
+
+\setlength\paperheight{297mm}
+\setlength\paperwidth{210mm}
+\setlength{\evensidemargin}{0cm}% Marge gauche sur pages paires
+\setlength{\oddsidemargin}%{0cm}%
+{-0.5cm}% Marge gauche sur pages impaires
+\setlength{\topmargin}{-2cm}% Marge en haut
+\setlength{\headsep}{0.5cm}% Entre le haut de page et le texte
+\setlength{\headheight}{0.7cm}% Haut de page
+\setlength{\textheight}{25.2cm}% Hauteur de la zone de texte
+\setlength{\textwidth}{17cm}% Largeur de la zone de texte
+
+
+% Environnement enumerate
+\renewcommand{\theenumi}{\bf\textsf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\bf\textsf{\theenumi.}}
+\renewcommand{\theenumii}{\bf\textsf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\bf\textsf{\theenumii.}}
+\renewcommand{\theenumiii}{\bf\textsf{\roman{enumiii}}}
+\renewcommand{\labelenumiii}{\bf\textsf{\theenumiii.}}
+
+
+\usetikzlibrary{shadows,trees}
+
+
+%definition des couleurs
+\definecolor{fondpaille}{cmyk}{0,0,0.1,0}%\pagecolor{fondpaille}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{1,0,0}
+\definecolor{bleu}{rgb}{0,0,1}
+\definecolor{vert}{rgb}{0,1,0}
+\definecolor{deficolor}{HTML}{2D9AFF}
+\definecolor{backdeficolor}{HTML}{EDEDED}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{C10CC7}%{HTML}{036DD0}%F4404D%rouge
+\definecolor{backtheocolor}{HTML}{D3D3D3}
+\definecolor{methcolor}{HTML}{008800}%12BB05}
+\definecolor{backmethcolor}{HTML}{FFFACD}
+\definecolor{backilluscolor}{HTML}{EDEDED}
+\definecolor{sectioncolor}{HTML}{C10CC7}%{B2B2B2}%vert : {HTML}{008800}%{HTML}{2D9AFF}
+\definecolor{subsectioncolor}{HTML}{C10CC7}%{B2B2B2}%vert : {HTML}{008800}%{rgb}{0.5,0,0}
+\definecolor{subsubsectioncolor}{HTML}{C10CC7}
+\definecolor{engcolor}{HTML}{D4D7FE}
+\definecolor{exocolor}{rgb}{0,0.6,0}
+\definecolor{exosoltitlecolor}{rgb}{0,0.6,0}
+\definecolor{titlecolor}{rgb}{1,1,1}
+
+%commande pour enlever les couleurs avant impression
+\newcommand{\nocolor}
+{\pagecolor{white}
+\definecolor{gris}{rgb}{0.7,0.7,0.7}
+\definecolor{rouge}{rgb}{0,0,0}
+\definecolor{bleu}{rgb}{0,0,0}
+\definecolor{vert}{rgb}{0,0,0}
+\definecolor{deficolor}{HTML}{B2B2B2}
+\definecolor{backdeficolor}{HTML}{EEEEEE}%{036DD0}%dégradé bleu{666666}%dégradé gris
+\definecolor{theocolor}{HTML}{B2B2B2}
+\definecolor{backtheocolor}{HTML}{EEEEEE}
+\definecolor{methcolor}{HTML}{B2B2B2}
+\definecolor{backmethcolor}{HTML}{EEEEEE}
+\definecolor{backilluscolor}{HTML}{EEEEEE}
+\definecolor{sectioncolor}{HTML}{B2B2B2}
+\definecolor{subsectioncolor}{HTML}{B2B2B2}
+\definecolor{subsubsectioncolor}{HTML}{B2B2B2}
+\definecolor{engcolor}{HTML}{EEEEEE}
+\definecolor{exocolor}{HTML}{3B3838}
+\definecolor{exosoltitlecolor}{rgb}{0,0,0}
+\definecolor{titlecolor}{rgb}{0,0,0}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Encadrés pour Propriétés, Théorème, Définitions, exemples, exercices
+
+\usepackage{environ}%pour pouvoir utiliser la commande \NewEnviron
+
+%___________________________
+%===    Cadre arrondi coloré
+%------------------------------------------------------
+%
+\NewEnviron{CadreColor}{
+\medskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\linewidth-12pt}{\BODY}};
+\end{tikzpicture}
+%\medskip
+}
+
+
+%___________________________
+%===    Cadre arrondi blanc
+%------------------------------------------------------
+%
+\NewEnviron{Cadre}{
+\medskip
+\begin{tikzpicture}[node distance=0 cm]
+\node[draw,very thick,rounded corners=5pt,anchor=north west] at(0,-0.02)
+{\black\parbox{\linewidth-12pt}{\BODY}};
+\end{tikzpicture}
+%\medskip
+}
+
+
+
+
+%___________________________
+%===    Redéfinition de la commande \chapter{•}
+%------------------------------------------------------
+%
+\makeatletter
+
+\renewcommand{\@makechapterhead}[1]{
+{\color{blue}
+        \begin{flushright}
+            \fontfamily{pzc}
+            \bfseries\fontsize{40}{20}\selectfont{
+            #1}
+            
+        \end{flushright}
+        \vspace{24pt}
+            %\rule{\linewidth}{1pt}
+            }
+\setlength\parindent{0mm}
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\leftmark}{}{\thepage / \pageref{LastPage}}
+}
+
+%Chapitre avec effet miroir en dessous
+%{\begin{tikzpicture}[remember picture, overlay,shift={(current page.north east)}]
+%        \node at (0.1,0.1) [below left,draw=\MaCouleur, very thick,rounded corners, inner sep=10pt, inner ysep=10pt,fill=gray!20,text width=3cm, align=center]%
+%            {\small\color{\MaCouleur}
+%            \bfseries \bsc{\chaptername \thechapter}};
+%    \end{tikzpicture}\vspace*{-2cm}
+%
+%    \begin{center}
+%        \begin{tikzpicture}[color={\MaCouleur}]
+%            \draw (0,0) -- (0.8\linewidth,0)
+%                node[midway,above] {\fontfamily{pzc}\selectfont\scalefont{3}#1}
+%                node[midway,above,yscale=-1, opacity=0.5] {\fontfamily{pzc}\selectfont\scalefont{3}#1};
+%        \end{tikzpicture}
+%    \end{center}
+%}
+
+%Chapitre encadré en couleur
+%{
+%\begin{tikzpicture}
+%\node[fill=theocolor,rectangle,rounded corners=5pt]{%
+%\begin{minipage}{\linewidth}
+%\begin{center}
+%\vspace*{9pt}
+%\textcolor{titlecolor}{\Large \textsc{\textbf{Chapitre \thechapter \ : \ #1}}}
+%\vspace*{9pt}
+%\end{center}
+%\end{minipage}
+%};\end{tikzpicture}
+%}
+
+\makeatother
+
+
+%___________________________
+%===    Commandes perso
+%------------------------------------------------------
+%
+%\Leftrightarrow
+\newcommand{\Lr}{\Leftrightarrow}
+
+%Ancienne commande chapitre
+\newcommand{\chapitre}[1]{
+\begin{tikzpicture}
+\node[fill=sectioncolor,rectangle,rounded corners=5pt]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{9pt}
+\textcolor{titlecolor}{\Large \textsc{\textbf{#1}}}
+\vspace*{9pt}
+\end{center}
+\end{minipage}
+};
+\end{tikzpicture}
+\bigskip
+}
+
+
+\pagecolor{white}%couleur du fond de page
+
+\renewcommand{\Pointilles}{%
+\makebox[\linewidth]{\dotfill}
+}
+
+
+%QRcode généré par le package qrcode
+\usepackage{qrcode}
+
+
+%Pour pouvoir utiliser l'environnement verbatim
+\usepackage{verbatim}
+
+%Panneau danger (nécessite le package pstricks)
+\def\danger{\begingroup
+\psset{unit=1ex}%
+\begin{pspicture}(0,0)(3,3)
+ 
+\pspolygon[linearc=0.2,linewidth=0.12,linecolor=red](0,0)(1.5,2.6)(3,0)
+ 
+\psellipse*(1.5,1.33)(0.14,0.75)\pscircle*(1.5,0.3){0.15}\end{pspicture}
+%
+\endgroup}%
+
+\newcommand{\cad}{c'est-à-dire }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

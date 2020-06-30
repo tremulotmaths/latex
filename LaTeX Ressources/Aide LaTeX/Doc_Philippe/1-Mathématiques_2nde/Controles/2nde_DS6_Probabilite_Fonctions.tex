@@ -1,0 +1,95 @@
+\documentclass[10pt,french]{book}
+\input preambule_2013
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\textbf{(#1)}}\par
+  \medskip}%
+{\medskip}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|>\centering m{2.5cm}|>\centering X|>{\centering\arraybackslash} m{2.5cm}|}
+	\hline
+		\seconde 7 &  Mardi 3 juin \np{2014} & \textbf{Probabilités Fonctions} \\
+	\hline
+		\multicolumn{3}{|c|}{\bsc{Contrôle de mathématiques}} \\
+	\hline
+        \multicolumn{1}{|r}{\bsc{Nom}:} & \multicolumn{2}{l|}{} \\
+		\multicolumn{1}{|r}{Prénom:} & \multicolumn{2}{l|}{} \\
+	\hline
+        \multicolumn{3}{|l|}{\bfseries Note et observations :} \\[1cm]
+    \hline
+\end{tabularx}\medskip
+
+{\itshape
+\small
+Le barème est indicatif. Répondre aux questions \textbf{par des phrases}.\par
+}
+\end{center}
+
+\begin{exoc}{4 points}
+Dans un sac, on a mélangé $10$ boules indiscernables au toucher. Parmi ces boules, il y a $7$ rouges et $3$ noires.\par
+On tire, au hasard, une boule du sac. On note les événements suivants :\par
+$N$ : << la boule tirée est noire >> et $R$ : << la boule tirée est rouge >>.\par
+Après avoir tiré la première boule, on la met de côté et on tire une seconde boule du sac.
+
+\begin{enumerate}
+    \item Représenter ces deux tirages successifs à l'aide d'un arbre.
+    \item $A$ est l'événement : << on a obtenu $2$ boules noires >>. Démontrer que $p(A) \approx 0,47$.
+    \item $B$ est l'événement : << on a obtenu $2$ boules de la même couleur >>. Démontrer que $p(B) \approx 53,3\%$.
+\end{enumerate}
+\end{exoc}
+
+\begin{exoc}{6 points}
+    Dans un jeu de $32$ cartes, il y a $4$ couleurs : Pique $\spadesuit$, C{\oe}ur $\heartsuit$, Carreau $\diamondsuit$ et Trèfle $\clubsuit$.\par
+    Dans chacune des couleurs, il y a $3$ figures : Roi, Dame, Valet et $5$ cartes avec une valeur : As, $7$, $8$, $9$ et $10$.\par
+    On tire au hasard une carte dans ce jeu. Toutes les cartes ont la même probabilité d'être choisie. On considère les événements suivants :\par
+    $A$ : << la carte obtenue est un carreau >>\par
+    $B$ : << la carte obtenue est une figure >>.
+    
+    \begin{enumerate}
+        \item Calculer les probabilités $p(A)$ et $p(B)$. Donner le résultat sous forme d'une fraction irréductible.
+        \item Définir à l'aide d'une phrase en français les événements $\overline A$ et $A \cap B$.
+        \item Calculer $p\left(\overline A\right)$ et $p(A \cap B)$.
+        \item On note $C$ l'événement : << la carte obtenue est un carreau ou une figure >>.\par
+        \'Ecrire l'événement $C$ à l'aide d'un symbole mathématique en utilisant les événements $A$ et $B$.
+        \item À l'aide d'une formule du cours, calculer $p(C)$.
+    \end{enumerate}
+\end{exoc}
+
+\begin{exoc}{2 points}
+On note $f$ la fonction carrée et $g$ la fonction inverse.
+    \begin{enumerate}
+        \item Dresser le tableau de signes des fonctions $f$ et $g$ sur leur ensemble de définition.
+        \item Dresser le tableau de variations des fonctions $f$ et $g$ sur leur ensemble de définition.
+    \end{enumerate}
+\end{exoc}
+
+\begin{exoc}{3 points}
+    On considère la fonction $f$ définie pour tout $x \in \R$ par :
+    $f(x) = -2x^2 + 4x + 5.$
+    \begin{enumerate}
+        \item Démontrer, à l'aide de calculs, que, pour tout $x \in \R$, $f(x) = -2(x - 1)^2 + 7$.
+        \item Déterminer les coordonnées du sommet de la parabole représentant la fonction $f$.
+        \item Dresser le tableau de variations de $f$.
+    \end{enumerate}
+\end{exoc}
+
+\begin{exoc}{5 points}
+    La tension $U$ aux bornes d'un conducteur ohmique de résistance $R$ traversé par un courant d'intensité $I$ est donnée par la loi d'Ohm : \pfr{$U = R \times I$}\par où $U$ est en volts ($V$), $I$ est en ampères ($A$) et $R$ est en ohms ($\Omega$).
+        \begin{enumerate}
+            \item On suppose \textbf{uniquement dans cette question} que $R = 10\Omega$ et $I=0,2 A$. Calculer $U$.
+            \item On suppose \textbf{uniquement dans cette question} que $R = 10\Omega$ et $U = 9V$. Calculer $I$.
+            \item En utilisant la loi d'Ohm, donner l'expression de $I$ en fonction de $U$ et de $R$.
+            \item Peut-on calculer $I$ si $R = 0$ ? Expliquer pourquoi.
+            \item La tension $U$ étant positive et fixée, quelle est la variation de $I$ lorsque $R$ augmente ? Expliquer.
+        \end{enumerate}
+\end{exoc}
+
+
+
+\end{document} 

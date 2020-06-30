@@ -1,0 +1,5191 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=latex 2017.10.11)  5 SEP 2019 18:07
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**./Pour_demarrer_LaTeX.tex
+(./Pour_demarrer_LaTeX.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
+(c:/texlive/2017/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(c:/texlive/2017/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(./preambule_2020_demarrer_avec_latex.tex
+(c:/texlive/2017/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 2016/08/01 v2.7 eTeX basic definition package (PEB,DPC)
+\et@xins=\count88
+)
+(c:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+))
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/ucs.sty
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count89
+\uc@combtoks=\toks16
+\uc@combtoksb=\toks17
+\uc@temptokena=\toks18
+)
+(c:/texlive/2017/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(c:/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2017/05/19 3.10 The Babel package
+
+(c:/texlive/2017/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2017/04/30 v3.3a French support from the babel system
+
+(c:/texlive/2017/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2017/05/19 3.10 Babel common definitions
+\babel@savecnt=\count90
+\U@D=\dimen103
+)
+\l@acadian = a dialect from \language\l@french 
+\l@canadien = a dialect from \language\l@french 
+\FB@nonchar=\count91
+\FBcolonsp=\toks19
+\FBthinsp=\toks20
+Package babel Info: Making : an active character on input line 362.
+Package babel Info: Making ; an active character on input line 363.
+Package babel Info: Making ! an active character on input line 364.
+Package babel Info: Making ? an active character on input line 365.
+\FBguillsp=\toks21
+\FBguill@level=\count92
+\FB@everypar=\toks22
+\FB@Mht=\dimen104
+\mc@charclass=\count93
+\mc@charfam=\count94
+\mc@charslot=\count95
+\std@mcc=\count96
+\dec@mcc=\count97
+\listindentFB=\skip43
+\descindentFB=\skip44
+\labelwidthFB=\skip45
+\leftmarginFB=\skip46
+\parindentFFN=\dimen105
+\FBfnindent=\skip47
+)
+(c:/texlive/2017/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/01/24 v3.3q English support from the babel system
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)
+(c:/texlive/2017/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2017/04/30 v3.3a French support from the babel system
+))
+(c:/texlive/2017/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tipa/tipa.sty
+Package: tipa 2002/08/08 TIPA version 1.1
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(c:/texlive/2017/texmf-dist/tex/latex/tipa/t3enc.def
+File: t3enc.def 2001/12/31 T3 encoding
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 357.
+
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+))
+(c:/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+)))
+(c:/texlive/2017/texmf-dist/tex/latex/frcursive/frcursive.sty
+Package: frcursive 2004/02/01 v1.2 support package for French Cursive
+\seyesThickness=\skip48
+\seyes@box=\box26
+\seyes@ln=\skip49
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fourier.sty
+Package: fourier 2005/01/01 1.4 fourier-GUTenberg package
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(c:/texlive/2017/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fourier-orns.sty
+Package: fourier-orns 2004/01/30 1.1 fourier-ornaments package
+)
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 50.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> T1/futs/m/n on input line 50.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> T1/futs/m/n on input line 50.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  T1/futs/m/n --> T1/futs/b/n on input line 51.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 86.
+LaTeX Font Info:    Encoding `OML' has changed to `FML' for symbol font
+(Font)              `letters' in the math version `normal' on input line 86.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> FML/futm/m/it on input line 86.
+LaTeX Font Info:    Encoding `OML' has changed to `FML' for symbol font
+(Font)              `letters' in the math version `bold' on input line 86.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> FML/futm/m/it on input line 86.
+\symotherletters=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  FML/futm/m/it --> FML/futm/b/it on input line 88.
+LaTeX Font Info:    Overwriting symbol font `otherletters' in version `bold'
+(Font)                  FML/futmi/m/it --> FML/futmi/b/it on input line 89.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 90.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 91.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 92.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 94.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 95.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 96.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 99.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 100.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 113.
+LaTeX Font Info:    Encoding `OMS' has changed to `FMS' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 113.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> FMS/futm/m/n on input line 113.
+LaTeX Font Info:    Encoding `OMS' has changed to `FMS' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 113.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> FMS/futm/m/n on input line 113.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 114.
+LaTeX Font Info:    Encoding `OMX' has changed to `FMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+14.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> FMX/futm/m/n on input line 114.
+LaTeX Font Info:    Encoding `OMX' has changed to `FMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 114
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> FMX/futm/m/n on input line 114.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 115.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> T1/futs/bx/n on input line 115.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> T1/futs/bx/n on input line 115.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 116.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 117.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> T1/futs/m/it on input line 117.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> T1/futs/m/it on input line 117.
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 118.
+LaTeX Font Info:    Redeclaring math symbol \parallel on input line 134.
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 148.
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 186.
+LaTeX Font Info:    Redeclaring math symbol \varvarrho on input line 187.
+LaTeX Font Info:    Redeclaring math delimiter \Vert on input line 210.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 215.
+LaTeX Font Info:    Redeclaring math delimiter \Downarrow on input line 225.
+LaTeX Font Info:    Redeclaring math delimiter \backslash on input line 227.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 229.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 231.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 233.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 235.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 237.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 239.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 241.
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 243.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 247.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 248.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 249.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 250.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 251.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 252.
+LaTeX Font Info:    Redeclaring math accent \check on input line 253.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 254.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 255.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 256.
+\symUfutm=\mathgroup5
+)
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(c:/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2016/07/10 v3.1a Driver-dependent file (DPC,SPQR)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(c:/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen106
+\extrarowheight=\dimen107
+\NC@list=\toks24
+\extratabsurround=\skip50
+\backup@length=\skip51
+)
+\everycr=\toks25
+\minrowclearance=\skip52
+)
+\rownum=\count98
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 99.
+))
+(c:/texlive/2017/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+\fancy@headwidth=\skip53
+\f@ncyO@elh=\skip54
+\f@ncyO@erh=\skip55
+\f@ncyO@olh=\skip56
+\f@ncyO@orh=\skip57
+\f@ncyO@elf=\skip58
+\f@ncyO@erf=\skip59
+\f@ncyO@olf=\skip60
+\f@ncyO@orf=\skip61
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks26
+)
+(c:/texlive/2017/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip62
+\enit@outerparindent=\dimen108
+\enit@toks=\toks27
+\enit@inbox=\box27
+\enitdp@description=\count99
+)
+(c:/texlive/2017/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks28
+\symAMSa=\mathgroup6
+\symAMSb=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+LaTeX Font Info:    Redeclaring math symbol \square on input line 141.
+)
+LaTeX Font Info:    Redeclaring math symbol \blacksquare on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \vDash on input line 60.
+LaTeX Font Info:    Redeclaring math symbol \leftleftarrows on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \rightrightarrows on input line 64.
+
+LaTeX Font Info:    Redeclaring math symbol \leqslant on input line 101.
+LaTeX Font Info:    Redeclaring math symbol \geqslant on input line 108.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleright on input line 1
+20.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleleft on input line 12
+1.
+LaTeX Font Info:    Redeclaring math symbol \complement on input line 165.
+LaTeX Font Info:    Redeclaring math symbol \intercal on input line 166.
+LaTeX Font Info:    Redeclaring math symbol \nleqslant on input line 181.
+LaTeX Font Info:    Redeclaring math symbol \ngeqslant on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \varsubsetneq on input line 203.
+LaTeX Font Info:    Redeclaring math symbol \subsetneqq on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \nparallel on input line 215.
+LaTeX Font Info:    Redeclaring math symbol \nvDash on input line 221.
+LaTeX Font Info:    Redeclaring math symbol \nexists on input line 235.
+LaTeX Font Info:    Redeclaring math symbol \smallsetminus on input line 251.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowleft on input line 257.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowright on input line 258.
+
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 260.
+LaTeX Font Info:    Redeclaring math symbol \hslash on input line 262.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
+
+(c:/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count100
+\calc@Bcount=\count101
+\calc@Adimen=\dimen109
+\calc@Bdimen=\dimen110
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count102
+\calc@Cskip=\skip65
+)
+(c:/texlive/2017/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip66
+
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks29
+\ex@=\dimen111
+))
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen112
+)
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count103
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count104
+\leftroot@=\count105
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count106
+\DOTSCASE@=\count107
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen113
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count108
+\c@MaxMatrixCols=\count109
+\dotsspace@=\muskip10
+\c@parentequation=\count110
+\dspbrk@lvl=\count111
+\tag@help=\toks30
+\row@=\count112
+\column@=\count113
+\maxfields@=\count114
+\andhelp@=\toks31
+\eqnshift@=\dimen114
+\alignsep@=\dimen115
+\tagshift@=\dimen116
+\tagwidth@=\dimen117
+\totwidth@=\dimen118
+\lineht@=\dimen119
+\@envbody=\toks32
+\multlinegap=\skip67
+\multlinetaggap=\skip68
+\mathdisplay@stack=\toks33
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count115
+\l_MT_multwidth_dim=\dimen120
+\origjot=\skip69
+\l_MT_shortvdotswithinadjustabove_dim=\dimen121
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen122
+\l_MT_above_intertext_sep=\dimen123
+\l_MT_below_intertext_sep=\dimen124
+\l_MT_above_shortintertext_sep=\dimen125
+\l_MT_below_shortintertext_sep=\dimen126
+)
+(c:/texlive/2017/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)
+(c:/texlive/2017/texmf-dist/tex/generic/xlop/xlop.sty
+Package: xlop 2009/12/02 package wrapper for xlop.tex
+
+(c:/texlive/2017/texmf-dist/tex/generic/xlop/xlop.tex
+\op@count@z=\count116
+\op@count@i=\count117
+\op@count@ii=\count118
+\op@count@iii=\count119
+\op@count@iv=\count120
+\op@count@v=\count121
+\op@count@vi=\count122
+\op@currentstyle=\toks34
+
+`xlop' v0.26  <2017/01/07> (jcc)
+\opcolumnwidth=\dimen127
+\oplineheight=\dimen128
+\op@strutbox=\box30
+\op@decimalsepwidth=\dimen129
+\op@decimalsepoffset=\dimen130
+\op@hrulewidth=\dimen131
+\op@vrulewidth=\dimen132
+\op@parenthesis=\count123
+\op@token=\count124
+\op@stack=\count125
+\op@stackb=\count126
+)) (c:/texlive/2017/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+LaTeX Info: Redefining \bm on input line 207.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/cancel/cancel.sty
+Package: cancel 2013/04/12 v2.2 Cancel math terms
+)
+(c:/texlive/2017/texmf-dist/tex/latex/numprint/numprint.sty
+Package: numprint 2012/08/20 v1.39 Print numbers (HH)
+\c@nprt@mantissa@digitsbefore=\count127
+\c@nprt@mantissa@digitsafter=\count128
+\c@nprt@exponent@digitsbefore=\count129
+\c@nprt@exponent@digitsafter=\count130
+\nprt@digitwidth=\skip70
+\nprt@sepwidth=\skip71
+\nprt@decimalwidth=\skip72
+\nprt@blockwidth=\skip73
+\nprt@digittoks=\toks35
+\nprt@pretoks=\toks36
+\nprt@posttoks=\toks37
+\nprt@thisdigit=\count131
+\nprt@curpos=\count132
+\nprt@rndpos=\count133
+\c@nprt@digitsfirstblock=\count134
+\c@nprt@blockcnt=\count135
+\c@nprt@cntprint=\count136
+
+No configuration file `numprint.cfg' found.)
+(c:/texlive/2017/texmf-dist/tex/latex/doublestroke/dsfont.sty
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
+)
+(c:/texlive/2017/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup9
+)
+\EspacePV=\skip74
+
+(c:/texlive/2017/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip75
+\LTright=\skip76
+\LTpre=\skip77
+\LTpost=\skip78
+\LTchunksize=\count137
+\LTcapwidth=\dimen133
+\LT@head=\box31
+\LT@firsthead=\box32
+\LT@foot=\box33
+\LT@lastfoot=\box34
+\LT@cols=\count138
+\LT@rows=\count139
+\c@LT@tables=\count140
+\c@LT@chunks=\count141
+\LT@p@ftn=\toks38
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
+\TX@col@width=\dimen134
+\TX@old@table=\dimen135
+\TX@old@col=\dimen136
+\TX@target=\dimen137
+\TX@delta=\dimen138
+\TX@cols=\count142
+\TX@ftn=\toks39
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tabulary/tabulary.sty
+Package: tabulary 2014/06/11 v0.10 tabulary package (DPC)
+\TY@count=\count143
+\TY@linewidth=\dimen139
+\tymin=\dimen140
+\tymax=\dimen141
+\TY@tablewidth=\dimen142
+)
+(c:/texlive/2017/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip79
+\multirow@cntb=\count144
+\multirow@dima=\skip80
+\bigstrutjot=\dimen143
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+\c@tracingmulticols=\count145
+\mult@box=\box35
+\multicol@leftmargin=\dimen144
+\c@unbalance=\count146
+\c@collectmore=\count147
+\doublecol@number=\count148
+\multicoltolerance=\count149
+\multicolpretolerance=\count150
+\full@width=\dimen145
+\page@free=\dimen146
+\premulticols=\dimen147
+\postmulticols=\dimen148
+\multicolsep=\skip81
+\multicolbaselineskip=\skip82
+\partial@page=\box36
+\last@line=\box37
+\maxbalancingoverflow=\dimen149
+\mult@rightbox=\box38
+\mult@grightbox=\box39
+\mult@gfirstbox=\box40
+\mult@firstbox=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\c@columnbadness=\count151
+\c@finalcolumnbadness=\count152
+\last@try=\dimen150
+\multicolovershoot=\dimen151
+\multicolundershoot=\dimen152
+\mult@nat@firstbox=\box59
+\colbreak@box=\box60
+\mc@col@check@num=\count153
+)
+(c:/texlive/2017/texmf-dist/tex/latex/arydshln/arydshln.sty
+Package: arydshln 2016/04/28 v1.73 
+\dashlinedash=\dimen153
+\dashlinegap=\dimen154
+\adl@box=\box61
+\adl@height=\dimen155
+\adl@heightsave=\dimen156
+\adl@depth=\dimen157
+\adl@depthsave=\dimen158
+\adl@finaldepth=\dimen159
+\adl@columns=\count154
+\adl@ncol=\count155
+\adl@currentcolumn=\count156
+\adl@currentcolumnsave=\count157
+\adl@totalheight=\count158
+\adl@totalheightsave=\count159
+\adl@dash=\count160
+\adl@gap=\count161
+\adl@cla=\count162
+\adl@clb=\count163
+\adl@everyvbox=\toks40
+\adl@LTpagetotal=\dimen160
+)
+(c:/texlive/2017/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks41
+\SOUL@lasttoken=\toks42
+\SOUL@cmds=\toks43
+\SOUL@buffer=\toks44
+\SOUL@token=\toks45
+\SOUL@spaceskip=\skip83
+\SOUL@ttwidth=\dimen161
+\SOUL@uldp=\dimen162
+\SOUL@ulht=\dimen163
+)
+(c:/texlive/2017/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box62
+\UL@hyphenbox=\box63
+\UL@skip=\skip84
+\UL@hook=\toks46
+\UL@height=\dimen164
+\UL@pe=\count164
+\UL@pixel=\dimen165
+\ULC@box=\box64
+Package: ulem 2012/05/18
+\ULdepth=\dimen166
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks47
+\pgfutil@tempdima=\dimen167
+\pgfutil@tempdimb=\dimen168
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)
+) (c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box65
+
+(c:/texlive/2017/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen169
+\Gin@req@width=\dimen170
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks48
+\pgfkeys@temptoks=\toks49
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks50
+))
+\pgf@x=\dimen171
+\pgf@y=\dimen172
+\pgf@xa=\dimen173
+\pgf@ya=\dimen174
+\pgf@xb=\dimen175
+\pgf@yb=\dimen176
+\pgf@xc=\dimen177
+\pgf@yc=\dimen178
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count165
+\c@pgf@countb=\count166
+\c@pgf@countc=\count167
+\c@pgf@countd=\count168
+\t@pgf@toka=\toks51
+\t@pgf@tokb=\toks52
+\t@pgf@tokc=\toks53
+ (c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-dvips.def
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+File: pgfsys-dvips.def 2014/07/09  (rcs-revision 1.25)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postscrip
+t.def
+File: pgfsys-common-postscript.def 2008/10/01  (rcs-revision 1.22)
+\pgf@objectcount=\count169
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count170
+\pgfsyssoftpath@bigbuffer@items=\count171
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen179
+\pgfmath@count=\count172
+\pgfmath@box=\box66
+\pgfmath@toks=\toks54
+\pgfmath@stack@operand=\toks55
+\pgfmath@stack@operation=\toks56
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric
+.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.t
+ex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.co
+de.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithm
+etics.code.tex)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count173
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen180
+\pgf@picmaxx=\dimen181
+\pgf@picminy=\dimen182
+\pgf@picmaxy=\dimen183
+\pgf@pathminx=\dimen184
+\pgf@pathmaxx=\dimen185
+\pgf@pathminy=\dimen186
+\pgf@pathmaxy=\dimen187
+\pgf@xx=\dimen188
+\pgf@xy=\dimen189
+\pgf@yx=\dimen190
+\pgf@yy=\dimen191
+\pgf@zx=\dimen192
+\pgf@zy=\dimen193
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.cod
+e.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen194
+\pgf@path@lasty=\dimen195
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.te
+x
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen196
+\pgf@shorten@start@additional=\dimen197
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box67
+\pgf@hbox=\box68
+\pgf@layerbox@main=\box69
+\pgf@picture@serial@count=\count174
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code
+.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen198
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.c
+ode.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen199
+Normal \dimen register pool exhausted, switching to extended pool.
+\pgf@pt@y=\dimen256
+\pgf@pt@temp=\dimen257
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.co
+de.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen258
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen259
+\pgf@sys@shading@range@num=\count175
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box70
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code
+.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box71
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.st
+y
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen260
+\pgf@nodesepend=\dimen261
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) (c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(c:/texlive/2017/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen262
+\pgffor@skip=\dimen263
+\pgffor@stack=\toks57
+\pgffor@toks=\toks58
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.co
+de.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count176
+\pgfplotmarksize=\dimen264
+)
+\tikz@lastx=\dimen265
+\tikz@lasty=\dimen266
+\tikz@lastxsaved=\dimen267
+\tikz@lastysaved=\dimen268
+\tikzleveldistance=\dimen269
+\tikzsiblingdistance=\dimen270
+\tikz@figbox=\box72
+\tikz@figbox@bg=\box73
+\tikz@tempbox=\box74
+\tikz@tempbox@bg=\box75
+\tikztreelevel=\count177
+\tikznumberofchildren=\count178
+\tikznumberofcurrentchild=\count179
+\tikz@fig@count=\count180
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count181
+\pgfmatrixcurrentcolumn=\count182
+\pgf@matrix@numberofcolumns=\count183
+)
+\tikz@expandcount=\count184
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(c:/texlive/2017/texmf-dist/tex/latex/tikz-3dplot/tikz-3dplot.sty
+(c:/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brary3d.code.tex
+File: tikzlibrary3d.code.tex 2013/07/17 v3.0.1a (rcs-revision 1.2)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen271
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.g
+eometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.m
+isc.code.tex
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.s
+ymbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.a
+rrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.callouts.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.c
+allouts.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.m
+ultipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box76
+\pgfnodeparttwobox=\box77
+\pgfnodepartthreebox=\box78
+\pgfnodepartfourbox=\box79
+\pgfnodeparttwentybox=\box80
+\pgfnodepartnineteenbox=\box81
+\pgfnodeparteighteenbox=\box82
+\pgfnodepartseventeenbox=\box83
+\pgfnodepartsixteenbox=\box84
+\pgfnodepartfifteenbox=\box85
+\pgfnodepartfourteenbox=\box86
+\pgfnodepartthirteenbox=\box87
+\pgfnodeparttwelvebox=\box88
+\pgfnodepartelevenbox=\box89
+\pgfnodeparttenbox=\box90
+\pgfnodepartninebox=\box91
+\pgfnodeparteightbox=\box92
+\pgfnodepartsevenbox=\box93
+\pgfnodepartsixbox=\box94
+\pgfnodepartfivebox=\box95
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.
+tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarylindenmayersystems.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibrarylindenmayersyst
+ems.code.tex
+\pgflsystemstep=\dimen272
+\c@pgf@lsystem@iteration=\count185
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.t
+ex
+\pgfdecoratedcompleteddistance=\dimen273
+\pgfdecoratedremainingdistance=\dimen274
+\pgfdecoratedinputsegmentcompleteddistance=\dimen275
+\pgfdecoratedinputsegmentremainingdistance=\dimen276
+\pgf@decorate@distancetomove=\dimen277
+\pgf@decorate@repeatstate=\count186
+\pgfdecorationsegmentamplitude=\dimen278
+\pgfdecorationsegmentlength=\dimen279
+)
+\tikz@lib@dec@box=\box96
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.markings.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.markings.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.pathmorphing.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.pathmorphing.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.pathreplacing.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.pathreplacing.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarypatterns.code.tex
+File: tikzlibrarypatterns.code.tex 2008/01/15 v3.0.1a (rcs-revision 1.2)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.t
+ex
+File: pgflibrarypatterns.code.tex 2008/03/03 v3.0.1a (rcs-revision 1.13)
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarydecorations.text.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydec
+orations.text.code.tex
+\pgf@lib@dec@text@box=\box97
+)
+\tikz@lib@dec@te@box=\box98
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryshadows.code.tex
+File: tikzlibraryshadows.code.tex 2008/01/13 v3.0.1a (rcs-revision 1.3)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+braryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2009/11/15 v3.0.1a (rcs-revision 1.2)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.te
+x
+File: pgflibraryfadings.code.tex 2008/02/07 v3.0.1a (rcs-revision 1.3)
+
+
+Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
+ngs. This warning is given only once on input line 31.
+
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarytrees.code.tex
+File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.1a (rcs-revision 1.2)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2017/03/17 v0.63 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pstricks.tex
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(c:/texlive/2017/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(c:/texlive/2017/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks59
+\XKV@tempa@toks=\toks60
+)
+\XKV@depth=\count187
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)))
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count188
+\pstFP@xia=\count189
+\pstFP@xib=\count190
+\pstFP@xfa=\count191
+\pstFP@xfb=\count192
+\pstFP@rega=\count193
+\pstFP@regb=\count194
+\pstFP@regs=\count195
+\pstFP@times=\count196
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+\psLoopIndex=\count197
+
+`PSTricks' v2.73  <2017/05/18> (tvz)
+\pst@dima=\dimen280
+\pst@dimb=\dimen281
+\pst@dimc=\dimen282
+\pst@dimd=\dimen283
+\pst@dimg=\dimen284
+\pst@dimh=\dimen285
+\pst@dimm=\dimen286
+\pst@dimn=\dimen287
+\pst@dimo=\dimen288
+\pst@dimp=\dimen289
+\pst@hbox=\box99
+\pst@ibox=\box100
+\pst@boxg=\box101
+\pst@cnta=\count198
+\pst@cntb=\count199
+Normal \count register pool exhausted, switching to extended pool.
+\pst@cntc=\count277
+\pst@cntd=\count278
+\pst@cntg=\count279
+\pst@cnth=\count280
+\pst@cntm=\count281
+\pst@cntn=\count282
+\pst@cnto=\count283
+\pst@cntp=\count284
+\@zero=\count285
+\pst@toks=\toks61
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pstricks.con)
+\psunit=\dimen290
+\psxunit=\dimen291
+\psyunit=\dimen292
+\pst@C@@rType=\count286
+\pslinewidth=\dimen293
+\psk@startLW=\dimen294
+\psk@endLW=\dimen295
+\pst@customdefs=\toks62
+\pslinearc=\dimen296
+\pst@symbolStep=\dimen297
+\pst@symbolWidth=\dimen298
+\pst@symbolLinewidth=\dimen299
+\everypsbox=\toks63
+\psframesep=\dimen300
+\pslabelsep=\dimen301
+\sh@wgridXunit=\dimen302
+\sh@wgridYunit=\dimen303
+\pst@shift=\dimen304
+)
+File: pstricks.tex 2017/05/18 v2.73 `PSTricks' (tvz,hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2017/05/18 v2.73 `PST-fp' (hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-plot/pst-plot.sty
+Package: pst-plot 2011/06/05 v1.00 LaTeX wrapper for `pst-plot' (HV)
+
+(c:/texlive/2017/texmf-dist/tex/latex/xkeyval/pst-xkey.sty
+Package: pst-xkey 2005/11/25 v1.6 package wrapper for pst-xkey.tex (HA)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/multido/multido.sty
+Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
+
+
+(c:/texlive/2017/texmf-dist/tex/generic/multido/multido.tex
+ v1.42, 2010/05/14 <tvz>
+\multido@count=\count287
+\multidocount=\count288
+\multido@stuff=\toks64
+)
+File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
+)
+Package: pst-plot 2011/04/13 package wrapper for pst-plot.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-plot/pst-plot.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-tools/pst-tools.tex
+`PST-tools' v0.06, 2017/05/12 (hv))
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks-add/pstricks-add.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-node/pst-node.tex
+ v1.39, 2017/01/20
+\psrow=\count289
+\pscol=\count290
+\psmatrixcnt=\count291
+\psrowsep=\skip85
+\pscolsep=\skip86
+\pst@args=\count292
+\num@pts=\count293
+\pst@argcnt=\count294
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pst-arrow/pst-arrow.tex
+`pst-arrow' v0.01, 2016/09/01 (dr,hv)
+\pshooklength=\dimen305
+\pshookwidth=\dimen306
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pst-3d/pst-3d.tex
+`PST-3d' v1.11, 2010/02/14 (tvz))
+(c:/texlive/2017/texmf-dist/tex/generic/pst-math/pst-math.tex
+`pst-math' v0.63 , (CJ,hv)) `pstricks-add' v3.83, 2017/05/10 (dr,hv)
+\psparallelogramsep=\dimen307
+\pst@cntC=\count295
+\chart@ColorIndex=\dimen308
+\chart@ColorStep=\dimen309
+\pst@chartHeight=\dimen310
+\pst@chartStackDepth=\dimen311
+\pst@chartStackWidth=\dimen312
+\chart@Toggle=\count296
+\psVectorCtr=\count297
+)
+ v1.78, 2017/04/16 (tvz,hv)
+\pstRadUnit=\dimen313
+\pstRadUnitInv=\dimen314
+\pst@linecnt=\count298
+\RCD@file=\read2
+\psxlabelsep=\dimen315
+\psylabelsep=\dimen316
+\psk@subticksize=\dimen317
+\pst@xticksizeA=\dimen318
+\pst@xticksizeB=\dimen319
+\pst@xticksizeC=\dimen320
+\pst@yticksizeA=\dimen321
+\pst@yticksizeB=\dimen322
+\pst@yticksizeC=\dimen323
+\@digitcounter=\count299
+\psk@llx=\dimen324
+\psk@lly=\dimen325
+\psk@urx=\dimen326
+\psk@ury=\dimen327
+\pst@xunit=\dimen328
+\pst@yunit=\dimen329
+)
+File: pst-plot.tex 2017/04/16 1.78 `pst-plot' (tvz,hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-text/pst-text.sty
+Package: pst-text 2006/01/01 package wrapper for pst-text.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-text/pst-text.tex
+ v1.00, 2006/11/05(tvz,hv))
+File: pst-text.tex 2006/11/05 1.00 `pst-text' (tvz)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pstricks-add/pstricks-add.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pst-node/pst-node.sty
+Package: pst-node 2012/09/18 v1.01 LaTeX wrapper for `pst-node' (HV)
+Package: pst-node 2010/04/22 package wrapper for pst-node.tex
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-node/pst-node.tex)
+File: pst-node.tex 2006/11/05 1.00 `pst-node' (tvz,hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-3d/pst-3d.sty
+Package: pst-3d 2009/07/28 package wrapper for pst-3d.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-3d/pst-3d.tex)
+File: pst-3d.tex 2006/11/05 v1.00 `PST-3d' (hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-math/pst-math.sty
+Package: pst-math 2014/07/30 package wrapper for PSTricks pst-math.tex
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-math/pst-math.tex)
+File: pst-math.tex 2006/11/05 v1.00 `PST-math' (hv)
+)
+Package: pstricks-add 2010/02/11 v. 0.14 package wrapper for pstricks-add.tex (
+hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pstricks-add/pstricks-add.tex)
+File: pstricks-add.tex 2006/11/05 v1.00 `PSTricks-add' (hv)
+Package pstricks-add Info: Local config file pstricks-add.cfg used on input lin
+e 20.
+
+(c:/texlive/2017/texmf-dist/tex/latex/pstricks-add/pstricks-add.cfg
+File: pstricks-add.cfg 2005/01/10 v0.1 addtional user stuff (hv)
+))
+(c:/texlive/2017/texmf-dist/tex/latex/pst-eucl/pst-eucl.sty
+(c:/texlive/2017/texmf-dist/tex/latex/pst-tools/pst-tools.sty
+Package: pst-tools 2012/01/01 package wrapper for pst-tools.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-tools/pst-tools.tex)
+File: pst-tools.tex 2006/11/05 v1.00 `PST-tools' (hv)
+)
+Package: pst-eucl 2014/05/17 package wrapper for PSTricks pst-eucl.tex
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-eucl/pst-eucl.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pst-arrow/pst-arrow.tex)
+`PST-Euclide v1.56, 2017/04/18 (dr,hv)
+ This version uses the pst-xkey package for managing parameters
+ Please read the doc, some macros have a new syntax
+ use option old for upward compatibility
+\psMarkHashLength=\dimen330
+\psMarkHashSep=\dimen331
+)
+File: pst-eucl.tex 2017/04/18 v1.56 `PST-eucl' (dr,hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pstricks/pst-all.sty
+Package: pst-all 2008/01/01 the main pstricks tools
+
+(c:/texlive/2017/texmf-dist/tex/latex/pst-tree/pst-tree.sty
+Package: pst-tree 2009/01/25 package wrapper for pst-tree.tex
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-tree/pst-tree.tex
+ v1.13, 2017/02/18(tvz,dg,hv)
+\pstree@rootbox=\box102
+\pstree@box=\box103
+\psnodecnt=\count300
+\pstreelevel=\count301
+\pstreecnt=\count302
+\pstree@cnt=\count303
+\pstree@stop=\count304
+)
+File: pst-tree.tex 2017/02/18 1.13 `pst-tree' (tvz,hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-grad/pst-grad.sty
+Package: pst-grad 2004/07/15 package wrapper for pst-grad.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-grad/pst-grad.tex
+`pst-grad' v1.06, 2006/11/27 (tvz,dg,hv))
+File: pst-grad.tex 2006/11/27 1.06 `pst-grad' (tvz)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-coil/pst-coil.sty
+Package: pst-coil 2010/02/01 package wrapper for pst-coil.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-coil/pst-coil.tex
+ v1.06, 2006/11/27
+(c:/texlive/2017/texmf-dist/tex/generic/pst-node/pst-node.tex))
+File: pst-coil.tex 2015/05/13 v1.07 `PST-coil' (tvz,hv)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/pst-eps/pst-eps.sty
+Package: pst-eps 2005/05/20 package wrapper for pst-eps.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-eps/pst-eps.tex  v1.00, 2006/11/04
+\pst@epsout=\write4
+\pst@tempout=\write5
+)
+File: pst-eps.tex 2006/11/04 1.00 `pst-eps' (tvz)
+) (c:/texlive/2017/texmf-dist/tex/latex/pst-fill/pst-fill.sty
+Package: pst-fill 2005/09/13 package wrapper for pst-fill.tex (hv)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pst-fill/pst-fill.tex
+`PST-Fill' v1.01, 2007/03/10 (tvz,dg,hv)
+\pst@fillbox=\box104
+)
+File: pst-fill.tex 2007/03/10 v1.01 `PST-fill' (tvz,dg)
+))
+(c:/texlive/2017/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2016/08/10 v1.14 Data Visualization (1.14)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks65
+\t@pgfplots@tokb=\toks66
+\t@pgfplots@tokc=\toks67
+\pgfplots@tmpa=\dimen332
+\c@pgfplots@coordindex=\count305
+\c@pgfplots@scanlineindex=\count306
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.te
+x))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_loader.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_pgflibraryfpu.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
+upp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count307
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
+cture.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststru
+ctureext.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.co
+de.tex
+\c@pgfplotsarray@tmp=\count308
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.c
+ode.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.c
+ode.tex
+\c@pgfplotstable@counta=\count309
+\t@pgfplotstable@a=\toks68
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.co
+de.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.
+tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.te
+x)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfsh
+ading.code.tex
+\c@pgfplotslibrarysurf@no=\count310
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfsha
+ding.pgfsys-dvips.def)))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex))
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.t
+ex
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex
+))) (c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.t
+ex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(c:/texlive/2017/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+\pgfplots@numplots=\count311
+\pgfplots@xmin@reg=\dimen333
+\pgfplots@xmax@reg=\dimen334
+\pgfplots@ymin@reg=\dimen335
+\pgfplots@ymax@reg=\dimen336
+\pgfplots@zmin@reg=\dimen337
+\pgfplots@zmax@reg=\dimen338
+))
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-base.sty
+Package: tkz-base 2011/06/01 1.16 c tkz-base
+
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(c:/texlive/2017/texmf-dist/tex/latex/fp/defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count312
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count313
+\FP@xia=\count314
+\FP@xib=\count315
+\FP@xfa=\count316
+\FP@xfb=\count317
+\FP@rega=\count318
+\FP@regb=\count319
+\FP@regs=\count320
+\FP@times=\count321
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count322
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(c:/texlive/2017/texmf-dist/tex/latex/fp/fp-eval.sty
+Package: fp-eval 1995/04/03
+))
+\tkzRadius=\dimen339
+\tkzLength=\dimen340
+\tkz@radi=\dimen341
+\tkz@ax=\dimen342
+\tkz@ay=\dimen343
+\tkz@bx=\dimen344
+\tkz@by=\dimen345
+\tkz@cx=\dimen346
+\tkz@cy=\dimen347
+\tkz@dx=\dimen348
+\tkz@dy=\dimen349
+
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-tools-utilities.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-tools-arith.tex
+File: tkz-tool-arith.tex tkz-tool-arith 1.161 c
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-tools-base.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-tools-misc.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-tools-math.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-obj-points.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-obj-segments.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-base/tkz-obj-marks.tex
+\tkz@cntmk=\count323
+))
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-fct/tkz-fct.sty
+Package: tkz-fct 2011/06/01 1.16 c function 
+\tkz@tkzf@fct=\count324
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
+Package: tkz-euclide 2011/06/01 1.16 c for plots 2d 
+
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-tools-intersections.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-tools-transformations.tex
+) (c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-lines.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-lib-symbols.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-circles.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-addpoints.tex))
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-tab/tkz-tab.sty
+Package: tkz-tab 2011/04/17 v1.4c variations (ctan version) 
+\tkz@XF=\dimen350
+\tkz@YF=\dimen351
+\c@tkz@cnt@line=\count325
+\c@tkz@cnt@lg=\count326
+\c@tkz@cnt@cl=\count327
+\c@tkz@cnt@pred=\count328
+\c@tkz@cnt@temp=\count329
+\c@tkz@cnt@arrow=\count330
+\c@tkz@cnt@zone=\count331
+\c@tkz@cnt@lgnext=\count332
+\c@tkz@cnt@clnext=\count333
+\c@tkz@cnt@pair=\count334
+\c@tkz@cnt@impair=\count335
+\c@tkz@cnt@aw=\count336
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-graph/tkz-graph.sty
+Package: tkz-graph 2011/06/01 ctan v 1.00 base for graphs
+\c@tkz@gr@a=\count337
+\c@tkz@gr@b=\count338
+\c@tkz@gr@c=\count339
+\c@tkz@gr@e=\count340
+\c@tkz@gr@d=\count341
+\c@tkz@gr@p=\count342
+\c@tkz@gr@i=\count343
+\c@tkz@gr@n=\count344
+\c@tkz@gr@ta=\count345
+\c@tkz@gr@tb=\count346
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-polygons.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-vectors.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-arcs.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-sectors.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-angles.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/tkz-euclide/tkz-obj-protractor.tex)
+(c:/texlive/2017/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+\lgtrou=\skip87
+
+(c:/texlive/2017/texmf-dist/tex/latex/fancybox/fancybox.sty
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box105
+\shadowsize=\dimen352
+\@Sbox=\box106
+\do@VerbBox=\toks69
+\the@fancyput=\toks70
+\this@fancyput=\toks71
+\EndVerbatimTokens=\toks72
+\Verbatim@Outfile=\write6
+\Verbatim@Infile=\read3
+) (c:/texlive/2017/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+(c:/texlive/2017/texmf-dist/tex/latex/bclogo/bclogo.sty
+Package: bclogo 2016/01/10 v3.1
+\bc@invboxh=\skip88
+\bc@invboxd=\skip89
+\bc@titleLength=\skip90
+\logowidth=\skip91
+
+(c:/texlive/2017/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(c:/texlive/2017/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(c:/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2017/05/13 L3 programming layer (loader) 
+
+(c:/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2017/05/13 L3 programming layer (code)
+\c_max_int=\count347
+\l_tmpa_int=\count348
+\l_tmpb_int=\count349
+\g_tmpa_int=\count350
+\g_tmpb_int=\count351
+\g__prg_map_int=\count352
+\c_log_iow=\count353
+\l_iow_line_count_int=\count354
+\l__iow_line_target_int=\count355
+\l__iow_one_indent_int=\count356
+\l__iow_indent_int=\count357
+\c_zero_dim=\dimen353
+\c_max_dim=\dimen354
+\l_tmpa_dim=\dimen355
+\l_tmpb_dim=\dimen356
+\g_tmpa_dim=\dimen357
+\g_tmpb_dim=\dimen358
+\c_zero_skip=\skip92
+\c_max_skip=\skip93
+\l_tmpa_skip=\skip94
+\l_tmpb_skip=\skip95
+\g_tmpa_skip=\skip96
+\g_tmpb_skip=\skip97
+\c_zero_muskip=\muskip11
+\c_max_muskip=\muskip12
+\l_tmpa_muskip=\muskip13
+\l_tmpb_muskip=\muskip14
+\g_tmpa_muskip=\muskip15
+\g_tmpb_muskip=\muskip16
+\l_keys_choice_int=\count358
+\c__fp_leading_shift_int=\count359
+\c__fp_middle_shift_int=\count360
+\c__fp_trailing_shift_int=\count361
+\c__fp_big_leading_shift_int=\count362
+\c__fp_big_middle_shift_int=\count363
+\c__fp_big_trailing_shift_int=\count364
+\c__fp_Bigg_leading_shift_int=\count365
+\c__fp_Bigg_middle_shift_int=\count366
+\c__fp_Bigg_trailing_shift_int=\count367
+\c__fp_rand_size_int=\count368
+\c__fp_rand_four_int=\count369
+\c__fp_rand_eight_int=\count370
+\l__sort_length_int=\count371
+\l__sort_min_int=\count372
+\l__sort_top_int=\count373
+\l__sort_max_int=\count374
+\l__sort_true_max_int=\count375
+\l__sort_block_int=\count376
+\l__sort_begin_int=\count377
+\l__sort_end_int=\count378
+\l__sort_A_int=\count379
+\l__sort_B_int=\count380
+\l__sort_C_int=\count381
+\c_empty_box=\box107
+\l_tmpa_box=\box108
+\l_tmpb_box=\box109
+\g_tmpa_box=\box110
+\g_tmpb_box=\box111
+\l__box_top_dim=\dimen359
+\l__box_bottom_dim=\dimen360
+\l__box_left_dim=\dimen361
+\l__box_right_dim=\dimen362
+\l__box_top_new_dim=\dimen363
+\l__box_bottom_new_dim=\dimen364
+\l__box_left_new_dim=\dimen365
+\l__box_right_new_dim=\dimen366
+\l__box_internal_box=\box112
+\l__coffin_internal_box=\box113
+\l__coffin_internal_dim=\dimen367
+\l__coffin_offset_x_dim=\dimen368
+\l__coffin_offset_y_dim=\dimen369
+\l__coffin_x_dim=\dimen370
+\l__coffin_y_dim=\dimen371
+\l__coffin_x_prime_dim=\dimen372
+\l__coffin_y_prime_dim=\dimen373
+\c_empty_coffin=\box114
+\l__coffin_aligned_coffin=\box115
+\l__coffin_aligned_internal_coffin=\box116
+\l_tmpa_coffin=\box117
+\l_tmpb_coffin=\box118
+\l__coffin_display_coffin=\box119
+\l__coffin_display_coord_coffin=\box120
+\l__coffin_display_pole_coffin=\box121
+\l__coffin_display_offset_dim=\dimen374
+\l__coffin_display_x_dim=\dimen375
+\l__coffin_display_y_dim=\dimen376
+\l__coffin_bounding_shift_dim=\dimen377
+\l__coffin_left_corner_dim=\dimen378
+\l__coffin_right_corner_dim=\dimen379
+\l__coffin_bottom_corner_dim=\dimen380
+\l__coffin_top_corner_dim=\dimen381
+\l__coffin_scaled_total_height_dim=\dimen382
+\l__coffin_scaled_width_dim=\dimen383
+)
+(c:/texlive/2017/texmf-dist/tex/latex/l3kernel/l3dvips.def
+File: l3dvips.def 2017/03/18 v L3 Experimental driver: dvips
+))
+Package: xparse 2017/05/13 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count382
+\g__xparse_grabber_int=\count383
+\l__xparse_m_args_int=\count384
+\l__xparse_mandatory_args_int=\count385
+\l__xparse_v_nesting_int=\count386
+)
+(c:/texlive/2017/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count387
+)
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/zref-abspage.sty
+Package: zref-abspage 2016/05/21 v2.26 Module abspage for zref (HO)
+
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/zref-base.sty
+Package: zref-base 2016/05/21 v2.26 Module base for zref (HO)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+Package zref Info: New property list: main on input line 759.
+Package zref Info: New property: default on input line 760.
+Package zref Info: New property: page on input line 761.
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+)
+\c@abspage=\count388
+Package zref Info: New property: abspage on input line 62.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip98
+\c@mdf@globalstyle@cnt=\count389
+\mdf@skipabove@length=\skip99
+\mdf@skipbelow@length=\skip100
+\mdf@leftmargin@length=\skip101
+\mdf@rightmargin@length=\skip102
+\mdf@innerleftmargin@length=\skip103
+\mdf@innerrightmargin@length=\skip104
+\mdf@innertopmargin@length=\skip105
+\mdf@innerbottommargin@length=\skip106
+\mdf@splittopskip@length=\skip107
+\mdf@splitbottomskip@length=\skip108
+\mdf@outermargin@length=\skip109
+\mdf@innermargin@length=\skip110
+\mdf@linewidth@length=\skip111
+\mdf@innerlinewidth@length=\skip112
+\mdf@middlelinewidth@length=\skip113
+\mdf@outerlinewidth@length=\skip114
+\mdf@roundcorner@length=\skip115
+\mdf@footenotedistance@length=\skip116
+\mdf@userdefinedwidth@length=\skip117
+\mdf@needspace@length=\skip118
+\mdf@frametitleaboveskip@length=\skip119
+\mdf@frametitlebelowskip@length=\skip120
+\mdf@frametitlerulewidth@length=\skip121
+\mdf@frametitleleftmargin@length=\skip122
+\mdf@frametitlerightmargin@length=\skip123
+\mdf@shadowsize@length=\skip124
+\mdf@extratopheight@length=\skip125
+\mdf@subtitleabovelinewidth@length=\skip126
+\mdf@subtitlebelowlinewidth@length=\skip127
+\mdf@subtitleaboveskip@length=\skip128
+\mdf@subtitlebelowskip@length=\skip129
+\mdf@subtitleinneraboveskip@length=\skip130
+\mdf@subtitleinnerbelowskip@length=\skip131
+\mdf@subsubtitleabovelinewidth@length=\skip132
+\mdf@subsubtitlebelowlinewidth@length=\skip133
+\mdf@subsubtitleaboveskip@length=\skip134
+\mdf@subsubtitlebelowskip@length=\skip135
+\mdf@subsubtitleinneraboveskip@length=\skip136
+\mdf@subsubtitleinnerbelowskip@length=\skip137
+
+(c:/texlive/2017/texmf-dist/tex/latex/mdframed/md-frame-2.mdf
+File: md-frame-2.mdf 2013/07/01\ 1.9b: md-frame-2
+)
+\mdf@frametitlebox=\box122
+\mdf@footnotebox=\box123
+\mdf@splitbox@one=\box124
+\mdf@splitbox@two=\box125
+\mdf@splitbox@save=\box126
+\mdfsplitboxwidth=\skip138
+\mdfsplitboxtotalwidth=\skip139
+\mdfsplitboxheight=\skip140
+\mdfsplitboxdepth=\skip141
+\mdfsplitboxtotalheight=\skip142
+\mdfframetitleboxwidth=\skip143
+\mdfframetitleboxtotalwidth=\skip144
+\mdfframetitleboxheight=\skip145
+\mdfframetitleboxdepth=\skip146
+\mdfframetitleboxtotalheight=\skip147
+\mdffootnoteboxwidth=\skip148
+\mdffootnoteboxtotalwidth=\skip149
+\mdffootnoteboxheight=\skip150
+\mdffootnoteboxdepth=\skip151
+\mdffootnoteboxtotalheight=\skip152
+\mdftotallinewidth=\skip153
+\mdfboundingboxwidth=\skip154
+\mdfboundingboxtotalwidth=\skip155
+\mdfboundingboxheight=\skip156
+\mdfboundingboxdepth=\skip157
+\mdfboundingboxtotalheight=\skip158
+\mdf@freevspace@length=\skip159
+\mdf@horizontalwidthofbox@length=\skip160
+\mdf@verticalmarginwhole@length=\skip161
+\mdf@horizontalspaceofbox=\skip162
+\mdfsubtitleheight=\skip163
+\mdfsubsubtitleheight=\skip164
+\c@mdfcountframes=\count390
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newmdtheoremenv with sig. 'O{} m o m o ' on line 601.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \mdtheorem with sig. ' O{} m o m o ' on line 701.
+.................................................
+\mdf@envdepth=\count391
+\c@mdf@env@i=\count392
+\c@mdf@env@ii=\count393
+\c@mdf@zref@counter=\count394
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+\c@bclogocompteur=\count395
+\bcval@epBarre=\skip165
+\bcval@framesep=\skip166
+\bcval@tailleOndu=\skip167
+\bcval@borderWidth=\skip168
+\bcval@margeG=\skip169
+\bcval@margeD=\skip170
+\bc@envbox=\box127
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
+Package: tikzsymbols 2017/05/14 v4.02 Some symbols created using tikz and LaTeX
+3.
+
+(c:/texlive/2017/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2017/05/13 LaTeX2e option processing using LaTeX3 keys
+)
+\l__tikzsymbols_Moai_thickness_dim=\dimen384
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Kochtopf with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 473.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Bratpfanne with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 506.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schneebesen with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 535.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sieb with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 564.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Purierstab with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 589.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Dreizack with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 614.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Backblech with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 641.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Ofen with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 667.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Pfanne with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 701.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Herd with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 727.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Saftpresse with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 762.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schussel with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 786.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Schaler with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 811.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Reibe with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 836.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Flasche with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 860.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Nudelholz with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 889.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sadey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 913.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSadey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 935.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Changey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {white}}O{white}m' on line 965.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dChangey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}m' on line 995.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \cChangey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
+. 1049.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dcChangey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
+. 1103.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Annoey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1125.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dAnnoey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1147.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Smiley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1172.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSmiley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1194.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Laughey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1218.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dLaughey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1246.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Neutrey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1268.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNeutrey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1290.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Winkey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1312.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \oldWinkey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1334.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dWinkey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1356.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \olddWinkey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1378.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Sey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1400.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dSey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1422.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Xey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1444.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dXey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1468.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Innocey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1501.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \wInnocey with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 1508.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dInnocey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
+. 1539.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Cooley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1565.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dCooley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1591.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Tongey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1620.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dTongey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1649.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Nursey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {}}O{}' on line 1680.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNursey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
+. {white}}O{white}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1716.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Vomey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {opacity=0}}O{opacity=0}' on line
+. 1753.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dVomey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
+. {brown!10!olive}}O{brown!10!olive}' on line 1792.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Walley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1833.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \rWalley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1866.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dWalley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1903.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \drWalley with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1936.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Cat with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 1978.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Ninja with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2033.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dNinja with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
+. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2085.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \NiceReapey with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn {black!20!white}}O{black!20!white}' on
+. line 2118.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Strichmaxerl with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
+. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
+. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2216.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Person with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
+. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
+. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2225.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Candle with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 2251.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Fire with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 2296.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Coffeecup with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2331.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Chair with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 2360.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Bed with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 2386.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Tribar with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
+. {opacity=0}}O{opacity=0}' on line 2421.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Moai with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}' on
+. line 2471.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Snowman with sig. '>{\__tikzsymbols_if_empty:Tn {1}}O{1}'
+. on line 2523.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \BasicTree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}mmmm' on line 2546.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \WorstTree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2582.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Springtree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2591.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Summertree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2600.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Autumntree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2609.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \Wintertree with sig. '>{\__tikzsymbols_if_empty:Tn
+. {1}}O{1}' on line 2618.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tikzsymbolsuse with sig. 'm' on line 2639.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tikzsymbolsset with sig. 'm' on line 2643.
+.................................................
+)
+(c:/texlive/2017/texmf-dist/tex/latex/bbding/bbding.sty
+Package: bbding 1999/04/15 v1.01 Dingbats symbols
+)
+(c:/texlive/2017/texmf-dist/tex/latex/qrcode/qrcode.sty
+Package: qrcode 2015/01/08 v1.51 QR code generation
+\c@qr@i=\count396
+\c@qr@j=\count397
+\qr@a=\count398
+\qr@b=\count399
+\qr@c=\count400
+\qr@for@depth=\count401
+\qr@for@maxdepth=\count402
+\qr@for@start=\count403
+\qr@for@end=\count404
+\qr@for@step=\count405
+\qr@newforcount=\count406
+\qr@newforcount=\count407
+\qr@desiredheight=\skip171
+\qr@modulesize=\skip172
+\qr@minipagewidth=\skip173
+\c@maski=\count408
+\c@maskj=\count409
+\c@totalones=\count410
+\c@penaltyi=\count411
+\c@penaltyii=\count412
+\c@penaltyiii=\count413
+\c@penaltyiv=\count414
+\c@qr@hexchars=\count415
+\qr@newforcount=\count416
+\c@qr@divisionsremaining=\count417
+)
+(c:/texlive/2017/texmf-dist/tex/latex/ncctools/watermark.sty
+Package: watermark 2004/12/09 v1.1 Watermarks (NCC)
+)
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package hobsub Info: Skipping package `kvdefinekeys' (already loaded).
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\@linkdim=\dimen385
+\Hy@linkcounter=\count418
+\Hy@pagecounter=\count419
+
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count420
+
+(c:/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4374.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 4374
+.
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count421
+
+(c:/texlive/2017/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen386
+\Fld@menulength=\count422
+\Field@Width=\dimen387
+\Fld@charsize=\dimen388
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring ON on input line 6376.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count423
+\c@Item=\count424
+\c@Hfootnote=\count425
+)
+
+Package hyperref Message: Driver (default): hdvips.
+
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2017/03/14 v6.85a Hyperref driver for dvips
+
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2017/03/14 v6.85a Hyperref definitions for pdfmark specials
+\pdf@docset=\toks73
+\pdf@box=\box128
+\pdf@toks=\toks74
+\pdf@defaulttoks=\toks75
+\HyField@AnnotCount=\count426
+\Fld@listcount=\count427
+\c@bookmark@seq@number=\count428
+
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip174
+))
+(c:/texlive/2017/texmf-dist/tex/latex/pas-tableur/pas-tableur.sty
+Package: pas-tableur 2016/01/31 v2.1 LaTeX package by Stephane PASQUET
+
+(c:/texlive/2017/texmf-dist/tex/generic/xstring/xstring.sty
+(c:/texlive/2017/texmf-dist/tex/generic/xstring/xstring.tex
+\@xs@message=\write7
+\integerpart=\count429
+\decimalpart=\count430
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+\pastableur@decal=\skip175
+)
+(c:/texlive/2017/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(c:/texlive/2017/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\c@prop=\count431
+\c@cons=\count432
+\c@cor=\count433
+\c@thm=\count434
+\c@regle=\count435
+\c@vocab=\count436
+\c@defi=\count437
+\c@methode=\count438
+\c@exemple=\count439
+\c@rmq=\count440
+\c@rem=\count441
+\c@exercice=\count442
+\c@propcned=\count443
+\c@defcned=\count444
+\c@thmcned=\count445
+\c@exemplecned=\count446
+\c@rmqcned=\count447
+\c@demo=\count448
+
+(c:/texlive/2017/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks76
+\verbatim@line=\toks77
+\verbatim@in@stream=\read4
+)
+(c:/texlive/2017/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box129
+\beforetitleunit=\skip176
+\aftertitleunit=\skip177
+\ttl@plus=\dimen389
+\ttl@minus=\dimen390
+\ttl@toksa=\toks78
+\titlewidth=\dimen391
+\titlewidthlast=\dimen392
+\titlewidthfirst=\dimen393
+)
+\decalnumsec=\skip178
+\decalnumsubsec=\skip179
+\decalnumsubsubsec=\skip180
+\decalxtitlesec=\skip181
+\decalxtitlesubsec=\skip182
+\decalxtitlesubsubsec=\skip183
+\spacetitlesec=\skip184
+\spacetitlesubsec=\skip185
+\spacetitlesubsubsec=\skip186
+
+(c:/texlive/2017/texmf-dist/tex/latex/titlesec/block.tss
+File: block.tss 2016/03/15
+)
+(c:/texlive/2017/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2017/04/25 version 4.03 text color boxes
+\tcb@titlebox=\box130
+\tcb@upperbox=\box131
+\tcb@lowerbox=\box132
+\tcb@phantombox=\box133
+\c@tcbbreakpart=\count449
+\c@tcblayer=\count450
+\tcolorbox@number=\count451
+\tcb@temp=\box134
+\tcb@temp=\box135
+\tcb@temp=\box136
+\tcb@temp=\box137
+\tcb@out=\write8
+\tcb@record@out=\write9
+)
+(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count452
+\lst@gtempboxa=\box138
+\lst@token=\toks79
+\lst@length=\count453
+\lst@currlwidth=\dimen394
+\lst@column=\count454
+\lst@pos=\count455
+\lst@lostspace=\dimen395
+\lst@width=\dimen396
+\lst@newlines=\count456
+\lst@lineno=\count457
+\lst@maxwidth=\dimen397
+
+(c:/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count458
+\lst@skipnumbers=\count459
+\lst@framebox=\box139
+)
+(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/courier.sty
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(c:/texlive/2017/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count460
+\algocf@hangindent=\skip187
+
+(c:/texlive/2017/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip188
+\skiplinenumber=\skip189
+\skiprule=\skip190
+\skiphlne=\skip191
+\skiptext=\skip192
+\skiplength=\skip193
+\algomargin=\skip194
+\skipalgocfslide=\skip195
+\algowidth=\dimen398
+\inoutsize=\dimen399
+\inoutindent=\dimen400
+\interspacetitleruled=\dimen401
+\interspacealgoruled=\dimen402
+\interspacetitleboxruled=\dimen403
+\algocf@ruledwidth=\skip196
+\algocf@inoutbox=\box140
+\algocf@inputbox=\box141
+\AlCapSkip=\skip197
+\AlCapHSkip=\skip198
+\algoskipindent=\skip199
+\algocf@nlbox=\box142
+\algocf@hangingbox=\box143
+\algocf@untilbox=\box144
+Normal \skip register pool exhausted, switching to extended pool.
+\algocf@skipuntil=\skip256
+\algocf@capbox=\box145
+\algoheightruledefault=\skip257
+\algoheightrule=\skip258
+\algotitleheightruledefault=\skip259
+\algotitleheightrule=\skip260
+\c@algocfline=\count461
+\c@algocfproc=\count462
+\c@algocf=\count463
+\algocf@algoframe=\box146
+\algocf@algobox=\box147
+) (c:/texlive/2017/texmf-dist/tex/latex/ccicons/ccicons.sty
+Package: ccicons 2013/04/16 v1.5 LaTeX support for Creative Commons icons
+))
+(c:/texlive/2017/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count464
+\FV@InFile=\read5
+\FV@TabBox=\box148
+\c@FancyVerbLine=\count465
+\FV@StepNumber=\count466
+\FV@OutFile=\write10
+) (c:/texlive/2017/texmf-dist/tex/latex/fancyvrb/fvrb-ex.sty
+Package: fvrb-ex 2010/05/16
+
+`fvrb-ex' v1.9, 2010/05/16 (Denis Girou)
+\ttyin=\read6
+)
+(c:/texlive/2017/texmf-dist/tex/latex/scratch/scratch.sty
+Package: scratch 2017/05/16 v0.1 Draw scratch instructions (CT)
+
+(c:/texlive/2017/texmf-dist/tex/generic/hlist/hlist.sty
+(c:/texlive/2017/texmf-dist/tex/generic/hlist/hlist.tex
+\hlst_nest=\count467
+\hlst_colcnt=\count468
+\hlst_itemboxwidth=\dimen404
+\hlst_colsep=\dimen405
+\hlst_textwidth=\dimen406
+\hlst_maxdepth=\dimen407
+\hlst_maxprevdepth=\dimen408
+\hlst_currenthbox=\box149
+\hlst_labelbox=\box150
+\hlst_textbox=\box151
+\hlst_debugdim=\dimen409
+))
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.cod
+e.tex
+File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
+\pgfarrowinset=\dimen410
+\pgfarrowlength=\dimen411
+\pgfarrowwidth=\dimen412
+\pgfarrowlinewidth=\dimen413
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
+brarybending.code.tex
+File: tikzlibrarybending.code.tex 2013/09/17 v3.0.1a (rcs-revision 1.2)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex
+File: pgfmodulebending.code.tex 2013/09/30 v3.0.1a (rcs-revision 1.18)
+
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransform
+ations.code.tex
+File: pgfmodulenonlineartransformations.code.tex 2013/10/09 v3.0.1a (rcs-revisi
+on 1.4)
+\pgftransformnonlinearflatness=\dimen414
+)
+(c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.cod
+e.tex
+File: pgflibrarycurvilinear.code.tex 2015/05/14 v3.0.1a (rcs-revision 1.4)
+\pgf@curvilinear@time@a=\dimen415
+\pgf@curvilinear@length@a=\dimen416
+\pgf@curvilinear@length@b=\dimen417
+\pgf@curvilinear@length@c=\dimen418
+\pgf@curvilinear@length@d=\dimen419
+)
+\pgf@arrows@the@rigidity=\dimen420
+))
+\scr_loopnest=\count469
+\scr_box=\box152
+\scr_yoffset=\dimen421
+\scr_xoffset=\dimen422
+) (./Pour_demarrer_LaTeX.aux (./pagedegarde/pagedegarde.aux)
+(./installation/installation.aux) (./premierdoc/premierdoc.aux)
+(./miseenforme/miseenforme.aux) (./maths/maths.aux) (./tableaux/tableaux.aux)
+(./images/images.aux) (./graphiques/graphiques.aux) (./arbres/arbres.aux)
+(./qr/qr.aux
+<Reading QR code for "http://www.ac-orleans-tours.fr/" at level 3-Q from aux fi
+le.>
+) (./code/code.aux))
+\openout1 = `Pour_demarrer_LaTeX.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 38.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 38.
+ (c:/texlive/2017/texmf-dist/tex/latex/tipa/t3cmr.fd
+File: t3cmr.fd 2001/12/31 TIPA font definitions
+)
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 38.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 38.
+
+
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutm.fd
+File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
+)
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 38.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 38.
+
+
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fmsfutm.fd
+File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
+)
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 38.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 38.
+
+
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fmxfutm.fd
+File: fmxfutm.fd futm-extension
+)
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/t1futs.fd
+File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
+)
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+T3\textscriptg already defined.
+
+fontencoding T3 patched
+)
+LaTeX Info: Redefining \degres on input line 38.
+LaTeX Info: Redefining \dots on input line 38.
+LaTeX Info: Redefining \up on input line 38.
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             https://www.ctan.org/pkg/pageslts
+(lastpage)             ! on input line 38.
+ ABD: EveryShipout initializing macros
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
+your preamble.
+ on input line 38.
+
+\AtBeginShipoutBox=\box153
+Package hyperref Info: Link coloring ON on input line 38.
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count470
+)
+LaTeX Info: Redefining \ref on input line 38.
+LaTeX Info: Redefining \pageref on input line 38.
+LaTeX Info: Redefining \nameref on input line 38.
+
+(./Pour_demarrer_LaTeX.out) (./Pour_demarrer_LaTeX.out)
+\@outlinefile=\write11
+\openout11 = `Pour_demarrer_LaTeX.out'.
+
+\c@lstlisting=\count471
+\openout2 = `pagedegarde/pagedegarde.aux'.
+
+
+(./pagedegarde/pagedegarde.tex
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+Overfull \hbox (92.92038pt too wide) in paragraph at lines 30--31
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 22.88956pt on input line 38.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 15.89755pt on input line 38.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 11.03998pt on input line 38.
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 38
+.
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/fmlfutmi.fd
+File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
+)
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 22.88956pt on input line 38.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 15.89755pt on input line 38.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 11.03998pt on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+stmry on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/stmaryrd/ustmry.fd)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 38.
+
+(c:/texlive/2017/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+))
+Overfull \hbox (33.40237pt too wide) has occurred while \output is active
+ [] 
+ []
+
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 8.27998pt on input line 43.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 6.43999pt on input line 43.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 8.27998pt on input line 43.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 6.43999pt on input line 43.
+[1
+
+
+]
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 46.
+ (./Pour_demarrer_LaTeX.toc
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 4.
+
+Overfull \hbox (79.77545pt too wide) in paragraph at lines 14--14
+ [][] [] [][]  
+ []
+
+[2
+
+
+]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 49.
+ (c:/texlive/2017/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Overfull \hbox (43.57176pt too wide) in paragraph at lines 49--49
+ [][] [] [][]  
+ []
+
+[3] [4]
+Overfull \hbox (1.19994pt too wide) detected at line 100
+ []\T1/futs/m/n/12 109
+ []
+
+
+Overfull \hbox (1.19994pt too wide) detected at line 101
+ []\T1/futs/m/n/12 109
+ []
+
+)
+\tf@toc=\write12
+\openout12 = `Pour_demarrer_LaTeX.toc'.
+
+ [5]
+\openout2 = `installation/installation.aux'.
+
+ (./installation/installation.tex
+Chapitre 1.
+LaTeX Font Info:    Try loading font information for T1+pzc on input line 1.
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/t1pzc.fd
+File: t1pzc.fd 2001/06/04 font definitions for T1/pzc.
+)
+
+LaTeX Font Warning: Font shape `T1/pzc/bx/n' undefined
+(Font)              using `T1/pzc/m/n' instead on input line 1.
+
+LaTeX Font Info:    Font shape `T1/pzc/m/n' in size <12> not available
+(Font)              Font shape `T1/pzc/mb/it' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/pzc/bx/n' in size <40> not available
+(Font)              Font shape `T1/pzc/mb/it' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 3.
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/t1ppl.fd
+File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
+)
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 3.
+ [1
+
+
+]
+Overfull \hbox (82.24367pt too wide) in paragraph at lines 43--44
+[]$\FML/futm/m/it/12 ?$ \T1/futs/m/n/12 ins-tal-la-tion ‡ par-tir du site [][][
+][][][]
+ []
+
+[2]
+File: installation/Capture1.eps Graphic file (type eps)
+ <installation/Capture1.eps>
+File: installation/Capture2.eps Graphic file (type eps)
+ <installation/Capture2.eps> [3]
+File: installation/Capture.eps Graphic file (type eps)
+
+<installation/Capture.eps>
+LaTeX Font Info:    Try loading font information for TS1+futs on input line 116
+.
+
+(c:/texlive/2017/texmf-dist/tex/latex/fourier/ts1futs.fd
+File: ts1futs.fd 2004/03/26 Fontinst v1.926 font definitions for TS1/futs.
+) [4]
+File: installation/editeur_texmaker.eps Graphic file (type eps)
+
+<installation/editeur_texmaker.eps>
+File: installation/compil_texmaker.eps Graphic file (type eps)
+ <installation/compil_texmaker.eps>
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 145.
+ [5]
+Overfull \hbox (14.29219pt too wide) in paragraph at lines 167--168
+[][][]\T1/pcr/m/n/12 C:\texlive\2013\texmf-dist\tex\latex []\T1/futs/m/n/12 pou
+r mon pc sous
+ []
+
+
+Overfull \hbox (7.98021pt too wide) in paragraph at lines 169--170
+[][][]\T1/pcr/m/n/12 /usr/local/texlive/2013/texmf-dist/tex/latex []\T1/futs/m/
+n/12 pour
+ []
+
+[6]
+Overfull \hbox (47.83224pt too wide) in paragraph at lines 196--197
+\T1/futs/m/n/12 toire et compilez-le (c'est-‡-dire, lan-cer la com-mande [][]\T
+1/pcr/m/n/12 latex nom_de_package.ins
+ []
+
+File: installation/Capture3.eps Graphic file (type eps)
+<installation/Capture3.eps> [7]
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 13.24796pt on input line 213.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 9.19998pt on input line 213.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 213.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 13.24796pt on input line 213.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 9.19998pt on input line 213.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 213.
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 213.
+ [8]
+Overfull \hbox (6.08228pt too wide) in paragraph at lines 229--230
+[]\T1/futs/m/n/12 et le site [][][][][][] sur le-quel on re-trouve Ènor-mÈ-ment
+ de fi-gures crÈÈes
+ []
+
+File: installation/pdfadd.eps Graphic file (type eps)
+<installation/pdfadd.eps>
+File: installation/pstplus.eps Graphic file (type eps)
+ <installation/pstplus.eps> [9]) [10]
+\openout2 = `premierdoc/premierdoc.aux'.
+
+
+(./premierdoc/premierdoc.tex
+Chapitre 2.
+LaTeX Font Info:    Font shape `T1/pzc/bx/n' in size <12> not available
+(Font)              Font shape `T1/pzc/mb/it' tried instead on input line 1.
+[11
+
+
+
+] [12]
+Overfull \hbox (33.66666pt too wide) in paragraph at lines 40--41
+[]\T1/futs/m/n/12 il s'agit des lignes entre \[][]\T1/pcr/m/n/12 documentclass 
+[]\T1/futs/m/n/12 et [][]\T1/pcr/m/n/12 \begin{document}
+ []
+
+
+Overfull \hbox (21.54665pt too wide) in paragraph at lines 43--45
+[]\T1/futs/m/n/12 situÈ entre [][]\T1/pcr/m/n/12 \begin{document} []\T1/futs/m/
+n/12 et [][]\T1/pcr/m/n/12 \end{document}[]\T1/futs/m/n/12 ,
+ []
+
+
+Overfull \hbox (5.80449pt too wide) in paragraph at lines 52--52
+[][][]\T1/pcr/m/n/12 \documentclass[12pt,french]{article} []\T1/futs/m/n/12 : c
+ette com-mande in-dique
+ []
+
+[13]
+Overfull \hbox (0.32045pt too wide) in paragraph at lines 55--56
+[][][]\T1/pcr/m/n/12 \usepackage[T1]{fontenc} []\T1/futs/m/n/12 : cette com-man
+de per-met de char-ger le pa-
+ []
+
+
+Overfull \hbox (4.79651pt too wide) in paragraph at lines 58--59
+[][][]\T1/pcr/m/n/12 \usepackage[a4paper,margin=2cm]{geometry} []\T1/futs/m/n/1
+2 : charge le pa-ckage
+ []
+
+
+Overfull \hbox (4.77425pt too wide) in paragraph at lines 60--61
+\T1/futs/m/n/12 di-quer l'op-tion de langue avec la \T1/futs/m/it/12 classe \T1
+/futs/m/n/12 du do-cu-ment (comme nous l'avons
+ []
+
+[14]
+LaTeX Font Info:    Font shape `T1/futs/bx/it' in size <12> not available
+(Font)              Font shape `T1/futs/b/it' tried instead on input line 69.
+
+Overfull \hbox (77.48157pt too wide) in paragraph at lines 69--70
+[]\T1/futs/m/n/12 elles exÈ-cutent sim-ple-ment une ac-tion : [][]\T1/pcr/m/n/1
+2 \neq[]\T1/futs/m/n/12 , [][]\T1/pcr/m/n/12 \par[]\T1/futs/m/n/12 , [][]\T1/pc
+r/m/n/12 \Leftrightarrow 
+ []
+
+[15]
+Overfull \hbox (20.20776pt too wide) in paragraph at lines 88--89
+[][][]\T1/pcr/m/n/12 \commande[]\T1/futs/m/n/12 [<[][]\T1/pcr/m/n/12 argument o
+ptionnel[]\T1/futs/m/n/12 >]{<[][]\T1/pcr/m/n/12 argument 1[]\T1/futs/m/n/12 >}
+{<[][]\T1/pcr/m/n/12 argument 2[]\T1/futs/m/n/12 >}... 
+ []
+
+
+Overfull \hbox (2.42357pt too wide) in paragraph at lines 104--105
+\T1/futs/m/n/12 ap-pli-quÈes ‡ des textes plus longs et ac-ceptent les chan-ge-
+ments de pa-ra-graphes.
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <6> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 5.
+) [16]
+Overfull \hbox (30.24023pt too wide) in paragraph at lines 125--126
+\T1/futs/m/n/12 mÍme op-tion), alors on peut les lis-ter au sein de la mÍme com
+-mande [][]\T1/pcr/m/n/12 \usepackage[]\T1/futs/m/n/12 .
+ []
+
+
+Overfull \hbox (8.16153pt too wide) in paragraph at lines 125--126
+\T1/futs/m/n/12 C'est le cas par exemple de la ligne 4 : [][]\T1/pcr/m/n/12 \us
+epackage{mathtools,amssymb}
+ []
+
+[17]) [18]
+\openout2 = `miseenforme/miseenforme.aux'.
+
+ (./miseenforme/miseenforme.tex
+Chapitre 3.
+[19
+
+
+
+]
+LaTeX Font Info:    Try loading font information for T1+phv on input line 35.
+ (c:/texlive/2017/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.5pt on input line 35.
+
+Overfull \hbox (132.67946pt too wide) in paragraph at lines 28--52
+ [] 
+ []
+
+[20] [21]
+Overfull \hbox (34.32442pt too wide) in paragraph at lines 104--105
+\T1/futs/m/n/12 droite. Pour cela, on uti-lise res-pec-ti-ve-ment les \T1/futs/
+m/it/12 en-vi-ron-ne-ments \T1/pcr/m/n/12 center\T1/futs/m/n/12 , \T1/pcr/m/n/1
+2 flushleft\T1/futs/m/n/12 ,
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [22]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp) [23]
+Underfull \hbox (badness 2384) in paragraph at lines 145--145
+\T1/futs/m/n/12 En fin de ligne no-tam-ment, il fau-dra donc Ècrire
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (8.89166pt too wide) in paragraph at lines 164--165
+[]\T1/futs/m/n/12 La com-mande [][]\T1/pcr/m/n/12 \vspace[]\T1/futs/m/n/12 {<lo
+ngueur>} est une so-lu-tion et cela fonc-tionne comme
+ []
+
+
+Overfull \hbox (32.82446pt too wide) in paragraph at lines 164--165
+\T1/futs/m/n/12 pour les es-paces ho-ri-zon-tales. Ce-pen-dant, les com-mandes 
+[][]\T1/pcr/m/n/12 \smallskip[]\T1/futs/m/n/12 , [][]\T1/pcr/m/n/12 \medskip
+ []
+
+[24]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (0.50429pt too wide) in paragraph at lines 184--185
+[]\T1/futs/m/n/12 Pour la com-mande [][]\T1/pcr/m/n/12 \hspace{<longueur>}[]\T1
+/futs/m/n/12 , la lon-gueur est un nombre avec
+ []
+
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-1.def
+File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
+) [25]
+Overfull \hbox (3.59987pt too wide) in paragraph at lines 231--236
+ [] 
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp
+LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <12> not available
+(Font)              Font shape `T1/futs/b/sc' tried instead on input line 6.
+) [26]
+Underfull \hbox (badness 10000) in paragraph at lines 254--254
+\T1/futs/m/n/12 \[][]\T1/pcr/m/n/12 usepackage[][dvipsnames]{xcolor} \T1/futs/m
+/n/12 dans le
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 254--254
+[]\T1/futs/m/n/12 La do-cu-men-ta-tion du \T1/futs/m/it/12 pa-ckage \T1/futs/m/
+n/12 per-met d'en sa-voir
+ []
+
+
+Underfull \hbox (badness 1466) in paragraph at lines 254--254
+\T1/futs/m/n/12 da-van-tage. Il suf-fit de ta-per sur un mo-teur de re-
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [27]
+Overfull \hbox (10.99211pt too wide) in paragraph at lines 290--291
+[][][]\T1/pcr/m/n/12 lmargin=[]\T1/futs/m/n/12 <dim> et [][]\T1/pcr/m/n/12 rmar
+gin=[]\T1/futs/m/n/12 <dim> : res-pec-ti-ve-ment marges in-tÈ-rieures
+ []
+
+[28]
+Overfull \hbox (3.80359pt too wide) in paragraph at lines 297--298
+\T1/futs/m/n/12 court au \T1/futs/m/it/12 pa-ckage [][]\T1/pcr/m/n/12 multicol 
+[]\T1/futs/m/n/12 qui nous per-met alors d'ac-cÈ-der ‡ l'\T1/futs/m/it/12 envir
+onnement
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--318
+[]\T1/futs/m/n/12 Les po-li-ciers
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--318
+\T1/futs/m/n/12 semblent avoir
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--318
+\T1/futs/m/n/12 les sus-pects qui
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+[]\T1/futs/m/n/12 Ce stage
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 L[]T[]X
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 est in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 croyable.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 Le pro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 chain a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 lieu quel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 jour ? Ce
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+\T1/futs/m/n/12 do-cu-ment
+ []
+
+[29]
+Underfull \hbox (badness 5288) in paragraph at lines 357--358
+[]\T1/futs/m/n/12 Ce stage L[]T[]X est in-
+ []
+
+[30]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+[]\T1/futs/m/n/12 Qu'est ce qu'un pa-ral-lÈ-lo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+[]\T1/futs/m/n/12 Qu'est ce qu'un rec-
+ []
+
+) [31]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+Underfull \hbox (badness 2951) in paragraph at lines 438--438
+\T1/futs/m/n/12 de la do-cu-men-ta-tion de ce \T1/futs/m/it/12 pa-ckage \T1/fut
+s/m/n/12 est vi-ve-ment
+ []
+
+[32] [33]
+Underfull \hbox (badness 2189) in paragraph at lines 464--464
+[]|\T1/futs/m/n/12 Si on ne sou-haite pas de nu-mÈ-ro-ta-tion ‡ un en-
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 464--464
+\T1/futs/m/n/12 droit, on peut ajou-ter [][]\T1/pcr/m/n/12 *[]\T1/futs/m/n/12 .
+ On Ècrira par exemple :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 464--464
+\T1/pcr/m/n/12 \section*{Introduction} \T1/futs/m/n/12 ‡ la place de
+ []
+
+
+Overfull \hbox (16.60762pt too wide) in paragraph at lines 466--467
+[]\T1/futs/m/n/12 On peut mo-di-fier la mise en forme de la nu-mÈ-ro-ta-tion de
+s com-mandes [][]\T1/pcr/m/n/12 \section
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [34]
+Overfull \hbox (3.87616pt too wide) in paragraph at lines 499--500
+[]\T1/futs/m/n/12 Enfin, \T1/pcr/m/n/12 \pageref\T1/futs/m/n/12 {<Ètiquette>} i
+n-dique le nu-mÈro de la page ‡ la-quelle se trouve
+ []
+
+) [35]
+\openout2 = `maths/maths.aux'.
+
+ (./maths/maths.tex
+Chapitre 4.
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [36
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]|\T1/futs/m/n/12 Dans le prÈ-am-bule, la com-mande
+ []
+
+
+Underfull \hbox (badness 6592) in paragraph at lines 27--27
+\T1/pcr/m/n/12 \DecimalMathComma \T1/futs/m/n/12 per-met de dÈ-fi-nir la vir-
+ []
+
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <12> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 35.
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [37]
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[]|\T1/futs/m/n/12 L'option \T1/pcr/m/n/12 autolanguage \T1/futs/m/n/12 per-met
+ sim-ple-ment ‡
+ []
+
+(./exemples/mathsxlop.tex [38])
+Overfull \hbox (196.51578pt too wide) in paragraph at lines 67--68
+\T1/futs/m/n/12 qui dÈ-fi-nit la com-mande \T1/pcr/m/n/12 \cancel\T1/futs/m/n/1
+2 . Dans le prÈ-am-bule, la ligne [][]\T1/pcr/m/n/12 \renewcommand\CancelColor{
+\color{red}}
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (3.59958pt too wide) in paragraph at lines 79--80
+\T1/futs/m/n/12 ment d'Ècrire les en-sembles ma-thÈ-ma-tiques ‡ l'aide de la co
+m-mande \T1/pcr/m/n/12 \mathds\T1/futs/m/n/12 .
+ []
+
+[39] (./exemples/mathsdsfont.tex
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 1.
+
+(c:/texlive/2017/texmf-dist/tex/latex/doublestroke/udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+))
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <9> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <7> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 4.
+) [40]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp) [41]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp
+Underfull \hbox (badness 2503) in paragraph at lines 1--5
+\T1/futs/m/n/12 nombre $\FML/futm/m/it/12 x \FMS/futm/m/n/12 2 \U/dsrom/m/n/12 
+R$ \T1/futs/m/n/12 par $[]$.
+ []
+
+)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp) [42]
+Underfull \hbox (badness 10000) in paragraph at lines 174--174
+[]|\T1/futs/m/n/12 Les es-paces Ètant gÈ-rÈes de fa-Áon par-ti-cu-liËre
+ []
+
+
+Underfull \hbox (badness 4024) in paragraph at lines 174--174
+\T1/futs/m/n/12 dans les modes ma-thÈ-ma-tiques, on constate que
+ []
+
+[43]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp) [44]
+Overfull \hbox (10.25957pt too wide) in paragraph at lines 236--237
+\T1/futs/m/n/12 cro-chets et les pa-ren-thËses s'ob-tiennent clas-si-que-ment e
+n ap-puyant sur la touche
+ []
+
+(./exemples/maths6eme.tex) [45] (./exemples/mathsfractions.tex)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp) [46] (./exemples/mathsangles.tex)
+(./exemples/maths4eme.tex [47])
+Underfull \hbox (badness 10000) in paragraph at lines 297--298
+\T1/futs/m/n/12 les in-dices :
+ []
+
+(./exemples/mathsaccolades.tex) [48] (./exemples/mathsequiv.tex)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp) [49] (./exemples/maths3eme.tex)
+Overfull \hbox (5.51178pt too wide) in paragraph at lines 344--345
+\T1/futs/m/n/12 classe de \T1/futs/b/n/12 se-conde\T1/futs/m/n/12 , une grande 
+im-por-tance est ac-cor-dÈe aux fonc-tions. L'exemple
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [50] (./exemples/mathsvecteurs.tex)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp) [51] (./exemples/maths1ere.tex
+Overfull \hbox (14.07263pt too wide) in paragraph at lines 1--4
+[]\T1/futs/m/n/12 …quation de la tan-gente en $\FML/futm/m/it/12 x[]$ \T1/futs/
+m/n/12 : $\FML/futm/m/it/12 y \FMS/futm/m/n/12 Å \FML/futm/m/it/12 f[]\T1/futs/
+m/n/12 (\FML/futm/m/it/12 x[]\T1/futs/m/n/12 ) [] \FMS/futm/m/n/12 Ä \FML/futm/
+m/it/12 f\T1/futs/m/n/12 (\FML/futm/m/it/12 x[]\T1/futs/m/n/12 )$ avec $\FML/fu
+tm/m/it/12 f[] \FMS/futm/m/n/12 Å [][] Å []$\T1/futs/m/n/12 . 
+ []
+
+[52]) [53]
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 422.
+
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 422.
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [54] (./exemples/mathslicence.tex)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (12.2588pt too wide) in paragraph at lines 479--480
+\T1/futs/m/n/12 lignes. La com-mande \T1/pcr/m/n/12 \nonumber \T1/futs/m/n/12 r
+Ëgle le pro-blËme. La com-mande \T1/pcr/m/n/12 \tag\T1/futs/m/n/12 <texte>
+ []
+
+[55]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (26.73685pt too wide) in paragraph at lines 497--498
+[]\T1/futs/m/n/12 Finalement, si on ne sou-haite nu-mÈ-ro-ter au-cune ligne, on
+ Ècrira [][]\T1/pcr/m/n/12 \begin{align*}
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)) [56]
+\openout2 = `tableaux/tableaux.aux'.
+
+ (./tableaux/tableaux.tex
+Chapitre 5.
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (7.32613pt too wide) in paragraph at lines 1--21
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--21
+
+ []
+
+[57
+
+
+
+]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (8.04211pt too wide) in paragraph at lines 1--39
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--39
+
+ []
+
+
+Overfull \hbox (97.34984pt too wide) in paragraph at lines 44--45
+[]\T1/futs/m/n/12 L[]T[]X offre la com-mande \T1/pcr/m/n/12 \multicolumn<nombre
+-colonnes><specificateur><texte>
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (5.64212pt too wide) in paragraph at lines 1--55
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--55
+
+ []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 61--61
+\T1/futs/m/n/12 mande \T1/pcr/m/n/12 \multicolumn \T1/futs/m/n/12 per-met non s
+eule-ment de
+ []
+
+[58]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp
+Underfull \hbox (badness 5036) in paragraph at lines 2--4
+\T1/futs/m/n/12 go-nales sont de mÍme
+ []
+
+)
+Overfull \hbox (20.5877pt too wide) in paragraph at lines 1--75
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--75
+
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp
+Underfull \hbox (badness 5036) in paragraph at lines 2--4
+\T1/futs/m/n/12 go-nales sont de mÍme
+ []
+
+)
+Overfull \hbox (20.5877pt too wide) in paragraph at lines 1--89
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--89
+
+ []
+
+
+Overfull \hbox (13.52368pt too wide) in paragraph at lines 102--103
+\T1/futs/m/n/12 on uti-lise dans le mode l'en-vi-ron-ne-ment \T1/pcr/m/n/12 arr
+ay \T1/futs/m/n/12 qui fonc-tionne comme \T1/pcr/m/n/12 tabular
+ []
+
+[59]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+Overfull \hbox (4.79112pt too wide) in paragraph at lines 116--117
+[]\T1/futs/m/n/12 On avait constatÈ l'uti-litÈ des sym-boles Èti-rables ho-ri-z
+on-ta-le-ment. Servons-nous
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp) [60]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp)
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+
+(./Pour_demarrer_LaTeX.tmp) [61]
+Underfull \hbox (badness 8000) in paragraph at lines 211--211
+[]|\T1/futs/m/n/12 Selon l'ins-tal-la-tion ef-fec-tuÈe, il est pos-sible que
+ []
+
+[62]
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp) [63]
+Overfull \hbox (3.6476pt too wide) in paragraph at lines 232--233
+[]\T1/futs/m/n/12 Un ta-bleau de signes ou de va-ria-tions com-men-cera tou-jou
+rs par \T1/pcr/m/n/12 \tkzTabInit
+ []
+
+[64]
+Overfull \hbox (13.00883pt too wide) in paragraph at lines 263--264
+[]\T1/futs/m/n/12 Pour fi-nir, pour chaque ligne, on Ècrit les signes par la co
+m-mande \T1/pcr/m/n/12 \tkzTabLine\T1/futs/m/n/12 .
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [65]
+Underfull \hbox (badness 10000) in paragraph at lines 291--291
+[]|\T1/futs/m/n/12 Pour la double-barre avec des va-leurs in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--291
+\T1/futs/m/n/12 di-quÈes avant et aprËs celle-ci, on no-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--291
+\T1/futs/m/n/12 tera \T1/pcr/m/n/12 -D+/<valeur>/<valeur> \T1/futs/m/n/12 ou bi
+en
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp) [66]
+Overfull \hbox (56.75946pt too wide) in paragraph at lines 319--319
+[]\T1/pcr/m/n/10.95 2. \tkzTabInit[color,lgt=2.5,espcl=3,colorC=blue!20,colorV=
+blue!20]%[] 
+ []
+
+[67]
+Overfull \hbox (4.36832pt too wide) in paragraph at lines 365--366
+[]\T1/futs/m/n/12 Et en-fin, les com-mandes \T1/pcr/m/n/12 \selecCell \T1/futs/
+m/n/12 et \T1/pcr/m/n/12 \multiSelec \T1/futs/m/n/12 per-mettent de mettre
+ []
+
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp
+Overfull \hbox (22.02281pt too wide) in paragraph at lines 10--11
+[][] 
+ []
+
+)
+Overfull \hbox (22.02278pt too wide) in paragraph at lines 21--390
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--390
+
+ []
+
+) [68] [69]
+\openout2 = `images/images.aux'.
+
+ (./images/images.tex
+Chapitre 6.
+
+Overfull \hbox (22.07242pt too wide) in paragraph at lines 12--14
+[][][] 
+ []
+
+
+Overfull \hbox (22.07242pt too wide) in paragraph at lines 22--23
+[][][] 
+ []
+
+File: exemples/image.eps Graphic file (type eps)
+<exemples/image.eps> [70
+
+
+
+]
+Overfull \hbox (95.33832pt too wide) in paragraph at lines 65--65
+[]\T1/pcr/m/n/10.95 \includegraphics[angle=45,width=0.6\linewidth]{exemples/ima
+ge}[] 
+ []
+
+File: exemples/image.eps Graphic file (type eps)
+<exemples/image.eps>
+Overfull \hbox (1.884pt too wide) in paragraph at lines 59--76
+[]$[]$  $[]$ 
+ []
+
+LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <14.4> not available
+(Font)              Font shape `T1/ppl/b/it' tried instead on input line 77.
+[71] (./exemples/wrapfigure.tex
+
+! LaTeX Error: Environment wrapfigure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{wrapfigure}
+                      {r}{5cm}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+File: exemples/image.eps Graphic file (type eps)
+<exemples/image.eps>
+
+! LaTeX Error: \begin{spacing} on input line 41 ended by \end{wrapfigure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \end{wrapfigure}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+Underfull \hbox (badness 4531) in paragraph at lines 90--90
+[]|\T1/futs/m/n/12 L'image peut Ítre rem-pla-cÈe par une fi-gure (par
+ []
+
+[72] (./exemples/minipage.tex
+File: exemples/image.eps Graphic file (type eps)
+ <exemples/image.eps>
+Overfull \hbox (30.5374pt too wide) in paragraph at lines 17--18
+[][] 
+ []
+
+) [73] (./exemples/raisebox1.tex
+File: exemples/image.eps Graphic file (type eps)
+ <exemples/image.eps>
+File: exemples/image.eps Graphic file (type eps)
+ <exemples/image.eps>)
+Underfull \hbox (badness 1902) in paragraph at lines 118--118
+[]|\T1/futs/m/n/12 La com-mande \T1/pcr/m/n/12 \raisebox \T1/futs/m/n/12 n'est 
+pas rÈ-ser-vÈe aux
+ []
+
+(./exemples/raisebox2.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 122--124
+
+ []
+
+) [74] [75]
+\openout2 = `graphiques/graphiques.aux'.
+
+ (./graphiques/graphiques.tex
+Chapitre 7.
+
+Overfull \hbox (157.19977pt too wide) in paragraph at lines 23--24
+[][][]\T1/pcr/m/n/12 \usepackage{tikz,tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-
+graph,tikz-3dplot} 
+ []
+
+
+Overfull \hbox (157.19977pt too wide) in paragraph at lines 26--26
+[]\T1/pcr/m/n/12 \usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystem
+s,decorations,[] 
+ []
+
+
+Overfull \hbox (70.7998pt too wide) in paragraph at lines 28--28
+[]\T1/pcr/m/n/12 decorations.pathreplacing,patterns,positioning,decorations.tex
+t}[] 
+ []
+
+
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 29.
+
+[76
+
+
+
+] [77] (./exemples/tikzaxegradue.tex) [78] (./exemples/tikzcourbepoints.tex) [7
+9] [80] (./exemples/tikzvenn.tex)
+Overfull \hbox (8.98769pt too wide) in paragraph at lines 77--78
+[]\T1/futs/m/n/12 Un arbre pon-dÈrÈ gÈ-nÈrÈ ‡ par-tir du site [][][][][][] 
+ []
+
+[81] [82] [83] (./exemples/tikzarbre.tex) [84] (./exemples/tikzgrapheproba.tex
+Missing character: There is no ; in font nullfont!
+) [85]
+Underfull \hbox (badness 2626) in paragraph at lines 105--105
+\T1/futs/m/n/12 com-mandes peuvent donc Ítre uti-li-sÈes pour une
+ []
+
+(./exemples/tkzanglesmarques.tex
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
+(Font)              using `U/stmry/m/n' instead on input line 3.
+
+[86]) [87] (./exemples/tkzarccercle.tex [88])
+Overfull \hbox (8.5436pt too wide) in paragraph at lines 123--124
+[]\T1/futs/m/n/12 Voici une fi-gure dans la-quelle on dÈ-fi-nit des points comm
+e in-ter-sec-tion de droites
+ []
+
+[89] (./exemples/tkzintersectionbarycentre.tex) [90]
+(./exemples/tkzvecteurs.tex
+Overfull \hbox (8.7384pt too wide) in paragraph at lines 15--16
+ [] 
+ []
+
+[91]) [92] (./exemples/tkzecc.tex
+Overfull \hbox (78.44907pt too wide) in paragraph at lines 43--44
+ [] 
+ []
+
+[93])
+Overfull \hbox (135.59978pt too wide) in paragraph at lines 153--153
+[]\T1/pcr/m/n/12 {\draw[line width=0.3mm, color=blue!10, ystep=0.2, xstep=0.8] 
+#1 grid #2;[] 
+ []
+
+
+Overfull \hbox (142.79977pt too wide) in paragraph at lines 154--154
+[]\T1/pcr/m/n/12 \draw[line width=0.3mm, color=blue!30, xstep=0.8, ystep=0.8] #
+1 grid #2; }[] 
+ []
+
+[94] (./exemples/tkzseyes.tex) [95] (./exemples/tkztangenteloupe.tex
+
+! Package pgfkeys Error: I do not know the key '/tikz/spy using outlines', to w
+hich you passed 'circle, magnification=3, connect spies', and I am going to ign
+ore it. Perhaps you misspelled it.
+
+See the pgfkeys package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 ...s={circle, magnification=3, connect spies}]
+                                                  
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfct.gnuplot)...executed.
+
+! Undefined control sequence.
+l.30 \spy
+          [blue, size=5cm] on (B) in node[fill=white] at (magnifyglass);
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (63.27148pt too wide) in paragraph at lines 31--32
+ [] 
+ []
+
+[96]) [97] (./exemples/tkzaireentrecourbes.tex
+\openout3 = `Pour_demarrer_LaTeX.tkzfct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfct.gnuplot)...executed.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfct.gnuplot)...executed.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfonct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfonct.gnuplot)...executed.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfonct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfonct.gnuplot)...executed.
+
+) (./exemples/tkzsommeriemann.tex
+\openout3 = `Pour_demarrer_LaTeX.tkzfct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfct.gnuplot)...executed.
+
+[98]) (./exemples/tkzcourbeparametree.tex
+Overfull \hbox (2.97818pt too wide) in paragraph at lines 11--12
+ [] 
+ []
+
+[99]) [100] (./exemples/tkzairesouscourbe.tex
+\openout3 = `Pour_demarrer_LaTeX.tkzfct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfct.gnuplot)...executed.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfonct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfonct.gnuplot)...executed.
+
+\openout3 = `Pour_demarrer_LaTeX.tkzfonct.gnuplot'.
+
+runsystem(gnuplot Pour_demarrer_LaTeX.tkzfonct.gnuplot)...executed.
+
+)
+Overfull \hbox (79.35045pt too wide) in paragraph at lines 14--209
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--209
+
+ []
+
+) [101]
+\openout2 = `arbres/arbres.aux'.
+
+ (./arbres/arbres.tex
+Chapitre 8.
+(./exemples/arbre1.tex [102
+
+
+
+]) (./exemples/arbre2.tex [103]) [104]
+(./exemples/arbre3.tex) [105] (./exemples/arbre4.tex) [106]
+(./exemples/arbre5.tex
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 16.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 16.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 16.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 16.
+LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <8.3> not available
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 16.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 10.07397pt on input line 16.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.63599pt on input line 16.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 16.
+)) [107]
+\openout2 = `qr/qr.aux'.
+
+ (./qr/qr.tex
+Chapitre 9.
+(./exemples/qrcode.tex
+
+
+<QR code requested for "http://www.ac-orleans-tours.fr/" in version 0-M.>
+<Error-correction level increased from M to Q at no cost.>
+
+<Copying the QR code for "http://www.ac-orleans-tours.fr/" in version 3-Q as pr
+eviously calculated.>
+! Undefined control sequence.
+<recently read> \psbarcode 
+                           
+l.7 \psbarcode
+              {http://www.ac-orleans-tours.fr/}{eclevel=L}{qrcode}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)) [108
+
+
+
+]
+\openout2 = `code/code.aux'.
+
+ (./code/code.tex
+Chapitre 10.
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+(./Pour_demarrer_LaTeX.tmp
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 tmoreblocks{dÈfi
+                    nir \namemoreblocks{carre}}
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 tmoreblocks{dÈfi
+                    nir \namemoreblocks{carre}}
+Ifthecharacterisanargument,putitin{}
+
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-255.def
+File: uni-255.def 2013/05/13 UCS: Unicode data U+FF00..U+FFFF
+)
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uninames.dat
+File: uninames.dat 2013/05/13 UCS: Unicode character names, compressed
+)
+(c:/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-255.def
+File: uni-255.def 2013/05/13 UCS: Unicode data U+FF00..U+FFFF
+)
+
+! Package ucs Error: Unknown Unicode character 65533 = U+FFFD,
+(ucs)                possibly declared in uni-255.def.
+(ucs)                Type H to see if it is available with options.
+
+See the ucs package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 tmoreblocks{dÈfi
+                    nir \namemoreblocks{carre}}
+Unicode character 65533 = U+FFFD:
+REPLACEMENT CHARACTER
+Character is not defined in uni-*.def files.
+Enter I!<RET> to define the glyph.
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 2.
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+! Undefined control sequence.
+\namemoreblocks ..._xsep {\the \dimexpr \scr_xsep 
+                                                  *3/2\relax }\node (moreblo...
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   *
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   *
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.5pt on input line 2.
+! Undefined control sequence.
+<argument> \scr_linewidth 
+                          *2
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_linewidth 
+                          *2
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       ,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       *3,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       ,-\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_corner ,-\scr_corner 
+                                     
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       *3,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       ,\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_corner ,\scr_corner 
+                                    
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_boxwd +2*\scr_xsep -\scr_corner 
+                                                *10,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_corner 
+                       ,-\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_corner ,-\scr_corner 
+                                     
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> ..._ysepsup -\scr_ysepinf +\scr_corner 
+                                                  
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        ,-\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> -\scr_corner ,-\scr_corner 
+                                      
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_boxwd -2*\scr_xsep +\scr_corner 
+                                                 *10,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        ,-\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> -\scr_corner ,-\scr_corner 
+                                      
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        *3,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        ,\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> -\scr_corner ,\scr_corner 
+                                     
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        *3,0
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> -\scr_corner 
+                        ,\scr_corner 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> -\scr_corner ,\scr_corner 
+                                     
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> ..._ysepsup +\scr_ysepinf -\scr_corner 
+                                                  
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Undefined control sequence.
+<argument> \scr_yoffset -\scr_boxht -\scr_corner 
+                                                 -\scr_ysepsup 
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_linewidth 
+                          *2
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \scr_linewidth 
+                          *2
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   p
+l.2 tmoreblocks{dÈfinir \namemoreblocks{carre}
+                                              }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 ckpen{stylo en position Ècr
+                               iture}
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 ckpen{stylo en position Ècr
+                               iture}
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 3.
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 ckrepeat{rÈpÈ
+                 ter \ovalnum{4} fois}
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 ckrepeat{rÈpÈ
+                 ter \ovalnum{4} fois}
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 4.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+[]\T1/futs/m/n/12 inscratch tmo-re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+\T1/futs/m/n/12 blocksd\OT1/pcr/m/n/12 [U+FFFD]\T1/futs/m/n/12 nir
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+\T1/futs/m/n/12 ck-pens-tylo en po-si-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+\OT1/pcr/m/n/12 [U+FFFD]\T1/futs/m/n/12 iture ckre-
+ []
+
+! Undefined control sequence.
+l.7 ckmove{tourner \turnleft
+                            {} de \ovalnum{90} degrÈs}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Argument of È has an extra }.
+<inserted text> 
+                \par 
+l.7 ...tourner \turnleft{} de \ovalnum{90} degrÈs}
+                                                  
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+! Paragraph ended before È was complete.
+<to be read again> 
+                   \par 
+l.7 ...tourner \turnleft{} de \ovalnum{90} degrÈs}
+                                                  
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+)
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 22.
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 22.
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 22.
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+! Package utf8x Error: MalformedUTF-8sequence.
+
+See the utf8x package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{SideBySideExample}
+                            
+Ifthecharacterisanargument,putitin{}
+
+
+Package ucs Warning: Unknown character 65533 = 0xFFFD appeared again. on input 
+line 22.
+
+File: python-logo.eps Graphic file (type eps)
+<python-logo.eps>
+\openout10 = `Pour_demarrer_LaTeX.tmp'.
+
+ (./Pour_demarrer_LaTeX.tmp
+! Extra }, or forgotten \endgroup.
+l.2 ai.py}
+          
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+)
+! Missing $ inserted.
+<inserted text> 
+                $
+l.40 \end{Rmq}
+              
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+LaTeX Warning: Command \' invalid in math mode on input line 40.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.40 \end{Rmq}
+              
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+Overfull \hbox (610.19893pt too wide) in paragraph at lines 40--77
+[]\T1/futs/m/n/12 La com-mande $\FMS/futm/m/n/12 n[]\FML/futm/m/it/12 comported
+esargumentsoptionnelstelsque[]et[]quipermettentparexempledes\T1/futs/m/n/12 È\F
+ML/futm/m/it/12 lectionnerunboutducodecontenudanslefichier:$ 
+ []
+
+[109
+
+
+
+] 
+AED: lastpage setting LastPage
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 85.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
+(./Pour_demarrer_LaTeX.aux (./pagedegarde/pagedegarde.aux)
+(./installation/installation.aux) (./premierdoc/premierdoc.aux)
+(./miseenforme/miseenforme.aux) (./maths/maths.aux) (./tableaux/tableaux.aux)
+(./images/images.aux) (./graphiques/graphiques.aux) (./arbres/arbres.aux)
+(./qr/qr.aux
+<Reading QR code for "http://www.ac-orleans-tours.fr/" at level 3-Q from aux fi
+le.>
+) (./code/code.aux))
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 85.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
+Package rerunfilecheck Info: File `Pour_demarrer_LaTeX.out' has not changed.
+(rerunfilecheck)             Checksum: 33732BEE09292635EBDDD661084B124D;6700.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 1061 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 64262 strings out of 492996
+ 1328984 string characters out of 6136427
+ 2256933 words of memory out of 5000000
+ 66266 multiletter control sequences out of 15000+600000
+ 176412 words of font info for 173 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 67i,17n,128p,10500b,17135s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Pour_demarrer_LaTeX.dvi (114 pages, 1359676 bytes).

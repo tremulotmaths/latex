@@ -1,0 +1,60 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Stats/Probas}
+\renewcommand\MaCouleur{Melon!150}
+
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+
+
+\setcounter{chapter}{9}
+\begin{document}
+\chapter[\'Echantillonnage et prise de décision]{\'Echantillonnage\\ Prise de décision}\label{echantillonnage}
+
+On considère une population dont une proportion $p$ d'individus possèdent une certaine particularité $\calig P$. On note $f$ la fréquence des individus d'un échantillon de taille $n$, prélevé au hasard et avec remise, qui possèdent la particularité $\calig P$.\medskip
+
+\begin{Exemple}
+    Dans la population active d'un pays, il y a $21\%$ de chômeurs. Ici, $p = 0,21$.\par
+    On prélève un échantillon de $10$ personnes et on s'intéresse à celles qui sont au chômage. Il y en a $2$. Donc $n = 10$ et $f = \dfrac{2}{10}$.
+\end{Exemple}
+
+\section{Intervalle de fluctuation d'une fréquence}
+
+ On suppose que la proportion a pour valeur $p$ et on note $X$ la variable aléatoire qui compte le nombre d'individus de l'échantillon qui possèdent la particularité $\calig P$.\par
+ Alors $X$ suit la loi binomiale de paramètres $n$ et $p$.
+ 
+ \begin{Defi}
+    Soit $p$ la valeur de la proportion. On note $a$ le plus petit nombre entier tel que $p(X \leq a) > 0,025$ et $b$ le plus petit nombre entier tel que $p(X \leq b) \geq 0,975$.\par
+    On appelle \ipt{intervalle de fluctuation} à $95\%$ de la fréquence $f$ pour un échantillon de taille $n$, l'intervalle $\intervalleff{\frac a n}{\frac b n}$.
+ \end{Defi}
+ 
+ Autrement dit, la fréquence $f$ appartient à l'intervalle de fluctuation dans au moins $95\%$ des cas.
+ 
+ 
+ \section{Prise de décision}
+
+Dans certaines situations, il y a un doute sur la valeur $p$ donnée de la proportion et s'il s'agit de décider si l'hypothèse << la proportion a pour valeur $p$ >> est acceptable ou non. Pour cela, on prélève au hasard et avec remise un échantillon de $n$ individus de la population.
+
+ \begin{Prop}
+    On note $f$ la fréquence des individus de l'échantillon qui possède la particularité $\calig P$.\par
+    Lorsque $f$ appartient à l'intervalle de fluctuation, on accepte l'hypothèse << la proportion a pour valeur $p$ >>, avec un risque de $5\%$.\par
+    Sinon, on rejette l'hypothèse.
+ \end{Prop}
+ 
+ \begin{Exemple}
+    Une publicité affirme que $80\%$ des personnes utilisant un certain produit ont des cheveux qui repoussent au cours du premier mois d'utilisation.\par
+    On sélectionne au hasard $50$ personnes qui ont testé le produit. Parmi elles, $35$ déclarent que des cheveux ont repoussé au cours du premier mois d'utilisation.\par
+    À partir de cet échantillon, peut-on accepter, au risque de $5\%$, l'affirmation de la publicité ?
+ \end{Exemple}
+
+\end{document}

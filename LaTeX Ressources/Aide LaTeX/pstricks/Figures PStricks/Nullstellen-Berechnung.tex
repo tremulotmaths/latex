@@ -1,0 +1,91 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pst-plot,pst-node,pst-tools}
+
+\makeatletter
+\pst@addfams{pst-tools}
+%
+\define@boolkey[psset]{pst-tools}[Pst@]{markZeros}[false]{}
+\define@boolkey[psset]{pst-tools}[Pst@]{onlyNode}[false]{}
+\define@boolkey[psset]{pst-tools}[Pst@]{commaV}[true]{}
+\define@boolkey[psset]{pst-tools}[Pst@]{originV}[false]{}
+%----------------------------------------------------------------------
+\SpecialCoor%
+%   Default Parameter
+\psset[pst-tools]{%
+commaV=true,originV=false,onlyNode=false,markZeros=false,
+decimals=2,xShift=0,yShift=0,fontscale=10,PSfont=Times-Roman,
+}
+%--------------------------------------------------------------------
+%------------- calculate the value of an intersectionpoint -----------
+%---------------------------------------------------------------------
+\def\psZero{\def\pst@par{}\pst@object{psZero}}
+\def\psZero@i(#1,#2)#3#4{{% (#1,#2) Intervall f\"{u}r die Nullstelle, #3 Funktion, #4 Knotenname
+\begin@SpecialObj %
+\pst@Verb{
+/Function {#3} def
+\ifPst@algebraic /Function (#3) tx@AlgToPs begin AlgToPs end cvx def \fi
+  /Xinf2 #1 def
+  /Xsup2 #2 def
+{ /xM2 Xinf2 Xsup2 add 2 div def
+   /x Xinf2 def
+   /F_1 Function def
+   /x xM2 def
+   /F_M Function def
+   F_M 0 eq {exit} if
+   F_1 F_M mul 0 ge {/Xinf2 xM2 def} {/Xsup2 xM2 def} ifelse
+ Xinf2 Xsup2 sub abs 1e-6 le {exit} if } loop
+}%
+\pnode(! xM2 0){#4}%
+\addto@pscode{
+\ifPst@onlyNode \else
+  /dec \psk@decimals\space def
+  /schrift { \psk@PSfont findfont \psk@fontscale scalefont setfont } bind def
+  /Wert { 10 dec exp mul round 10 dec exp div dec 0 eq {cvi 15 string cvs} {15 string cvs } ifelse
+  \ifPst@commaV dot2comma \fi show } def
+  /Function {#3} def
+  \ifPst@algebraic /Function (#3) tx@AlgToPs begin AlgToPs end cvx def \fi
+      /Xinf #1 def
+      /Xsup #2 def
+{
+ /xM Xinf Xsup add 2 div def
+   /x Xinf def
+   /F_1 Function def
+   /x xM def
+   /F_M Function def
+   F_M 0 eq {exit} if
+   F_1 F_M mul 0 ge {/Xinf xM def} {/Xsup xM def} ifelse
+ Xinf Xsup sub abs 1e-6 le {exit} if } loop
+\ifPst@originV 0 0 \else
+xM \psk@xShift\space add \pst@number\psxunit mul 0 \psk@yShift\space add \pst@number\psyunit mul \fi moveto schrift xM Wert \fi}%
+\ifPst@markZeros%
+\psdot(#4)\else\fi%
+\end@SpecialObj%
+}%
+\ignorespaces
+}%
+\makeatother
+
+\begin{document}
+
+
+\def\funkf{2*x^2-4.2*x-5.4+ln(x+10)+2^(2/(1+x^2))+sqrt(x+3)}
+
+\begin{pspicture}[showgrid=false](-1.9,-2.5)(3,4.1)
+\begin{psclip}%
+{\psframe[linestyle=none](-1.75,-2.45)(2.75,4.15)}
+\psgrid[subgriddiv=2,gridlabels=0,gridwidth=0.7pt,gridcolor=black!50,subgridwidth=0.6pt,subgridcolor=black!30](-3,-9)(6,6)
+\end{psclip}
+\psaxes[xDecimals=0, yDecimals=0,labelFontSize=\scriptstyle,arrowscale=1.3,arrowinset=0.05,arrowlength=1.9, Dy=1,dy=1,dx=1,Dx=1,subticks=0,comma,tickwidth=0.9pt]{->}(0,0)(-1.75,-2.25)(2.85,4.25)[$x$,-90][$y$,180]% Achsen
+\psplot[algebraic=true,plotpoints=500,linecolor=magenta,yMaxValue=5.8,yMinValue=-8.5]{-0.55}{2.75}{\funkf}%
+\psZero[originV=false,algebraic=true,xShift=-0.1,yShift=0.2,linecolor=green,onlyNode=true](0,1){\funkf}{N1}
+\psZero[originV=false,algebraic=true,xShift=-0.25,yShift=0.1,fontscale=5,linecolor=blue!70,markZeros=true,dotstyle=x](1,4){\funkf}{N2}
+\uput{0.25}[0](0,-1.75){$x_{1}^{} \approx \,\psframe[fillstyle=solid,fillcolor=yellow!20,opacity=0.6,linestyle=none](0,-0.05)(0.8,0.3)$\,\psZero[algebraic=true,originV=true](0,1){\funkf}{NS1}}
+\uput{0.25}[0](0,-2.25){$x_{2}^{} \approx \,\psframe[fillstyle=solid,fillcolor=cyan!20,opacity=0.6,linestyle=none](0,-0.05)(0.9,0.25)%
+$\,\psZero[decimals=5,fontscale=7,algebraic=true,originV=true,linecolor=red](1,4){\funkf}{NS2}}
+\pscircle[fillstyle=solid,linecolor=cyan,linewidth=0.5pt,opacity=0.8,fillcolor=orange!50](N1){4pt}
+\pcline[linecolor=red,nodesepB=0.1]{->}(-1,-1)(N1)
+\rput[l](-2.4,3.5){\psframebox[fillstyle=solid,fillcolor=brown!20,opacity=0.7,linestyle=none]{$\scriptscriptstyle f(x)=2x^2-4,2x-5,4+\ln(x+10)+2^{\frac{2}{1+x^2}}+\sqrt{x+3}$}}
+\end{pspicture}
+
+
+\end{document} 

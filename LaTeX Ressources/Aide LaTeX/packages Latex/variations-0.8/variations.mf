@@ -1,0 +1,99 @@
+%
+%  Variations version 0.8
+%  Copyright (c) Christian Obrecht 2006-2010
+%
+%  This program is free software; you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation; either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This program is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You should have received a copy of the GNU General Public License
+%  along with this program; if not, write to the Free Software
+%  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+%
+
+mode_setup;
+
+u#:=1pt#;
+normal#:=u#/2.5;
+fine#:=u#/5;
+define_pixels(u,normal,fine);
+pickup pencircle scaled normal;
+normal_pen:=savepen;
+pickup pencircle scaled fine;
+fine_pen:=savepen;
+
+beginchar("0",20u#,2u#,0); % \h
+  pickup fine_pen;
+  for i=0 step 2u until 18u:
+    draw (i,0)--(i+2u,2u);
+  endfor;
+endchar;
+
+def dim(expr a) = max(abs(a),5)*u# enddef;
+
+def def_arrow(expr a,b,c) =
+  beginchar(a,b*u#,dim(c),dim(c));
+    pair e,f,g;
+    z1=(0,c*u);
+    z2=(b*u,-c*u);
+    e=unitvector(z1-z2);
+    f=z2 shifted 36e;
+    g=z2 shifted 24e;
+    z3=f rotatedaround(z2,-20);
+    z4=g rotatedaround(z2,-15);
+    z5=g rotatedaround(z2,15);
+    z6=f rotatedaround(z2,20);
+    pickup normal_pen;
+    draw z1--z2;
+    draw z3..z4---z2---z5..z6;
+  endchar;
+enddef;
+
+def_arrow("A",30,-7.5); % \c[bh]
+
+def_arrow("B",30,7.5); % \d[bh]
+
+def_arrow("C",30,-15); % \c
+
+def_arrow("D",30,15); % \d
+
+def_arrow("E",60,-15); % \cl
+
+def_arrow("F",60,15); % \dl
+
+def_arrow("G",30,0); % \e[bh]
+
+def_arrow("H",60,0); % \el[bh]
+
+def def_line(expr a,b,c) =
+  beginchar(a,b*u#,dim(c),dim(c));
+    z1=(0,c*u);
+    z2=(b*u,-c*u);
+    pickup normal_pen;
+    draw z1--z2;
+  endchar;
+enddef;
+
+def_line("a",30,-7.5); % \tc[bh]
+
+def_line("b",30,7.5); % \td[bh]
+
+def_line("c",30,-15); % \tc
+
+def_line("d",30,15); % \td
+
+def_line("e",60,-15); % \tcl
+
+def_line("f",60,15); % \tdl
+
+def_line("g",30,0); % \te[bh]?
+
+def_line("h",60,0); % \tel[bh]?
+
+end

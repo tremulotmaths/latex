@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[scale=.9]{geometry}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{hyperref}
+\renewcommand{\LayoutChoiceField}[2]{%
+\leavevmode #2 #1%
+}
+\newcommand*{\mtcode}{123456}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{Form}
+Choose wisely:\\ \\
+\ChoiceMenu[radio,name=pokemon,radiosymbol=\ding{52}]{Charmander is good.}{=ch1}\\
+\ChoiceMenu[radio,name=pokemon,radiosymbol=\ding{52}]{Bulbausaur is good.}{=ch2}\\
+\ChoiceMenu[radio,name=pokemon,radiosymbol=\ding{52}]{Squirtle is good.}{=ch3}
+
+\TextField[password,bordercolor=1 0 0,width=10em,charsize=0pt,name=boxcode]{code : }
+%
+%
+\PushButton[name=verificationcode,bordercolor=1 1 1,
+onclick=
+{
+if (this.getField("boxcode").value==\mtcode)
+{
+%this.getField("obtenirscore").value=(this.getField("pokemon1").value+this.getField("pokemon2").value+this.getField("pokemon3").value);
+this.getField("obtenirscore").value=(this.getField("pokemon").value);
+}
+else
+{
+this.getField("obtenirscore").value="Code incorrect";
+}
+this.getField("boxcode").value="";
+}
+]
+{\tikz\node[rounded corners, draw=black!80, fill=black!20]  {\bf score final :};}
+\TextField[name=obtenirscore,bordercolor=1 1 1,width=10em,charsize=0pt,readonly=true]{}
+\end{Form}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

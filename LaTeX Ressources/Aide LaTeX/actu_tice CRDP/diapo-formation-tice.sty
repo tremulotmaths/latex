@@ -1,0 +1,96 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{lastpage}
+\usepackage{relsize}
+\usepackage{listings}
+\usepackage{xspace}
+\usepackage{babel}
+
+
+% Thèmes et couleurs
+\usetheme{Berkeley}
+\usecolortheme{fly} % On modifie le thème de couleur du thème Berkeley
+
+% Définition du gris de la MTA
+\definecolor{grisMTA}{HTML}{212121}
+\definecolor{monGris}{HTML}{404040}
+
+% Couleur pour la bar de gauche
+\setbeamertemplate{sidebar canvas left}[vertical shading]%
+  [top=grisMTA,% coleur du haut
+   %middle=grisMTA!90,% couleur intermédiaire (ici 90% de grisMTA
+   %midpoint=0.5,% hauteur du niveau de la couleur intermédiaire (entre 0 et 1)
+   bottom=grisMTA!70% couleur du bas
+   ]
+%\setbeamercolor{sidebar}{bg=grisMTA!97} % Si on veut que ça soit uniforme
+
+% Couleur pour la bar de titre en haut
+%\setbeamercolor{frametitle}{bg=grisMTA!97}
+
+% Couleur pour le logo
+\setbeamercolor{logo}{bg=grisMTA}
+
+% Couleur pour le fond du diapo
+\setbeamercolor{background canvas}{bg=grisMTA}
+
+% Couleur du texte de base
+\setbeamercolor{normal text}{fg=white}
+
+% Couleur du texte dans la zone « sidebar »
+\setbeamercolor{title in sidebar}{fg=white,bg=white}
+\setbeamercolor{section in sidebar shaded}{fg=white}
+\setbeamercolor{subsection in sidebar shaded}{fg=white}
+\setbeamercolor{section in sidebar}{fg=white,bg=grisMTA!110}
+\setbeamercolor{subsection in sidebar}{fg=white,bg=grisMTA!110}
+
+% Pas de barre de navigation sur le pdf
+\setbeamertemplate{navigation symbols}{} 
+
+\graphicspath{{images/}}
+\logo{\includegraphics[scale=0.6]{logo}}
+
+
+%%% url faisant office de lien :
+%\url{http://www.google.fr}
+%%% Lien mais ce n'est pas forcément l'adresse qu'on affiche :
+%\href{http://www.google.fr}{Google}
+%%% Texte verbatim (en fait les caractères spéciaux doivent être échappés).
+% \verbtexte{blabla}
+
+\hypersetup{%
+  colorlinks,% colorie les liens
+  urlcolor=cyan,% couleur des \url ou \href
+  linkcolor=red,% couleur des liens internes (titres de section etc.)
+}
+
+
+% Pour citer verbatim du texte comme les noms de menu etc.
+% Les caractères spéciaux comme _, $ etc. doivent être échappés.
+\newcommand{\verbtexte}[1]{%
+  \begingroup%
+  \bfseries%
+  \color{teal}
+  \smaller%
+  \texttt{#1}%
+  \endgroup%
+}
+
+\lstset{language=bash,%
+        basicstyle=\ttfamily,%
+        commentstyle=\color{gray},%
+        showspaces=false,%
+        numbers=none,%
+        frame=single,%
+        keepspaces=true,%
+        flexiblecolumns=true,%
+        literate={é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {à}{{\`a}}1 {î}{{\^i}}1,%
+}
+
+\newcommand{\Vers}{$\rightarrow$\xspace}
+\newcommand{\AS}{$\backslash$}
+
+
+
+\mode<presentation>

@@ -1,0 +1,346 @@
+\documentclass[xcolor={dvipsnames,svgnames,table}]{beamer}
+
+\input philippe2013_beamer
+
+\title[\'Equations et inéquations]{{\small Chapitre 1}\\[0.5cm] \textbf{\'Equations et inéquations}\\ \textbf{Résolution de problèmes}}
+\date{}
+\author{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Résolution d'équations}
+\subsection{Développement et factorisation}
+
+\begin{frame}
+    \begin{definition}
+        \alert{Développer} un produit revient à l'écrire sous forme d'une somme.
+    \end{definition}
+
+\pause
+
+    \begin{Prop}[démontrée géométriquement]
+        Pour tous nombres $k$, $a$, $b$, $c$ et $d$, on a :
+        \invisible{\[k(a + b) = ka + kb \qetq (a + b)(c + d) = ac + ad + bc+ bd.\]}
+    \end{Prop}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Développer l'expression $A(x) = 5(x - 1) - (3x - 2)(-4 + x)$.\par
+        \rule{0pt}{6cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{definition}
+        \alert{Factoriser} une somme revient à l'écrire sous forme d'un produit.
+    \end{definition}
+\pause
+    \begin{Prop}[démontrée géométriquement]
+        Pour tous nombres $k$, $a$, $b$, $c$ et $d$, on a :
+        \invisible{\[ka + kb = k(a + b) \qetq a(c + d) + b(c + d) = (a + b)(c + d).\]}
+    \end{Prop}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Factoriser l'expression $B(x) = 2(x+4)+2(x-1) - (2x + 3)(4x + 6)$.\par\smallskip
+        \rule{0pt}{5.5cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}[Les identités remarquables]
+        Soient $a$ et $b$ deux nombres quelconques. On a alors les \alert{identités remarquables} suivantes :
+        
+        \rule{0pt}{5cm}
+    \end{Prop}
+\end{frame}
+
+\begin{frame}%{Démonstration}
+    \begin{Proof}
+        \rule{0pt}{7cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+        \[C = \np{1001}^2 \qq D = 99^2 \qq E = 49 \times 51\]
+        \rule{0pt}{6cm}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+        \[F(x) = x^2 + 2x + 1 \qq G(a) = 9a^2 - 24a + 16 \qq H(y) = y^2 - 25\]
+        \rule{0pt}{5.5cm}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}{Remarque}
+    Les identités remarquables sont utiles pour gagner du temps dans un développement et, en cas d'oubli, on peut les retrouver en quelques lignes.\par
+    En revanche, elles sont très pratiques pour factoriser dans certains cas où il n'y a pas de facteurs communs.
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Factoriser $I(t) = 4t^2 - 20t + 9$.\par
+        \rule{0pt}{6cm}
+    \end{Example}
+\end{frame}
+
+\subsection{Les équations}
+
+\begin{frame}
+    \begin{definition}
+        Une \alert{équation} est une égalité où figure une inconnue.\par
+        \alert{Résoudre} une équation revient à trouver la (ou les) valeur(s) de l'inconnue pour laquelle (ou lesquelles) l'égalité est vérifiée.
+    \end{definition}
+\pause
+    \begin{Prop}
+    On peut ajouter un même nombre à chaque membre d'une égalité pour obtenir ainsi une égalité équivalente :
+        \[a = b \qLRq a \rouge{\ +\ c } = b \rouge{\ +\ c}\]
+    \end{Prop}
+\end{frame}
+
+\begin{frame}
+    \begin{Proof}
+        \rule{0pt}{5cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}
+        On peut multiplier par un même nombre non nul les deux membres d'une égalité pour obtenir ainsi une égalité équivalente :
+        \[\text{Avec } c\neq 0,\quad a = b \qLRq a \rouge{\,\times\,c} = b \rouge{\,\times\,c}\]
+    \end{Prop}
+\pause
+    \begin{Proof}
+        \rule{0pt}{4cm}
+    \end{Proof}
+\end{frame}
+
+\subsubsection{\'Equation du premier degré}
+
+\begin{frame}
+    \begin{definition}
+        Une \alert{équation à une inconnue du premier degré} est une équation de la forme $ax + b = 0$ où $x$ est l'inconnue et $a$ et $b$ sont des paramètres donnés tels que $a \neq 0$.\par
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+        Résolution de l'équation : $8x - 3 = -2x + 6$.\par
+        \rule{0pt}{6cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+        Résoudre les équations suivantes :
+        \[3x - 4 = 3 \qq 2x + 2 = 5x - 4 \qq 1 - 2(2 - x) = 2x - 3\]
+        \rule{0pt}{4cm}
+    \end{Examples}
+\end{frame}
+
+\subsubsection{\'Equation produit}
+
+\begin{frame}
+    \begin{Prop}[admise]
+        Un produit de facteur est nul si et seulement si l'un des facteurs est nul :
+        \[A(x) \times B(x) = 0 \qLRq A(x) = 0 \text{ ou } B(x) = 0\]
+    \end{Prop}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}
+       Résolution de l'équation $(2x + 3)(6x - 8) = 0$.\par
+       \rule{0pt}{5cm}
+    \end{Example}
+\end{frame}
+
+\subsubsection{Résolution d'un problème}
+
+\begin{frame}
+    \begin{Example}
+        Lors d'une séance de cinéma, on a accueilli $56$ spectateurs. Certains ont payé le tarif réduit ($5$\EUR), les autres le tarif normal ($8$\EUR). La recette de cette séance se monte à $376$\EUR.\par Combien de spectateurs ont payé le tarif réduit ?
+        
+        \rule{0pt}{4cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{En résumé}
+    Voici les étapes de la résolution d'un problème en utilisant les équations :\pause
+    \begin{enumerate}
+        \item choix de l'inconnue ;\pause
+        \item mise en équation du problème ;\pause
+        \item résolution de l'équation ;\pause
+        \item réponse au problème.
+    \end{enumerate}
+\end{frame}
+
+\section{Les ensembles de nombres en résumé}
+
+\begin{frame}
+    \begin{definition}\pause
+        \begin{enumerate}
+            \item L'ensemble des entiers \alert{naturels} $\N$ est constitué des nombres entiers positifs.\pause
+            \item L'ensemble des entiers \alert{relatifs} $\Z$ est constitué des entiers naturels ainsi que de nombres entiers négatifs.\pause
+            \item L'ensemble des nombres \alert{rationnels} $\Q$ est constitué de tous les nombres qui peuvent s'écrire sous forme de fractions, ce qui inclut les ensembles $\N$ et $\Z$ mais aussi les nombres décimaux.\pause
+            \item L'ensemble des nombres \alert{irrationnels} est constitué des nombres qui ne peuvent pas s'écrire sous forme de fractions.\pause
+            \item L'ensemble des nombres \alert{réels} $\R$ est constitué de tous les nombres rationnels et des nombres irrationnels.
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Les ensembles de nombres}
+    \[\N \subset \Z \subset \Q \subset R\]
+    \rule{0pt}{6cm}
+\end{frame}
+
+\section{Résolution d'inéquations}
+\subsection{Intervalles de nombres}
+\subsubsection{Intervalles bornés}
+
+\begin{frame}
+    \begin{definition}
+        Un \alert{intervalle borné} par deux nombres réels est constitué de tous les nombres réels compris entre ces deux nombres.\par
+        Par exemple, l'intervalle $\intervalleff  a b$ est l'ensemble des nombres $x$ tels que $x \geq a$ et $x \leq b$.
+    \end{definition}
+\pause
+    \begin{center}
+    \renewcommand\arraystretch{1.7}
+    \begin{tabular}{|>\bfseries c|>{\bfseries} c|>{\centering\bfseries\arraybackslash} p{6.25cm}|}
+        \hline
+            Inégalité & Notation & Représentation \\
+        \hline
+            $a \leq x \leq b$ & \invisible{$x\in \intervalleff a b$} &\\
+    \hline
+            $a < x \leq b$ & \invisible{$x\in \intervalleof a b$} &\\
+    \hline
+            $a \leq x < b$ & \invisible{$x\in \intervallefo a b$} &\\
+    \hline
+            $a < x < b$ & \invisible{$x\in \intervalleoo a b$} &\\
+    \hline
+    \end{tabular}
+    \end{center}
+\end{frame}
+
+\subsubsection{Intervalles non bornés}
+
+\begin{frame}
+    \begin{definition}
+        Un \alert{intervalle non borné} est constitué de tous les nombres réels supérieurs ou inférieurs à un nombre réel.\par
+        Par exemple, l'intervalle $\intervalleoo{a}{+\infty}$ est l'ensemble des nombres $x$ tels que $x > a$.
+    \end{definition}
+\pause
+    \begin{center}
+    \renewcommand\arraystretch{1.7}
+    \begin{tabular}{|>\bfseries c|>{\bfseries} c|>{\centering\bfseries\arraybackslash} p{5cm}|}
+        \hline
+            Inégalité & Notation & Représentation \\
+        \hline
+            $x \geq a $ & \invisible{$x\in \intervallefo{a}{+\infty}$} &\\
+    \hline
+            $x > a $ & \invisible{$x\in \intervalleoo{a}{+\infty}$} &\\
+    \hline
+            $x \leq a $ & \invisible{$x\in \intervalleof{-\infty}{a}$} &\\
+    \hline
+            $x < a $ & \invisible{$x\in \intervalleoo{-\infty}{a}$} &\\
+    \hline
+    \end{tabular}
+    \end{center}
+\end{frame}
+
+\subsubsection{Réunion et intersection}
+
+\begin{frame}
+    \begin{definition}
+        \begin{enumerate}[<+->]
+            \item La \alert{réunion} de deux intervalles $I$ et $J$, notée $I \cup J$, est l'ensemble des nombres réels appartenant à $I$ \textbf{ou} à $J$.
+            \item L'\alert{intersection} de deux intervalles $I$ et $J$, notée $I \cap J$, est l'ensemble des nombres réels appartenant à $I$ \textbf{et} à $J$.
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+    $\intervalleff{-2}{5} \cup \intervalleoo{0}{+\infty} = $ \hspace{2cm} $\intervalleff{-2}{5} \cap \intervalleoo{0}{+\infty} =$ \vspace{2cm}
+
+    $\intervalleff{-2}{5} \cup \intervalleof{8}{15} = $ \hspace{3cm} $\intervalleff{-2}{5} \cap \intervalleof{8}{15} = $\vspace{2cm}
+    \end{Examples}
+\end{frame}
+
+\subsection{Résolution d'inéquations}
+\subsubsection{Inéquations du premier degré à une inconnue}
+
+\begin{frame}
+    \begin{Prop}
+        On peut ajouter un même nombre à chaque membre d'une inégalité pour obtenir ainsi une inégalité équivalente :
+        \[a < b \qLRq a \rouge{\ +\ c } < b \rouge{\ +\ c}\]
+    \end{Prop}
+\pause
+    \begin{Examples}
+        \[x + 4 \leq 5 \hspace{2.5cm} x - 3 > 0\]
+        \rule{0pt}{3cm}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}
+    \begin{Proof}
+        \rule{0pt}{6cm}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}
+    \begin{Prop}
+        On multiplie ou on divise les deux membres d'une inégalité par un même nombre $k$ non nul :
+        \begin{itemize}
+            \item si $k > 0$, alors : \quad $a < b \qLRq ka < kb$ ;
+            \item si $k < 0$, alors : \quad $a < b \qLRq ka > kb$.
+        \end{itemize}
+    \end{Prop}
+\pause
+    \begin{Examples}
+        \[3x + 4 < 2 \hspace{2.5cm} \frac{x}{-2} + 6 \geq 0\]
+        \rule{0pt}{2.5cm}
+    \end{Examples}
+\end{frame}
+
+\begin{frame}
+    \begin{Proof}
+        \rule{0pt}{6cm}
+    \end{Proof}
+\end{frame}
+
+\subsubsection{Résolution de problèmes}
+
+\begin{frame}
+    \begin{Example}
+        Dans un club de gym, deux formules sont proposées :
+        \begin{description}
+            \item[Formule A :] abonnement mensuel de $18$\EUR et $5$\EUR la séance.
+            \item[Formule B :] abonnement mensuel de $30$\EUR et $3$\EUR la séance.
+        \end{description}
+        Déterminer par le calcul le nombre de séances minimum pour lequel la formule B est plus avantageuse.
+        
+    \rule{0pt}{4cm}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{En résumé}
+    Voici les étapes de la résolution d'un problème en utilisant les inéquations :\pause
+    \begin{enumerate}
+        \item choix de l'inconnue ;\pause
+        \item trouver l'inéquation correspondant au problème ;\pause
+        \item résolution de l'inéquation ;\pause
+        \item réponse au problème.
+    \end{enumerate}
+\end{frame}
+
+\end{document}

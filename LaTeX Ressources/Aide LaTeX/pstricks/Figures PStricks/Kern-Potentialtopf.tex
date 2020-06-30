@@ -1,0 +1,63 @@
+\documentclass[fleqn,a4paper,12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipsnames]{xcolor} %% Farben sind im Dokument xcolor.pdf definiert
+%\usepackage[distiller]{pstricks}
+\usepackage{pst-slpe,pst-blur,pst-node}
+\usepackage{pstricks-add}
+
+\def\Kernradius{7.5pt}
+\def\ColorProton{red}
+\def\ColorNeutron{gray!25}
+
+\newpsstyle{proton}{linecolor=BrickRed,slopebegin=red!35,sloperadius=0.15,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+\newpsstyle{neutron}{linecolor=gray!70,slopebegin=white,sloperadius=0.11,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+
+\def\Proton{\psBall[style=proton](0,0){\ColorProton}{\Kernradius}}
+\def\Neutron{\psBall[style=neutron](0,0){\ColorNeutron}{\Kernradius}}
+
+
+\begin{document}
+
+\begin{pspicture}[showgrid=false,shift=-6.7](-0.5,-4.8)(8,2.5)
+
+\psline[arrowscale=1.4,arrowinset=0.05,arrowlength=2.0,linewidth=1pt]{->}(3,-1)(3,2.5)
+\uput{0.2}[0](3,2.2){$E(r)$}
+\psline[arrowscale=1.4,arrowinset=0.05,arrowlength=2.0,linewidth=1pt]{<->}(0.1,0)(8,0)
+\uput{0.2}[-90](7.8,0){$r$}
+\psframe(1,-4)(3,0)
+\psframe(3,-3.2)(5,0)
+\psplot{5}{7.5}{1 x 4.6 sub div}
+\psline(5,0)(!5 1 5 4.6 sub div)
+%----------------------
+\psline(1,-3.5)(3,-3.5)
+\psline(1,-2.5)(3,-2.5)
+\psline(1,-1.5)(3,-1.5)
+\psline(1,-0.5)(3,-0.5)
+%----------------------
+\psline(3,-2.8)(5,-2.8)
+\psline(3,-2.0)(5,-2.0)
+\psline[linestyle=dashed](3,-1.3)(5,-1.3)
+\psline[linestyle=dashed](3,-0.6)(5,-0.6)
+\rput(3.5,-2.8){\psscalebox{0.5}{\Proton}}
+\rput(4.5,-2.8){\psscalebox{0.5}{\Proton}}
+\rput(3.5,-2.0){\psscalebox{0.5}{\Proton}}
+\rput(4.5,-2.0){\psscalebox{0.5}{\Proton}}
+\rput(4,-3.6){Protonen}
+\rput(1.5,-3.5){\psscalebox{0.5}{\Neutron}}
+\rput(2.5,-3.5){\psscalebox{0.5}{\Neutron}}
+\rput(1.5,-2.5){\psscalebox{0.5}{\Neutron}}
+\rput(2.5,-2.5){\psscalebox{0.5}{\Neutron}}
+\rput(1.5,-1.5){\psscalebox{0.5}{\Neutron}}
+\rput(2.5,-1.5){\psscalebox{0.5}{\Neutron}}
+\rput(1.5,-0.5){\psscalebox{0.5}{\Neutron}}
+\rput(2.5,-0.5){\psscalebox{0.5}{\Neutron}}
+\rput(2,-4.4){Neutronen}
+\pcline[arrowscale=1.4,arrowinset=0.05,arrowlength=2.0]{->}(2.5,-0.5)(3.5,-1.3)
+\pcline[arrowscale=1.4,arrowinset=0.05,arrowlength=2.0,linecolor=red]{->}(3,-0.9)(3.6,0.75)
+\pcline[arrowscale=1.4,arrowinset=0.05,arrowlength=2.0,linecolor=red]{->}(3,-0.9)(4.5,0.75)
+\uput{0.2}[85](3.6,0.75){$\beta^{-}$}
+\uput{0.2}[85](4.5,0.75){$\overline{\nu}_{\text{e}}^{}$}
+\end{pspicture}
+
+
+\end{document}

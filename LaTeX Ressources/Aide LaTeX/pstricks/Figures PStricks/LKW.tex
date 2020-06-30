@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage{pst-node}
+
+
+\begin{document}
+\definecolor{TSLA}{rgb}{0.4,0.4,0.5}% gdunkel-raublau
+\definecolor{TSLB}{rgb}{0.6,0.7,0.6}% gr\"{u}n
+\definecolor{TSLC}{rgb}{0.3,0.3,0.3}% dunkelgrau
+\definecolor{TSLD}{rgb}{0.7,0.75,0.75}% grau-blau
+\definecolor{TSLE}{rgb}{0.3,0.4,0.7}% blau
+\definecolor{TSLF}{rgb}{0.94,0.9,0.9}% helles beige
+%
+\begin{pspicture}[showgrid=true](0,0)(9,4.5)
+% Camion-benne
+\psframe[fillstyle=solid,fillcolor=TSLB,linewidth=3pt,linecolor=TSLC,framearc=0.3](0.25,0.75)(5.6,1.25)
+\psline[linecolor=TSLC,linewidth=3pt](0.6,0.75)(0.6,1.25)
+\pspolygon[fillcolor=TSLC,fillstyle=solid,linestyle=none](1,1)(0.65,1.65)(5.6,1.65)(5.6,1)
+%------- Fahrerhaus ----------------------------------------
+\pspolygon[fillcolor=TSLB,fillstyle=solid,linecolor=TSLC,linewidth=3pt,linearc=0.1](5.6,1)(5.6,3.75)(7.6,3.75)(8.1,2.25)(8,1)
+\psframe[fillstyle=solid,fillcolor=TSLB,linewidth=3pt,linecolor=TSLC,framearc=0.3](4.4,0.6)(5.6,1.25)
+\psline[linecolor=TSLC,linewidth=3pt](4.7,0.6)(4.7,1.25)
+\psline[linecolor=TSLC,linewidth=3pt](5.3,0.6)(5.3,1.25)
+\psframe[fillstyle=solid,fillcolor=TSLB,linewidth=3pt,linecolor=TSLC,framearc=0.3](7.6,0.7)(8.2,1.2)
+\psline[linecolor=TSLC,linewidth=3pt](7.9,0.7)(7.9,1.2)
+
+\pspolygon[fillstyle=solid,fillcolor=TSLC,linestyle=none,framearc=0.05](6.4,2.4)(6.4,3.55)(7.7,3.55)(8.05,2.25)(7.4,2.4)
+\psframe[fillstyle=solid,fillcolor=white,linestyle=none](6.8,2.5)(7.35,3.4)
+\pspolygon[fillstyle=solid,fillcolor=white,linestyle=none](7.45,2.5)(7.45,3.4)(7.65,3.4)(8,2.37)
+\psline[linecolor=TSLF,linewidth=3pt]{-c}(5.66,2.15)(7.2,2.15)
+\psline[linecolor=TSLC,linewidth=3pt]{-c}(5.95,3.7)(5.95,2.65)
+%----- Radkasten -------------------------------------------
+\begin{psclip}%
+{\psframe[linestyle=none](5.6,1)(8.1,2.25)}%
+\pscircle[linestyle=none,fillstyle=solid,fillcolor=TSLC](6.6,0.8){0.9}
+\end{psclip}
+%
+\def\Rad{%
+\pscircle[linecolor=TSLC,linewidth=3pt,fillstyle=solid,fillcolor=TSLB](0,0){0.8}
+\pscircle[linecolor=TSLC,linewidth=3pt,fillstyle=solid,fillcolor=TSLF](0,0){0.4}
+\pscircle[linestyle=none,fillstyle=solid,fillcolor=TSLB](0.1,0.1){0.33}
+\pscircle[linecolor=TSLC,linewidth=3pt](0,0){0.4}
+}
+\rput{0}(6.6,0.8){\Rad}
+\rput{0}(3.3,0.8){\Rad}
+\rput{0}(1.7,0.8){\Rad}
+%
+\rput(2.3,2.9){%
+\psscalebox{0.6}{%
+\pscustom[fillstyle=solid,fillcolor=TSLD,linestyle=none]{%
+%\psellipticarcn(-2.5,0)(1.5,1){180}{90}%
+\psellipticarcn(-0.62,0.67)(2,1){174}{90}%
+\psellipticarcn(1.23,1)(2.5,1){160}{10}%
+\psellipticarcn(3.15,0.44)(1.5,1){70}{17}%
+%\psellipticarcn(3.87,-0.17)(1.5,1){50}{6.6}%
+\closepath%
+}}
+}
+%--------- Kipper ----------------------
+\pspolygon[fillcolor=TSLB,fillstyle=solid,linecolor=TSLC,linewidth=3pt,linearc=0.1](0.1,1.65)(0.5,3.45)(5.3,3.45)(5.3,3.1)(5,3.1)(4.667,1.65)
+\pcline[offset=-3pt,linecolor=TSLF,linewidth=3pt](0.5,3.45)(5.3,3.45)
+\pspolygon[linecolor=TSLC,linewidth=3pt,linearc=0.1](0.1,1.65)(0.5,3.45)(5.3,3.45)(5.3,3.1)(5,3.1)(4.667,1.65)
+\pcline[offset=-1.2cm,linecolor=TSLF,linewidth=3pt,nodesepB=0.1cm,nodesepA=0.6cm]{c-}(0.1,1.65)(0.5,3.45)
+\pcline[offset=-1.5cm,linecolor=TSLC,linewidth=3pt,nodesepB=0.05cm,nodesepA=0.3cm](0.1,1.65)(0.5,3.45)
+\pcline[offset=-2.7cm,linecolor=TSLF,linewidth=3pt,nodesepB=-0.28cm,nodesepA=0.935cm]{c-}(0.1,1.65)(0.5,3.45)
+\pcline[offset=-3cm,linecolor=TSLC,linewidth=3pt,nodesepB=-0.3cm,nodesepA=0.6cm](0.1,1.65)(0.5,3.45)
+\psline[linecolor=TSLC,linewidth=3pt](5.02,3.1)(0.47,3.1)
+\psline[linecolor=TSLC,linewidth=5pt](0,-0.1)(8.5,-0.1)
+\end{pspicture}
+\end{document} 

@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{libertine}% f\"{u}r rm und sf
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{pst-grad}
+\usepackage{pst-coil}
+\usepackage{pst-eucl}
+
+\DeclareMathSymbol{,}{\mathord}{letters}{"3B}
+
+
+
+
+\begin{document}
+
+
+\psscalebox{1.0}{%
+ \begin{pspicture}[shift=-2.0](-1.6,13.0)(13,15.0)%\psgrid
+  \pstGeonode[PointSymbol=none, PointName=none](0,2){A}(1,2){B}(1,0.5){C}(11,0.5){D}(11,5){E}(1,5){F}(1,3.5){G}(0,3.5){H}%
+%-------------------------------------------------------------------------------------------------------------------------
+%-------------------------------- B-Feld ---------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------
+{\psset{linecolor=cyan}%
+\psframe[linestyle=dashed,fillstyle=solid,fillcolor=cyan!20,opacity=0.3](-0.5,-2.5)(8.5,6.5)%
+\def\ri{0.3}%
+\multirput(0,-8)(0,2){5}{%
+\multirput(0,6)(2,0){5}{\pscircle(0,0){!\ri}\psline(!\ri\space -135 PtoC)(!\ri\space 45 PtoC)%
+\psline(!\ri\space 135 PtoC)(!\ri\space -45 PtoC)}%
+}}
+%-------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------  Spule -----------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------
+\psline[linecolor=black,linewidth=1.2pt](1,12)(1,1)(7,1)(7,9)(1.1,9)(1.1,1.1)(7.1,1.1)(7.1,9.1)(1.2,9.1)(1.2,1.2)(7.2,1.2)(7.2,12)%
+\uput{0.15}[135](1,12){K}\psdot[dotscale=1.1](1,12)%
+\uput{0.15}[45](7.2,12){L}\psdot[dotscale=1.1](7.2,12)%
+%-------------------------------------------------------------------------------------------------------------------------
+%------------------------------------------ Kraftmesser ------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------- Stange, linkes Teilst\"{u}ck ------------------------------------------------
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](1,14.8)(4.1,14.97)%
+%--------------------------------------------- Haken oben ----------------------------------------------------------------
+\rput{180}(4,14.85){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=0pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+%----------------------------------------------- Stange, rechtes Teilst\"{u}ck -----------------------------------------------
+\psframe[linestyle=none,framearc=.0,fillstyle=gradient,gradangle=0,gradend=gray!30,gradbegin=black!70](4.0,14.8)(7.0,14.97)%
+%--------------------------------------------- Haken unten ---------------------------------------------------------------
+\rput{0}(4,9.62){%
+\psset{unit=.15, dotscale=0.75, arrowscale=2,doubleline=true,doublesep=0pt,doublecolor=gray!40,linewidth=1pt,linecolor=black!40}%
+\psarc[linecap=1](0,0){1}{140}{45}%
+\psbezier(0,2.5)(0,1)(! 0 1 45 sin div)(1;45)}%
+%-------------------------------Verbindung zum Haken unten ---------------------------------------------------------------
+\psdot[dotscale=1.1](4,9.05)%
+\psline[linecap=1,linewidth=3pt,linecolor=black!70](4,9.05)(4,9.5)%
+\psframe[linecolor=black!80,fillcolor=black!80,fillstyle=solid,opacity=0.8](3.73,10)(4.27,10.1)%
+\pscoil[coilheight=0.75,coilwidth=0.35,coilarmA=0.1,coilarmB=0.2](4.0,10.1)(4.0,14.5)%
+%-------------------------------- Skala gr\"{u}n wei{\ss} ------------------------------------------------------------------------
+\multirput(0,0)(0,0.3){8}{%
+\psframe[linecolor=black!80,fillcolor=white,fillstyle=solid,opacity=0.8](3.8,10.1)(4.2,10.25)%
+\psframe[linecolor=black!80,fillcolor=green!80,fillstyle=solid,opacity=0.8](3.8,10.25)(4.2,10.4)%
+}
+%--------------------------------------------------------------------------------------------------------------------------
+\psframe[linecolor=black!80,fillcolor=green!85,fillstyle=solid,opacity=0.8](3.77,11.5)(4.23,14.5)%
+\psframe[linecolor=black!80,fillcolor=green!85,fillstyle=solid,opacity=0.8](3.74,10.8)(4.26,12.7)%
+%-------------------------------------------------------------------------------------------------------------------------
+%----------------------------------- Ma{\ss}e und Text -----------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------
+\pcline[linewidth=0.9pt,arrowsize=0.25,arrowinset=0.1,offset=-0.4,tbarsize=12pt]{|<->|}(1,1)(7,1)%
+\ncput*[fillcolor=cyan!10]{$b=8\,\text{cm}$}%
+\pcline[linewidth=0.9pt,arrowsize=0.25,arrowinset=0.1,offset=0.4,tbarsize=12pt]{|<->|}(1,1)(1,9)%
+\ncput*[nrot=:U,fillcolor=cyan!10]{$c=12,5\,\text{cm}$}%
+\rput(8,3){\large\textcolor{cyan}{$\overrightarrow{B}$}}%
+\rput(6.2,8){\large $\text{S}_{1}$}%
+\end{pspicture}
+}%
+
+
+\end{document} 

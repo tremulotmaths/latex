@@ -1,0 +1,25 @@
+\beamer@endinputifotherversion {3.12pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Mod\`eles de pages}{3}{1}{1}
+\beamer@subsectionintoc {1}{1}{Mod\`ele normal}{4}{1}{1}
+\beamer@subsectionintoc {1}{2}{Mod\`ele verbatim}{5}{1}{1}
+\beamer@subsectionintoc {1}{3}{Page enti\`ere}{6}{1}{1}
+\beamer@subsectionintoc {1}{4}{Page trop pleine}{7}{1}{1}
+\beamer@sectionintoc {2}{Les diff\'erents blocs}{10}{1}{2}
+\beamer@subsectionintoc {2}{1}{Les blocs de base}{11}{1}{2}
+\beamer@subsectionintoc {2}{2}{Les blocs pr\'ed\'efinis}{12}{1}{2}
+\beamer@subsectionintoc {2}{3}{Les bo\IeC {\^\i }tes arrondies}{13}{1}{2}
+\beamer@subsectionintoc {2}{4}{Les environnements encadr\'es}{14}{1}{2}
+\beamer@sectionintoc {3}{Les jeux de texte}{15}{1}{3}
+\beamer@sectionintoc {4}{Mises en valeur}{17}{1}{4}
+\beamer@sectionintoc {5}{Les listes}{19}{1}{5}
+\beamer@subsectionintoc {5}{1}{Itemize}{20}{1}{5}
+\beamer@subsectionintoc {5}{2}{Enumerate}{21}{1}{5}
+\beamer@subsectionintoc {5}{3}{Description}{22}{1}{5}
+\beamer@sectionintoc {6}{Les colonnes}{23}{1}{6}
+\beamer@sectionintoc {7}{Les recouvrements}{25}{1}{7}
+\beamer@subsectionintoc {7}{1}{altenv}{26}{1}{7}
+\beamer@subsectionintoc {7}{2}{over}{34}{1}{7}
+\beamer@sectionintoc {8}{Affichage d\'ecompos\'e}{38}{1}{8}
+\beamer@subsectionintoc {8}{1}{En liste}{39}{1}{8}
+\beamer@subsectionintoc {8}{2}{En texte}{47}{1}{8}

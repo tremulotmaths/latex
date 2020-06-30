@@ -1,0 +1,82 @@
+\documentclass[pstricks,border=10pt,dvipsnames,distiller]{standalone}
+
+\usepackage{amsmath,pst-circ,pst-coil,pst-perspective}
+
+\begin{document}
+
+\newcommand{\Zylinder}[9]{%  #1 L\"{a}nge, #2 Radius, #3 gradbegin, #4 gradend, #5 gradmidpoint
+\pscustom[dimen=#9,fillstyle=gradient,gradbegin=#3,gradend=#4,gradmidpoint=#5,gradangle=90,linecolor=#6,linewidth=#7,linestyle=#8]{%
+\psellipticarc(0,0)(!#2 #2 0.3 mul){180}{360}
+\psellipticarcn(0,#1)(!#2 #2 0.3 mul){0}{-180}
+\closepath
+}
+\psellipse[fillstyle=solid,fillcolor=#6,linestyle=none](0,#1)(!#2 #2 0.3 mul)
+}
+\begin{pspicture}[showgrid=false](-1,-1.25)(13,6)
+\definecolor{Kristallblau}{rgb}{0.1176,0.5647,1}% Dodger blau
+\definecolor{RandFarbe}{rgb}{0.1176,0.5647,1}%{0,0.75,1}% DeepSkyBlue
+
+%%R\"{o}hre
+\pscustom[fillstyle=gradient,gradbegin=cyan!20,gradend=white,gradmidpoint=0.45,gradangle=0]{%
+\psellipticarcn(1.5,2.5)(0.35,1.5){270}{90}
+\psline(8,4)(12,6)
+\psline(12,-1)(8,1)
+\closepath%
+}
+\psellipse[fillstyle=solid,fillcolor=Kristallblau!50,opacity=0.3,linewidth=0.4pt,linestyle=none](1.5,2.5)(0.35,1.5)
+\psellipticarcn[linewidth=1pt](1.5,2.5)(0.35,1.5){270}{90}
+
+%%Heiz
+\pscoil[coilarm=0.075cm,coilwidth=3mm,coilheight=0.3,linewidth=0.5pt,linecolor=orange](2.5,2.2)(2.5,2.8)
+\psline[arrowscale=1](2.5,2.8)(2.5,3)(0.5,3)
+\psline[arrowscale=1](2.5,2.2)(2.5,2)(0.5,2)
+\psellipse[fillstyle=solid,fillcolor=black](1.5,3)(0.03,0.04)
+\psellipse[fillstyle=solid,fillcolor=black](1.5,2)(0.03,0.04)
+\battery[labeloffset=0.85](0.5,2)(0.5,3){$U_{\text{H}}$}
+\psline[arrowscale=1]{*-}(0.5,2)(0.5,0)
+\battery[labeloffset=.85](4.5,0)(0.5,0){$U_{\text{B}}$}
+\psline(4.5,0)(4.5,2)
+\psline[arrowscale=1]{*-}(2,2)(2,1.5)(3.2,1.5)(3.2,2)
+
+
+\rput{-90}(2.85,2.5){\Zylinder{0.75}{0.5}{black!90!cyan!80}{gray!10}{0.3}{black!90!cyan!80}{1pt}{none}{middle}}
+\rput{-90}(2.85,2.5){%
+\psellipse[fillstyle=gradient,gradbegin=black!90!cyan!80,gradend=gray!10,gradmidpoint=0.65,gradangle=90,linewidth=0.3pt,linecolor=black!85](0,0.75)(!0.48 dup 0.3 mul)}
+\psframe[fillstyle=gradient,gradbegin=red!10,gradend=red!70,gradmidpoint=0.5,gradangle=0,linestyle=none,framearc=0.3](3.47,2.45)(4.5,2.55)
+\rput{-90}(4.45,2.5){\Zylinder{0.1}{0.5}{black!90!cyan!80}{gray!10}{0.3}{black!90!cyan!80}{1pt}{none}{middle}}
+\rput{-90}(4.45,2.5){%
+\psellipse[fillstyle=gradient,gradbegin=black!90!cyan!80,gradend=gray!10,gradmidpoint=0.65,gradangle=90,linewidth=0.3pt,linecolor=black!85](0,0.1)(!0.2 dup 0.3 mul)}
+
+\psboxTS[linejoin=1,linewidth=0.5pt](-0.5,5,2.25){1}{1.0}{0.15}{black!40}
+
+\psframe[fillstyle=gradient,gradbegin=red!10,gradend=red!70,gradmidpoint=0.5,gradangle=0,linestyle=none,framearc=0.3](4.51,2.45)(5.4,2.55)
+
+\pscustom[linewidth=1.1pt,linejoin=1]{%
+\psellipticarcn(1.5,2.5)(0.35,1.5){270}{90}
+\psline(8,4)(12,6)
+\psline(12,-1)(8,1)
+\closepath%
+}
+
+\psboxTS[linejoin=1,linewidth=0.5pt](-0.35,7,2){0.2}{1}{1}{black!40}
+
+\rput{-90}(12,2.5){\Zylinder{.2}{3.5}{black!30!cyan!80}{gray!10}{0.3}{black!20!cyan!30}{1pt}{none}{middle}}
+\pcline[linecolor=red!30,linewidth=1.2pt](5.4,2.5)(12.0,3.3)
+\pcline[linecolor=red,linewidth=1.2pt,nodesepB=1.05](5.4,2.5)(12,3.3)
+\psellipse[fillstyle=solid,fillcolor=black!30!SeaGreen,linestyle=none,linewidth=2pt](12,3.3)(0.05,0.08)
+
+\psboxTS[linejoin=1,linewidth=0.5pt](0.35,7,2){0.2}{1}{1}{black!40}
+\psboxTS[linejoin=1,linewidth=0.5pt](-0.5,5,2.75){1}{1.0}{0.15}{black!40}
+
+\psline(2.6,2.72)(2.6,5)
+\uput[90](2.6,5){A}
+\psline(4.5,3)(4.5,5)
+\uput[90](4.5,5){B}
+\psline(5.5,3)(5.5,3.8)(6.3,5)
+\uput[90](6.3,5){C}
+\psline(7.335,1.9)(6.5,1.2)(6.5,0)
+\uput[-90](6.5,0){D}
+
+\end{pspicture}
+
+\end{document} 

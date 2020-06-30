@@ -1,0 +1,48 @@
+\documentclass[12pt,openright,twoside,french]{book}
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreActivite{vi.1}{Schéma de \\ \bsc{Bernoulli}}
+
+\section*{Tirage sans remise}
+
+Dans un jeu télévisé, un candidat joue pour gagner \EUR{$\np{100000}$}. Pour cela, il doit tirer au hasard une boule dans une urne.\par
+L'urne est opaque et les boules sont indiscernables au toucher. Il y a $14$ boules bleues et $3$ boules rouges.\par
+Le candidat tire dans l'urne une boule et la met de côté. Puis il tire dans la même urne une seconde boule.\par
+S'il tire 2 boules rouges, il gagne l'argent.\par
+S'il obtient qu'une seule boule rouge, il gagne un voyage.\par
+S'il n'obtient pas de boule rouge, il gagne les deux boules bleues.\medskip
+
+\begin{enumerate}
+    \item Les deux tirages sont-ils identiques ? Pourquoi ?
+    \item Les deux tirages sont-ils indépendants ? Pourquoi ?
+    \item On considère un seul tirage. Quel événement peut être considéré comme étant un << succès >> ?
+    \item Réaliser l'arbre pondéré des possibles.
+    \item Utiliser l'arbre pour donner sous forme d'une fraction irréductible puis sous forme d'un pourcentage à $10^{-2}\%$ près :
+    \begin{enumerate}
+        \item la probabilité de gagner les \EUR{$\np{100000}$} ;
+        \item la probabilité de gagner le voyage.
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Tirage avec remise}
+
+On garde le même jeu avec les mêmes gains mais la règle change :
+après le premier tirage, le candidat remet la boule tirée dans l'urne. Puis les boules sont mélangées et il tire une boule une deuxième fois.\par
+Les gains restent identiques à la règle précédente.\medskip
+
+\begin{enumerate}
+    \item Les deux tirages sont-ils identiques ? Pourquoi ?
+    \item Les deux tirages sont-ils indépendants ? Pourquoi ?
+    \item Réaliser l'arbre pondéré des possibles.
+    \item Utiliser l'arbre pour donner sous forme d'une fraction irréductible puis sous forme d'un pourcentage à $10^{-2}\%$ près :
+    \begin{enumerate}
+        \item la probabilité de gagner les \EUR{$\np{100000}$} ;
+        \item la probabilité de gagner le voyage.
+    \end{enumerate}
+    \item Imaginons que l'on réalise l'expérience $n$ fois de suite.\par Comment calculer la probabilité d'obtenir $10$ boules rouges ?
+\end{enumerate}
+\end{document} 

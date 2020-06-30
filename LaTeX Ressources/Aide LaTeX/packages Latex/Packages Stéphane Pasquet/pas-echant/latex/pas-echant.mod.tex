@@ -1,0 +1,104 @@
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{fancyvrb}
+\usepackage{cellspace}
+\setlength{\cellspacetoplimit}{3pt}
+\setlength{\cellspacebottomlimit}{3pt}
+\usepackage{longtable}
+% Les couleurs
+\def\bkcolor{gray!10}
+\def\fstlinecolor{gray}
+\def\txtfstlinecolor{white}
+\def\bordercolor{black}
+
+\begin{VerbatimOut}{commandes.cxx}
+tableau(L):={
+ local n,p,k,s,compt;
+ n:=L[0];
+ p:=L[1];
+ compt:=0;
+ T:="\\arrayrulecolor{\\bordercolor}\\begin{longtable}{|S{>{\\centering\\arraybackslash}p{2cm}}|Sc|} \\hline\\rowcolor{\\fstlinecolor}\\textcolor{\\txtfstlinecolor}{$\\pmb{k}$} & \\textcolor{\\txtfstlinecolor}{$\\pmb{P(X\\leqslant k)}$} \\\\ \\hline";
+ for (k:=0;k<=n;k++)
+ {
+         s:=binomial_cdf(n,p,k);
+         if (s>0.025 and compt==0) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=1;}
+         if (s>0.975 and compt==1) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=2;}                T:=T+k+"&"+latex(s)+"\\\\ \\hline ";
+ };
+ T:=T+"\\end{longtable}";
+ return(T);
+}:;
+
+tableaumin(L):={
+ local n,p,k,min,max,s,compt;
+ n:=L[0];
+ p:=L[1];
+ min:=L[2];
+ max:=L[3]
+ compt:=0;
+T:="\\arrayrulecolor{\\bordercolor}\\begin{longtable}{|S{>{\\centering\\arraybackslash}p{2cm}}|Sc|} \\hline\\rowcolor{\\fstlinecolor}\\textcolor{\\txtfstlinecolor}{$\\pmb{k}$} & \\textcolor{\\txtfstlinecolor}{$\\pmb{P(X\\leqslant k)}$} \\\\ \\hline";
+ for (k:=min;k<=max;k++)
+ {
+         s:=binomial_cdf(n,p,k);
+         if (s>0.025 and compt==0) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=1;}
+         if (s>0.975 and compt==1) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=2;}                T:=T+k+"&"+latex(s)+"\\\\ \\hline ";
+ };
+ T:=T+"\\end{longtable}";
+ return(T);
+}:;
+
+tableauminbreak(L):={
+ local n,p,k,min,max,break1,break2,s,compt;
+ n:=L[0];
+ p:=L[1];
+ min:=L[2];
+ max:=L[3];
+ break1:=L[4];
+ break2:=L[5];
+ compt:=0;
+ T:="\\arrayrulecolor{\\bordercolor}\\begin{longtable}{|S{>{\\centering\\arraybackslash}p{2cm}}|Sc|} \\hline\\rowcolor{\\fstlinecolor}\\textcolor{\\txtfstlinecolor}{$\\pmb{k}$} & \\textcolor{\\txtfstlinecolor}{$\\pmb{P(X\\leqslant k)}$} \\\\ \\hline";
+ for (k:=min;k<=break1;k++)
+ {
+         s:=binomial_cdf(n,p,k);
+         if (s>0.025 and compt==0) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=1;}
+         if (s>0.975 and compt==1) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=2;}                T:=T+k+"&"+latex(s)+"\\\\ \\hline ";
+ };
+ T:=T+"$\\vdots$ & $\\vdots$\\\\ \\hline";
+ for (k:=break2;k<=max;k++)
+ {
+         s:=binomial_cdf(n,p,k);
+         if (s>0.025 and compt==0) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=1;}
+         if (s>0.975 and compt==1) { T:=T+"\\rowcolor{\\bkcolor}"; compt:=2;}                T:=T+k+"&"+latex(s)+"\\\\ \\hline ";
+ };
+ T:=T+"\\end{longtable}";
+ return(T);
+}:;
+
+build(fichier,type,L):={
+ name:=fichier+".tex";
+ if (type=="complet")
+ {
+ 	donnees:=tableau(L);
+ }
+ if (type=="min")
+ {
+ 	donnees:=tableaumin(L);
+ }
+ if (type="minbreak")
+ {
+ 	donnees:=tableauminbreak(L);
+ }
+ Sortie:=fopen(name);
+ Resultat:=cat(donnees);
+ fprint(Sortie,Unquoted,Resultat);
+ fclose(Sortie);
+}:;
+maple_mode(0);
+read("commande.txt");
+\end{VerbatimOut}
+
+\newenvironment{echantillon}
+{\VerbatimEnvironment\begin{VerbatimOut}{commande.txt}}
+{\end{VerbatimOut}
+\immediate\write18{giac < commandes.cxx}
+\immediate\write18{giac  commandes.cxx}
+}

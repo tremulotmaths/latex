@@ -1,0 +1,81 @@
+\documentclass[10pt,french,openright,twoside]{book}
+
+\input{philippe2014}
+\input{philippe2014_cours_fiche}
+\input{philippe2013_sections}
+\input{stage_latex}
+
+\newcommand{\latexinstal}[2][0.5]{\[\includegraphics[width=#1\linewidth]{A_Installation_LaTeX/img/texlive/#2}\]}
+\newcommand{\texstudioimg}[2][0.5]{\[\includegraphics[width=#1\linewidth]{A_Installation_LaTeX/img/texstudio/#2}\]}
+
+\pieddepage{\color{gray}\footnotesize Philippe \sc{De Sousa}}{\color{gray}\small \textbullet\quad \thepage \quad\textbullet}{\color{gray}\footnotesize Lycée J.-P. \bsc{Timbaud}}
+
+\input{def_biblio}
+\input{def_index}
+
+\setcounter{tocdepth}{0}
+
+\usepackage{mathpazo}
+\renewcommand{\sfdefault}{txss}
+\renewcommand{\ttdefault}{cmtt}
+
+\begin{document}
+\pieddepage{}{}{}
+\RegleEntete[0pt]
+\entete{}{}{}
+
+\include{Stage_LaTeX_Page_Garde_Partie1}
+\VerbatimInput[xrightmargin=0\linewidth,label={Code de la couverture},gobble=0]{Stage_LaTeX_Page_Garde_Partie1.tex}
+
+\frontmatter
+
+\pieddepage{}{\color{gray}\small \textbullet\quad \thepage \quad\textbullet}{}
+
+\tableofcontents\cleardoublepage
+
+\include{00_Conventions/00_Conventions}
+
+\mainmatter
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\entete{}{\chaptername \thechapter~: \leftmark}{}
+%droite page [paire] et {impaire}
+    \rhead[]{Stage \LaTeX}
+    \rfoot[\color{gray}\footnotesize Philippe \textsc{De Sousa}]{}
+%gauche page [paire] et {impaire}
+    \lhead[Stage \LaTeX]{}
+    \lfoot[]{\color{gray}\footnotesize Lycée J.-P. \bsc{Timbaud}}
+\RegleEntete
+
+
+\include{01_Premier_Document/01_Premier_Document_docmute}
+
+\include{02_Presentation/02_Presentation_docmute}
+
+\include{03_Mathematiques/03_Mathematiques_docmute}
+
+\include{04_Tableaux/04_Tableaux_docmute}
+
+\backmatter\appendix
+\renewcommand\chaptername{Annexe\xspace}
+
+\include{A_Installation_LaTeX/A_Installation_LaTeX_docmute}
+
+\include{B_Bibliographie/B_Bibliographie}
+
+\cleardoublepage
+
+\include{I_Index/I_Index}
+
+\strut
+\pagestyle{empty}
+
+\vspace{\stretch{1}}
+
+\[***\]
+
+\begin{center}
+\'Ecrit par Philippe \bsc{De Sousa}.\par
+Dernière modification le \today.
+\end{center}
+\end{document}

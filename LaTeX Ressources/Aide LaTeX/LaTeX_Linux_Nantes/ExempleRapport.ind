@@ -1,0 +1,16 @@
+\begin{theindex}
+  \providecommand*\lettergroupDefault[1]{}
+  \providecommand*\lettergroup[1]{%
+      \par\textbf{#1}\par
+      \nopagebreak
+  }
+
+  \lettergroup{E}
+  \item \'{E}diteur, 4
+
+  \indexspace
+
+  \lettergroup{I}
+  \item Installation, 4
+
+\end{theindex}

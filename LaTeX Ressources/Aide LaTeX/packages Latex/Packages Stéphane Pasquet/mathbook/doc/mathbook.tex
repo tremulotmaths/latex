@@ -1,0 +1,1334 @@
+\documentclass[ams,openany,10pt,presentation,latin1]{mathbook}
+\usepackage{kpfonts}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\definecolor{bleu}{cmyk}{0.59,0.11,0,0.59}
+\definecolor{vert}{cmyk}{0.78,0,0.74,0.45}
+\lstset{
+	numbers=left, 
+	numberstyle=\tiny, 
+	stepnumber=1, 
+	numbersep=3pt, 
+	language=[LaTeX]TeX, 
+	backgroundcolor=\color{bleu!20},
+	frame=shadowbox,
+	rulesepcolor=\color{bleu},
+	rulecolor=\color{bleu},
+	framexleftmargin=10pt,
+	keywordstyle=\color{vert}\bfseries,
+	basicstyle=\ttfamily,
+    columns=flexible,
+    keepspaces=true,
+    upquote=true,
+    commentstyle=\color{gray},
+    morekeywords={redefineColor,dfrac,setlength,cellspacetoplimit, cellspacebottomlimit,firstline,text,intro,introauthor,chapter, itemclass,exostart,corrstart,AfficheCorriges,columnbreak,titlepic, nbcolindex,indexname,printindex,makeindex,activites,DefineNewBoxLikeRem}
+}
+\usepackage{lipsum}
+\title{Documentation de la classe mathbook.cls v1.3}
+\author{Stéphane PASQUET}
+\titlepic[0.5]{fractal.jpg}
+\date{\today}
+\makeindex
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+%\enlargethispage*{7em}
+\tableofcontents
+
+\mainmatter
+
+\intro{Rien ne se perd, tout se transforme}
+\introauthor{Lavoisier}
+
+\chapter{Les extensions chargées}
+\section{Extensions chargées automatiquement}\index{extensions}
+
+\begin{center}
+\begin{tabular}{|*2{S{m{0.45\linewidth}}|}}
+\hline\firstline
+\color{bleu}\bfseries Noms & \color{bleu}\bfseries Utilités\\
+\hline
+book.cls (avec l'option \emph{a4paper)} &  Sert de base à la classe\\
+\hline
+inputenc & Encodage\\
+\hline
+fontenc (avec l'option \emph{T1}) & Encodage\\
+\hline
+babel (avec l'option \emph{frenchb}) & Gestion du français \\
+\hline
+array & Mise en forme de tableaux\\
+\hline
+tabularx & Mise en forme de tableaux\\
+\hline
+longtable & Mise en forme de tableaux\\
+\hline
+cellspace & Mise en forme de tableaux\\
+\hline
+xcolor (avec option \emph{cmyk} et \emph{table}) & Gestion des couleurs\\
+\hline
+tikz (avec les librairies \emph{calc} et \emph{decorations.pathmorphing}) & Graphiques\\
+\hline
+titlesec & Mise en forme des titres\\
+\hline
+multicol & Création de plusieurs colonnes\\
+\hline
+fancyhdr & Mise en forme des pages (en-t\^ete et pied-de-page)\\
+\hline
+geometry & Mise en forme des pages (marges)\\
+\hline
+eso-pic & Mise en forme des pages (styles)\\
+\hline
+graphicx & Gestion des images\\
+\hline
+fancyvrb & Gestion des corrigés d'exercices\\
+\hline
+verbatim & Gestion des corrigés d'exercices\\
+\hline
+multido & Boucle\\
+\hline
+numprint (avec l'option \emph{autolanguage}) & Affichage des nombres\\
+\hline
+hyperref (avec l'option \emph{colorlinks}) et \emph{linkcolor=corref}\verb+@+\emph{color} & pour les liens internes\\
+\hline
+enumitem & Gestion des listes\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Appel de la classe}
+
+\begin{lstlisting}
+\documentclass[<options>]{mathbook}
+\end{lstlisting}
+
+\subsection{Les options}\index{options}
+
+\subsubsection{Pour la classe \og book \fg}
+
+\begin{itemize}
+\item \texttt{openany} pour éviter les pages blanches
+\item \texttt{10pt}, \texttt{11pt} ou \texttt{12pt} pour la taille des caractères
+\end{itemize}
+
+\pagebreak
+
+\subsubsection{Pour l'extension \og inputenc \fg}
+
+Vous avez le choix entre :
+
+\begin{multicols}{3}
+\begin{itemize}
+\item \texttt{ascii}
+\item \texttt{ansinew}
+\item \texttt{applemac}
+\item \texttt{latin1}
+\item \texttt{latin9}
+\item \texttt{utf8}
+\end{itemize}
+\end{multicols}
+
+\subsubsection{Les paquets AMS}
+
+Pour charger les extensions \texttt{amsmath}, \texttt{amssymb} et \texttt{amsfonts}, on mettra l'option :
+
+\begin{itemize}
+\item \texttt{ams}
+\end{itemize}
+
+\subsubsection{Page avant chaque chapitre}
+
+'Zavez remarqué ? Avant chaque chapitre de cette documentation, il y a une page de présentation ...
+
+\intro{}
+\introauthor{}
+\chapter{Les couleurs et fontes}
+
+\section{Les couleurs}\index{couleurs}
+
+\subsection{Les couleurs par défaut}
+
+\begin{center}
+\begin{longtable}{|*3{>{\centering\arraybackslash}m{0.33\linewidth}|}}
+\hline\firstline
+\color{bleu}\bfseries Noms & \color{bleu}\bfseries Valeurs (CMYK) & \color{bleu}\bfseries Correspondances\\
+\hline
+chapter\verb+@+bg@color &  1,0.2,0.3,0.1 & Fond du titre \og Chapitre ... \fg{} \\
+\hline
+chapterdegrade\verb+@+color & 0.21,0.04,0,0.18 & Dégradé de chaque première page des chapitres\\
+\hline
+chapterellipse\verb+@+bg@color & 0.33,0.07,0,0.18 & Fond de l'ellipse la plus grande en haut à gauche sur chaque première page des chapitres\\
+\hline
+chapterellipse\verb+@+color & 0,0,0,0 & Fond de l'ellipse la plus petite où est écrit \og Chapitre ... \fg{} \\
+\hline
+chaptertitlename\verb+@+color & 0,0,0,0 & Couleur du texte \og Chapitre ... \fg\\
+\hline
+chapterrule\verb+@+color & 0.38,0.06,0,0.22 & Traits verticaux sur toute la hauteur de la première page de chaque chapitre\\
+\hline
+chaptermidcircle\verb+@+color & 0.21,0.04,0,0.14 & Cercle presque centré verticalement sur la première page de chaque chapitre\\
+\hline
+chapterbotcircle\verb+@+color & 0.06,0.01,0,0.05 & Cercle du bas de la première page de chaque chapitre\\
+\hline
+chaptertopcircle\verb+@+color & 0.13,0.02,0,0.1 & Cercles en haut à droite de la première page de chaque chapitre\\
+\hline
+chapterline\verb+@+color & 0.27,0.03,0,0.17 & Trait oblique en haut à droite sur la première page de chaque chapitre\\
+\hline
+pagenumber\verb+@+bg\verb+@+color & 0.94,0.37,0,0.17 & Fond des numéros de page\\
+\hline
+shadow\verb+@+color & 0.07,0,0,0.49 & Ombres\\
+\hline
+chapterintro\verb+@+color & 0.73,0.39,0,0.51 & Couleur de la citation optionnelle à chaque début de chapitre\\
+\hline
+chapter\verb+@+title\verb+@+color & 0.59,0.11,0,0.59 & Couleur du titre des chapitres\\
+\hline
+section\verb+@+title\verb+@+color & 1,0.2,0.3,0.1 & Couleur du titre des sections\\
+\hline
+subsection\verb+@+title\verb+@+color & 0,0.6,0.9,0 & Couleur du titre des subsections\\
+\hline
+subsubsection\verb+@+title\verb+@+color & 0.71,0,0.87,0.35 & Couleur du titre des subsubsections\\
+paragraph\verb+@+title\verb+@+color & 0.78,0,0.74,0.45 & Couleur du titre des paragraphes\\
+\hline
+subparagraph\verb+@+title\verb+@+color & 0.78,0,0.74,0.45 & Couleur du titre des sous-paragraphes\\
+\hline
+arrayrule\verb+@+color & 1,0.2,0.3,0.1 & Traits des tableaux\\
+\hline
+cell\verb+@+color & 0.21,0.04,0,0.18 & fond des cellules d'un tableau sur toute une ligne avec la commande \arraybackslash\texttt{firstline}\\
+\hline
+remtitle\verb+@+color & 0,0,0,0 & Couleur du titre des remarques \\
+\hline
+remtitle\verb+@+bg\verb+@+color & 0.59,0.11,0,0.59 & Couleur de fond du titre des remarques \\
+\hline
+rem\verb+@+bg\verb+@+color & 0.07,0,0,0.20 & Couleur de fond des remarques \\
+\hline
+methtitle\verb+@+color & 0,0,0,0 & Couleur du titre des méthodes \\
+\hline
+methtitle\verb+@+bg\verb+@+color & 0.15,0.87,0,0.60 & Couleur de fond du titre des méthodes \\
+\hline
+meth\verb+@+bg\verb+@+color & 0.04,0.24,0,0.15 & Couleur de fond des méthodes \\
+\hline
+def\verb+@+bg\verb+@+color & 0.14,0,0.14,0.03 & Couleur de fond des définitions\\
+\hline
+deftitle\verb+@+bg\verb+@+color & 0.89,0,0.89,0.38 & Couleur de fond du titre des définitions\\
+\hline
+deftitle\verb+@+color & 0,0.04,0.73,0 & Couleur du mot \og Définition \fg\\
+\hline
+prop\verb+@+bg\verb+@+color & 0,0.16,0.17,0.03 & Couleur de fond des propriétés\\
+\hline
+proptitle\verb+@+bg\verb+@+color & 0,0.91,0.98,0.12 & Couleur de fond du titre des propriétés\\
+\hline
+proptitle\verb+@+color & 0,0.04,0.73,0 & Couleur du mot \og Propriété \fg\\
+\hline
+thm\verb+@+bg\verb+@+color & 0,0.34,0.34,0.04 & Couleur de fond des théorèmes\\
+\hline
+thmtitle\verb+@+bg\verb+@+color & 0,0.97,0.97,0.11 & Couleur de fond du titre des théorèmes\\
+\hline
+thmtitle\verb+@+color & 0,0.04,0.73,0 & Couleur du mot \og Théorème \fg\\
+\hline
+ex\verb+@+bg\verb+@+color & 0.17,0.15,0,0.07 & Couleur de fond des exemples\\
+\hline
+extitle\verb+@+bg\verb+@+color & 0.88,0.76,0,0.61 & Couleur de fond du titre des exemples\\
+\hline
+extitle\verb+@+color & 0,0.04,0.73,0 & Couleur du mot \og Exemple \fg\\
+\hline
+dem\verb+@+border\verb+@+color & 0,0,0,1 & Couleur du trait des démonstrations\\
+\hline
+dem\verb+@+bg\verb+@+color & 0,0,0,0 & Couleur de fond des démonstrations\\
+\hline
+activitytitle\verb+@+color & 0.25,0.85,0,0.38 & Couleur du titre des activités\\
+\hline
+activitynum\verb+@+color & 0,0,0,0 & Couleur du numéro de l'activité\\
+\hline
+exercices\verb+@+bg\verb+@+color & 0.17,0.07,0,0.12 & Couleur de fond des exercices (page entière)\\
+\hline
+exercicetitle\verb+@+bg\verb+@+color & 0.85,0.41,0,0.75 & Couleur de fond du titre de la page des exercices\\
+\hline
+exercicetitle\verb+@+color & 0,0,0,0 & Couleur du titre de la page des exercices\\
+\hline
+exercicenum\verb+@+bg\verb+@+color & 0.85,0.41,0,0.75 & Couleur de fond du numéro des exercices\\
+\hline
+exercicenum\verb+@+color & 0,0,0,0 & Couleur du numéro des exercices\\
+\hline
+corriges\verb+@+bg\verb+@+color & 0.11,0,0.09,0.09 & Couleur de fond des corrigés (page entière)\\
+\hline
+corrigetitle\verb+@+bg\verb+@+color & 0.86,0,0.66,0.63 & Couleur de fond du titre de la page des corrigés\\
+\hline
+corrigetitle\verb+@+color & 0,0,0,0 & Couleur du titre des corrigés\\
+\hline
+corrigenum\verb+@+bg\verb+@+color & 0.86,0,0.66,0.63 & Couleur de fond du numéro des corrigés\\
+\hline
+corrigenum\verb+@+color & 0,0,0,0 & Couleur du numéro des corrigés\\
+\hline
+corref\verb+@+color & 0,0.88,0.88,0.45 & Couleur du texte \og \textsc{Correction page ...} \fg{} en fin de chaque énoncés d'exercice\\
+\hline
+firstpagetop\verb+@+bg\verb+@+color & 0.96,0.94,0,0.7 & Couleur du dégradé haut de la page de couverture\\
+\hline
+firstpagebottom\verb+@+bg\verb+@+color & 0.82,0.80,0,0.58 & Couleur du dégradé bas de la page de couverture\\
+\hline
+titledoc\verb+@+color & 0,0,0,0 & Couleur du titre de la couverture\\
+\hline
+firstpage\verb+@+lines\verb+@+color & 0.07,0,0,0.49 & Couleur des lignes (en haut) de la couverture\\
+\hline
+titleauthor\verb+@+color & 0,0,0,0 & Couleur en laquelle est écrit l'auteur\\
+\hline
+titledate\verb+@+color & 0,0,0,0 & Couleur en laquelle est écrite la date sur la couverture\\
+\hline
+indextitle\verb+@+bg\verb+@+color & 0.94,0.37,0,0.17 & Couleur de fond du titre de l'index\\
+\hline
+indextitle\verb+@+color & 0,0,0,0 & Couleur du titre de l'index\\
+\hline
+contentstitle\verb+@+color & 0.07,0,0,0.19 & Couleur du titre de la table des matières\\
+\hline
+contentstitleshadow\verb+@+color & 0.07,0,0,0.49 & Couleur de l'ombre du titre de la table des matières\\
+\hline
+
+\end{longtable}
+\end{center}
+
+\newpage
+
+\subsection{Changer une couleur}\index{Redéfinir une couleur}
+
+\begin{lstlisting}
+\redefineColor{<nom de la couleur>}{<nouvelle valeur CMYK}
+% Exemple :
+\makeatletter
+\redefineColor{arrayrule@color}{0,0,0,1} % pour "noir"
+\makeatother
+\end{lstlisting}
+
+\section{Les fontes}\index{fontes}
+
+\subsection{Les fontes par défaut}
+
+Par défaut, la fonte des titres est \og Grotesq \fg.
+
+\medskip
+
+\begin{center}
+\begin{longtable}{|*3{>{\centering\arraybackslash}m{0.33\linewidth}|}}
+\hline\firstline
+\color{bleu}\bfseries Noms & 
+\color{bleu}\bfseries Valeurs (CMYK) & 
+\color{bleu}\bfseries Correspondances\\
+\hline
+\textbackslash chaptertitlename\verb+@+font & 
+\textbackslash fontfamily\{ugq\} & 
+\og Chapitre ... \fg{}\\
+\hline
+\textbackslash chaptertitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre des chapitres\\
+\hline
+\textbackslash pagenumber\verb+@+font & \textbackslash fontfamily\{ugq\} & Numéro des pages\\
+\hline
+\textbackslash sectiontitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre des sections\\
+\hline
+\textbackslash subsectiontitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre des subsections\\
+\hline
+\textbackslash subsubsectiontitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre des subsubsections\\
+\hline
+\textbackslash paragraphtitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre des paragraphes\\
+\hline
+\textbackslash subparagraphtitle\verb+@+font & \textbackslash fontfamily\{phv\} & Titre des sous-paragraphes\\
+\hline
+\textbackslash remtitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre du titre des remarques\\
+\hline
+\textbackslash methtitle\verb+@+font & \textbackslash fontfamily\{ugq\} & Titre du titre des méthodes\\
+\hline
+\textbackslash deftitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash small & Titre des définitions\\
+\hline
+\textbackslash proptitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash small & Titre des propriétés\\
+\hline
+\textbackslash thmtitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash small & Titre des théorèmes\\
+\hline
+\textbackslash extitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash small & Titre des exemples\\
+\hline
+\textbackslash activity\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash large & Titre des activités\\
+\hline
+\textbackslash exercicetitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash Huge & Titre de la page des exercices\\
+\hline
+\textbackslash exercicenum\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash bfseries & Numéro des exercices\\
+\hline
+\textbackslash corrigetitle\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash Huge & Titre de la page des corrigés\\
+\hline
+\textbackslash corrigenum\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash bfseries & Numéro des corrigés\\
+\hline
+\textbackslash corref\verb+@+font & \textbackslash fontfamily\{phv\}\textbackslash bfseries\textbackslash itshape \textbackslash small & \og Correction page ... \fg\\
+\hline
+\textbackslash titledoc\verb+@+font & \textbackslash fontfamily\{ugq\}\textbackslash bfseries \textbackslash itshape\textbackslash fontsize\{34\}\{36\} & Titre sur la couverture\\
+\hline
+\textbackslash titleauthor@font & \textbackslash fontfamily\{ugq\}\textbackslash Huge & Nom de l'auteur sur la couverture\\
+\hline
+\textbackslash titledate@font & \textbackslash fontfamily\{ugq\}\textbackslash large & Date sur la couverture\\
+\hline
+\textbackslash indextitle@font & \textbackslash fontfamily\{ugq\}\textbackslash bfseries\textbackslash Huge & Titre de l'index\\
+\hline
+\textbackslash contentstitle@font & \textbackslash fontfamily\{ugq\}\textbackslash bfseries \textbackslash fontsize\{56\}\{58\} & Titre de la table des matières\\
+\hline
+\end{longtable}
+\end{center}
+
+\subsection{Changer une fonte}
+
+\begin{lstlisting}
+\def<nom de la fonte>{\fontfamily{<nom>}\selectfont}
+\makeatletter% Exemple :
+\def\chaptertitle@font{\fontfamily{phv}\selectfont}
+\makeatother
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% CH 3 : les longueurs
+
+\chapter{Les longueurs}\index{longueurs}
+
+\begin{center}
+\begin{longtable}{|>{\ttfamily\centering}m{0.25\linewidth}|>{\centering}m{0.2\linewidth}|m{0.45\linewidth}|}
+\hline\firstline
+\normalfont\selectfont\bfseries\color{bleu} Noms\strut & 
+\bfseries\color{bleu} Valeurs par défaut & 
+\bfseries\color{bleu}\centering\arraybackslash Correspondances\\
+\hline
+\textbackslash cellspacetoplimit & 3pt & Espace entre le trait supérieur d'une cellule et le texte quand on utilise la lettre \og S \fg{} dans l'environnement du tableau. \\ 
+\hline
+\textbackslash cellspacebottomlimit & 3pt & Espace entre le trait inférieur d'une cellule et le texte quand on utilise la lettre \og S \fg{} dans l'environnement du tableau. \\ 
+\hline
+\textbackslash parindent & 0pt & Indentation par défaut du document. \\
+\hline
+\textbackslash decalnumsec & $-0.5$em & Pour que le numéro des sections et leur titre soient alignés, il y a un décalage vertical vers le bas par défaut. Sinon, la base du \og cadre \fg{} comportant le numéro serait alignée avec celle du titre. \\
+\hline
+\textbackslash decalnumsubsec & $-0.5$em & Idem avec les subsections.\\
+\hline
+\textbackslash decalnumsubsubsec & $-0.5$em & Idem avec les subsubsections.\\
+\hline
+\textbackslash spacetitlesec & 0.5em & Espace entre le numéro des sections et leur titre.\\
+\hline
+\textbackslash spacetitlesubsec & 0.2em & Espace entre le numéro des subsections et leur titre.\\
+\hline
+\textbackslash spacetitlesubsubsec & 0.2em & Espace entre le numéro des subsubsections et leur titre.\\
+\hline
+\textbackslash decalxtitlesubsec & 0pt & Décalage horizontal des titres des subsections.\\
+\hline
+\textbackslash decalxtitlesubsubsec & 0pt & Décalage horizontal des titres des subsubsections.\\
+\hline
+\textbackslash spacebeforerem & 1em & Espace vertical avant chaque remarque\\
+\hline
+\textbackslash spacebeforemeth & 1em & Espace vertical avant chaque méthode\\
+\hline
+\textbackslash spacebeforedef & 1em & Espace vertical avant chaque définition\\
+\hline
+\textbackslash spacebeforeprop & 1em & Espace vertical avant chaque propriété\\
+\hline
+\textbackslash spacebeforethm & 1em & Espace vertical avant chaque théorème\\
+\hline
+\textbackslash spacebeforeex & 1em & Espace vertical avant chaque exemple\\
+\hline
+\textbackslash spacebeforedem & 1em & Espace vertical avant chaque démonstration\\
+\hline
+\textbackslash spacebeforeact & 1em & Espace vertical avant chaque activité\\
+\hline
+\textbackslash spacebeforeexo & 1em & Espace vertical avant chaque exercice\\
+\hline
+\textbackslash spacebefornew & 1em & Espace vertical avant chaque nouvelle box définie\\
+\hline
+\textbackslash spacebottomrem & 1em & Espace vertical après chaque remarque (dans le cadre)\\
+\hline
+\textbackslash spacebottommeth & 1em & Espace vertical après chaque méthode (dans le cadre)\\
+\hline
+\textbackslash spacebottomnew & 1em & Espace vertical après chaque nouvelle box définie (dans le cadre)\\
+\hline
+\textbackslash marginleft & 6em & Espace vertical consacré aux titres des définitions, théorèmes, propriétés, ...\\
+\hline
+\textbackslash margintoptitle & 4em & Espace vertical au-dessus du titre sur la couverture (par rapport au bord supérieur de la page)\\
+\hline
+\textbackslash marginlefttitle & 4em & Marge à gauche du titre sur la couverture\\
+\hline
+\textbackslash marginbottompic & 4em & Espace vertical en bas de l'image (facultative) de la couverture\\
+\hline
+\textbackslash marginrightpic & 4em & Marge à droite de l'image (facultative) sur la couverture\\
+\hline
+\textbackslash margintopauthor & 20em & Espace vertical au-dessus du nom de l'auteur sur la couverture (par rapport au bord supérieur de la page)\\
+\hline
+\textbackslash marginrightdate & 4em & Marge à droite de la date sur la couverture\\
+\hline
+\textbackslash marginbottomdate & 0em & Espace vertical entre la date et le milieu vertical de la page\\
+\hline
+\textbackslash controltoctitle & 0.25cm & contr\^ole du chemin du titre de la table des matières\\
+\hline
+\end{longtable}
+\end{center}
+
+\chapter{Bien utiliser la classe}
+
+\section{La couverture}\index{couverture}
+
+Le titre, le (ou les) auteur(s) ainsi que la date sont déclarés comme d'habitude :
+
+\medskip
+
+\begin{lstlisting}
+\title{Mon titre}
+\author{Moi \and Lui}
+\date{\today}
+\end{lstlisting}
+
+\medskip
+
+Vous avez la possibilité d'inclure une image à l'aide de la commande :
+
+\medskip
+
+\begin{lstlisting}
+\titlepic[<échelle>]{<nom de l'image>}
+% Par exemple :
+\titlepic[0.5]{fractale.jpg}
+\end{lstlisting}
+
+\medskip
+
+Comme vous pouvez le remarquer, il y a un effet autour de l'image.  En fait, l'image est agrandie (avec un coefficient d'agrandissement par défaut de 1.05) et mise sous l'image originale avec un coefficient d'opacité (par défaut, 0.2). Si vous souhaitez l'éliminer, vous pouvez utiliser l'une des méthodes suivantes :
+
+\medskip
+
+\begin{lstlisting}
+%  pour fixer le coefficient d'agrandissement à 1
+\def\coef@bg@pic{1}
+% Pour fixer l'opacité à 0
+\def\coef@opacity@pic{0}
+\end{lstlisting}
+
+\medskip
+
+Si vous voulez agrandir l'effet, il suffit de mettre le coefficient d'agrandissement à \og 1.1 \fg{} par exemple, ou plus.
+
+\section{Les tableaux}
+
+\subsection{Espaces dans les cellules}
+
+Si l'on désire insérer des formules mathématiques dans un tableau simple, voilà ce que cela donne :
+
+\medskip
+
+\begin{minipage}{0.55\linewidth}
+\begin{lstlisting}
+\begin{tabular}{|c|c|}
+\hline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+On peut remarquer que les écritures sont trop collées aux traits du tableau. C'est la raison pour laquelle j'ai inclus l'extension \texttt{cellspace}, qui permet de \og décoller \fg{} tout ça :
+
+\medskip
+
+\begin{minipage}{0.55\linewidth}
+\begin{lstlisting}
+\begin{tabular}{|Sc|Sc|}
+\hline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+\begin{tabular}{|Sc|Sc|}
+\hline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+Les marges sont fixées par défaut par la classe à l'aide des commandes :
+
+\medskip
+
+\begin{lstlisting}
+\setlength{\cellspacetoplimit}{3pt}
+\setlength{\cellspacebottomlimit}{3pt}
+\end{lstlisting}
+
+On peut donc augmenter ces espaces en changeant \og \texttt{3pt} \fg{} par ce que l'on veut.
+
+\medskip
+
+On peut utiliser \og \texttt{S} \fg{} avec les options \og \texttt{m} \fg, \og \texttt{p} \fg, \og \texttt{c} \fg, \og \texttt{l} \fg{} et \og \texttt{r} \fg, mais il faudra veiller à mettre entre accolades les options \og \texttt{m} \fg{} et \og \texttt{p} \fg{} comme le montre l'exemple suivant :
+
+\medskip
+
+\begin{minipage}{0.5\linewidth}
+\begin{lstlisting}
+\begin{tabular}{|S{m{2cm}}|S{p{3cm}}|}
+\hline
+Colonne 1 & Colonne 2\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\begin{center}
+\begin{tabular}{|S{m{2cm}}|S{p{2cm}}|}
+\hline
+Colonne 1 & Colonne 2\\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\subsection{Une ligne en couleur}
+
+On peut insérer une ligne en couleur à l'aide de la commande \textbackslash\texttt{firstline} :
+
+\medskip
+
+\begin{minipage}{0.55\linewidth}
+\begin{lstlisting}
+\begin{tabular}{|Sc|Sc|}
+\hline\firstline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{center}
+\begin{tabular}{|Sc|Sc|}
+\hline\firstline
+Somme & Valeur\\
+\hline
+$1+\dfrac{1}{2^2}+\cdots+\dfrac{1}{n^2}+\cdots$
+&
+$\dfrac{\pi^2}{6}$\\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\begin{remarque}
+On peut utiliser cette commande ailleurs qu'à la première ligne ...
+\end{remarque}
+
+\section{Les environnements}\index{Les divers environnements (box)}
+
+\subsection{Les remarques}\index{Box Remarque}
+
+\begin{minipage}{0.35\linewidth}
+\begin{lstlisting}
+\begin{remarque}
+Une remarque
+\end{remarque}
+
+\begin{remarque}[s]
+Plusieurs remarques :\par
+\begin{itemize}
+\item Remarque 1
+\item Remarque 2
+\end{itemize}
+\end{remarque}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.1\linewidth}
+~\par
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\begin{remarque}
+Une remarque
+\end{remarque}
+
+\begin{remarque}[s]
+Plusieurs remarques :\par
+\begin{itemize}
+\item Remarque 1
+\item Remarque 2
+\end{itemize}
+\end{remarque}
+\end{minipage}
+
+\subsection{Les méthodes}\index{Box Méthode}
+
+\begin{minipage}{0.35\linewidth}
+\begin{lstlisting}
+\begin{methode}
+Une méthode
+\end{methode}
+
+\begin{methode}[s]
+Plusieurs méthodes :\par
+\begin{itemize}
+\item Méthode 1
+\item Méthode 2
+\end{itemize}
+\end{methode}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.1\linewidth}
+~\par
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\begin{methode}
+Une méthode
+\end{methode}
+
+\begin{methode}[s]
+Plusieurs méthodes :\par
+\begin{itemize}
+\item Méthode 1
+\item Méthode 2
+\end{itemize}
+\end{methode}
+\end{minipage}
+
+\subsection{Les définitions}\index{Box Définitions}
+
+\begin{lstlisting}
+\begin{definition}[<s>] % [s] en option pour le pluriel
+Ceci est une définition.
+\end{definition}
+\end{lstlisting}
+
+\begin{definition}
+Ceci est une définition
+\end{definition}
+
+\subsection{Les propriétés}\index{Box Propriétés}
+
+\begin{lstlisting}
+\begin{propriete}[s] % [s] en option pour le pluriel
+Ceci est une propriété.\par
+Ceci est une autre propriété.
+\end{propriete}
+\end{lstlisting}
+
+\begin{propriete}[s]
+Ceci est une propriété.\par
+Ceci est une autre propriété.
+\end{propriete}
+
+\newpage
+
+\subsection{Les théorèmes}\index{Box Théorèmes}
+
+\begin{lstlisting}
+\begin{theoreme}[<s>] % [s] en option pour le pluriel
+Ceci est un théorème.
+\end{theoreme}
+\end{lstlisting}
+
+\begin{theoreme}
+Ceci est un théorème.
+\end{theoreme}
+
+\subsection{Les exemples}\index{Box Exemples}
+
+\begin{lstlisting}
+\begin{exemple}[s] % [s] en option pour le pluriel
+Ceci est un exemple.\par
+Ceci est un autre exemple.
+\end{exemple}
+\end{lstlisting}
+
+\begin{exemple}[s]
+Ceci est un exemple.\par
+Ceci est un autre exemple.
+\end{exemple}
+
+\subsection{Les démonstrations}\index{Box Démonstrations}
+
+\begin{lstlisting}
+\begin{demonstration}
+\lipsum[1]
+\end{demonstration}
+\end{lstlisting}
+
+\begin{demonstration}
+\lipsum[1]
+\end{demonstration}
+
+Par défaut, le trait est à gauche ; cependant, il y a plusieurs possibilités :
+
+\subsubsection{Option \og 0 \fg}
+
+\begin{lstlisting}
+\makeatletter
+\redefineColor{dem@bg@color}{0.02,0.02,0,0.11}
+\makeatother
+\begin{demonstration}[0]
+\lipsum[2]
+\end{demonstration}
+\end{lstlisting}
+
+\makeatletter
+\redefineColor{dem@bg@color}{0.02,0.02,0,0.11}
+\makeatother
+\begin{demonstration}[0]
+\lipsum[2]
+\end{demonstration}
+
+\subsubsection{Option \og 2 \fg}
+
+\begin{lstlisting}
+\begin{demonstration}[2]
+\lipsum[2]
+\end{demonstration}
+\end{lstlisting}
+
+\makeatletter
+\redefineColor{dem@bg@color}{0,0,0,0}
+\makeatother
+\begin{demonstration}[2]
+\lipsum[2]
+\end{demonstration}
+
+\subsubsection{Option \og 3 \fg}
+
+\begin{lstlisting}
+\begin{demonstration}[3]
+\lipsum[2]
+\end{demonstration}
+\end{lstlisting}
+
+\begin{demonstration}[3]
+\lipsum[2]
+\end{demonstration}
+
+\subsubsection{Option \og 4 \fg}
+
+\begin{lstlisting}
+\begin{demonstration}[4]
+\lipsum[2]
+\end{demonstration}
+\end{lstlisting}
+
+\begin{demonstration}[4]
+\lipsum[2]
+\end{demonstration}
+
+\subsubsection{Option \og 5 \fg}
+
+\begin{lstlisting}
+\begin{demonstration}[5]
+\lipsum[2]
+\end{demonstration}
+\end{lstlisting}
+
+\begin{demonstration}[5]
+\lipsum[2]
+\end{demonstration}
+
+\subsection{Couper un environnement : la commande \textbackslash breakbox}\index{Couper une box}
+
+Dans les cas où un environnement est plus grand que l'espace vertical qu'il reste en bas de page courante, il est possible de le couper avec la commande \textbf{\textbackslash breakbox}. Ainsi, le code suivant :
+
+\begin{lstlisting}
+\begin{propriete}[s]
+Le produit scalaire nous permet d'établir :
+\begin{itemize}
+\item le théorème de la médiane;
+\item le théorème d'Al-Kaschi;
+\item la formule des sinus.
+\end{itemize}
+\breakbox
+De plus, il nous permet d'établir une équation cartésienne d'un cercle :
+\[
+\rm M\in\mathscr{C}\coord{\Omega}{r} \Longleftrightarrow (x-a)^2+(y-b)^2=r^2
+\]
+où $\Omega\coord{a}{b}$ est le centre du cercle $\mathscr{C}$ et $r$ son rayon.
+\end{propriete}
+\end{lstlisting}
+
+donnera :
+
+\begin{propriete}[s]
+Le produit scalaire nous permet d'établir :
+\begin{itemize}
+\item le théorème de la médiane;
+\item le théorème d'Al-Kaschi;
+\item la formule des sinus.
+\end{itemize}
+\breakbox
+De plus, il nous permet d'établir une équation cartésienne d'un cercle :
+\[
+M(x\;;y)\in\mathscr{C}(\Omega\;;r) \Longleftrightarrow (x-a)^2+(y-b)^2=r^2
+\]
+où $\Omega(a\;;b)$ est le centre du cercle $\mathscr{C}$ et $r$ son rayon.
+\end{propriete}
+
+\subsection{Définir une nouvelle box comme la box \og Remarque \fg{} }\index{Redéfinir une box}
+
+\begin{lstlisting}
+\DefineNewBoxLikeRem{nom}{titre}{couleur principale}{couleur texte}{fonte titre et items}
+% Exemple :
+\DefineNewBoxLikeRem{mabox}{Ma box à moi}{yellow}{red}{phv}
+\begin{mabox}
+Ceci est ma box à moi tout seul !
+\end{mabox}
+\end{lstlisting}
+
+\DefineNewBoxLikeRem{mabox}{Ma box à moi}{yellow}{red}{phv}
+\begin{mabox}
+Ceci est ma box à moi tout seul !
+\end{mabox}
+
+\paragraph*{Remarque :} par défaut, la fonte utilisée pour les titres est \og ugq \fg.
+
+\subsection{Définir une nouvelle box comme la box \og Définition \fg{} }
+
+\begin{lstlisting}
+\DefineNewBoxLikeDef{nom}{titre}{couleur principale}{couleur texte}{fonte titre et items}
+% Exemple :
+\DefineNewBoxLikeDef{mybox}{Ma box}{yellow}{red}{phv}
+\begin{mybox}
+Ceci est ma box à moi tout seul !
+\breakbox
+Ma mienne !
+\end{mybox}
+\end{lstlisting}
+
+\DefineNewBoxLikeDef{mybox}{Ma box}{yellow}{red}{phv}
+\begin{mybox}
+Ceci est ma box à moi tout seul !
+\breakbox
+Ma mienne !
+\end{mybox}
+
+\section{Les commandes}\index{commandes}
+
+\subsection{Les citations en début de chaque chapitre}
+
+Ces citations sont facultatives ; cependant, si vous en mettez une à un chapitre et que vous n'en voulez plus après, il faudra spécifier au chapitre suivant une citation vide.
+
+\medskip
+
+Pour déclarer une citation, il faut insérer la commande suivante avant la commande \textbackslash\texttt{chapter} :
+
+\medskip
+
+\begin{lstlisting}
+\intro{<Citation>}
+\introauthor{<auteur de la citation>}
+\chapter{<titre du chapitre>}
+\end{lstlisting}
+
+\subsection{Les listes}
+
+Par défaut, les listes ont été légèrement modifiées :
+
+\medskip
+
+\begin{minipage}{0.4\linewidth}
+\begin{lstlisting}
+\begin{itemize}
+\item Item 1
+\begin{itemize}
+\item Sous-item 1
+\item Sous-item 2
+\end{itemize}
+\item Item 2
+\end{itemize}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.05\linewidth}
+~\par
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\begin{itemize}
+\item Item 1
+\begin{itemize}
+\item Sous-item 1
+\item Sous-item 2
+\end{itemize}
+\item Item 2
+\end{itemize}
+\end{minipage}
+
+\medskip
+
+Le style des items ainsi que celui des numérotations est automatiquement ajusté à l'environnement dans lequel vous \^etes : dans les environnements \og remarque \fg{} et \og methode \fg, les puces et les numéros seront de la m\^eme couleur que la couleur principale. Il en sera de même dans les parties \og exercices \fg{} et \og corrigés \fg.
+
+\medskip
+
+Si la couleur ne vous pla\^it pas, vous pouvez la changer à l'aide de la commande suivante :
+
+\medskip
+
+\begin{lstlisting}
+\itemclass{<nom de la couleur>}{<fonte utilisée>}
+% Exemple 1 : les puces seront rouges et la fonte inchangée
+\itemclass{red}{}
+% Exemple 2 : les puces seront bleues et la fonte sera "helvetica"
+\itemclass{blue}{\fontfamily{phv}\selectfont}
+\end{lstlisting}
+
+\subsection{Les activités}\index{Titre des activités}
+
+\begin{lstlisting}
+\activite{Une application du théorème de Pythagore}
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item Construire un triangle DEF tel que DE = 7,2 cm, EF = 4 cm et FD = 6 cm.
+\item Quel est le plus grand c\^oté de ce triangle ?
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Calculer DE$^2$ puis $\text{EF}^2+\text{FD}^2$.
+\item Expliquer pourquoi le triangle DEF n'est pas rectangle.
+\end{enumerate}
+\end{enumerate}
+\end{lstlisting}
+
+
+\activite{Activité}
+
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item Construire un triangle DEF tel que DE = 7,2 cm, EF = 4 cm et FD = 6 cm.
+\item Quel est le plus grand c\^oté de ce triangle ?
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Calculer DE$^2$ puis $\text{EF}^2+\text{FD}^2$.
+\item Expliquer pourquoi le triangle DEF n'est pas rectangle.
+\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\section{Les exercices}\index{Exercices : insertion des énoncés}
+
+\subsection{Ajout de la partie \og exercices \fg}
+
+Si vous souhaitez ajouter une partie \og exercices \fg{} à votre document, cela se fera à l'aide de la commande :
+
+\medskip
+
+\begin{lstlisting}
+\exostart[1] % l'option [1] quand on met les corrigés
+\end{lstlisting}
+
+\medskip
+
+Cela aura pour effet de créer une nouvelle page sur fond coloré en ajoutant un titre, comme le montre la page suivante.
+
+
+\subsection{Environnement \og exercice \fg}
+
+Pur créer un nouvel exercice, on utilisera l'environnement :
+
+\medskip
+
+\begin{lstlisting}
+\begin{exercice}
+Mon bel exercice.
+\end{exercice}
+\end{lstlisting}
+
+\medskip
+
+Il arrive que l'énoncé soit long et déborde d'une page à l'autre.\\
+Pour éviter des désagréments de mise en page, on pourra utiliser l'option suivante :
+
+\medskip
+
+\begin{lstlisting}
+\begin{exercice}
+Le début d'un énoncé assez long...
+\end{exercice}
+
+\begin{exercice}[1]
+La suite de l'énoncé assez long.
+\end{exercice}
+\end{lstlisting}
+
+\medskip
+
+Cette option permet de \og couper \fg{} l'environnement \og exercice \fg{} mais il ne faut pas le couper en plein environnement \og enumerate \fg. On pourra adopter la solution suivante :
+
+\medskip
+
+\begin{lstlisting}
+\begin{exercice}
+\begin{enumerate}
+\item Question 1
+\item Question 2
+\end{enumerate}
+\end{exercice}
+
+\begin{exercice}[1]
+\begin{enumerate}[start=3]
+\item Question 3
+\end{enumerate}
+\end{exercice}
+\end{lstlisting}
+
+\medskip
+
+Dans l'exemple page suivante, j'ai utilisé l'environnement \og multicols \fg{} qui permet de séparer la page en deux.
+
+\exostart[1]
+
+\setlength{\columnseprule}{1pt}
+
+\begin{multicols}{2}
+\begin{exercice}
+\lipsum[1]
+\end{exercice}
+\begin{correction}
+\lipsum[1]
+\end{correction}
+
+\begin{exercice}
+\lipsum[2]
+\end{exercice}
+\begin{correction}
+\lipsum[2]
+\end{correction}
+
+\begin{exercice}
+Un début d'exercice.\par
+La suite de l'exercice :
+
+\begin{enumerate}
+\item Question 1
+\item Question 2
+\item Question 3
+\end{enumerate}
+\end{exercice}
+\begin{correction}
+\begin{enumerate}
+\item Réponse Question 1
+\item Réponse Question 2
+\item Réponse Question 3
+\item Réponse Question 4
+\item Réponse Question 5
+\item Réponse Question 6
+\end{enumerate}
+\end{correction}
+
+\columnbreak
+
+\begin{exercice}[1]
+\begin{enumerate}[start=4]
+\item Question 4
+\item Question 5
+\item Question 6
+\end{enumerate}
+\end{exercice}
+
+\begin{exercice}
+\lipsum[1]
+\end{exercice}
+\begin{correction}
+\lipsum[1]
+\end{correction}
+
+\begin{exercice}
+\lipsum[1]
+\end{exercice}
+\begin{correction}
+\lipsum[1]
+\end{correction}
+\end{multicols}
+
+\newpage\pagecolor{white}
+
+\section{Les corrigés}\index{Exercices : insertion des corrigés}
+
+\subsection{L'environnement \og correction \fg}
+Lorsque l'on met les corrigés de chaque exercices, il faut faire suivre chaque environnement \og exercice \fg{} par un environnement \og correction \fg{} dans lequel on mettra la correction de l'exercice.
+
+\medskip
+
+\begin{lstlisting}
+\begin{exercice}
+Enoncé.
+\end{exercice}
+\begin{correction}
+Correction.
+\end{correction}
+\end{lstlisting}
+
+\subsection{Le répertoire où sont mises les corrections}
+
+Il faut impérativement créer dans le répertoire courant un sous-répertoire nommé \og corriges \fg{} car c'est dans ce répertoire que seront automatiquement enregistrés les corrections.
+
+\subsection{Afficher les corrections}
+
+\subsubsection{Création de la partie \og Corrigés des exercices \fg}
+
+\begin{lstlisting}
+\corrstart
+\end{lstlisting}
+
+\medskip
+
+Cette commande créé une nouvelle page et met le titre.
+
+\subsubsection{Afficher toutes les corrections}
+
+\begin{lstlisting}
+\AfficheCorriges[<liste d'options>]
+\end{lstlisting}
+
+Les options seront de la forme \og <num ex/commande> \fg, où \og num ex \fg{} est le numéro de l'exercice pour lequel la commande doit \^etre exécutée. Par exemple :
+
+\medskip
+
+\begin{lstlisting}
+\AfficheCorriges[3/\columnbreak] 
+% exécute la commande avant d'afficher la correction de l'exercice 3
+\end{lstlisting}
+
+\corrstart
+
+\begin{multicols}{2}
+\AfficheCorriges[4/{\columnbreak}]
+\end{multicols}
+
+\newpage\pagecolor{white}
+
+\section{Table des matières}\index{Table des matières}
+
+\subsection{Le titre}
+
+Par défaut, le titre est \og Sommaire \fg{} mais il peut \^etre changé à l'aide de la commande :
+
+\medskip
+
+\begin{lstlisting}
+% par exemple :
+\addto\captionsfrench{\renewcommand{\contentsname}{Table des matières}}
+\end{lstlisting}
+
+\medskip
+
+Comme vous le voyez, le titre suis un \og chemin \fg{} ; quand le titre est plus long que celui par défaut, il se peut qu'il empiète sur le sommaire lui m\^eme ; il faut alors jouer sur le \og contr\^ole \fg{} du chemin :
+
+\medskip
+
+\begin{lstlisting}
+\setlength{\controltoctitle}{0.1cm} % par exemple
+\end{lstlisting}
+
+\medskip
+
+Par défaut, le contr\^ole est à 0,25 cm.
+
+\subsection{Le sommaire}
+
+Il se met avec la commande :
+
+\medskip
+
+\begin{lstlisting}
+\tableofcontents
+\end{lstlisting}
+
+
+\section{Création d'un index}
+
+\subsection{Définition du nombre de colonnes}
+
+Par défaut, l'index s'affiche sur 2 colonnes. On peut y remédier à l'aide de la commande suivante :
+
+\medskip
+
+\begin{lstlisting}
+\def\nbcolindex{<nombre de colonnes>}
+% Exemple :
+\def\nbcolindex{1} % pour 1 colonne
+\end{lstlisting}
+
+\subsection{Création et affichage de l'index}
+
+Je rappelle que vous devez mettre la commande  :
+
+\medskip
+
+\begin{lstlisting}
+\makeindex
+\end{lstlisting}
+
+\medskip
+
+en préambule du document et la commande :
+
+\medskip
+
+\begin{lstlisting}
+\printindex
+\end{lstlisting}
+
+\medskip
+
+à l'endroit où vous souhaitez afficher l'index. De plus, le titre \og Index \fg{} peut \^etre changé à l'aide de la commande :
+
+\medskip
+
+\begin{lstlisting}
+\renewcommand{\indexname}{<nom personnalisé>}
+\end{lstlisting}
+
+\medskip
+
+De plus, vous devez créer le fichier \og index \fg{} à l'aide de la ligne de commande (dans le terminal de votre OS ou via votre éditeur \LaTeX -- TeXMaker le fait en appuyant sur la touche [F12]) :
+
+\medskip
+
+\begin{lstlisting}
+makeindex %.idx
+\end{lstlisting}
+
+\medskip
+
+Vous verrez en dernière page le résultat.
+
+\chapter{Mises à jour}
+
+\paragraph*{18 ao\^ut 2013.} Il y avait un problème avec la déclaration de l'encodage \texttt{utf8}. Ceci vient d'\^etre rectifié.
+
+\medskip
+
+\paragraph*{8 mai 2016.} Résolution du problème d'encodage de certains caractères, création de la commande \texttt{\textbackslash breakbox}.
+
+\medskip
+
+\paragraph*{7 septembre 2016.} Résolution d'un bug concernant la disposition des exercices et corrigés, et création des commandes \textbackslash DefineNewBoxLikeRem et \textbackslash DefineNewBoxLikeDef.
+
+\backmatter
+
+\def\nbcolindex{1}
+\printindex
+\end{document}

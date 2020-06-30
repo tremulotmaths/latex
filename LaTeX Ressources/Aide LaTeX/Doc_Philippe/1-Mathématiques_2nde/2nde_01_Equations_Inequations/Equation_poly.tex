@@ -1,0 +1,63 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+
+
+\begin{document}
+%\small
+\pagestyle{empty}
+
+\begin{Defi}
+    Une \iptb{équation}\index{equation@équation} est une égalité où figure une inconnue.\par
+    \iptb{Résoudre} une équation revient à trouver la (ou les) valeur(s) de l'inconnue pour laquelle (ou lesquelles) l'égalité est vérifiée.
+\end{Defi}
+
+\begin{Prop}
+On peut ajouter un même nombre à chaque membre d'une égalité pour obtenir ainsi une égalité équivalente :
+    \[a = b \qLRq a \rouge{\ +\ c } = b \rouge{\ +\ c}\]
+\end{Prop}
+
+\begin{Demo}
+    Puisque $a = b$ alors $a - b = 0$ et puisque $c - c = 0$, on a :
+    \[0 = a - b + c - c = a + c - b - c = a + c - (b + c) = 0 \quad \text{donc} \quad a+c = b+c.\]
+\end{Demo}
+
+\begin{Prop}
+    On peut multiplier par un même nombre non nul les deux membres d'une égalité pour obtenir ainsi une égalité équivalente :
+    \[\text{Avec } c\neq 0,\quad a = b \qLRq a \rouge{\,\times\,c} = b \rouge{\,\times\,c}\]
+\end{Prop}
+
+\begin{Demo}
+    Puisque $a = b$ alors $a - b = 0$ et puisque $c \neq 0$, on a :
+    \[0 = c(a - b) = ca - cb = 0 \quad \text{donc} \quad a \times c = b \times c.\]
+\end{Demo}
+
+\subsubsection{\'Equation du premier degré}
+\begin{Defi}
+    Une \iptb{équation à une inconnue du premier degré}\index{equation@équation!équation du premier degré} est une équation de la forme $ax + b = 0$ où $x$ est l'inconnue et $a$ et $b$ sont des paramètres donnés tels que $a \neq 0$.\par
+\end{Defi}
+
+\subsubsection{\'Equation produit}\index{equation@équation!équation produit}
+\begin{Prop}[(admise)]
+    Un produit de facteur est nul si et seulement si l'un des facteurs est nul :
+    \[A(x) \times B(x) = 0 \qLRq A(x) = 0 \text{ ou } B(x) = 0\]
+\end{Prop}
+
+
+\subsubsection{Résolution d'un problème}
+\begin{Exemple}
+    Lors d'une séance de cinéma, on a accueilli $56$ spectateurs. Certains ont payé le tarif réduit (\EUR{$5$}), les autres le tarif normal (\EUR{$8$}). La recette de cette séance se monte à \EUR{$376$}.\par Combien de spectateurs ont payé le tarif réduit ? (réponse : $24$)
+\end{Exemple}
+
+Voici les étapes de la résolution d'un problème en utilisant les équations :
+\begin{enumerate}
+    \item choix de l'inconnue ;
+    \item mise en équation du problème ;
+    \item résolution de l'équation ;
+    \item réponse au problème.
+\end{enumerate}
+
+\end{document}

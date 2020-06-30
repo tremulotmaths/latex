@@ -1,0 +1,16 @@
+\begin{center}
+\begin{tikzpicture}[scale=1.25]
+\tkzInit[ymin=-1,xmax=5,ymax=3]
+\tkzGrid
+%\tkzAxeXY
+\tkzDrawX[line width=2pt,color=blue,below right,>=stealth]%,label=Rang année]
+\tkzLabelX%[label options={below=12pt,rotate=-45}]
+\tkzDrawY[line width=2pt,color=blue,above left,>=stealth]%,label=Montant (en \euro)]
+\tkzLabelY[label options={left=6pt}]
+\tkzFct[domain = 0.5:5,line width=2pt,color=red]{1/x}% courbe a
+\tkzFct[domain = 1:5,line width=2pt,color=OliveGreen]{log(x)}% courbe b
+\tkzDrawAreafg[between=b and a,
+color=magenta!50,
+domain = 1:4]
+\end{tikzpicture}
+\end{center}

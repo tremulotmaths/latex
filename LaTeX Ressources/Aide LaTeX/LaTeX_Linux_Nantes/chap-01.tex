@@ -1,0 +1,179 @@
+\chapter{Qu'est-ce que \LaTeX{}?}
+
+\section{L'origine}
+
+Pour tout savoir, lisez l'introduction écrite par Vincent \textsc{Lozano} dans son ouvrage
+\textit{Tout ce  que vous avez  toujours voulu  savoir sur {\LaTeX}  sans jamais
+  oser le demander}\citep{toutLatex} qui est  disponible gratuitement en ligne à
+l'adresse
+\href{http://www.framabook.org/latex.html}{http://www.framabook.org/latex.html}
+ou au format papier pour un prix ridiculement modique. Tout est dit (vous pouvez également écouter le conférencier
+pendant l'atelier). Citons en particulier: 
+
+{\itshape
+\begin{quote}
+Il existe plusieurs raisons pour lesquelles il est \og impératif\fg{} de ne
+pas utiliser \LaTeX{}:
+\begin{enumerate}
+\item vous utilisez un traitement de texte uniquement pour faire vos
+  cartes de v\oe{}ux, votre courrier, pour noter quelques idées, etc.
+  ;
+\item vous adorez les souris (1 ou 3 boutons indifféremment) et vous
+  pensez que la seule manière d'écrire des équations est de les
+  utiliser (les souris) de manière intensive;
+\item vous pensez qu'UNIX c'est « prise de tête » et « pas
+  convivial » et/ou vous avez une aversion particulière pour tout
+  langage de programmation;
+\item vous trouvez normal: \primo que votre logiciel préféré ne
+  puisse pas lire le document que vous aviez produit avec la version
+  précédente, et/ou \secundo que la nouvelle version vous oblige à
+  changer de système d'exploitation, et \tertio que la nouvelle
+  version dudit système d'exploitation vous oblige à changer
+  d'ordinateur, et \quarto que votre nouvel ordinateur...
+\item vous ne savez pas où se trouve la touche \verb+\+ sur 
+  votre clavier. \label{nbraisons}
+\end{enumerate}
+Si vous vous reconnaissez dans une de ces catégories, mieux vaut vous
+contenter de votre système actuel.
+\end{quote}
+}
+
+Un  autre  bon  livre  est  celui de  Denis  \textsc{Bitouzé}  et  de  Jean-Côme
+\textsc{Charpentier} \citep{introductionLatex}. Tous deux sont d'ailleurs  venus à
+Nantes  en  2006 pour  encadrer  un  stage  \gls{latex} organisé  également  par
+l'\textsc{Irem}.
+
+Des membres de l'équipe qui maintiennent  \LaTeX{} ont également mis en ligne la
+\textit{Not so short introduction to \LaTeX{}} ou apprendre \LaTeX{} en 166 minutes.
+
+\href{http://hivernal.org/static/computing/doc/lshort-fr.fr.html}{http://hivernal.org/static/computing/doc/lshort-fr.fr.html}
+
+
+Le livre que j'ai  le plus consulté est le \textit{\LaTeX{}  par la pratique} de
+Christian  \textsc{Rolland} \citep{rolland1999}  mais la  \og bible\fg{}  est le
+\LaTeX{} Companion \citep{companionfr}.
+
+
+
+
+
+
+
+\section{Principe}
+
+\LaTeX{}  n'est pas  \textsc{Wysiwyg} (pour  \textit{What  You See  Is all  What
+  You've Got} comme disait Brian \textsc{Kernighan},  l'un des pères du C...) et
+bien heureusement. Cela permet à l'utilisateur(rice) de bien séparer la forme du
+fond et surtout de na pas coder \og  en dur\fg{} la mise en forme pour gagner en
+portabilité et  en souplesse. Vous  pouvez changer totalement l'aspect  de votre
+document sans toucher  au fichier source. C'est le principe  de base d'une 
+programmation bien pensée.
+
+
+
+
+
+
+\section{Installation}\index{Installation}
+
+Il  suffit  d'installer  la  distribution \TeX{}Live  présente  sur  toutes  les
+distributions.  Elle dispose  en  particulier de  \texttt{tlmgr}  qui permet  de
+mettre à jour et d'installer facilement de nouvelles extensions:
+
+
+\shell
+
+\begin{lstlisting}
+$ tlmgr update --all
+tlmgr: package repository http://mirror.ibcp.fr/pub/CTAN/systems/texlive/tlnet
+tlmgr: saving backups to /usr/local/texlive/2013/tlpkg/backups
+[  1/256, ??:??/??:??] update: abntex2 [4523k] (31530 -> 32794) ... done
+[  2/256, 00:46/45:59] update: achemso [470k] (31893 -> 32619) ... done
+...
+tlmgr: package log updated: /usr/local/texlive/2013/texmf-var/web2c/tlmgr.log
+running mktexlsr ...
+running mtxrun --generate ...
+running updmap-sys ...
+regenerating fmtutil.cnf in /usr/local/texlive/2013/texmf-var
+running fmtutil-sys --no-error-if-no-format --byengine ptex ...
+running fmtutil-sys --no-error-if-no-format --byengine eptex ...
+running fmtutil-sys --no-error-if-no-format --byengine pdftex ...
+running fmtutil-sys --byfmt cont-en ...
+\end{lstlisting}
+
+
+Cependant,   certaines   distributions  ne   disposent   pas   de  la   dernière
+\TeX{}Live qui est disponible à cette adresse:
+
+
+\begin{center}
+  \href{https://www.tug.org/texlive/}{https://www.tug.org/texlive/}
+\end{center}
+
+ Pour y remédier, il ne faut pas passer par les dépôts mais suivre
+les instructions disponible sur:
+
+\begin{center}
+\href{https://www.tug.org/texlive/quickinstall.html}{https://www.tug.org/texlive/quickinstall.html}
+\end{center}
+
+puis  se reporter  sur  l'installation d'un  dépôt  Debian ou  Ubuntu  \og à  la
+vanille\fg{}:
+
+\begin{center}
+\href{https://www.tug.org/texlive/debian.html}{https://www.tug.org/texlive/debian.html}
+\end{center}
+
+pour berner le gestionnaire de paquets sur les \og Debian like\fg{}.
+
+
+\section{Quel éditeur?}\index{\'{E}diteur}
+
+Il vous  faut un  environnement de  travail. Le  meilleur est  bien sur  le mode
+AUC\TeX{} d'emacs.
+
+Vous pouvez utiliser par ailleurs les éditeurs dédiés Kile et \TeX{}maker. 
+
+Gedit dispose d'un greffon dédié. Tout est expliqué par Denis \textsc{Le Fur}:
+
+\begin{center}
+  \href{http://mathsp.tuxfamily.org/spip.php?article9}{http://mathsp.tuxfamily.org/spip.php?article9}
+\end{center}
+
+
+
+Il vous faut ensuite une bonne visionneuse de PDF comme par exemple Zathura.
+
+\section{Quel moteur?}
+
+Écoutez les conseils de votre conférencier.
+
+
+
+
+
+
+
+
+% Pour               les              thèses,               la              classe
+% \href{http://www.loria.fr/~roegel/TeX/TUL.html}{thesUL}.
+
+
+% Pour créer le glossaire, il faut dans un shell taper:
+
+
+% \shell
+% \begin{lstlisting}
+% $ makeglossaries FichierPrincipal
+% \end{lstlisting}
+
+
+% \index{cadratin}, hauteur d'x.
+
+
+
+
+
+%%% Local Variables: 
+%%% TeX-master: "ExempleRapport"
+%%% End: 

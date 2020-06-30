@@ -1,0 +1,102 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+\renewcommand\PartProgramme{Stats/Probas}
+\renewcommand\MaCouleur{Purple}
+
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+
+
+\setcounter{chapter}{4}
+\begin{document}
+\chapter[Schéma de Bernoulli]{Probabilités \bsc{i}\\ Schéma de Bernoulli}\label{schema_bernoulli}
+
+\section{Vocabulaire des probabilités}
+
+\begin{Defi}
+    Une expérience est dite \iptb{aléatoire}\index{expérience aléatoire} lorsqu'on ne peut pas en prévoir avec certitude le résultat.\par
+    On appelle \ipt{issue} d'une expérience aléatoire tout résultat possible de cette expérience.\par
+    L'ensemble des issues s'appelle l'\ipt{univers}. On le note généralement $\Omega$.
+\end{Defi}
+
+\begin{Exemple}
+    Le lancer d'un dé à 6 faces est une expérience aléatoire. Les issues sont : $1\pv 2\pv 3\pv 4\pv 5\pv 6$.\par
+    L'univers est donc l'ensemble $\Omega = \{1\pv 2\pv 3\pv 4\pv 5\pv 6\}$.
+\end{Exemple}
+
+\begin{Defi}
+    Une partie de $\Omega$, c'est-à-dire un ensemble d'issues parmi celles possibles, est appelé \ipt{événement}.\par
+    Un événement \iptb{élémentaire}\index{événement!élémentaire} est un événement qui ne contient qu'une seule issue.\par
+    L'événement \iptb{certain}\index{événement!certain} contient toutes les issues.\par
+    L'événement \iptb{impossible}\index{événement!impossible} ne contient aucune issue.
+\end{Defi}
+
+\begin{Exemple}
+    Lors du lancer d'un dé, $\{1\}$ est un événement élémentaire.\par
+    L'événement "obtenir un entier positif" est l'événement certain et "obtenir un entier supérieur à $7$" est l'événement impossible.
+\end{Exemple}
+
+\begin{Defi}
+Soit $\Omega$ l'univers associé à une expérience aléatoire.\par
+On suppose $\Omega$ fini ; on note $n$ le nombre d'éléments de $\Omega$, $n \in \N^*$, et $x_1$, $x_2$, \ldots , $x_n$ les éléments de $\Omega$.\par
+Définir une \ipt{loi de probabilité} sur $\Omega$, c'est associer à chaque événement élémentaire $\{x_i\}$ un nombre réel $p_i$ positif ou nul de façon que :
+\[p_1 + p_2 + \cdots + p_n = \sum_{i=1}^n p_i = 1.\]
+Le nombre $p_i$ est appelé \ipt{probabilité} de l'événement élémentaire $\{x_i\}$.\par
+La probabilité d'un événement (autre que l'événement impossible) est égale à la somme des probabilités des événements élémentaires qui le composent.\par
+La probabilité de l'événement impossible est égale à $0$. 
+\end{Defi}
+
+\begin{Exemple}
+    On considère un dé pipé et on associe un nombre à chaque issue :
+    \[p(\{1\}) = 0,1 \qq p(\{2\}) = 0,2 \qq p(\{3\}) = 0,1 \qq p(\{4\}) = 0,2 \qq p(\{5\}) = 0,1 \qq p(\{6\}) = 0,3.\]
+    Chacun de ces nombres est positif et leur somme est égale à $1$ : on a bien défini une probabilité.\par
+    Ainsi : $p(\text{"obtenir un nombre pair"}) = p(\{2\pv4\pv6\}) =  p(\{2\}) + p(\{4\}) + p(\{6\}) = 0,7$.
+\end{Exemple}
+
+\section{Schéma de Bernoulli}
+
+\begin{Defi}
+    Soit $p$ un nombre réel appartenant à $\intervalleff{0}{1}$.\par
+    On appelle \ipt{épreuve de Bernoulli}\index{Bernoulli!épreuve de} de paramètre $p$ toute expérience aléatoire n'admettant que deux issues $S$ et $\overline S$ de probabilités respectives $p$ et $1-p$.\par
+    L'événement $S$ est appelé << succès >>. L'événement $\overline S$ est appelé << échec >> et on le note parfois $E$.
+\end{Defi}
+
+\begin{Exemple}
+    Dans une urne opaque, il y a $10$ boules indiscernables au toucher. $3$ sont rouges et les autres sont bleues.\par
+    Si on considère que l'événement "Tirer une boule bleue" comme le succès alors $p(S) = \frac{7}{10}$ et $p(\overline S) = \frac{3}{10}$.\par
+    Si on considère que l'événement "Tirer une boule rouge" comme le succès alors $p(S) = \frac{3}{10}$ et $p(\overline S) = \frac{7}{10}$.
+\end{Exemple}
+
+\begin{Defi}
+    Soit $p$ un nombre réel appartenant à $\intervalleff{0}{1}$.\par
+    On appelle \ipt{schéma de Bernoulli}\index{Bernoulli!schéma de} de paramètres $n$ et $p$ une épreuve de Bernoulli répétée $n$ fois de façon \textbf{identique} et \textbf{indépendante}.\par
+    L'événement $S$ est appelé << succès >>. L'événement $\overline S$ est appelé << échec >> et on le note parfois $E$.
+\end{Defi}
+
+\begin{Prop}[(admise)]
+    Dans un schéma de Bernoulli, la probabilité d'une liste de résultats est le produit des probabilités de chaque résultat.
+\end{Prop}
+
+\begin{Exemple}
+    On considère l'urne de l'exemple précédent. On tire une boule puis la remet dans l'urne et on recommence une seconde fois.\par
+    On s'intéresse à l'événement A : "obtenir 2 boules rouges".\par
+    \begin{itemize}
+        \item On tire une boule au hasard une fois dans l'urne. On appelle succès l'événement R : "tirer une boule rouge" et on a $p(R) = \frac{3}{10}$.
+        \item On a donc une épreuve de Bernoulli de paramètre $p = 0,3$.
+        \item Les deux tirages sont identiques : même nombre de boules.
+        \item Les deux tirages sont indépendants : la couleur de la boule du premier tirage n'influence pas le second tirage.
+        \item On a donc un schéma de Bernoulli de paramètres $n = 2$ et $p = 0,3$. Ainsi, \[p(A) = p(R) \times p(R) = 0,3^2 = 0,09.\]
+    \end{itemize}
+\end{Exemple}
+
+\end{document}

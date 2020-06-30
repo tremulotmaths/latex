@@ -1,0 +1,93 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+
+\pagestyle{empty}
+
+\begin{document}
+
+\small\vspace*{-1.75cm}
+\TitreExo{\bsc{v}.1}{Calculs de probabilités}
+
+\exo On tire au hasard une carte d'un jeu de 32 cartes. On considère les événements suivants :\par
+$A$ : \og la carte obtenue est un carreau~\fg et $B$ : \og la carte obtenue est une figure~\fg.\par
+On appelle << figure >> un Roi, une Dame ou un Valet.\smallskip
+
+On donnera les résultats sous forme d'une fraction irréductible.\smallskip
+
+\begin{enumerate}
+    \item Calculer les probabilités $p(A)$ et $p(B)$.
+    \item Définir, à l'aide d'une phrase en français, l'événement $\overline A$ et calculer $p\left(\overline A\right)$.
+    \item Définir, à l'aide d'une phrase en français, l'événement $A \cap B$ et calculer $p\left(A \cap B\right)$.
+    \item Les événements $A$ et $B$ sont-ils incompatibles ? Pourquoi ?
+    \item Soit $C$ l'événement défini par << la carte obtenue est un carreau ou une figure >>.\par Calculer $p(C)$.
+\end{enumerate}
+
+\[*\]
+
+\exo Une enquête a été effectuée auprès de $750$ jeunes titulaires d'un baccalauréat d'enseignement général ou technique 3 ans après l'obtention de leur diplôme :
+\begin{itemize}
+    \item $24\%$ sont titulaires d'un bac \bsc{s.t.i.} ;
+    \item le tiers des $750$ jeunes interrogés ont un emploi ;
+    \item $380$ continuent leurs études ; parmi eux, $20\%$ sont titulaires d'un bac \bsc{s.t.i.} ;
+    \item $90\%$ de ceux qui sont au chômage sont titulaires d'un bac autre que \bsc{s.t.i.}
+\end{itemize}
+
+\begin{enumerate}
+    \item Compléter le tableau des effectifs suivants :
+        \begin{center}
+        \renewcommand\arraystretch{1.5}
+            \begin{tabular}{|c|*{4}{>{\centering\arraybackslash}m{2cm}|}}
+                \hline
+                    \backslashbox{Nature du bac}{Situation} & Ont un emploi & Continuent leurs études & Sont au chômage & Total \\
+                \hline
+                    Bac \bsc{s.t.i.} & & & & \\
+                \hline
+                    Autre bac & & & & \\
+                \hline
+                    Total & & $380$ & & $750$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+        
+    \item Dans cette questions, les résultats seront donnés sous forme de fractions irréductibles.\par
+    On choisit un jeune au hasard parmi les $750$ interrogés.
+    \begin{enumerate}
+        \item Calculer les probabilités des événements suivants :\par
+        $C$ : << le jeune a un bac \bsc{s.t.i.} >> et $D$ : << le jeune continue ses études >>.
+        \item Définir par une phrase l'événement $C \cap D$ et calculer $p(C \cap D)$.
+        \item Définir par une phrase l'événement $C \cup D$ et calculer $p(C \cup D)$.
+        \item Le jeune choisi au hasard est titulaire d'un bac \bsc{s.t.i.}\par
+        Quelle est la probabilité $p$ qu'il ait un emploi ?
+    \end{enumerate}
+\end{enumerate}
+
+\[*\]
+
+\exo Une entreprise fabrique des cahiers qui peuvent présenter deux défauts $D_1$ et $D_2$.\par Après une étude sur ces défauts, il apparaît que $9\%$ des cahiers présentent le défaut $D_1$, $7\%$ des cahiers présentent le défaut $D_2$ et $4\%$ des cahiers présentent les deux défauts simultanément.\par
+On choisit au hasard un cahier dans la production de l'entreprise et on considère les événements suivants :\par
+$E$ : << le cahier ne présente pas le défaut $D_1$ >> et $F$ : << le cahier ne présente pas le défaut $D_2$ >>.
+\begin{enumerate}
+    \item Que représente l'événement $E \cup F$ ? Déterminer sa probabilité.
+    \item Compléter le tableau suivant :
+        \begin{center}
+        \renewcommand\arraystretch{2}
+            \begin{tabular}{|c|*{2}{>{\centering\arraybackslash}m{3cm}|}c|}
+                \cline{2-4}
+                     \multicolumn{1}{c|}{} & Cahier présentant le défaut $D_1$ & Cahier ne présentant pas le défaut $D_1$ & Total \\
+                \hline
+                    Cahier présentant le défaut $D_2$ & & & \\
+                \hline
+                    Cahier ne présentant pas le défaut $D_2$ & & & \\
+                \hline
+                    Total & $9\%$ & & $100\%$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+    \item Donner les probabilités suivantes sous forme de fractions irréductibles :
+    \[p\left(\overline E\right) \qq p\left(\overline E \cap F\right) \qetq p\left(\overline E \cap \overline F\right)\]
+\end{enumerate}
+
+
+\end{document} 

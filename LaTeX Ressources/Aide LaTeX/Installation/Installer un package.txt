@@ -1,0 +1,61 @@
+Lorsqu'il s'agit d'un package conçu pour LaTeX2e et utilisant
+les procédures et outils définis dans ce cadre, c'est simple :
+un package est fourni avec deux (ou plus, pour les packages plus
+complexes) fichiers, package.ins et package.dtx
+
+Il faut commencer par exécuter "latex package.ins" pour créer
+le(s) fichier(s) de commandes lui(eux)-même(s) (typiquement
+package.sty) puis "latex package.dtx" pour générer la
+documentation, avec si besoin construction d'un index :
+makeindex -s gind.ist -o package.ind package.idx, et d'un
+glossaire : makeindex -s gglo.ist -o package.gls package.glo.
+
+Ces fichiers doivent ensuite être déclarés dans une variable
+d'environnement afin d'être rendus visibles.
+
+Exemple (UNIX) :
+TEXINPUTS=.:/usr/local/TEX/texmf/tex:/users/ADMIN/NG/LATEX:
+/users/home/kluth/Section-equit/Modele
+%%%% fin exemple %%%%
+
+Remarques :
+* on ne peut évidemment générer la documentation en premier,
+parce qu'elle aura toujours besoin du fichiers des commandes ;
+* si l'on ne veut obtenir que la documentation <<utilisateur>>,
+il faut ajouter la ligne "\OnlyDescription" dans le fichier
+package.dtx, avant la ligne "\DocInput{package.dtx}". Sinon on
+obtient aussi le listage commenté du code, ce dont on peut ne
+pas vouloir se soucier et qui peut être volumineux pour les
+packages importants.
+
+Néanmoins, il est clair que ce mode d'organisation et de
+distribution n'est que le mode encouragé par l'équipe de
+développement de LaTeX et n'est en rien une obligation. Un bon
+nombre de packages disponibles ne le suit d'ailleurs pas (!),
+pour diverses raisons (packages qui se veulent utilisables aussi
+bien avec Plain TeX qu'avec LaTeX, << vieux >> packages écrits
+pour LaTeX2.09, packages écrits par des personnes qui veulent
+faire << comme ça leur plait >>, etc.)... Dans ces différents
+cas, il faut << aller y voir de plus près >> pour comprendre
+l'organisation choisie.
+
+C'est justement le cas pour slashbox (!) : un seul fichier .sty
+est fourni. Il faut l'éditer pour extraire le fichier de
+documentation qui se trouve après la ligne 80 "\endinput".
+
+*Pour WINDOWS :
+1/ copier le fichier package.ins dans un répertoire
+temporaire et le compiler avec LaTeX ;
+2/ déplacer le fichier package.sty dans un répertoire visible par
+LaTeX, soit commun à tous les utilisateurs, soit local,
+soit personnel :
+-- pour fpTeX, ce sont respectivement les répertoires (déclarés à
+l'installation de fpTeX) ./texmf/tex/latex/lerepertoiredemonpackage (à
+créer si besoin), ./texmf.local/tex/latex/lerepertoiredemonpackage (à créer
+si besoin), HOME/texmf/tex/latex/lerepertoiredemonpackage (à créer si
+besoin) ;
+-- pour MikTeX, ce sont les mêmes répertoires mais le répertoire local est
+./localtexmf/ et que le HOME ne semble pas être prévu :
+[FMF : je ne suis pas sûre de ce dernier point]
+3/ reconstruire la base de données des packages (rebuild ls-R filenames
+databases pour fpTeX, refresh filename database pour MikTeX).

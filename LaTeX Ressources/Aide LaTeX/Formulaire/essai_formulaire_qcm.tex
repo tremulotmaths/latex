@@ -1,0 +1,100 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\portrait
+%\paysage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{TS 2}
+\newcommand{\anneescol}{Année 2019-2020}
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{QCM 1 - Les fonctions logarithmes}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\classe}{\thepage / \pageref{LastPage}}{\anneescol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section*{Documentation}
+%
+%\url{http://www.tug.org/applications/hyperref/manual.html#x1-200006}
+
+\section*{Nom, prénom}
+
+\begin{Cadre}
+\begin{Form}
+\TextField[name=name,width=15em]{Prénom :}
+\TextField[name=surname,width=15em]{NOM :}
+\end{Form}
+\medskip
+\end{Cadre}
+
+\section*{Question 1}
+
+La fonction ln est
+\begin{Form}
+\ChoiceMenu[combo,name=niveau1,default=dérivable sur $\R$,charsize=10pt,align=0]{}
+{
+dérivable sur $\intervalleoo{0}{+\infty}$,
+dérivable sur $\R$
+}\\
+\ChoiceMenu[radio,default=Male,name=sex,multiline=true]{Sex:}{Male,Female}
+\end{Form}
+
+
+
+\section*{Feedback}
+
+Vous avez trouvé ce QCM\dots
+
+\begin{Cadre}
+\begin{Form}
+\ChoiceMenu[combo,name=niveau,default=Très facile,charsize=10pt,align=0]
+           {Niveau :}{Très facile,Facile,Un peu compliqué,Très compliqué}
+\end{Form}
+\end{Cadre}
+
+
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

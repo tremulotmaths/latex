@@ -1,0 +1,23 @@
+tout d'abord tu compile tes sources : latex fichier.tex 
+tu auras un fichier dvi (Device independant) et ensuite tu convertis ça en pdf : dvipdf fichier.dvi
+et voila tu as ton pdf
+
+On peut combiner les deux ainsi :
+latex fichier.tex && dvipdf fichier.dvi
+
+ou pdflatex fichier.tex
+
+ou latex fichier.tex && dvips fichier.dvi && ps2pdf fichier.ps 
+(si on a besoin de passer par le fichier .ps par exemple lorsque l'on utilise un 
+graphique PStricks)
+
+Lorsque l'on a besoin de gnuplot avec tikz ou tkz par exemple, l'instruction devient :
+sudo pdflatex --shell-escape fichier.tex
+L'instruction --shell-escape autorise LaTeX a aller chercher à l'extérieur
+sudo pour demander les droits admin pour l'instruction
+
+Avec PythonTex :
+Sur Texmaker :
+pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex|python3 /usr/local/texlive/2019/texmf-dist/scripts/pythontex/pythontex3.py %.tex|pdflatex --shell-escape -synctex=1 -interaction=nonstopmode %.tex
+ou
+latex --shell-escape -synctex=1 -interaction=nonstopmode %.tex|python3 /usr/local/texlive/2019/texmf-dist/scripts/pythontex/pythontex3.py %.tex|latex --shell-escape -synctex=1 -interaction=nonstopmode %.tex|dvips -Pdownload35 -o %.ps %.dvi|ps2pdf %.ps

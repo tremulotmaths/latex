@@ -1,0 +1,146 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\usepackage{tipfr}
+\newcommand\tc[1]{\psframebox[framearc=0.6,fillstyle=solid,fillcolor=gray!60]{\sffamily\textcolor{white}{#1}}}
+
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Logiciel GeoGebra\\ Calculatrice graphique}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 10}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Recherche d'un périmètre minimum}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+%\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Présentation de la situation}}\\[10pt]
+On considère un rectangle $ABCD$ de dimensions données, $AB=6$ cm et $AD=8$ cm.\\
+Sur le segment $[AB]$, on place un point $M$ et on note $AM=a$.\\
+On considère alors les points $N$ de $[BC]$, $P$ de $[CD]$ et $Q$ de $[DA]$ tels que:
+\[AM=BN=CP=DQ.\]
+On s'intéresse aux variations du périmètre du quadrilatère $MNPQ$.
+\begin{enumerate}
+\item Réaliser une figure en choisissant $a=1$.
+\item Exprimer le périmètre du quadrilatère $MNPQ$ en fonction de $a$.
+\end{enumerate}
+\vspace{25pt}
+
+%_______________
+\textcolor{blue}{\textbf{II. Observation à l'aide d'un logiciel de géométrie dynamique}}
+\begin{enumerate}
+\item Réaliser la figure à l'aide d'un logiciel de géométrie dynamique.\\
+Afficher le périmètre du quadrilatère $MNPQ$
+\item Piloter au clavier la valeur de $a$.\\
+Décrire les variations du périmètre en fonction de $a$.
+\item  On note $\alpha$ la valeur de $a$ donnant le périmètre minimum, et $\beta$ ce périmètre minimal.\\
+Conjecturer la valeur de $\beta$, ainsi qu'une valeur approchée de $\alpha$.
+\end{enumerate}
+%\vspace{15pt}
+\begin{center}
+ \definecolor{ffwwqq}{rgb}{1.,0.4,0.}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\definecolor{qqqqcc}{rgb}{0.,0.,0.8}
+\definecolor{qqwwzz}{rgb}{0.,0.4,0.6}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4.23242122387,-4) rectangle (12,4.5);
+\fill[color=zzttqq,fill=zzttqq!20,fill opacity=0.1] (-2.,-0.5) -- (-0.5,4.) -- (6.,2.5) -- (4.5,-2.) -- cycle;
+\draw (-2.,-2.)-- (6.,-2.);
+\draw (6.,-2.)-- (6.,4.);
+\draw (6.,4.)-- (-2.,4.);
+\draw (-2.,4.)-- (-2.,-2.);
+\draw[line width=4.pt,color=qqwwzz!50] (-1.9,-3.09780749142) -- (2.1,-3.09780749142);
+\draw (-2.,-2.)-- (-2.,-0.5);
+\draw (6.,-2.)-- (4.5,-2.);
+\draw (6.,4.)-- (6.,2.5);
+\draw (-2.,4.)-- (-0.5,4.);
+\draw [color=zzttqq] (-2.,-0.5)-- (-0.5,4.);
+\draw [color=zzttqq] (-0.5,4.)-- (6.,2.5);
+\draw [color=zzttqq] (6.,2.5)-- (4.5,-2.);
+\draw [color=zzttqq] (4.5,-2.)-- (-2.,-0.5);
+\draw [color=ffwwqq](7,1) node[anchor=north west] {Périmètre MNPQ=22.83};
+\begin{scriptsize}
+\draw [fill=qqqqff] (-2.,-2.) circle (1.0pt);
+\draw[color=qqqqff] (-2.34869862063,-2.1) node {$A$};
+\draw [fill=qqqqff] (6.,-2.) circle (1.0pt);
+\draw[color=qqqqff] (6.35482331585,-2.1) node {$D$};
+\draw [fill=qqqqff] (6.,4.) circle (1.0pt);
+\draw[color=qqqqff] (6.37473984202,4.15180803462) node {$C$};
+\draw [fill=qqqqff] (-2.,4.) circle (1.0pt);
+\draw[color=qqqqff] (-2.42836472532,4.13189150845) node {$B$};
+\draw [fill=qqwwzz] (-0.815126105511,-3.09780749142) circle (2.5pt);
+\draw[color=qqwwzz] (-0.615960843807,-2.6397273895) node {$a = 1.5$};
+\draw [fill=qqqqcc] (-2.,-0.5) circle (1.0pt);
+\draw[color=qqqqcc] (-2.40844819915,-0.488742563089) node {$M$};
+\draw [fill=qqqqff] (4.5,-2.) circle (1.0pt);
+\draw[color=qqqqff] (4.46275332965,-2.34097949694) node {$Q$};
+\draw [fill=qqqqff] (6.,2.5) circle (1.0pt);
+\draw[color=qqqqff] (6.35482331585,2.59831899333) node {$P$};
+\draw [fill=qqqqff] (-0.5,4.) circle (1.0pt);
+\draw[color=qqqqff] (-0.357046003591,4.2314741393) node {$N$};
+\end{scriptsize}
+\end{tikzpicture}  
+\end{center}
+
+\newpage
+%\vspace{15pt}
+%_______________
+\textcolor{blue}{\textbf{III. Détermination du minimum à l'aide de la calculatrice}}%\\[10pt]
+
+\begin{enumerate}
+\item On a vu que le périmètre du quadrilatère $MNPQ$ peut être exprimé par une fonction $f$ de la variable $a$.\\
+Définir cette fonction.
+\item A l'aide de la calculatrice, obtenir un tableau de valeurs puis la représentation graphique de cette fonction.
+	\begin{enumerate}
+	\item Tracer la courbe $\mathcal{C}_f$ représentative de la fonction $f$.\\
+On note $\cp{\alpha}{\beta}$ le couple de coordonnées du sommet de cette courbe.
+	\item Dresser le tableau de variations de la fonction $f$.
+	\end{enumerate}
+\item  A l'aide de la calculatrice, déterminer les valeurs approchées de $\alpha$ et $\beta$.
+\vspace{10pt}
+\begin{center}
+\fcolorbox{blue!40}{blue!1}{%
+\begin{minipage}{0.9\linewidth}
+\textsc{Instructions pour la calculatrice \bsc{Ti}}\\[5pt]
+Appuyer sur  \tc{2nde}   \tc{calculs}, puis  dans le menu, choisir \fbox{minimum}.\\
+On sélectionne une borne inférieure (abscisse inférieure à celle du point cherché), puis une borne supérieure.\\
+%\vspace{2pt}
+\end{minipage}}
+ \end{center}
+\end{enumerate}
+
+\vspace{15pt}
+%_______________
+\textcolor{blue}{\textbf{IV. Justification par le calcul}}\\[10pt]
+Le calcul analytique (étude de la fonction $f$) permet d'obtenir la valeur exacte de $\alpha$.\\
+On obtient $\alpha=\dfrac{24}{7}$.
+\begin{enumerate}
+\item Calculer l'image du réel $\dfrac{24}{7}$ par la fonction $f$.
+\item Que faudrait-il alors montrer pour justifier que cette valeur correspond au minimum de la fonction $f$?
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,64 @@
+\documentclass[12pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{xi.2}{Dérivation \\ Taux d'accroissement}
+
+Une petite balle est lâchée du haut d'un très grand immeuble.\par
+La distance $d$ parcourue par la balle en mètres est exprimée en fonction du temps $t$ en seconde par :
+\[d(t) = 5t^2.\]
+
+\begin{enumerate}
+    \item Compléter le tableau de valeur suivant :
+    \begin{center}
+    \renewcommand\arraystretch{2}
+        \begin{tabularx}{0.75\linewidth}{|c|*{5}{>{\centering\arraybackslash} X|}}
+        \hline
+            $t$ (en $s$) & $0$ & $1$ & $2$ & $3$ & $4$ \\
+        \hline
+            $d(t)$ (en $m$) & & & & & \\
+        \hline
+        \end{tabularx}
+    \end{center}
+    
+    \item Quelle est la vitesse moyenne de la balle lors de la première seconde ? Lors des deux premières secondes ?
+    \item Quelle est la vitesse moyenne de la balle entre la première et la deuxième seconde ? Entre la deuxième et la troisième seconde ?
+    \item On souhaite connaître la vitesse instantanée de la balle à un instant précis. Par exemple, on souhaite connaître la vitesse de la balle à la troisième seconde. Pour cela, on s'intéresse à des temps très proches de $3$ secondes.\par
+        Compléter le tableau suivant :
+        
+    \begin{center}
+    \renewcommand\arraystretch{2}
+        \begin{tabularx}{0.85\linewidth}{|c|*{6}{>{\centering\arraybackslash} X|}}
+        \hline
+            $h$ (en $s$) & $-0,1$ & $-0,01$ & $-0,001$ & $0,001$ & $0,01$ & $0,1$\\
+        \hline
+            $3 + h =$ & & & & & & \\
+        \hline
+            $d(3+h) =$ &&&&&& \\
+        \hline
+        \end{tabularx}
+    \end{center}
+    
+    \item On veut maintenant calculer la vitesse moyenne entre la troisième seconde et ces temps très proches de $3$ secondes. On utilise alors la formule pour calculer une moyenne :
+    \[\overline m = \dfrac{d(3 + h) - d(3)}{(3 + h) - 3}.\]
+    En utilisant le tableau de valeurs de la calculatrice, compléter le tableau suivant (arrondir à $10^{-3}$ près) :
+    
+        \begin{center}
+    \renewcommand\arraystretch{2}
+        \begin{tabularx}{0.85\linewidth}{|c|*{6}{>{\centering\arraybackslash} X|}}
+        \hline
+            $h$ (en $s$) & $-0,1$ & $-0,01$ & $-0,001$ & $0,001$ & $0,01$ & $0,1$\\
+        \hline
+            $\overline m$ & & & & & & \\
+        \hline
+        \end{tabularx}
+    \end{center}
+\end{enumerate}\medskip
+
+Le nombre $\dfrac{d(3 + h) - d(3)}{(3 + h) - 3}$ s'appelle taux d'accroissement au point d'abscisse $3$.
+\end{document} 

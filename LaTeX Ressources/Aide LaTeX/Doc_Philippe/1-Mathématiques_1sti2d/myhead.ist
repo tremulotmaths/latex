@@ -1,0 +1,10 @@
+headings_flag 1
+heading_prefix "\n \\item {\\rule{0.25\\linewidth}{0pt}\\rule{1cm}{0.4pt}\\fbox{$\\mathcal{"
+heading_suffix "}$}\\rule{1cm}{0.4pt}}\\medskip\\nopagebreak"
+symhead_positive "Symboles"
+symhead_negative "symboles"
+numhead_positive "Nombres"
+numhead_negative "nombres"
+delim_0 ", "
+
+

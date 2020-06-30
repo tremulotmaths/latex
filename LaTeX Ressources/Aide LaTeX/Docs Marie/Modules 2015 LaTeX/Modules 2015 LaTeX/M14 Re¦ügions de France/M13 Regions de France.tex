@@ -1,0 +1,106 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Analyse de données\\ Tableur}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 14}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Régions de France}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Situation}}\\[7pt]
+Sur le site de l'\textsc{INSEE}, on peut trouver des bases de données concernant l'évolution de la population des régions de France de 1999 à 2009.\\[3pt]
+Sur internet, se connecter au site de l'\textsc{INSEE}:    \url{http://www.insee.fr/fr/themes} \\[3pt]
+Choisir les entrées:
+\begin{itemize}
+\item Thème: Population
+\item Type de produit: Chiffres clés
+\item Niveau géographique: Comparaisons régionales
+\end{itemize}
+\vspace{5pt}
+Choisir le document:
+\begin{itemize}
+\item Evolution de la population de 2007 à 2012: comparaisons régionales et départementales
+\end{itemize}
+\vspace{3pt}
+\begin{center}
+ \includegraphics[scale=0.5]{insee3.eps}  
+\end{center}
+\vspace{-20pt}
+L'objectif est de représenter et d'analyser ces données, après les avoir organisées.\\
+\newpage
+
+%_______________
+\textcolor{blue}{\textbf{II. Organisation des données}}
+\begin{enumerate}
+\item Lecture du document. 
+	\begin{enumerate}
+	\item Indiquer la population totale en France en 2012.
+	\item Indiquer l'estimation de la population en France métropolitaine en 2014.
+	\item Indiquer les régions de France dont la population en 2012 est inférieure à 1 million.
+	\end{enumerate}
+
+\item Dans le tableau ci-dessous, les données correspondant à l'année 2012 ont été regroupées dans des classes d'amplitude 1 million. 
+\vspace{10pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.9\linewidth}{|m{3cm} |*{5}{>{\centering\arraybackslash}X|}}
+\hline
+\rowcolor{blue!10}\centering Population   &$\Ifo{0}{1}$&$\Ifo{1}{2}$&$\Ifo{2}{3}$&$\ldots$&$\Iff{11}{12}$\\
+\hline
+\centering Centre des classes  &&&&$\ldots$&\\
+\hline
+\centering Borne supérieure  &&&&$\ldots$&\\
+\hline
+\centering Effectifs  &&&&$\ldots$& \\
+\hline
+\centering E.c.c.& &&&$\ldots$& \\
+\hline
+\end{tabularx}
+   \end{center}
+	\begin{enumerate}
+	\item Reproduire et compléter le tableau statistique.
+	\item Représenter cette série par un histogramme.
+	\item Tracer la courbe des effectifs cumulés croissants.
+	\end{enumerate}
+\end{enumerate}
+\vspace{15pt}
+
+%_______________
+\textcolor{blue}{\textbf{III. Analyse des données}}
+\begin{enumerate}
+\item Calculer une valeur approchée de la population moyenne des régions.
+\item Déterminer la classe médiane de la série.
+\item Déterminer graphiquement une valeur approchée de la médiane.
+\item Depuis le site de l'\textsc{INSEE}, télécharger le document \textsc{Excel} associé à cette série.\\
+A l'aide du tableur, obtenir la valeur exacte de la population moyenne des régions, ainsi que la médiane.\\
+Comparer avec les résultats obtenus.
+\end{enumerate}
+
+\end{document}
+

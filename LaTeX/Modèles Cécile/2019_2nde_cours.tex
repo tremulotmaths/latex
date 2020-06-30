@@ -1,0 +1,41 @@
+\documentclass[french,12pt]{report}
+\input{preambule_17-18}
+\input{commandes_cecile_2019}
+\input{perso_cecile_2019}
+
+\begin{document}
+\fancyhf{}
+\fancypagestyle{chapitre}{
+\pieddepage{2019 - 2020 - 2\up{nde}10 }{}{\thepage / \pageref{LastPage}}
+\entete{}{}{}}
+\ReglePied
+\entete{}{}{}
+\pieddepage{2019 - 2020 - 2\up{nde}10 }{Chapitre - Titre}{\thepage / \pageref{LastPage}}
+
+\newgeometry{includeheadfoot, top=1cm, bottom=0.8cm, right=1.5cm, left=1.5cm}
+
+
+\definecolor{Bleu}{RGB}{0,0,160}
+\definecolor{Rouge}{RGB}{200,0,0}
+\definecolor{Kaki}{RGB}{75,138,38}
+
+\renewcommand\CouleurChapitre{Kaki}
+\renewcommand\CouleurDefi{Bleu}
+\renewcommand\CouleurProp{Rouge}
+\renewcommand\CouleurThm{Rouge}
+\renewcommand\CouleurDemo{CadetBlue}
+\renewcommand\CouleurExemple{darkgray}
+\renewcommand\CouleurSolExemple{lightgray}
+\renewcommand\CouleurTitreBoiteCrayon{black}
+
+\chapter{Chapitre  \\Titre}
+
+\thispagestyle{chapitre}
+\bigskip
+
+\section{Paragraphe 1}
+
+
+
+
+\end{document} 

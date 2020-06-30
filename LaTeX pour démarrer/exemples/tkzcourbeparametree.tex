@@ -1,0 +1,12 @@
+\begin{center}
+\begin{tikzpicture}[scale=1.25]
+\tkzInit[xmin=-50,xmax=50,xstep=10,
+ymin=-50,ymax=50,ystep=10]
+\tkzGrid
+\tkzDrawX[line width=2pt,color=blue,below right,>=stealth]
+\tkzLabelX%[label options={below=12pt,rotate=-45}]
+\tkzDrawY[line width=2pt,color=blue,above left,>=stealth]
+\tkzLabelY[label options={left=6pt}]
+\tkzFctPar[color=red,line width=2pt,smooth,samples=200,domain=0:50]{t*sin(t)}{t*cos(t)}
+\end{tikzpicture}
+\end{center}

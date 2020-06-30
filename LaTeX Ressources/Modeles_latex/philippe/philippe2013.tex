@@ -1,0 +1,231 @@
+%___________________________
+%===    Configurations perso 08.07.2013
+%------------------------------------------------------
+\usepackage{etex}
+%___________________________
+%===    Pour le français
+%------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\frenchbsetup{CompactItemize=false}
+\FrenchFootnotes
+
+%___________________________
+%===    Polices d'écriture
+%------------------------------------------------------
+%\usepackage[noDcommand]{kpfonts}
+\usepackage{mathpazo}
+%\usepackage{ccfonts}
+%\usepackage[sloped,poorman]{fourier}
+%\usepackage{fourier-orns}
+\usepackage{frcursive} % Pour l'écriture cursive
+
+%___________________________
+%===    Les couleurs
+%------------------------------------------------------
+\usepackage[dvipsnames,table]{xcolor}
+%
+\newcommand{\Cyan}[1]{{\color{cyan} #1}}
+\newcommand{\Yellow}[1]{{\color{yellow} #1}}
+\newcommand{\Magenta}[1]{{\color{magenta} #1}}
+\newcommand{\bleu}[1]{{\color{blue} #1}}
+\newcommand{\rouge}[1]{{\color{red} #1}}
+\newcommand{\verte}[1]{{\color{green} #1}}
+\newcommand{\Purple}[1]{{\color{purple} #1}}
+\newcommand{\Orange}[1]{{\color{orange} #1}}
+\newcommand{\violet}[1]{{\color{violet} #1}}
+
+\definecolor{midblue}{rgb}{0.145,0.490,0.882}
+\newcommand\MaCouleur{midblue}
+%___________________________
+%===    Réglages mise en page
+%------------------------------------------------------
+\usepackage{geometry,atbegshi}
+\geometry{a4paper, height = 25.5cm,hmargin=2.5cm,marginparwidth=2cm,headheight=20pt,headsep=16.5pt,bottom=2cm,footskip=30pt,footnotesep=30pt}
+\usepackage{lscape}
+\usepackage{xspace}
+\setlength{\parindent}{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%
+\newcommand\RegleEntete[1][0.4pt]{\renewcommand{\headrulewidth}{#1}}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\entete}[3]{\lhead{#1} \chead{\sffamily\textbf{#2}} \rhead{#3}}
+\newcommand{\pieddepage}[3]{\lfoot{#1} \cfoot{#2} \rfoot{#3}}
+%
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+    %en-tete droite page [paire] et {impaire}
+%\rhead[]{\textbf{\leftmark.}}
+    %en-tete gauche page [paire] et {impaire}
+%\lhead[\textbf{\chaptername~\thechapter.}]{}
+\entete{}{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}{}
+%
+\pieddepage{}{\color{\MaCouleur}$\stackrel{***}{\thepage}$}{}
+%
+\fancypagestyle{plain}{ \fancyhead{} \renewcommand{\headrulewidth}{0pt}}
+
+\usepackage{enumerate}
+\usepackage{enumitem}
+\setenumerate[1]{font=\bfseries,label=\arabic*\degres)}
+\setenumerate[2]{font=\itshape,label=(\alph*)}
+
+%___________________________
+%===    Raccourcis classe
+%------------------------------------------------------
+\newcommand\seconde{2\up{nde}\xspace}
+\newcommand\premiere{1\up{ère}\xspace}
+\newcommand\stmg{\bsc{Stmg}}
+\newcommand\sti{\bsc{Sti2d}}
+
+
+%___________________________
+%===    Réglages Maths
+%------------------------------------------------------
+\everymath{\displaystyle}
+\usepackage{yhmath}
+\usepackage[euler-digits]{eulervm} %-> police maths
+%
+\usepackage{amssymb,amsmath,mathtools}
+%\usepackage{stmaryrd} %\llbracket et \rrbracket % crochets doubles pour intervalles d'entier
+\newcommand{\crochets}[2]{\ensuremath{\llbracket #1 ; #2 \rrbracket}}
+
+\newcommand{\intervalle}[4]{\mathopen{#1}#2\mathclose{}\mathpunct{};#3\mathclose{#4}}
+\newcommand{\intervalleff}[2]{\intervalle{[}{#1}{#2}{]}}
+\newcommand{\intervalleof}[2]{\intervalle{]}{#1}{#2}{]}}
+\newcommand{\intervallefo}[2]{\intervalle{[}{#1}{#2}{[}}
+\newcommand{\intervalleoo}[2]{\intervalle{]}{#1}{#2}{[}}
+
+\usepackage{bm} % pour l'écriture en gras
+\newcommand{\bs}[1]{\ensuremath{\bm{#1}}}
+\usepackage{cancel} % pour les simplifications de fractions
+\renewcommand\CancelColor{\red}
+%\usepackage{siunitx} % écriture de nombres et d'unités
+%\sisetup{output-decimal-marker={,},detect-all}
+\usepackage[autolanguage]{numprint}
+\newcommand\NP[1]{\ensuremath\numprint{#1}}
+%
+\usepackage{dsfont} %écriture des ensemble N, R, C ...
+\newcommand{\C}{\mathds C}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\D}{\mathds D}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+\newcommand\Ind{\mathds 1} %= fonction indicatrice
+\newcommand\p{\mathds P} %= probabilité
+\newcommand\E{\mathds E} % Espérance
+\newcommand\V{\mathds V} % Variance
+%
+\usepackage{mathrsfs}   % Police de maths jolie caligraphie
+\newcommand{\calig}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand\mtc[1]{\ensuremath{\mathcal{#1}}}
+%
+\renewcommand\leq{\ensuremath{\leqslant}}
+\renewcommand\geq{\ensuremath{\geqslant}}
+
+%___________________________
+%===    Pour les tableaux
+%------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx,tabulary}
+\usepackage{multirow}
+\setlength\columnseprule{0.4pt}
+
+%___________________________
+%===    Divers packages
+%------------------------------------------------------
+\usepackage{bclogo}
+%\usepackage[tikz]{bclogo}
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{eurosym}
+\usepackage{soul} % Pour souligner : \ul
+\usepackage{ulem} % Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+\usepackage{tikz,tkz-tab}
+\usetikzlibrary{calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.pathreplacing}
+\pgfdeclarelindenmayersystem{Sierpinski triangle}{
+  \rule{F -> G-F-G}
+  \rule{G -> F+G+F}}
+
+%___________________________
+%===    Quelques raccourcis perso
+%------------------------------------------------------
+\newcommand\pfr[1]{\psframebox[linecolor=red]{#1}}
+\newcommand\coef[1][]{c{\oe}fficient#1\xspace}
+\newcommand{\vect}[1]{\ensuremath{\overrightarrow{#1}}}
+\newcommand\abs[1]{\ensuremath{\left\vert #1 \right\vert}}
+\newcommand\Arc[1]{\ensuremath{\wideparen{#1}}}
+
+\newcounter{exo}
+\newcommand\exo{
+\refstepcounter{exo}
+\Writinghand\ \textbf{Exercice \theexo.}\par
+}
+
+%___________________________
+%===    Gestion des espaces
+%------------------------------------------------------
+\newcommand{\pv}{\ensuremath{\: ; \,}}
+\newlength{\EspacePV}
+\setlength{\EspacePV}{1em plus 0.5em minus 0.5em}
+\newcommand{\qq}{\hspace{\EspacePV} ; \hspace{\EspacePV}}
+\newcommand{\qetq}{\hspace{\EspacePV} \text{et} \hspace{\EspacePV}}
+\newcommand{\qLq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+\newcommand{\qRq}{\hspace{\EspacePV} \Rightarrow \hspace{\EspacePV}}
+\newcommand{\qLRq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+
+%___________________________
+%===    Mise en forme du sommaire
+%------------------------------------------------------
+\addto\captionsfrench{%
+\renewcommand\contentsname{
+\color{\MaCouleur}\hfill\Huge\bfseries \uuline{Sommaire}
+}}
+\setcounter{tocdepth}{0}
+
+\usepackage[dotinlabels]{titletoc}
+\titlecontents{chapter}[6pc]
+    {\addvspace{0.8pc}\bfseries}
+    {\contentslabel
+        [\thecontentslabel]{1.5pc}}
+     {}{\hfill\contentspage}
+     [\addvspace{0.5pt}]
+
+\usepackage[dotinlabels]{titletoc}
+\titlecontents{part}[0pt]
+    {\addvspace{1pc}\Large\bfseries}
+    {\Huge\contentslabel
+        [\thecontentslabel]{0pt}}
+     {}{}
+     [\addvspace{0.5pt}]
+
+\titlecontents{section}[3.5pc]
+    {\addvspace{0pt}}%
+    {\contentslabel[\thecontentslabel]{2.5pc}}%\contentspush{\thecontentslabel\ }}
+    {}{\titlerule*[15pt]{.}\contentspage}
+     []
+
+%___________________________
+%===    Mise en forme de l'index
+%------------------------------------------------------
+\usepackage{makeidx}
+\renewenvironment{theindex}
+{\clearpage \chapter*{\sffamily\fontsize{36}{40}\selectfont\hfill Index\\ \hfill des notions définies}
+\renewcommand{\item}{\par\hangindent 40pt}
+\begin{multicols}{2}
+}
+{\end{multicols}}
+\makeindex
+%
+\newcommand\ipt[1]{\textcolor{red}{\textbf{#1}}\protect\index{#1@\lowercase{#1}}}
+\newcommand\iptb[1]{\textcolor{red}{\textbf{#1}}}
+%
+
+
+\usepackage[pdfborder={0 0 0},bookmarksnumbered]{hyperref} 

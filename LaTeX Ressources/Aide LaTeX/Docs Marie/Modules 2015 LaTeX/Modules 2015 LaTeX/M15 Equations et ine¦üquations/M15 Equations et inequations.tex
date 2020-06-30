@@ -1,0 +1,132 @@
+\input{/Users/marierenard/Dropbox/LaTeX/tex/Preambule/preambule.tex}
+\input{th_ex.tex}
+\usepackage{tipfr}
+%\newcommand\tc[1]{\psframebox[framearc=0.6,fillstyle=solid,fillcolor=blue!10]{\small\textcolor{white}{#1}}}
+\newcommand\pp[1]{\fcolorbox{blue}{blue!25}{\small\textcolor{white}{#1}}}
+
+\fancyhf{}
+\rhead{ \textcolor{orange!90}{\textsc{Connecteurs logiques\\ Quantificateurs}}}
+\lhead{}
+\rfoot{ \textcolor{blue}{Module}}
+\lfoot{ \textcolor{blue}{Seconde}}
+\cfoot{}
+\renewcommand \headrulewidth{0pt}
+\renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}\\}
+\pagestyle{fancy}
+
+\newboxedtheoremFiEx[boxcolor=orange!70, background=orange!8, titlebackground=white,
+titleboxcolor = orange]{Chapitre}{Module n° 15}{}
+
+\newboxedtheorembl[boxcolor=white, background=white, titlebackground=white,
+titleboxcolor = blue]{Exo}{Exercice}{compteurEX}
+
+
+\begin{document}
+\vspace{-30pt}
+%\textcolor{blue}{  %_____________texte en bleu
+\begin{Chapitre}
+   \begin{center}
+   \textcolor{blue}{\bsc{Equations et inéquations\\ Utilisation de la fonction carré}} 
+   \end{center}  
+   \vspace{-10pt} 
+\end{Chapitre}
+\begin{flushright}
+\end{flushright}
+\setlength{\parskip}{3ex plus 1ex minus 1ex}
+\setlength{\parindent}{0cm} 
+\vspace{-30pt}
+
+
+%%%%%%%%%%%%%%%%%
+%_______________________________________________________________
+\textcolor{blue}{\textbf{I. Implications et équivalences}}\\[10pt]
+\textcolor{blue}{\textbf{1. Présentation}}\\[5pt]
+On considère les propositions ci-dessous, où $a$ et $b$ désignent deux réels:
+\[ \text{\pp{$P_1$} } (a+b)^2=0 \quad \qquad \text{ et }\quad \qquad \text{\pp{$P_2$} }a=0 \quad \text{et}\quad b=0\]
+\begin{enumerate}
+\item Soit $a$ et $b$ deux nombres réels.\\
+Justifier que, si la proposition $P_2$ est vraie, alors la proposition $P_1$ est vraie.\\[3pt]
+On dit que, pour tous réels $a$ et $b$, $P_2$ implique $P_1$ et on note \pp{$P_2$} $\Rightarrow$ \pp{$P_1$}.\\[-5pt]
+\item Est-il vrai que, pour tous réels $a$ et $b$, la proposition $P_1$ implique la proposition $P_2$?
+\end{enumerate}
+\vspace{20pt}
+\textcolor{blue}{\textbf{2. Formuler une implication}}\\[5pt]
+On considère les propositions suivantes où $a$ et $b$ désignent des nombres réels.
+\begin{multicols}{3}
+ \text{\pp{$P_1$} } $a^2=b^2$\\[2pt]
+  \text{\pp{$P_2$} } $a=b$\\
+   \text{\pp{$P_3$} } $a=-b$\\[2pt]
+    \text{\pp{$P_4$} } $(a+b)(a-b)=0$\\
+     \text{\pp{$P_5$} } $a=b \quad \text{ou}\quad a=-b$\\[2pt]
+      \text{\pp{$P_6$} } $a=0 \quad \text{ou}\quad b=0$\\ 
+\end{multicols}
+\vspace{-20pt}
+Pour les questions ci-dessous, on pourra utiliser la courbe représentative de la fonction carré.\\
+\begin{enumerate}
+\item Quelles sont les implications du type  \pp{$P_1$} $\Rightarrow$ \pp{\phantom{$P_1$}} , vraies pour tous réels $a$ et $b$?
+\item Quelles sont les implications du type  \pp{\phantom{$P_1$}} $\Rightarrow$ \pp{$P_1$} , vraies pour tous réels $a$ et $b$?
+\item En déduire les propositions équivalentes à $P_1$, pour tous réels $a$ et $b$.
+\item Application\\
+Résoudre l'équation $(2x-3)^2=(2x+9)^2$.
+\end{enumerate}
+\vspace{15pt}
+\newpage
+%%%%%%%%%%%
+%_______________
+\textcolor{blue}{\textbf{II. Quantificateurs}}\\[5pt]
+\textcolor{blue}{\textbf{1. Utiliser des quantificateurs}}\\[3pt]
+Dans chaque cas, recopier et compléter par:
+\[ \text{\pp{Pour tout réel $x$} }  \quad \text{ ou } \quad \text{\pp{Pour tout réel $x$ positif} }\quad \text{ ou } \quad \text{\pp{Il existe un réel $x$ tel que} }\]
+\vspace{-8pt}
+\begin{enumerate}
+\item \pp{\phantom{Pour tout réel $x$ positif}} , si $x\geqslant 3$ alors $x^2\geqslant 9$.
+\item   \pp{\phantom{Pour tout réel $x$ positif}} , $(x-1)^2=9$.
+\item  \pp{\phantom{Pour tout réel $x$ positif}} , si $x\in \Iff{-1}{2}$ alors $x^2\geqslant 1$.
+\item  \pp{\phantom{Pour tout réel $x$ positif}} , si $x<4$ alors $x^2<16$.
+\end{enumerate}
+\vspace{15pt}
+\textcolor{blue}{\textbf{2. Expliciter à l'aide de quantificateurs}}\\[3pt]
+Dans chacun des énoncés ci-dessous l'égalité $f(x)=2x^2-5$ apparait. Pourtant elle n'a pas le même statut dans chaque cas.\\
+Reformuler les énoncés suivants à l'aide de quantificateurs.
+\begin{enumerate}
+\item Enoncé: Soit $f$ la fonction définie sur $\R$ par $f(x)=2x^2-5$.
+\item Enoncé: L'équation $f(x)=2x^2-5$ admet-elle des solutions positives?
+\item  Enoncé: Résoudre l'équation $f(x)=2x^2-5$.
+\end{enumerate}
+\vspace{15pt}
+
+
+%%%%%%%%%%
+%_______________
+\textcolor{blue}{\textbf{II. Fausses démonstrations}}\\[5pt]
+\textcolor{blue}{\textbf{1. Le paradoxe de \textsc{Augustus de Morgan} (1806-1871)}}\\[3pt]
+Il démontre en utilisant des règles d'algèbre élémentaire que, si $x=1$ alors $x=0$...\\
+ Voici ses calculs.\\[5pt]
+Si \qquad \ $x=1$\\[2pt]
+alors \quad $x^2=x$ \quad  en multipliant chaque membre par $x$,\\[2pt]
+alors \quad $x^2-1=x-1$ \quad en \ldots\\[2pt]
+alors \quad $(x+1)(x-1)=x-1$ \quad en \ldots\\[4pt]
+alors \quad $\dfrac{(x+1)(x-1)}{x-1}=\dfrac{x-1}{x-1}$ \quad en \ldots\\[2pt]
+alors \quad $x+1=1$ \quad en \ldots\\[2pt]
+alors \quad $x=0$ \quad en \ldots\\[5pt]
+Il ne peut qu'y avoir une erreur, mais où?\\[10pt]
+\textcolor{blue}{\textbf{2. Défi}}
+\begin{enumerate}
+\item En suivant les étapes décrites ci-dessous, écrire une suite d'égalités.
+\begin{enumerate}[\ding{46}]
+\item Considérons $a$ et $b$ deux réels égaux et non nuls.
+\item Multiplions chaque membre par $a$.
+\item Soustrayons $b^2$ à chaque membre.
+\item Factorisons.
+\item Simplifions chaque membre par $a-b$.
+\item Puisque $a=b$, remplaçons $a$ par $b$.
+\item Divisons chaque membre par $b$.
+\end{enumerate}
+
+\item L'égalité obtenue est-elle surprenante? et celles qui la précèdent..?\\
+Chercher l'erreur.
+\end{enumerate}
+\vspace{15pt}
+
+\end{document}
+

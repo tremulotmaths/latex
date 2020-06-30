@@ -1,0 +1,246 @@
+\documentclass[12pt,openright,twoside,frenchb]{book}
+
+\usepackage[utf8]{inputenc} % pour l'encodage des accents
+\usepackage[T1]{fontenc} % assure notamment la césure correct des mots et permet des copier-coller sur le pdf final
+\usepackage{babel} % concerne la langue de rédaction du document. Lié à l'option frenchb placée dans la classe du document.
+
+\usepackage{mathpazo} % police différente
+\usepackage[euler-digits]{eulervm} % police maths
+
+\usepackage{mathtools, amssymb} % pour écrire des maths
+
+\usepackage{geometry} % permet de modifier différentes marges du document à l'aide de la commande ci-dessous
+\geometry{top = 1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm} % on aurait pu directement écrire \geometry{margin=1.5cm}
+\setlength{\parindent}{0pt} % longueur de l'alinea
+
+\usepackage{pstricks} % pour encadrer
+\usepackage{textcomp} % pour l'utilisation de la commande \degres
+
+\usepackage{lastpage} % pour compter le nombre de page. Permet, après 2 compilations !!, d'afficher le numéro de la dernière page
+\usepackage{fancyhdr} % pour la mise en page des entete et pied de page
+\pagestyle{fancy}
+\lhead{} \chead{} \rhead{\footnotesize\itshape Programme de 2\up{nde}}
+\lfoot{} \cfoot{\footnotesize - \thepage/\pageref{LastPage} -} \rfoot{}
+\renewcommand\headrulewidth{0pt}
+
+\newcounter{chapp}
+\newcommand\chapitre[1]{%
+\refstepcounter{chapp}%
+\begin{center}
+\bfseries\normalsize
+\underbar{\bsc{Chapitre \thechapp}}\par
+{\large\textit{#1}}
+\end{center}\nopagebreak[4]
+}
+
+
+\newcounter{fct}
+\newcommand\FCT{%
+\refstepcounter{fct}%
+\item[\textbf{Fct \thefct.}]
+}
+
+\newcounter{geo}
+\newcommand\GEO{%
+\refstepcounter{geo}%
+\item[\textbf{Géo \thegeo.}]
+}
+
+\newcounter{stp}
+\newcommand\STP{%
+\refstepcounter{stp}%
+\item[\textbf{StP \thestp.}]
+}
+
+\newcommand\EnPlus[1]{\footnotesize\textit{\underbar{Permet de travailler en parallèle :} #1}\par}
+
+\begin{document}
+\begin{center}
+{\fontfamily{augie}\fontsize{9}{11}\selectfont
+{\Large \psframebox[linecolor=red]{\begin{tabular}{cc}
+                            Cours de Mathématiques\\
+                            Classe de Seconde Générale et Technologique
+                        \end{tabular}}}}
+\end{center}\bigskip
+
+
+
+\textbf{Légende des trois parties du programme :}
+    \begin{enumerate}
+        \item[\quad $\checkmark$] \bsc{Fct.} Fonctions ;
+        \item[\quad $\checkmark$] \bsc{Geo.} Géométrie ;
+        \item[\quad $\checkmark$] \bsc{StP.} Statistiques et Probabilités.
+    \end{enumerate}\[*\]
+
+\chapitre{Résolution de problèmes à l'aide d'équations et d'inéquations}
+\EnPlus{les ensembles de nombres, les différents types d'intervalles, le développement et la factorisation.}
+    \begin{enumerate}
+        \FCT Mettre un problème en équation ;
+        \FCT Résoudre une équation se ramenant au premier degré ;
+        \FCT Modéliser un problème par une inéquation ;
+        \FCT Résoudre algébriquement les inéquations nécessaires à la résolution d'un problème.
+    \end{enumerate}\[*\]
+
+\chapitre{Coordonnées d'un point dans le plan}
+\EnPlus{configurations du plan, algorithmes possibles.}
+    \begin{enumerate}
+        \GEO Repérer un point donné du plan, placer un point connaissant ses coordonnées ;
+        \GEO Calculer la distance de deux points connaissant leurs coordonnées ;
+        \GEO Calculer les coordonnées du milieu d'un segment ;
+        \GEO Pour résoudre des problèmes :
+            \begin{itemize}
+                \item utiliser les propriétés des triangles, des quadrilatères, des cercles ;
+                \item utiliser les propriétés des symétries axiale ou centrale.
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{Généralités sur les fonctions}
+\EnPlus{les intervalles, résolutions graphiques d'équations, algorithme.}
+    \begin{enumerate}
+        \FCT Traduire le lien entre deux quantités par une formule ;
+        \FCT Pour une fonction définie par une courbe, un tableau de données ou une formule :
+            \begin{itemize}
+                \item identifier la variable et, éventuellement, l'ensemble de définition ;
+                \item déterminer l'image d'un nombre ;
+                \item rechercher des antécédents d'un nombre.
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{\'Equations de droites}
+\EnPlus{les configurations du plan.}
+    \begin{enumerate}
+        \GEO Tracer une droite dans le plan repéré ;
+        \GEO Interpréter graphiquement le coefficient directeur d'une droite ;
+        \GEO Caractériser analytiquement une droite ;
+        \GEO Établir que trois points sont alignés, non alignés ;
+        \GEO Reconnaître que deux droites sont parallèles, sécantes ;
+        \GEO Déterminer les coordonnées du point d'intersection de deux droites sécantes.
+    \end{enumerate}\[*\]
+
+\chapitre{Variations de fonctions}
+    \begin{enumerate}
+        \FCT Décrire, avec un vocabulaire adapté ou un tableau de variations, le comportement d'une fonction définie par une courbe ;
+        \FCT Dessiner une représentation graphique compatible avec un tableau de variations ;
+        \FCT Lorsque le sens de variation est donné, par une phrase ou un tableau de variations :
+            \begin{itemize}
+                \item comparer les images de deux nombres d'un intervalle ;
+                \item déterminer tous les nombres dont l'image est supérieure (ou inférieure) à une image donnée.
+            \end{itemize}
+        \FCT Résoudre graphiquement des inéquations de la forme $f(x) < k$ ; $f(x) < g(x)$ ;
+        \FCT $\blacktriangle$ Encadrer une racine d'une équation grâce à un algorithme de dichotomie.
+    \end{enumerate}\[*\]
+
+\chapitre{Fonctions de référence \bsc i : fonctions affines}
+\EnPlus{intervalles de nombres, résolution graphique d'équations.}
+    \begin{enumerate}
+        \FCT Donner le sens de variation d'une fonction affine ;
+        \FCT Donner le tableau de signes de $ax + b$ pour des valeurs numériques données de $a$ et $b$ ;
+        \FCT Résoudre graphiquement des inéquations de la forme $f(x) < k$ ; $f(x) < g(x)$ (cf chap.5 également).
+    \end{enumerate}\[*\]
+
+\chapitre{Statistiques descriptive, analyse de données}
+\EnPlus{médiane, quartile, moyenne.}
+    \begin{enumerate}
+        \STP Utiliser un logiciel (par exemple un tableur) ou une calculatrice pour étudier une série statistique ;
+        \STP Passer des effectifs aux fréquences, calculer les caractéristiques d'une série définie par effectifs ou fréquences ;
+        \STP Calculer des effectifs cumulés, des fréquences cumulées ;
+        \STP Représenter une série statistique graphiquement (nuage de points, histogramme, courbe des fréquences cumulées).
+    \end{enumerate}\[*\]
+
+\chapitre{\'Etudes de signes}
+\EnPlus{tableaux de signes, intervalles, factorisation.}
+    \begin{enumerate}
+        \FCT Modéliser un problème par une inéquation (cf chap.1 également) ;
+        \FCT Résoudre une inéquation à partir de l'étude du signe d'une expression produit ou quotient de facteurs du premier degré ;
+        \FCT Résoudre algébriquement les inéquations nécessaires à la résolution d'un problème (cf chap.1 également).
+    \end{enumerate}\[*\]
+
+\chapitre{Fonctions de référence \bsc{ii} : fonction carré, fonction inverse}
+\EnPlus{ensembles de nombres, résolutions graphiques d'équations et d'inéquations.}
+    \begin{enumerate}
+        \FCT Connaître les variations des fonctions carré et inverse ;
+        \FCT Représenter graphiquement les fonctions carré et inverse.
+    \end{enumerate}\[*\]
+
+\chapitre{Probabilités}
+\EnPlus{statistiques, fréquence.}
+    \begin{enumerate}
+        \STP Déterminer la probabilité d'événements dans des situations d'équiprobabilité ;
+        \STP Utiliser des modèles définis à partir de fréquences observées ;
+        \STP Connaître et exploiter la formule $p(A \cup B) + p(A \cap B) = p(A) + p(B)$.
+    \end{enumerate}\[*\]
+
+\chapitre{Géométrie dans l'espace}
+\EnPlus{configurations du plan.}
+    \begin{enumerate}
+        \GEO Manipuler, construire, représenter en perspective des solides ;
+        \GEO Pour résoudre des problèmes (cf chap.2 également) :
+            \begin{itemize}
+                \item utiliser les propriétés des triangles, des quadrilatères, des cercles ;
+                \item utiliser les propriétés des symétries axiale ou centrale.
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{Fonctions polynômes de degré 2, fonctions homographiques}
+\EnPlus{développement, factorisation, algorithmes.}
+    \begin{enumerate}
+        \FCT Associer à un problème une expression algébrique ;
+        \FCT Identifier la forme la plus adéquate (factorisée, développée) d'une expression en vue de la résolution du problème donné ;
+        \FCT Développer, factoriser des expressions polynomiales simples ; transformer des expressions rationnelles simples ;
+        \FCT Connaître les variations des fonctions polynômes de degré 2 (monotonie, extremum) et la propriété de symétrie de leurs courbes ;
+        \FCT Identifier l'ensemble de définition d'une fonction homographique.
+    \end{enumerate}\[*\]
+
+\chapitre{\'Echantillonage}
+    \begin{enumerate}
+        \STP Concevoir, mettre en œuvre et exploiter des simulations de situations concrètes à l'aide du tableur ou d'une calculatrice ;
+        \STP Exploiter et faire une analyse critique d'un résultat d'échantillonnage.
+    \end{enumerate}\[*\]
+
+\chapitre{Vecteurs}
+\EnPlus{configurations du plan, algorithme.}
+    \begin{enumerate}
+        \GEO Savoir que $\overrightarrow{AC} = \overrightarrow{CD}$ équivaut à $ABDC$ est un parallélogramme, éventuellement aplati ;
+        \GEO Connaître les coordonnées $(x_B - x_A ; y_B - y_A)$ du vecteur $\overrightarrow{AB}$ ;
+        \GEO Calculer les coordonnées de la somme de deux vecteurs dans un repère ;
+        \GEO Utiliser la notation $\lambda \overrightarrow u$ ;
+        \GEO Établir la colinéarité de deux vecteurs ;
+        \GEO Construire géométriquement la somme de deux vecteurs ;
+        \GEO Caractériser alignement et parallélisme par la colinéarité de vecteurs ;
+        \GEO Pour résoudre des problèmes (cf chap.2 également) :
+            \begin{itemize}
+                \item utiliser les propriétés des triangles, des quadrilatères, des cercles ;
+                \item utiliser les propriétés des symétries axiale ou centrale.
+            \end{itemize}
+    \end{enumerate}\[*\]
+
+\chapitre{Trigonométrie}
+\EnPlus{étude graphique de fonctions.}
+    \begin{enumerate}
+        \FCT On fait le lien avec les valeurs des sinus et cosinus des angles de $0\degres$, $30\degres$, $45\degres$, $60\degres$, $90\degres$.
+    \end{enumerate}\[*\]
+
+\begin{center}
+{\fontfamily{augie}\fontsize{9}{11}\selectfont
+{\Large \psframebox[linecolor=red]{Algorithmique (objectifs pour le lycée)}}}
+\end{center}\bigskip
+
+
+\noindent\textbf{Instructions élémentaires (affectation, calcul, entrée, sortie)}\par
+Les élèves, dans le cadre d'une résolution de problèmes, doivent être capables :
+\begin{itemize}
+    \item d'écrire une formule permettant un calcul ;
+    \item d'écrire un programme calculant et donnant la valeur d'une fonction, ainsi que les instructions d'entrées et sorties nécessaires au traitement.
+\end{itemize}
+
+\noindent\textbf{Boucle et itérateur, instruction conditionnelle}\par
+Les élèves, dans le cadre d'une résolution de problèmes, doivent être capables :
+\begin{itemize}
+    \item de programmer un calcul itératif, le nombre d'itérations étant donné ;
+    \item de programmer une instruction conditionnelle, un calcul itératif, avec une fin de boucle conditionnelle.
+\end{itemize}
+
+
+
+
+\end{document}

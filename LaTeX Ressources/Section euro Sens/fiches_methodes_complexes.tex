@@ -1,0 +1,353 @@
+\documentclass[12pt]{book}\usepackage[Aymar]{ammaths}\usetikz\begin{document}%\couleur
+\newcommand{\defin}[1]{\textbf{#1}}
+
+%\entete{}{Fiches méthodes}{T STI}
+\sectionblack{Forme algébrique}
+\defi{Forme algébrique}{L'écriture $x+\i y$ est appellée forme algébrique du complexe $z$.\\
+$x$ s'appelle la \defin{partie réelle} et est noté $\Re(z)$.\\
+$y$ s'appelle la \defin{partie imaginaire} et est notée $\Im(z)$. C'est un nombre réel.\\
+$\bar{z}=a-b\i$ est le \defin{conjugué} de $z$. Il sert entre autre à mettre sous forme algébrique des fractions.}
+
+\textbf{Calculs sur les formes algébriques : }\\
+Les règles de calculs (addition, dévellopement, factorisation) valables pour les nombres réels sont aussi valables pour les nombres complexes.
+
+\exosol{On donne $z_1=-2+3\i$ et $z_2=4-\i$.\\
+Écrire sous forme algébrique : 
+\begin{enumerate}  
+\item $z_1+z_2$ ;
+\item $2z_1$ ;
+\item $z_1\times z_2$.
+\end{enumerate}
+}
+{\begin{enumerate}
+  \item $z_1+z_2=(-2+3\i)+(4-\i)=-2+4+\i(3-1)=2+2\i$ ;
+  \item $2z_1=2(-2+3\i)=-4+6\i$ ;
+  \item $z_1\times z_2=(-2+3\i)(4-\i)=-8+2\i+12\i-\i^2=-8+14\i-(-1)=-7+14\i$.
+ \end{enumerate}
+}
+
+\textbf{Mise sous forme algébrique de fractions : }\\
+On multiplie numérateur et dénominateur par le conjugué du dénominateur.
+
+\exosol{Mettre sous forme algébrique les nombres $z_3=\dfrac{2}{3+\i}$ et $z_4=\dfrac{1+2\i}{5-6\i}$.}
+{\\
+$z_3=\dfrac{2}{3+\i}=\dfrac{2(3-\i)}{(3+\i)(3-\i)}=\dfrac{6-2\i}{9-\i^2}=\dfrac{6-2\i}{10}=\dfrac{3}{5}-\dfrac{1}{5}\i$.\\
+$z_4=\dfrac{1+2\i}{5-6\i}=\dfrac{(1+2\i)(5+6\i)}{(5-6\i)(5+6\i)}=\dfrac{5+6\i+10\i+12\i^2}{5^2-(6\i)^2}=\dfrac{5+16\i-12}{25-36(-1)}=\dfrac{-7+16\i}{61}.$}
+
+
+\newpage
+\sectionblack{Forme trigonométrique -- Forme exponentielle}
+\defi{forme trigonométrique -- exponentielle}
+{On appelle \defin{module} de $z$ le nombre réel $\sqrt{x^2+y^2}$. On le note \defin{$|z|$} ou \defin{$r$}.\\
+Il s'agit de la longueur du segment OM.\\
+On appelle \defin{argument} de $z$ une mesure de l'angle entre $\overrightarrow{Ox}$ et $\overrightarrow{OM}$.\\
+On le note souvent \defin{$\theta$}.\\
+L'écriture $[r\ ; \ \theta]=r(\cos\theta+\i\sin\theta)$ est appellée forme trigonométrique.\\
+L'écriture $r\eit{}$ est appellée forme exponentielle.}
+
+
+\textbf{Calculs sur les formes trigonométriques -- exponentielles : }\\
+Lorsque l'on multiplie deux nombres complexes, on multiplie les modules et additionne les arguments.\\
+Le conjugué de $z$ à même module mais un argument opposé à $z$.\\
+Autrement dit : $r\eit{}\times r\eitp{}=r\times r'\e^{\i(\theta+\theta')}$ et $\bar{r\eit{}}=r\e^{-\i\theta}$.
+
+\exosol{Soit $z=3\ei{3}{4}$ et $z'=7\ei{-2}{3}$.\\
+Donner les formes exponentielles de  $zz'$ ; $\frac{z}{z'}$ ; $\frac{1}{z} ; \bar{z} ; z^8$}
+{\\$zz'=3\times7e^{i(\cfrac{3\pi}{4}+\cfrac{-2\pi}{3})}=21\ei{}{12}$.\\[5pt]
+$\cfrac{z}{z'}=\cfrac{3}{7}e^{i(\cfrac{3\pi}{4}-\cfrac{-2\pi}{3})}=\cfrac{3}{7}\ei{17}{12}$.\\[5pt]
+$\cfrac{1}{z}=\cfrac{1}{3}\ei{-3}{4}$.\\[5pt]
+$\bar{z}=\ei{-3}{4}$.\\[5pt]
+$z^8=\pa{3\ei{3}{4}}^8=3^8\ei{3\times8}{4}=3^8\ei{6}{}=3^8$
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\sectionblack{Passage forme algébrique -- forme exponentielle}
+\begin{center}
+\psset{unit=1cm} 
+\begin{pspicture}(-0.5,-0.3)(3.5,2.3)
+  \psaxes{->}(0,0)(1,1)
+  \psline[linewidth=0.05,linecolor=blue]{->}(0,0)(3,2)
+  \psline(-0.5,0)(3.5,0)
+  \psline(0,-0.5)(0,2.5)
+  \psline[linestyle=dashed](3,0)(3,2)
+  \psline[linestyle=dashed](0,2)(3,2)
+  \rput(-0.2,-0.2){$0$}
+  \rput(0.5,-0.2){$\vect{u}$}
+  \rput(-0.2,0.5){$\vect{v}$}
+  \rput[l](2,1){$\textcolor{blue}{r=\sqrt{x^2+y^2}}$}
+  \psarc[linecolor=red,linewidth=0.05]{->}(0,0){1}{0}{35}
+  \rput(3.2,2.2){$M(z)$}
+  \rput(1.1,0.3){$\textcolor{red}{\theta}$}   
+  \rput(3,-0.2){$x=r\cos \theta$}
+  \rput[r](-0.4,2){$y=r\sin \theta$}
+\end{pspicture} 
+\end{center}
+
+% \cadre{Méthode}
+\textbf{Mise sous forme algébrique de $z=[r;\theta]=r\eit{}$}
+% {En considérant les projections orthogonales du point $M$ sur les axes $(O,\vect{u})$ et $(O,\vect{v})$, on obtient les relations :
+% $$x=r\cos\theta \qquad y=r\sin\theta.$$
+% On a alors $$z=x+\i y=r\cos\theta+\i r\sin\theta=r(\cos\theta+\i\sin\theta)$$}
+
+
+\exosol{Donner la forme algébrique du nombre complexe $z_5$ de module $2$ et d'argument $\frac\pi3$.}
+{\\\textbf{Méthode 1 : }\\
+$z_5=r(\cos\theta +\i \sin\theta)=2\pa{\cos(\dfrac\pi3)+\i\sin(\dfrac\pi3)}=2\pa{\dfrac{1}{2}+\i\dfrac{\sqrt{3}}{2}}=1+\i\sqrt{3}$.\\
+\textbf{Méthode 2 : }\\
+$x=r\cos\theta=2\cos(\dfrac\pi3)=1$ et $y=r\sin\theta=2\sin(\dfrac\pi3)=\sqrt{3}$ donc $z=1+\i\sqrt{3}$. 
+}
+
+
+% \cadre{Méthode}
+\textbf{Mise sous forme exponentielle (trigonométrique) de $z=a+\i b$}
+% {Le module de $z=a+\i b$ est 
+% $$|z|=\sqrt{a^2+b^2}$$
+% Un argument de $z=a+\i b$ est l'angle $\theta$ vérifiant le système: 
+% $$\left\{\begin{array}{l}
+%       \cos\theta=\dfrac{a}{|z|}\\
+% 	\sin\theta=\dfrac{b}{|z|}
+%       \end{array}\right.
+% $$
+% }
+
+\exosol{Mettre sous forme exponentielle le nombre complexe $z_3=1-\i\sqrt{3}$.}
+{\\ \emph{Calcul du module :}
+$$|z_3|=\sqrt{a^2+b^2}=\sqrt{(1)^2+(-\sqrt{3})^2}=\sqrt{1+3}=2$$
+
+\emph{Calcul d'un argument :}\\
+$\left.\begin{array}{l}
+      \cos\theta=\dfrac{a}{|z|}=\dfrac{1}{2}\\
+	\sin\theta=\dfrac{b}{|z|}=\dfrac{-\sqrt{3}}{2}\\
+      \end{array}\right\}$
+      \psset{unit=0.5cm} 
+\begin{minipage}[r]{3cm}
+\begin{pspicture}(2.5,2)(-3,-2)
+ \pscircle(0,0){2}
+ \psline{->}(-2,0)(2,0)
+ \psline{->}(0,-2)(0,2)
+ \psline[linestyle=dashed]{->}(1,0)(1,-1.7)(0,-1.7)
+ \tiny{\rput(1.5,-2){$\frac{-\pi}{3}$}\rput(1,0.5){$\frac{1}{2}$}\rput(-0.8,-1.5){$\frac{-\sqrt{3}}{2}$}}
+\end{pspicture}
+\end{minipage} 
+ donc $\theta=\dfrac{-\pi}{3}$
+
+\vspace{0.5cm}
+\emph{Conclusion :}
+$$z_3=[2;-\dfrac{\pi}{3}]=2\ei{-}{3}$$
+}
+
+\newpage
+\textbf{Les lignes trigonométriques remarquables :}
+\begin{center}
+   \psset{unit=1.5cm} 
+   \begin{pspicture}(-3,-3.5)(3,4)
+      \pscircle(0,0){3}
+      \psline{-}(-3,0)(3,0)
+      \psline{-}(0,-3)(0,3)
+      \pspolygon[linestyle=dashed,linecolor=blue](2.6,1.5)(-2.6,1.5)(-2.6,-1.5)(2.6,-1.5)
+      \pspolygon[linestyle=dashed,linecolor=red](2.1,2.1)(-2.1,2.1)(-2.1,-2.1)(2.1,-2.1)
+      \pspolygon[linestyle=dashed,linecolor=green](1.5,2.6)(-1.5,2.6)(-1.5,-2.6)(1.5,-2.6)
+      \pspolygon(0,0)(1.5,2.6)(3,0)
+      \rput(3.3,0){$0$}
+      \rput(3,1.5){\textcolor{blue}{$\dfrac{\pi}{6}$}}
+      \rput(2.4,2.5){\textcolor{red}{$\dfrac{\pi}{4}$}}
+      \rput(1.6,3.1){\textcolor{green}{$\dfrac{\pi}{3}$}}
+      \rput(0,3.5){$\dfrac{\pi}{2}$}
+      \rput(-3,1.5){\textcolor{blue}{$\dfrac{5\pi}{6}$}}
+      \rput(-2.4,2.5){\textcolor{red}{$\dfrac{3\pi}{4}$}}
+      \rput(-1.6,3.1){\textcolor{green}{$\dfrac{2\pi}{3}$}}
+      \rput(-3.5,0){$-\pi$}
+      \rput(-3,-1.5){\textcolor{blue}{$\dfrac{7\pi}{6}$}}
+      \rput(-2.4,-2.5){\textcolor{red}{$\dfrac{5\pi}{4}$}}
+      \rput(-1.7,-3.2){\textcolor{green}{$\dfrac{4\pi}{3}$}}
+      \rput(0,-3.5){$\dfrac{3\pi}{2}$}
+      \rput(3.1,-1.5){\textcolor{blue}{$\dfrac{11\pi}{6}$}}
+      \rput(2.4,-2.5){\textcolor{red}{$\dfrac{7\pi}{4}$}}
+      \rput(1.7,-3.2){\textcolor{green}{$\dfrac{5\pi}{3}$}}
+      \rput(1.5,0){$\frac{1}{2}$}
+      \rput(2.1,0){$\frac{\sqrt{2}}{2}$}
+      \rput(2.6,0){$\frac{\sqrt{3}}{2}$}
+      \rput(0,0){$0$}
+      \rput(-1.5,0){$-\frac{1}{2}$}
+      \rput(-2.1,0){$-\frac{\sqrt{2}}{2}$}
+      \rput(-2.6,0){$-\frac{\sqrt{3}}{2}$}
+      \rput(0,1.5){$\frac{1}{2}$}
+      \rput(0,2.1){$\frac{\sqrt{2}}{2}$}
+      \rput(0,2.6){$\frac{\sqrt{3}}{2}$}
+      \rput(0,-1.5){$-\frac{1}{2}$}
+      \rput(0,-2.1){$-\frac{\sqrt{2}}{2}$}
+      \rput(0,-2.6){$-\frac{\sqrt{3}}{2}$}
+   \end{pspicture}
+\end{center}
+%merci à Mathalie Daval pour ces superbes figures : http://mathematiques.daval.free.fr/spip.php?article1
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\sectionblack{Complexes et géométrie}
+\begin{multicols}{2}\setlength{\columnseprule}{1pt}
+\begin{center}\textbf{Forme algébrique}\end{center}
+Au nombre complexe $z=x+\i y$, on fait correspondre le point $M$ de coordonnées $(x\ ;\ y)$.\\
+
+\vspace{1.5cm}
+$$\psset{unit=1 cm} 
+\begin{pspicture}(-0.5,-1.5)(3.5,2.3)
+\psaxes{->}(0,0)(1,1)
+\psline(-0.5,0)(3.5,0)
+\psline(0,-0.5)(0,2.5)
+\psline[linestyle=dashed](3,0)(3,2)
+\psline[linestyle=dashed](0,2)(3,2)
+\rput(-0.2,-0.2){$0$}
+\rput(0.5,-0.2){$\vect{u}$}
+\rput(-0.2,0.5){$\vect{v}$}
+\rput(3.2,2.2){$M(z)$}
+\rput(3,-0.2){$x=\Re(z)$}
+\rput[r](-0.4,2){$y=\Im(z)$}
+\rput(1,-0.9){\textrm{\defin{Repérage cartésien}}}
+\end{pspicture} $$
+$M$ est l'\defin{image} de $z$.\\
+$z$ est l'\defin{affixe} de $M$.\\
+
+\columnbreak
+\begin{center}\textbf{Forme trigonométrique}\end{center}
+Au nombre complexe, $z=[r\ ;\ \theta]=r(\cos\theta+\j\sin\theta)=r\eit{}$, on fait correspondre le point $M$ de rayon $r$ et d'angle
+polaire $\theta$.
+
+\vspace{1.5cm}
+
+\begin{center}
+\psset{unit=1cm} 
+\begin{pspicture}(-0.5,-1.5)(3.5,2.3)
+  \psaxes{->}(0,0)(1,1)
+  \psline[linewidth=0.05,linecolor=blue]{->}(0,0)(3,2)
+  \psline(-0.5,0)(3.5,0)
+  \psline(0,-0.5)(0,2.5)
+  \psline[linestyle=dashed](3,0)(3,2)
+  \psline[linestyle=dashed](0,2)(3,2)
+  \rput(-0.2,-0.2){$0$}
+  \rput(0.5,-0.2){$\vect{u}$}
+  \rput(-0.2,0.5){$\vect{v}$}
+  \rput[l](2,1){$\textcolor{bleu}{\rho}$}
+  \psarc[linecolor=red,linewidth=0.05]{->}(0,0){1}{0}{35}
+  \rput(3.2,2.2){$M(z)$}
+  \rput(1.1,0.3){$\textcolor{rouge}{\theta}$}   
+  \rput(1,-0.7){\textrm{\defin{Repérage polaire}}}
+\end{pspicture} 
+\end{center}
+
+\end{multicols}
+
+
+\textbf{Pour calculer des longueurs :} $AB=|z_B-z_A|$\\
+\textbf{Pour déterminer l'affixe d'un vecteur :} $z_{\vect{AB}}=z_B-z_A$.\\
+\textbf{Pour trouver le milieu d'un segment  :} $I$ milieu de $[AB]$ d'où $Z_I=\dfrac{z_A+z_B}{2}$.
+\textbf{Pour prouver des symétries : }$z$ et $\bar{z}$ sont symétriques par rapport à $(Ox)$\\[15pt]
+\textbf{Pour prouver que des point sont alignés ou que des droites son parallèles :} on utilise les affixes des vecteurs pour prouver qu'ils sont colinéaires.\\
+\textbf{Pour prouver que des points sont sur un cercle : } On utilise les modules des affixes des points.
+
+\textbf{Complexes et transformations : }\\
+La translation de vecteur \vect{u} d'affixe $b$ a pour écriture complexe $z'=z+b$.\\
+La rotation de centre O et d'angle $\theta$ a pour écriture complexe $z'=\eit{}\times z$.\\
+
+
+
+
+\exosol{On considère les points $A$ et $B$ d'affixes respectives $z_A=-1+3\i$ et $z_B=2-\i$.
+\begin{enumerate}
+ \item Placer les points dans un repère orthonormé.
+ \item Calculer la longeur $AB$.
+ \item Calculer l'affixe du point $I$ milieu de $[AB]$.
+ \item Calculer l'affixe du vecteur $\vect{AB}$.
+\end{enumerate}
+}
+{\begin{enumerate}
+\item 
+$$\psset{unit=1 cm} 
+\begin{pspicture}(-0.5,-1.5)(3.5,2.3)
+\psaxes{->}(0,0)(1,1)
+%\psline[linewidth=0.05,linecolor=blue]{->}(0,0)(3,2)
+\psline(-0.5,0)(3.5,0)
+\psline(0,-0.5)(0,2.5)
+\psline[linestyle=dashed](3,0)(3,2)
+\psline[linestyle=dashed](0,2)(3,2)
+\rput(-0.2,-0.2){$0$}
+\rput(0.5,-0.2){$\vect{u}$}
+\rput(-0.2,0.5){$\vect{v}$}
+\rput(3.2,2.2){$M$}
+\rput(3,-0.2){$x=\Re(z)$}
+\rput[r](-0.4,2){$y=\Im(z)$}
+\rput(1,-0.9){\textrm{\defin{Repérage cartésien}}}
+\end{pspicture} $$
+\item $AB=|z_B-z_A|=|(-1+3\i)-(2-\i)|=|-3+4\i|=\sqrt{(-3)^2+4^2}=\sqrt{25}=5$.
+\item $I$ milieu de $[AB]$ donc $z_I=\dfrac{z_A+z_B}{2}=\dfrac{(-1+3\i)+(2-\i)}{2}=\dfrac{1+2\i}{2}$.
+\item $z_{\tiny\vect{AB}}=z_B-z_A=(-1+3\i)-(2-\i)=-3+4\i.$
+\end{enumerate}
+}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\sectionblack{Complexes et équations}
+\theo{Équations du second degré}{
+On considère l'équation $az^2+bz+c=0$ où $a$, $b$ et $c$ sont trois nombres réels. \\
+On pose $\Delta=b^2-4ac$. 
+\begin{itemize}
+ \itemb si $\Delta>0$, l'équation admet deux solutions $\cfrac{-b\pm\sqrt{\Delta}}{2a}$ ;
+ \itemb si $\Delta=0$, l'équation admet une solution double $-\dfrac{b}{2a}$ ;
+ \itemb si $\Delta<0$, l'équation n'admet pas de solution dans $\R$ mais admet deux solutions conjuguées dans $\C$ : $\cfrac{-b\pm\i\sqrt{-\Delta}}{2a}$.
+\end{itemize}
+}
+
+
+
+\textbf{Identification :}
+
+\exosol{Soit $P(z) =  z^3 - 4z^2 + 8z - 8$ où $z$ est une variable complexe.
+\begin{enumerate} 
+\item Calculer P(2). Que peut-on en déduire pour $P(z)$ ?
+\item Trouver les nombres r\'eels $a,~ b$ et $c$ tels que, pour tout nombre complexe $z$,
+\[P(z) = (z - 2)\left(az^2 + bz + c\right).\]
+\item En déduire les solutions de l'\'equation $P(z) = 0$ dans l'ensemble $\C$ des nombres complexes.
+\end{enumerate}}
+{\begin{enumerate} 
+\item %{Calculer $P(2)$. Que peut-on en déduire pour $P(z)$ ?}\\
+$P(2)=0$ donc $P$ est factorisable par $z-2$.
+\item %{Trouver les nombres r\'eels $a,~ b$ et $c$ tels que, pour tout nombre complexe $z$,
+%\[P(z) = (z - 2)\left(az^2 + bz + c\right).\]}
+$\begin{array}[t]{rcl}
+P(z) &=&(z - 2)\left(az^2 + bz + c\right)\\
+&=&z^3+bz^2+cz-2az^2-2bz-2c\\
+&=&x^3+(b-2a)z^2+(c-2b)z-2c
+\end{array}$\\
+Par identification, on obtient :$\left\{\begin{array}{ccc}
+				a &=& 1\\
+				b-2a &=& -4\\
+				c-2b &=& 8\\
+				-2c &=& -8\\
+				\end{array}\right.$ soit  $\left\{\begin{array}{ccc}
+				a &=& 1\\
+				b &=& -2\\
+				c &=& 4
+				\end{array}\right.$
+$$P(z)=(z-2)(z^2-2z+4)$$
+\item %{R\'esoudre alors l'\'equation $P(z) = 0$ dans l'ensemble $\C$ des	nombres complexes.}\\
+$P(z)=(z-2)(z^2-2z+4)=0$.\\
+Un produit de facteur est nul si et seulement si un des facteurs est nul.\\
+\begin{tabular}{c|l}
+$z-2=0$ & $ z^2-2z+4=0$\\
+$z=2$ & $\Delta=b^2-4ac=(-2)^2-4\times1\times4=-12$\\
+&$\Delta$ est négatif, l'équation a deux solutions complexes conjugués :\\
+&$z_1=\cfrac{-b - \i\sqrt{-\Delta}}{2a}=\cfrac{2 - \i\sqrt{12}}{2}=1-i\sqrt{3}$ et $z_2=\bar{z_1}=1+\i\sqrt{3}$\\
+\end{tabular}\\
+l'équation a trois solutions : $z=2$ ou $z=1-\i\sqrt{3}$ ou $z=1+\i\sqrt{3}$.
+\end{enumerate}}
+
+\textbf{Remarque : } Afin d'obtenir la factorisation, une autre méthode consiste à effectuer la division des polynomes. Cette méthode est hors programme mais si vous la connaissez, elle est très efficace et peut s'utiliser dans d'autres situations.
+
+\end{document}

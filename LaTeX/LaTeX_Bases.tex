@@ -1,0 +1,132 @@
+\documentclass[10pt,frenchb]{book} % la classe article peut-être utilisée à la place de book mais dans ce cas, la commande \chapter n'est pas admise
+
+\usepackage[utf8]{inputenc} % pour l'encodage des accents
+\usepackage[T1]{fontenc} % assure notamment la césure correct des mots et permet des copier-coller sur le pdf final
+\usepackage{babel} % concerne la langue de rédaction du document. Lié à l'option frenchb placée dans la classe du document.
+
+\usepackage{mathtools, amssymb} % pour écrire des maths
+
+\usepackage{geometry} % permet de modifier différentes marges du document à l'aide de la commande ci-dessous
+\geometry{top = 1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm} % on aurait pu directement écrire \geometry{margin=1.5cm}
+\setlength{\parindent}{10pt} % longueur de l'alinea au début de chaque paragraphe. La longueur 0pt est autorisée pour supprimer l'alinea
+
+\pagestyle{empty} % permet de ne rien inscrire au niveau des en-tête et des pieds-de-page. Notamment, le numéro des pages n'apparaît pas.
+
+\usepackage{textcomp} % pour une utilisation correcte de la commande \degres ci-dessous.
+\renewcommand{\thesection}{\Roman{section}$\degres$)} % modifie la mise en forme du compteur des sections
+\renewcommand{\thesubsection}{\Alph{subsection}.}
+
+\usepackage{soul} % pour utiliser la commande \ul pour souligner du texte.
+\usepackage{tabularx} % pour faire des tableaux un peu plus complexes
+
+\begin{document}
+\part{Voici à quoi ressemble le titre d'une partie}
+
+\chapter{Un chapitre à l'intérieur d'une partie}
+
+\section{Une section numérotée}
+\subsection{Une sous-section}
+\subsubsection{Une sous-sous-section}
+\paragraph{Une sous-sous-sous-section, dernier niveau.}
+
+Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. %changement de paragraphe en laissant une ligne vide
+
+Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes.\par %changement de paragraphe en utilisant une commande
+
+Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes.\par\medskip % changement de paragraphe avec un saut de ligne. On peut aussi utiliser \smallskip et bigskip
+
+\noindent Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. Voici un texte particulièrement inintéressant pour faire des essais de changement de lignes et de paragraphes. %La commande \noindent supprime l'indentation uniquement pour le paragraphe en cours.
+
+\section*{Une section non numérotée}
+
+\section{Reprise de la numérotation}
+\subsection{Mettre en gras}
+
+Il y a la commande pour juste un mot ou deux : \textbf{mots en gras}.
+
+Pour mettre en gras plusieurs mots, voire lignes, voire plusieurs paragraphes, on utilise une commande globale (\textbf{attention aux accolades placées à l'extérieur !!}).
+
+{\bfseries
+Du texte en gras avec changement de paragraphe.\par
+Une autre ligne en gras. ça ne marche pas pour les formules mathématiques : $ax + b = 0$.
+} Du texte pas gras. % sans les accolades, tout le texte suivant la commande \bfseries jusqu'à la fin du document serait en gras.
+
+\subsection{Mettre en italique}
+
+Mêmes remarques que pour le gras. \textit{Du texte en italique} ou bien encore {\itshape du texte en italique}.
+
+\subsection{Souligner}
+
+On peut utiliser deux commandes différentes. La différence concerne la gestion des lettres descendantes telles que le p ou le g. Les changements de lignes sont mal gérées.\par
+\underline{Voilà un texte avec des p, des q, des g suffisamment long pour avoir à faire un changement de ligne et voir ce qu'il se passe.}\par
+\underbar{Voilà un texte avec des p, des q, des g suffisamment long pour avoir à faire un changement de ligne et voir ce qu'il se passe.}\par
+
+De toute façon, il faut éviter au maximum de souligner dans un texte.
+
+\subsection{Taille du texte}
+De base, 3 options sont proposées : 10pt, 11pt ou 12pt à mettre en option dans la classe du document. Ce sont des valeurs absolues. Certaines commandes permettent de varier la taille du texte :\par
+{\tiny du tout petit texte}\par
+{\scriptsize du petit texte de la taille d'un indice ou d'un exposant}\par
+{\footnotesize texte de la taille d'une note de bas de page}\par
+{\small texte un peu plus petit}\par
+{\normalsize taille normal}\par
+{\large un peu plus grand}\par
+{\Large plus grand}\par
+{\LARGE beaucoup plus grand}\par
+{\huge énoooooorme}\par
+{\Huge du grand n'importe quoi}
+
+La encore, si on oublie \tiny les accolades, tout le texte jusqu'à la fin est concerné. \normalsize À moins de remettre ça en ordre.
+
+Pour sélectionner précisément une taille de police, on peut utiliser la commande \texttt{fontsize}. Elle possède deux arguments. Le premier pour la taille du texte et la seconde pour la taille de l'interligne. L'unité de longueur est le point (pt). À utiliser avec précautions ; elle est bien souvent inutile.
+
+{\fontsize{50}{60}\selectfont Du texte très gros avec \par beaucoup d'espace entre les lignes.}\bigskip
+
+{\fontsize{50}{30}\selectfont Même taille de texte mais \par changement d'interlignes.} Puis retour à la normale.
+
+\section{Position du texte}
+
+De base; le texte est justifié à gauche et à droite.
+
+\begin{center}
+    Du texte centré.
+\end{center}
+
+\begin{flushleft}
+    Du texte justifié à gauche uniquement. Pas d'alinea. Texte très intéressant qui montre comment on peut perdre son temps à écrire tout et n'importe quoi. Le pire, c'est la personne qui lit avec attention de grand n'importe quoi en espérant y trouver un minimum d'informations cohérentes. 
+\end{flushleft}
+
+\begin{flushright}
+    Du texte justifié à droite uniquement. Pas d'alinea. Texte très intéressant qui montre comment on peut perdre son temps à écrire tout et n'importe quoi. Le pire, c'est la personne qui lit avec attention de grand n'importe quoi en espérant y trouver un minimum d'informations cohérentes. En réalité, c'est un simple copié-collé du texte précédent mais j'ai voulu écrire une ligne de plus rien que pour le plaisir.
+\end{flushright}
+
+\section{Les tableaux}
+
+\begin{minipage}{0.45\linewidth}
+Commande de base :\medskip % le symbole & sert à séparer les colonnes à l'intérieur du tableau
+
+\begin{tabular}{|r|c|l|} % l pour left, c pour center et r pour right. Le symbole | trace un trait vertical pour séparer les colonnes.
+\hline % pour tracer un trait horizontal et séparer les lignes
+    $f : R$ & $\to$ & $R$ \\ % \\ sert à changer de ligne dans les tableaux simples
+\hline
+    $x$ & $\mapsto$ & $x - \dfrac{1}{x^2 + 1}$ \\
+\hline
+\end{tabular}
+\end{minipage}\quad %\quad est un raccourci pour créer un espace plus grand qu'un espace classique.
+\begin{minipage}{0.45\linewidth}
+Tableau plus complexe : \medskip
+
+\begin{tabularx}{\linewidth}{|>\bfseries c|>{\centering\itshape} X|>\tiny X|} % X calcule automatiquement la largeur de la colonne pour occuper tout l'espace défini pour le tableau.
+% Pour spécifier une mise en forme dans une colonne, on utilise le symbole > suivi du nom de la commande de mise en forme. On pense aux accolades lorsqu'il y a plusieurs arguments.
+\hline
+    Nom & Prénom & Date de naissance \tabularnewline % identique à \\ pour mieux gérer les changements de ligne
+\hline
+    Bob & L'éponge & 12 mars 2008 \tabularnewline
+\hline
+    Alain & Terrieur & 1\ier avril 2002 \tabularnewline
+\hline
+    \multicolumn{3}{|c}{Fusion de 3 lignes}
+\end{tabularx}
+\end{minipage}
+
+\end{document} 

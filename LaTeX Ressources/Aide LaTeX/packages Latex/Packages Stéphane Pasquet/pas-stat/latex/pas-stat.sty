@@ -1,0 +1,447 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%    	pas-stat.sty   V2.01   encodage : UTF8     	        %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%           	Créé par Stéphane PASQUET 		          		%
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% V2.01 -> 19/06/2012 -> Ajout de la fonction \estim[round=...]{valeur de x}
+% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pas-stat}[2012/06/19]
+
+\newif\if@tikz
+\newif\if@pst
+\DeclareOption{tikz}{\@tikztrue}
+\DeclareOption{pst}{\@psttrue}
+\ProcessOptions
+
+% <------------------------------- Chargement des extensions ----------------------------------->
+\RequirePackage[table]{xcolor}
+\if@tikz
+	\RequirePackage{tikz}
+	\usetikzlibrary{arrows}
+\fi
+\if@pst
+	\RequirePackage{pst-plot}
+	\RequirePackage{pstricks-add}
+\fi
+
+\RequirePackage{multido}
+\RequirePackage{fp}
+\RequirePackage{xkeyval}
+
+% <------------------------------- Initialisation des variables ----------------------------------->
+\newcount\val@cnt
+\newcommand*\init@var{%
+	% Variables de calculs
+	\def\totalX{0}
+	\def\totalY{0}
+	\def\produit{0}
+	\def\somProd{0}
+	\def\somProdCarre{0}
+	% Droite de régression linéaire : y=ax+b
+	\def\a{0}
+	\def\b{0}
+	% Point moyen G(\xG;\yG)
+	\def\xG{0}
+	\def\yG{0}
+	% Variable de color pour les tableaux
+	\let\tabvalcolor\@empty
+	\let\tabtext@color\black
+}
+\newcommand*\init@vartab{%
+	% Variables de construction de tableau
+	\let\ligneX\@empty
+	\let\ligneY\@empty
+	\let\ligneA\@empty
+	\let\listval\@empty
+}
+
+% <------------------------------- Calculs intermédiaires ----------------------------------->
+\newcommand*\calc@intermediaires{%
+	\init@var
+	\Multido{\i=1+1}\val@cnt{%
+		\FPadd{\totalX}{\totalX}{\ValX\i}%
+		\FPadd{\totalY}{\totalY}{\ValY\i}%
+		\FPmul{\produit}{\ValX\i}{\ValY\i}
+		\FPadd{\somProd}{\somProd}{\produit} % somme des xiyi
+		\FPmul{\produit}{\ValX\i}{\ValX\i} % xi²
+		\FPadd{\somProdCarre}{\somProdCarre}{\produit} % somme des (xi)²
+	}
+}
+
+% <------------------------------- Macros de stockage des valeurs ----------------------------------->
+\newcommand*\ValX[1]{\@nameuse{ValX#1}}
+\newcommand*\ValY[1]{\@nameuse{ValY#1}}
+\newcommand*\ValA[1]{\@nameuse{ValA#1}}
+
+% <------------------------------- Entrées des données ----------------------------------->
+% <--------------------------- \valeurs{x1/y1,x2/y2,...,xn/yn} --------------------------->
+% <-------------------------- \valeurs*{a1/x1/y1,a2/x2/y2,...,an/xn/yn} ------------------>
+
+\newcommand*\valeurs{\init@var\val@cnt\z@\@ifstar{\val@star}{\val@nostar}}
+\newcommand*\val@nostar[1]{\valeurs@nostar@#1,\valeurs@nostar@/\valeurs@nostar@,}
+\def\valeurs@nostar@#1/#2,{%
+   \ifx\valeurs@nostar@#1%
+   \else
+      \advance\val@cnt\@ne
+	  \expandafter\xdef\csname ValX\number\val@cnt\endcsname{#1}
+	  \expandafter\xdef\csname ValY\number\val@cnt\endcsname{#2}
+      \expandafter\valeurs@nostar@
+   \fi
+}
+\newcommand*\val@star[1]{\valeurs@star@#1,\valeurs@star@/\valeurs@star@/\valeurs@star@,}
+\def\valeurs@star@#1/#2/#3,{%
+   \ifx\valeurs@star@#1%
+   \else
+      \advance\val@cnt\@ne
+	  \expandafter\xdef\csname ValA\number\val@cnt\endcsname{#1}
+	  \expandafter\xdef\csname ValX\number\val@cnt\endcsname{#2}
+	  \expandafter\xdef\csname ValY\number\val@cnt\endcsname{#3}
+	  \expandafter\valeurs@star@
+   \fi
+}
+
+% <-------------------- Construction du tableau des valeurs ---------------------------->
+% <--------------- \tabval{Etiquette x}{Etiquette y} ------------------------>
+% <-------- \tabval*{Etiquette a}{Etiquette x}{Etiquette y} ----------------->
+
+\newcommand*\tabgcolor[1]{\def\tabvalcolor{#1}}
+\newcommand*\tabtextcolor[1]{\def\tabtext@color{#1}}
+
+\newcommand*\tabval[1][]{\setkeys[PAS]{tabval}{#1}\init@vartab\tabtextcolor{black}\@ifstar{\tabval@star}{\tabval@nostar}}
+\newcommand*\tabval@nostar[2]{%
+	\begingroup\color{\tabtext@color}
+	\ifx\tabvalcolor\@empty
+		\begin{tabular}{||l||*{\val@cnt}{c|}|}%
+	\else
+		\begin{tabular}{||>{\columncolor{\tabvalcolor}}l||*{\val@cnt}{c|}|}%
+	\fi
+		\hline #1
+		\multido{\i=1+1}\val@cnt{\xdef\ligneX{\ligneX&\ValX\i}}%
+		\ligneX\\
+		\hline #2
+		\multido{\i=1+1}\val@cnt{\xdef\ligneY{\ligneY&\ValY\i}}%
+		\ligneY\\
+		\hline
+     \end{tabular}
+	 \endgroup
+}
+\newcommand*\tabval@star[3]{%
+	\begingroup\color{\tabtext@color}
+	\ifx\tabvalcolor\@empty
+		\begin{tabular}{||l||*{\val@cnt}{c|}|}%
+	\else
+		\begin{tabular}{||>{\columncolor{\tabvalcolor}}l||*{\val@cnt}{c|}|}%
+	\fi
+		\hline #1
+		\multido{\i=1+1}\val@cnt{\xdef\ligneA{\ligneA&\ValA\i}}%
+		\ligneA\\
+		\hline #2
+		\multido{\i=1+1}\val@cnt{\xdef\ligneX{\ligneX&\ValX\i}}%
+		\ligneX\\
+		\hline #3
+		\multido{\i=1+1}\val@cnt{\xdef\ligneY{\ligneY&\ValY\i}}%
+		\ligneY\\
+		\hline
+     \end{tabular}
+	 \endgroup
+}
+
+% <-------------------- Construction du tableau des logarithmes ---------------------------->
+% <-------------------- \tablog{Etiquette x}{Etiquette y} ---------------------------------->
+% <-------------------- \tablog*{Etiquette a}{Etiquette x}{Etiquette y} -------------------->
+
+\define@cmdkey [PAS] {tablog} {round}{}
+\presetkeys    [PAS] {tablog} {round=3}{}
+
+\newcommand*\tablog[1][]{%
+	\setkeys[PAS]{tablog}{#1}
+	\init@vartab
+	\Multido{\i=1+1}\val@cnt{%	
+		\FPeval\LnY{clip(round(ln(\ValY\i):\cmdPAS@tablog@round))}
+		\expandafter\xdef\csname ValY\i\endcsname{\LnY}
+	}
+	\@ifstar{\tablog@star}{\tablog@nostar}
+}
+\newcommand*\tablog@nostar[2]{%
+	\tabval{#1}{#2}
+}
+\newcommand*\tablog@star[3]{%
+	\tabval*{#1}{#2}{#3}
+}
+
+% <----------------------- Calculs des coordonnées du point moyen ---------------------------->
+% <------------------------- \pointMoyen[round=...] ; \xG ; \yG ------------------------------>
+
+\define@cmdkey [PAS] {pm} {round}{}
+\presetkeys    [PAS] {pm} {round=3}{}
+
+\newcommand*\pointMoyen[1][]
+{%
+	\setkeys[PAS]{pm}{#1}
+	\calc@intermediaires
+	\FPeval\xG{clip(round((\totalX/\number\val@cnt):\cmdPAS@pm@round))}
+	\FPeval\yG{clip(round((\totalY/\number\val@cnt):\cmdPAS@pm@round))}
+}
+
+% <-------------- Droite d'ajustement par la méthode des moindres carrés --------------------->
+% <-------------------- \RegLin[round=...] ; \a ; \b  ; \eqRegLin ---------------------------->
+
+\define@cmdkey [PAS] {rl} {round}{}
+\presetkeys    [PAS] {rl} {round=3}{}
+
+\newcommand*\RegLin[1][]
+{%
+	\setkeys[PAS]{rl}{#1}
+	\calc@intermediaires
+	\FPeval\xG{clip(\totalX/\number\val@cnt)}
+	\FPeval\yG{clip(\totalY/\number\val@cnt)}
+	\FPeval\coef@x{((\somProd/\number\val@cnt-\xG*\yG)/(\somProdCarre/\number\val@cnt-\xG*\xG))}
+	\FPeval\a{clip(round((\coef@x):\cmdPAS@rl@round))}
+	\FPeval\b{clip(round((\yG-\coef@x*\xG):\cmdPAS@rl@round))}
+	\let\eqRegLin\@empty
+	\FPifgt\b{0}\xdef\eqRegLin{$y=\a x+\b$}\else\fi
+	\FPiflt\b{0}\xdef\eqRegLin{$y=\a x\b$}\else\fi
+	\FPifzero{\b}\xdef\eqRegLin{$y=\a x$}\else\fi
+}
+
+% <------------------------------- Tracé du repère ----------------------------------->
+
+% <==== PST ====>
+\newcommand*\rep@pst{%
+	% Grille & sous-grille
+	\ifPAS@repere@grid
+		\ifPAS@repere@subgrid
+			\psgrid[gridlabels=0pt,griddots=8,gridcolor=\cmdPAS@repere@gridcolor,subgridcolor=\cmdPAS@repere@subgridcolor,subgriddots=5,subgriddiv=\cmdPAS@repere@subxstep](\xmax,\ymax)
+		\else
+			\psgrid[gridlabels=0pt,griddots=5,gridcolor=\cmdPAS@repere@gridcolor,subgriddiv=\cmdPAS@repere@xstep](\xmax,\ymax)
+		\fi
+	\fi
+	% Axes
+	\begingroup\color{\cmdPAS@repere@labelcolor}
+	\psaxes[%
+		linecolor=\cmdPAS@repere@axecolor,%
+		tickcolor=\cmdPAS@repere@axecolor,%
+		dx=1,
+		Dx=\cmdPAS@repere@xstep,%
+		dy=1,%
+		Dy=\cmdPAS@repere@ystep]{->}(0,0)(0,0)(\xmax,\ymax)
+	\endgroup
+}
+
+%<==== TiKZ ===>
+\newcommand*\rep@tikz{%
+	\ifPAS@repere@subgrid
+		%\draw[color=\cmdPAS@repere@subgridcolor,dotted,xstep=\cmdPAS@repere@subxstep,ystep=\cmdPAS@repere@subystep] (0,0) grid (\xmax,\ymax);
+	\fi
+	\ifPAS@repere@grid
+		%\draw[color=\cmdPAS@repere@gridcolor,dashed,xstep=1,ystep=1] (0,0) grid (\xmax,\ymax);
+	\fi
+	% Axes
+	\draw[thick,->,>=stealth',color=\cmdPAS@repere@axecolor] (0,0) -- (\xmax,0);
+	\draw[thick,->,>=stealth',color=\cmdPAS@repere@axecolor] (0,0) -- (0,\ymax);
+	% Graduations
+	\multido{\i=0+1}{\xmax}
+	{
+		\FPeval{\legendeX}{clip(\cmdPAS@repere@xmin+\i*\cmdPAS@repere@xstep)}
+		\draw[thick,color=\cmdPAS@repere@axecolor] (\i,.1) -- (\i,-.1) node[below,color=\cmdPAS@repere@labelcolor] {\legendeX};
+	}
+	\multido{\i=0+1}{\ymax}
+	{
+		\FPeval{\legendeY}{clip(\cmdPAS@repere@ymin+\i*\cmdPAS@repere@ystep)}
+		\draw[thick,color=\cmdPAS@repere@axecolor] (.1,\i) -- (-.1,\i) node[left,color=\cmdPAS@repere@labelcolor] {\legendeY};
+	}
+	\clip (-1,-1) rectangle +(\xmax+1,\ymax+1);
+}
+
+\define@cmdkey [PAS] {repere} {xmin}{}
+\define@cmdkey [PAS] {repere} {xmax}{}
+\define@cmdkey [PAS] {repere} {ymin}{}
+\define@cmdkey [PAS] {repere} {ymax}{}
+\define@cmdkey [PAS] {repere} {xstep}{}
+\define@cmdkey [PAS] {repere} {ystep}{}
+\define@cmdkey [PAS] {repere} {subxstep}{}
+\define@cmdkey [PAS] {repere} {subystep}{}
+\define@cmdkey [PAS] {repere} {gridcolor}{}
+\define@cmdkey [PAS] {repere} {subgridcolor}{}
+\define@cmdkey [PAS] {repere} {axecolor}{}
+\define@cmdkey [PAS] {repere} {labelcolor}{}
+\define@boolkey[PAS] {repere} {grid}[true]{} 
+\define@boolkey[PAS] {repere} {subgrid}[true]{} 
+\define@boolkey[PAS] {repere} {tikz}[true]{} 
+\define@boolkey[PAS] {repere} {pst}[true]{} 
+\presetkeys    [PAS] {repere} {%
+								xmin=0,
+								xmax=\ValX{\number\val@cnt},
+								ymin=0,
+								ymax=\ValY{\number\val@cnt},
+								xstep=1,
+								ystep=1,
+								grid=true,
+								subgrid=false,
+								subxstep=,
+								subystep=,
+								gridcolor=gray,
+								subgridcolor=gray,
+								axecolor=black,
+								labelcolor=black,
+								tikz=false,
+								pst=false}{}
+
+\newcommand*{\repere}[1][]
+{%
+	\setkeys[PAS]{repere}{#1}
+
+	\FPeval\ymax{clip(round(((\cmdPAS@repere@ymax-\cmdPAS@repere@ymin)/\cmdPAS@repere@ystep+1):0))}
+	\FPeval\xmax{clip(round(((\cmdPAS@repere@xmax-\cmdPAS@repere@xmin)/\cmdPAS@repere@xstep+1):0))}
+	
+	\if@tikz
+		\if@pst
+			\ifPAS@repere@tikz\rep@tikz\fi
+			\ifPAS@repere@pst\rep@pst\fi
+		\else
+			\rep@tikz
+		\fi
+	\else
+		\if@pst\rep@pst\fi
+	\fi
+}
+
+% <------------------------------- Tracé du nuage de points ----------------------------------->
+
+% <==== PST ====>
+\newcommand*\nuage@pst{%
+	\multido{\i=1+1}{\val@cnt}
+	{%
+		\FPeval\coord@x{\ValX{\i}/\cmdPAS@repere@xstep-\cmdPAS@repere@xmin/\cmdPAS@repere@xstep}
+		\FPeval\coord@y{\ValY{\i}/\cmdPAS@repere@ystep-\cmdPAS@repere@ymin/\cmdPAS@repere@ystep}
+		\psdot[linecolor=\cmdPAS@nuage@color,dotsize=\cmdPAS@nuage@dim](\coord@x,\coord@y)
+	}
+}
+
+% <==== TiKZ ====>
+\newcommand*\nuage@tikz{%
+	\multido{\i=1+1}{\val@cnt}
+	{%
+		\fill[fill=\cmdPAS@nuage@color] (\ValX{\i}/\cmdPAS@repere@xstep-\cmdPAS@repere@xmin/\cmdPAS@repere@xstep,\ValY{\i}/\cmdPAS@repere@ystep-\cmdPAS@repere@ymin/\cmdPAS@repere@ystep) circle (\cmdPAS@nuage@dim);
+	}
+}
+
+\define@cmdkey [PAS] {nuage} {color}{}
+\define@cmdkey [PAS] {nuage} {dim}{}
+\presetkeys    [PAS] {nuage} {color=black,dim=1pt}{}
+
+\newcommand*{\nuage}[1][]
+{%
+	\setkeys[PAS]{nuage}{#1}
+	\if@tikz
+		\if@pst
+			\ifPAS@repere@tikz\nuage@tikz\fi
+			\ifPAS@repere@pst\nuage@pst\fi
+		\else
+			\nuage@tikz
+		\fi
+	\else
+		\if@pst
+			\nuage@pst
+		\fi
+	\fi
+}
+
+% <---------------------- Tracé de la droite de régression linéaire ------------------------>
+% <--------------- \drawRegLine[color=...,lw=...,name=...,pos=...,xname=...] --------------------->
+
+\define@cmdkey [PAS] {reglin} {color}{}
+\define@cmdkey [PAS] {reglin} {lw}{}
+\define@cmdkey [PAS] {reglin} {name}{}
+\define@cmdkey [PAS] {reglin} {pos}{}
+\define@cmdkey [PAS] {reglin} {xname}{}
+\presetkeys    [PAS] {reglin} {color=black,lw=,name=,pos=,xname=\xmax}{}
+
+\newcommand*\drawRegLine@pst{%
+	\psset{algebraic=true}
+	\def\f{(\a*(x*\cmdPAS@repere@xstep+\cmdPAS@repere@xmin)+\b-\cmdPAS@repere@ymin)/\cmdPAS@repere@ystep}
+	\psplot[linecolor=\cmdPAS@reglin@color,linewidth=\cmdPAS@reglin@lw]{0}{\xmax}{\f}
+	\uput[\cmdPAS@reglin@pos](\cmdPAS@reglin@xname,\yname){\textcolor{\cmdPAS@reglin@color}{\cmdPAS@reglin@name}}
+}
+\newcommand*\drawRegLine@tikz{%
+	\draw[draw=\cmdPAS@reglin@color,\cmdPAS@reglin@lw] plot[domain=0:\xmax] (\x,{(\a*(\x*\cmdPAS@repere@xstep+\cmdPAS@repere@xmin)+\b-\cmdPAS@repere@ymin)/\cmdPAS@repere@ystep});
+	\node[\cmdPAS@reglin@pos,\cmdPAS@reglin@color] at (\cmdPAS@reglin@xname,\yname) {\cmdPAS@reglin@name};
+}
+
+\newcommand*{\drawRegLine}[1][]
+{%
+	\setkeys[PAS]{reglin}{#1}
+	\FPifzero{\a}\RegLin\else\fi
+	\FPeval\yname{(\a*(\cmdPAS@reglin@xname*\cmdPAS@repere@xstep+\cmdPAS@repere@xmin)+\b-\cmdPAS@repere@ymin)/\cmdPAS@repere@ystep}
+	\if@tikz
+		\if@pst
+			\ifPAS@repere@tikz\drawRegLine@tikz\fi
+			\ifPAS@repere@pst\drawRegLine@pst\fi
+		\else
+			\drawRegLine@tikz
+		\fi
+	\else
+		\if@pst
+			\drawRegLine@pst
+		\fi
+	\fi
+}
+
+% <------------------------------- Tracé du point moyen ----------------------------------->
+% <-------------------- \drawG[color=...,name=...,pos=...,dim=...] ------------------------>
+
+\newcommand*\drawG@pst{%
+	\psdot[linecolor=\cmdPAS@drawG@color,dotsize=\cmdPAS@drawG@dim](\xxx,\yyy)
+	\uput[\cmdPAS@drawG@pos](\xxx,\yyy){\textcolor{\cmdPAS@drawG@color}{\cmdPAS@drawG@name}}
+}
+
+\newcommand*\drawG@tikz{%
+	\fill[fill=\cmdPAS@drawG@color] (\xxx,\yyy) circle (\cmdPAS@drawG@dim);
+	\node[\cmdPAS@drawG@pos,text=\cmdPAS@drawG@color] at (\xxx,\yyy) {\cmdPAS@drawG@name};
+}
+
+\define@cmdkey [PAS] {drawG} {color}{}
+\define@cmdkey [PAS] {drawG} {name}{}
+\define@cmdkey [PAS] {drawG} {pos}{}
+\define@cmdkey [PAS] {drawG} {dim}{}
+\presetkeys    [PAS] {drawG} {color=black,name=G,pos=,dim=2pt}{}
+
+\newcommand*{\drawG}[1][]
+{%
+	\setkeys[PAS]{drawG}{#1}
+	\FPifzero{\xG}\pointMoyen\else\fi
+	\FPeval\xxx{\xG/\cmdPAS@repere@xstep-\cmdPAS@repere@xmin/\cmdPAS@repere@xstep}
+	\FPeval\yyy{\yG/\cmdPAS@repere@ystep-\cmdPAS@repere@ymin/\cmdPAS@repere@ystep}
+	\if@tikz
+		\if@pst
+			\ifPAS@repere@tikz\drawG@tikz\fi
+			\ifPAS@repere@pst\drawG@pst\fi
+		\else
+			\drawG@tikz
+		\fi
+	\else
+		\if@pst
+			\drawG@pst
+		\fi
+	\fi
+}
+
+% <------------------------------- Calcul d'une estimation ----------------------------------->
+% <-------------------- \estim[round=...]{<valeur de x>} ------------------------>
+
+\define@cmdkey [PAS] {estim} {round}{}
+\presetkeys    [PAS] {estim} {round=3}{}
+
+\newcommand*\estim[2][]
+{%
+	\setkeys[PAS]{estim}{#1}
+	\FPifzero{\a}\RegLin[#1]\else\fi
+	\FPeval\res@estim{clip(round((\a*#2+\b):\cmdPAS@estim@round))}
+	\res@estim
+}
+\endinput

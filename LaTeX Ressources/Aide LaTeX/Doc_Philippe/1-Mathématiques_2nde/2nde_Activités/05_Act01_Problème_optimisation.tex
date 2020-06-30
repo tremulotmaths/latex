@@ -1,0 +1,68 @@
+\documentclass[10pt,french]{book}
+\input preambule_2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+\begin{document}
+
+\TitreActivite{v.1}{Problème d'optimisation\par Installation d'une canalisation}
+
+On veut alimenter en eau deux maisons en utilisant une canalisation d'eau provenant d'une rivière. Le schéma ci-dessous simplifie la carte de la région (échelle non respectée).\par
+La rivière est symbolisée par la droite $(IK)$. Les deux maisons sont en $A$ et $B$ et les canalisations $[AM]$ et $[BM]$ sont connectées à la rivière au niveau du point $M$ tel que les triangle $AIM$ et $BKM$ soient respectivement rectangles en $I$ et en $K$.
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.7]
+        \coordinate (I) at (0,0);
+            \draw (I) node{$\times$} node[below left]{$I$};
+        \coordinate (A) at (0,3);
+            \draw (A) node{$\times$} node[above left]{$A$};
+        \coordinate (B) at (9,5);
+            \draw (B) node{$\times$} node[above right]{$B$};
+        \coordinate (K) at (9,0);
+            \draw (K) node{$\times$} node[below right]{$K$};
+        \coordinate (M) at (2.5,0);
+            \draw (M) node{$\times$} node[below]{$M$};
+        \draw (A) -- (I) -- (K) -- (B);
+        \draw[dashed] (A) -- (M) -- (B);
+        \draw[very thick] (I) -- (M);
+    \end{tikzpicture}
+\end{center}
+
+Après différentes mesures réalisées, le typographe renseigne les données suivantes :
+\[AI = 5~km \qq BK = 7~km \qetq IK = 18~km.\]
+On note $IM = a$.
+\begin{enumerate}
+    \item Donner l'expression de $MK$ en fonction de $a$.
+\end{enumerate}
+
+On cherche à présent à placer le point $M$ de façon à obtenir une longueur totale de canalisation minimale, c'est-à-dire de façon à rendre la somme $MA + MB$  la plus petite possible.
+
+\subsection*{Utilisation d'un logiciel de géométrie}
+Le typographe souhaite réaliser la figure sur un logiciel.
+\begin{enumerate}[resume]
+    \item \'Ecrire toutes les étapes de construction de la figure.
+    \item Quelles semblent être les variations de la longueur de la canalisation en fonction de $a$.
+\end{enumerate}
+
+\subsection*{Utilisation d'une fonction}
+\begin{enumerate}[resume]
+    \item Utiliser le triangle $AIM$ pour écrire $AM$ en fonction de $a$.
+    \item Utiliser le triangle $BKM$ pour déterminer la longueur $BM$ en fonction de $a$.
+    \item Exprimer la longueur $MA + MB$ en fonction de $a$. On note cette valeur $L(a)$ (car la longueur totale de la canalisation dépend de $a$).
+    \item Sur quel intervalle doit-on étudier la fonction $L$ ? On le note $\calig D_L$.
+    \item À l'aide de la calculatrice, tracer la courbe représentative de la fonction $x \mapsto L(x)$ sur l'intervalle $\calig D_L$.
+    \item À l'aide de la calculatrice, visualiser le tableau de valeur de la fonction $L$ pour déterminer la valeur du minimum de $L$ sur $\calig D_L$. Ce minimum est atteint pour quelle valeur arrondie au dixième ?
+\end{enumerate}
+
+\subsection*{Démonstration}
+Le typographe semble maintenant sûr de la position du point $M$ pour minimiser la longueur de la canalisation. Pour éviter une erreur qui coûterait cher, il fait appel à un mathématicien pour déterminer par le calcul la valeur exacte de la position de $M$.
+\begin{enumerate}[resume]
+    \item On appelle $A'$ le symétrique de $A$ par rapport à $(IK)$.
+        \begin{enumerate}
+            \item Pourquoi $MA + MB = MA' + MB$ ?
+            \item Pourquoi les points $A$, $M$ et $B$ sont-ils alignés ?
+            \item En utilisant un théorème de géométrie appris au collège, déterminer la position exacte du point $M$ pour résoudre le problème.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,86 @@
+\documentclass[12pt, french]{book}
+\input preambule_2015
+\input commandes_2015
+\input presentation_fiche_2015
+
+\pagestyle{empty}
+\renewcommand\tabularxcolumn[1]{p{#1}}
+
+\usepackage{makecell}
+
+\newcommand\outil{\raisebox{-0.25ex}{\includegraphics[scale=0.5]{bc-outil}}}
+
+\makeatletter
+\define@key{PageGarde}{Annee}{\def\L@Annee{#1}}
+\define@key{PageGarde}{Situation}{\def\La@Situation{#1}}
+\define@key{PageGarde}{Themes}{\def\Les@Themes{#1}}
+\define@key{PageGarde}{Label}{\def\Le@Label{#1}}
+
+% configurations par défaut
+\presetkeys{PageGarde}{Annee={1\iere}, Situation={1}, Themes={}, Label={$\diamond$}}{}
+
+\newcommand\PageGarde[1][]{%
+\setkeys{PageGarde}{#1}%
+{\bfseries\setcellgapes{10pt}\makegapedcells
+\begin{tabularx}{\dimexpr\linewidth-1.67pt\relax}{|>\centering X|>\centering X|X|}
+\hline
+\multirow{12}*{\includegraphics[scale=0.5]{logo-ac-versailles}} & \multicolumn{2}{c|}{\Large BTS Bâtiment} \\[-20pt]
+& \multicolumn{2}{c|}{\L@Annee année} \\
+\cline{2-3}
+& \multicolumn{2}{l|}{Nom :} \\
+& \multicolumn{2}{l|}{Prénom :} \\
+& \multicolumn{2}{l|}{\'Etablissement : Lycée Jean-Pierre \bsc{Timbaud}} \\
+& \multicolumn{2}{l|}{Ville : Brétigny-sur-Orge (91)} \\
+\hline
+\begin{tabular}{cc} Sous-épreuve E31 : \\[-10pt] Mathématiques \end{tabular} & Situation d'évaluation \no \La@Situation & \begin{tabular}{ll} Date : \\[-10pt] Durée : 55 minutes \end{tabular}\\
+\hline
+\end{tabularx}
+}\vspace*{2cm}
+
+Le sujet est composé de deux exercices indépendants. Il comporte \pageref{LastPage} pages.\bigskip
+
+L'usage de la calculatrice ou des logiciels installés sur les ordinateurs est autorisé.\bigskip
+
+Les documents de cours sous format papier, sous format électronique ou tout autre format sont interdits.\bigskip
+
+La clarté du raisonnement et la qualité de la rédaction interviendront pour une part importante dans l'appréciation des copies.\vspace*{1.5cm}
+
+{\bfseries\large Thèmes abordés :}\medskip
+
+\begin{itemize}[label=\Le@Label]
+    \Les@Themes
+\end{itemize}
+
+\vspace*{1cm}
+
+{\bfseries\large Dans la suite du document :}\medskip
+
+\begin{itemize}[label=\Le@Label]
+    \item Pour les questions signalées par le symbole \outil, il existe une fiche d'aide. La réclamer si besoin.
+    \item Les appels au professeur mentionnés en gras après certaines questions font partie intégrante de l'évaluation et sont donc obligatoires.
+\end{itemize}\clearpage
+}
+
+\makeatother
+
+
+\begin{document}
+\newgeometry{margin=1.5cm}
+
+\PageGarde[%
+    Annee = {2\ieme},
+    Situation = {2},
+    Label = {$\ast$}, % Label par défaut : {$\diamond$}. Pour avoir des puces : {\textbullet}. Pour avoir des tirets : {---}. Tout autre symbole possible.
+    Themes = {  \item \'Etude de fonctions ;
+                        \item Calcul intégral ;
+                        \item Loi de probabilité}
+]
+
+\begin{Exo}
+    \'Enoncé du premier exercice
+\end{Exo}\clearpage
+
+\begin{Exo}
+    \'Enoncé du second exercice
+\end{Exo}
+\end{document} 

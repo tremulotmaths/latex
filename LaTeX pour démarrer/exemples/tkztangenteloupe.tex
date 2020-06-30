@@ -1,0 +1,32 @@
+% requires \usetikzlibrary{spy}
+
+\begin{center}
+\begin{tikzpicture}[scale=1,spy using outlines={circle, magnification=3, connect spies}]
+\tkzInit[xmin=-6,xmax=9,ymin=-2,ymax=8]
+\tkzGrid[sub,subxstep=0.5,subystep=0.5]
+\tkzAxeXY[>=stealth,color=blue,line width=1.5pt]
+\tkzClip
+%Courbe de la fonction
+\tkzFct[color=red,samples=200,line width=1.5pt]
+{(\x**3+\x**2-4*\x+5)/(2*\x**2-8*\x+10)}
+\tkzDefPoint(7,7){F}
+\tkzText[font=\boldmath,color=red,below right](F){$\calig{C}_f$}
+
+%Points du graphique
+\tkzDefPoint(0,0.5){A}\tkzLabelPoints[font=\bfseries,above right,color=blue](A)
+\tkzDefPoint(2.5,6.75){B}\tkzLabelPoints[font=\bfseries,left,color=blue](B)
+\tkzDrawPoints[size=4,color=red](A,B)
+
+%Tangentes tracées
+\tkzDefPoint(3,8){C}
+\tkzDefPointWith[linear,K=2](C,B)\tkzGetPoint{G}%\vect{CG}=2*\vect{CB}
+\tkzDrawSegment[<->,>=stealth,line width=1.5pt](C,G)
+\tkzDefPoint(-1.5,0.5){D}
+\tkzDefPoint(1.5,0.5){E}
+\tkzDrawSegment[<->,>=stealth,line width=1.5pt](D,E)
+
+%effet loupe
+\tkzDefPoint(6,3){magnifyglass}
+\spy [blue, size=5cm] on (B) in node[fill=white] at (magnifyglass);
+\end{tikzpicture}
+\end{center}

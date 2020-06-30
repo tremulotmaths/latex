@@ -1,0 +1,46 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pst-eucl}
+\usepackage[tiling]{pst-fill}
+\usepackage{pst-grad}
+\newcommand{\FRechteck}{%
+  \begin{pspicture}(0.75,0.5)
+     \psframe[dimen=middle,fillstyle=gradient,gradbegin=BrickRed,gradend=BrickRed!60,gradmidpoint=0](0.75,0.5)
+  \end{pspicture}}
+\begin{document}
+\begin{center}
+\psset{linejoin=1}
+\psboxfill{\FRechteck}
+\begin{pspicture}(-2,-3.5)(10,5)
+  \pstGeonode[PosAngle={-45,0,45}](0,0){A}(! 10 dup mul 4 dup mul sub sqrt 0){B}(0,4){C}
+  \pstGeonode[PointSymbol=none, PointName=none](-1.125,-1.5){H}(0,4.5){I}%
+  \pstMiddleAB{C}{B}{M}%
+  \pstProjection{C}{B}{A}[E]%
+  \pstProjection[PosAngle=-45]{A}{B}{M}[D]%
+  \pstGeonode[PointSymbol=none, PointName=none]([offset=-1.5]D){J}
+  \psframe[fillstyle=boxfill,fillcyclex=2](-1.125,-1.5)(0,4.5)%
+  \pstLineAB[linecolor=blue,nodesepB=0]{A}{B}%
+  \pstLineAB[linecolor=blue,nodesepB=0]{C}{B}%
+  \pstLineAB[linecolor=blue,nodesepB=0]{E}{A}%
+  \pstLineAB[linecolor=blue,nodesepB=0]{A}{M}%
+  \pstLineAB[linecolor=blue,nodesepB=0]{D}{M}%
+  \pstLineAB[linecolor=blue,nodesepB=0]{D}{J}%
+  \pstRightAngle[RightAngleType=german, RightAngleSize=0.35]{A}{E}{M}%
+  \pstRightAngle[RightAngleType=german, RightAngleSize=0.35]{B}{D}{M}%
+  \pswedge[linecolor=blue,linewidth=1.3pt,fillstyle=solid](J){0.5}{0}{180}%
+  \pswedge[linecolor=blue,linewidth=1.3pt,fillstyle=solid](J){0.1}{180}{360}%
+\pstArcOAB[linecolor=Cyan, linewidth=1.5pt]{M}{C}{B}%
+\psline[linecolor=green, linewidth=1.5pt](A)(B)(C)(A)%
+\pstRightAngle[RightAngleType=german, RightAngleSize=0.65,linewidth=1.5pt,linecolor=green]{B}{A}{C}%
+\pstProjection[PosAngle=-45]{C}{A}{M}[G]%
+\pstLineAB[linecolor=red,linestyle=dashed]{G}{M}%
+\pstRightAngle[RightAngleType=german, RightAngleSize=0.45,linewidth=1.2pt,linecolor=orange]{M}{G}{C}%
+\pstMarkAngle[linecolor=orange,MarkAngleRadius=1.6,LabelSep=1.3]{C}{M}{G}{\textcolor{orange}{$\beta $}}%
+\pstMarkAngle[linecolor=orange,MarkAngleRadius=1.6,LabelSep=1.3]{C}{B}{A}{\textcolor{orange}{$\beta $}}%
+\rput[l](6,4){$\overline{AB}=\textcolor{red}{183,3\, \mathrm{cm}}$}%
+\rput[l](6,3){$\overline{DM}=\textcolor{red}{40\, \mathrm{cm}}$}%
+\end{pspicture}
+\end{center}
+\end{document}

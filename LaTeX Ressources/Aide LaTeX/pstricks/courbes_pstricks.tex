@@ -1,0 +1,289 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Courbes et pstricks}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2016-2017}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Dans le préambule du document, il faudra appeler :
+
+$\star$ pstricks-add, pour le tracé des courbes : \verb!\usepackage{pstricks-add}! ;
+
+$\star$ pst-eucl, pour la gestion des intersections des courbes : \verb!\usepackage{pst-eucl}!.
+
+\section{Repères}
+
+\begin{center}
+\begin{pspicture}(-2,-2)(5,5)
+\psgrid[subgriddiv=0,gridlabels=5pt,gridwidth=0.5pt,griddots=5](-2,-2)(5,5)
+\psaxes[labels=none]{->}(0,0)(-2,-2)(5,5)
+\end{pspicture}
+\end{center}
+
+\begin{center}
+\begin{pspicture}(-2,-2)(5,2)
+\psset{trigLabels=true,labelFontSize=\small}
+\psaxes{->}(0,0)(-2,-2)(5,2)
+\end{pspicture}
+\end{center}
+
+
+\begin{center}
+\begin{pspicture}(-7,-1.25)(7,1.25)
+\psset{algebraic=true}
+\psaxes[trigLabels=true,trigLabelBase=2,dx=\psPiH,xunit=\psPi]{->}(0,0)(-2.2,-1.25)(2.2,1.25)
+\psplot[linecolor=red,linewidth=1.5pt]{-7}{7}{sin(x)}
+\psplot[linecolor=blue,linewidth=1.5pt]{-7}{7}{cos(x)}
+\psline[linewidth=1.5pt]{->}(0,1)(1.57,1)
+\psline[linewidth=1.5pt,linecolor=green]{->}(-\psPi,-1)(\psPi,-1)
+\end{pspicture}
+\end{center}
+
+
+\section{Courbes classiques}
+
+\begin{center}
+\begin{pspicture}(-2.5,-1)(2.5,5)
+\psset{xunit=1 cm, algebraic=true}
+\psaxes{->}(0,0)(-2.5,-1)(2.5,5)
+\psplot[linecolor=red,linewidth=1.5pt]{-2}{2}{x^2}
+\end{pspicture}
+\end{center}
+
+\begin{center}
+\begin{pspicture}(-2.5,-1)(2.5,8)
+\psset{xunit=1 cm,algebraic=true}
+\def\f{x*x}
+\def\g{\f+3}
+\psaxes{->}(0,0)(-2.5,-1)(2.5,8)
+\psplot[linecolor=red,linewidth=1.5pt]{-2}{2}{\f}
+\psplot[linecolor=blue,linewidth=1.5pt]{-2}{2}{\g}
+\end{pspicture}
+\end{center}
+
+\begin{center}
+\begin{pspicture}(-3,-1)(3,6)
+\psset{xunit=1 cm,algebraic=true}
+\def\f{x*x+1}
+\def\g{1/(\f)}
+\psaxes{->}(0,0)(-3,-1)(3,6)
+\psplot[linecolor=red,linewidth=1.5pt]{-2.5}{2.5}{\f}
+\psplot[linecolor=blue,linewidth=1.5pt]{-2.5}{2.5}{\g}
+\end{pspicture}
+\end{center}
+
+\section{Courbes paramétrées}
+
+\begin{center}
+\begin{pspicture}(-1,-2)(2,2)
+\psset{xunit=1.5cm,yunit=1.5cm}
+\psaxes(0,0)(-1,-2)(2,2)
+\parametricplot[linecolor=red,linewidth=0.7pt]{0}{360}{
+%x(t)
+t cos 1 add t cos mul %retour à la ligne
+%y(t)
+t cos 1 add t sin mul
+}
+\end{pspicture}
+\end{center}
+
+Si on utilise l'instruction \verb!algebraic=true! et la commande 
+
+\verb!\parametricplot[par]{tmin}{tmax}{x(t)|y(t)}!, la variable $t$ sera alors exprimée en radians. L'exemple ci-dessous en est une illustration.
+
+\begin{center}
+\begin{pspicture}(-1,-2)(2,2)
+\psset{xunit=1.5cm,yunit=1.5cm,algebraic=true}
+\psaxes(0,0)(-1,-2)(2,2)
+\parametricplot[linecolor=red,linewidth=0.7pt]{0}{6.28}{(cos(t))^3|(sin(t))^3}
+\end{pspicture}
+\end{center}
+
+\section{Aires}
+
+Il est possible de représenter l'aire comprise entre la courbe d'une fonction, l'axe des abscisses et les deux droites d'équations $x=a$ et $x=b$.
+
+Pour cela, il s'agit d'utiliser la commande
+
+\verb!\pscustom[par]{segment(a,0)(a,f(a)) courbe segment(b,f(b))(b,0)}!
+
+On fera attention au dernier segment tracé puisque la première extrémité du segment part de la courbe.
+
+
+\begin{center}
+\psset{xunit=1cm, yunit=0.5cm}
+\begin{pspicture}(-2,-6)(2,10)
+\psaxes(0,0)(-2,-6)(2,10)
+\def\f{2 x 3 exp sub}
+\psplot{-2}{2}{\f}
+\pscustom[fillstyle=hlines,linestyle=solid,linewidth=0.5pt]
+{
+\psline(-1,0)(-1,3) % ligne verticale: (a,0)(a,f(a))
+\psplot{-1}{1}{\f} % courbe de f sur [a;b]
+\psline(1,1)(1,0) % ligne verticale: (b,f(b))(b,0)
+}
+\end{pspicture}
+\end{center}
+
+On pourra aussi représenter l'aire comprise entre deux courbes. Pour cela, il faudra utiliser la commande \verb!\pscustom[par]{courbe du bas courbe du haut}!.
+
+\begin{center}
+\psset{xunit=1cm, yunit=1cm,algebraic=true}
+\begin{pspicture}(-3,-1)(4,7)
+\psaxes(0,0)(-3,-1)(4,7)
+\def\f{x*x-2*x+2}
+\def\g{-x*x+6}
+\psplot{-1.5}{3}{\f}
+\psplot{-2}{2.2}{\g}
+\pscustom[fillstyle=hlines,linestyle=solid,linecolor=white,linewidth=0.0pt]
+{% linecolor=white,linewidth=0.0pt permet de ne pas avoir de trait en diagonales 
+% reliant les deux  points d'intersections
+\psplot{-1}{2}{\f} % courbe du bas
+\psplot{-1}{2}{\g} % courbe du haut
+}
+\end{pspicture}
+\end{center}
+
+
+\section{Intersection de deux courbes}
+
+Pour obtenir les points d'intersections de deux courbes, il est nécessaire de déclarer dans le préambule du document, le package pst-eucl par le code \verb!\usepackage{pst-eucl}!.
+
+C'est la seule partie où la \textbf{notation RPN} est nécessaire.
+
+De plus, il est possible que la recherche de l'intersection ne puisse aboutir puisque celle-ci utilise l'algorithme de NEWTON.
+
+Pour obtenir l'intersection entre une courbe et une droite (AB), on utilisera le code 
+
+\verb!\pstInterFL[par]{fonction}{A}{B}{abscisse}{nom_du_point}!. 
+
+L'abscisse donnée n'est pas forcément l'abscisse précise du point d'intersection mais juste un \og positionnement\fg{}.
+
+\begin{center}
+\begin{pspicture}(-2.5,-5)(2.5,8)
+\psset{xunit=1 cm}
+\def\f{x 3 exp 3 add}
+\psaxes{->}(0,0)(-2.5,-5)(2.5,8)
+\psplot[linecolor=blue,linewidth=1.5pt]{-2}{2}{\f}
+\pstGeonode[PointSymbol=none,PointName=none](0,2){U}
+\pstGeonode[PointSymbol=none,PointName=none](-1,0){V}
+\pstLineAB[nodesep=-3]{U}{V}
+\pstInterFL[PointSymbol=pentagon,PosAngle=170]{\f}{U}{V}{0}{M}
+\pstInterFL[PointSymbol=pentagon,PosAngle=170]{\f}{U}{V}{-1.5}{N}
+\pstInterFL[PointSymbol=pentagon,PosAngle=170]{\f}{U}{V}{2}{P}
+\end{pspicture}
+\end{center}
+
+Pour obtenir l'intersection entre deux courbes, on utilisera le code 
+
+\verb!\pstInterFF[par]{fonction_1}{fonction_2}{abscisse}{nom_du_point}!. 
+
+L'abscisse donnée n'est pas forcément l'abscisse précise du point d'intersection mais juste un \og positionnement \fg{}.
+
+\begin{center}
+\begin{pspicture}(-2.5,-5)(2.5,8)
+\psaxes{->}(0,0)(-2.5,-5)(2.5,8)
+\psset{xunit=1 cm}
+\def\f{x 2 exp}
+\def\g{3 x 1 add 2 exp sub}
+\psplot[linecolor=blue,linewidth=1.5pt]{-2}{2}{\f}
+\psplot[linecolor=red,linewidth=1.5pt]{-2}{2}{\g}
+\pstInterFF[PointSymbol=pentagon,PosAngle=170]{\f}{\g}{-1.5}{M}
+\pstInterFF[PointSymbol=x]{\f}{\g}{1}{N}
+\end{pspicture}
+\end{center}
+
+
+\section{Tableau de relation entre la notation RPN et la notation classique}
+
+\begin{center}
+\begin{tabular}{|*{3}{M{3cm}|}}
+\hline
+Nom&Syntaxe&notation classique\\
+\hline
+add&x y add&$x+y$\\
+\hline
+sub&x y sub&$x−y$\\
+\hline
+mul&x y mul&$x\times y$\\
+\hline
+exp&x y exp&$x^y$\\
+\hline
+div&x y div&$\dfrac{x}{y}$\\
+\hline
+neg&x neg&$−x$\\
+\hline
+sqrt&x sqrt&$\sqrt{x}$\\
+\hline
+abs&x abs&\verb!\abs(x)!\\
+\hline
+cos&x cos&$\cos(x)$\\
+\hline
+sin&x sin&$\sin(x)$\\
+\hline
+atan&x atan&\verb!\atan(x)!\\
+\hline
+ln&x ln&$\ln(x)$\\
+\hline
+\end{tabular}
+\end{center}
+
+Pour la fonction exponentielle, utiliser le nombre e en le remplaçant par 2.71828.
+
+\newpage
+\section{Autres exemples}
+
+\begin{center}
+\psclip{
+\psframe[linestyle=none](-5,-7)(5,7)
+}
+\multido{\i=0+2}{36}{%
+    \pstVerb{/kA \i\space def
+             /A1 kA 5 mul def
+             /A2 A1 5 add def}%
+ \pswedge*(0,0){9}{!A1}{!A2}}%
+\endpsclip
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

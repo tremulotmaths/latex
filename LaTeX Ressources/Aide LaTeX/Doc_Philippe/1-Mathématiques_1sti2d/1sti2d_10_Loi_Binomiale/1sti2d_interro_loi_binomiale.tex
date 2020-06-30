@@ -1,0 +1,91 @@
+\documentclass[10pt,french]{book}
+
+\input philippe2013
+\RegleEntete
+
+
+\newcommand\competences{
+\setcounter{exo}{0}
+\begin{tabular}{ll} Nom : \\[5pt] Prénom : \end{tabular}
+\hfill
+\textbf{Note :}\renewcommand\arraystretch{2.3}
+\begin{tabularx}{0.18\linewidth}{|X|}
+\hline
+\slashbox{\Huge\bfseries\phantom{10}}{\Huge\bfseries 10}\\
+\hline
+\end{tabularx}\renewcommand\arraystretch{1}\medskip
+}
+
+\entete{\premiere \sti}{Loi binomiale}{A}
+\pieddepage{}{}{}
+
+
+\begin{document}
+\competences\bigskip
+
+{\bfseries
+    Consignes importantes !!\par
+        \begin{itemize}
+            \item Tous les résultats seront donnés sous forme décimale arrondis à $10^{-3}$ près.
+            \item Les pourcentages ne sont pas acceptés.
+            \item Débuter les calculs de probabilités par $p(X = k)$ ou $p(X \leq k)$ ou $p(X \geq k)$ où $k$ doit être précisé.
+        \end{itemize}
+}\medskip
+
+\begin{enumerate}
+    \item Quatre personnes postulent à un emploi de cadre dans une entreprise.\par Les études de leur dossier sont faites indépendamment les unes des autres.\par On admet que la probabilité que chacune d'elles soit recrutée est égale à $0,2$.\par
+        On note l'événement $R$ : << la personne choisie est recrutée >> et $X$ est la variable aléatoire qui compte le nombre de personnes recrutées.
+
+        \begin{enumerate}
+            \item Quelle est la loi de probabilité suivie par $X$ ? Préciser les paramètres de cette loi.
+            \item Calculer la probabilité que deux personnes exactement soient recrutées.
+            \item Calculer la probabilité qu'au moins deux des quatre personnes soient recrutées.
+            \item Calculer l'espérance de $X$ et interpréter le résultat.
+        \end{enumerate}
+        
+    \item Cette fois-ci, dix personnes postulent au même emploi de cadre dans la même entreprise. \par Les études de leur dossier sont toujours faites indépendamment les unes des autres et on admet que la probabilité que chacune d'elles soit recrutée est toujours égale à $0,2$.\par
+        On note l'événement $R$ : << la personne choisie est recrutée >> et $Y$ est la variable aléatoire qui compte le nombre de personnes recrutées.
+        
+        \begin{enumerate}
+            \item Calculer la probabilité que quatre personnes exactement soient recrutées.
+            \item Calculer la probabilité qu'au maximum deux des dix personnes soient recrutées.
+            \item Calculer la probabilité qu'au minimum trois des dix personnes soient recrutées.
+            \item Calculer l'espérance de $Y$ et interpréter le résultat.
+        \end{enumerate}
+\end{enumerate}
+
+\clearpage
+\entete{\premiere \sti}{Loi binomiale}{B}
+\competences\bigskip
+
+{\bfseries
+    Consignes importantes !!\par
+        \begin{itemize}
+            \item Tous les résultats seront donnés sous forme décimale arrondis à $10^{-3}$ près.
+            \item Les pourcentages ne sont pas acceptés.
+            \item Débuter les calculs de probabilités par $p(X = k)$ ou $p(X \leq k)$ ou $p(X \geq k)$ où $k$ doit être précisé.
+        \end{itemize}
+}\medskip
+
+\begin{enumerate}
+    \item Cinq personnes postulent à un emploi de cadre dans une entreprise.\par Les études de leur dossier sont faites indépendamment les unes des autres.\par On admet que la probabilité que chacune d'elles soit recrutée est égale à $0,3$.\par
+        On note l'événement $R$ : << la personne choisie est recrutée >> et $X$ est la variable aléatoire qui compte le nombre de personnes recrutées.
+
+        \begin{enumerate}
+            \item Quelle est la loi de probabilité suivie par $X$ ? Préciser les paramètres de cette loi.
+            \item Calculer la probabilité que trois personnes exactement soient recrutées.
+            \item Calculer la probabilité qu'au moins trois des cinq personnes soient recrutées.
+            \item Calculer l'espérance de $X$ et interpréter le résultat.
+        \end{enumerate}
+
+    \item Cette fois-ci, neuf personnes postulent au même emploi de cadre dans la même entreprise. \par Les études de leur dossier sont toujours faites indépendamment les unes des autres et on admet que la probabilité que chacune d'elles soit recrutée est toujours égale à $0,3$.\par
+        On note l'événement $R$ : << la personne choisie est recrutée >> et $Y$ est la variable aléatoire qui compte le nombre de personnes recrutées.
+
+        \begin{enumerate}
+            \item Calculer la probabilité que cinq personnes exactement soient recrutées.
+            \item Calculer la probabilité qu'au maximum deux des neuf personnes soient recrutées.
+            \item Calculer la probabilité qu'au minimum trois des neuf personnes soient recrutées.
+            \item Calculer l'espérance de $Y$ et interpréter le résultat.
+        \end{enumerate}
+\end{enumerate}
+\end{document} 

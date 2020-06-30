@@ -1,0 +1,449 @@
+% Compilation : dvips
+\documentclass[a4paper,french]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} 
+\usepackage{etex}
+\usepackage{fourier}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\usepackage[tikz,pst]{pas-stat}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\tcbuselibrary{theorems}
+	\tcbuselibrary{breakable}
+
+% ----------------------
+
+\setlength{\parindent}{0pt}
+
+\input{doc.codes.tex}
+\input{doc.styles.tex}
+
+\usepackage{tabularx}
+
+\begin{document}
+
+\begin{center}
+\begin{tcolorbox}[head]
+{\bfseries\LARGE Documentation \texttt{pas-stat} }\\[3mm]
+{\large Version 2.01 -- \today}
+\end{tcolorbox}
+
+{\large 
+\href{http://www.mathweb.fr/contact.html}{Stéphane Pasquet}}
+\end{center}
+
+\begin{tcolorbox}[toc]
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\end{tcolorbox}
+
+\section{Introduction et installation}
+
+L'extension \texttt{pas-stat} a été conçue dans le but de faciliter les calculs concernant les statistiques (1 et 2 variables) ainsi que le tracé du nuage de points et de la droite d'ajustement affine.
+
+\medskip
+
+Cette extension charge automatiquement les extensions suivantes :
+
+\medskip
+
+\begin{quote}
+multido\\
+fp\\
+xkeyval\\
+xcolor (avec l'option \texttt{<table>})
+\end{quote}
+
+Sous Ubuntu, on pourra décompresser \texttt{pas-stat.zip} dans le répertoire :
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/
+\end{verbatim}
+
+de sorte à avoir :
+
+
+\begin{verbatim}
+./texlive/texmf-local/tex/latex/pas-stat/latex/pas-stat.sty
+./texlive/texmf-local/tex/latex/pas-stat/doc/pas-stat.tex
+./texlive/texmf-local/tex/latex/pas-stat/doc/pas-stat.pdf
+./texlive/texmf-local/tex/latex/pas-stat/doc/doc.codes.tex
+./texlive/texmf-local/tex/latex/pas-stat/doc/doc.styles.tex
+\end{verbatim}
+
+\medskip
+
+Après installation, n'oubliez pas de taper la commande \texttt{texhash} dans le terminal pour mettre à jour la base de données des extensions.
+
+\bigskip 
+
+Avec Miktex (sous Windows) ou macTex (sous Mac OS), j'imagine que l'arborescence ressemble à ce qui est écrit précédemment.
+
+
+\section{Calculs et constructions de tableaux}
+
+\subsection{Entrée des valeurs}
+
+\begin{tcblisting}{codeTEX}
+\valeurs{X1/Y1,...,Xn/Yn}
+\valeurs*{A1/X1/Y1,...,An/Xn/Yn}
+\end{tcblisting}
+
+\medskip
+
+Les $A_i$ correspondent aux années (par exemple), les $X_i$ aux rangs (par exemple) et les $Y_i$ aux données.
+
+
+\begin{tcblisting}{listing,title=Exemple 1 avec 2 lignes}
+\valeurs{1/105.045,2/128.3,3/156.5}
+La première valeur de X est : \ValX{1}\\
+La première valeur de Y est : \ValY{1}\\
+\end{tcblisting}
+
+
+\begin{tcblisting}{listing,title=Exemple 2 avec 3 lignes}
+\valeurs*{2001/1/105.045,2002/2/128.3,
+2003/3/156.5}
+La seconde valeur de A est : \ValA{2}\\
+La seconde valeur de X est : \ValX{2}\\
+La seconde valeur de Y est : \ValX{2}\\
+\end{tcblisting}
+
+
+\subsection{Construction du tableau des valeurs}
+
+\begin{tcblisting}{codeTEX}
+\arrayrulecolor{couleur des traits} % par défaut : black
+\tabgcolor{couleur de fond de la 1ère colonne} % par défaut : vide
+\tabtextcolor{couleur du texte des cellules} % par défaut : black
+\tabval{Étiquette ligne 1}{Étiquette ligne 2}
+\tabval*{Étiquette ligne}{Étiquette ligne 2}{Étiquette ligne 3}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title={Exemple 1}}
+\arrayrulecolor{green!50!black}
+\tabgcolor{green!20}
+\tabtextcolor{green!50!black}
+\valeurs{1/105.045,2/128.3,3/156.5}
+\tabval{Rangs $x_i$}{Données $y_i$}
+\end{tcblisting}
+
+\begin{tcblisting}{listing,title=Exemple 2}
+\arrayrulecolor{purple}
+\tabgcolor{purple!20}
+\tabtextcolor{purple}
+\valeurs*{2001/1/105.045,2002/2/128.3,2003/3/156.5}
+\tabval*{Années}{Rangs $x_i$}{Données $y_i$}
+\end{tcblisting}
+
+
+\subsection{Construction du tableau des logarithmes}
+
+\begin{tcblisting}{codeTEX}
+\tablog{Étiquette ligne 1}{Étiquette ligne 2}
+\tablog*{Étiquette ligne 1}{Étiquette ligne 2}{Étiquette ligne 3}
+\end{tcblisting}
+
+\medskip
+
+\emph{Si vous souhaitez changer les couleurs, utilisez à nouveau les commandes\\ \texttt{\textbackslash arrayrulecolor}, \texttt{\textbackslash tabgcolor} et \texttt{\textbackslash tabtextcolor}.}
+
+\medskip
+
+En utilisant cette commande, vous remplacerez automatiquement toutes les valeurs de \texttt{\textbackslash ValY\{i\}} par leur logarithme népérien.
+
+\begin{tcblisting}{listing,title=Exemple}
+\arrayrulecolor{green!50!black}
+\tabgcolor{green!20}
+\tabtextcolor{green!50!black}
+\valeurs{1/105.045,2/128.3,3/156.5}
+% \valeurs*{Années}{2009/1/105.045,2010/2/128.3,2011/3/156.5}
+\tablog{Rangs $x_i$}{Données $y_i$}
+\end{tcblisting}
+
+\subsection{Calcul des coordonnées du point moyen}
+
+\begin{tcblisting}{codeTEX}
+\pointMoyen[round=<nombres de chiffres après la virgule>]
+% par défaut, round=3
+\end{tcblisting}
+
+\medskip
+
+Cette commande définit deux variables \texttt{\textbackslash xG} et \texttt{\textbackslash yG}, qui sont respectivement l'abscisse et l'ordonnée du point moyen.
+
+\begin{tcblisting}{listing}
+\valeurs*{2001/1/105.045,2002/2/128.3,2003/3/156.5}
+\pointMoyen[round=5]
+Le point moyen est $G(\xG~;\yG)$.
+\end{tcblisting}
+
+\emph{Vous remarquerez que les zéros inutiles sont automatiquement éliminés.}
+
+\subsection{Calcul des coefficients de la droite d'ajustement affine}
+
+\begin{tcblisting}{codeTEX}
+\RegLin[round=<nombre de chiffres après la virgule>]
+\end{tcblisting}
+
+\medskip
+
+Cette commande définit les variables \texttt{\textbackslash a} et \texttt{\textbackslash b}, où $y=ax+b$ est l'équation de la droite d'ajustement.\\
+Elle définit aussi la commande \texttt{\textbackslash eqRegLin} qui écrit l'équation (sans se soucier du signe des coefficients).
+
+\begin{tcblisting}{listing}
+\valeurs*{2001/1/105.045,2002/2/128.3,2003/3/156.5}
+\RegLin
+L'équation est : \eqRegLin
+\end{tcblisting}
+
+\subsection{Calcul d'une estimation}
+
+Pour avoir une estimation selon la méthode des moindres carrés, on utilisera la commande suivante :
+
+\medskip
+
+\begin{tcblisting}{codeTEX}
+\estim[round=...]{<valeur de x>}
+\end{tcblisting}
+
+\medskip
+
+\begin{tcblisting}{listing,title=Exemple}
+\valeurs*{2001/1/105.045,2002/2/128.3,2003/3/156.5}
+\tabval*{Années}{$x_i$}{$y_i$}
+Pour $x=10$, on a $y=\estim[round=4]{10}$.
+\end{tcblisting}
+
+
+\section{Constructions graphiques}
+
+Les constructions graphiques peuvent se faire sous deux environnements : PST et/ou TiKZ.
+
+
+\medskip
+
+Pour dessiner sous TiKZ, on appellera l'extension ainsi :
+
+\medskip
+
+\begin{tcblisting}{codeTEX,title=Avec TiKZ}
+\usepackage[tikz]{pas-stat}
+\end{tcblisting}
+
+
+Pour dessiner sous PST, on appellera l'extension ainsi :
+
+\medskip
+
+\begin{tcblisting}{codeTEX,title=Avec PSTricks}
+\usepackage[pst]{pas-stat}
+\end{tcblisting}
+
+\medskip
+
+Il est aussi possible d'appeler les deux environnements :
+
+\begin{tcblisting}{codeTEX,title=Avec TiKZ et PSTricks}
+\usepackage[tikz,pst]{pas-stat}
+\end{tcblisting}
+
+\medskip
+
+Dans ce cas, il faudra préciser, lors de la construction du repère, l'environnement dans lequel vous souhaitez vous placer (voir section suivante).
+
+\subsection{Construction du repère}
+
+\begin{tcblisting}{codeTEX}
+\repere[<options>]
+\end{tcblisting}
+
+\newpage
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{tikz} OU \texttt{pst} & (booléens) & Uniquement si vous appelez le package avec les deux option PST et TIKZ. L'indication d'un des booléens précise avec quel environnement vous souhaitez travailler.\\
+\hline
+\texttt{xmin} & (réel) & Valeur minimale des abscisses (par défaut, xmin=0).\\
+\hline
+\texttt{xmax} & (réel) & Valeur maximale des abscisses (par défaut, xmax est calculé en fonction de la dernière valeur de \texttt{\textbackslash ValX\{i\}}).\\
+\hline 
+\texttt{ymin} & (réel) & Valeur minimale des ordonnées (par défaut, xmin=0).\\
+\hline
+\texttt{ymax} & (réel) & Valeur maximale des ordonnées (par défaut, ymax est calculé en fonction de la dernière valeur de \texttt{\textbackslash ValY\{i\}}).\\
+\hline 
+\texttt{xstep} & (réel) & Pas entre deux graduations sur l'axe des abscisses. Par défaut, xstep=1.\\
+\hline
+\texttt{ystep} & (réel) & Pas entre deux graduations sur l'axe des ordonnées. Par défaut, ystep=1.\\
+\hline
+\texttt{grid} & (booléen) & Indique que l'on veut une grille. Par défaut, grid=true.\\
+\hline
+\texttt{subgrid} & (booléen) & Indique que l'on veut une sous-grille. Par défaut, subgrid=false.\\
+\hline
+\texttt{subxstep} & (réel) & Pas entre deux graduations en abscisses pour la sous-grille. Il n'y a pas de valeur par défaut (donc vous devez impérativement en mettre une si vous voulez une sous-grille) car selon l'environnement (PST ou TiKZ), la nature du nombre varie. \color{red}Avec PST, cette option correspond à la valeur de \texttt{subdivgrid}, donc doit être entière (nombre en combien on veut diviser une unité). Avec TiKZ, cette valeur est comprise entre 0 et 1 (pas de la subdivision).\\
+\hline
+\texttt{subystep} & (réel) & Pas entre deux graduations en ordonnées pour la sous-grille. Il n'y a pas de valeur par défaut. \color{red}Cette option n'est pas accessible avec PST. Avec TiKZ, cette valeur est comprise entre 0 et 1.\\
+\hline
+\texttt{gridcolor} & (texte) & Couleur de la grille. Par défaut, gridcolor=gray.\\
+\hline
+\texttt{subgridcolor} & (texte) & Couleur de la sous-grille. Par défaut, subgrid=gray!20.\\
+\hline
+\texttt{axecolor} & (texte) & Couleur des axes. Par défaut, axecolor=black.\\
+\hline
+\texttt{labelcolor} & (texte) & Couleur des graduations. Par défaut, labelcolor=black.\\
+\hline
+\end{tabularx}
+
+
+%\begin{tcblisting}{listing}
+%\usepackage[tikz,pst]{pas-stat}
+%\valeurs{0/2.3,1/5.1,2/7.8,3/11.2}
+%\repere[tikz,subgrid,subxstep=0.2,subystep=0.5]
+%\end{document}
+%\end{tcblisting}
+
+
+%\begin{tcblisting}{listing}
+%\usepackage[tikz]{pas-statES}
+%\valeurs{0/2.3,1/5.1,2/7.8,3/11.2}
+%\repere[subgrid,subxstep=0.2,subystep=0.5]
+%\end{tcblisting}
+
+\medskip
+
+Vous trouverez d'autres exemples plus détaillés dans les exemples complets en fin de documentation.
+
+\subsection{Tracé du nuage de points}
+
+\begin{tcblisting}{codeTEX}
+\nuage[<options>]
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{color} & (texte) & Couleur des points. Par défaut, color=black.\\
+\hline
+\texttt{dim} & (réel) & Dimension (en pt) des points. Par défaut, dim=1pt.\\
+\hline
+\end{tabularx}
+
+\section{Tracé de la droite de régression linéaire}
+
+\begin{tcblisting}{codeTEX}
+\drawRegLine[<options>]
+\end{tcblisting}
+
+\medskip
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{color} & (texte) & Couleur de la droite. Par défaut, color=black.\\
+\hline
+\texttt{lw} & (entier ou texte) & Epaisseur de la droite. Avec TiKZ, vous n'êtes pas obligés d'informer cette option. Cependant, si vous souhaitez définir l'épaisseur, vous pourrez avoir le choix entre \emph{thin}, \emph{very thin}, \emph{thick}, \emph{very thick}. Pour PST, l'épaisseur s'exprime en nombre de points (1pt, 2pt, ...).\\
+\hline
+\texttt{name} & (texte) & Nom de la droite. Il n'y a pas de valeur par défaut.\\
+\hline
+\texttt{xname} & (réel) & Abscisse où sera positionné le nom de la droite. Par défaut, xname=\textbackslash xmax. L'ordonnée est automatiquement calculée.\\
+\hline
+\texttt{pos} & (texte) & Position du nom de la droite. Avec TiKZ, on peut utiliser \emph{above} (dessus), \emph{below} (dessous), \emph{left} (gauche), \emph{right} (droite), \emph{above left}, \emph{above right}, \emph{below left} et \emph{below right}. Avec PST, on pourra utiliser \emph{u} (up), \emph{d} (down), \emph{l} (left), \emph{r} (right), \emph{ul}, \emph{ur}, \emph{dl} ou \emph{dr}.\\
+\hline
+\end{tabularx}
+
+
+\subsection{Tracé du point moyen}
+
+\begin{tcblisting}{codeTEX}
+\drawG[<options>]
+\end{tcblisting}
+
+\newpage
+
+Les options sont les suivantes :
+
+\medskip
+
+\begin{tabularx}{\linewidth}{|>{\columncolor{red!20}}c|>{\columncolor{red!10}}c|X|}
+\hline
+\texttt{color} & (texte) & Couleur du point. Par défaut, color=black.\\
+\hline
+\texttt{name} & (texte) & Nom du point. Par défaut, name=G.\\
+\hline
+\texttt{pos} & (texte) & Position du nom du point. Avec TiKZ, on peut utiliser \emph{above} (dessus), \emph{below} (dessous), \emph{left} (gauche), \emph{right} (droite), \emph{above left}, \emph{above right}, \emph{below left} et \emph{below right}. Avec PST, on pourra utiliser \emph{u} (up), \emph{d} (down), \emph{l} (left), \emph{r} (right), \emph{ul}, \emph{ur}, \emph{dl} ou \emph{dr}.\\
+\hline
+\texttt{dim} & (entier) & Dimension du point. Par défaut, dim=2pt.\\
+\hline
+\end{tabularx}
+
+\section{Exemple complet}
+
+\begin{tcblisting}{listing}
+%\usepackage[tikz,pst]{pas-stat}
+\arrayrulecolor{green!50!black}
+\valeurs*{2001/1/105.045,2002/2/128.927,2003/3/143.741,2004/4/224.452, 2005/5/344.465,2006/6/463.729,2007/7/811.674,2008/8/1125.161}
+\begin{center}
+\tabgcolor{green!20}
+\tabtextcolor{green!50!black}
+\scalebox{0.75}{\tabval*{Années}{Rangs $x_i$}{Valeurs $y_i$}}
+\vskip 5mm
+\tabgcolor{green!20}
+\tabtextcolor{green!50!black}
+
+\scalebox{0.8}{\tablog{Rangs $x_i$}{Valeurs $z_i=\ln y_i$}}
+
+\medskip
+
+\pointMoyen Le point moyen est : G(\xG;\yG)
+
+\medskip
+
+\RegLin L'équation de la droite d'ajustement est : \eqRegLin
+
+\medskip
+
+{\Large\scshape\bfseries Avec TiKZ}
+
+\begin{tikzpicture}
+\repere[tikz,subgrid,ystep=2]
+\nuage[color=red,dim=2pt]
+\drawRegLine[color=purple,name=$(\mathcal{D})$,xname=8,pos=above right,lw=thick]
+\drawG[color=blue,pos=above]
+\end{tikzpicture}
+
+{\Large\scshape\bfseries Avec PST}
+
+\medskip
+
+\psset{xunit=1cm,yunit=1cm}
+\begin{pspicture}(0,0)(8,5)
+\repere[pst,%
+		subgrid,%
+		subxstep=3,%
+		ystep=2,%
+		labelcolor=blue]
+\nuage[color=red,dim=2pt]
+\drawRegLine[color=purple,xname=8,pos=ur,name=$(\mathcal{D})$,lw=1pt]
+\drawG[color=blue,pos=u]
+\end{pspicture}
+\end{center}
+
+\vspace*{2em}~
+\end{tcblisting}
+\end{document}

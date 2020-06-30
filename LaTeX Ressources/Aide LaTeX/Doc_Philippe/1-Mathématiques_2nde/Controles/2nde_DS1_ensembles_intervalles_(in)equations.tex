@@ -1,0 +1,88 @@
+\documentclass[11pt,french]{book}
+\input preambule_2013
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\textbf{(#1)}}\par
+  \medskip}%
+{\medskip}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|>\centering m{2.5cm}|>\centering X|>{\centering\arraybackslash} m{2.5cm}|}
+	\hline
+		\seconde 7 &  Mardi 8 octobre \np{2013} & \textbf{\'Equations Inéquations} \\
+	\hline
+		\multicolumn{3}{|c|}{\bsc{Contrôle de mathématiques}} \\
+	\hline
+        \multicolumn{1}{|r}{\bsc{Nom}:} & \multicolumn{2}{l|}{} \\
+		\multicolumn{1}{|r}{Prénom:} & \multicolumn{2}{l|}{} \\
+	\hline
+        \multicolumn{3}{|l|}{\bfseries Note et observations :} \\[1cm]
+    \hline
+\end{tabularx}\bigskip
+
+{\itshape
+La qualité et la précision de la rédaction seront prises en compte dans l'appréciation des copies.\par
+Le barème est indicatif.}
+\end{center}
+
+\begin{exoc}{4 points}
+\begin{enumerate}
+    \item Compléter en utilisant les symboles $\in$ et $\notin$.
+    \begin{multicols}{4}
+        \begin{enumerate}
+            \item $\sqrt 3 \ldots \Q$
+            \item $-2 \ldots \N$
+            \item $\frac 2 3 \ldots \Q$
+            \item $3 \ldots \R$
+        \end{enumerate}
+    \end{multicols}
+    \item Compléter les pointillés avec V ou F pour indiquer si les affirmations sont vraie (V) ou fausse (F).
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $1 \in \intervalleoo{1}{+\infty}$\quad \ldots
+            \item $1 \in \intervallefo{-2}{4}$ \quad \ldots
+            \item $x \geqslant 10 \Leftrightarrow  x \in \intervallefo{10}{+\infty}$ \quad \ldots
+            \item $3 < x < 9 \Leftrightarrow x \in \intervalleff 1 9$ \quad \ldots
+        \end{enumerate}
+    \end{multicols}
+\end{enumerate}
+\end{exoc}
+
+\begin{exoc}{6 points}
+    \begin{enumerate}
+        \item Résoudre les équations suivantes.
+        \item Pour chaque solution, donner les ensembles de nombres auxquelles elles appartiennent.
+    \end{enumerate}
+    \[2x - 4 = 8 \qq  (x + 2)(3x - 1) = 0 \qq 3x - 2(1 - 2x) = 6x - (7x - 2)\]
+\end{exoc}
+
+\begin{exoc}{3 points}
+    \begin{enumerate}
+        \item Résoudre les inéquations suivantes.
+        \item Donner les solutions sous forme d'un intervalle.
+        \item Représenter l'intervalle sur une droite graduée.
+    \end{enumerate}
+    \[-2x + 6 \geqslant 8 \qq 8x - 48 < 6 - 3x\]
+\end{exoc}
+
+\begin{exoc}{7 points}
+Un opérateur de téléphone portable propose trois formules. L'unité de durée des communications est la minute.
+    \begin{description}
+        \item[Formule \og~libre~\fg :] pas d'abonnement : \EUR{$0,50$} par minute.
+        \item[Formule \og~éco~\fg :] forfait 2 heures : \EUR{$15$} par mois, puis chaque minute supplémentaire est facturée \EUR{$0,30$}.
+        \item[Formule \og~pro~\fg :] tout illimité : \EUR{$54$} par mois.
+    \end{description}
+    
+    \begin{enumerate}
+        \item Calculer le prix de chaque formule pour trois heures de communication.
+        \item Combien de temps doit durer la communication pour le prix de la formule \og~libre~\fg coûte le même prix que la formule \og~pro~\fg ?
+        \item Un artisan hésite entre la formule \og~éco~\fg et la formule \og~pro~\fg.\par
+        À partir de combien de minutes de communication la formule \og~pro~\fg est la plus intéressante ?
+    \end{enumerate}
+\end{exoc}
+\end{document} 

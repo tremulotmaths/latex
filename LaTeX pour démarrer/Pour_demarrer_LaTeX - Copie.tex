@@ -1,0 +1,86 @@
+\documentclass[12pt,french,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020_demarrer_avec_latex}
+\portrait
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyvrb}
+\usepackage{fvrb-ex}
+\fvset{framerule=1pt,frame=lines,framesep=3mm,gobble=4,rulecolor=\color{blue},fontsize=\footnotesize,%
+xrightmargin=0.5\linewidth,numbers=left,numbersep=7pt,showtabs=true,tabsize=4,obeytabs=true}
+%frame=leftline
+%permet avec la commande \begin{SideBySideExample} d'écrire le code source à côté
+
+%\newcommand*{\jargon}[1]{\textit{#1}\index[jarg]{#1}\xspace}
+\newcommand*{\jargon}[1]{\textit{#1}\index{#1}\xspace}
+\newcommand*{\ordi}[1]{{\ttfamily #1}}
+
+\NewEnviron{info}
+{
+%\fontsize{8pt}{10pt}\selectfont\sffamily
+\noindent\begin{center}
+\begin{tikzpicture}
+\node[color=black,fill=blue!15,rounded corners=5pt,inner sep=5pt] at (0,0) {
+\begin{tabular}{cm{0.7\linewidth}}%
+\large\danger & \BODY
+\end{tabular}};
+\end{tikzpicture}
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{wrapfig}
+\usepackage{scratch}
+\usetikzlibrary{spy}% pour l'effet loupe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectlanguage{french}
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{pagedegarde/pagedegarde}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+\renewcommand{\contentsname}{Sommaire}\tableofcontents 
+%\thispagestyle{empty}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\parindent{0mm}
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\leftmark}{}{\thepage / \pageref{LastPage}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{1}
+
+\include{installation/installation}
+
+\include{premierdoc/premierdoc}
+
+\include{miseenforme/miseenforme}
+
+\include{maths/maths}
+
+\include{tableaux/tableaux}
+
+\include{images/images}
+
+\include{graphiques/graphiques}
+
+\include{arbres/arbres}
+
+\include{qr/qr}
+
+\include{code/code}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

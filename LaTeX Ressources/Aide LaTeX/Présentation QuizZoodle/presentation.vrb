@@ -1,0 +1,16 @@
+\frametitle{QdleTag how to (2)}
+\begin{itemize}
+\item You will find at the beginning of the source of this presentation a \LaTeX macro that will ease the inclusion of tags without disrupting your slide layout.
+\item Sometime, they can be error in pdf rendering, try to re-encode your pdf using the command: \verb+ pdf2ps slides.pdf - | ps2pdf - out.pdf +
+\item Hope you enjoy QuizZoodle and will use it very soon!
+\end{itemize}
+\pause
+\begin{block}{How you find the presentation?}
+\begin{enumerate}
+\item awesome
+\item very cool
+\item nice
+\item useless
+\end{enumerate}
+\only<2>{\QdleTag{S}{ABCD}{45}}
+\end{block}

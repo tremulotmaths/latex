@@ -1,0 +1,309 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{textcomp} 
+\newcommand{\euro}{\eurologo{}}
+\usepackage[left=2cm, right=2cm, top=1.8cm, bottom=2.7cm]{geometry}
+%Tapuscrit : Denis Vergès 
+%Sujet aimablement fourni par Clotilde Rouchon et Virginie Picavet
+\usepackage{pst-plot,pst-tree,pstricks-add}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+%\setlength{\textheight}{23,5cm}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O},~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+%\setlength{\voffset}{-1,5cm}
+\usepackage{fancyhdr}
+\usepackage[frenchb]{babel}
+\usepackage[np]{numprint}
+\begin{document}
+\setlength\parindent{0mm}
+\rhead{\textbf{A. P. M. E. P.}}
+\lhead{\small Baccalauréat  STG CGRH}
+\lfoot{\small{Nouvelle-Calédonie\hspace{1em}correction}}
+\rfoot{\small{14 novembre 2013}}
+\pagestyle{fancy}
+\thispagestyle{empty}
+\begin{center}{\Large\textbf{\decofourleft~Baccalauréat STG CGRH Nouvelle-Calédonie~\decofourright\\ 14 novembre 2013 \hspace{1em}Correction}} 
+\end{center}
+
+\vspace{0,5cm}
+
+\textbf{\textsc{Exercice 1} \hfill 5 points}
+
+\medskip
+{\footnotesize
+\emph{Cet exercice est un questionnaire à choix multiples (QCM).\\
+Pour chaque question, une seule des trois réponses est correcte.\\
+Écrire sur votre copie le numéro de la  question et la lettre correspondant à la réponse choisie.\\
+Aucune justification n’est demandée.\\
+Une réponse exacte rapporte $1$ point,  une réponse  fausse ou l’absence de réponse ne rapporte ni n’enlève de point.}
+}
+\bigskip
+
+\begin{enumerate}
+\item Un produit subit une augmentation de 5\,\% la première année et une baisse de 2\,\% la seconde année le taux d’évolution globale sur les deux années est de 
+
+\medskip
+\begin{tabularx}{\linewidth}{*{3}{X}} 
+\textbf{a.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$+ 3$\,\%}&\textbf{b.~~}\psCancel[cancelType=s, linewidth=0.05pt]{ $- 3$\,\%}&\ovalbox{\textbf{c.~~} $+ 2,9$\,\%}
+\end{tabularx}
+
+{\footnotesize (1+0,05)(1-0,02)=1,029 donc le taux est 0,029 soit 2,9\,\%}
+\medskip
+
+\item Une action subit une augmentation de 5\,\% la première année et une baisse de 2\,\% la seconde année. Le taux d’évolution \textbf{moyen} annuel à $0,01$ près sur les deux années est de
+
+\medskip
+\begin{tabularx}{\linewidth}{*{3}{X}} 
+\textbf{a.~~}\psCancel[cancelType=s, linewidth=0.05pt]{ $+ 1,50$\,\%}&\textbf{b.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$+ 2,90$\,\%}&\ovalbox{\textbf{c.~~} $+1,44$\,\%}
+\end{tabularx}
+{\footnotesize coefficient multiplicateur global 1,029 (\emph{cf supra}) ou $(1+t_m)^2$ d'où $t_m=\sqrt{1,029}-1=0,0144$}
+\medskip
+
+\item La droite tracée sur le graphique suivant a pour équation
+
+\begin{center}
+\psset{unit=0.8cm}
+\begin{pspicture}(-2,-1)(11,4.2)
+\psgrid[gridlabels=0pt,subgriddiv=2,gridcolor=orange,subgridcolor=orange](-2,-1)(11,4)
+\psaxes[linewidth=1.5pt]{->}(0,0)(-1.9,-0.9)(11,4.2)
+\psplot[plotpoints=5000,linewidth=1.25pt,linecolor=blue]{-2}{11}{3 x 3 div sub}
+\uput[dr](0,-0.24){O}
+\end{pspicture}
+\end{center}
+
+\medskip
+\begin{tabularx}{\linewidth}{*{3}{X}} 
+\ovalbox{\textbf{a.~~} $y = - \dfrac{1}{3}x + 3$}&\textbf{b.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$y =  \dfrac{1}{3}x + 3$ }&\textbf{c.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$y  = - 3x + 3$}
+\end{tabularx}
+\medskip
+
+\item On considère la suite arithmétique $\left(U_{n}\right)$ de premier terme $U_{0} = - 7$ et de raison $r = 3$.
+
+La somme des $10$ premiers termes de la suite est égale à 
+
+\medskip
+\begin{tabularx}{\linewidth}{*{3}{X}} 
+\textbf{a.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$- \np{206668}$}&\ovalbox{\textbf{b.~~} $65$}& \textbf{c.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$23$}
+\end{tabularx}
+
+{\footnotesize Le dixième terme de la suite est $u_9$ ; $u_9=-7+9\times 3=20\quad S_9=\frac{10(-7+20)}{2}=65$.}
+\medskip
+
+\item On considère la suite géométrique $\left(V_{n}\right)$  de raison $q = 1,1$. On donne $V_3  = 200$.
+
+Le terme $V_6$ est égal à
+
+\medskip
+\begin{tabularx}{\linewidth}{*{3}{X}} 
+\textbf{a.~~} \psCancel[cancelType=s, linewidth=0.05pt]{$203,3$}& \ovalbox{\textbf{b.~~} $266,2$}& \textbf{c.~~} \psCancel[cancelType=s, linewidth=0.05pt]{ $292,82$}
+\end{tabularx}
+
+{\footnotesize $V_6=V_3q^{6-3}\quad V_6=200\times \np{1.1}^3= \np{266.2}$.}
+\medskip
+
+
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\textbf{\textsc{Exercice 2} \hfill 7 points}
+
+\medskip
+{\footnotesize
+72 élèves de terminale STG suivent  les spécialités suivantes :  Mercatique, CFE et CGRH. On rappelle que les élèves qui suivent les spécialité Mercatique et CFE ont  trois  heures hebdomadaires de mathématiques, alors que ceux qui suivent la spécialité CGRH ont deux heures par semaine de mathématiques.
+
+\medskip
+
+La répartition dans ce groupe de 72 élèves est la suivante :
+
+\setlength\parindent{6mm}
+\begin{itemize}
+\item[$\bullet~~$] Il y a 21 garçons. Parmi eux, 6 suivent l’option mercatique.
+\item[$\bullet~~$] Parmi les filles, un tiers suit l'option mercatique et 20 suivent la spécialité CGRH.
+\item[$\bullet~~$] Il y a deux fois plus de filles que de garçons qui suivent la spécialité CFE. 
+\end{itemize}
+\setlength\parindent{0mm}
+
+\medskip
+}
+\begin{enumerate}
+\item Complétons le tableau à l’aide des renseignements fournis ci-dessus.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{|l|*{4}{>{\centering \arraybackslash}X|}}\hline
+&Spécialité mercatique &Spécialité CFE  &Spécialité CGRH& Total\\ \hline
+Filles&17&14&  20&51\\ \hline
+Garçons& 6& 7&8&21\\ \hline
+Total&23&21&28&   72\\ \hline
+\end{tabularx}
+\end{center}
+
+\emph{\footnotesize Dans la suite de l’exercice les résultats seront données sous la forme de fractions.}
+
+\medskip
+{\footnotesize
+On  choisit au hasard un élève et on considère les événements suivants : 
+
+\setlength\parindent{6mm}
+\begin{description}
+\item[ ] $F$ \og l’élève est une fille \fg{} ;
+\item[ ] $A$ \og l’élève a deux heures de mathématiques hebdomadaires \fg{} ; 
+\item[ ] $B$ \og l’élève a trois heures de mathématiques hebdomadaires \fg.
+\end{description}
+\setlength\parindent{0mm}
+
+On note $p_{A}(F)$,  la probabilité conditionnelle de $F$ sachant $A$.
+}
+\medskip
+
+L'univers est l'ensemble des 72 élèves de terminale. La loi mise sur cet univers est la loi équirépartie.
+La probabilité d'un événement A est  $p(A)=\frac{\text{\scriptsize nombre d'éléments de A}}{\text{\scriptsize nombre d'éléments de l'univers}}$.
+\item Calculons
+\begin{itemize}
+\item [$\bullet~~$]$p(B)$ ; Il y a 44 élèves ayant trois heures de mathématiques, par conséquent $p(B)=\dfrac{44}{72}=\dfrac{11}{18}$.
+\item [$\bullet~~$] $p\left(\overline{F}\right)$ ; Il y a 21 garçons par conséquent $p\left(\overline{F}\right)=\dfrac{21}{72}=\dfrac{7}{24}$.
+\item [$\bullet~~$] $p_{A}(F)$ ; Il y a 20 filles en CGRH sur un total de 28 élèves par conséquent $p_{A}(F)=\dfrac{20}{28}=\dfrac{5}{7}$.
+\end{itemize}
+
+\item 
+	\begin{enumerate}
+		\item  $F \cap A$ est l'événement : \og l'élève est une fille et a deux heures de mathématiques hebdomadaires\fg .
+
+Montrons que $p(F \cap A) =  \dfrac{5}{18}$.
+ 
+ Il y a 20 filles ayant deux heures de mathématiques hebdomadaires  parmi les 72 élèves. Par conséquent $p(F\cap A)=\dfrac{20}{72}=\dfrac{5}{18}$. 
+ 
+ C'est bien le résultat attendu
+		\item Les événements $A$ et $F$ sont indépendants si $p(F \cap A)=p(F)\times p(A)$.
+		
+	$p(F \cap A) =  \dfrac{5}{18},\qquad p(F)\times p(A)=\dfrac{51}{72}\times \dfrac{28}{72}=\dfrac{17}{24}\times \dfrac{7}{24}=\dfrac{17\times7}{24\times 24}= \dfrac{119}{576}$.
+	
+	Les événements ne sont pas indépendants.	
+	\end{enumerate}
+\item On choisit une fille dans le groupe des 72 élèves.
+
+La probabilité qu'elle  suive la spécialité CGRH  est notée $p_{F}(A)$.
+
+ $p_{F}(A)=\dfrac{p(F \cap A)}{p(F)}=\dfrac{\dfrac{5}{18}}{\dfrac{17}{24}}=\dfrac{5}{18}\times\dfrac{24}{17}=\dfrac{5\times24}{18\times17}=\dfrac{20}{51}$.
+ 
+ 
+ {\scriptsize \emph{remarque} Nous aurions pu considérer comme univers l'ensemble des filles, la loi étant toujours la loi équirépartie. Nous aurions obtenu $p_{F}(A)=\dfrac{20}{51}$.}
+\end{enumerate}
+
+\vspace{0,5cm}
+
+\textbf{\textsc{Exercice 3} \hfill 8 points}
+
+\medskip
+{\footnotesize 
+Dans un lycée un groupe d’élèves participant à un club de presse a réalisé un journal et décidé de l’imprimer pour le vendre.
+
+Les coûts d’impression en euros en fonction du nombre $x$  de journaux sont estimés à l’aide de la fonction $C$ définie par
+
+$C(x) =  0,005x^2 - 0,6x +  200\quad  x\in [0~;~500]$.
+
+La courbe représentative de la fonction $C$ est tracée sur l’annexe.
+
+\medskip
+
+Pour soutenir l’action des élèves du club de presse, le foyer leur donne une subvention de $150$~\euro. On décide alors de fixer le prix de vente du journal à $1,20$~\euro.
+
+En vendant $x$  journaux, les revenus en euros seront donnés  par la fonction $R$ définie par :
+$R(x) =  150 + 1,2x\quad  x \in [0~;~500]$.
+}
+\begin{enumerate}
+\item Calculons les revenus correspondant à la vente de $250$~ journaux. $R(250)=150+\np{1.20}\times 250=450$.
+
+La recette correspondant à la vente de 250 journaux est de 450~\euro.
+
+ La représentation graphique de la fonction $R$ est tracée sur l’annexe.
+\item  À l'aide du graphique, déterminons l'intervalle dans lequel doit se trouver le nombre de journaux vendus pour que le club de presse du lycée réalise un bénéfice. 
+
+Il réalise un bénéfice lorsque la recette est supérieure aux coûts. Graphiquement, lorsque la courbe des coûts est en-dessous de celle des recettes.
+
+ À la précision permise par le graphique, nous lisons l'intervalle [30~,~330].
+
+\item On désigne par $B$ la fonction estimant le bénéfice en euros réalisé par le club de presse du lycée pour la vente de $x$  journaux. Pour tout $x$ appartenant à [0~;~500],
+\[B(x)=R(x)-C(x)=150+\np{1.20}x-(\np{0.005}x^2-\np{0.6}x+200)=-\np{0.005}x^2+\np{1.8}x-50.\]
+
+\item Calculons la fonction dérivée, $B'$, de la fonction $B$. $B'(x)= -\np{0.005}(2x)+\np{1.8}=-\np{0.01}x+\np{1.8}\quad  x \in [0~;~500]$.
+
+Sur $\R$, $-\np{0.01}x+\np{1.8}>0 \iff x<180$. 
+
+Par conséquent, $B'(x)>0$ si $x$ appartient à $[0~;~180[$ et $B'(x)<0$ si $x$ appartient à $]180~;~500]$.
+
+Si pour tout $x\in I,\:f'(x)> 0$ alors $f$ est strictement croissante sur $I$. Pour $x\in [0~;~180[,\ B'(x)>0$, par conséquent $B$ est strictement croissante sur cet intervalle.
+
+Si pour tout $x\in I,\:f'(x)<0 $ alors la fonction $f$ est strictement décroissante sur $I$. Pour $x\in ]180~;~500],\ B'(x)<0$, par conséquent $B$ est strictement décroissante sur cet intervalle.
+ 
+Dressons le tableau de variation de la fonction $B$ sur l’intervalle [0~;~500]
+
+\begin{center}
+\psset{unit=1cm}
+\begin{pspicture}(8,3)
+\psframe(8,3)
+\psline(0,2.5)(8,2.5) \psline(1,0)(1,3) \psline(0,2)(8,2) 
+\uput[u](0.5,2.45){$x$}  \uput[u](1.35,2.45){$0$} \uput[u](4.5,2.45){$180$}\uput[u](7.75,2.45){$500$}
+\uput[u](0.5,1.9){$B^{\prime}(x)$}\uput[u](2.6,2){$+$}\uput[u](6.6,2){$-$}
+\rput(0.5,1.5){\scriptsize Variations}\rput(0.4,1){de $B$}
+\uput[u](4.5,1.9){$0$} \uput[d](1.45,0.51){$-50$}\uput[u](4.5,1.5){$112$}\uput[d](7.2,0.55){$-400 $}
+\psline{->}(1.5,0.5)(4.1,1.6) \psline{->}(4.7,1.6)(7.3,0.5)
+\end{pspicture}
+\end{center}
+\item 
+	\begin{enumerate}
+		\item À l'aide du tableau de variation, le nombre de journaux à vendre pour que le bénéfice soit maximal est $180$.
+		\item Ce bénéfice vaut alors 112~\euro.
+	\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\Large \textbf{ANNEXE\\À RENDRE AVEC VOTRE COPIE}}
+
+\vspace{0,5cm}
+
+\psset{unit=0.025cm}
+\begin{pspicture*}(-40,-25)(425,650)
+\psaxes[linewidth=1.5pt,Dx=25,Dy=25]{->}(0,0)(-24,-24)(425,650)
+\multido{\n=0.0+12.5}{35}{\psline[linewidth=0.2pt,linecolor=orange](\n,0)(\n,650)}
+\multido{\n=0.0+12.5}{53}{\psline[linewidth=0.2pt,linecolor=orange](0,\n)(425,\n)}
+\psplot[plotpoints=5000,linewidth=1.25pt,linecolor=blue]{0}{375}{x dup mul 0.005 mul 0.6 x mul sub 200 add}
+\uput[d](420,0){$x$}
+\uput[l](0,645){$y$}\uput[dl](0,0){O}
+\psplot[plotpoints=5000,linewidth=0.75pt,linecolor=cyan]{0}{420}{x 1.2 mul 150 	add}
+\psset{arrowscale=2}
+\psline[linecolor=red,linestyle=dashed,ArrowInside=->]{->}(30.3337,186.4)(30.3337,0)
+\psline[linecolor=red,linestyle=dashed,ArrowInside=->]{->}(329.6663,545.5996)(329.6663,0)
+\pnode(30.3337,0){A}
+\pnode(329.6663,0){B}
+\psbrace[braceWidth=0.5pt,rot=-90,nodesepB=-5pt,ref=lc](B)(A){\footnotesize intervalle de bénéfice}
+\end{pspicture*}
+\end{center}
+\end{document}

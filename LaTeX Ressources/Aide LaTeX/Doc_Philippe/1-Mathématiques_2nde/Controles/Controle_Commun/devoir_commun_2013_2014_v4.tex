@@ -1,0 +1,339 @@
+\documentclass[12pt,french]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2013}
+\input{perso_dom_2013_2014}
+%\input{/home/dom/Dropbox/Modeles_latex/preambules_2013/preambule_2013}
+%\input{/home/dom/Dropbox/Modeles_latex/preambules_2013/perso_dom_2013_2014}
+%\input{C:/Users/Sophie/Documents/Cours/LaTeX/preambules_2013/preambule_2013}
+%\input{C:/Users/Sophie/Documents/Cours/LaTeX/preambules_2013/perso_dom_2013_2014}
+%\input{tabvar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête contrôle
+
+\fancypagestyle{garde_controle}{% 
+%\fancyhead[C]{\small\textbf{Nom,  Prénom : }\makebox[5cm]{\dotfill}\hfill \small \textbf{\tesspe - 2013/2014}}
+\fancyhead[C]{\small\textbf{Nom,  Prénom : }\makebox[5cm]{\dotfill}\hfill \small \textbf{\seconde - 2013/2014}}
+%\fancyhead[C]{\small\textbf{Nom,  Prénom : }\makebox[5cm]{\dotfill}\hfill \small \textbf{\BAT - 2013/2014}}
+\renewcommand{\headrulewidth}{0cm}}
+
+
+\newcommand{\controle}{
+\thispagestyle{garde_controle}
+
+\begin{tikzpicture}
+\node[%shading=ball,ball color=blue!20,
+rectangle,draw=black,rounded corners,thick]{%
+\begin{minipage}{\linewidth}
+\begin{center}
+\vspace*{6pt}
+\textbf{\large DEVOIR COMMUN DE MATH\'EMATIQUES}\\
+\textit{Mars 2014}
+\vspace*{6pt}
+\end{center}
+\end{minipage}
+};\end{tikzpicture}
+
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{center}
+\textit{L'usage de la calculatrice est autorisé.\\
+La qualité de la rédaction, la clarté et la précision des raisonnements seront prises en compte dans l'appréciation de la copie.
+Le barème est indicatif.}
+\end{center}
+\end{minipage}
+\end{center}
+
+\noindent
+%\vspace{1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\controle		%entête contrôle
+
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+%\pieddepage{\BAT}{\thepage / \pageref{LastPage}}{Année 2013-2014}
+%\pieddepage{\tesspe}{\thepage / \pageref{LastPage}}{Année 2013-2014}
+\pieddepage{\seconde}{\thepage / \pageref{LastPage}}{Année 2013-2014}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% exercice 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\exercice \hfill\textbf{(15 points)}%inspiré de l'ex 80 p 191 Hyperbole
+\bigskip
+
+On considère le repère orthonormé ci-dessous. On complètera la figure au fur et à mesure.\par 
+\textbf{La figure peut servir à vérifier ou à admettre les résultats.}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
+\draw [color=gray!50, xstep=0.5,ystep=0.5] (-9.5,-11.5) grid (8.5,8.5);
+\draw [color=gray,xstep=1.0,ystep=1.0] (-9.5,-11.5) grid (8.5,8.5);
+\draw (-1pt,-2pt) node [below left,font=\bfseries] {0};
+\draw[->,line width=2pt] (-9.5,0) -- (8.5,0);
+\foreach \x in {-9,...,-1,1,2,3,4,5,6,7,8}
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\boldmath] {$\x$};
+\draw[->,line width=2pt] (0,-11.5) -- (0,8.5);
+\foreach \y in {-11,...,-1,1,2,3,4,5,6,7,8}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\boldmath] {$\y$};
+\clip(-9.5,-11.5) rectangle (8.5,8.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
+%\draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-2*\x+5});
+\draw (-2,3) node [above right,font=\bfseries] {A};
+\draw [line width=1.5pt] (-2,3)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+%\draw (0,1) node [above right,font=\bfseries] {B};
+%\draw [line width=1.5pt] (0,1)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+%\draw (2,1) node [above right,font=\bfseries] {C};
+%\draw [line width=1.5pt] (2,1)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+%\draw (3.5,-2) node [above right,font=\bfseries] {D};
+%\draw [line width=1.5pt] (3.5,-2)-- ++(3pt,3pt)-- ++(-6pt,-6pt)-- ++(3pt,3pt)-- ++(-3pt,3pt)-- ++(6pt,-6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=\arabic*.]
+\item 	\begin{enumerate}[label=\alph*)]
+	\item Dans le repère ci-dessus, lire les coordonnées du point A.
+	
+	\item Placer les points $C(-2\pv -9)$ et $D(-8\pv -3)$.
+	\end{enumerate}
+	
+\item Quelle est la nature du triangle ADC ? Justifier.
+
+\item\begin{enumerate}[label=\alph*)]
+	\item Déterminer, par le calcul, une équation de la droite $(CD)$.
+	
+	\item Déterminer, par le calcul, une équation de la droite $\Delta$ parallèle à la droite (CD) passant par A.
+			
+	\end{enumerate}
+
+\item \begin{enumerate}[label=\alph*)]
+	\item Tracer la droite \calig{D} d'équation $y=5x+1$.
+	
+	\item Calculer les coordonnées du point d'intersection B des droites \calig{D} et $\Delta$.	
+		
+	\end{enumerate}	
+
+\item \begin{enumerate}[label=\alph*)]
+	\item Soit $\Omega$ le point de \calig{D} d'abscisse $1$. On rappelle que la droite  \calig{D} a pour équation $y=5x+1$.\par 
+	 Calculer l'ordonnée de $\Omega$.
+	
+	\item Calculer les coordonnées du point K milieu du segment [CD].
+	
+	\item Soit I le point de coordonnées $(-1 \pv 2)$.\par 
+	Les points $\Omega$, I et K sont-ils alignés ?
+	
+		
+	\end{enumerate}
+	
+	
+	
+\end{enumerate}
+
+\begin{center}
+$\star$\quad $\star$\quad $\star$\quad $\star$\quad $\star$
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% exercice 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\exercice \hfill\textbf{(15 points)}%
+\bigskip
+
+\textbf{Les parties \rond{A} et \rond{B} sont en grande partie indépendantes et peuvent être traitées séparément.}
+
+\medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Partie} \rond{A}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+La courbe représentative $\calig{C}_f$ de la fonction $f$ est tracée dans le repère orthogonal ci-dessous.
+
+\begin{center}
+        \begin{tikzpicture}[scale=0.8,line cap=round,line join=round,>=stealth,x=1cm,y=0.02cm]
+            \draw[gray] (-8,-300)grid(8,500);
+            \draw[->,line width=1.5pt] (-8,0)--(8,0)node[below,font=\boldmath] {$x$};
+            \draw[->,line width=1.5pt] (0,-300)--(0,500)node[left,font=\boldmath] {$y$};
+\foreach \x in {-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7}
+\draw (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\draw (1.5,-25) node[below,font=\bfseries] {1,5};
+\foreach \y in {-250,-200,-150,-100,-50,50,100,150,200,250,300,350,400,450}
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+\draw (-2pt,-2pt) node [below left,font=\bfseries] {0};
+
+\draw[line width=1.5pt] plot[smooth=200,mark=x,mark options={scale =2.5}] coordinates{(-8,400)(-7,200)(-6,100)(-5,0)(-4,-100)(-3,-150)(-2,-100)(-1,0)(0,50)(1.5,100)(3,200)(6,100)(7,50)(8,0)};
+            \draw[line width=2pt,style=dashed](1.5,0)--(1.5,100)--(0,100);
+            \draw (-7,300) node[above right,font=\boldmath]{$\calig{C}_f$};
+        \end{tikzpicture}
+    \end{center}
+
+\begin{enumerate}[label=\arabic*.]
+\item Lire les images par $f$ des nombres $-6$ ; $-3$ et $8$.
+
+\item Lire les antécédents de $200$ par la fonction $f$.
+
+\item Résoudre graphiquement, sur l'intervalle $\intervalleff{-8}{8}$, l'inéquation $f(x)\geq 0$.
+
+\item 	\begin{enumerate}[label=\alph*)]
+	\item Dresser le tableau de variation de $f$ dans l'intervalle $\intervalleff{-8}{8}$.
+	
+	\item Préciser le minimum et le maximum de $f$ dans cet intervalle ainsi que les valeurs de $x$ pour lesquels ces extremums sont atteints.
+	
+	\end{enumerate}
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\medskip\textbf{Partie} \rond{B}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+On considère la fonction $g$ définie sur $\R$ par : $g(x)=2x^3-3x^2-72x+208$.
+
+\begin{enumerate}[label=\arabic*.]
+\item Calculer $g(1,5)$.
+
+\item 	\begin{enumerate}[label=\alph*)]
+	\item Développer, pour tout réel $x$, l'expression algébrique $(x-4)^2$.
+	
+	\item En déduire, que pour tout réel $x$, $g(x)=(2x+13)(x-4)^2$.
+	
+	\end{enumerate}
+
+\item Résoudre, dans $\R$, l'équation $g(x)=0$.
+
+\item Compléter, \textbf{sur l'énoncé}, à l'aide de la calculatrice, le tableau de valeurs suivant :
+
+\end{enumerate}
+
+\small
+\begin{tabular}{|*{18}{M{0.5cm}|}}
+\hline
+$x$&$-8$&$-7$&$-6$&$-5$&$-4$&$-3$&$-2$&$-1$&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$\\
+\hline
+$g(x)$& & &$100$& & & & & &$208$& & & & & & & & \\
+\hline
+\end{tabular}
+\normalsize
+
+\begin{enumerate}[resume,label=\arabic*.]
+\item Tracer la courbe $\calig{C}_g$ de la fonction $g$ dans le repère précédent.
+
+\item Résoudre graphiquement, sur l'intervalle $\intervalleff{-8}{8}$, l'équation $f(x)=g(x)$.
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% exercice 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+$\star$\quad $\star$\quad $\star$\quad $\star$\quad $\star$
+\end{center}
+\exercice \hfill\textbf{(10 points)}%
+\bigskip
+
+\begin{center}
+Les parties \rond{A} et \rond{B} sont  indépendantes et peuvent être traitées séparément.
+
+\large \textbf{\textit{Pour chaque question, détailler la démarche et justifier vos réponses}}
+\end{center}
+
+\textbf{Partie} \rond{A}
+
+Une chaîne de télévision cible pour public les adolescents de $10$ à $18$ ans. Afin de choisir plus efficacement les émissions diffusées, le directeur des programmes a réalisé une première étude permettant de classer le nombre de téléspectateurs en fonction de leur âge. Le tableau suivant résume les résultats pour une journée :
+
+\begin{center}
+    \begin{tabularx}{\linewidth}{|>\centering m{2cm}|*{9}{>{\centering\arraybackslash}X|}}
+        \hline
+           Âge (en années) & $10$ & $11$ & $12$ & $13$ & $14$ & $15$ & $16$ & $17$ & $18$ \\
+        \hline
+            Effectif & $28$ & $56$ & $98$ & $152$ & $148$ & $201$ & $176$ & $101$ & $40$ \\
+        \hline
+             &  &  &  &  &  &  &  &  &  \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+    \item 
+        \begin{enumerate}[label=\alph*)]
+            \item Combien d'adolescents ont été concernés par cette étude ?
+            \item Quel est l'âge moyen $\overline m$ des adolescents interrogés ? Arrondir la réponse à l'unité.
+        \end{enumerate}
+    \item Compléter, sur le sujet, la dernière ligne du tableau en calculant les effectifs cumulés croissants.
+    
+
+
+
+
+    \item 
+        \begin{enumerate}[label=\alph*)]
+            \item Quel est l'âge médian $Me$ des adolescents interrogés ? Interpréter le résultat obtenu.
+            \item Déterminer le premier quartile $Q_1$ et le troisième quartile $Q_3$. Interpréter les résultats obtenus.
+            
+        \end{enumerate}
+    \item Le Président de la chaîne de télévision souhaite que $50\%$ des téléspectateurs soient âgés de $14$ ans ou moins.\par Cet objectif a-t-il été respecté le jour de l'étude ? Détailler précisément la démarche.
+\end{enumerate}
+
+
+\textbf{Partie} \rond{B}
+
+Une deuxième étude, sur une autre journée, concerne cette fois les adolescents âgés de $15$ ans. Son objectif est de savoir combien de minutes par jour un adolescent regarde la télévision. Les résultats sont reportés sur le graphique suivant :
+
+\begin{center}
+    \begin{tikzpicture}[scale=1]
+        \foreach \x in {1,...,5} \draw (0,\x) -- (8,\x);
+        \foreach \x in {0.5,1.5,...,5.5} \draw[dashed] (0,\x) -- (8,\x);
+        \draw (0,0) node[left] {\footnotesize $0$};
+        \draw (0,1) node[left] {\footnotesize $10$};
+        \draw (0,5) node[left] {\footnotesize $50$};
+        \draw[line width = 0.2pt,<->,>=latex] (0,6) node[above] {\footnotesize effectifs} -- (0,0) -- (8,0) node[below right] {\footnotesize durée en minutes};
+        \draw[line width = 15pt,color=gray] (0.5,0) -- (0.5,0.5);
+        \draw[line width = 15pt,color=gray] (1.5,0) -- (1.5,1);
+        \draw[line width = 15pt,color=gray] (2.5,0) -- (2.5,2);
+        \draw[line width = 15pt,color=gray] (3.5,0) -- (3.5,4.5);
+        \draw[line width = 15pt,color=gray] (4.5,0) -- (4.5,5);
+        \draw[line width = 15pt,color=gray] (5.5,0) -- (5.5,3.5);
+        \draw[line width = 15pt,color=gray] (6.5,0) -- (6.5,3);
+        \draw[line width = 15pt,color=gray] (7.5,0) -- (7.5,1);
+        \foreach \x/\y in {0.5/15,1.5/30,2.5/45,3.5/60,4.5/75,5.5/90,6.5/105,7.5/120} \draw (\x,0) node[below] {\footnotesize $\y$};
+    \end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Combien d'adolescents sont concernés par cette deuxième étude ? 
+    \item Le Ministère de la Santé et le Ministère de l'\'Education Nationale ont conjointement publié un article dont voici un extrait :
+    \begin{center}
+    \tt
+    << La télévision nuit gravement à la scolarité d'un adolescent de 15 ans lorsque celui-ci la regarde durant 1h30 par jour ou davantage. >>
+    \end{center}
+    En considérant le point de vue de cet article, parmi les adolescents interrogés lors de la deuxième étude, quel est le pourcentage (arrondi au dixième) de ceux qui mettent en péril leur scolarité.\par Détailler précisément la démarche.
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

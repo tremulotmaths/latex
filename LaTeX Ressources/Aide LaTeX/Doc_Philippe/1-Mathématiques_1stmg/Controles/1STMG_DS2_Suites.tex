@@ -1,0 +1,86 @@
+\documentclass[10pt,french]{article}
+\input preambule_2013
+
+\newcounter{exoc}
+\newenvironment{exoc}[1]{%
+  \refstepcounter{exoc}\textbf{Exercice \theexoc} :\hfill {\textbf{(#1)}}\par
+  \medskip}%
+{\medskip}
+
+\begin{document}
+
+
+\pieddepage{}{}{}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|>\centering m{2.5cm}|>\centering X|>{\centering\arraybackslash} m{2.5cm}|}
+	\hline
+		1\iere \bsc{s.t.m.g.} &  Mercredi 12 novembre \np{2013} & \textbf{Suites} \\
+	\hline
+		\multicolumn{3}{|c|}{\bsc{Contrôle de mathématiques}} \\
+	\hline
+        \multicolumn{1}{|r}{\bsc{Nom}:} & \multicolumn{2}{l|}{} \\
+		\multicolumn{1}{|r}{Prénom:} & \multicolumn{2}{l|}{} \\
+	\hline
+        \multicolumn{3}{|l|}{\bfseries Note et observations :} \\[1cm]
+    \hline
+\end{tabularx}\bigskip
+
+{\itshape
+La qualité et la précision de la rédaction seront prises en compte dans l'appréciation des copies.\par
+Le barème est indicatif.\par
+\textbf{Tous les calculs doivent être détaillés.}}
+\end{center}
+
+\begin{exoc}{1 + 1 + 1 + 1 + 1 = 5 pts}
+    \begin{enumerate}
+        \item Calculer les quatre premiers termes de chacune des suites suivantes :
+            \begin{enumerate}
+                \item La suite $(u_n)$ est définie pour tout nombre entier naturel $n$ par $u_n = n^2 + 4n$.
+                \item La suite $(v_n)$ est définie pour tout nombre entier naturel $n \neq 0$ par $v_n = \frac 2 n + 3n$.
+                \item La suite $(w_n)$ est définie pour tout nombre entier naturel $n$ par $\left\{\begin{array}{rcl} w_0 & = & -2 \\ w_{n +1} &=& 2w_n - 4\end{array}\right.$.
+                \item La suite $(x_n)$ est définie pour tout nombre entier naturel $n \neq 0$ par $\left\{\begin{array}{rcl} x_1 & = & 2 \\ x_{n +1} &=& (x_n)^2 - 1\end{array}\right.$.
+            \end{enumerate}
+        \item À l'aide de la calculatrice, donner la valeur de $u_{200}$ et $w_{13}$.
+    \end{enumerate}
+\end{exoc}
+
+\begin{exoc}{3 + 3 = 6 pts}
+    \begin{enumerate}
+        \item $(a_n)$ est la suite arithmétique de premier terme $a_0 = -2$ et de raison $r = 3$.
+            \begin{enumerate}
+                \item Calculer $a_1$ et $a_2$.
+                \item Donner l'expression de $a_{n+1}$ en fonction de $a_n$.
+                \item Donner l'expression de $a_n$ en fonction de $a_0$.
+                \item En détaillant précisément les calculs et à l'aide de la question précédente, donner la valeur exacte de $a_{100}$.
+                \item La suite $(a_n)$ est-elle croissante ou décroissante ? Justifier précisément en utilisant une propriété du cours.
+            \end{enumerate}
+        \item $(b_n)$ est la suite géométrique de premier terme $b_0 = \np{4000000}$ et de raison $q = 0,5$.
+            \begin{enumerate}
+                \item Calculer $b_1$ et $b_2$.
+                \item Donner l'expression de $b_{n+1}$ en fonction de $b_n$.
+                \item Donner l'expression de $b_n$ en fonction de $b_0$.
+                \item En détaillant précisément les calculs et à l'aide de la question précédente, donner la valeur exacte de $b_{10}$.
+                \item La suite $(b_n)$ est-elle croissante ou décroissante ? Justifier précisément en utilisant une propriété du cours.
+            \end{enumerate}
+    \end{enumerate}
+\end{exoc}
+
+\begin{exoc}{1 + 2 + 2 + 1 + 1 + 1 + 1 = 9 pts}
+La population d'une ville augmente de $\np{7200}$ habitants chaque année. En \np{2010}, la ville comptait $\np{105400}$ habitants.\par
+On note $p_0$ le nombre d'habitants en \np{2010} et $p_n$ le nombre d'habitants en $(\np{2010} + n)$.
+    \begin{enumerate}
+        \item Quelle est la valeur de $p_0$ ?
+        \item Calculer $p_1$ et $p_2$. Interpréter les résultats.
+        \item Quelle est la nature de la suite $(p_n)$ ? Donner une réponse précise.
+        \item Expliquer pourquoi $p_n = \np{105400} + \np{7200}n$.
+        \item À l'aide de la question précédente, calculer $p_{10}$. Interpréter le résultat.
+        \item À l'aide de la calculatrice :
+        \begin{enumerate}
+            \item déterminer le nombre d'habitants en \np{2033} ;
+            \item déterminer au bout de combien d'années le nombre d'habitants aura au moins doublé.
+        \end{enumerate}
+    \end{enumerate}
+\end{exoc}
+
+\end{document} 

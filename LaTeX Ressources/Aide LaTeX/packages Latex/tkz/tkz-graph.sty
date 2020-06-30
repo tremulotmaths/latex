@@ -1,0 +1,878 @@
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %     tk-graphes.sty    encodage : utf8                         %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %                                                               %
+    %           Créé par Alain Matthes le 09-10-2007.               %
+    %        contribution :  Rafael Villarroel 2007   (RV)          %
+    %                                                               %
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%% Objet :  Création de graphes
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tkz-graph}[20/12/2007 v2.0 base for graphs  ]
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\RequirePackage{etex}
+\RequirePackage{ifthen}
+\RequirePackage{xkeyval}[2005/11/25]
+\RequirePackage{tikz}[2007/07/23]
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcounter{tkzb@ca}
+\newcounter{tkzb@cb}
+\newcounter{tkzb@cc}
+\newcounter{tkzb@v}
+\newcounter{tkzb@cd}
+\newcounter{tkzb@ce}
+\newcounter{tkzb@cf}
+\newcounter{tkzb@temp}
+\newcounter{tkzb@int}
+\newcounter{tkzb@next}
+\newcounter{tkzb@ta}
+\newcounter{tkzb@tb}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                           Init vertex  
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\ifdefined\twoptoff
+\else
+\newboolean{@twopt} \setboolean{@twopt}{false} 
+\newcommand*{\twoptoff}{\ifnum \catcode`\:=13 \catcode`\:=12 \setboolean{@twopt}{true} \fi}
+\newcommand*{\twopton}{\if@twopt \catcode`\:=13 \setboolean{@twopt}{false}  \fi}
+\fi
+
+\newcommand*{\VertexShape}{circle}
+\newcommand*{\VertexLineWidth}{1pt}
+\newcommand*{\VertexLineColor}{black}
+\newcommand*{\VertexLightBkgColor}{white}
+\newcommand*{\VertexDarkBkgColor}{black}
+\newcommand*{\VertexTextColor}{black}
+\newcommand*{\VertexBallColor}{orange}
+\newcommand*{\VertexBigMinSize}{24pt}
+\newcommand*{\VertexInterMinSize}{18pt}
+\newcommand*{\VertexSmallMinSize}{12pt}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%   Simple Vertex
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey [GR] {SVS} {Shape}{}
+\define@cmdkey [GR] {SVS} {MinSize}{}
+\define@cmdkey [GR] {SVS} {LineWidth}{}
+\define@cmdkey [GR] {SVS} {LineColor}{}
+\define@cmdkey [GR] {SVS} {BkgColor}{}
+\define@cmdkey [GR] {SVS} {TextColor}{}
+\presetkeys    [GR] {SVS} {Shape          = circle,
+                           MinSize        = \VertexSmallMinSize,
+                           LineWidth      = \VertexLineWidth,
+                           LineColor      = \VertexLineColor,
+                           BkgColor       = black}{}
+
+\newcommand*{\SetVertexSimple}[1][]{\GR@SetVertexSimple[#1]}%
+\def\GR@SetVertexSimple[#1]{%
+\setkeys[GR]{SVS}{#1}% 
+\presetkeys [GR] {vertex} {Simple         = true,
+                           NoLabel        = true}{}%}
+\tikzstyle{VertexStyle} = [draw,
+                           shape          = \cmdGR@SVS@Shape,
+                           color          = \cmdGR@SVS@LineColor,
+                           fill           = \VertexDarkBkgColor,
+                           inner sep      = 0pt,
+                           outer sep      = 0pt,
+                           minimum size   = \cmdGR@SVS@MinSize,
+                           line width     = \cmdGR@SVS@LineWidth]
+}
+
+
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%   Normal Vertex
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey [GR] {SVN} {Shape}{}
+\define@cmdkey [GR] {SVN} {MinSize}{}
+\define@cmdkey [GR] {SVN} {LineWidth}{}
+\define@cmdkey [GR] {SVN} {LineColor}{}
+\define@cmdkey [GR] {SVN} {BkgColor}{}
+\define@cmdkey [GR] {SVN} {TextColor}{}
+\presetkeys    [GR] {SVN} {Shape          = \VertexShape,
+                           MinSize        = \VertexBigMinSize,
+                           LineWidth      = \VertexLineWidth,
+                           LineColor      = \VertexLineColor,
+                           BkgColor       = \VertexLightBkgColor,
+                           TextColor      = \VertexTextColor}{}
+
+\newcommand*{\SetVertexNormal}[1][]{\GR@SetVertexNormal[#1]}%
+\def\GR@SetVertexNormal[#1]{%
+\setkeys[GR]{SVN}{#1}% 
+\tikzstyle{VertexStyle} = [shape          = \cmdGR@SVN@Shape,
+                           minimum size   = \cmdGR@SVN@MinSize,
+                           line width     = \cmdGR@SVN@LineWidth,
+                           color          = \cmdGR@SVN@LineColor,
+                           fill           = \cmdGR@SVN@BkgColor,
+                           text           = \cmdGR@SVN@TextColor,
+                           draw]
+}
+\SetVertexNormal
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@choicekey*[GR]{init}{vstyle}[\val\nr]{simple,
+                                              classic,
+                                              normal,
+                                              shade,
+                                              school,
+                                              Dijkstra,
+                                              Welsh}{%
+\ifcase\nr\relax
+%   simple
+\presetkeys [GR] {vertex} {Simple         = true,
+                           NoLabel        = true}{}%
+\tikzstyle{VertexStyle} = [draw,
+                           shape          = \VertexShape,
+                           color          = \VertexLineColor,
+                           fill           = \VertexDarkBkgColor,
+                           inner sep      = 0pt,
+                           outer sep      = 0pt,
+                           text           = \VertexTextColor,
+                           minimum size   = \VertexSmallMinSize,
+                           line width     = \VertexLineWidth]
+% classic
+\or
+\presetkeys [GR] {vertex} {Simple         = true,%
+                           LabelOut       = true}{}%
+\tikzstyle{VertexStyle} = [draw,
+                           shape          = \VertexShape,
+                           color          = \VertexLineColor,
+                           fill           = \VertexDarkBkgColor,
+                           inner sep      = 0pt,
+                           outer sep      = 0pt,
+                           text           = \VertexTextColor,
+                           minimum size   = \VertexSmallMinSize,
+                           line width     = \VertexLineWidth]
+% normal 
+\or
+\presetkeys [GR] {vertex} {Simple         = false,%
+                           LabelOut       = false}{}%
+\tikzstyle{VertexStyle} = [draw,
+                           shape          = \VertexShape,
+                           minimum size   = \VertexBigMinSize,
+                           line width     = \VertexLineWidth,
+                           color          = \VertexLineColor,
+                           fill           = \VertexLightBkgColor,
+                           text           = \VertexTextColor]
+% shade 
+\or
+\presetkeys [GR] {vertex} {Simple         = false,%
+                           LabelOut       = false}{}%
+\tikzstyle{VertexStyle} = [shape          = \VertexShape,
+                           ball color     = \VertexBallColor,
+                           text           = \VertexTextColor,
+                           minimum size   = \VertexBigMinSize]
+% school 
+\or
+\tikzstyle{VertexStyle}=[ ]
+% Dijkstra 
+\or
+\tikzstyle{VertexStyle}=[ ]
+% Welsh 
+\or
+\presetkeys [GR] {vertex} {Simple         = false,%
+                           LabelOut       = true}{}%
+\tikzstyle{VertexStyle} = [draw,
+                           shape          = \VertexShape,
+                           color          = \VertexLineColor,
+                           fill           = \VertexLightBkgColor,
+                           inner sep      = 0pt,
+                           outer sep      = 0pt,
+                           text           = \VertexTextColor,
+                           minimum size   = \VertexBigMinSize,
+                           line width     = \VertexLineWidth]
+\fi%
+}
+
+\define@cmdkey [GR] {init} {style}{}
+\define@cmdkey [GR] {init} {label}{}
+\define@cmdkey [GR] {init} {labelstyle}{}
+\define@cmdkey [GR] {init} {color}{}
+\presetkeys    [GR] {init} {style      = {pre,thick},%`
+                            label      = {},% 
+                            labelstyle = {},%
+                            color      = \VertexLineColor,%
+                            vstyle     = simple}{} 
+
+\newcommand*{\GraphInit}[1][]{\GR@GraphInit[#1]}%
+\def\GR@GraphInit[#1]{%
+\setkeys[GR]{init}{#1}%
+}
+
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SetVertexNoLabel}{%
+    \presetkeys [GR] {vertex} {NoLabel = true}{}%
+}
+% add  RV
+\newcommand*{\SetVertexLabel}{%
+   \presetkeys [GR] {vertex} {NoLabel = false}{}%
+}
+%<––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SetVertexLabelOut}{%
+    \presetkeys [GR] {vertex} {LabelOut = true}{}%
+}
+\newcommand*{\SetVertexMath}{%
+    \presetkeys [GR] {vertex} {Math = true}{}%
+}
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\tikzstyle{every node}        = [node distance  = 3cm,
+                                 line width     = 0.8pt]%
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          Init    SetUpVertex
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey  [GR] {SUV} {Distance}{}
+\define@cmdkey  [GR] {SUV} {LineWidth}{}
+\define@cmdkey  [GR] {SUV} {Lpos}{}
+\define@cmdkey  [GR] {SUV} {Ldist}{}
+\define@cmdkey  [GR] {SUV} {style}{}
+\define@boolkey [GR] {SUV} {NoLabel} [true]{}
+\define@boolkey [GR] {SUV} {Simple}  [true]{}
+\define@boolkey [GR] {SUV} {LabelOut}[true]{}
+\presetkeys     [GR] {SUV} {Distance  = 3cm,
+                            LineWidth = .4pt,
+                            Ldist     = 0cm,%
+                            Lpos      = -90,%
+                            style     = {},%
+                            LabelOut  = false,%
+                            Simple    = false,%
+                            NoLabel   = false}{}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                             SetUpVertex
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SetUpVertex}[1][]{\GR@SetUpVertex[#1]}%
+\def\GR@SetUpVertex[#1]{%
+\setkeys[GR]{SUV}{#1}%
+\tikzstyle{every node} = [node distance = \cmdGR@SUV@Distance,%
+                          line width    = \cmdGR@SUV@LineWidth]%
+\presetkeys     [GR] {vertex} {Lpos     = \cmdGR@SUV@Lpos,%
+                               Ldist    = \cmdGR@SUV@Ldist}{}%
+\ifGR@SUV@Simple%
+    \presetkeys [GR] {vertex} {Simple   = true,%
+                               LabelOut = true}{}%
+\else%
+    \presetkeys [GR] {vertex} {Simple = false}{}%
+\fi
+\ifGR@SUV@NoLabel%
+    \presetkeys [GR] {vertex} {NoLabel = true}{}%
+\else %
+    \presetkeys [GR] {vertex} {NoLabel = false}{}%
+\fi%
+\ifGR@SUV@LabelOut%
+    \presetkeys [GR] {vertex} {LabelOut = true}{}%
+\else%
+    \presetkeys [GR] {vertex} {LabelOut = false}{}%
+\fi%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                           Init Vertex
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey  [GR] {vertex} {L}{}
+\define@cmdkey  [GR] {vertex} {Lpos}{}
+\define@cmdkey  [GR] {vertex} {Ldist}{}
+\define@cmdkey  [GR] {vertex} {x}{}
+\define@cmdkey  [GR] {vertex} {y}{}
+\define@cmdkey  [GR] {vertex} {style}{}
+\define@cmdkey  [GR] {vertex} {position}{}
+\define@boolkey [GR] {vertex} {NoLabel}[true]{}
+\define@boolkey [GR] {vertex} {Node}[true]{}
+\define@boolkey [GR] {vertex} {Math}[true]{}
+\define@boolkey [GR] {vertex} {empty}[true]{}
+\define@boolkey [GR] {vertex} {Simple}[true]{}
+\define@boolkey [GR] {vertex} {LabelOut}[true]{}
+\presetkeys     [GR] {vertex} {Node     = false,
+                               NoLabel  = false,
+                               LabelOut = false,
+                               Simple   = false,
+                               empty    = false,
+                               Math     = false,
+                               x        = {},
+                               y        = {},
+                               position = {},
+                               style    = {},
+                               L        = {},
+                               Ldist    = 0cm,
+                               Lpos     = -90}{}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––    Vertex   –––––––––––––––––––––––––––––––––>
+\newcommand*{\Vertex}[1][]{\@vertex[#1]}%
+\def\@vertex[#1]#2{%
+    \setkeys[GR]{vertex}{#1}%
+    \@@vertex{#2}%
+}
+\def\@@vertex#1{%
+\ifGR@vertex@Node%
+   \pgfextractx{\pgf@x}{\pgfpointanchor{#1}{center}}
+   \pgfextracty{\pgf@y}{\pgfpointanchor{#1}{center}}
+   \edef\cmdGR@vertex@x{\pgf@x}
+   \edef\cmdGR@vertex@y{\pgf@y}
+\fi%
+	    \ifGR@vertex@Math
+         \def\cmdGR@vertex@name{$#1$}%
+         \def\cmdGR@vertex@L{$#1$}%
+    \else
+        \def\cmdGR@vertex@name{#1}%
+    \fi%
+\ifGR@vertex@empty%
+   \begin{scope}
+      \ifthenelse{\not\equal{\cmdGR@vertex@x}{}}{%
+           \protected@edef\@tempa{%
+               \noexpand\node[inner sep = 0pt](#1)%
+                  at (\cmdGR@vertex@x,\cmdGR@vertex@y){}}%
+           \@tempa;}{%
+           \protected@edef\@tempa{%
+               \noexpand \node[inner sep = 0pt](#1)%
+                  [\cmdGR@vertex@position]{}}%
+           \@tempa;}%
+    \end{scope}
+\else
+    \begin{scope}[label distance = \cmdGR@vertex@Ldist]
+    \ifGR@vertex@Simple
+        \ifthenelse{\equal{\cmdGR@vertex@L}{}}{%
+           \def\nstyle{VertexStyle,%
+           label = \cmdGR@vertex@Lpos:\textcolor{\VertexTextColor}%
+                                {\cmdGR@vertex@name}}%
+           \def\cmdGR@vertex@LL{}}{%
+           \def\nstyle{VertexStyle,%
+           label = \cmdGR@vertex@Lpos:\textcolor{\VertexTextColor}%
+                                {\cmdGR@vertex@L}}
+           \def\cmdGR@vertex@LL{}}
+    \else
+        \ifGR@vertex@LabelOut
+          \ifthenelse{\equal{\cmdGR@vertex@L}{}}{%
+             \def\nstyle{VertexStyle,%
+             label=\cmdGR@vertex@Lpos:\textcolor{\VertexTextColor}{\cmdGR@vertex@name}}}{%
+                \def\nstyle{VertexStyle,%
+          label=\cmdGR@vertex@Lpos:\textcolor{\VertexTextColor}{\cmdGR@vertex@L}}}
+            \def\cmdGR@vertex@LL{}
+        \else
+            \def\nstyle{VertexStyle}
+        \ifthenelse{\equal{\cmdGR@vertex@L}{}}{%
+                 \def\cmdGR@vertex@LL{\cmdGR@vertex@name}}{%
+                 \def\cmdGR@vertex@LL{\cmdGR@vertex@L}}
+        \fi
+    \fi
+    \ifGR@vertex@NoLabel
+         \def\cmdGR@vertex@LL{}%
+         \def\cmdGR@vertex@L{}%
+         \def\nstyle{VertexStyle}
+    \fi%
+    \ifthenelse{\not\equal{\cmdGR@vertex@x}{}}{%
+      \protected@edef\@tempa{%
+        \noexpand \node[\nstyle,
+                        \cmdGR@vertex@style](#1)
+                   at (\cmdGR@vertex@x,\cmdGR@vertex@y){%
+        \noexpand\cmdGR@vertex@LL}}%
+        \@tempa;}{%
+      \protected@edef\@tempa{%
+        \noexpand \node[outer sep=0pt,
+                        \nstyle,
+                        \cmdGR@vertex@style](#1)%
+                  [\cmdGR@vertex@position]{%
+        \noexpand\cmdGR@vertex@LL}}%
+         \@tempa;}%
+    \end{scope}
+\fi%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          End of  Vertex
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          EA east of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EA}[1][]{\@droite[#1]}%
+\def\@droite[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{right of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                         WE west of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\WE}[1][]{\@gauche[#1]}%
+\def\@gauche[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{left of=#2}
+    \@@vertex{#3}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                       NO north of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\NO}[1][]{\@haut[#1]}%
+\def\@haut[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{above of=#2}
+    \@@vertex{#3}%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                        SO south of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SO}[1][]{\@bas[#1]}%
+\def\@bas[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{below of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                     NOEA north east of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\NOEA}[1][]{\@hautdroite[#1]}%
+\def\@hautdroite[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{above right of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                      NOWE  north west of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\NOWE}[1][]{\@hautgauche[#1]}%
+\def\@hautgauche[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{above left of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                     SOEA south east of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SOEA}[1][]{\@basdroite[#1]}%
+\def\@basdroite[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{below right of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                    SOWE south west of #2
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SOWE}[1][]{\@basgauche[#1]}%
+\def\@basgauche[#1](#2)#3{% 
+    \setkeys[GR]{vertex}{#1}%
+\def\cmdGR@vertex@position{below left of=#2}
+    \@@vertex{#3}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          Edge style
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\tikzstyle{pre} =[<-,shorten <=2pt,shorten >=1pt,>=stealth']
+\tikzstyle{post}=[->,shorten <=1pt,shorten >=2pt,>=stealth',outer sep=1pt]
+\tikzstyle{pre and post}=[<->,shorten <=2pt,shorten >=2pt,>=stealth']
+\tikzstyle{LabelStyle}=[]
+\tikzstyle{EdgeStyle} =[]
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          Init    SetUpEdge
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey [GR] {SUE} {color}[black]{}
+\define@cmdkey [GR] {SUE} {label}{}
+\define@cmdkey [GR] {SUE} {labelstyle}{}
+\define@cmdkey [GR] {SUE} {labeltext}{}
+\define@cmdkey [GR] {SUE} {labelcolor}{}
+\define@cmdkey [GR] {SUE} {style}{}
+\define@cmdkey [GR] {SUE} {lw}{}
+\presetkeys    [GR] {SUE} {color       = black,
+                           label       = {},
+                           labeltext   = black,
+                           labelcolor  = white,
+                           labelstyle  = {},%
+                           lw          = thick,%
+                           style       = {}}{}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                             SetUpEdge
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\SetUpEdge}[1][]{\@SetUpEdge[#1]}%
+\def\@SetUpEdge[#1]{% 
+    \setkeys    [GR] {SUE} {#1}%
+    \presetkeys [GR] {edge} {color        = \cmdGR@SUE@color,
+                             lw           = \cmdGR@SUE@lw,
+                             label        = \cmdGR@SUE@label,
+                             labeltext    = \cmdGR@SUE@labeltext,
+                             labelcolor   = \cmdGR@SUE@labelcolor,
+                             labelstyle   = \cmdGR@SUE@labelstyle,
+                             style        = \cmdGR@SUE@style}{}}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                              Init Edge 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey [GR] {edge} {color}{}
+\define@cmdkey [GR] {edge} {label}{}
+\define@cmdkey [GR] {edge} {labeltext}{}
+\define@cmdkey [GR] {edge} {labelcolor}{}
+\define@cmdkey [GR] {edge} {labelstyle}{}
+\define@cmdkey [GR] {edge} {style}{}
+\define@cmdkey [GR] {edge} {lw}{}
+\presetkeys    [GR] {edge} {style      = {},%
+                            lw         = thick,%
+                            label      = {},
+                            labeltext  = black,
+                            labelcolor = white,%
+                            labelstyle = {},%
+                            color      = black}{} 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                               Edge 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\Edge}[1][]{\@edge[#1]}%
+\def\@edge[#1](#2)(#3){%
+\setkeys[GR]{edge}{#1}%
+   \ifthenelse{\equal{\cmdGR@edge@label}{}}{%
+\protected@edef\@tempa{%
+   \noexpand
+   \draw[color = \cmdGR@edge@color,%
+                 \cmdGR@edge@lw,%
+                 \cmdGR@edge@style,
+         EdgeStyle] (#2) to (#3)}%
+   \@tempa;}{%
+\protected@edef\@tempa{%
+   \noexpand
+   \draw[color = \cmdGR@edge@color,%
+                 \cmdGR@edge@lw,%
+                 \cmdGR@edge@style,
+        EdgeStyle] (#2) to%
+    node[       \cmdGR@edge@labelstyle,
+         fill = \cmdGR@edge@labelcolor,
+         text = \cmdGR@edge@labeltext,
+         LabelStyle]
+   {\cmdGR@edge@label} (#3)}%
+   \@tempa;
+}
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                          Init  loop 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%\newcommand*{\Loopdistance}{4cm}
+\define@choicekey*[GR]{loop}{pos}[\val\nr]{WE,EA,NO,SO}{%
+\ifcase\nr\relax
+\tikzstyle{LoopStyle}=[ in=235, out=125, distance=\cmdGR@loop@dist]\or
+\tikzstyle{LoopStyle}=[ in= 55, out=-55, distance=\cmdGR@loop@dist]\or
+\tikzstyle{LoopStyle}=[ in=135, out= 45, distance=\cmdGR@loop@dist]\or
+\tikzstyle{LoopStyle}=[ in=-45, out=225, distance=\cmdGR@loop@dist]\fi%
+}
+\define@cmdkey [GR] {loop} {color}{}
+\define@cmdkey [GR] {loop} {label}{}
+\define@cmdkey [GR] {loop} {labelstyle}{}
+\define@cmdkey [GR] {loop} {style}{}
+\define@cmdkey [GR] {loop} {dist}{}
+\presetkeys    [GR] {loop} {style      = {pre,thick},%`
+                            label      = {},% 
+                            labelstyle = {},%
+                            color      = black,%
+                            dist       = 4cm}{} 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                                loop 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\Loop}[1][]{\@loop[#1]}%
+\def\@loop[#1](#2){%
+\setkeys[GR]{loop}{#1}%
+\protected@edef\@tempa{%
+\noexpand \draw[\cmdGR@loop@color] (#2)%
+  edge [EdgeStyle,LoopStyle,\cmdGR@loop@style]%
+  node [LabelStyle,\cmdGR@loop@labelstyle]%
+  { \cmdGR@loop@label} (#2)}\@tempa;%
+}%
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                    Init   Graphes probabilistes 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\define@cmdkey [GR] {grpb} {distance}{}
+\define@cmdkey [GR] {grpb} {LposA}{}
+\define@cmdkey [GR] {grpb} {LposB}{}
+\define@cmdkey [GR] {grpb} {Ldist}{}
+\define@cmdkey [GR] {grpb} {LoopDist}{}
+\presetkeys    [GR] {grpb} {distance = 5cm,%
+                            LposA    = 180,%
+                            LposB    = 0,%
+                            Ldist    = 0cm,%
+                            LoopDist = 4cm}{} 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                       Graphes probabilistes 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\graphpb}[7][]{%
+\setkeys[GR]{grpb}{#1}%
+\SetUpVertex[Distance=\cmdGR@grpb@distance]
+\Vertex[Lpos=\cmdGR@grpb@LposA,Ldist=\cmdGR@grpb@Ldist](#2)
+\EA[Lpos=\cmdGR@grpb@LposB,Ldist=\cmdGR@grpb@Ldist]{#2}(#3)
+\Edge[style={post,bend left=60},labelstyle={fill=white},label={$#4$}](#2)(#3)
+\Edge[style={post,bend left=60},labelstyle={fill=white},label={$#5$}](#3)(#2)
+\Loop[dist=\cmdGR@grpb@LoopDist,labelstyle={fill=white},pos=WE,label={$#6$}](#2)
+\Loop[dist=\cmdGR@grpb@LoopDist,labelstyle={fill=white},pos=EA,label={$#7$}](#3)
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                      End   Graphes probabilistes 
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                     Labels
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+% #2 label/prefix/num
+\define@cmdkey [GR] {WL} {color}[black]{}
+\define@cmdkey [GR] {WL} {labelstyle}{}
+\define@cmdkey [GR] {WL} {size}{}
+\define@cmdkey [GR] {WL} {style}{}
+\presetkeys    [GR] {WL} {color       = black,%
+                          labelstyle  = {},%
+                          size        = {},%
+                          style       = {}}{}
+\newcommand{\grWriteExplicitLabels}[2][]{%
+\begingroup%
+  \setkeys[GR]{WL}{#1}%
+  \foreach \text/\where in {#2}{%
+      \node at (\where) {\text};
+      }%
+\endgroup%
+}
+\newcommand{\grWriteExplicitLabel}[2][]{%
+\begingroup%
+  \setkeys[GR]{cl}{#1}%
+  \node at (\where) {\text};
+\endgroup%
+}%
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                         Graphes cls
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+\define@cmdkey  [GR] {cl} {L}{}
+\define@boolkey [GR] {cl} {Math}[true]{}
+\define@boolkey [GR] {cl} {inv}[true]{}
+\define@cmdkey  [GR] {cl} {RA}{}
+\define@cmdkey  [GR] {cl} {RB}{}
+\define@cmdkey  [GR] {cl} {RC}{}
+\define@cmdkey  [GR] {cl} {RD}{}
+\define@cmdkey  [GR] {cl} {RS}{}
+\define@cmdkey  [GR] {cl} {prefix}{}
+\define@cmdkey  [GR] {cl} {prefixx}{}
+\define@cmdkey  [GR] {cl} {prefixxx}{}
+\define@cmdkey  [GR] {cl} {prefixxxx}{}
+\define@cmdkey  [GR] {cl} {form}{}
+\define@cmdkey  [GR] {cl} {num}{}
+\presetkeys     [GR] {cl} {RA        = 4,%
+                           RB        = 3,%
+                           RC        = 2,%
+                           RD        = 1,%
+                           RS        = 0,%
+                           form      = 1,%
+                           prefix    = a,%
+                           prefixx   = b,%
+                           prefixxx  = c,%
+                           prefixxxx = d,%
+                           Math      = false,%
+                           num       = 0,%
+                           inv       =false,%
+                           L         = {}}{}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                      Tools Graphes particuliers
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\PolarToRect}[2]{%
+   \pgfmathparse{#1*cos(#2 r)}\let\tkz@xpos\pgfmathresult%
+   \pgfmathparse{#1*sin(#2 r)}\let\tkz@ypos\pgfmathresult%
+}
+\newcommand*{\grEmptyCycle}[2][]{%
+\begingroup%
+   \setkeys[GR]{cl}{#1}%
+   \pgfmathsetcounter{tkzb@temp}{#2-1}
+   \foreach \x in  {0,...,\thetkzb@temp}{%
+       \PolarToRect{\cmdGR@cl@RA}{2/#2 * (\x) * pi}
+       \ifGR@cl@Math
+           \Vertex[x = \tkz@xpos,%
+                   y = \tkz@ypos,%
+                   L = $\cmdGR@cl@prefix_{\x}$]{\cmdGR@cl@prefix\x}%
+       \else%
+           \Vertex[x = \tkz@xpos,%
+                   y = \tkz@ypos]{\cmdGR@cl@prefix\x}%
+       \fi%
+       }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeInGraphFromOneToComp}[3]{% #4 
+\begingroup%
+   \pgfmathsetcounter{tkzb@ta}{#2-1}
+   \foreach \cx in  {0,...,\thetkzb@ta}{%
+        \ifthenelse{\equal{\cx}{#3}}{}{\Edge(#1#3)(#1\cx)}%
+        }%
+\endgroup%
+}
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% new tool EdgeInGraphLoop loop 0--1--2.........n--0
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeInGraphLoop}[2]{% #4 
+\begingroup%
+    \pgfmathsetcounter{tkzb@ta}{#2-1}
+    \setcounter{tkzb@next}{0}
+    \Edge(#1\thetkzb@ta)(#1\thetkzb@next)
+    \pgfmathaddtocounter{tkzb@ta}{-1}
+    \foreach \x in  {0,...,\thetkzb@ta}{%
+        \stepcounter{tkzb@next}
+        \Edge(#1\x)(#1\thetkzb@next)%
+       }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% new tool EdgeInGraphSeq sequence 0--1--2.........n
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeInGraphSeq}[2]{% #4 
+\begingroup%
+    \pgfmathsetcounter{tkzb@ta}{#2-2}
+    \setcounter{tkzb@next}{0}
+    \foreach \x in  {0,...,\thetkzb@ta}{%
+        \stepcounter{tkzb@next}
+        \Edge(#1\x)(#1\thetkzb@next)%
+       }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% new tool EdgeInGraphMod replace nextmod
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeInGraphMod}{\@ifstar%
+                              \EdgeInGraphModStar%
+                              \EdgeInGraphModNoStar}
+\newcommand*{\EdgeInGraphModNoStar}[3]{% #2 order
+\begingroup%
+    \pgfmathsetcounter{tkzb@ta}{#2-1}
+    \foreach \x in  {0,...,\thetkzb@ta}{%
+        \pgfmathsetcounter{tkzb@tb}{mod(\x+#3,#2)}
+        \Edge(#1\thetkzb@tb)(#1\x)%
+        }%
+\endgroup%
+}
+%#1 prefix #2 order #3 add #4 start #5 décalage
+\newcommand*{\EdgeInGraphModStar}[5]{% 
+\begingroup%
+ \pgfmathsetcounter{tkzb@ta}{#4}
+  \whiledo{\value{tkzb@ta}<#2}{%
+     \pgfmathsetcounter{tkzb@next}{mod(\thetkzb@ta+#3,#2)}
+     \Edge(#1\thetkzb@ta)(#1\thetkzb@next)
+     \pgfmathaddtocounter{tkzb@ta}{#5}%
+    }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%             EdgeInGraphModLoop
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+
+\newcommand*{\EdgeInGraphModLoop}[4]{% #2 order
+\begingroup%
+    \setcounter{tkzb@ta}{#4}
+    \setcounter{tkzb@next}{#2}
+    \whiledo{\not\equal{\value{tkzb@next}}{#4}}{%
+        \pgfmathsetcounter{tkzb@next}{mod(\thetkzb@ta+#3,#2)}
+        \Edge(#1\thetkzb@ta)(#1\thetkzb@next)%
+        \setcounter{tkzb@ta}{\thetkzb@next}
+        }%
+\endgroup%
+}
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                               EdgeIdentity
+%  la version étoilée permet d'utliser une sélection
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeIdentity}{\@ifstar%
+                              \EdgeIdentityStar%
+                              \EdgeIdentityNoStar}
+
+\newcommand*{\EdgeIdentityNoStar}[3]{%
+\begingroup%
+ \pgfmathsetcounter{tkzb@v}{#3-1}
+    \foreach \x in  {0,...,\thetkzb@v}{%
+       \Edge(#1\x)(#2\x)%
+       }%
+\endgroup%
+}
+\newcommand*{\EdgeIdentityStar}[3]{%
+\begingroup%
+    \foreach \x in  {#3}{%
+       \Edge(#1\x)(#2\x)%
+       }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%  EdgeFromOneToAll  vertex #1#3 through #2 0...#2 n-1 #5 order of the graph
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeFromOneToAll}[4]{% #4  = order of the graph
+\begingroup%
+     \pgfmathsetcounter{tkzb@v}{#4-1}
+     \foreach \x in  {0,...,\thetkzb@v}{%
+        \Edge(#1#3)(#2\x)%
+        }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%  EdgeFromOneToSeq  vertex #1#3 through #2#4...#2#5
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeFromOneToSeq}[5]{% #4 
+\begingroup%
+    \foreach \x in  {#4,...,#5}{%
+        \Edge(#1#3)(#2\x)%
+        }%
+\endgroup%
+}
+%  %<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%  EdgeFromOneToSel vertex #1#3 through #2#4...#2#5
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeFromOneToSel}[4]{% #4 
+\begingroup%
+    \foreach \x in  {#4}{%
+        \Edge(#1#3)(#2\x)%
+        }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%  EdgeFromOneToComplement  vertex #1#3 through #2#4...#2#5
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeFromOneToComp}[4]{%
+\begingroup%
+   \pgfmathsetcounter{tkzb@v}{#4-1}
+   \foreach \cx in  {0,...,\thetkzb@v}{%
+        \ifthenelse{\equal{\cx}{#3}}{}{\Edge(#1#3)(#2\cx)}%
+        }%
+\endgroup%
+}
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% new tool EdgeMod replace nextmod
+% identity with step like nextmod ???
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand*{\EdgeMod}{\@ifstar%
+                                 \EdgeModStar%
+                                 \EdgeModNoStar}
+\newcommand*{\EdgeModNoStar}[4]{%#3 order #4 step
+\begingroup%
+    \pgfmathsetcounter{tkzb@v}{#3-1}
+    \foreach \x in  {0,...,\thetkzb@v}{%
+        \pgfmathsetcounter{tkzb@tb}{mod(\x+#4,#3)}
+        \Edge(#1\x)(#2\thetkzb@tb)%
+        }%
+\endgroup%
+}
+
+%#1 prefix #2 prefix #3 order #4 step #5 order inf
+\newcommand*{\EdgeModStar}[5]{%
+\begingroup%
+     \setcounter{tkzb@ta}{0}
+     \whiledo{\value{tkzb@ta}<#3}{%
+        \pgfmathsetcounter{tkzb@tb}{mod(\thetkzb@ta+#4,#3)}
+        \Edge(#1\thetkzb@ta)(#2\thetkzb@tb)%
+        \pgfmathaddtocounter{tkzb@ta}{#5}}%
+\endgroup%
+}%
+
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+%                     EdgeDoubleMod by RV
+%<–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+\newcommand{\EdgeDoubleMod}[9]{
+ \begingroup%
+   \foreach \x in {0,...,#9}{%
+      \pgfmathsetcounter{tkzb@cc}{mod(#3+(#4*\x),#2)}
+      \pgfmathsetcounter{tkzb@next}{mod(#7+(#8*\x),#6)}
+      \Edge(#1\thetkzb@cc)(#5\thetkzb@next)
+    }%
+\endgroup%
+}
+
+%<––––––––––––––––––––––––––––––– fin –––––––––––––––––––––––––––––––––––––––>
+\endinput
+

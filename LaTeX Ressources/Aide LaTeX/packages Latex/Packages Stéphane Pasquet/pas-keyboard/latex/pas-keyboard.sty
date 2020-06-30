@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%    	pas-keyboard.sty  v1.02     encodage : UTF8    	        %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                               %
+%           	Créé par Stéphane PASQUET 		          		%
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% V1.02 - 2013/10/03 - Ajout de l'option [anchor=base,baseline] à \tikz dans la commande \key
+
+% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pas-keyboard}[2013/10/03]
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc,arrows}
+
+% Définition des couleurs
+\definecolor{lightON}{cmyk}{0.81,0.11,1,0.02}
+\definecolor{lightOFF}{cmyk}{0.55,0.42,0.42,0.09}
+\definecolor{touchColor}{cmyk}{0,0,0,0}
+\definecolor{shadowColor}{cmyk}{0.30,0.20,0.20,0}
+\definecolor{textColor}{cmyk}{1,1,1,1}
+\definecolor{drawColor}{cmyk}{1,1,1,1}
+
+% Définition de la fonte des touches
+\newif\if@electrum
+\DeclareOption{electrum}{\@electrumtrue}
+\ProcessOptions
+
+\if@electrum
+	\newcommand{\helv}{\fontfamily{yes}\fontsize{9}{11}\selectfont}
+\else
+	\newcommand{\helv}{\fontfamily{phv}\fontsize{9}{11}\selectfont}
+\fi
+
+\newcommand{\key}[1]
+{%
+	\tikz[anchor=base,baseline]{%
+	\node[rectangle,rounded corners=2pt,draw,minimum width=1.5em,minimum height=1.5em] (key) at (0,0) {\helv #1};
+	\clip [rounded corners=2pt] ($(key.north west)+(-2pt,2pt)$) rectangle ($(key.south east)+(2pt,-2pt)$);
+	\fill[fill=shadowColor] ($(key.north east)+(2pt,2pt)$) -- ($(key.north east)+(-1pt,-1pt)$) -- ($(key.south west)+(1pt,1pt)$) -- ($(key.south west)+(-2pt,-2pt)$) -- ($(key.south east)+(2pt,-2pt)$) -- cycle;
+	\node[rectangle,rounded corners=2pt,draw=drawColor,fill=touchColor,minimum width=1.5em,minimum height=1.5em,text=textColor] (key) at (0,0) {\helv #1};
+	\draw[rounded corners=2pt,draw=drawColor] ($(key.north west)+(-2pt,2pt)$) rectangle ($(key.south east)+(2pt,-2pt)$);
+	\draw[draw=drawColor] ($(key.south west)+(1pt,1pt)$) -- ($(key.south west)+(-2pt,-2pt)$);
+	\draw[draw=drawColor] ($(key.south east)+(-1pt,1pt)$) -- ($(key.south east)+(2pt,-2pt)$);
+	\draw[draw=drawColor] ($(key.north east)+(-1pt,-1pt)$) -- ($(key.north east)+(2pt,2pt)$);
+	\draw[draw=drawColor] ($(key.north west)+(1pt,-1pt)$) -- ($(key.north west)+(-2pt,2pt)$);
+	}
+}
+
+\newcommand{\keyCTRL}{\key{CTRL}}
+\newcommand{\keyUpArrow}{\key{\tikz{\draw[->,>=stealth',draw=textColor] (0,0) -- (0,.25);}}}
+\newcommand{\keyDownArrow}{\key{\tikz{\draw[->,>=stealth',draw=textColor] (0,0) -- (0,-.25);}}}
+\newcommand{\keyLeftArrow}{\key{\tikz{\draw[->,>=stealth',draw=textColor] (0,0) -- (-.25,0);}}}
+\newcommand{\keyRightArrow}{\key{\tikz{\draw[->,>=stealth',draw=textColor] (0,0) -- (.25,0);}}}
+\newcommand{\keyShift}{\key{\tikz{\draw[rounded corners=0pt,draw=textColor] (0,0) -- (0,0.1) -- (-0.05,0.1) -- (0.1,0.25) -- (0.25,0.1) -- (0.2,0.1) -- (0.2,0) -- cycle;}}}
+\newcommand{\keySHIFT}{\key{\tikz{\draw[rounded corners=0pt,draw=textColor] (0,0) -- (0,0.1) -- (-0.05,0.1) -- (0.1,0.25) -- (0.25,0.1) -- (0.2,0.1) -- (0.2,0) -- cycle;\node[right,text=textColor] at (0.25,0.1) {SHIFT};}}}
+\newcommand{\keyEnter}{\key{ENTER}}
+\newcommand{\keyTab}{\key{\tikz{\draw[->|,>=stealth',draw=textColor] (0,0) -- (.5,0);\draw[->|,>=stealth',draw=textColor] (.5,.2) -- (0,.2);}}}
+\newcommand{\keyCapsOff}{\key{\tikz{\fill[fill=lightOFF] (0,0) circle (2pt); \node[below left,text=textColor] at (0,0.2){\fontfamily{yes}\fontsize{5}{7}\selectfont CAPS LOCK};}}}
+\newcommand{\keyCapsOn}{\key{\tikz{\fill[fill=lightON] (0,0) circle (2pt); \node[below left,text=textColor] at (0,0.2){\fontfamily{yes}\fontsize{5}{7}\selectfont CAPS LOCK};}}}
+\newcommand{\keySupInf}{\key{\tikz{\draw[rounded corners=0pt,draw=textColor] (0,0)--(.1,-.05)--(0,-.1);\draw[rounded corners=0pt,draw=textColor] (.1,-.15)--(0,-.2)--(.1,-.25);}}}
+\newcommand{\keySquare}{\key{\fontfamily{yes}\fontsize{4}{6}\selectfont 2\phantom{---}}}
+\newcommand{\keyEsc}{\key{ESC}}
+\newcommand{\keyHome}{\key{\tikz{\clip (0,0) rectangle (.4,.4);\draw[->,>=stealth'] (0.2,0.2) -- (0,0.4);}}}
+\newcommand{\keyHOME}{\key{\tikz{\clip(0,-.1) rectangle (0.8,.2);\draw[->,>=stealth'] (0.2,0) -- (0,0.2);\node[right] at (0.2,0) {\fontfamily{yes}\fontsize{5}{7}\selectfont HOME};}}}
+\newcommand{\keyPgUp}{\key{\tikz[scale=.5]{\clip (-.4,-0.02) rectangle (.4,.6);\draw[->,>=stealth'] (0,0) -- (0,0.6);\draw (-.1,0) -- (0.1,0);\draw (-.1,.1) -- (.1,.1);\draw (-.1,.2) -- (.1,.2);}}}
+\newcommand{\keyPgDown}{\key{\tikz[scale=.5]{\clip (-.4,-0.02) rectangle (.4,.6);\draw[->,>=stealth'] (0,0.6) -- (0,0);\draw (-.1,.6) -- (0.1,.6);\draw (-.1,.5) -- (.1,.5);\draw (-.1,.4) -- (.1,.4);}}}
+\newcommand{\keyBack}{\key{\tikz{\clip (0,0) rectangle (1,0.4);\draw[rounded corners=0pt] (0,0.2) -- (0.2,0.4) -- (0.6,0.4) -- (0.6,0) -- (0.2,0) -- cycle;\draw (0.2,0.05) -- (0.55,0.35);\draw (0.2,0.35) -- (0.55,0.05);}}}
+\newcommand{\keyBACK}{\key{\tikz{\clip(0,0) rectangle (1.3,.4);\draw[rounded corners=0pt] (0,0.2) -- (0.2,0.4) -- (0.6,0.4) -- (0.6,0) -- (0.2,0) -- cycle;\draw (0.2,0.05) -- (0.55,0.35);\draw (0.2,0.35) -- (0.55,0.05);\node[right] at (.6,.3) {\fontfamily{yes}\fontsize{5}{7}\selectfont BACK};\node[right] at (.6,.1) {\fontfamily{yes}\fontsize{5}{7}\selectfont SPACE};}}}
+\endinput

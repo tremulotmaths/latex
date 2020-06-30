@@ -1,0 +1,223 @@
+\documentclass[french]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020_qcm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\portrait
+%\paysage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pour le QCM
+%\usepackage{hyperref} %nécessaire
+\newcommand*{\mtcode}{123456}
+%\newcommand*{\repQsept}{684}
+%\newcommand*{\repQhuit}{"4ln(3)"}
+
+%notice en ligne 
+%http://www.tug.org/applications/hyperref/manual.html#x1-200006
+%http://www.les-mathematiques.net/phorum/read.php?10,1653900,1654548
+%https://blog.dorian-depriester.fr/latex/creer-des-formulaire-pdf-editables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%animaux
+\usepackage{tikzlings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{TS 2}
+%\newcommand{\anneescol}{Année 2019-2020}
+
+%Titre
+
+\title{QCM 2 - Chapitre 10}
+\author{\augustin{0.2}}
+\date{\classe} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Prénom et Nom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\begin{center}
+\raisebox{-0.5em}{\tikz[scale=0.3]\coati[sideward];}
+\begin{Form}
+\TextField[bordercolor=1 0 0,width=15em,charsize=0pt,name=prenom,bordercolor=black]{Prénom : }
+\end{Form}
+\hspace*{1em}
+\begin{Form}
+\TextField[bordercolor=1 0 0,width=15em,charsize=0pt,name=nom,bordercolor=black]{NOM : }
+\end{Form}
+\raisebox{-0.5em}{\tikz[scale=0.3]\coati[sideward,xscale=-1];}
+\end{center}
+
+\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Questions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{enumerate}
+\item On considère la fonction \(f\) définie sur \(]0;+\infty[\) par \(f(x)=\ln\left(\text{e}^x+x\right)-x\).
+
+Laquelle de ces expressions est une autre expression de \(f(x)\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q1,default=-0,align=0,radiosymbol=\ding{108},height=0.5em,bordercolor=black]{}
+{\(\ln(x)\)=0,
+\newline \(\ln\left(\text{e}^{2x}+x\text{e}^x\right)\)=0,
+\newline \(\ln\left(1+x\text{e}^{-x}\right)\)=1,
+\newline \(\ln(1+x)\)=0}
+\end{Form}
+
+\item On considère la fonction \(f\) définie sur \(]0;1[\cup]1;+\infty[\) par \(f(x)=\ln(x)-\dfrac{1}{\ln(x)}\).
+
+Quelle est la valeur de \(\displaystyle\lim_{\substack{x\to 0\\x>0}}f(x)\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q2,default=-0,align=0,radiosymbol=\ding{108},height=0.5em,bordercolor=black]{}
+{\(-\infty\)=1,
+\newline \(-1\)=0,
+\newline \(0\)=0,
+\newline \(+\infty\)=0}
+\end{Form}
+
+\item On considère la fonction \(f\) définie sur \(]0;1[\cup]1;+\infty[\) par \(f(x)=\ln(x)-\dfrac{1}{\ln(x)}\).
+
+Quelle est la valeur de \(\displaystyle\lim_{x\to +\infty}f(x)\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q3,default=-0,align=0,radiosymbol=\ding{108},height=0.5em,bordercolor=black]{}
+{\(-\infty\)=0,
+\newline \(1\)=0,
+\newline \(0\)=0,
+\newline \(+\infty\)=1}
+\end{Form}
+
+\item On considère la fonction \(f\) définie sur \(]0;1[\cup]1;+\infty[\) par \(f(x)=\ln(x)-\dfrac{1}{\ln(x)}\).
+
+Quelle est la valeur de \(\displaystyle\lim_{\substack{x\to 1\\x>1}}f(x)\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q4,default=-0,align=0,radiosymbol=\ding{108},height=0.5em,bordercolor=black]{}
+{\(-\infty\)=1,
+\newline \(1\)=0,
+\newline \(0\)=0,
+\newline \(+\infty\)=0}
+\end{Form}
+
+\item Soit $f$ la fonction définie sur $\R$ par $f(x)=\ln\left(1+\text{e}^{-x}\right)$.
+
+Une expression de sa dérivée est\dots
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q5,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{{$f'(x)=\dfrac{\text{e}^{-x}}{1+\text{e}^{-x}}$}=0,
+\newline {$f'(x)=\dfrac{-\text{e}^{-x}}{1+\text{e}^{-x}}$}=1,
+\newline {$f'(x)=\dfrac{1}{1+\text{e}^{-x}}$}=0,
+\newline {$f'(x)=\dfrac{1}{1-\text{e}^{-x}}$}=0}
+\end{Form}
+
+\item Quel est l'ensemble des solutions sur \(\mathbb{R}\) de l'inéquation \(\ln\left(1+\text{e}^{2x}\right)>0\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q6,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{{\(\left]\dfrac{1}{2};+\infty\right[\)}=0,
+\newline {\(\left]\dfrac{-1}{2};+\infty\right[\)}=0,
+\newline {\(\left]0;+\infty\right[\)}=0,
+\newline {\(\mathbb{R}\)}=1}
+\end{Form}
+
+\item Quel est l'ensemble des solutions sur \(\mathbb{R}\) de l'inéquation \(\ln\left(3-\text{e}^{-2x}\right)>0\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q7,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{{\(\left]\dfrac{1}{2}\ln(2);+\infty\right[\)}=0,
+\newline {\(\left]\dfrac{-1}{2}\ln(2);+\infty\right[\)}=1,
+\newline {\(\left]-\infty;\dfrac{1}{2}\ln(2)\right[\)}=0,
+\newline {\(\left]-\infty;\dfrac{-1}{2}\ln(2)\right[\)}=0}
+\end{Form}
+
+\item Quel est l'ensemble des solutions sur \(\mathbb{R}\) de l'équation \(2\left[\ln(x)\right]^2-4\ln(x)+1=0\) ?
+
+\begin{Form}
+\ChoiceMenu[radio,name=Q8,default=-0,align=0,radiosymbol=\ding{108},height=0.2cm,bordercolor=black]{}
+{
+\(\left\{1+\dfrac{\sqrt{2}}{2};1-\dfrac{\sqrt{2}}{2}\right\}\)=0,
+\newline \(\left\{\text{e}^{1+\frac{\sqrt{2}}{2}};\text{e}^{1-\frac{\sqrt{2}}{2}}\right\}\)=1,
+\newline \(\left\{\ln\left(1+\dfrac{\sqrt{2}}{2}\right);\ln\left(1-\dfrac{\sqrt{2}}{2}\right)\right\}\)=0,
+\newline \(\varnothing\)=0
+}
+\end{Form}
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Score % nécessite un mot de passe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\begin{center}
+\begin{Form}
+\TextField[password,bordercolor=1 0 0,width=10em,charsize=0pt,name=boxcode,bordercolor=black]{\textbf{Code : }}
+%
+%
+\PushButton[name=verificationcode,bordercolor=1 1 1,
+onclick=
+{
+if (this.getField("boxcode").value==\mtcode)
+{
+this.getField("obtenirscore").value=(
+this.getField("Q1").value
++this.getField("Q2").value
++this.getField("Q3").value
++this.getField("Q4").value
++this.getField("Q5").value
++this.getField("Q6").value
++this.getField("Q7").value
++this.getField("Q8").value
+);
+}
+else
+{
+this.getField("obtenirscore").value="Code incorrect";
+}
+this.getField("boxcode").value="";
+}
+]
+{\raisebox{-0.2em}{
+\tikz\node[rounded corners, draw=black!80, fill=black!20]  {\bf Score final :};
+}}
+\TextField[name=obtenirscore,bordercolor=1 1 1,width=10em,charsize=0pt,readonly=true]{}
+\end{Form}
+\end{center}
+
+\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

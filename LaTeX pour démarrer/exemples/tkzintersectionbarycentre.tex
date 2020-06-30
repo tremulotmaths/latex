@@ -1,0 +1,30 @@
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+
+\tkzDefPoint(0,0){A}\tkzLabelPoints[font=\boldmath,left,color=blue](A)
+\tkzDefPoint(10,1){C}\tkzLabelPoints[font=\boldmath,right,color=blue](C)
+\tkzDefPoint(8,-3){B}\tkzLabelPoints[font=\boldmath,below left,color=blue](B)
+\tkzDefPoint(3,4){D}\tkzLabelPoints[font=\boldmath,above left,color=blue](D)
+
+\tkzDrawPolygon[line width=1.5pt,color=blue](A,B,D)
+
+\tkzDrawSegments[line width=1.5pt,color=blue,style=dashed](A,C)
+
+\tkzDrawSegments[line width=1.5pt,color=blue](B,C C,D)
+
+\tkzDefBarycentricPoint(D=1,B=4)\tkzGetPoint{N}
+\tkzLabelPoints[font=\boldmath,below left,color=red](N)
+\tkzDefBarycentricPoint(D=3,A=2)\tkzGetPoint{M}
+\tkzLabelPoints[font=\boldmath,above left,color=red](M)
+
+\tkzInterLL(A,B)(M,N)\tkzGetPoint{I}
+\tkzLabelPoints[font=\boldmath,below right](I)
+
+\tkzDrawSegments[line width=1.5pt,color=red](M,N N,C)
+\tkzDrawSegments[line width=1.5pt,color=red,style=dashed](M,C)
+
+\tkzDrawSegments[line width=1.5pt](N,I B,I)
+\tkzDrawLine[line width=1pt](I,C)
+
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{pst-solides3d}
+
+
+\begin{document}
+
+
+
+\psset{lightsrc=50 10 20,viewpoint=60 -30 20 rtp2xyz,Decran=60}
+\psset{lightsrc=viewpoint}
+
+\begin{pspicture*}(-2,-4)(8,2)
+\psSurface[ngrid=.1
+.14,fillcolor=green!30,incolor=cyan!30,linewidth=0.2pt,hue= 0.4 0.7,grid=false](0,0)(5.9,5.9){0.8
+x 3 sub dup mul y 3 sub dup mul add sqrt div 0.2 sub neg dup -3 lt {pop -3} if }
+\axesIIID(0,0,0)(6.6,7,1)
+\end{pspicture*}
+
+\begin{pspicture*}(-4,-3)(4,4)
+\psSurface[intersectionplan={[0 0 1 -3]},
+intersectioncolor=(bleu),
+intersectionlinewidth=0.8,
+intersectiontype=1,
+ngrid=.1
+.14,fillcolor=cyan!30!blue!30,incolor=gray!30,linewidth=0.2pt,hue= 0.3 0.7](-2.5,-2.5)(2.5,2.5){0.7
+x dup mul y dup mul add sqrt div dup 3 gt {pop 3} if }
+%\axesIIID(0,0,0)(7,7,1)
+\end{pspicture*}
+
+
+\begin{pspicture*}(-4.5,-4)(4.5,4)
+\psSurface[intersectionplan={[0 0 1 -3]},
+intersectioncolor=(bleu),
+intersectionlinewidth=0.8,
+intersectiontype=1,ngrid=.1
+.2,fillcolor=blue!50!cyan!20,incolor=cyan!30,linewidth=0.2pt](-3.5,-3.5)(3.5,3.5){1
+2 x sub dup mul y dup mul add sqrt div 1 2 x add dup mul y dup mul add sqrt div neg add dup -4 lt {pop -4} if dup 3 gt {pop 3} if }
+%\axesIIID(0,0,0)(7,7,1)
+\end{pspicture*}
+
+\vspace{1.5cm}
+
+\begin{pspicture*}(-4.5,-4)(4.5,4)
+\psSurface[ngrid=.1
+.2,fillcolor=green!30,incolor=cyan!30,linewidth=0.2pt](-4.0,-3.5)(4,3.5){1
+2 x sub dup mul y dup mul add sqrt div 1 2 x add dup mul y dup mul add sqrt div add dup 3.5 gt {pop 3.5} if }
+%\axesIIID(0,0,0)(7,7,1)
+\end{pspicture*}
+
+
+\end{document}

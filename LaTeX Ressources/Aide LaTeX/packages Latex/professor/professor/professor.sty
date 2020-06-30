@@ -1,0 +1,101 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{professor}[04/07/2008 version provisoire ]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of .... many files 
+
+
+
+\RequirePackage{graphicx}
+\RequirePackage{filecontents}
+\RequirePackage{ifthen}
+\RequirePackage{fancyvrb}
+\RequirePackage{ifpdf}
+
+\fvset{gobble=0}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% option xcas present 
+
+
+ \newboolean{xcas}\setboolean{xcas}{false}
+ \DeclareOption{xcas}{\setboolean{xcas}{true}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Initialisation du choix d'OS
+\newboolean{windows}\setboolean{windows}{false}
+\DeclareOption{windows}{\setboolean{windows}{true}}
+
+ \ProcessOptions\relax
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% on configure 2varstat dans un fichier exterieur pour la plateforme
+%% et l'editeur
+
+\IfFileExists{professor.cfg}{\input{professor.cfg}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definit des commandes disque selon l'OS utilise
+\ifthenelse{\boolean{windows}}%
+    {\newcommand{\rem}{DEL } \newcommand{\cat}{TYPE }
+      \newcommand{\cp}{COPY }\newcommand{\echod}{ECHO }
+         \newcommand{\echof}{ }}%
+    {\newcommand{\rem}{rm -f }\newcommand{\cat}{cat }
+      \newcommand{\cp}{cp } \newcommand{\echod}{echo "}
+        \newcommand{\echof}{"}}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pour ceux compilant via pdflatex
+
+\ifpdf
+\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pour nettoyer les fichiers auxiliaires 
+
+% \newcommand{\nettoyer}{%
+% \immediate\write18{\rem *.log }
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% commande pour lancer giac selon l'OS
+
+\makeatletter
+\newcommand{\executGiacmp}[1]{%
+\ifthenelse{\boolean{windows}}%
+{\immediate\write18{giac #1 }}%
+{\immediate\write18{giac  <#1 }}}
+\makeatother
+
+\newcommand{\nomtravail}{\jobname}
+
+
+%% Donne comme prefixe aux objets le prefixe courant
+%% Peut-être modifie par \initablor
+
+\newcommand{\prefixe}[1][\jobname]{
+\renewcommand{\nomtravail}{#1}
+}
+

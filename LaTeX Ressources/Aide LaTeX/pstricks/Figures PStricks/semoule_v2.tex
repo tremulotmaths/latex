@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{pst-node}
+\usepackage{pst-electricfield}
+\makeatletter
+\pst@addfams{pst-semoule}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-semoule}{QXY}{\def\psk@semouleQXY{#1}}
+\psset[pst-semoule]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-semoule}{randomPoints}[2500]{\def\psk@semoulerandomPoints{#1}}
+%% nombre points
+\psset[pst-semoule]{randomPoints=2500}
+
+\def\pssemoule{\pst@object{pssemoule}}
+\def\pssemoule@i(#1)(#2){{% (xmin,ymin)(xmax,ymax)
+  \use@par
+  \pst@getcoor{#1}\pst@tempA % (xmin,ymin)
+  \pst@getcoor{#2}\pst@tempB % (xmax,ymax)
+  \begin@SpecialObj
+  \addto@pscode{
+  /semenceGazon {1 0.2 scale 0 0 5 0 360 arc closepath} def
+  \pst@tempA\space /yMin exch \pst@number\psyunit div def
+    /xMin exch \pst@number\psxunit div def
+    \pst@tempB\space /yMax exch \pst@number\psyunit div def
+    /xMax exch \pst@number\psxunit div def
+    /dy yMax yMin sub def
+    /dx xMax xMin sub def
+% les distances au point considéré
+    /Radius {xP i getX sub yP i getY sub Pyth} def
+% tableau des charges et positions
+    /QXY [\psk@semouleQXY] def
+% extraction des donnees = qi, xi, yi, Ni
+   /NoQ QXY length 1 sub def % nombre de charges -1
+% le tableau des charges
+   /Qcharges [ % les charges
+   0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 0 get}
+   for
+     ] def
+% le tableau des abscisses
+    /xCoor [
+     0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 1 get}
+    for
+    ] def
+% le tableau des ordonnées
+    /yCoor [
+     0 1 NoQ {/i exch def
+	/qi QXY i get def
+	 qi 2 get}
+     for
+    ] def
+  /getX { xCoor exch get } def
+  /getY { yCoor exch get } def
+  /getQ { Qcharges exch get } def
+  /getRandReal { rand 2147483647 div } def
+     rrand srand
+  \psk@semoulerandomPoints {
+    /xP getRandReal dx mul xMin add def
+    /yP getRandReal dy mul yMin add def
+% le calcul du champ
+  0 0
+  0 1 NoQ { /i ED
+    i getQ xP i getX sub mul Radius 3 exp Div add exch
+    i getQ yP i getY sub mul Radius 3 exp Div add exch
+  } for
+  /Ex ED  /Ey ED
+  /Angle Ey Ex atan def
+  gsave
+  xP \pst@number\psxunit mul yP \pst@number\psyunit mul translate
+ Angle rotate
+semenceGazon
+\pst@usecolor\psfillcolor true
+ fill
+ grestore
+ gsave
+   xP \pst@number\psxunit mul yP \pst@number\psyunit mul translate
+ Angle rotate
+semenceGazon
+ stroke
+  grestore
+  } repeat
+}
+  \end@SpecialObj
+}}
+\makeatother
+
+\begin{document}
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\psframe*[linecolor=yellow!20](-5,-5)(5,5)
+\psset[pst-electricfield]{N=30}
+\pssemoule[fillstyle=solid,fillcolor=yellow!50,linecolor={[rgb]{0.5 0 0}},linewidth=0.02,QXY={[2 2 0][-2 -2 0]}](-5,-5)(5,5)
+\psElectricfield[Q={[2 2 0][-2 -2 0]},linecolor=red]%
+\end{pspicture*}
+\end{center}
+
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\pssemoule[fillstyle=solid,fillcolor=yellow!50,linecolor={[rgb]{0.5 0 0}},linewidth=0.02,QXY={[2 2 0][2 -1 1.732][2 -1 -1.732]}](-5,-5)(5,5)
+\psset[pst-electricfield]{N=10}
+\psElectricfield[Q={[2 2 0][2 -1 1.732][2 -1 -1.732]},linecolor=red]%
+\end{pspicture*}
+\end{center}
+
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\psframe*[linecolor=yellow!20](-5,-5)(5,5)
+\rput{90}(0,0){%
+\pssemoule[linewidth=0.04,randomPoints=2500,QXY={[1 0 2][1 0 -2]}](-5,-5)(5,5)
+\psElectricfield[Q={[1 0 2][1 0 -2]}, linecolor=red,radius=5pt,N=15,points=1000,Pas=0.025,posArrow=0.1]%
+}
+\end{pspicture*}
+\end{center}
+\end{document}
+semences de gazon ou grains de riz
+http://www.sciences.univ-nantes.fr/sites/genevieve_tulloue/Elec/Champs/champE.html
+http://www.rpn.ch/lbc/spip/article.php3?id_article=34
+http://www.rpn.ch/lbc/spip/article-album.php3?id_article=34&debut_image=3
+http://www.rpn.ch/lbc/spip/article-album.php3?id_article=34&debut_image=4 

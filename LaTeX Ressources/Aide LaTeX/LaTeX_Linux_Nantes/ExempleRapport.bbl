@@ -1,0 +1,34 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bitouz\'e et Charpentier(2010)]{introductionLatex}
+{\scshape D.~Bitouz\'e et J.-C. Charpentier},
+\newblock \emph{Introduction à {\LaTeX }},
+\newblock Pearson, ISBN 2-7440-7451-9, adresse :
+  \url{http://www.pearson.fr/livre/?GCOI=27440100259650}, juil. 2010.
+
+\bibitem[Lozano(2008)]{toutLatex}
+{\scshape V.~Lozano},
+\newblock \emph{Tout ce que vous avez toujours voulu savoir sur {\LaTeX} sans
+  jamais oser le demander},
+\newblock In Libro Veritas, ISBN 2-352-09149-7, adresse :
+  \url{http://www.framabook.org/latex.html}, oct. 2008.
+
+\bibitem[Mittelbach et Goossens(2005)]{companionfr}
+{\scshape F.~Mittelbach et M.~Goossens},
+\newblock \emph{\LaTeX\ Companion},
+\newblock Pearson Education, 2005,
+\newblock Traduction française de J. Andr\'{e}, B. Belet, J.-C. Charpentier,
+  J.-M. Hufflen et Y. Soulet.
+
+\bibitem[Rolland(1999)]{rolland1999}
+{\scshape C.~Rolland},
+\newblock \emph{{{\LaTeX}} par la pratique},
+\newblock {\'E}ditions O'Reilly, 18, rue S{\'e}guier, 75006 PARIS, ISBN
+  2-84177-073-7, adresse : \url{Rolland.Christian@wanafoo.fr}, oct. 1999.
+
+\end{thebibliography}

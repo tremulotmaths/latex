@@ -1,0 +1,392 @@
+%___________________________
+%===    Configurations 12.09.2013
+%------------------------------------------------------
+%packages permettant d'augmenter le nombre de registres de dimension et donc d'éviter les erreurs de compilation dûs aux packages tikz, pstricks and compagnie
+\usepackage{etex}
+%___________________________
+%===    Pour le français
+%------------------------------------------------------
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\FrenchFootnotes
+\usepackage{tipa}%alphabet phonétique internationnal
+%___________________________
+%===    Polices d'écriture
+%------------------------------------------------------
+%\usepackage{mathpazo}
+\usepackage{frcursive} % Pour l'écriture cursive
+\usepackage[upright]{fourier}% l'option permet d'avoir les majuscules droites dans les formules mathématiques
+\usepackage[scaled=0.875]{helvet}
+
+%___________________________
+%===    Les couleurs
+%------------------------------------------------------
+\usepackage[dvipsnames,table]{xcolor}
+%
+\newcommand{\rouge}[1]{{\color{red} #1}}
+\definecolor{midblue}{rgb}{0.145,0.490,0.882}
+\newcommand\MaCouleur{midblue}
+
+%___________________________
+%===   Entête, pied de page
+%------------------------------------------------------
+
+\usepackage{lscape} %permet le format paysage du document
+\usepackage{xspace} % création automatique d'espaces dans les commandes
+\setlength{\parindent}{0pt}
+
+\usepackage{fancyhdr}
+%
+\renewcommand{\headrulewidth}{0pt}% pas de trait en entête
+\newcommand\RegleEntete[1][0.4pt]{\renewcommand{\headrulewidth}{#1}}%commande pour ajouter un trait horizontal en entête
+
+\newcommand{\entete}[3]{\lhead{#1} \chead{#2} \rhead{#3}}
+\newcommand{\pieddepage}[3]{\lfoot{#1} \cfoot{#2} \rfoot{#3}}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}} % enregistre le titre courant du chapitre 
+%en-tete droite page [paire] et {impaire}
+\rhead[]{\textbf{\leftmark.}}
+%en-tete gauche page [paire] et {impaire}
+\lhead[\textbf{\chaptername~\thechapter.}]{}
+
+
+\usepackage{enumerate} %permet la modif de la numérotation et de poursuivre une numérotation en cours avec \begin{enumerate}[resume]
+\usepackage{enumitem}
+\frenchbsetup{StandardLists=true}%frenchb ne s'occupera pas des listes
+\setenumerate[1]{font=\bfseries,label=\arabic*\degres)} % numérotation 1°) 2°) ...
+%\setenumerate[2]{font=\itshape,label=(\alph*)} % sous-numérotation (a) (b) ...
+\setenumerate[2]{font=\bfseries,label=(\alph*)} % sous-numérotation (a) (b) ...
+
+\usepackage{lastpage} % permet d'afficher le nombre total de pages après DEUX compilations.
+
+%___________________________
+%===    Raccourcis classe
+%------------------------------------------------------
+\newcommand\seconde{2\up{nde}\xspace}
+\newcommand\premiere{1\up{ère}\xspace}
+\newcommand\terminale{T\up{le}\xspace}
+\newcommand\stmg{\bsc{Stmg}}
+\newcommand\sti{\bsc{Sti2d}}
+\newcommand\bat{BAT 1\xspace}
+\newcommand\BAT{BAT 2\xspace}
+\newcommand\tesspe{TES Spécialité\xspace}
+
+
+%___________________________
+%===    Réglages et Commandes Maths
+%------------------------------------------------------
+%redéfinition de fractions, limites, sommes, intégrales, coefficients binomiaux en displaystyle, limites de suites
+\usepackage{amssymb,mathtools}
+\let\binomOld\binom
+\renewcommand{\binom}{\displaystyle\binomOld}
+\let\limOld\lim
+\renewcommand{\lim}{\displaystyle\limOld}
+\newcommand{\limn}{\lim_{n\to +\infty}} %limite lorsque n tend vers + infini
+\newcommand{\limm}{\lim_{x\to -\infty}} %limite lorsque x tend vers - infini
+\newcommand{\limp}{\lim_{x\to +\infty}} %limite lorsque x tend vers + infini
+\newcommand{\limz}{\lim_{x\to 0}} %limite lorsque x tend vers 0
+\newcommand{\limzm}{\lim_{\substack{x \to 0\\ x < 0}}} %limite lorsque x tend vers 0-
+\newcommand{\limzp}{\lim_{\substack{x \to 0\\ x > 0}}} %limite lorsque x tend vers 0+
+\let\sumOld\sum
+\renewcommand{\sum}{\displaystyle\sumOld}
+\let\intOld\int
+\renewcommand{\int}{\displaystyle\intOld}
+
+%\usepackage{yhmath}%permet les arcs de cercles
+%\usepackage[euler-digits]{eulervm} %-> police maths
+%
+\usepackage{amssymb,mathtools}
+\usepackage{stmaryrd}%\llbracket et \rrbracket % crochets doubles pour intervalles d'entier
+%symbole parallèle avec \sslash
+
+\newcommand{\crochets}[2]{\ensuremath{\llbracket #1 ; #2 \rrbracket}}
+
+\newcommand{\intervalleff}[2]{\left[#1\,;#2\right]}
+\newcommand{\intervallefo}[2]{\left[#1\,;#2\right[}
+\newcommand{\intervalleof}[2]{\left]#1\,;#2\right]}
+\newcommand{\intervalleoo}[2]{\left]#1\,;#2\right[}
+
+
+
+\usepackage{bm} % pour l'écriture en gras des formules mathématiques avec \bm
+
+\usepackage{cancel} % pour les simplifications de fractions
+\renewcommand\CancelColor{\color{red}}
+%\usepackage{siunitx} % écriture de nombres et d'unités
+%\sisetup{output-decimal-marker={,},detect-all}
+\usepackage[autolanguage,np]{numprint}
+%permet les espacement pour les nombres décimaux avec \np{3,12456} en environnement maths ou pas
+\DecimalMathComma %supprime l'espace après la virgule dans un nombre
+
+%
+\usepackage{dsfont} %écriture des ensemble N, R, C ...
+\newcommand{\C}{\mathds C}
+\newcommand{\R}{\mathds R}
+\newcommand{\Q}{\mathds Q}
+\newcommand{\D}{\mathds D}
+\newcommand{\Z}{\mathds Z}
+\newcommand{\N}{\mathds N}
+\newcommand\Ind{\mathds 1} %= fonction indicatrice
+\newcommand\p{\mathds P} %= probabilité
+\newcommand\E{\mathds E} % Espérance
+\newcommand\V{\mathds V} % Variance
+\newcommand{\e}{\text{e}}
+\newcommand{\dd}{\,\text{d}}
+
+%Nombres complexes
+\let\Reold\Re
+\renewcommand{\Re}{~\text{Re}~}
+\let\Imold\Im
+\renewcommand{\Im}{~\text{Im}~}
+\newcommand{\ii}{\,\text{i}}
+% Exponentielle complexe
+\newcommand{\ei}[2]{\,\e^{\dfrac{#1\ii\pi}{#2}}}
+
+
+%
+\usepackage{mathrsfs}   % Police de maths jolie caligraphie
+\newcommand{\calig}[1]{\ensuremath{\mathscr{#1}}}
+\newcommand\mtc[1]{\ensuremath{\mathcal{#1}}}
+
+
+%Gestion des espaces
+%
+\newcommand{\pv}{\ensuremath{\: ; \,}}
+\newlength{\EspacePV}
+\setlength{\EspacePV}{1em plus 0.5em minus 0.5em}
+\newcommand{\qq}{\hspace{\EspacePV} ; \hspace{\EspacePV}}
+\newcommand{\qetq}{\hspace{\EspacePV} \text{et} \hspace{\EspacePV}}
+\newcommand{\qouq}{\hspace{\EspacePV} \text{ou} \hspace{\EspacePV}}
+\newcommand{\qLq}{\hspace{\EspacePV} \Leftarrow \hspace{\EspacePV}}
+\newcommand{\qRq}{\hspace{\EspacePV} \Rightarrow \hspace{\EspacePV}}
+\newcommand{\qLRq}{\hspace{\EspacePV} \Leftrightarrow \hspace{\EspacePV}}
+
+%simplification notation norme \norme{}
+\newcommand{\norme}[1]{\left\Vert #1\right\Vert}
+
+
+%simplification de la notation de vecteur \vect{}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+
+
+
+%Repères
+\def\Oij{$\left(\text{O}\pv\vect{\imath},~\vect{\jmath}\right)$\xspace}
+\def\Oijk{$\left(\text{O}\pv\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$\xspace}
+\def\Ouv{$\left(\text{O}\pv\vect{u},~\vect{v}\right)$\xspace}
+\def\OIJ{$\left(O\pv I\:,\,J\right)$\xspace}
+
+\newcommand\abs[1]{\ensuremath{\left\vert #1 \right\vert}}%valeur absolue
+\newcommand\Arc[1]{\ensuremath{\wideparen{#1}}}%arc de cercle
+
+
+%symbole pour variable aléatoire qui suit une loi
+\newcommand{\suit}{\hookrightarrow}
+
+%___________________________
+%===    Pour les tableaux
+%------------------------------------------------------
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx,tabulary}
+\usepackage{multirow}
+\usepackage{multicol}
+%exemple
+%\begin{multicols}{3}[Titre sur une seule colonne.]
+%   3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées, 3~colonnes équilibrées
+%\end{multicols}
+%\begin{multicols}{2}[\section{Titre numéroté.}]
+%   blabla sur deux colonnes, c'est plus sérieux. C'est le style qui est généralement utilisé pour écrire des articles.
+%saut de colonne forcé :
+%\columnbreak
+%djhskjdhjsq
+%sdkksqjhd
+%\end{multicols}
+%Pour ajouter un titre numéroté qui apparaisse sur toute la largeur de la page, il faut utiliser l'option [\section{Titre.}] juste après \begin{multicols}{nb-col}.
+%Remarques :
+%Pour qu'une ligne de séparation apparaisse entre les colonnes, il faut utiliser : \setlength{\columnseprule}{1pt}.
+
+%Pour redéfinir la largeur de l'espace inter-colonnes, il faut utiliser \setlength{\columnsep}{30pt}.
+
+%Pour remonter le texte, dans chaque colonne vers le haut : \raggedcolumns qui se tape :\begin{multicols}{2}\raggedcolumns...\columnbreak...\columnbreak\end{multicols}
+
+%Pour supprimer les traits verticaux : \setlength{\columnseprule}{0pt} avant \begin{multicols}{3}...\end{multicols}
+\setlength\columnseprule{0.4pt}
+\renewcommand{\arraystretch}{1.5}%augmente la hauteur des lignes des tableaux
+%colonnes centrées verticalement et horizontalement permettant d'écrire des paragraphes de largeur fixée du type M{3cm}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}%cellule centrée horizontalement et verticalement
+%\arraybackslash permet de continuer à utiliser \\ pour le changement de ligne
+
+\usepackage{arydshln}% permet des filets horizontaux ou verticaux en pointillés avec
+%pour les filets horizontaux \hdashline ou \cdashline qui s'utilisent comme \hline ou \cline
+% pour les filets verticaux les deux points :
+
+
+%___________________________
+%===    Divers packages
+%------------------------------------------------------
+\usepackage{bclogo}
+\usepackage{textcomp}
+\usepackage{eurosym}%avec \EUR{3,12}
+\usepackage{soul} % Pour souligner : \ul
+\usepackage{ulem} % Pour souligner double : \uuline
+                      % Pour souligner ondulé : \uwave
+                      % Pour barrer horizontal : \sout
+                      % Pour barrer diagonal : \xout
+\usepackage{tikz,tkz-base,tkz-fct,tkz-euclide,tkz-tab,tkz-graph,tikz-3dplot}
+\usetkzobj{all}
+\usetikzlibrary{intersections,calc,shapes,arrows,plotmarks,lindenmayersystems,decorations,decorations.markings,decorations.pathmorphing,
+decorations.pathreplacing,patterns,positioning,decorations.text}
+\usepackage{pstricks,pst-plot,pst-text,pstricks-add,pst-eucl,pst-all}
+
+
+%INTERLIGNES
+\usepackage{setspace}
+%s'utilise avec \begin{spacing}{''facteur''}
+%   []
+%\end{spacing}
+
+%Pointillés sur toute la ligne
+\usepackage{multido}
+\newcommand{\Pointilles}[1][1]{%
+\multido{}{#1}{\makebox[\linewidth]{\dotfill}\\[1.5\parskip]
+}}
+%commandes : \Pointilles ou \Pointilles[4] pour 4 lignes
+
+
+%textes à trous
+\newlength\lgtrou
+\newcommand*\trou[1]{%
+\settowidth\lgtrou{#1}%
+\makebox[2\lgtrou]{\dotfill}
+\setlength\baselineskip{1.2\baselineskip}}
+%Commande à utiliser : \trou{texte qui sera remplacé par des pointillés}
+
+%divers cadres
+\usepackage{fancybox} % par exemple \ovalbox{}
+
+%caractères spéciaux avec la commande \ding{230} par exemple
+\usepackage{pifont}
+
+%___________________________
+%===    Quelques raccourcis perso
+%------------------------------------------------------
+\newcommand\pfr[1]{\psframebox[linecolor=red]{#1}}
+\newcommand\coef[1][]{c{\oe}fficient#1\xspace}
+
+%checked box
+\newcommand{\checkbox}{
+\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{0.1em}$\checkmark$}
+}
+
+%QRcode, codebarre
+\usepackage{pst-barcode}
+%\begin{pspicture}(2,2)
+%	\psbarcode{http://www.latex-howto.be}{eclevel=M}{qrcode}
+%\end{pspicture}
+
+
+%Texte en filigrane
+\usepackage{watermark}
+%On utilise ensuite les commandes \watermark, \leftwatermark, \rightwatermark ou \thiswatermark qui permettent de définir un filigrane sur toutes les pages, les pages paires, les pages impaires ou juste une page
+%Exemple : \thiswatermark {
+%\begin{minipage}{0.95\linewidth}
+%\vspace{25cm}
+%\begin{center}
+%\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}\LaTeX}}
+%\end{center}
+%\end{minipage}
+%}
+
+%QCM
+\usepackage{alterqcm}					%%Permet de créer des QCM
+%\begin{alterqcm}
+%\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+%\end{alterqcm}
+
+%\dingsquare %carré avant V ou F
+%\dingchecksquare %carré validé devant V ou F
+
+
+%Rond entourant une lettre avec pour arguments la couleur de fond, puis la lettre
+\newcommand\rond[2][red!20]{\tikz[baseline]{\node[fill=#1,anchor=base,circle]{\bf #2};}}
+
+
+%Ecrire card en écriture normale :
+\newcommand{\card}{\text{card}\xspace}
+
+
+%___________________________
+%===    ALGORITHMES
+%------------------------------------------------------
+
+%ALGORITHME avec Algobox
+\usepackage{ucs}
+\usepackage{framed}
+\definecolor{fond}{gray}{0.95}
+\newenvironment{cadrecode}{%
+  \def\FrameCommand{{\color[HTML]{888888}\vrule width 3pt}\colorbox{fond}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+{\endMakeFramed}
+\usepackage{alltt}
+
+% Mise en forme des algorithmes
+\usepackage[french,boxed,titlenumbered,lined,longend]{algorithm2e}
+  \SetKwIF {Si}{SinonSi}{Sinon}{si}{alors}{sinon\_si}{alors}{fin~si}
+ \SetKwFor{Tq}{tant\_que~}{~faire~}{fin~tant\_que}
+ \SetKwFor{PourCh}{pour\_chaque }{ faire }{fin pour\_chaque}
+ \SetKwInput{Sortie}{Sortie}
+  \SetKwInput{Entree}{Entrée}
+\newcommand{\Algocmd}[1]{\textsf{\textsc{\textbf{#1}}}}\SetKwSty{Algocmd}
+  \newcommand{\AlgCommentaire}[1]{\textsl{\small  #1}}
+
+%___________________________
+%===    MISE EN FORME EXERCICES
+%------------------------------------------------------
+%\usepackage{marvosym}
+\usepackage{slashbox}
+
+\newcounter{exo}
+\newenvironment{exo}{%
+  \refstepcounter{exo}\Writinghand\ \textbf{Exercice \theexo.}\par
+  \medskip}%
+{\[*\]}
+
+
+%___________________________
+%===    HYPERLIENS
+%------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=black,filecolor=blue,urlcolor=blue,bookmarksnumbered]{hyperref} 
+
+
+%___________________________
+%===    SOMMAIRE DANS LES CHAPITRES
+%------------------------------------------------------
+
+\usepackage{minitoc}
+
+%___________________________
+%===    TABLEUR
+%------------------------------------------------------
+\usepackage{pas-tableur}
+\usepackage{xstring}
+\usepackage{xkeyval}
+
+
+%___________________________
+%===    touches calculatrices
+%------------------------------------------------------
+
+\newcommand{\touche}[1]{\begin{pspicture}(0,0)(0.9,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(0.8,0.45)\rput[cc](0.4,
+0.225){#1}\end{pspicture}} %touche calculatrice
+\newcommand{\gtouche}[1]{\begin{pspicture}(0,0)(1.8,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(1.6,0.45)\rput[cc](0.8,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+\newcommand{\ggtouche}[1]{\begin{pspicture}(0,0)(2.4,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(2.4,0.45)\rput[cc](1.2,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+
+\usepackage{tipfr}

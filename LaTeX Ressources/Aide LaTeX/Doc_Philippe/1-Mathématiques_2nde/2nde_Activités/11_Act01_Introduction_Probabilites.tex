@@ -1,0 +1,101 @@
+\documentclass[11pt,openright,twoside,french]{book}
+\usepackage{marvosym}
+\input philippe2013
+\input philippe2013_activites
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{xi.1}{Calculs de probabilités \\ Introduction}\medskip
+
+\exo Un sac contient $12$ jetons numérotés de $1$ à $12$. On tire un jeton au hasard.\par
+On considère les \textbf{événements} suivants :\par
+$A$ : << Le numéro du jeton tiré est pair >> \par
+$B$ : << Le numéro du jeton tiré est un multiple de $3$ >>
+
+\begin{enumerate}
+    \item Quels sont les événements \textbf{élémentaires} qui composent $A$ et $B$ ?\par
+    Recopier et compléter : $A = \{\ldots\}$ et $B = \{\ldots\}$.
+    \item Décrire les événements suivants par une phrase et écrire les événements élémentaires qui les composent :
+    \[A\cap B \qq \overline A \qq \overline{A \cap B} \qq \overline A \cap \overline B\]
+    \[A\cup B \qq \overline{A \cup B} \qq \overline A \cap B \qq \overline A \cup \overline B\]
+\end{enumerate}\[*\]
+
+\exo Dans un sac, on a mélangé $10$ boules indiscernables au toucher. Parmi ces boules, il y a $7$ rouges et $3$ noires.\par
+On tire, au hasard, une boule du sac. On note les événements suivants :\par
+$N$ : << la boule tirée est noire >> et $R$ : << la boule tirée est rouge >>.
+
+\begin{enumerate}
+    \item Dessiner un arbre représentant la situation.
+    \item Quelle est la probabilité d'obtenir une boule noire ?
+    \item Que vaut $p(N) + p(R)$ ?
+\end{enumerate}
+
+Après avoir tiré une première boule, on la met de côté et on tire une seconde boule du sac.
+
+\begin{enumerate}[resume]
+    \item Représenter cette nouvelle situation à l'aide d'un arbre.
+    \item Quelle est la probabilité d'obtenir $2$ boules noires ?
+    \item Quelle est la probabilité d'obtenir deux boules de la même couleur ?
+    \item Quelle est la probabilité d'obtenir deux boules de couleur différente ?
+\end{enumerate}\[*\]
+
+\exo On jette une pièce de monnaie non pipée trois fois de suite et on note chaque fois le résultat obtenu.
+    \begin{enumerate}
+        \item Représenter à l'aide d'un arbre tous les résultats possibles.
+        \item Calculer les probabilités des événements suivants :\par
+        $A$ : << Pile apparaît 3 fois >>\par
+        $B$ : << Pile apparaît 2 fois >>\par
+        $C$ : << Face apparaît au moins une fois >>
+    \end{enumerate}\[*\]\clearpage
+    
+\exo Une urne opaque contient $5$ boules indiscernables au toucher :\par
+\begin{itemize}
+    \item une boule verte valant $3$ points ;
+    \item deux boules rouges valant chacune $2$ points ;
+    \item deux boules bleues valant chacune $1$ point.
+\end{itemize}
+
+\begin{enumerate}
+    \item On tire une boule au hasard. Quelle est la probabilité d'obtenir $2$ points ?
+    \item Cette fois, on tire une boule au hasard et on note sa valeur. Puis, on la remet dans l'urne et on tire à nouveau une boule au hasard.
+        \begin{enumerate}
+            \item Représenter la situation par un arbre.
+            \item Quelle est la probabilité d'obtenir $5$ points ?
+        \end{enumerate}
+\end{enumerate}\[*\]
+
+\exo Une entreprise fabrique des cahiers qui peuvent présenter deux défauts notés $A$ et $B$.\par
+Après une étude sur ces défauts, il apparaît que $9\%$ des cahiers présentent le défaut $A$, $7\%$ des cahiers présentent le défaut $B$ et $4\%$ des cahiers présentent simultanément les deux défauts.\par
+On choisit au hasard un cahier dans la production de l'entreprise. On note les événements suivants :\par
+$E$ : << le cahier présente le défaut $A$ >>\par
+$F$ : << le cahier présente le défaut $B$ >>
+
+\begin{enumerate}
+    \item Traduire, en termes de probabilités, les hypothèses du texte.
+    \item Que représente l'événement $E\cup F$ ? Déterminer sa probabilité.
+    \item Compléter le tableau suivant :
+\end{enumerate}
+
+\begin{center}
+\renewcommand\arraystretch{2}
+    \begin{tabular}{*{3}{|>\centering m{2.5cm}}|>{\centering\arraybackslash} m{2.5cm}|}
+        \cline{2-4}
+            \multicolumn{1}{c|}{} & Cahier avec défaut $A$ & Cahier sans défaut $A$ & Total \\
+        \hline
+            Cahier avec défaut $B$ & & &  \\
+        \hline
+            Cahier sans défaut $B$ & & &  \\
+        \hline
+            Total & $9\%$ & & $100\%$ \\
+        \hline
+    \end{tabular}
+    \renewcommand\arraystretch{1}
+\end{center}
+
+\begin{enumerate}[resume]
+    \item Donner les probabilités suivantes :
+    \[p\left(\overline E\right) \qq p\left(\overline E \cap F\right) \qetq p\left(\overline E \cap \overline F\right).\]
+\end{enumerate}
+\end{document} 

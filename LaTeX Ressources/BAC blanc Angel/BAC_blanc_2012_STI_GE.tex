@@ -1,0 +1,264 @@
+\documentclass[12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{fourier}
+\usepackage[scaled=0.875]{helvet}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath,amssymb,makeidx}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage{slashbox}
+\usepackage{textcomp}
+\newcommand{\euro}{\texteuro{}}
+\usepackage{pst-plot}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\setlength{\textheight}{23,5cm}
+\newcommand{\vect}[1]{\mathchoice%
+{\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
+{\overrightarrow{\textstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptstyle\mathstrut#1\,\,}}%
+{\overrightarrow{\scriptscriptstyle\mathstrut#1\,\,}}}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O},~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O},~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
+\def\Ouv{$\left(\text{O},~\vect{u},~\vect{v}\right)$}
+%\setlength{\voffset}{-1,5cm}
+\usepackage{fancyhdr}
+\usepackage[frenchb]{babel}
+\usepackage[np]{numprint}
+\usepackage[top=2cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+
+\begin{document}
+
+\setlength\parindent{0mm}
+\rhead{\small Lycée Edmont Michelet}
+\lhead{\small Baccalauréat blanc STI Génie électronique}%
+\lfoot{\small{Arpajon}}
+\rfoot{\small{Mars 2012}}
+\renewcommand \footrulewidth{.2pt}%
+\pagestyle{fancy}
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+
+\vspace{1cm}
+\textbf{\LARGE{SESSION 2012}}\\
+\vspace{1cm}
+\textbf{\LARGE{BACCALAUR\'EAT TECHNOLOGIQUE BLANC}}\\
+\vspace{1cm}
+\textbf{\LARGE{SCIENCES ET TECHNOLOGIES INDUSTRIELLES}}\\
+\vspace{1cm}
+\textbf{Génie \'Electronique}\\
+\vspace{1cm}
+\textbf{\LARGE{MATH\'EMATIQUES}}
+
+\end{center}
+
+\vspace{1cm}
+
+Durée : 4 heures 
+\hfill
+Coefficient 4
+
+\vspace{1cm}
+
+\dotfill
+\begin{center}
+L'usage des calculatrices est autorisé pour cette épreuve.\\
+Le formulaire personnel de mathématiques est autorisé.
+\end{center}
+\dotfill
+
+\vspace{1cm}
+
+
+\begin{bf}
+
+Le candidat doit traiter les deux exercices et le problème.\\
+Le candidat est invité à faire figurer sur la copie toute trace de recherche, même incomplète ou non fructueuse, qu'il aura developpée.\\
+\\
+Il est rappelé que la qualité de la rédaction, la clarté et la précision des raisonnements entreront pour une part importante dans l'appréciation des copies.\\
+\\
+Dès que le sujet vous est remis, assurez-vous qu'il est complet, que toutes les pages sont imprimées.\\
+Le sujet comporte quatre pages.
+
+\end{bf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\textbf{\textsc{\Large{Exercice 1}} \hfill 5 points}
+
+\vspace{0.5cm}
+
+{\fontsize{16}{12}\selectfont $\C$} est l'ensemble des nombres complexes et i désigne le nombre complexe de module 1 et d'argument $\dfrac{\pi}{2}$.
+
+\vspace{0.5cm}
+\begin{enumerate}
+\item  Résoudre dans l'ensemble {\fontsize{16}{12}\selectfont $\C$} l'équation :
+\[z^2 - 4z+16 = 0.\]
+
+\vspace{0.5cm}
+\item On considère les nombres complexes :
+\[ z_{1} = 2+2\text{i}\sqrt{3} \quad  \text{et}\quad z_{2} =  2 - 2\text{i}\sqrt{3}.\]
+	\begin{enumerate}
+		\item Déterminer le module et un argument de $z_{1}$.
+		\item \'Ecrire $z_{1}$, puis $z_{2}$ sous forme exponentielle.
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item Le plan est muni d'un repère orthonormal direct \Ouv{} d'unité $1$~cm.
+
+On considère la rotation $r$ de centre O et d'angle $- \ \dfrac{2\pi}{3}$.
+	\begin{enumerate}
+		\item Placer les points M$_{1}$, et M$_{2}$ d'affixes respectives $z_{1}$ et $z_{2}$ dans le repère \Ouv.
+		\item Montrer que le point M$_{2}$ est l'image du point M$_{1}$ par la rotation $r$.
+		\item On appelle M$_{3}$ le point image du point M$_{2}$ par la rotation $r$.
+		
+Calculer l'affixe $z_{3}$ du point M$_{3}$.
+Placer le point M$_{3}$ dans le repère \Ouv.
+		\item Démontrer que le triangle M$_{1}$M$_{2}$M$_{3}$ est équilatéral.
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item Vérifier que les nombres complexes $\left(z_{1}\right)^6$ et	$\dfrac{\left(z_{1}\right)^4}{\left(z_{2}\right)^2}$	sont des entiers naturels.
+
+On utilisera la forme de $z_{1}$ et $z_{2}$ la plus adaptée.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\textbf{\textsc{\Large{Exercice 2}} \hfill 4 points}
+
+\vspace{0.5cm}
+
+Un joueur lance successivement et dans cet ordre trois pièces de monnaie : une de $2$~euros et deux de $1$~euro.
+
+
+\vspace{0.5cm}
+\begin{enumerate}
+\item  Déterminer les différents résultats possibles, sachant qu'un résultat peut être considéré comme un triplet du type (P, F, P) par exemple, P désignant pile et F désignant face.
+
+Chaque pièce est parfaitement équilibrée. On est dans une situation d'équiprobabilité.
+
+\vspace{0.5cm}
+\item  Si les trois pièces présentent leur côté face, le joueur perd $5$~euros : sinon il gagne la somme des euros figurant sur les pièces présentant leur côté pile.
+
+Soit X la variable aléatoire qui, à chaque lancer des trois pièces, associe la somme d'argent gagnée en euros. Lorsque le joueur perd, la variable X prend alors une valeur négative.
+	\begin{enumerate}
+		\item  Quelles valeurs peut prendre X ?
+		\item  Donner la loi de probabilité de X.
+		\item  Calculer la probabilité de l'évènement \og  X $\leqslant  2$ \fg.
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item  On dit qu'un jeu est équitable lorsque l'espérance mathématique du gain est égale à $0$.
+	\begin{enumerate}
+		\item  Ce jeu est-il équitable ?
+		\item  Quelle somme le joueur devrait-il perdre lorsque les trois pièces présentent leur côté face pour que ce jeu soit équitable ?
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{1 cm}
+
+
+\textbf{\textsc{\Large{Problème}} \hfill 11 points}
+
+\vspace{0.5cm}
+
+Dans tout le problème, $I$ désigne l'intervalle $]0;+\infty[$.
+
+\vspace{0.5cm}
+
+\textbf{Partie A : }
+
+\vspace{0.5cm}
+Soit $g$ la fonction définie sur l'intervalle $I$ par :\\
+$$g(x)=x^2+3-2 \ln (x)$$
+
+\begin{enumerate}
+\item 
+	\begin{enumerate}
+
+	\item On note $g'$ la dérivée de la fonction $g$. Calculer $g'(x)$ et étudier son signe pour $x$ appartenant à l'intervalle $I$.
+
+	\item Dresser le tableau de variations de la fonction $g$. (Les limites de la fonction $g$ en $0$ et $+\infty$ ne sont pas demandées).
+
+	\end{enumerate}
+
+\vspace{0.5cm}
+
+\item Calculer $g(1)$, en déduire le signe de $g(x)$ pour $x$ appartenant à l'intervalle $I$.
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\textbf{Partie B : }
+
+\vspace{0.5cm}
+Soit $f$ la fonction définie sur l'intervalle $I$ par :\\
+$$f(x)=\frac{1}{2}x-\frac{1}{2x}+\frac{\ln (x)}{x}$$ 
+
+On note $f'$ la fonction dérivée de la fonction $f$ sur l'intervalle $I$ et {\fontsize{16}{12}\selectfont $\mathcal{C}$} la courbe représentative de $f$ dans un repère \Oij ~d'unités graphiques 2 cm.
+
+\begin{enumerate}
+
+\item 
+
+	\begin{enumerate}
+	\item \'Etudier la limite de $f$ en 0 et en déduire l'existence d'une asymptote à la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$}.
+	\item \'Etudier la limite de $f$ en $+\infty$.
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item 
+	\begin{enumerate}
+
+	\item Montrer que, pour tout nombre réel $x$ de l'intervalle $I$, $f'(x)=\dfrac{g(x)}{2x^2}$.
+	\item Déduire de la partie A le signe de $f'(x)$ puis le sens de variation de la fonction $f$ sur l'intervalle $I$.
+	\item \'Etablir le tableau de variations de la fonction $f$ sur l'intervalle $I$.
+	
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item Soit {\fontsize{16}{12}\selectfont $\mathcal{D}$} la droite d'équation $y=\dfrac{1}{2}x$ dans le repère \Oij.
+
+	\begin{enumerate}
+
+	\item Montrer que la droite {\fontsize{16}{12}\selectfont $\mathcal{D}$} est asymptote à la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$}.
+	\item Déterminer par le calcul les coordonnées du point d'intersection $E$ de la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$} et de la droite {\fontsize{16}{12}\selectfont $\mathcal{D}$}.
+	\item Sur l'intervalle $I$, déterminer la position de la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$} par rapport à l'asymptote {\fontsize{16}{12}\selectfont $\mathcal{D}$}.
+	
+	\end{enumerate}
+
+\vspace{0.5cm}
+\item Déterminer une équation de la tangente {\fontsize{16}{12}\selectfont $\mathcal{T}$} à la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$} au point d'abscisse $x=1$.
+
+\vspace{0.5cm}
+\item Montrer que l'équation $f(x)=2$ admet une unique solution $\alpha$ appartenant à l'intervalle $[3;4]$. Donner un encadrement de cette solution à $10^{-2}$ près.
+
+\vspace{0.5cm}
+\item En utilisant les résultats précédents, tracer avec soin dans le même repère \Oij ~l'asymptote {\fontsize{16}{12}\selectfont $\mathcal{D}$}, la tangente {\fontsize{16}{12}\selectfont $\mathcal{T}$} et la courbe {\fontsize{16}{12}\selectfont $\mathcal{C}$}.
+
+\end{enumerate}
+
+
+\end{document}

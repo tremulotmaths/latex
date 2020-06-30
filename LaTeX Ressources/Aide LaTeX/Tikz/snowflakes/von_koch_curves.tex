@@ -1,0 +1,25 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems}
+
+\tikzset{
+  Koch curve/.style = {
+    l-system={
+      rule set={F -> F-F++F-F},
+      axiom=F++F++F,
+      step=1pt,
+      angle=60,
+      #1
+    }
+  }
+}
+
+\begin{document}
+
+\foreach \order in {1,...,6,5,4,3,2} {
+  \begin{tikzpicture}
+    \draw[Koch curve={order=\order,step=500pt/3^(\order)}] l-system -- cycle;
+  \end{tikzpicture}
+}
+
+\end{document}

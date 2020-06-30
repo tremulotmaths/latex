@@ -1,0 +1,252 @@
+\documentclass{article}
+\usepackage{pst-slpe}
+\usepackage{pst-grad}
+\usepackage{pst-node}
+\usepackage{pst-electricfield}
+\makeatletter
+\pst@addfams{pst-vectorE}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-vectorE}{QXY}{\def\psk@vectorQXY{#1}}
+\psset[pst-vectorE]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-vectorE}{K}{\def\psk@vectorEK{#1 }}
+%% coefficient de longueur
+\psset[pst-vectorE]{K=5}
+\def\psvectorE{\pst@object{psvectorE}}
+\def\psvectorE@i(#1){{% (x,y)
+  \use@par
+\pnode(! /QXY [\psk@vectorQXY] def % charges et positions
+         /q1 QXY 0 get 0 get def
+         /q2 QXY 1 get 0 get def
+         /xA QXY 0 get 1 get def
+         /yA QXY 0 get 2 get def
+         /xB QXY 1 get 1 get def
+         /yB QXY 1 get 2 get def
+         /K \psk@vectorEK def
+         0 0){datas}
+\pst@getcoor{#1}\pst@tempA%
+\pnode(!
+    \pst@tempA
+    /yP exch \pst@number\psyunit div def
+    /xP exch \pst@number\psxunit div def
+    /r1 xP xA sub dup mul yP yA sub dup mul add sqrt def
+    /r2 xP xB sub dup mul yP yB sub dup mul add sqrt def
+    /Ex q1 xP xA sub mul r1 3 exp div
+        q2 xP xB sub mul r2 3 exp div
+        add def
+   /Ey q1 yP yA sub mul r1 3 exp div
+       q2 yP yB sub mul r2 3 exp div
+       add def
+   /Angle Ey Ex atan def
+   /NormeE Ex dup mul Ey dup mul add sqrt def
+   /uEx Ex NormeE div K mul def
+   /uEy Ey NormeE div K mul def
+   0 0
+    ){Champ}%
+%\psdots[linecolor=red](!xA yA)(!xB yB)
+%\psdot(!xP yP)
+\psline{->}(!xP yP)(! xP Ex K mul add yP Ey K mul add)
+}}
+\pst@addfams{pst-vectorEZ}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-vectorEZ}{QXY}{\def\psk@vectorQXY{#1}}
+\psset[pst-vectorEZ]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-vectorEZ}{K}{\def\psk@vectorEK{#1 }}
+%% coefficient de longueur
+\psset[pst-vectorEZ]{K=5}
+\def\psvectorEZ{\pst@object{psvectorEZ}}
+\def\psvectorEZ@i(#1){{% (x,y)
+  \use@par
+\pnode(! /QXY [\psk@vectorQXY] def % charges et positions
+         /q1 QXY 0 get 0 get def
+         /q2 QXY 1 get 0 get def
+         /xA QXY 0 get 1 get def
+         /yA QXY 0 get 2 get def
+         /xB QXY 1 get 1 get def
+         /yB QXY 1 get 2 get def
+         /K \psk@vectorEK def
+         0 0){datas}
+\pst@getcoor{#1}\pst@tempA%
+\pnode(!
+    \pst@tempA
+    /yP exch \pst@number\psyunit div def
+    /xP exch \pst@number\psxunit div def
+    /r1 xP xA sub dup mul yP yA sub dup mul add sqrt def
+    /r2 xP xB sub dup mul yP yB sub dup mul add sqrt def
+    /Ex q1 xP xA sub mul r1 3 exp div
+        q2 xP xB sub mul r2 3 exp div
+        add def
+   /Ey q1 yP yA sub mul r1 3 exp div
+       q2 yP yB sub mul r2 3 exp div
+       add def
+   /Angle Ey Ex atan def
+   /NormeE Ex dup mul Ey dup mul add sqrt def
+   /uEx Ex NormeE div K mul def
+   /uEy Ey NormeE div K mul def
+   0 0
+    ){ChampZ}%
+%\psdots[linecolor=red](!xA yA)(!xB yB)
+%\psdot(!xP yP)
+\psline{->}(!xP yP)(! xP Ex K mul add yP Ey K mul add)
+\psline[linestyle=dashed]{->}(!xP yP)(!xP xP xA sub K mul q1 mul r1 3 exp div add yP yP yA sub K mul q1 mul r1 3 exp div add)
+\psline[linestyle=dashed]{->}(!xP yP)(!xP xP xB sub K mul q2 mul r2 3 exp div add yP yP yB sub K mul q2 mul r2 3 exp div add)
+\psline[linestyle=dotted,dotsep=1pt]{->}(!xP xP xB sub K mul q2 mul r2 3 exp div add yP yP yB sub K mul q2 mul r2 3 exp div add)(! xP Ex K mul add yP Ey K mul add)
+\psline[linestyle=dotted,dotsep=1pt]{->}(!xP xP xA sub K mul q1 mul r1 3 exp div add yP yP yA sub K mul q1 mul r1 3 exp div add)(! xP Ex K mul add yP Ey K mul add)
+}}
+\pst@addfams{pst-vectorEN}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-vectorEN}{QXY}{\def\psk@vectorQXY{#1}}
+\psset[pst-vectorEN]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-vectorEN}{K}{\def\psk@vectorEK{#1 }}
+%% coefficient de longueur
+\psset[pst-vectorEN]{K=5}
+\def\psvectorEN{\pst@object{psvectorEN}}
+\def\psvectorEN@i(#1){{% (x,y)
+  \use@par
+\pnode(! /QXY [\psk@vectorQXY] def % charges et positions
+         /q1 QXY 0 get 0 get def
+         /q2 QXY 1 get 0 get def
+         /xA QXY 0 get 1 get def
+         /yA QXY 0 get 2 get def
+         /xB QXY 1 get 1 get def
+         /yB QXY 1 get 2 get def
+         /K \psk@vectorEK def
+         0 0){datas}
+\pst@getcoor{#1}\pst@tempB%
+\pnode(!
+    \pst@tempB
+    /yP exch \pst@number\psyunit div def
+    /xP exch \pst@number\psxunit div def
+    /r1 xP xA sub dup mul yP yA sub dup mul add sqrt def
+    /r2 xP xB sub dup mul yP yB sub dup mul add sqrt def
+    /Ex q1 xP xA sub mul r1 3 exp div
+        q2 xP xB sub mul r2 3 exp div
+        add def
+   /Ey q1 yP yA sub mul r1 3 exp div
+       q2 yP yB sub mul r2 3 exp div
+       add def
+   /Angle Ey Ex atan def
+   /NormeE Ex dup mul Ey dup mul add sqrt def
+   /uEx Ex NormeE div K mul def
+   /uEy Ey NormeE div K mul def
+   0 0
+    ){ChampN}%
+%\psdots[linecolor=red](!xA yA)(!xB yB)
+%\psdot(!xP yP)
+\psline{->}(!xP yP)(! xP Ex K mul sub yP Ey K mul sub)
+}}
+\pst@addfams{pst-vectorENZ}
+%% [q1 x1 y1] [q2 x2 y2]
+\define@key[psset]{pst-vectorENZ}{QXY}{\def\psk@vectorQXY{#1}}
+\psset[pst-vectorENZ]{QXY=[1 -2 0][-1 2 0]}
+\define@key[psset]{pst-vectorENZ}{K}{\def\psk@vectorEK{#1 }}
+%% coefficient de longueur
+\psset[pst-vectorENZ]{K=5}
+\def\psvectorENZ{\pst@object{psvectorENZ}}
+\def\psvectorENZ@i(#1){{% (x,y)
+  \use@par
+\pnode(! /QXY [\psk@vectorQXY] def % charges et positions
+         /q1 QXY 0 get 0 get def
+         /q2 QXY 1 get 0 get def
+         /xA QXY 0 get 1 get def
+         /yA QXY 0 get 2 get def
+         /xB QXY 1 get 1 get def
+         /yB QXY 1 get 2 get def
+         /K \psk@vectorEK def
+         0 0){datas}
+\pst@getcoor{#1}\pst@tempB%
+\pnode(!
+    \pst@tempB
+    /yP exch \pst@number\psyunit div def
+    /xP exch \pst@number\psxunit div def
+    /r1 xP xA sub dup mul yP yA sub dup mul add sqrt def
+    /r2 xP xB sub dup mul yP yB sub dup mul add sqrt def
+    /Ex q1 xP xA sub mul r1 3 exp div
+        q2 xP xB sub mul r2 3 exp div
+        add def
+   /Ey q1 yP yA sub mul r1 3 exp div
+       q2 yP yB sub mul r2 3 exp div
+       add def
+   /Angle Ey Ex atan def
+   /NormeE Ex dup mul Ey dup mul add sqrt def
+   /uEx Ex NormeE div K mul def
+   /uEy Ey NormeE div K mul def
+   0 0
+    ){ChampNZ}%
+%\psdots[linecolor=red](!xA yA)(!xB yB)
+%\psdot(!xP yP)
+\psline{->}(!xP yP)(! xP Ex K mul sub yP Ey K mul sub)
+\psline[linestyle=dashed]{->}(!xP yP)(!xP xP xA sub K mul q1 mul r1 3 exp div sub yP yP yA sub K mul q1 mul r1 3 exp div sub)
+\psline[linestyle=dashed]{->}(!xP yP)(!xP xP xB sub K mul q2 mul r2 3 exp div sub yP yP yB sub K mul q2 mul r2 3 exp div sub)
+\psline[linestyle=dotted,dotsep=1pt]{->}(!xP xP xB sub K mul q2 mul r2 3 exp div sub yP yP yB sub K mul q2 mul r2 3 exp div sub)(! xP Ex K mul sub yP Ey K mul sub)
+\psline[linestyle=dotted,dotsep=1pt]{->}(!xP xP xA sub K mul q1 mul r1 3 exp div sub yP yP yA sub K mul q1 mul r1 3 exp div sub)(! xP Ex K mul sub yP Ey K mul sub)
+}}
+\makeatother
+\SpecialCoor
+
+\begin{document}
+
+\newpsstyle{Kugel1}{linecolor=cyan!30,slopebegin=cyan!30,sloperadius=0.4,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+\newpsstyle{KugelRot}{linecolor=black!80,slopebegin=magenta!40,sloperadius=0.5,linewidth=0.1pt,slopecenter=0.7 0.7,linestyle=solid}%
+\newpsstyle{Kugel2}{linecolor=black!70,slopebegin=cyan!50,sloperadius=0.1,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+%\newpsstyle{KugelB1}{linecolor=cyan!30,slopebegin=cyan!30,sloperadius=0.3,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}%
+%\newpsstyle{KugelR1}{linecolor=black!80,slopebegin=magenta!40,sloperadius=0.4,linewidth=0.1pt,slopecenter=0.7 0.7,linestyle=solid}%
+\newpsstyle{KugelLM}{linecolor=black!30,slopebegin=magenta!30,sloperadius=0.2,linewidth=0.1pt,slopecenter=0.65 0.6,linestyle=solid}
+
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\psElectricfield[Q={[2 2 0][-2 -2 0]},linecolor=red,N=17,points=1000,Pas=0.025,posArrow=0.07]%
+\pnode(-2,0){K1}%
+\pnode(2,0){K2}%
+\rput[c](K2){\psBall[style=Kugel1](0,0){black!90}{.4}}%
+\rput[c](K2){\color{blue}{$+$}}%
+\rput[c](K1){\psBall[style=KugelRot](0,0){black!90}{.4}}%
+\rput[c](K1){\color{red}{$-$}}%
+\pnode(1.5,2.6){P}\psdot(P)
+\psvectorE[QXY={[2 2 0][-2 -2 0]}](P)
+\rput(P){\psBall[style=Kugel2](0,0){black!60}{.1}}
+\rput[c](P){\tiny $+$}%
+\pnode(0,1.25){P}\psdot(P)
+\psvectorE[linecolor=blue,QXY={[2 2 0][-2 -2 0]}](P)
+\rput(P){\psBall[style=Kugel2](0,0){black!60}{.1}}
+\rput[c](P){\tiny $+$}%
+\pnode(-1.5,-2.6){P}\psdot(P)
+\psvectorEZ[linecolor=blue,QXY={[2 2 0][-2 -2 0]}](P)
+\rput(P){\psBall[style=Kugel2](0,0){black!60}{.1}}
+\rput[c](P){\tiny $+$}%
+\pnode(-1,3.15){P}\psdot(P)
+\psvectorEZ[QXY={[2 2 0][-2 -2 0]}](P)
+\rput(P){\psBall[style=Kugel2](0,0){black!60}{.1}}
+\rput[c](P){\tiny $+$}%
+\end{pspicture*}
+\end{center}
+
+\begin{center}
+\begin{pspicture*}[showgrid](-5,-5)(5,5)
+\rput[l]{90}(0,0){\psElectricfield[Q={[1 0 2][1 0 -2]},linecolor=red,radius=5pt,N=15,points=1000,Pas=0.025,posArrow=0.1]%
+\pnode(0,-2){K1}%
+\pnode(0,2){K2}%
+\rput[c](K2){\psBall[style=Kugel1](0,0){black!90}{.4}}%
+\rput[c](K2){\color{blue}{$+$}}%
+\rput[c](K1){\psBall[style=Kugel1](0,0){black!90}{.4}}%
+\rput[c](K1){\color{blue}{$+$}}%
+\pnode(-1.3,-0.75){P}\psdot(P)
+\psvectorENZ[linecolor=black,QXY={[1 0 2][1 0 -2]}](P)
+\rput(P){\psBall[style=KugelLM](0,0){black!90}{.1}}
+\rput[c]{90}(P){\tiny $-$}%
+\pnode(2,-0.58){P}\psdot(P)
+\psvectorENZ[linecolor=black,QXY={[1 0 2][1 0 -2]}](P)
+\rput(P){\psBall[style=KugelLM](0,0){black!90}{.1}}
+\rput[c]{90}(P){\tiny $-$}%
+\pnode(2,0.57){P}\psdot(P)
+\psvectorEN[linecolor=green,QXY={[1 0 2][1 0 -2]}](P)
+\rput(P){\psBall[style=KugelLM](0,0){black!90}{.1}}
+\rput[c]{90}(P){\tiny $-$}%
+\pnode(0.6,0.29){P}\psdot(P)
+\psvectorEN[linecolor=blue,QXY={[1 0 2][1 0 -2]}](P)
+\rput(P){\psBall[style=KugelLM](0,0){black!90}{.1}}
+\rput[c]{90}(P){\tiny $-$}%
+}
+\end{pspicture*}
+\end{center}
+\end{document}
+

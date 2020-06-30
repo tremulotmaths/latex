@@ -1,0 +1,24 @@
+\setcounter{tocdepth}{1}
+    %------ Index
+\renewenvironment{theindex}
+{\cleardoublepage
+{\color{\MaCouleur}
+       \vspace*{10\p@}%
+        \begin{minipage}[c]{\textwidth}
+        \rule{\textwidth}{1ex}
+        \par\nobreak
+        \begin{flushright}
+            \Huge\bfseries Index \\ des notions définies
+         \end{flushright}
+        \par\nobreak
+        \rule{\textwidth}{1ex}
+         \end{minipage}
+    \vskip 40\p@
+}
+\renewcommand{\item}{\par\hangindent 40pt}
+\begin{multicols}{2}
+}
+{\end{multicols}}
+
+\entete{}{}{}
+\printindex\addcontentsline{toc}{chapter}{\protect Index des notions définies}

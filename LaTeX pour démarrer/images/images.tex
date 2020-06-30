@@ -1,0 +1,126 @@
+\chapter{Images}
+
+\section{Insérer une image}
+
+Pour insérer une image, un package intéressant est le package \jargon{graphicx} (Ajouter la commande \verb!\usepackage{graphicx}! dans le préambule).
+
+Il fournit la commande \verb!\includegraphics! qui possède des options facultatives.
+
+\bigskip
+
+\begin{minipage}{0.6\linewidth}
+\color{blue}\rule{9cm}{1pt}\color{black}
+\vspace*{-12pt}
+
+\begin{small}
+\begin{verbatim}
+\includegraphics{exemples/image}
+\end{verbatim}
+\end{small}
+
+\vspace*{-12pt}
+\color{blue}\rule{9cm}{1pt}\color{black}
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\linewidth}
+\includegraphics{exemples/image}
+\end{minipage}
+
+\medskip
+
+Les formats des images acceptés par compilation \texttt{PDF}\LaTeX{} sont \jargon{.jpg}, \jargon{.png} et \jargon{.pdf}.
+
+Le format accepté par compilation \LaTeX est \jargon{.eps}.
+
+Il est inutile de préciser l'extension du fichier utilisé. Il faut juste utiliser un fichier dont le format est le bon, suivant la compilation choisie.
+
+\begin{info}
+Si l'on veut centrer une image, il suffit d'utiliser l'environnement \jargon{center} comme pour le texte.
+\end{info}
+
+\section{Modifier une image}
+
+La commande plusieurs \verb!\includegraphics! admet plusieurs options que l'on peut spécifier entre crochets. Ces options permettent de transformer l'aspect de l'image.
+
+Parmi les options possibles, on trouve :
+
+$\star$ \verb!width! : par exemple \verb!width=1cm! fixe la largeur de l'image
+
+On peut également utiliser \verb!width=\linewidth! ou \verb!width=\textwidth!, \verb!width=0.5\linewidth!
+
+$\star$ \verb!height! : par exemple \verb!height=2cm! fixe la hauteur de l'image
+
+$\star$ \verb!scale! : par exemple \verb!scale=0.5! met l'image à l'échelle 0.5
+
+$\star$ \verb!angle! : par exemple \verb!angle=45! effectue une rotation de l'image de 45\degres{} dans le sens positif, autour du centre de l'image.
+
+\bigskip
+
+\begin{minipage}{0.8\linewidth}
+\color{blue}\rule{9cm}{1pt}\color{black}
+\vspace*{-12pt}
+
+\begin{small}
+\begin{verbatim}
+\includegraphics[angle=45,width=0.6\linewidth]{exemples/image}
+\end{verbatim}
+\end{small}
+
+\vspace*{-12pt}
+\color{blue}\rule{9cm}{1pt}\color{black}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\linewidth}
+\includegraphics[angle=45,width=0.6\linewidth]{exemples/image}
+\end{minipage}
+
+\section{Les environnements \jargon{wrapfigure} et \jargon{minipage}}
+
+Pour utiliser l'environnement \jargon{wrapfigure}, il faut charger, dans le préambule, le package \jargon{wrapfigure}.
+
+\VerbatimInput[label={[Environnement wrapfigure]},gobble=0]{exemples/wrapfigure.tex}
+
+Ce \jargon{code source} donne :
+
+\input{exemples/wrapfigure}
+
+
+\begin{info}
+L'image peut être remplacée par une figure (par exemple \jargon{tikzpicture}), du texte, \dots
+\end{info}
+
+Personnellement, j'utilise plutôt l'environnement \jargon{minipage} qui permet de horizontalement découper la page en plusieurs \og sous-pages \fg{}.
+
+\jargon{minipage} s'utilise ainsi :
+
+\VerbatimInput[label={[Environnement minipage]},gobble=0]{exemples/minipage.tex}
+
+Ce \jargon{code source} donne :
+
+\bigskip
+
+\input{exemples/minipage}
+
+\section{Une image dans du texte}
+
+On désire parfois insérer une image dans une ligne de texte.
+
+On  peut, par exemple, utiliser la commande \verb!\raisebox! pour cela.
+
+\VerbatimInput[label={[Commande raisebox]},gobble=0]{exemples/raisebox1.tex}
+
+Ce \jargon{code source} donne :
+
+\input{exemples/raisebox1}
+
+\begin{info}
+La commande \texttt{\textbackslash raisebox} n'est pas réservée aux images.
+\end{info}
+
+\VerbatimInput[label={[Commande raisebox]},gobble=0]{exemples/raisebox2.tex}
+
+Ce \jargon{code source} donne : \hspace*{10em}
+\input{exemples/raisebox2}
+
+
+

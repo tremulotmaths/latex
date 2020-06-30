@@ -1,0 +1,31 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage{pst-solides3d}
+\begin{document}
+\begin{center}
+\begin{pspicture}(-3,-3)(8,8)
+\psset{viewpoint=20 5 15 rtp2xyz,lightsrc=20 60 60 rtp2xyz,Decran=30}
+\psset{solidmemory}
+\psPoint(-0.45,3,6.5){P1}
+\psPoint(-2,3,6.5){P2}
+\psPoint(0.45,3,6.5){P3}
+\psPoint(2,3,6.5){P4}
+%------------------------------------ Trafo-Kern -------------------------------------------------------------------------
+\psSolid[incolor=red,fillcolor=cyan!50,object=parallelepiped,a=1,b=5,c=1,grid=false,solidmemory=true,action=draw**,name=H1](0,1.5,-0.5)
+\psSolid[incolor=red,fillcolor=cyan!50,object=parallelepiped,a=1,b=1,c=3,grid=false,solidmemory=true,action=none,name=H2](0,-0.5,1.5)
+\psSolid[incolor=red,fillcolor=cyan!50,object=parallelepiped,a=1,b=1,c=3,grid=false,solidmemory=true,action=none,name=H3](0,3.5,1.5)
+%--------------------------------------- wire -----------------------------------------------------------------------------
+{\defFunction[algebraic]{helice}(t){0.95*cos(80*t)}{0.95*sin(80*t)}{4.5*t}
+\psSolid[object=courbe,r=0,range=0 0.59,linecolor=red!60,linewidth=0.5pt,resolution=720,
+function=helice,solidmemory=true,action=none,name=wendel1,r=0.05,fillcolor=red!60,incolor=red!60,ngrid=360 30](0,-0.5,0)}%
+{\defFunction[algebraic]{helice}(t){0.95*cos(80*t)}{-0.95*sin(80*t)}{6*t}
+\psSolid[object=courbe,r=0,range=0 0.44,linecolor=red!60,linewidth=0.5pt,resolution=720,
+function=helice,solidmemory=true,action=none,name=wendel2,r=0.05,fillcolor=red!60,incolor=red!60,ngrid=360 30](0,3.5,0)}%
+%------------------------------------ Compose -------------------------------------------------------------------------
+\psSolid[object=fusion,base=H2 wendel1,grid=false,linecolor=gray,name=Trafo1,action=draw**]
+\psSolid[object=fusion,base=H3 wendel2,grid=false,linecolor=gray,name=Trafo2,action=draw**]
+\composeSolid
+\psSolid[incolor=red,fillcolor=cyan!50,object=parallelepiped,a=1,b=5,c=1,grid=false,solidmemory=true,action=draw**,name=H4](0,1.5,3.5)
+\end{pspicture}
+\end{center}
+\end{document}

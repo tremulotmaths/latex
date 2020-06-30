@@ -1,0 +1,770 @@
+\input{F:/Dropbox/Modeles_latex/Preambule_article_2013.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête classique
+
+\newcommand{\tete}{
+	{\noindent
+      \textbf{BAT 2}     	            %% Auteur
+      \hfill \textbf{Année \np{2013}-\np{2014}}   \\  	            	%% Année
+	}
+	%{\noindent
+  %    \url{tremulot.maths@gmail.com}                 	%% Module
+  %    \hfill \textbf{\today}   \\  % Numero de la feuille
+	%}
+	\hrule
+	\begin{center} 
+	\Large \textsc{\textbf{Chapitre 1 : Nombres complexes}}
+	\end{center}
+	\hrule
+	\noindent 
+\medskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête contrôle
+
+\newcommand{\controle}{
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|X|c|}
+%{@{\extracolsep{\fill}} |l c r|}
+		\hline
+		BAT 2 & \centering Contrôle de mathématiques n° 1 (durée : 55 minutes) & Année \np{2013}/\np{2014} \\
+		\hline
+		\multicolumn{3}{|c|}{Mercredi 24 avril} \\
+		\hline
+		\multicolumn{3}{|l|}{NOM, Prénom : \dotfill} \\
+		\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+%\textbf{Sujet B}
+%\end{center}
+%\begin{center}
+\textit{La qualité et la précision de la rédaction seront prises en compte dans l'appréciation des copies.\\ Faites des phrases simples et précises.\\
+Les calculatrices électroniques de poche sont autorisées, conformément à la règlementation en vigueur.}
+\end{center}
+
+\noindent
+%\vspace{1cm}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entête DM
+
+\newcommand{\dm}{
+\begin{minipage}{0.9\linewidth}
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|X|c|}
+%{@{\extracolsep{\fill}} |l c r|}
+		\hline
+		BAT 2 & \centering Devoir maison de mathématiques n° 1 & Année \np{2013}/\np{2014} \\
+		\hline
+		\multicolumn{3}{|c|}{\`A rendre, sur feuille, au plus tard le 15/05} \\
+		\hline
+		\multicolumn{3}{|l|}{NOM, Prénom : \dotfill} \\
+		\hline
+\end{tabularx}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\linewidth}
+\begin{pspicture}(2,2)
+	\psbarcode{http://www.tremulotmaths.fr}{eclevel=L}{qrcode}
+\end{pspicture}
+\end{minipage}
+
+\begin{center}
+\textbf{Vous pouvez poser vos questions dans les commentaires de l'\href{http://www.tremulotmaths.fr/spip.php?article308}{article sur le site}.}
+\end{center}
+\noindent
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%entête bac blanc
+\newcommand{\bacblanc}{
+\thispagestyle{empty}
+\thiswatermark {
+\begin{minipage}{0.95\linewidth}
+\vspace{25cm}
+\begin{center}
+\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}OBLIGATOIRE}}
+\end{center}
+\end{minipage}
+}
+Lycée Jean-Pierre Timbaud \hfill Février \np{2014}
+
+.\dotfill
+\vspace{2cm}
+\begin{center}
+\textbf{\LARGE{SESSION \np{2014}}}\\
+\vspace{1cm}
+\textbf{\LARGE{BACCALAUR\'EAT G\'EN\'ERAL BLANC}}\\
+\vspace{1cm}
+\textbf{\LARGE{Série SCIENTIFIQUE}}\\
+\vspace{1cm}
+\textbf{\LARGE{MATH\'EMATIQUES}}
+
+\end{center}
+
+\vspace{1cm}
+
+Durée : 4 heures 
+\hfill
+Coefficient 7
+
+\vspace{1cm}
+
+\dotfill
+\begin{center}
+L'usage des calculatrices est autorisé pour cette épreuve.\\
+\end{center}
+\dotfill
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{bf}
+
+Le candidat doit traiter les quatre exercices.\\
+Le candidat est invité à faire figurer sur la copie toute trace de recherche, même incomplète ou non fructueuse, qu'il aura développée.\\
+\vspace{12pt}
+Il est rappelé que la qualité de la rédaction, la clarté et la précision des raisonnements entreront pour une part importante dans l'appréciation des copies.\\
+\vspace{12pt}
+Dès que le sujet vous est remis, assurez-vous qu'il est complet, que toutes les pages sont imprimées.\\
+Le sujet comporte 5 pages.\\
+
+\end{bf}
+\end{center}
+\newpage
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setlength\parindent{0mm}
+%\tete 		%entête classique
+%\controle		%entête contrôle
+\dm 		%entête DM
+%\enlargethispage{2cm}
+%\bacblanc 		%entête bac blanc
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage / \pageref{LastPage}}
+\lfoot{BAT 2 - Nombres complexes}
+\rfoot{Année \np{2013}-\np{2014}}
+
+%\thispagestyle{empty} %annuler le style pour la page en cours, soit la première page, ici
+
+
+%\title{BACCALAUR\'EAT BLANC}
+%\date{}%supprime la date si on n'entre rien entre les accolades
+
+%\maketitle %impose le style plain à la page
+%\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+
+%Modèle propriété :
+%\fbox{%
+%   \begin{minipage}{\textwidth}
+%   \textbf{\ul{Définition :}} \\
+%   L'ensemble des matrices d'ordre $(n,p)$ à coefficients réels se note $\mathcal{M}_{n,p}(\R)$.
+%   \end{minipage}%
+%}
+
+
+%Autre possibilité avec les packages de la partie ENCADRES
+%\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Théorème}
+%Soit $M$ la matrice de transition d'un graphe probabiliste.
+%Soit $P_0$ la matrice ligne décrivant l'état initial.
+%La matrice ligne $P_n$ décrivant l'état probabiliste à l'étape $n$ vérifie :
+%$\bullet P_{n+1}=P_n\times M$
+%$\bullet P_n=P_0\times M^n$
+%\end{bclogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\contentsname}{Sommaire}\tableofcontents \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thiswatermark {
+\begin{minipage}{0.95\linewidth}
+\vspace{25cm}
+\begin{center}
+\rotatebox{55}{\scalebox{8}{\color[gray]{0.7}\LaTeX 2}}
+\end{center}
+\end{minipage}
+}
+
+\section{Introduction}
+
+\subsection{Identification de la situation}
+
+\begin{center}
+\begin{pspicture}(2,2)
+	\psbarcode{http://www.tremulotmaths.fr}{eclevel=M}{qrcode}
+\end{pspicture}
+
+\end{center}
+On se situe, dans ce chapitre, dans deux domaines des statistiques, qui sont ceux de \og l'échantillonnage\fg~ et de \og l'estimation\fg~.
+
+Une ligne de pointillés :
+
+\Pointilles
+
+Trois lignes de pointillés :
+
+\Pointilles[3]
+
+\begin{minipage}{0.45\linewidth}
+
+Une ligne de pointillés dans minipage :
+\Pointilles
+
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+
+Trois lignes de pointillés dans minipage :
+\Pointilles[3]
+
+\end{minipage}
+
+Apprenons à reconnaître les différents contextes d'applications.
+
+\medskip
+
+
+\textbf{\textit{Exemples :}}
+
+On considère deux urnes $U_1$ et $U_2$ contenant chacune un très grand nombre de boules, rouges ou bleues.
+
+\begin{enumerate}
+\item 
+Dans l'urne $U_1$, \textbf{on connaît la proportion $p$ de boules rouges}.
+
+\begin{minipage}{0.45\linewidth}
+On procède à des tirages avec remise de $n$ boules, et on 
+
+observe la fréquence d'apparition d'une boule rouge.
+
+Cette fréquence observée appartient \og en général\fg~ à un \og intervalle de fluctuation \fg~ de centre $p$, dont la longueur diminue lorsque $n$ augmente.
+
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+\includegraphics[width=5cm]{fig.eps}
+
+\end{minipage}
+
+
+Cet intervalle est un \og intervalle de fluctuation \fg~.
+
+On est ici dans le domaine de \textbf{l'échantillonnage} et de l'\textbf{intervalle de fluctuation}.
+\[\intervalleff{\dfrac{5}{2}}{\sqrt{\dfrac{1}{3}}}\]
+\[\intervallefo{\dfrac{5}{2}}{\sqrt{\dfrac{1}{3}}}\]
+\[\intervalleof{\dfrac{5}{2}}{\sqrt{\dfrac{1}{3}}}\]
+\[\intervalleoo{\dfrac{5}{2}}{\sqrt{\dfrac{1}{3}}}\]
+
+\begin{center}
+\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [color=cqcqcq,dash pattern=on 2pt off 2pt, xstep=1.0cm,ystep=1.0cm] (-0.46,-3.28) grid (6.88,3.36);
+\draw[->,color=black] (-0.46,0) -- (6.88,0);
+\foreach \x in {,1,2,3,4,5,6}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3.28) -- (0,3.36);
+\foreach \y in {-3,-2,-1,1,2,3}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.46,-3.28) rectangle (6.88,3.36);
+\draw[smooth,samples=100,domain=0.001:6.88] plot(\x,{ln((\x))});
+\end{tikzpicture}
+\end{center}
+
+\item Dans l'urne $U_2$, \textbf{on ignore la proportion de boules rouges}.
+
+En procédant à des tirages avec rmise de $n$ boules, on va essayer d'estimer la proportion $p$ de boules rouges dans l'urne.
+
+Cette estimation se fait au moyen d'un \og intervalle de confiance \fg~.
+
+Cet intervalle dépend d'un coefficient, le \og niveau de confiance\fg~, que l'on attribue à l'estimation.
+
+On est ici dans le domaine de l'\textbf{estimation}, et de l'\textbf{intervalle de confiance}.
+
+\begin{center}
+\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [color=cqcqcq,dash pattern=on 4pt off 4pt, xstep=2.0cm,ystep=2.0cm] (-1.95,-1.49) grid (8.29,6.99);
+\draw[->,color=black] (-1.95,0) -- (8.29,0);
+\foreach \x in {,2,4,6,8}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-1.49) -- (0,6.99);
+\foreach \y in {,2,4,6}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-1.95,-1.49) rectangle (8.29,6.99);
+\draw[smooth,samples=100,domain=0.01:8.29] plot(\x,{ln((\x))});
+\draw[smooth,samples=100,domain=0:1.95] plot(\x,{2.718^(\x)});
+\draw[smooth,samples=100,domain=-1.95:0] plot(\x,{2.718^(\x)});
+\draw[smooth,samples=100,domain=-1.95:8.29] plot(\x,{(\x)});
+\draw (5.07,3.19) node[anchor=north west] {$y=\ln (x)$};
+\draw (4.01,6.02) node[anchor=north west] {$y=x$};
+\draw (1.14,5.28) node[anchor=north west] {$y=\text{e}^x$};
+\end{tikzpicture}
+
+\psset{xunit=2.0cm,yunit=2.0cm}
+\begin{pspicture*}(-0.98,-0.74)(4.14,3.49)
+\psgrid[subgriddiv=0,gridlabels=0,gridcolor=lightgray](0,0)(-0.98,-0.74)(4.14,3.49)
+\psset{xunit=1.0cm,yunit=1.0cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\psaxes[labelFontSize=\scriptstyle,xAxis=true,yAxis=true,Dx=2,Dy=2,ticksize=-2pt 0,subticks=2]{->}(0,0)(-1.95,-1.49)(8.29,6.99)
+\psplot[plotpoints=200]{1.1299160078328312E-8}{8.289582400000004}{ln(x)}
+\psplot[plotpoints=200]{-1.953261199999997}{8.289582400000004}{EXP(x)}
+\psplot[plotpoints=200]{-1.953261199999997}{8.289582400000004}{x}
+\rput[tl](5.07,3.19){$y=\ln (x)$}
+\rput[tl](4.01,6.02){$y=x$}
+\rput[tl](1.14,5.28){$y=\text{e}^x$}
+\end{pspicture*}
+
+\end{center}
+
+\medskip
+
+\begin{minipage}{0.9\linewidth}
+\begin{alterqcm}
+\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+\AQquestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
+\end{alterqcm}
+\end{minipage}
+
+
+\begin{minipage}{0.95\linewidth}
+\begin{alterqcm}[VF,lq=125mm,correction,
+symb = \dingsquare,
+corsymb = \dingchecksquare]
+\AQquestion[br=1]{Pour tout $x \in ]-3~;~2],~f'(x) \geqslant 0$.}
+\AQquestion[br=2]{La fonction $F$ présente un maximum en $2$}
+\AQquestion[br=2]{$\displaystyle\int_{0}^2 f'(x)\:\text{d}x = - 2$}
+\end{alterqcm}
+\end{minipage}
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Intervalle de fluctuation ou intervalle de confiance ?}
+
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{image}
+\end{center}
+
+On s'intéresse à une population, dont on étudie un caractère particulier.
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Deux cas}
+\begin{itemize}
+\item[$\bullet$] \textbf{\'Echantillonnage}
+
+On utilise un \textbf{intervalle de fluctuation} quand :
+	\begin{itemize}
+	\item on \textbf{connaît la proportion} $p$ de présence du caractère étudié dans la population,
+	\item OU, on \textbf{fait une hypothèse sur la valeur de cette proportion} (on est alors dans le cas de la \og prise de décision\fg~ .
+	\end{itemize}
+
+\item[$\bullet$] \textbf{Estimation}
+
+On utilise un \textbf{intervalle de confiance} quand :
+
+on \textbf{ignore la valeur de la proportion} $p$ de présence du caractère dans la population, et on ne formule pas d'hypothèse sur cette valeur.
+\end{itemize}
+\end{bclogo}
+
+\bigskip
+En appliquant l'agorithme de Dijsktra, on obtient :
+
+\begin{center}
+\begin{tabular}{|*{8}{>{\centering}m{1.5cm}|}c|}
+ \hline
+ A&B&C&D&E&F&G&H&Sommet\\
+ \hline
+ 0&$\infty$&$\infty$&$\infty$&$\infty$&$\infty$&$\infty$&$\infty$&A\\
+ \hline
+  &0+2\par 2(A)&0+1\par 1(A)&0+4\par 4(A)&$\infty$&$\infty$&$\infty$&$\infty$&C\\
+ \hline
+  &2(A) & &4(A)&1+5\par 6(C)&$\infty$&$\infty$&$\infty$&B\\
+ \hline
+  & & &4(A)&6(C)&$\infty$&$\infty$&$\infty$&D\\
+ \hline
+  & & & &6(C)&4+1\par 5(D) &$\infty$&$\infty$&F\\
+ \hline
+  & & & &6(C)& &5+4\par 9(F)&5+1\par 6(F)&E\\
+ \hline
+  & & & & & &6+2\par 8(E)&6(F)&H\\
+ \hline
+  & & & & & &6+4\par 8(E)& &G\\
+ \hline
+ \end{tabular}
+\end{center}
+
+
+
+\[\intervalleff{\frac{5}{2}}{-2}\]
+
+
+\textbf{\textit{Exemples :}}
+\begin{enumerate}
+\item On dispose d'une pièce de monnaie.
+
+Comment décider qu'elle est \og équilibrée\fg~ ou pas ?
+
+On va ici faire l'hypothèse que la fréquence d'apparition de \og Pile\fg~, par exemple, est égale à 0,5, et on va tester cette hypothèse.
+
+On est dans une \textbf{situation d'échantillonnage}.
+
+\item Une usine fabrique des fusées de feux d'artifice.
+
+Sur 100 fusées choisies au hasard à l'issue du processus de fabrication et mises à feu, on trouve 12 fusées qui ne fonctionnent pas.
+
+Comment se faire une idée de la proportion de fusées défectueuses dans la production ?
+
+On est dans une \textbf{situation d'estimation} : on n'a, au départ, aucune idée de la valeur de la proportion étudiée dans la production.
+\end{enumerate}
+
+\medskip
+
+\begin{center}
+\PapierMill{10cm}{10cm}
+\end{center}
+
+\begin{bclogo}[couleur = blue!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Exercice :}
+
+
+\textbf{Texte à trous :}
+
+Un enfant a réalisé $\np{4040}$ \trou{lancers} d'une pièce de monnaie, et il a obtenu $\np{2048}$ fois le résultat \og Pile\fg~.
+
+Nous allons nous intéresser au problème suivant : \og Peut-on considérer que la pièce utilisée est équilibrée ?\fg~
+
+\begin{enumerate}
+\item Prendre une décision en utilisant l'intervalle de fluctuation au seuil de 95\% sous la forme étudiée en classe de 2\up{nde}.
+\item Reprendre le même travail, en utilisant un intervalle de fluctuation au seuil 95\% obtenu à partir de la loi binomiale vue en classe de 1\up{ère}.
+\end{enumerate}
+\end{bclogo}
+
+
+\newpage
+
+\textbf{\textit{Solution :}}
+
+\begin{enumerate}
+\item En classe de 2\up{nde}, on a vu que pour $n>25$ et $0,2<p<0,8$, l'intervalle $\left[p-\frac{1}{\sqrt{n}};p+\frac{1}{\sqrt{n}}\right]$ constitue un intervalle de fluctuation au seuil 95\%.
+
+Ici, si on appelle $p$ la \og proportion théorique\fg~ de résultats \og Pile\fg~ obtenus sur un très grand nombre de lancers, on veut tester l'hypothèse selon laquelle la pièce est équilibrée, c'est-à-dire l'hypothèse $p=0,5$.
+
+Pour l'échantillon considéré, on a $n=\np{4040}$ ; les conditions d'application sont donc réalisées, et on obtient l'intervalle de fluctuation 
+\[\left[0,5-\frac{1}{\sqrt{\np{4040}}};0,5+\frac{1}{\sqrt{\np{4040}}}\right]\]
+En arrondissant à $10^{-4}$ près, on obtient l'intervalle de fluctuation $I_1=[\np{0,4843};\np{0,5157}]$.
+
+La fréquence observée dans l'échantillon est donnée par :
+\[f=\frac{\np{2048}}{\np{4040}}\approx \np{0,5069}~\text{à}~10^{-4}~\text{près}\]
+
+Ainsi, on a $f\in I_1$, donc on accepte l'hypothèse de pièce équilibrée au seuil de confiance de 95\%.
+
+\item En supposant que la pièce est équilibrée, la variable aléatoire $X$ qui dénombre les résultat \og Pile\fg~ obtenus parmi les $\np{4040}$ lancers réalisés suit une loi binomiale de paramètres $n=\np{4040}$ et $p=0,5$.
+
+On a vu en classe de 1\up{ère} que l'ntervalle de fluctuation à 95\% associé à la variable aléatoire $X$ est l'intervalle $I_2=\left[\frac{k_1}{n};\frac{k_2}{n}\right]$, où $k_1$ est le plus petit entier $k$ vérifiant $P(X\leq k)> 0,025$ et $k_2$ le plus petit entier $k$ vérifiant $P(X\leq k)\geq 0,975$.
+
+On détermine $k_1$ et $k_2$ à l'aide d'un tableur (ou d'une calculatrice...mais le tableau est très long, ici).
+
+On obtient $k_1=\np{1958}$ et $k_2=\np{2082}$, qui donnent comme intervalle de fluctuation :
+\[I_2=\left[\frac{\np{1958}}{\np{4040}};\frac{\np{2082}}{\np{4040}}\right]\]
+soit en arrondissant à $10^{-4}$ près $I_2=[\np{0,4847};\np{0,5153}]$.
+
+La fréquence observée $f\approx \np{0,5069}$ vérifie $f\in I_2$.
+
+On est ici aussi conduit à accepter l'hypothèse de pièce équilibrée au seuil de confiance de 95\%.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{\textsc{Exercice 2 :}\hfill 8 points}% ex 109 p 29 indice
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\medskip
+
+Une agence de voyages propose un circuit touristique pour visiter trois villes A, B et C.
+
+Le client peut choisir la durée de son séjour dans chacune des villes.
+
+L'agence propose des tarifs qui différent selon la période. Il existe trois périodes touristiques : une période haute, une période moyenne et une période basse.
+
+Les prix journaliers, en \textbf{centaines d'euros} par personne, dans les différents lieux sont donnés dans le tableau suivant :
+
+\begin{center}
+\newcolumntype{K}[1]{>{\columncolor{#1}}l}
+\begin{tabular}{|K{gray}|*{3}{c|}}
+\cline{2-4}
+\multicolumn{1}{c|}{} & \cellcolor{yellow} \bf Ville A & \cellcolor{yellow}\bf Ville B & \cellcolor{yellow}\bf Ville C\\
+\hline
+\bf Période haute & 2,5 & 3,5 & 1,5\\
+\hline
+\bf Période moyenne & 2 & 2,2 & 1,5\\
+\hline
+\bf Période basse & 1,5 & 1,2 & 1\\
+\hline
+\end{tabular}
+\end{center}
+
+On considère la matrice $M=\begin{pmatrix}
+2,5&3,5&1,5\\2&2,2&1,5\\1,5&1,2&1
+\end{pmatrix}$
+
+\begin{enumerate}[\bf 1.]
+\item M. Gibbs choisit un circuit de trois jours : deux jours dans la ville A et un jour dans la ville C.
+
+Calculer, à l'aide d'un \textbf{produit de matrices}, le prix de son séjour pour chaque période.
+
+\item La matrice ci-dessous donne toutes les combinaisons d'un circuit de trois jours :
+
+\[D=\begin{pmatrix}
+3&2&2&1&1&1&0&0&0&0\\
+0&1&0&2&0&...&...&...&...&...\\
+0&0&1&0&2&...&...&...&...&...
+\end{pmatrix}\]
+
+Ainsi, la troisième colonne indique que M. Gibbs choisit un circuit de deux jours dans la ville A et un jour dans la ville C.
+
+	\begin{enumerate}[\bf a.]
+	\item Compléter la matrice $D$.
+	
+	\item Calculer la matrice $M\times D$.
+	
+	\end{enumerate}
+\item En déduire quels sont les circuits de trois jours possibles pour que le séjour coûte moins de :
+	\begin{enumerate}[\bf a.]
+	\item 700 \euro~ en période haute ;
+	
+	\item 560 \euro~ en période moyenne ;
+	
+	\item 330 \euro~ en période basse.
+	
+	\end{enumerate}
+
+\item Dans une publicité, l'agence de voyages affirme qu'un circuit complet de 10 jours est possible au prix de \np{2800} \euro~ en période haute, \np{2000} \euro~ en période moyenne et \np{1250} \euro~ en période basse.
+
+Comment se compose ce voyage ?
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Intervalles de fluctuation}
+
+\subsection{Intervalle de fluctuation asymptotique}
+
+On dispose d'un urne contenant un très grand nombre de boules rouges et bleues.
+
+On sait que la proportion de boules rouges dans l'urne est égale à $p=0,4$.
+
+Si on tire, successivement avec remise, $n$ boules dans l'urne ($n$ entier naturel non nul), et si on appelle $X_n$ la variable aléatoire dénombrant les boules rouges tirées, alors $X_n$ suit une loi binomiale $\scr{B}(n;p)$.
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Théorème et définition}
+
+Soit $X_n$ une variable aléatoire suivant une loi binomiale $\scr{B}(n;p)$, et $\alpha$ un réel tel que $0<\alpha<1$.
+
+Si $X$ est une variable aléatoire suivant la loi normale centrée réduite $\scr{N}(0;1)$, on appelle $u_{\alpha}$ l'unique réel tel que :
+\[P(-u_{\alpha}\leq X\leq u_{\alpha})=1-\alpha\]
+\begin{itemize}
+\item[$\bullet$] On appelle $I_n$ l'intervalle :
+\[I_n=\left[p-u_{\alpha}\frac{\sqrt{p(1-p)}}{\sqrt{n}};p+u_{\alpha}\frac{\sqrt{p(1-p}}{\sqrt{n}}\right]\]
+Alors,
+\[\limn P\left(\frac{X_n}{n}\in I_n=1-\alpha\right)\]
+
+\item[$\bullet$] L'intervalle $I_n$ contient la fréquence $F_n=\frac{X_n}{n}$ avec une probabilité qui se rapproche de $1-\alpha$ lorsque $n$ augmente : 
+
+on dit que c'est l'\textbf{intervalle de fluctuation asymptotique de $F_n$ au seuil $1-\alpha$}.
+\end{itemize}
+\end{bclogo}
+
+\bigskip
+
+\begin{bclogo}[couleur = yellow!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Démonstration (exigible) :}
+
+On pose $Z_n=\frac{X_n-np}{\sqrt{np(1-p)}}$ et on applique le théorème de Moivre-Laplace.
+
+Si $X$ suit la loi normale $\scr{N}(0;1)$ : $\limn P\left(Z_n\in [-u_{\alpha};u_{\alpha}]\right)=P(X\in [-u_{\alpha};u_{\alpha}]=1-\alpha$.
+
+Or, $Z_n\in [-u_{\alpha};u_{\alpha}] \Lr -u_{\alpha}\leq \frac{X_n-np}{\sqrt{np(1-p)}}\leq u_{\alpha} \Lr np-u_{\alpha}\sqrt{np(1-p}\leq X_n \leq np+u_{\alpha}\sqrt{np(1-p)}$.
+
+$Z_n\in [-u_{\alpha};u_{\alpha}] \Lr p-u_{\alpha}\frac{\sqrt{p(1-p}}{\sqrt{n}}\leq \frac{X_n}{n}\leq p+u_{\alpha}\frac{\sqrt{p(1-p)}}{\sqrt{n}}$.
+
+Donc, $Z_n\in [-u_{\alpha};u_{\alpha}] \Lr \frac{X_n}{n}\in I_n$.
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Exemple :}}
+
+On tire 50 boules de l'urne décrite ci-dessus, et on souhaite déterminer un intervalle de fluctuation au seuil 0,9 (c'est-à-dire $\alpha=0,1$).
+
+À l'aide de la calculatrice, on trouve 1,645 comme valeur approchée à $10^{-3}$ près de $u_{0,1}$.
+
+On obtient donc comme intervalle de fluctuation :
+\[I_{50}=\left[0,4-u_{0,1}\frac{\sqrt{0,4\times 0,6}}{\sqrt{50}};0,4+u_{0,1}\frac{\sqrt{0,4\times 0,6}}{\sqrt{50}}\right]\]
+soit $I_{50}=[0,286;0,514]$.
+
+Ainsi, en effectuant 50 tirages dans cette urne, la fréquence d'apparition d'une boule rouge est comprise entre 0,28 et 0,514 avec une probabilité d'environ 0,9.
+
+Pour 500 tirages, au même seuil de 0,9, on obtient $I_{500}=[0,364;0,436]$.
+
+\medskip
+
+\textbf{\textit{Remarque :}}
+
+La longueur de l'intervalle a, pour un même seuil, été divisée par plus de 3 en passant de 50 à 500 tirages \quad !!
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Propriété}
+
+L'intervalle de fluctuation asymptotique au seuil de 95\% pour une variable aléatoire $X_n$ suivant une loi binomiale $\scr{B}(n;p)$ est l'intervalle :
+\[I_n=\left[p-1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}};p+1,96\frac{\sqrt{p(1-p)}}{\sqrt{n}}\right]\]
+
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Démonstration :}}
+
+Cette propriété découle de celle vue au chapitre 11 concernant la loi normale.
+
+On a vu en effet que $u_{0,05}\approx 1,96$.
+
+\medskip
+
+\textbf{\textit{Remarque :}}
+
+En majorant $1,96\sqrt{p(1-p)}$ par 1, on retrouve l'intervalle de fluctuation présenté en classe de 2\up{nde}.
+
+La majoration précédente résulta de ce qui suit :
+
+$p(1-p)=-p^2+p$ est un trinôme du second degré.
+
+Il admet un maximum en $p=0,5$, qui est égal à 0,25.
+
+Ainsi, pour tout $p\in [0;1], 0\leq p(1-p)\leq 0,25$.
+
+La fonction racine carrée étant croissante sur $\R_+$, on en déduit : $0\leq \sqrt{p(1-p)}\leq 0,5$, 
+
+puis $0\leq 1,96\sqrt{p(1-p)}\leq 1,95\times 0,5\leq 2\times 0,5=1$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exercice}
+
+\begin{bclogo}[couleur = blue!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{\'Enoncé}
+
+Dans un casino, il a été décidé que les \og machines à sous\fg~ doivent être réglées sur une fréquence de gain du joueur de $g=0,06$.
+
+Une fréquence inférieure est supposée faire \og fuir \fg~ le client, et une fréquence supérieure est susceptible de ruiner le casino.
+
+Trois contrôleurs différents vérifient une même machine.
+
+Le premier a joué 50 fois et gagné 2 fois,
+
+le second a joué 120 fois et gagné 14 fois,
+
+le troisième a joué 400 fois et gagné 30 fois.
+
+En utilisant des intervalles de fluctuation asymptotiques au seuil 95\%, examiner dans chaque cas la décision à prendre par le contrôleur, à savoir accepter ou rejeter l'hypothèse $g=0,06$.
+\end{bclogo}
+
+\bigskip
+
+\textbf{\textit{Solution :}}
+
+\begin{itemize}
+\item[$\bullet$] \textbf{Premier contrôleur}
+Le contrôle a porté sur 50 parties, donc $n=50$.
+
+On a bien $n\geq 30$, mais $np=50\times 0,06=3$ et donc $np<5$.
+
+On n'est pas dans les conditions d'application d'un intervalle de fluctuation asymptotique.
+
+Ce contrôle ne peut rien donner de probant en termes de prise de décision.
+
+\item[$\bullet$] \textbf{Deuxième contrôleur}
+
+Le contrôle a porté sur 120 parties, donc $n=120, np=7,2$ et $n(1-p)=112,8$.
+
+Les conditions d'utilisation d'un intervalle de fluctuation asymptotique sont donc réunies.
+
+L'intervalle de fluctuation asymptotique au seuil 95\% pour un échantillon de taille $n=120$ est égal à :
+\[I_{120}=\left[0,06-1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{120}};0,06+1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{120}}\right]\]
+soit en arrondissant les bornes à $10^{-4}$ près : $I_{120}=[\np{0,0175};\np{0,1025}]$.
+
+La fréquence observée par le deuxième contrôleur est $f_2=\frac{14}{120}\approx \np{0,1167}$.
+
+Cette fréquence est à l'extérieur de l'intervalle de fluctuation $I_{120}$, et le second contrôleur est conduit à rejeter l'hypothèse $g=0,06$.
+
+\item[$\bullet$] \textbf{Troisième contrôleur}
+
+La contrôle a porté sur 400 parties, donc $n=400, np=24$ et $n(1-p)=376$.
+
+Les conditions d'utilisation d'un intervalle de fluctuation asymptotique sont donc réunies.
+
+L'intervalle de fluctuation asymptotique au seuil 95\% pour un échantillon de taille $n=400$ est égal à :
+
+\[I_{400}=\left[0,06-1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{400}};0,06+1,96\frac{\sqrt{0,06\times 0,94}}{\sqrt{400}}\right]\]
+soit en arrondissant les bornes à $10^{-4}$ près : $I_{400}=[\np{0,0367};\np{0,0833}]$.
+
+La fréquence observée par le deuxième contrôleur est $f_3=\frac{30}{400}= \np{0,075}\in I_{400}$.
+
+Ce dernier est donc amené à accepter l'hypothèse $g=0,06$.
+
+\end{itemize}
+
+\medskip
+
+\begin{bclogo}[couleur = gray!30 , arrondi = 0.1 ,logo = \bclampe , barre = snake , tailleOndu = 1.5]{Remarques}
+
+\begin{enumerate}
+\item Pour tester une hypothèse à l'aide d'un intervalle de fluctuation asymptotique, on doit vérifier ses conditions d'utilisation :
+\[n\geq 30, \quad np\geq 5, \quad n(1-p)\geq 5\]
+
+Ces conditions vérifiées, on détermine l'intervalle de fluctuation $I_n$ au seuil demandé (souvent 95\%).
+
+Si la fréquence observée $f$ n'appartient pas à $I_n$, on rejette l'hypothèse.
+
+\item L'intervalle de fluctuation étudié est \og bilatéral\fg~ : on est conduit à rejeter l'hypothèse dans le cas où la fréquence observée est \og trop grande\fg~, ou \og trop petite \fg~.
+\end{enumerate}
+\end{bclogo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{spacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,142 @@
+%___________________________
+%===    Définition des dimensions de la page
+%------------------------------------------------------
+
+\setlength\paperheight{297mm}
+\setlength\paperwidth{210mm}
+\setlength\parindent{0mm} % longueur de l'alinea
+\setlength{\evensidemargin}{1cm}% Marge gauche sur pages paires
+\setlength{\oddsidemargin}{1cm}% Marge gauche sur pages impaires
+\setlength{\marginparwidth}{2.65cm} % taille réservé pour les notes de marges
+\setlength{\marginparsep}{0.5cm} % espace entre les notes de marge et le texte
+\setlength{\headsep}{2.5pt}% Entre le haut de page et le texte
+\setlength{\headheight}{15pt}% Haut de page
+\setlength{\textheight}{26.75cm}% Hauteur de la zone de texte
+\setlength{\textwidth}{14.5cm}% Largeur de la zone de texte
+
+
+%___________________________
+%===    Rectangles colorés dans la marge
+%------------------------------------------------------
+
+% Paramétrage rectangles et texte (zone modifiable)
+\newcommand{\RWidth}{4cm} % largeur rectangle
+\newcommand{\RHOffset}{-5mm} % Position par rapport à la marge
+                            % (Si négatif, on est en pleine page)
+\newcommand{\RColor}{\MaCouleur!25} % couleur rectangle
+\newcommand{\TColor}{black} % couleur texte
+\newcommand{\vcorrection}{2.8cm} % décalage verticale texte
+\newcommand{\hcorrection}{0cm} % décalage horizontale texte
+
+% Zone à ne pas modifier (normalement)
+\newcommand\RectangleDroite[2]{%
+ % Rectangle à droite pour les pages impaires
+ \leavevmode%
+ \hbox to0pt{\hss#1}%
+ \setbox0=\hbox{%
+   \hsize=0pt
+   \vbox to0pt{%
+     \vss
+     \hbox to0pt{%
+       \color{\RColor}%
+       % Pour le rectangle de droite, le calcul du décalage est un
+       % poil lourd !
+       \hspace*{%
+         \dimexpr
+           \paperwidth-\textwidth-\oddsidemargin-1in-\hoffset
+           -\RWidth-\RHOffset
+       }%
+       % Rectangle
+       \vrule width\RWidth
+              height\dimexpr\headheight+\topmargin+1in+\voffset+5mm\relax
+              depth\dimexpr \paperheight +1cm\relax
+       % On replace le point de référence horizontalement
+       \dimen0=\RWidth
+       \dimen0=-0.7\dimen0
+       \advance\dimen0 \hcorrection
+       \vrule width\dimen0
+              height0pt
+       % Texte
+       \color{\TColor}%
+       \hbox to0pt{%
+         \hss
+         \raisebox{\dimexpr-0.5\paperheight+\vcorrection}{%
+           \vtop to0pt{%
+             \vss
+             \rotatebox{-90}{\Large\bfseries #2}%
+             \vss
+           }%
+         }%
+       }%
+       \hss
+     }%
+   }%
+ }%
+ \dp0=0pt
+ \ht0=0pt
+ \box0
+}
+\newcommand\RectangleGauche[2]{%
+ % Rectangle à gauche pour les pages paires
+ \leavevmode%
+ \hbox to0pt{#1\hss}%
+ \setbox0=\hbox{%
+   \hsize=0pt
+   \vbox to0pt{%
+     \vss
+     \hbox to0pt{%
+       \hss
+       \color{\RColor}%
+       \vrule width\RWidth
+              height\dimexpr\headheight+\topmargin+1in+\voffset+5mm\relax
+              depth\dimexpr \paperheight +1cm\relax
+       % Texte
+       \color{\TColor}%
+       \hbox to0pt{%
+         % On replace le point de référence horizontalement
+         \dimen0=\RWidth
+         \dimen0=-0.5\dimen0
+         \advance\dimen0 -\hcorrection
+         \kern\dimen0
+         \raisebox{\dimexpr-0.5\paperheight+\vcorrection}{%
+           \vtop to0pt{%
+             \vss
+             \rotatebox{90}{\Large\bfseries #2}%
+             \vss
+           }%
+         }%
+         \hss
+       }%
+       % Pour le rectangle de gauche, le calcul du décalage est un
+       % peu plus court !
+       \hspace*{%
+         \dimexpr
+           \evensidemargin+1in+\hoffset-\RWidth-\RHOffset
+       }%
+     }%
+   }%
+ }%
+ \dp0=0pt
+ \ht0=0pt
+ \box0
+}
+
+\fancypagestyle{plain}{%
+ \fancyhf{}
+ \fancyfoot[C]{}
+ %\fancyhead[RO]{\RectangleDroite{}{}}
+ \fancyhead[LO]{\RectangleGauche{}{}} % Normalement inutile mais bon...
+ \renewcommand\headrulewidth{0pt}
+}
+\fancypagestyle{normal}{%
+ \fancyhead[C]{{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}}
+ \fancyfoot[C]{\tikz{\draw[\MaCouleur,fill=\MaCouleur!25] (0,0) circle (10pt) node{\footnotesize \thepage};}}
+ %\fancyhead[RO]{\RectangleDroite{}{}}
+% \fancyhead[LE]{}
+% \fancyhead[RE]{}
+ \fancyhead[LO]{\RectangleGauche{}{}}
+ \renewcommand\headrulewidth{0pt}
+}
+\pagestyle{normal} % style par défaut
+
+%------------------------------------------------------------------------------ 

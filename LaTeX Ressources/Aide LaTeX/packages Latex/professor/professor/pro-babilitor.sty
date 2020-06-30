@@ -1,0 +1,605 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pro-babilitor}[07/03/2010 version 1.00 ]
+
+
+% This work may be distributed and/or mofified under the conditions
+% or the LaTeX Project Public Licence, either v1.3 or (at your option)
+% any later version. The latest version is in
+%   http://www.latex-project.org/lppl/
+% This work consists of the files pro-babilitor.sty, manuel_pro-babilitor.tex,
+% manuel_pro-babilitor.pdf 
+
+
+%----------------------------- option Windows
+\RequirePackage{ifthen}
+\newboolean{windowsbabilitor}
+\setboolean{windowsbabilitor}{false}
+\newboolean{xcasbabilitor}
+\setboolean{xcasbabilitor}{false}
+
+\DeclareOption{xcas}{%
+\setboolean{xcasbabilitor}{true}}
+
+\DeclareOption{windows}{%
+\setboolean{windowsbabilitor}{true}}
+
+\ProcessOptions\relax
+
+\ifthenelse{\boolean{windowsbabilitor}}
+{%
+\ifthenelse{\boolean{xcasbabilitor}}
+{%
+\RequirePackage[windows,xcas]{professor}
+}
+{%
+\RequirePackage[windows]{professor}
+}
+}
+{%
+\ifthenelse{\boolean{xcasbabilitor}}
+{%
+\RequirePackage[xcas]{professor}
+}
+{%
+\RequirePackage{professor}
+}
+}
+%-----------------------------fin  option Windows
+
+\RequirePackage{colortbl}
+\RequirePackage{tabularx,amsmath,amssymb}
+
+%% LES COMPTEURS
+
+
+
+\newcounter{Cptloiprob}
+\newcommand{\lprob}{\theCptloiprob}
+
+
+
+\newcounter{Cptprobacon}
+\newcommand{\pc}{\theCptprobacon}
+
+
+
+\newcounter{Cpttablprob}
+\newcommand{\tprob}{\theCpttablprob}
+
+
+
+
+
+%% INITIALISATION
+
+\newcommand{\initprob}{%
+
+\setcounter{Cptloiprob}{0}
+\setcounter{Cptprobacon}{0}
+\setcounter{Cpttablprob}{0}
+
+\ifthenelse{\boolean{xcas}}%    Avec l'option XCas
+{\IfFileExists{\nomtravail_prob.mp}%      Si Tableaux.mp est present...
+        {\immediate\write18{\rem \nomtravail_prob.mp}}%  le detruire
+        {}%   
+ \immediate\write18{\cp  enteteMP.cfg \nomtravail_prob.mp}% Reconstituer l'entête de Tableaux.mp
+} 
+{\IfFileExists{\nomtravail_prob.mp}%      Sans l'option XCas, si
+                                %      Tableaux.mp existe
+{\immediate\write18{mpost -interaction=batchmode \nomtravail_prob}}% l'executer pour reconstituer les figures
+{\PackageWarning{pro-babilitor}{Pas de source metapost pour creer les figures.}}% sinon message d'erreur
+                                % (mais pas d'arret car les tableaux
+                                % peuvent être presents )
+}
+}
+
+
+
+
+
+
+%% tableaux loi normale
+
+
+
+%%%%%%% Colonne epaisse
+\newcolumntype{I}{!{\vrule width 2pt}}
+
+\newcommand{\vtabprob}{\rule[-.7em]{0pt}{1.8em}}
+\renewcommand\tabularxcolumn[1]{m{#1}}  % pour centrer verticalement
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % pour centrer horizontalement
+\newcolumntype{Y}[1]{IcIZ*{#1}{|Z} I}
+
+%%%%%%%%%%%%%%% ligne epaisse
+\newlength\savedwidth
+\newcommand\whline{\noalign{\global\savedwidth\arrayrulewidth
+                                             \global\arrayrulewidth 2pt}%
+                                 \hline
+                                 \noalign{\global\arrayrulewidth\savedwidth}}
+
+
+
+\DeclareOption{xcas}{\setboolean{xcas}{true}}
+
+
+ \ProcessOptions\relax
+
+
+
+%% Pour clore les fichiers metapost 
+
+
+  \begin{VerbatimOut}{queue.mp}
+  
+  end
+
+  \end{VerbatimOut}
+
+
+
+
+
+%%% loiprob
+
+\begin{VerbatimOut}{loiprob.cxx}
+loiprob(xs,ps,NomX,Nomx):={
+local nx,X,k,P,loiprobtab,Xxs,Xs,Pps,Ps,nomx,nomX;
+nomX:=string(NomX);
+nomx:=string(Nomx);
+Xxs:=[seq(0,j=0..size(xs)-1)];
+Xxs:=for(k:=0;k<size(xs);k++){Xxs[k]:=string(xs[k])+"&"};
+Xxs[size(xs)-1]:=string(xs[size(xs)-1]);
+Xs:="";
+for(k:=0;k<size(Xxs);k++){Xs:=Xs+Xxs[k]};
+Pps:=[seq(0,j=0..size(ps)-1)];
+Pps:=for(k:=0;k<size(ps);k++){Pps[k]:=string(ps[k])+"&"};
+Pps[size(ps)-1]:=string(ps[size(ps)-1]);
+Ps:="";
+for(k:=0;k<size(Pps);k++){Ps:=Ps+Pps[k]};
+
+
+nx:=size(Xs);
+X:=NULL;
+for(k:=0;k<nx;k:=k+2){X:=X,expr(Xs[k])};
+X:=[X];
+P:=NULL;
+for(k:=0;k<nx;k:=k+2){P:=P,expr(Ps[k])};
+P:=[P];
+nx:=size(X);
+loiprobtab:="
+
+La loi de probabilit\\'e de X est d\\'efinie par le tableau suivant~: \\\\\\
+
+ \\begin{center}
+ \\begin{tabularx}{.75\\textwidth}{Y{"+(nx-1)+"}}
+ \\whline \\vtabprob $"+nomx+"_i$ & "+Xs+" \\\\\\
+ \\whline \\vtabprob $\\mathbb{P}("+nomX+"="+nomx+"_i)$ & "+Ps+" \\\\\\
+ \\whline
+ \\end{tabularx}
+ \\end{center}
+
+ L'esp\\'erance vaut~: $\\mathbb{E}("+nomX+")="+latex(moyenne(X,P))+
+"$";
+
+sortie:=fopen("XCASloiprob.tex");
+fprint(sortie,Unquoted,loiprobtab);
+fclose(sortie);
+}:;
+\end{VerbatimOut}
+
+
+
+\begin{VerbatimOut}{loiprob.giac}
+maple_mode(0);
+read("loiprob.cxx");
+read("loiprob.user");
+\end{VerbatimOut}
+
+
+
+\newenvironment{loiprob}
+{\VerbatimEnvironment\begin{VerbatimOut}{loiprob.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCASloiprob.tex}
+\executGiacmp{loiprob.giac}
+\immediate\write18{\rem \nomtravail_loiprob\lprob.tex}
+\immediate\write18{\cat XCASloiprob.tex >> \nomtravail_loiprob\lprob.tex}
+
+\input{\nomtravail_loiprob\lprob}
+         
+\stepcounter{Cptloiprob}
+}
+
+
+
+
+%%%% dressepro
+
+
+
+\newcommand{\dressepro}[2]{%
+\ifthenelse{\boolean{xcas}}{%        Avec l'option "XCas present"
+         \executGiacmp{XCAS#1.giac}% reconstituer le tableau
+                                   % exporter le source mp
+                                   % puis lancer metapost pour creer
+                                   % l'image du tableau
+         \immediate\write18{\cat XCAS#1.mp >> \nomtravail_prob.mp}
+      %   \immediate\write18{\cat enteteMP.cfg >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat init#1.mp >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat XCAS#1.mp >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat queue.mp >> \nomtravail_prob#1.mp}
+    \immediate\write18{mpost -jobname=\nomtravail_prob \nomtravail_prob#1.mp}
+\immediate\write18{\cat \nomtravail_prob#1.mp >> \nomtravail_prob.mp}
+          \immediate\write18{\rem \nomtravail_prob#1.mp}  
+           }%
+         {% sinon, si le tableau est absent, alerte.
+         \IfFileExists{\nomtravail_prob.\pc}{}{% 
+         \PackageError{pro-babilitor}{arbre absent non
+         reconstituable.}{Pour compiler il faut, soit les fichiers d'
+         arbre, soit le fichier \nomtravail_prob.mp, soit disposer de
+         XCas.}}}
+\ifthenelse{\equal{#2}{m}}{%               
+\begin{minipage}[t]{0.45\textwidth}
+\vspace{0cm}
+\begin{flushleft}
+\includegraphics{\nomtravail_prob.\pc}
+\end{flushleft}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}\vspace{-0.5cm}
+\input{XCAS#1x.tex}
+\end{minipage}
+}{%
+ \begin{center}
+   \includegraphics[width=\textwidth]{\nomtravail_prob.\pc}
+ \end{center}
+ \input{XCAS#1x.tex}
+}
+\stepcounter{Cptprobacon}}
+
+
+
+%%% arbre 2x2 : arbrecon
+
+\begin{VerbatimOut}[commandchars=\\??]{initprobacon.mp}
+input latexmp ;
+
+setupLaTeXMP(
+  mode=rerun,
+  inputencoding="\inpu",
+  fontencoding="\enco",
+  packages="amsmath,\pol",
+  textextlabel=enable );
+
+
+vardef branched(expr D,F, s,n) =
+  draw D..F; label.top(s,.5(D+F)); dotlabel.top(n,F); enddef;
+
+vardef branchef(expr D,F, s,n) =
+  draw D..F; label.top(s,.5(D+F)); label.rt(n,F); enddef;
+
+
+u:=1cm;
+vardef arbre(expr aa,bb,c,d,paa,pbb,paac,paad,pbbc,pbbd)=
+branched( (0,0),(2u,1.5u),paa,aa);
+branched((0,0),(2u,-1.5u),pbb,bb);
+branchef((2u,1.5u),(4u,2.5u),paac,c);
+branchef((2u,1.5u),(4u,0.5u),paad,d);
+branchef((2u,-1.5u),(4u,-0.5u),pbbc,c);
+branchef((2u,-1.5u),(4u,-2.5u),pbbd,d);
+enddef;
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}[commandchars=!??]{XCASprobacon.cxx}
+probacon(pa,A,pba,B,pbna):={
+local pna,pnba,pnbna,paib,painb,pnaib,pnainb,pb,pnb,pab,panb,
+pnab, pnanb, NA, BA, NBA, BNA, NBNA, PA, PNA, PBA, PNBA, PBNA,
+PNBNA, LA, LNA, LBA, LNBA, LBNA, LNBNA, LAIB, LAINB, LNAIB, LNAINB,a,b;
+a:=string(A);
+b:=string(B);
+pna:=1-pa;
+pnba:=1-pba;
+pnbna:=1-pbna;
+paib:=pa*pba;
+painb:=pa*pnba;
+pnaib:=pna*pbna;
+pnainb:=pna*pnbna;
+pb:=paib+pnaib;
+pnb:=1-pb;
+pab:=paib/pb;
+panb:=painb/pnb;
+pnab:=pnaib/pb;
+pnanb:=pnainb/pnb;
+XCASprobacon:="
+beginfig(!pc)
+arbre(\"$"+a+"$\",\"$\\overline{"+a+"}$\",\"$"+b+"$\",\"$\\overline{"+b+"}$\",\"$"+pa+"$\",\"$"+pna+"$\",\"$"+pba+"$\",\"$"+pnba+"$\",\"$"+pbna+"$\",\"$"+pnbna+"$\");
+endfig;
+";
+XCASprobaconx:="Par lecture de l'arbre on obtient, par application de la formule des probabilit\\'es
+conditionnelles~:\\\\\\
+
+$\\mathbb{P}("+a+"\\cap "+b+")=\\mathbb{P}("+a+")\\times\\mathbb{P}_{"+a+"}("+b+")="+latex(paib)+"$\\\\\\
+
+$\\mathbb{P}("+a+"\\cap\\overline{"+b+"})=\\mathbb{P}("+a+")\\times\\mathbb{P}_{"+a+"}(\\overline{"+b+"})="+latex(painb)+"$\\\\\\
+
+$\\mathbb{P}(\\overline{"+a+"}\\cap "+b+")=\\mathbb{P}(\\overline{"+a+"})\\times\\mathbb{P}_{\\overline{"+a+"}}("+b+")="+latex(pnaib)+"$\\\\\\
+
+$\\mathbb{P}(\\overline{"+a+"}\\cap\\overline{"+b+"})=\\mathbb{P}(\\overline{"+a+"})\\times\\mathbb{P}_{\\overline{"+a+"}}(\\overline{"+b+"})="+latex(pnainb)+"$\\\\\\
+
+Comme  "+a+" et  $\\overline{"+a+"}$ forment  une  partition de  l'univers, on  obtient, d'après  la
+formule des probabilit\\'es totales~:\\\\\\
+
+$\\mathbb{P}("+b+")=\\mathbb{P}("+a+"\\cap "+b+")+\\mathbb{P}(\\overline{"+a+"}\\cap "+b+")="+latex(pb)+"$\\\\\\
+
+On en d\\'eduit donc~:\\\\\\
+
+$\\mathbb{P}_{"+b+"}("+a+")=\\frac{\\mathbb{P}("+a+"\\cap
+  "+b+")}{\\mathbb{P}("+b+")}="+latex(pab)+"\\qquad \\mathbb{P}_{"+b+"}(\\overline{"+a+"})="+latex(pnab)+"$\\\\\\
+
+$\\mathbb{P}_{\\overline{"+b+"}}("+a+")=\\frac{\\mathbb{P}("+a+"\\cap\\overline{"+b+"})}{1-\\mathbb{P}("+b+")}="+latex(panb)+"\\qquad 
+\\mathbb{P}_{\\overline{"+b+"}}(\\overline{"+a+"})="+latex(pnanb)+"
+$
+";
+
+
+
+sortie:=fopen("XCASprobacon.mp");
+fprint(sortie,Unquoted,XCASprobacon);
+fclose(sortie);
+
+sortix:=fopen("XCASprobaconx.tex");
+fprint(sortix,Unquoted,XCASprobaconx);
+fclose(sortix);
+
+
+}:;
+\end{VerbatimOut}
+
+
+\begin{VerbatimOut}{XCASprobacon.giac}
+maple_mode(0);
+read("config.cxx");
+read("XCASprobacon.cxx");
+read("XCASprobacon.user");
+\end{VerbatimOut}
+
+\newenvironment{probacon}
+{\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASprobacon.user}}
+{\end{VerbatimOut}
+      
+\ifthenelse{\boolean{xcas}}{%        Avec l'option "XCas present"
+         \executGiacmp{XCASprobacon.giac}% reconstituer le tableau
+                                   % exporter le source mp
+                                   % puis lancer metapost pour creer
+                                   % l'image du tableau
+         \immediate\write18{\cat XCASprobacon.mp >> \nomtravail_prob.mp}
+         %\immediate\write18{\cat enteteMP.cfg >> \nomtravail_prob#1.mp}
+         \immediate\write18{\cat initprobacon.mp >> \nomtravail_probacon.mp}
+         \immediate\write18{\cat XCASprobacon.mp >> \nomtravail_probacon.mp}
+         \immediate\write18{\cat queue.mp >> \nomtravail_probacon.mp}
+         \immediate\write18{mpost \nomtravail_probacon.mp}
+\immediate\write18{\cat \nomtravail_probacon.mp >> \nomtravail_prob.mp}
+          \immediate\write18{\rem \nomtravail_probacon.mp}  
+           }%
+         {% sinon, si le tableau est absent, alerte.
+         \IfFileExists{\nomtravail_prob.\pc}{}{% 
+         \PackageError{pro-babilitor}{arbre absent non
+         reconstituable.}{Pour compiler il faut, soit les fichiers d'
+         arbre, soit le fichier \nomtravail_prob.mp, soit disposer de
+         XCas.}}}
+               
+\begin{minipage}[t]{0.45\textwidth}
+\vspace{0cm}
+\begin{flushleft}
+\includegraphics{\nomtravail_probacon.\pc}
+\end{flushleft}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}\vspace{-0.5cm}
+\input{XCASprobaconx.tex}
+\end{minipage}
+
+\stepcounter{Cptprobacon}
+
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   L O I            N O R M A L E
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{VerbatimOut}[commandchars=!??]{initloinorm.mp}
+input latexmp ;
+
+setupLaTeXMP(
+  mode=rerun,
+  inputencoding="!inpu",
+  fontencoding="!enco",
+  packages="amsmath,!pol",
+  textextlabel=enable );
+
+input newcourbes;
+input couleur;
+vardef loinormal(expr m,s,p) =
+
+ 
+  
+%%%%%%%%%%%%%%%%%%%%%%%
+vardef fx(expr t)=
+t
+enddef;
+
+
+numeric h,H;
+  h:=0.398942280401/s;
+  H:=1.5*h;
+vardef U(expr t) =
+    (-(t-m)*(t-m))/(2*s*s)
+enddef;
+
+  
+vardef fy(expr t)=
+  h*exp(U(t))
+enddef;
+
+numeric ab,mi,ma,mm,Am;
+ab:=2/s;
+mi:=m-3*s;
+ma:=m+3*s;
+mm:=(mi+p)/2;
+Am:=m-10*s;
+
+%%%%%%%%%%%%%%%%%%%%%
+repere(m,0,mi,ma,-0.1,H,1.5cm,20cm);
+Aire(fx,fy,Am,p,bleu_ciel);
+r_axes;
+%r_labelxy;
+grad_x(1,1,0.2white);
+
+draw f_courbe(fx,fy,mi,ma,100)withpen pencircle scaled 1.25bp withcolor red;
+
+   dotlabel.urt(decimal h, r_p(m,fy(m)));
+   dotlabel.lrt("$\mu= " & decimal(m) &  "$", r_p(m,0));
+  label.urt(" $y={1\over{" & decimal s & "\sqrt{2\pi}}} e^{-{1\over{2}} \left({{x-" & decimal m  & "}\over{" & decimal s  & "}}\right)^2}$",r_p(m+s,fy(m+s)))withcolor red;
+
+r_fin;
+
+enddef;
+\end{VerbatimOut}
+
+
+
+
+\begin{VerbatimOut}[commandchars=!??]{XCASloinorm.cxx}
+loinormale(m,s,x,X):={
+p:=expr(format(normald_cdf(m,s,x),"f3"));
+XCASloinorm:="
+beginfig(!pc)
+loinormal("+m+","+s+","+x+");
+endfig;
+";
+XCASloinormx:="La variable al\\'eatoire  "+X+" suit la loi normale  de param\\`etres $\\mu="+latex(m)+"$ et
+$\\sigma="+latex(s)+"$.\\\\\\     $\\mathbb{P}("+X+"<"+x+")=\\displaystyle\\int_{-\\infty}^{"+x+"}"+simplifier(latex(1/(s*sqrt(2*pi))))+"\\times{\\rm e}^{-\\frac{1}{2}\\left(\\frac{x-"+latex(m)+"}{"+latex(s)+"}\\right)^2}{\\rm d}x\\simeq"+latex(p)+"$."
+
+
+
+sortie:=fopen("XCASloinorm.mp");
+fprint(sortie,Unquoted,XCASloinorm);
+fclose(sortie);
+
+sortix:=fopen("XCASloinormx.tex");
+fprint(sortix,Unquoted,XCASloinormx);
+fclose(sortix);
+
+
+}:;
+\end{VerbatimOut}
+
+
+
+\begin{VerbatimOut}{XCASloinorm.giac}
+maple_mode(0);
+read("config.cxx");
+read("XCASloinorm.cxx");
+read("XCASloinorm.user");
+\end{VerbatimOut}
+
+\newenvironment{loinormale}
+{\VerbatimEnvironment\begin{VerbatimOut}[commandchars=\\??]{XCASloinorm.user}}
+{\end{VerbatimOut}
+          \dressepro{loinorm}{c}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% L O I N O R M A L E tableau
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{VerbatimOut}{XCAStablenorm.cxx}
+tablenormale(m,s,x):={
+local pp,pd,j,k,t,T,u,Ti,Tbis,TT,XCAStablenormx;
+tt:=evalf((x-m)/s);
+if(tt<0){tp:=-tt}else{tp:=tt};
+
+pp:=trunc(10*(tp));
+pd:=round((tp-pp/10)*100);
+DIGITS:=6;
+pd:=pd+1;
+pp:=pp+1;
+
+T:=[[0,seq(0.00+k*0.01,k=0..9)],seq([0.0+j*0.1,seq(normal_cdf(j*0.1+m*0.01),m=0..9)],j=0..29)];
+u:=seq("c|",k=0..10);
+u[pd]:=">{\\columncolor[gray]{0.7}}c|";
+Ti:="";
+for(k:=0;k<size(u);k++){Ti:=Ti+u[k]};
+Tbis:=[seq([seq(10,j=0..ncols(T)-1)],nrows(T)-1)];
+Tbis:=for(k:=0;k<nrows(T);k++){Tbis[k]:=[seq(string(T[k,j])+"&",j=0..ncols(T)-2),string(T[k,ncols(T)-1])+if(k
+  mod 10 ==0){"\\\\\\hline"}else{" \\\\ "}]};
+Tbis[0]:=subsop(Tbis[0],0="t &");
+Tbis[pp]:=subsop(Tbis[pp],0="\\rowcolor[gray]{0.7}"+Tbis[pp,0]);
+TT:="Voici le tableau donnant $\\Phi(t)=\\mathbb{P}(X<t)$ dans le cas $t\\in[0;2.99]$~: 
+{\\small
+\\begin{center}";
+TT:=TT+"\\begin{tabular}{|"+Ti+"}\\hline ";
+for(k:=0;k<=nrows(Tbis)-1;k++){for(j:=0;j<=ncols(Tbis)-1;j++){TT:=TT+Tbis[k,j]}};
+XCAStablenormx:=TT+"\\end{tabular}"+"
+\\end{center}
+}
+\\bigskip
+
+On veut  calculer $\\mathbb{P}(X<"+x+")$ sachant  que $X\\sim \\mathcal{N}("+m+","+s+")$.   Comme la
+variable  r\\'eduite  $T=\\frac{X-"+m+"}{"+s+"}$  suit   la  loi  $\\mathcal{N}(0,1)$  alors  $X<"+x+"$
+\\'equivaut \\`a $T<"+latex((x-m)/s)+"$.
+
+"+if(tt<0){"Comme "+tt+" est n\\'egatif, on utilise le fait que $\\Phi(-t)=1-\\Phi(t)$
+
+On    lit     dans    la     table    de     la     loi    normale
+$\\mathbb{P}(T<"+latex((x-m)/s)+")\\simeq 1-\\mathbb{P}(T<"+round((tp)*100)/100.0+")\\simeq "+simplify(1-normal_cdf(round((tp)*100)/100)) +"$"}else{
+
+"On    lit     dans    la     table    de     la     loi    normale
+$\\mathbb{P}(T<"+latex((x-m)/s)+")\\simeq \\mathbb{P}(T<"+round((tp)*100)/100.0+")\\simeq "+simplify(normal_cdf(round((tp)*100)/100)) +"$"};
+
+sortix:=fopen("XCAStablenormex.tex");
+fprint(sortix,Unquoted,XCAStablenormx);
+fclose(sortix);
+};
+\end{VerbatimOut}
+
+
+
+
+
+
+\begin{VerbatimOut}{XCAStablenorm.giac}
+read("XCAStablenorm.cxx");
+read("XCAStablenorm.user");
+\end{VerbatimOut}
+
+\newenvironment{tablenormale}
+{\VerbatimEnvironment\begin{VerbatimOut}{XCAStablenorm.user}}
+{\end{VerbatimOut}
+
+\immediate\write18{\rem XCAStablenormex.tex}
+\executGiacmp{XCAStablenorm.giac}
+\immediate\write18{\rem \nomtravail_tablenorm\tprob.tex}
+\immediate\write18{\cat XCAStablenormex.tex >> \nomtravail_tablenorm\tprob.tex}
+
+
+   \input{\nomtravail_tablenorm\tprob}
+
+
+
+\stepcounter{Cpttablprob}
+ }

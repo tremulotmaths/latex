@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{pst-circ}
+
+
+\begin{document}
+
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\def\x{\hbox{$\,$}}
+
+
+
+
+
+\vspace{1cm}
+
+\begin{pspicture}(-1,-.5)(7.5,8)\psset{subgriddiv=0,griddots=5,gridlabels=7pt,dotscale=0.75, arrowscale=2}%
+%\psgrid
+%
+%   Definition der Punkte
+ \pnode(4.5,3){A} % Basis des Transistors
+ \pnode(5,2){B} % Emitter des Transistors
+ \pnode(5,4){C} % Kollektor des Transistors
+ \pnode(3,3){D}
+ \pnode(5,7){E}
+ \pnode(5,0){F}
+ \pnode(7,7){G}
+ \pnode(7,0){H}
+ \pnode(0,3){I}
+ \pnode(0,7){J}
+ \pnode(5,0){K}
+ \pnode(0,0){O}
+%
+%   Transistor
+\transistor[transistortype=NPN,arrowscale=1%,transistoribaselabel=$i_B$, transistoricollectorlabel
+%=$i_C$, transistoriemitterlabel =$i_E$
+](A)(B)(C) %%
+%%   Widerstand R1
+\resistor[labeloffset=1.4cm](I)(J){$\sf R_{1}=100\x \Omega$} %%
+%%   Widerstand R2
+\resistor[labeloffset=1.4cm](O)(I){$\sf R_{2}=80\x \Omega$} %%
+%%Lampe
+\psscalebox{0.75}{ \lamp(E)(C){$\sf L$}} %%
+%%   Verbindungen
+\wire[intensity=true,intensitywidth=2\pslinewidth, intensitycolor=red](G)(J) \rput(3,7.5){$\sf I=0,02\x A$}
+%%
+\psline(I)(A) \psline(O)(H) \psline(B)(K)
+%%   Punkte markieren
+\qdisk(I){2pt} \qdisk(E){2pt} \qdisk(F){2pt} \psdots[dotscale=1.5,dotstyle=o](G)
+\psdots[dotscale=1.5,dotstyle=o](H) %
+%%   Spannung
+\tension[labeloffset=-1cm,tensionwidth =2\pslinewidth](H)(G){$\sf U=2,5\x V$}
+\rput(7.5,7){$+$}
+\rput(7.5,0){$-$}
+\end{pspicture}%
+
+\end{document}

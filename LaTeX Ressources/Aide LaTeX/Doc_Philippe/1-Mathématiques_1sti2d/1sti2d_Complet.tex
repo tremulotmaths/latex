@@ -1,0 +1,62 @@
+\documentclass[10pt,openright,twoside,french]{book}
+
+\input philippe2013
+\input philippe2013_cours
+\input philippe2013_sections
+\input philippe2013_chapitre
+
+\usepackage{docmute}
+
+\begin{document}
+\renewcommand\MaCouleur{Purple}
+
+%___________________________
+%===    Page de garde
+%------------------------------------------------------
+
+\frontmatter
+
+\input{1sti2d_Page_Titre}
+
+\pieddepage{}{}{}
+\entete{}{}{}
+
+\tableofcontents
+
+\mainmatter
+
+\entete{}{\color{\MaCouleur} \textbullet~\leftmark~\textbullet}{}
+\pieddepage{}{%
+\begin{tikzpicture}[scale=0.65]
+\shadedraw [top color=white, bottom color=\MaCouleur, draw=\MaCouleur]
+[l-system={Sierpinski triangle, step=1pt, angle=60, axiom=F, order=6.5}]
+lindenmayer system -- cycle;
+\draw (30:0.65cm) node {\bfseries\textcolor{black}{\thepage}};
+\end{tikzpicture}%
+}{}
+%\pieddepage{}{\color{\MaCouleur}$\stackrel{***}{\thepage}$}{}
+
+%------ Chapitre 01
+    \renewcommand\PartProgramme{Stats/Probas}
+    \input{1sti2d_01_Stats/1sti2d_01_Stats.tex}
+
+%------ Chapitre 02
+    \renewcommand\PartProgramme{Analyse}
+    \input{1sti2d_02_Etudes_Fonctions/1sti2d_02_Etudes_Fonctions.tex}
+
+%------ Chapitre 02
+    \input{1sti2d_03_Cercle_Trigo/1sti2d_03_Cercle_Trigo.tex}
+
+%------ Index
+\input{1sti2d_Page_Index}
+
+\vspace{\stretch{1}}
+
+\[***\]
+
+\begin{center}
+\'Ecrit par Philippe \bsc{De Sousa}.\par
+Dernière modification le \today.
+\end{center}
+
+\end{document} 

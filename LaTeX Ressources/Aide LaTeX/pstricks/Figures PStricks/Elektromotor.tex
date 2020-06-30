@@ -1,0 +1,94 @@
+\documentclass[pstricks,border=10pt,x11names]{standalone}
+
+\usepackage{pst-circ,pst-grad,pst-slpe,pst-text}
+
+\begin{document}
+\DeclareFixedFont{\RM}{T1}{phv}{b}{n}{1cm}
+\DeclareFixedFont{\RSS}{T1}{phv}{b}{n}{0.6cm}
+
+\multido{\nB=30+10}{145}{%
+\begin{pspicture}[showgrid=false](0,0)(12,9)
+\definecolor{RotTS}{HTML}{CC0000}% dunkelrot
+\definecolor{GruenTS}{HTML}{006600}%{0,0.75,1}% gr\"{u}n
+\definecolor{GruenT}{cmyk}{0.92,0,0.87,0.09}%{0,0.75,1}% gr\"{u}n
+%------------------------------------------------------------------------
+\psframe[fillstyle=solid,fillcolor=RotTS,linestyle=none](0,2)(6,8)
+\psframe[fillstyle=solid,fillcolor=GruenTS,linestyle=none](6,2)(12,8)
+\pscircle[fillstyle=solid,fillcolor=white,linestyle=none](6,5){3.3}
+%------------------------------------------------------------------------
+\rput(1,5){\Large\textcolor{white}{\RM N}}
+\rput(11,5){\Large\textcolor{white}{\RM S}}
+%------------------------------------------------------------------------
+\pstVerb{/wi \nB\space def wi cos 0.1 lt %
+{wi sin abs 0.18 ge {/kwa 6 def /kwi wi 180 mod 9.9 sub def} {/kwa 0 def /kwi 0.1 def} ifelse}%
+{wi sin abs 0.2 gt {/kwa 6 def /kwi wi 180 mod 9.9 sub def} {/kwa 0 def /kwi 0.1 def} ifelse} ifelse}%
+\pstVerb{/wi \nB\space def wi sin 0 eq {/soc 0 def /asz 0 def /dx 0 def} {/soc 1 def /asz 120 def /dx wi 50 mod 300 div def} ifelse}%
+\pstVerb{/wi \nB\space def wi sin 0 eq {/ca 0.21 def /cb 0.2 def} {/ca 0.99 def /cb 0.98 def} ifelse}%
+\pstVerb{/wi \nB\space def wi cos 0 lt %
+{wi sin 0 lt {/gw 180 def /so 0 def /sob 1 def /vz 1 neg def} {/gw 0 def /so 1 def /sob 0 def /vz 1 def} ifelse} %
+{wi sin 0 le {/gw 180 def /so 0 def /sob 1 def /vz 1 neg def} {/gw 0 def /so 1 def /sob 0 def /vz 1 def} ifelse} ifelse}%
+\rput{\nB}(6,5){%
+\pnode(3;30){A}
+\pnode(3;150){B}
+\pnode(3;210){C}
+\pnode(3;-30){D}
+\psset{slopesteps=500,slopecolors=%
+0 .9 .1 .1 %
+.4 .7 .25 .25 %
+.5 .9 .9 .9 %
+.6 .25 .7 .25 %
+1 .1 .9 .1 5}%
+\pscustom[fading,startfading=!cb,endfading=!ca,linestyle=none,fillstyle=slopes,gradmidpoint=0,slopeangle=!gw]{%,slopesteps=5
+\psarc(0,0){3}{-30}{30}%
+\psline([nodesep=-0.3]A)([nodesep=-0.3]A|[offset=-0.7]A)%
+\psline([nodesep=0.3]B|[offset=-0.7]B)([nodesep=0.3]B)%
+\psarc(0,0){3}{150}{210}%
+\psline([nodesep=0.3]C)([nodesep=0.3]C|[offset=0.7]C)%
+\psline([nodesep=-0.3]D|[offset=0.7]D)([nodesep=-0.3]D)%
+\closepath%
+}%
+\pscircle[linestyle=none,fillstyle=solid,fillcolor=black!75](0,0){0.615}%
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=cyan!20]{%
+\psarc(0,0){0.45}{10}{170}%
+\psarcn(0,0){0.6}{170}{10}%
+\closepath%
+}%
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=cyan!20]{%
+\psarc(0,0){0.45}{190}{350}%
+\psarcn(0,0){0.6}{350}{190}%
+\closepath%
+}%
+\psline[linewidth=4pt,linecolor=blue!65]{c-c}(0.5,-0.2)(0.53,-0.8)
+\psline[linewidth=4pt,linecolor=blue!65]{c-c}(-0.5,0.2)(-0.53,0.8)
+\psforeach{\nA}{0.8, 1.1, 1.4, 1.7, 2.0, -0.9, -1.2, -1.5, -1.8, -2.1}{%
+\psline[linewidth=4pt,linecolor=blue!65]{c-c}(\nA,0.8)(!\nA\space 0.1 add -0.8)%
+}%
+\rput{!gw}(0.515,-0.5){\pcline[linewidth=1.5pt,arrowinset=0.05,arrowlength=1.8,arrowsize=0.12,linecolor=Goldenrod1,nodesep=0.1,strokeopacity=!soc]{->}(-0.015,0.3)(0.015,-0.3)}%
+\rput{!gw}(-0.515,0.5){\pcline[linewidth=1.5pt,arrowinset=0.05,arrowlength=1.8,arrowsize=0.12,linecolor=Goldenrod1,nodesep=0.1,strokeopacity=!soc]{->}(-0.015,0.3)(0.015,-0.3)}%
+\psforeach{\nA}{-0.85, -1.15, -1.45, -1.75, -2.05, 0.85, 1.15, 1.45, 1.75, 2.05}{%
+\rput{!gw}(\nA,0){%
+\pcline[linewidth=1.1pt,linestyle=dotted,dotsep=3pt,linecolor=Goldenrod1,nodesepA=0.05,nodesepB=0.05](!0.8016 dx 0.7 mul vz mul sub 93.576 PtoC)(!0.8016 dx 0.7 mul vz mul add 273.576 PtoC)}%
+}%
+\rput{-\nB}(2.65;180){\pscharpath[linestyle=none,fillstyle=solid,fillcolor=white,opacity=!so]{\RSS N}}%
+\rput{-\nB}(2.65;0){\pscharpath[linestyle=none,fillstyle=solid,fillcolor=white,opacity=!so]{\RSS S}}%
+\rput{-\nB}(2.65;0){\pscharpath[linestyle=none,fillstyle=solid,fillcolor=white,opacity=!sob]{\RSS N}}%
+\rput{-\nB}(2.65;180){\pscharpath[linestyle=none,fillstyle=solid,fillcolor=white,opacity=!sob]{\RSS S}}%
+\rput{!gw}(-1.45,0){%
+\pcline[linewidth=1.5pt,arrowinset=0.05,arrowlength=1.8,arrowsize=0.12,linecolor=Goldenrod1,nodesep=0.3,strokeopacity=!soc]{->}(-0.05,0.8)(0.05,-0.8)}%
+\rput{!gw}(1.45,0){%
+\pcline[linewidth=1.5pt,arrowinset=0.05,arrowlength=1.8,arrowsize=0.12,linecolor=Goldenrod1,nodesep=0.3,strokeopacity=!soc]{->}(-0.05,0.8)(0.05,-0.8)}%
+}%
+\psframe[fillstyle=solid,fillcolor=black!90,linestyle=none](6.6,4.9)(7,5.1)
+\psframe[fillstyle=solid,fillcolor=black!90,linestyle=none](5.0,4.9)(5.4,5.1)
+\psline[linewidth=1pt](5,5)(4.75,5)(4.75,1)
+\rput{0}(6,5){\psarc[linewidth=1pt,linecolor=Goldenrod1,linestyle=dotted,dotsep=3pt](0,0){0.525}{!kwa}{!kwi}}%
+\rput{0}(6,5){\psarc[linewidth=1pt,linecolor=Goldenrod1,linestyle=dotted,dotsep=3pt](0,0){0.525}{!kwa 180 add}{!kwi 180 add}}%
+\psline[linewidth=1pt](7,5)(7.25,5)(7.25,1)
+\battery[labeloffset=-.85](4.75,1)(7.25,1){}
+\psline[linewidth=1pt,linecolor=Goldenrod1,linestyle=dotted,dotsep=3pt](!5.5 dx sub 5)(4.75,5)(4.75,1)(!5.8 dx add 1)
+\psline[linewidth=1pt,linecolor=Goldenrod1,linestyle=dotted,dotsep=3pt](!6.7 dx sub 5)(7.25,5)(7.25,1)(!6.15 dx add 1)
+\pscircle[linestyle=none,fillstyle=solid,fillcolor=black!90](6,5){0.15}
+\end{pspicture}
+}
+
+\end{document} 

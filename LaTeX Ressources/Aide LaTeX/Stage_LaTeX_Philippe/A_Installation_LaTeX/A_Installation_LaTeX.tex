@@ -1,0 +1,150 @@
+\documentclass[10pt,openright,oneside,french]{book}
+
+\input philippe2013
+\usepackage{xargs}
+\usepackage{environ,wasysym}
+\usepackage {romande}
+
+
+\usepackage{fancyvrb}
+\usepackage{fvrb-ex}
+\fvset{framerule=1pt,frame=lines,framesep=3mm,gobble=4,rulecolor=\color{\MaCouleur},fontsize=\footnotesize,%
+xrightmargin=0.5\linewidth,numbers=left,numbersep=7pt,showtabs=true,tabsize=4,obeytabs=true}
+%frame=leftline
+
+\input philippe2014_cours_fiche
+\input philippe2013_sections
+
+\renewcommand\MaCouleur{ForestGreen}
+\newcommand{\texlive}{\TeX {\sf Live}\xspace}
+\newcommand{\texstudio}{{\sf TeXstudio}\xspace}
+\newcommand{\windows}{{\sf Windows}\xspace}
+\newcommand{\mac}{{\sf Mac}\xspace}
+\newcommand{\linux}{{\sf Linux}\xspace}
+\newcommand{\latexinstal}[2][0.5]{\[\includegraphics[width=#1\linewidth]{img/texlive/#2}\]}
+\newcommand{\texstudioimg}[2][0.5]{\[\includegraphics[width=#1\linewidth]{img/texstudio/#2}\]}
+
+\begin{document}
+\TitreFiche{Installation de LaTeX}{\small Notice}
+\thispagestyle{empty}
+\entete{}{Installation de \LaTeX}{}
+\RegleEntete
+\pieddepage{\footnotesize Philippe \sc{De Sousa}}{\small -- \thepage/\pageref{TotPages} --}{\footnotesize Lycée J.-P. \bsc{Timbaud}}
+
+\raisebox{-5pt}{\includegraphics{bc-attention}}\ {\bfseries La procédure suivante s'applique uniquement à une installation \sffamily{Windows}.}\par
+{\itshape Pour une installation \linux ou \mac (ou une installation alternative sur \windows), vous pouvez également consulter la page suivante :}
+\url{http://www.xm1math.net/doculatex/index.html#install}\bigskip
+
+\LaTeX{} est un \textit{système} de préparation et de production de documents ; il est donc constitué de plusieurs programmes, dépendants, permettant le fonctionnement global du système.
+
+\section{Installation de la distribution}
+
+Il faut tout d'abord installer le système \LaTeX{} lui-même. Il existe plusieurs distributions pour \windows. Nous installerons \texlive 2014.
+
+\begin{enumerate}
+    \item Aller sur la page suivante :\par \url{http://tug.org/texlive/acquire-netinstall.html} ;
+    \item Télécharger le fichier {\tt install-tl.zip} pour windows ;
+    \item Décompresser l'archive où bon vous semble sur votre ordinateur et ouvrir le fichier ;
+    \item Double-cliquer sur l’exécutable {\tt install-tl-advanced.bat} et attendre que la fenêtre suivante s'ouvre :
+    \latexinstal[1]{config_installation_texlive}
+    \item Inutile de changer les options exceptées :
+     \begin{itemize}
+        	\item les chemins d'installation si vous le souhaitez ;
+        	\item l'installation pour tous les utilisateurs : basculer l'affichage en {\tt OUI} ;
+        	\item l'installation de l'éditeur intégré : basculer l'affichage en {\tt NON} afin d'éviter tout conflit avec l'éditeur que nous utiliserons durant le stage.
+     \end{itemize}
+    \item Cliquer sur {\tt Installer Tex Live} et laisser faire l'ordinateur. La fenêtre suivante s'affiche :
+       	\latexinstal[0.5]{ecran_noir} suivie rapidement de celle-ci :
+       	\latexinstal[0.5]{processus_installation}
+    Les deux fenêtres affichent la même chose : le déroulement de l'installation. Selon la puissance de votre ordinateur et la rapidité de la connexion internet, il faut compter environ 2 heures d'installation. Le gestionnaire d'installation télécharge tous les fichiers nécessaires à une utilisation complète de \LaTeX. Comme vous pouvez le constater, il y a approximativement \np{3000} composants qui s'installent. Votre patience sera finalement récompensée par ce dernier écran :
+       	\latexinstal[0.5]{fin_installation} Vous pourrez alors fermer toutes les fenêtres relatives à l'installation \texlive : le plus long est derrière vous.
+\end{enumerate}
+
+\section{L'éditeur de textes}
+
+Afin d'écrire un document \LaTeX, il suffit de taper le texte à l'aide d'un éditeur. N'importe quel éditeur peut faire l'affaire mais puisque vous allez passer beaucoup de temps dessus, il vaut mieux en avoir un spécifique à \LaTeX. Certains sont payants, d'autres gratuits. Durant le stage, nous travaillerons sur une version récente de l'éditeur {\sf TeXmakerX} qui se nomme à présent : \texstudio. Vous pouvez utiliser {\sf TeXmaker} (sans le {\sf X} à la fin), plus ancien mais très semblable.
+
+\subsection{Installation}
+
+\begin{enumerate}
+    \item Télécharger la dernière version de \texstudio pour \windows en cliquant sur le lien du site (environ $\np[Mo]{35}$) \url{http://texstudio.sourceforge.net/} ;
+    \item Installer \texstudio en suivant la procédure classique d'installation d'un logiciel.
+    	\texstudioimg[0.5]{TeXstudio_installation}
+    \item Lancer le logiciel : bienvenue dans le monde merveilleux de \LaTeX\quad {\Large \smiley}
+
+    	\texstudioimg[0.5]{TeXstudio_presentation}
+\end{enumerate}
+
+\subsection{Configurations}
+Avant d'utiliser l'éditeur de textes, vérifions que tout est convenablement configuré pour notre travail.
+
+\begin{enumerate}
+	\item Cliquer sur le menu {\tt Options $\rightarrow$ Configurer TeXstudio...}
+		\texstudioimg[0.75]{TeXstudio_menu_options}
+	\item Apparaît alors l'écran suivant :
+		\texstudioimg[1]{TeXstudio_config_general}
+	Ici, vous pouvez configurer par exemple la police du menu de \texstudio. Pour modifier la police utilisée par l'éditeur (pour le texte que vous taper), il faudra se rendre dans l'onglet {\sf \'Editeur} de la colonne de gauche.
+		\texstudioimg[1]{TeXstudio_config_editeur}
+	\item Dans cet onglet, vous pouvez (et devrez peut-être) modifier l'\textit{encodage} (\textit{codage d'entrée par défaut}). L'encodage gère entre autre les accents. Lors de vos échanges de documents avec vos collègues, afin d'éviter les caractères du type {\tt Ã}\verb|@|, il est préférable d'utiliser l'encodage {\tt UTF-8} qui est courant de nos jours.
+	\item Après avoir fermé la fenêtre des options, vérifier que l'encodage est bien configuré dans les informations en bas à droite.\par
+        Puis, dans le menu {\tt \'Edition $\rightarrow$ Codage d'entrée...}, vous pourrez constater que l'encodage {\tt UTF-8} est surligné.
+	    	\texstudioimg[0.5]{TeXstudio_fin_ligne_type}
+	    	\texstudioimg[0.5]{TeXstudio_encodage}
+    \item Retourner dans le menu {\tt Options $\rightarrow$ Configurer TeXstudio...} et choisir l'onglet {\sf Compilation}. Cette fenêtre permet de savoir si \texstudio a bien repéré votre installation \texlive. Si c'est le cas, tous les champs de textes doivent être automatiquement remplis.
+            \texstudioimg[0.5]{TeXstudio_config_compilation}
+        S'ils les champs sont vides, il faut alors compléter les plus importants en cliquant sur l'icône \textit{dossier} au bout d'une ligne :
+            \texstudioimg[1]{TeXstudio_config_compilation_detail}
+        S'affichent alors l'arborescence windows dans laquelle vous devez sélectionner le dossier \verb+C:\texlive\2014\bin\win32+\par
+        Pour chaque ligne à compléter, choisissez l'application qui convient :
+        \begin{description}
+            \item[LaTeX :] Choisir \verb+latex.exe+
+            \item[PDFLaTeX :] Choisir \verb+pdflatex.exe+
+            \item[DviPs :] Choisir \verb+dvips.exe+
+            \item[Ps2Pdf :] Choisir \verb+ps2pdf.exe+
+        \end{description}
+        Les autres champs peuvent rester vides pour l'utilisation que nous en auront durant le stage.
+    \end{enumerate}
+
+\subsection{Compilation \LaTeX}
+L'idée cachée derrière tout ça est que la compilation d'un document correspond à l'interprétation de votre code source par la distribution \texlive à l'aide de l'application \verb+latex.exe+.\par
+Ceci produit un fichier \bsc{dvi} (DeVice Independant). Ce fichier est converti par l'application \verb+dvips.exe+ en un fichier \bsc{ps} (PostScript) lui-même converti en un fichier \bsc{pdf} suite à l'action de \verb+ps2pdf.exe+. Le fichier \bsc{pdf} est celui qui vous intéresse car c'est le rendu final de votre document.\par
+Afin d'éviter d'effectuer toutes ces actions les unes après les autres, il suffit de modifier une dernière configuration : aller dans l'onglet {\sf Production}.
+   \texstudioimg[0.8]{TeXstudio_config_production}
+Les deux premières lignes nous intéressent : vérifier que votre configuration correspond à l'image ci-dessus. Si ce n'est pas le cas, utiliser le menu déroulant pour choisir la bonne option.\par
+Si l'option n'est pas accessible dans le menu déroulant, vous pouvez alors cliquer sur la petite clé à molette sur la droite pour afficher la fenêtre suivante :
+    \texstudioimg[0.6]{TeXstudio_config_production_rapide}
+
+\subsection{Compilation \textsc{pdf}\LaTeX}
+Un méthode plus directe consiste à utiliser \verb+PDFLaTeX+ et c'est ce que nous ferons durant le stage. Configurez alors \texstudio de la façon suivante :
+    \texstudioimg[0.6]{TeXstudio_config_production_latex}
+\textsc{pdf}\LaTeX{} a l'avantage de pouvoir gérer l'insertion d'image d'un format autre que \textsc{PostScript}. En revanche, il ne fonctionne pas avec le package {\sffamily pstricks} mais ce n'est pas grave car nous n'utiliserons pas ce package.
+
+
+\section{Un exemple}
+
+Pour finir, rien de mieux qu'un petit exemple pour vérifier que tout va bien.
+\begin{enumerate}
+    \item Lancer le logiciel \texstudio et choisissez le menu {\tt Fichier $\rightarrow$ Nouveau}.
+    \item Dans la zone de texte qui apparaît, entrer les lignes suivantes :
+
+
+\begin{Verbatim}[label={[Premier test]{\sffamily Code 1}},gobble=0]
+    \documentclass{article}
+    \begin{document}
+        Bienvenue dans ce monde merveilleux !
+    \end{document}
+\end{Verbatim}
+
+%\begin{lstlisting}[caption={Premier test}]
+%    \documentclass{article}
+%    \begin{document}
+%        Bienvenue dans ce monde merveilleux !
+%    \end{document}
+%\end{lstlisting}
+
+    \item Sauvegarder le document : l'extension du fichier sera {\tt .tex}.
+    \item Compiler en appuyant sur la touche {\tt F1}.
+    \item Le fichier \bsc{pdf} a été généré et devrait apparaître à l'écran. Si ce n'est pas le cas... rendez-vous le jour du stage.
+\end{enumerate}
+
+\end{document}

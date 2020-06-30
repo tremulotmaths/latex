@@ -1,0 +1,177 @@
+\documentclass[12pt,oneside]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preambule_2020}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\portrait
+%\paysage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{\dots}
+\newcommand{\anneescol}{Année \dots}
+
+%entête classique
+
+\fancypagestyle{garde_tete}{% 
+%\fancyhead[C]{\small\textbf{\seconde} \hfill \small \textbf{Année 2015-2016}}
+\renewcommand{\headrulewidth}{0cm}}
+
+\newcommand{\tete}{
+\thispagestyle{garde_tete}
+\chapitre{Essai de formulaire}
+\noindent 
+\vspace{-1em}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\tikzset{domaine/.style 2 args={domain=#1:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% DEBUT DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\selectlanguage{english}
+\selectlanguage{french}
+\setlength\parindent{0mm}
+\tete 		%entête classique
+
+\renewcommand \footrulewidth{0.2pt}%
+\renewcommand \headrulewidth{0pt}%
+\pagestyle{fancy}
+\fancyhf{}
+\pieddepage{\classe}{\thepage / \pageref{LastPage}}{\anneescol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{spacing}{1.2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Documentation}
+
+\url{http://www.tug.org/applications/hyperref/manual.html#x1-200006}
+
+\section*{Sans Javascript}
+
+\begin{Cadre}
+\begin{Form}
+\TextField[name=name,width=10em]{Name:}
+\TextField[name=surname,width=10em]{Surname:}
+ 
+\medskip
+Hello there, I am \TextField[name=name]{} \TextField[name=surname]{}, glad to meet you!
+    
+\ChoiceMenu[combo,name=country,default=France]{Country:}{Spain,Uganda,Moon,Other}
+
+\ChoiceMenu[radio,default=Male,name=sex]{Sex:}{Male,Female}
+
+\CheckBox[name=highschool]{High School}
+
+\end{Form}
+\medskip
+\end{Cadre}
+
+
+
+\section*{En utilisant Javascript :}
+
+Le plus simple pour cela est d’ajouter un bouton à notre formulaire, et d’utiliser une action onclick pour changer les valeurs des champs. Exemple avec des champs de type ChoiceMenu :
+
+\begin{Cadre}
+\begin{Form}
+  \TextField[name=name,width=3cm,charsize=12pt]{Name:}
+  \ChoiceMenu[combo,name=country,width=5cm,charsize=12pt,default=France]{Country:}
+             {Spain,Uganda,Moon,Other=an Unknown country} \\
+  \ChoiceMenu[radio,default=male,name=sex,charsize=14pt]{Sex:}{Male=male,Female=female}
+  \PushButton[name=Remplissage,
+              onclick={
+                this.getField("sextxt").value= this.getField("sex").value;
+                this.getField("countrytxt").value= this.getField("country").value;
+                      }
+              ]{Remplir}
+ 
+In a word: \TextField[name=name,readonly=true]{} is a \TextField[name=sextxt,readonly=true]{} from \TextField[name=countrytxt,readonly=true]{}
+\end{Form}
+\medskip
+\end{Cadre}
+
+
+\section*{Opérations mathématiques}
+
+Vous vous en doutez, JavaScript est assez malin pour permettre les opérations mathématiques entre différentes variables, qui peuvent être extraites des champs. Exemple ultra simple pour faire la moyenne de deux valeurs :
+
+\begin{Cadre}
+\begin{Form}
+  \TextField[name=nb1,value=0]{Valeur numero 1}\\
+  \TextField[name=nb2,value=0]{Valeur numero 2}\\
+  \TextField[name=moy]{Moyenne des deux}\\
+  \PushButton[name=go,
+              onclick={var a = this.getField("nb1");var b=this.getField("nb2");
+                       var moy=this.getField("moy");moy.value=(a.value+b.value)/2
+                       }
+              ]{Cliquez ici pour calculer}
+\end{Form}
+\medskip
+\end{Cadre}
+
+
+\section*{Personnalisation des champs}
+
+\subsection*{Champs de texte}
+
+Par défaut, les champs de texte sont encadrés de rouge, ce qui est à mon sens loin d’être élégant. Pour virer ce truc, et en prime changer la police de saisie :
+
+\begin{Cadre}
+\begin{Form}
+\TextField[name=prenom,value=Prenom,
+           format={var f = this.getField('prenom');
+                       f.strokeColor = ['T'];f.fillColor=['T'];
+                       f.textFont ='Verdana'
+                   },
+            width=10em]{Pr\'{e}nom}
+\end{Form}
+\medskip
+\end{Cadre}
+
+
+
+\subsection*{Boutons radio}
+
+Là encore, le symbole par défaut n’est pas très conventionnel (une étoile). Si vous souhaitez un style plus académique (le même qu’en HTML) :
+
+\begin{Cadre}
+\begin{Form}
+\ChoiceMenu[radio,radiosymbol=\ding{108},
+           default=male,name=sex,charsize=14pt]
+           {Sex:}{Male=male,Female=female}
+\end{Form}
+\medskip
+\end{Cadre}
+
+
+\subsection*{Compilation avec Babel en Français}
+
+Vous aurez noté que, JavaScript oblige, l’utilisation des point-virgules est plus que fréquente ici. Il faut donc “désactiver” temporairement ce caractère. On utilise donc la même méthode qu’avec TikZ :
+
+\begin{Cadre}
+\begin{Form}
+\shorthandoff{;}
+\begin{Form}
+  % Notre formulaire en français, tranquille
+\end{Form}
+\shorthandon{;}
+\end{Form}
+\medskip
+\end{Cadre}
+
+  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{spacing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% FIN DU DOCUMENT %%
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}

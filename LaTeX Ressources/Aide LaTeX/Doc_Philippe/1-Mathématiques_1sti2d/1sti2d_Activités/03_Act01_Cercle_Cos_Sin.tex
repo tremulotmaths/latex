@@ -1,0 +1,84 @@
+\documentclass[10pt,openright,twoside,french]{book}
+\input preambule_2013
+
+\newcommand\TitreActivite[2]{%
+    \setcounter{exo}{0}
+        \begin{center}
+            \psframebox[shadow=true,shadowcolor=gray!75,shadowsize=3pt,%
+            framearc=0.3,%
+            fillstyle=gradient,gradmidpoint=0.8,gradangle=20,gradbegin=red!60!yellow!40,gradend= white]{%
+                \parbox{0.5\linewidth}{%
+                    \begin{center}
+                        \Large\bfseries
+                        \uuline{Activité \bsc{#1}}\par
+                        #2
+                    \end{center}}}
+        \end{center}\bigskip
+}
+
+\pagestyle{empty}
+
+
+\begin{document}
+
+\TitreActivite{iii.1}{Cosinus et Sinus \par Cercle trigonométrique}
+
+\exo Pour chaque question :
+\begin{itemize}
+    \item Faire une figure à main levée ;
+    \item Répondre à la question sans utiliser le théorème de Pythagore ;
+    \item Arrondir les résultats au centième près.
+\end{itemize}
+
+\begin{enumerate}
+    \item Soit $ABC$ un triangle rectangle en $B$ tel que $AB = \SI{5}{cm}$ et $\widehat{BAC} = \ang{25}$.\par
+    Calculer les longueurs $AC$ et $BC$.
+    \item Soit $DEF$ un triangle rectangle en $D$ tel que $DF = \SI{8,5}{cm}$ et $\widehat{DEF} = \ang{75}$.\par
+    Calculer les longueurs $DE$ et $EF$.
+    \item Soit $GHI$ un triangle rectangle en $I$ tel que $GH = \SI{5}{cm}$, $HI = \SI{12}{cm}$ et $GI = \SI{13}{cm}$.\par
+    Calculer la mesure de chacun des angles du triangle.
+\end{enumerate}\medskip
+
+\exo
+On se place dans un repère \Oij avec $4$ carreaux comme unité de longueur. $I$ est le point de coordonnées $(1 \pv 0)$.
+
+\begin{enumerate}
+    \item Réaliser la figure suivante :
+    \begin{enumerate}
+        \item Dessiner le repère et le cercle trigonométrique $\calig U$ ;
+        \item Placer le point $M$ sur $\calig U$ tel que $IOM = \ang{45}$ ;
+        \item Placer le point $H$, projeté orthogonal de $M$ sur l'axe des abscisses ;
+        \item Placer le point $K$, projeté orthogonal de $M$ sur l'axe des ordonnées.
+    \end{enumerate}
+    \item
+    \begin{enumerate}
+        \item Le triangle $OMH$ est-il rectangle ? Pourquoi ? Quel côté est l'hypoténuse ? Quelle est sa longueur ?
+        \item Donner l'expression de $\cos\left(\widehat{IOM}\right)$ en fonction d'un des côtés du triangle $OMH$.
+        \item À l'aide de la calculatrice, déterminer alors l'abscisse du point $M$.
+        \item Le triangle $OMK$ est-il rectangle ? Pourquoi ? Quel côté est l'hypoténuse ? Quelle est sa longueur ?
+        \item Donner l'expression de $\sin\left(\widehat{KMO}\right)$ en fonction d'un des côtés du triangle $OMK$.
+        \item Expliquer pourquoi $\widehat{KMO} = \widehat{IOM}$ et donner alors l'expression de $\sin\left(\widehat{IOM}\right)$ en fonction d'un des côtés du triangle $OMK$.
+        \item À l'aide de la calculatrice, déterminer alors l'ordonnée du point $M$.
+    \end{enumerate}
+    \item
+    \begin{enumerate}
+        \item Placer le point $N$ sur $\calig U$ tel que $ION =  \rad{\dfrac\pi3}$.
+        \item Lire les coordonnées du point $N$. En déduire alors les valeurs de $\cos\left(\dfrac\pi3\right)$ et $\sin\left(\dfrac\pi3\right)$.
+        \item Vérifier à la calculatrice.
+    \end{enumerate}
+    \item
+    \begin{enumerate}
+        \item Déterminer graphiquement les valeurs exactes de $\cos\left(-\dfrac\pi3\right)$ et $\sin\left(-\dfrac\pi3\right)$.
+        \item Déterminer graphiquement les valeurs exactes de $\cos\left(\dfrac{2\pi}{3}\right)$ et $\sin\left(\dfrac{2\pi}{3}\right)$.
+    \end{enumerate}
+    \item On place un point $P$ sur le cercle $\calig U$ tel que $\widehat{IOP} = \rad\alpha$.
+    \begin{enumerate}
+        \item Graphiquement, comment déterminer $\cos(\alpha)$ et $\sin(\alpha)$ ?
+        \item Où placer le point $P$ pour avoir $\cos(\alpha) > 0$ et $\sin(\alpha) < 0$ ?
+        \item Où placer le point $P$ pour avoir $\cos(\alpha) < 0$ et $\sin(\alpha) < 0$ ?
+        \item Où placer le point $P$ pour avoir $\cos(\alpha) = 0$ ?
+        \item Où placer le point $P$ pour avoir $\sin(\alpha) = 0$ ?
+    \end{enumerate}
+\end{enumerate}
+
+\end{document} 

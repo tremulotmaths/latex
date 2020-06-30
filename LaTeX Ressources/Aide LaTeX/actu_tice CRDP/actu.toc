@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.26pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Bascule de l'Etherpad}{2}{0}{1}
+\beamer@sectionintoc {2}{L'IFIC}{3}{0}{2}
+\beamer@sectionintoc {3}{Le PAF}{4}{0}{3}
+\beamer@sectionintoc {4}{Le projet Num\IeC {\'e}ritab91}{7}{0}{4}
+\beamer@sectionintoc {5}{Les VPI}{8}{0}{5}
+\beamer@sectionintoc {6}{SE3, migration vers Squeeze}{9}{0}{6}
+\beamer@sectionintoc {7}{Devenir formateur ou/et conseiller Tice}{10}{0}{7}
+\beamer@sectionintoc {8}{Changements de personnes ressources ?}{11}{0}{8}
+\beamer@sectionintoc {9}{Fin}{12}{0}{9}

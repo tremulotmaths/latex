@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+
+\usepackage{pst-plot}
+\usepackage{pst-node}
+
+
+\begin{document}
+
+\def\runter{^{\phantom{x}}}
+\newcommand{\qrq}{\quad \Rightarrow \quad}
+\def\x{\hbox{$\,$}}
+\newcommand{\D}{\displaystyle}
+\newcommand{\folge}[1]{\hbox{$\left\langle\hbox{#1}\right\rangle$}}%
+
+
+\begin{center}
+\psset{yunit=1cm,xunit=6cm, dotscale=0.75, arrowscale=2}%
+\def\pshlabel#1{\sffamily\footnotesize #1}%
+\def\psvlabel#1{\sffamily\footnotesize #1}%
+\begin{pspicture}(-0.7,-2)(1.8,14.5)%
+\psaxes[xDecimals=2, yDecimals=0,Dy=1,Dx=0.25]{->}(0,0)(-0.9,-.1)(1.7,14)%
+\def\x{1}%
+\def\fx{1 x 5 exp sub 1 x sub div}%
+%
+\psplot[plotpoints=500, linecolor=red]{-0.95}{0.999}{\fx}%
+\psplot[plotpoints=500, linecolor=red]{1.001}{1.53}{\fx}%
+\psdot[dotstyle=o,dotsize=6pt](1,5)%
+\uput[-90](1.7,0){$x$}%
+\uput[-180](0,14){$y$}%
+{\psset{linecolor=blue, linewidth=1pt, arrowscale=1.5}
+\multido{\rx=0.5 +0.095}{6}{%
+\pnode(!\rx\space 0){P}%
+\pnode(!\rx\space /x \rx\space def \fx){Q}%
+\pnode(!\rx\space /x \rx\space def \fx\space 2 div){Q2}%
+\pnode(!0 /x \rx\space def \fx){R}%
+\psline(P)(Q)\psline{->}(P)(Q2)\psline{->}(Q)(R)\psdot(Q)
+ }}
+%
+{\psset{linecolor=green, linewidth=1pt, arrowscale=1.5}
+\multido{\rx=1.5 + -0.095}{6}{%
+\pnode(!\rx\space 0){P}%
+\pnode(!\rx\space /x \rx\space def \fx){Q}%
+\pnode(!\rx\space /x \rx\space def \fx\space 2 div){Q2}%
+\pnode(!0 /x \rx\space def \fx){R}%
+\psline(P)(Q)\psline{->}(P)(Q2)\psline{->}(Q)(R)%
+ }}
+\psset{linecolor=green, linewidth=1pt, arrowscale=1.5}%
+\rput(1,-1){\color{red} 1}%
+\rput(-0.2,5){\color{red} 5}%
+\pcline{|->}(1.5,-1)(1.05,-1)%
+\naput{\color{green} \folge{$b_{n}$}}%
+\pcline{|->}(! -0.2 /x 1.5 def \fx)(-0.2,5.4)%
+\nbput{\color{green} \folge{$f(b_{n})$}}
+\psset{linecolor=blue, linewidth=1pt, arrowscale=1.5}%
+\pcline{|->}(.5,-1)(.95,-1)%
+\nbput{\color{blue} \folge{$a_{n}$}}
+\pcline{|->}(! -0.2 /x 0.5 def \fx)(-0.2,4.6)%
+\naput{\color{blue} \folge{$f(a_{n})$}}%
+\rput(-0.65,12){\color{red} $\D f(x)= \frac{1-x^5}{1-x}$}
+\end{pspicture}
+\end{center}
+
+
+\end{document}
