@@ -1111,6 +1111,8 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \draw[flecheissue] (Rcc)--(Rccb);
 \end{tikzpicture}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{center}
 % Racine à Gauche, développement vers la droite
 \begin{tikzpicture}[xscale=0.5,yscale=0.25]
@@ -1201,6 +1203,126 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \draw[flecheissue] (Rbab)--(Rbabi);
 \draw[flecheissue] (Rbba)--(Rbbai);
 \draw[flecheissue] (Rbbb)--(Rbbbi);
+\end{tikzpicture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{center}
+% Racine à Gauche, développement vers la droite
+\begin{tikzpicture}[xscale=0.5,yscale=0.25]
+% Styles (MODIFIABLES)
+\tikzstyle{fleche}=[-,color=blue]
+\tikzstyle{flecheissue}=[-,style=dotted,color=blue]
+\tikzstyle{noeud}=[fill=white]
+\tikzstyle{legende}=[fill=white,text=red]
+% Dimensions (MODIFIABLES)
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{3}
+% Dimensions calculées (NON MODIFIABLES)
+\def\NiveauA{(-1)*\DistanceInterNiveaux}
+\def\NiveauB{(0.5)*\DistanceInterNiveaux}
+\def\NiveauC{(2.5)*\DistanceInterNiveaux}
+\def\NiveauD{(4.5)*\DistanceInterNiveaux}
+\def\NiveauE{(6)*\DistanceInterNiveaux}
+\def\NiveauF{(8)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+% Légende
+\node[legende] (Premier) at ({\NiveauB},{(-1.5)*\InterFeuilles}) {Épreuve 1};
+%1er lancer
+\node[noeud] (R) at ({\NiveauA},{(5.5)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(2.5)*\InterFeuilles}) {S};
+\node[noeud] (Rb) at ({\NiveauB},{(8.5)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (R)--(Ra) node [midway, above] {$p$};
+\draw[fleche] (R)--(Rb) node [midway, below=0.7em] {$1-p$};
+% Légende
+\node[legende] (Deuxieme) at ({\NiveauC},{(-1.5)*\InterFeuilles}) {Épreuve 2};
+%2ème lancer
+\node[noeud] (Raa) at ({\NiveauC},{(1)*\InterFeuilles}) {S};
+\node[noeud] (Rab) at ({\NiveauC},{(4)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Ra)--(Raa) node [midway, above] {$p$};
+\draw[fleche] (Ra)--(Rab) node [midway, below=0.5em] {$1-p$};
+%2ème lancer
+\node[noeud] (Rba) at ({\NiveauC},{(7)*\InterFeuilles}) {S};
+\node[noeud] (Rbb) at ({\NiveauC},{(10)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rb)--(Rba) node [midway, above] {$p$};
+\draw[fleche] (Rb)--(Rbb) node [midway, below=0.5em] {$1-p$};
+% Légende
+\node[legende] (Troisieme) at ({\NiveauD},{(-1.5)*\InterFeuilles}) {Épreuve 3};
+%3ème lancer
+\node[noeud] (Raaa) at ({\NiveauD},{(0)*\InterFeuilles}) {S};
+\node[noeud] (Raab) at ({\NiveauD},{(2)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Raa)--(Raaa) node [midway, above] {$p$};
+\draw[fleche] (Raa)--(Raab) node [midway, below] {$1-p$};
+%3ème lancer
+\node[noeud] (Raba) at ({\NiveauD},{(3)*\InterFeuilles}) {S};
+\node[noeud] (Rabb) at ({\NiveauD},{(5)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rab)--(Raba) node [midway, above] {$p$};
+\draw[fleche] (Rab)--(Rabb) node [midway, below] {$1-p$};
+%3ème lancer
+\node[noeud] (Rbaa) at ({\NiveauD},{(6)*\InterFeuilles}) {S};
+\node[noeud] (Rbab) at ({\NiveauD},{(8)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rba)--(Rbaa) node [midway, above] {$p$};
+\draw[fleche] (Rba)--(Rbab) node [midway, below] {$1-p$};
+%3ème lancer
+\node[noeud] (Rbba) at ({\NiveauD},{(9)*\InterFeuilles}) {S};
+\node[noeud] (Rbbb) at ({\NiveauD},{(11)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rbb)--(Rbba) node [midway, above] {$p$};
+\draw[fleche] (Rbb)--(Rbbb) node [midway, below] {$1-p$};
+
+% Légende 2
+
+% Issues
+\node[noeud] (Raaai) at ({\NiveauE},{(0)*\InterFeuilles}) {};
+\node[noeud] (Raabi) at ({\NiveauE},{(2)*\InterFeuilles}) {};
+\node[noeud] (Rabai) at ({\NiveauE},{(3)*\InterFeuilles}) {};
+\node[noeud] (Rabbi) at ({\NiveauE},{(5)*\InterFeuilles}) {};
+\node[noeud] (Rbaai) at ({\NiveauE},{(6)*\InterFeuilles}) {};
+\node[noeud] (Rbabi) at ({\NiveauE},{(8)*\InterFeuilles}) {};
+\node[noeud] (Rbbai) at ({\NiveauE},{(9)*\InterFeuilles}) {};
+\node[noeud] (Rbbbi) at ({\NiveauE},{(11)*\InterFeuilles}) {};
+
+%Légende 3
+\draw[flecheissue] (Raaa)--(Raaai);
+\draw[flecheissue] (Raab)--(Raabi);
+\draw[flecheissue] (Raba)--(Rabai);
+\draw[flecheissue] (Rabb)--(Rabbi);
+\draw[flecheissue] (Rbaa)--(Rbaai);
+\draw[flecheissue] (Rbab)--(Rbabi);
+\draw[flecheissue] (Rbba)--(Rbbai);
+\draw[flecheissue] (Rbbb)--(Rbbbi);
+
+
+% Légende
+\node[legende] (Dernier) at ({\NiveauF},{(-1.5)*\InterFeuilles})
+{Épreuve $n$};
+% Issues
+\node[noeud] (Raaaia) at ({\NiveauF},{(-0.5)*\InterFeuilles}) {S};
+\node[noeud] (Raaaib) at ({\NiveauF},{(0.5)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Raaai)--(Raaaia) node [midway, above] {$p$};
+\draw[fleche] (Raaai)--(Raaaib) node [midway, below] {$1-p$};
+% Issues
+\node[noeud] (Rabbia) at ({\NiveauF},{(4.5)*\InterFeuilles}) {S};
+\node[noeud] (Rabbib) at ({\NiveauF},{(5.5)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rabbi)--(Rabbia) node [midway, above] {$p$};
+\draw[fleche] (Rabbi)--(Rabbib) node [midway, below] {$1-p$};
+% Issues
+\node[noeud] (Rbbbia) at ({\NiveauF},{(10.5)*\InterFeuilles}) {S};
+\node[noeud] (Rbbbib) at ({\NiveauF},{(11.5)*\InterFeuilles}) {$\overline{S}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rbbbi)--(Rbbbia) node [midway, above] {$p$};
+\draw[fleche] (Rbbbi)--(Rbbbib) node [midway, below] {$1-p$};
 \end{tikzpicture}
 \end{center}
 
