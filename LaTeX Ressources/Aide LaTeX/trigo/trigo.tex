@@ -25,11 +25,11 @@
 %Changer la numerotation des listes 
 \usepackage{enumerate}
 
-% Numérotation des sections
+% Numï¿½rotation des sections
 \renewcommand{\thesection}{\Roman{section}}  
 %\renewcommand{\thesubsection}{\qquad\arabic{subsection} } % chiffres arabes
 
-% Autres symboles et caractères
+% Autres symboles et caractï¿½res
 \usepackage{textcomp}
     \newcommand{\euro}{\eurologo{}} 
 \usepackage{siunitx} 
@@ -45,7 +45,7 @@
 \usepackage{colortbl} 
 \usepackage{array}
 
-% Ecrire des mathématiques
+% Ecrire des mathï¿½matiques
 \usepackage[fleqn]{amsmath}
 \usepackage{bm}
 \usepackage{amssymb}
@@ -60,7 +60,7 @@
                        %\AQuestion{Question}{{Proposition 1},{Proposition 2},{Proposition 3}}
                        %\end{alterqcm}
 
-%%% Raccourcis mathématiques %%%
+%%% Raccourcis mathï¿½matiques %%%
 %Ensembles de nombres
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -68,7 +68,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
-%Repères
+%Repï¿½res
 \def\Oij{$\left(\text{O}\,;~\vect{\imath},~\vect{\jmath}\right)$}
 \def\Oijk{$\left(\text{O}\,;~\vect{\imath},~ \vect{\jmath},~ \vect{k}\right)$}
 \def\Ouv{$\left(\text{O}\,;~\vect{u},~\vect{v}\right)$}
@@ -80,7 +80,7 @@
 \unitlength \longarc \ensuremath{%
 \stackrel{\begin{picture}(1,0.2)
 \qbezier(0,0)(0.5,0.2)(1,0)
-\end{picture}}{#1}}}  %l'arc AB s'obtient par \arc{AB} en mode mathématiques ou non
+\end{picture}}{#1}}}  %l'arc AB s'obtient par \arc{AB} en mode mathï¿½matiques ou non
 %Vecteurs
 \newcommand{\vect}[1]{\mathchoice%
 {\overrightarrow{\displaystyle\mathstrut#1\,\,}}%
@@ -94,31 +94,31 @@
 \newcommand{\intervallefo}[2]{\intervalle{[}{#1}{#2}{[}}
 \newcommand{\intervalleoo}[2]{\intervalle{]}{#1}{#2}{[}}
 
-%Mise en forme des théorèmes
+%Mise en forme des thï¿½orï¿½mes
 \makeatletter
 \def\ntheorem@breakstrut{\rule{0pt}{1\baselineskip}}
 \renewtheoremstyle{break}%
   {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
           ##1\ ##2\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
-  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont                      % th numérotés
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont                      % th numï¿½rotï¿½s
           ##1\ ##2\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
 
 \def\ntheorem@nonumberbreakstrut{\rule{0pt}{0.9\baselineskip}}
 \renewtheoremstyle{nonumberbreak}%
   {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
           ##1\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}            % augmente l'espace entre le titre et le texte
-  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont              % th non numérotés
+  {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont              % th non numï¿½rotï¿½s
           ##1\ (##3)\theorem@separator}\hbox{\ntheorem@breakstrut}}}]}
 \makeatother
 
 \theoremstyle{break}
 \theorembodyfont{\upshape}
-\newframedtheorem{Th}{Théorème}
-\newframedtheorem{Prop}{Propriété}
+\newframedtheorem{Th}{Thï¿½orï¿½me}
+\newframedtheorem{Prop}{Propriï¿½tï¿½}
 \theorembodyfont{\slshape}
 \definecolor{azure}{rgb}{.88,.932,.932}
 \shadecolor{azure}
-\newshadedtheorem{Def}{Définition}
+\newshadedtheorem{Def}{Dï¿½finition}
 \theoremstyle{nonumberbreak}
 \theorembodyfont{\rmfamily}
 \newtheorem{Ex}{Exemple}
@@ -131,10 +131,10 @@
 
 \begin{document}
 \fancyhf{}
-\rhead{}%\small{Année \np{2013}-\np{2014}}}
+\rhead{}%\small{Annï¿½e \np{2013}-\np{2014}}}
 \lhead{}
-\rfoot{Trigonométrie plane}
-\lfoot{BTS Géomètre Topographe}
+\rfoot{Trigonomï¿½trie plane}
+\lfoot{BTS Gï¿½omï¿½tre Topographe}
 \cfoot{\thepage}
 \renewcommand \footrulewidth{0.4pt}
 \renewcommand \headrulewidth{0pt}
@@ -153,7 +153,7 @@
 \vspace*{1.5cm}
 
 \renewcommand{\contentsname}{%\textcolor{blue}{
-Table des matières}%}
+Table des matiï¿½res}%}
 \tableofcontents
 
 \setlength{\parskip}{3ex plus 1ex minus 1ex}
@@ -162,22 +162,22 @@ Table des matières}%}
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-Dans tout ce chapitre, le plan est muni d'un repère orthonormé \Oij.
-Les points $I$ et $J$ sont définis par: $\vect{OI}=\vect{i} \text{ et } \vect{OJ}=\vect{j}$.
-L'unité de longueur correspond donc à la norme des vecteurs $\vect{i}\text{ et }\vect{j}$.
-\section{Repérage sur le cercle trigonométrique}
-\subsection{Le cercle trigonométrique}
+Dans tout ce chapitre, le plan est muni d'un repï¿½re orthonormï¿½ \Oij.
+Les points $I$ et $J$ sont dï¿½finis par: $\vect{OI}=\vect{i} \text{ et } \vect{OJ}=\vect{j}$.
+L'unitï¿½ de longueur correspond donc ï¿½ la norme des vecteurs $\vect{i}\text{ et }\vect{j}$.
+\section{Repï¿½rage sur le cercle trigonomï¿½trique}
+\subsection{Le cercle trigonomï¿½trique}
 \begin{Def}
-Le cercle trigonométrique est le cercle de centre O, de rayon 1 et orienté dans le sens direct, c'est-à-dire, le sens inverse des aiguilles d'une montre.
+Le cercle trigonomï¿½trique est le cercle de centre O, de rayon 1 et orientï¿½ dans le sens direct, c'est-ï¿½-dire, le sens inverse des aiguilles d'une montre.
 \end{Def}
 \begin{Prop}
-Le périmètre du cercle trigonométrique est égal à $2\pi$.
+Le pï¿½rimï¿½tre du cercle trigonomï¿½trique est ï¿½gal ï¿½ $2\pi$.
 \end{Prop}
 \begin{Ex}
-Sur le cercle trigonométrique $\mathcal{C}$, on considère les deux diamètres perpendiculaires $[II'] \text{ et }[JJ']$.
-\medskip % penser à insérer un espace avant un environnement liste
+Sur le cercle trigonomï¿½trique $\mathcal{C}$, on considï¿½re les deux diamï¿½tres perpendiculaires $[II'] \text{ et }[JJ']$.
+\medskip % penser ï¿½ insï¿½rer un espace avant un environnement liste
 \begin{enumerate}
-\item Compléter le tableau suivant où $M$ désigne un point du cercle $\mathcal{C}$.
+\item Complï¿½ter le tableau suivant oï¿½ $M$ dï¿½signe un point du cercle $\mathcal{C}$.
 \bigskip
 \renewcommand\arraystretch{2.2}
 \begin{center}
@@ -185,14 +185,14 @@ Sur le cercle trigonométrique $\mathcal{C}$, on considère les deux diamètres per
 \hline
 Point $M$&$A$&$B$&$C$&$D$&$E$&$F$\\
 \hline
-Mesure de l'angle $\widehat{IOM}$ en degrés&$180$&$90$&$60$&$45$&&0\\
+Mesure de l'angle $\widehat{IOM}$ en degrï¿½s&$180$&$90$&$60$&$45$&&0\\
 \hline
 Longueur de l'arc $\arc{AB}$&&&&&$\dfrac{\pi}{6}$&\\
 \hline
 \end{tabularx}
 \end{center}
 \vspace{1cm}
-\item Placer les points correspondants sur le cercle trigonométrique.
+\item Placer les points correspondants sur le cercle trigonomï¿½trique.
 \bigskip
 \begin{center}
 \newrgbcolor{qqqqcc}{0 0 0.8}
@@ -217,14 +217,14 @@ Longueur de l'arc $\arc{AB}$&&&&&$\dfrac{\pi}{6}$&\\
 \end{enumerate}
 \end{Ex}
 
-\subsection{Enroulement de la droite numérique}
-La droite $d$, tangente au point $I$ au cercle trigonométrique est munie du repère $\left(I\, ;~\vect{i}\right)$. 
-Elle représente l'ensemble $\R$ des nombres réels.\\
-En enroulant la droite des réels $d$ autour du cercle trigonométrique, on fait correspondre à tout réel $x$ un unique point $M$ du cercle $\mathcal{C}$.
+\subsection{Enroulement de la droite numï¿½rique}
+La droite $d$, tangente au point $I$ au cercle trigonomï¿½trique est munie du repï¿½re $\left(I\, ;~\vect{i}\right)$. 
+Elle reprï¿½sente l'ensemble $\R$ des nombres rï¿½els.\\
+En enroulant la droite des rï¿½els $d$ autour du cercle trigonomï¿½trique, on fait correspondre ï¿½ tout rï¿½el $x$ un unique point $M$ du cercle $\mathcal{C}$.
 \begin{Def}
 \begin{itemize}
-\item On dit que $M$ est le point image du réel $x$.
-\item On dit que $x$ repère le point $M$ sur le cercle $\mathcal{C}$.
+\item On dit que $M$ est le point image du rï¿½el $x$.
+\item On dit que $x$ repï¿½re le point $M$ sur le cercle $\mathcal{C}$.
 \end{itemize}
 \end{Def}
 
@@ -281,7 +281,7 @@ En enroulant la droite des réels $d$ autour du cercle trigonométrique, on fait c
 
 \psset{unit=1cm}
 \begin{Ex}
-Placer sur le cercle trigonométrique le point image de chacun des réels:
+Placer sur le cercle trigonomï¿½trique le point image de chacun des rï¿½els:
 \[\dfrac{\pi}{4};~-\dfrac{\pi}{2};~3\pi;~\dfrac{5\pi}{4}\text{ et}\dfrac{-7\pi}{4}.\]
 \begin{center}
 \newrgbcolor{qqqqcc}{0 0 0.8}
@@ -302,21 +302,21 @@ Placer sur le cercle trigonométrique le point image de chacun des réels:
 \end{center}
 \end{Ex}
 \begin{Prop}
-Tout point du cercle trigonométrique est l'image d'une infinité de réels.\\
-Si $x$ est l'un d'entre eux, les autres sont les réels de la forme $x+k\times2\pi$, où $k$ est un entier relatif $\left(k\in\Z\right)$, soit:
+Tout point du cercle trigonomï¿½trique est l'image d'une infinitï¿½ de rï¿½els.\\
+Si $x$ est l'un d'entre eux, les autres sont les rï¿½els de la forme $x+k\times2\pi$, oï¿½ $k$ est un entier relatif $\left(k\in\Z\right)$, soit:
 \[\ldots~x-6\pi\,;~x-4\pi\,;~x-2\pi\,;~x\,;~x+2\pi\,;~x+4\pi\,;~x+6\pi\,;~\ldots\]
 \end{Prop}
 \begin{Ex}
-Les nombres réels $\dfrac{9\pi}{4}$ et $-\dfrac{7\pi}{4}$ ont le même point image sur le cercle trigonométrique, en effet:
+Les nombres rï¿½els $\dfrac{9\pi}{4}$ et $-\dfrac{7\pi}{4}$ ont le mï¿½me point image sur le cercle trigonomï¿½trique, en effet:
 \[\dfrac{9\pi}{4}-\left(-\dfrac{7\pi}{4}\right)=\dfrac{16\pi}{4}=4\pi=2\times2\pi\]
-la différence obtenue est un multiple de $2\pi$.
+la diffï¿½rence obtenue est un multiple de $2\pi$.
 \end{Ex}
 
 
 %%%%%%%%%%%%
 \subsection{Le radian}%
 \begin{Def}
-Le radian est l'unité de mesure des angles telle que la mesure en radian d'un angle est égale à la longueur de l'arc que cet angle intercepte sur un cercle de rayon 1.
+Le radian est l'unitï¿½ de mesure des angles telle que la mesure en radian d'un angle est ï¿½gale ï¿½ la longueur de l'arc que cet angle intercepte sur un cercle de rayon 1.
 \end{Def}
 \newrgbcolor{ttqqcc}{0.2 0 0.8}
 \newrgbcolor{qqwwtt}{0 0.4 0.2}
@@ -348,14 +348,14 @@ Le radian est l'unité de mesure des angles telle que la mesure en radian d'un an
 Un angle plat mesure $\pi$ radians; un angle droit mesure $\dfrac{\pi}{2}$ radians.
 \end{Ex}
 \begin{Prop}
-Les mesures en degrés et en radians des angles sont proportionnelles.
+Les mesures en degrï¿½s et en radians des angles sont proportionnelles.
 \end{Prop}
 On obtient ainsi un tableau de conversion des mesures des angles:
 \renewcommand{\arraystretch}{2} 
 \begin{center}
      \begin{tabularx}{0.9\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}
          \hline 
-         Mesure en degrés & $360$ & $180$ & $90$ & $60$ & $45$ & $30$ \\ 
+         Mesure en degrï¿½s & $360$ & $180$ & $90$ & $60$ & $45$ & $30$ \\ 
          \hline 
          Mesure en radians & $2\pi$ & $\pi$ & $\dfrac{\pi}{2}$ & $\dfrac{\pi}{3}$ & $\dfrac{\pi}{4}$ & $\dfrac{\pi}{6}$ \\ 
          \hline
@@ -363,19 +363,19 @@ On obtient ainsi un tableau de conversion des mesures des angles:
 \end{center} 
     
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cosinus et sinus d'un réel}%%%%%%
+\section{Cosinus et sinus d'un rï¿½el}%%%%%%
 
 %%%%%%%%%%%%%%%%%%%
-\subsection{Définition et propriétés}%
+\subsection{Dï¿½finition et propriï¿½tï¿½s}%
 \begin{Def}
-   Soit $x$ un réel quelconque. Il lui correspond un unique point $M$ du cercle trigonométrique tel que $x$ soit une mesure en radians de $\widehat{IOM}$.
+   Soit $x$ un rï¿½el quelconque. Il lui correspond un unique point $M$ du cercle trigonomï¿½trique tel que $x$ soit une mesure en radians de $\widehat{IOM}$.
    \begin{itemize}
-      \item Le cosinus de $x$, noté $\cos x$, est l'abscisse de $M$ dans le repère \Oij.
-      \item Le sinus de $x$, noté $\sin x$, est l'ordonnée de $M$ dans le repère \Oij.
+      \item Le cosinus de $x$, notï¿½ $\cos x$, est l'abscisse de $M$ dans le repï¿½re \Oij.
+      \item Le sinus de $x$, notï¿½ $\sin x$, est l'ordonnï¿½e de $M$ dans le repï¿½re \Oij.
    \end{itemize}
 \end{Def}
 \begin{minipage}{11cm}
-     On a donc, dans le repère \Oij\\
+     On a donc, dans le repï¿½re \Oij\\
    {\setlength{\fboxsep}{5mm}
     \setlength{\fboxrule}{0mm}
     \fbox{\qquad$M\left({\cos x};~{\sin x}\right)$.}}
@@ -402,11 +402,11 @@ On obtient ainsi un tableau de conversion des mesures des angles:
   \end{minipage}
 \vspace{1cm}
 \begin{Ex}
-Compléter le tableau suivant:\\
+Complï¿½ter le tableau suivant:\\
 \begin{minipage}{11cm}
    \begin{tabularx}{0.8\linewidth}{|c|*{7}{>{\centering \arraybackslash}X|}}
          \hline 
-         Réel $x$ & $0$ & $\dfrac{\pi}{2}$ & $\pi$ & $\dfrac{3\pi}{2}$ & $-\pi$ & $-\dfrac{3\pi}{2}$ \\ 
+         Rï¿½el $x$ & $0$ & $\dfrac{\pi}{2}$ & $\pi$ & $\dfrac{3\pi}{2}$ & $-\pi$ & $-\dfrac{3\pi}{2}$ \\ 
          \hline 
          $\cos(x)$ &  &  &  &  &  &  \\ 
          \hline
@@ -437,24 +437,24 @@ Compléter le tableau suivant:\\
 \end{Ex}
 
 \begin{Prop}
-Pour tout réel $x$, on a: 
+Pour tout rï¿½el $x$, on a: 
 \begin{gather*}
 \cos\left(x+2k\pi\right)=\cos x \\
 \sin\left(x+2k\pi\right)=\sin x, \qquad \text{ avec } k\in\Z.
 \end{gather*}
 \end{Prop}
 \begin{Prop}
-Pour tout réel $x$, on a: 
+Pour tout rï¿½el $x$, on a: 
 \begin{gather*}
 -1\leqslant\cos x\leqslant1\\
 -1\leqslant\sin x \leqslant1.
 \end{gather*}
 \end{Prop}
 \begin{Prop}
-Pour tout réel $x$, on a: \[\cos^{2}x+\sin^{2}x=1.\]
+Pour tout rï¿½el $x$, on a: \[\cos^{2}x+\sin^{2}x=1.\]
 \end{Prop}
 Preuve:\\
-On applique le théorème de Pythagore dans un triangle rectangle dont les côtés mesurent respectivement $\cos x$, $\sin x$  et $1$.
+On applique le thï¿½orï¿½me de Pythagore dans un triangle rectangle dont les cï¿½tï¿½s mesurent respectivement $\cos x$, $\sin x$  et $1$.
 \psset{unit=0.5}
 \begin{center}
 \newrgbcolor{qqqqzz}{0 0 0.6}
@@ -484,15 +484,15 @@ On applique le théorème de Pythagore dans un triangle rectangle dont les côtés m
 \end{center}
 
 \begin{Rem}[Lien avec le cosinus et le sinus d'un angle aigu]
-Si $x$ est un réel compris entre $0$ et $\dfrac{\pi}{2}$, et $M$ son point image sur le cercle trigonométrique, alors:\\
+Si $x$ est un rï¿½el compris entre $0$ et $\dfrac{\pi}{2}$, et $M$ son point image sur le cercle trigonomï¿½trique, alors:\\
 $\cos x=\cos\left(\widehat{IOM}\right)\text{  et  } \sin x=\sin\left(\widehat{IOM}\right)$ 
-ce qui fait le lien avec la trigonométrie dans le triangle rectangle.
+ce qui fait le lien avec la trigonomï¿½trie dans le triangle rectangle.
 \end{Rem}
 \begin{minipage}{7cm}
     \begin{center}
-    $\sin x =\dfrac{\text{côté opposé}}{\text{hypoténuse}} =\dfrac{AM}{OM} =AM$ \\
+    $\sin x =\dfrac{\text{cï¿½tï¿½ opposï¿½}}{\text{hypotï¿½nuse}} =\dfrac{AM}{OM} =AM$ \\
     \bigskip
-    $\cos x =\dfrac{\text{côté adjacent}}{\text{hypoténuse}} =\dfrac{OA}{AM} =OA$
+    $\cos x =\dfrac{\text{cï¿½tï¿½ adjacent}}{\text{hypotï¿½nuse}} =\dfrac{OA}{AM} =OA$
     \end{center}
 \end{minipage}
 \begin{minipage}{9cm}
@@ -501,16 +501,16 @@ ce qui fait le lien avec la trigonométrie dans le triangle rectangle.
       \pstTriangle{O}(4,0){A}(4,2.5){M}
       \pstRightAngle{O}{A}{M}
       \pstMarkAngle[linecolor=red,MarkAngleRadius=0.7]{A}{O}{M}{$x$}
-      \rput(2,-0.5){côté adjacent}
-      \rput(2,1.7){\rotatebox{34}{hypoténuse $=1$}}
-      \rput(4.5,1.25){\rotatebox{90}{côté opposé}}
+      \rput(2,-0.5){cï¿½tï¿½ adjacent}
+      \rput(2,1.7){\rotatebox{34}{hypotï¿½nuse $=1$}}
+      \rput(4.5,1.25){\rotatebox{90}{cï¿½tï¿½ opposï¿½}}
    \end{pspicture}
    \end{minipage}
 
 
 %%%%%%%%%%%%%%%%%%
 \subsection{Valeurs remarquables}%
-A l'aide de configurations géométriques simples, on établit les résultats suivants \emph{à connaître}!
+A l'aide de configurations gï¿½omï¿½triques simples, on ï¿½tablit les rï¿½sultats suivants \emph{ï¿½ connaï¿½tre}!
 \begin{center}
 \psset{unit=2}
    \begin{pspicture}(-2.5,-3.5)(3,3.5)
@@ -538,7 +538,7 @@ A l'aide de configurations géométriques simples, on établit les résultats suivan
    \end{pspicture}
 \end{center}
 
-On peut donc établir le tableau suivant :
+On peut donc ï¿½tablir le tableau suivant :
 \renewcommand{\arraystretch}{2.5} 
 \begin{center}
    \begin{tabularx}{0.9\linewidth}{|c|*{6}{>{\centering \arraybackslash}X|}}
@@ -553,7 +553,7 @@ On peut donc établir le tableau suivant :
 \end{center} 
 \medskip
 \begin{Rem}
-On peut retenir ces valeurs en observant que la première ligne s'écrit aussi:
+On peut retenir ces valeurs en observant que la premiï¿½re ligne s'ï¿½crit aussi:
 \begin{center}
    \begin{tabularx}{0.9\linewidth}{|c|*{6}{>{\centering \arraybackslash}X|}}
       \hline 
@@ -565,11 +565,11 @@ On peut retenir ces valeurs en observant que la première ligne s'écrit aussi:
 \newpage
 
 %%%%%%%%%%%%%%%%
-\subsection{Angles associés}%
-En observant certaines symétries sur le cercle trigonométrique, on peut établir les formules suivantes:\\
+\subsection{Angles associï¿½s}%
+En observant certaines symï¿½tries sur le cercle trigonomï¿½trique, on peut ï¿½tablir les formules suivantes:\\
 \begin{minipage}{7cm}
 \begin{Prop}
-Pour tout réel $x$, on a:
+Pour tout rï¿½el $x$, on a:
 \begin{gather*}
 \cos(-x)=\cos x\\
 \sin(-x)=-\sin x
@@ -630,14 +630,14 @@ Pour tout réel $x$, on a:
 \end{center}
 \end{minipage}
 \begin{Prop}
-Pour tout réel $x$, on a:
+Pour tout rï¿½el $x$, on a:
 \begin{gather*}
 \cos\left(\dfrac{\pi}{2}-x\right)=\sin x\\
 \sin\left(\dfrac{\pi}{2}-x\right)=\cos x
 \end{gather*}
 \end{Prop}
 \begin{Rem}
-Connaissant les valeurs du sinus et du cosinus des angles du premier quadrant, on peut en déduire celles correspondant aux trois autres quadrants sur le cercle trigonométrique.
+Connaissant les valeurs du sinus et du cosinus des angles du premier quadrant, on peut en dï¿½duire celles correspondant aux trois autres quadrants sur le cercle trigonomï¿½trique.
 \end{Rem}
 \begin{Ex}
 Ainsi on calcule:
@@ -645,24 +645,24 @@ Ainsi on calcule:
 \end{Ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Résolution des triangles}
+\section{Rï¿½solution des triangles}
 \subsection{Objectif}
-Un triangle est défini par six éléments: trois angles et trois côtés.\\
-Dans le cas général , il suffit de connaître trois de ces éléments pour déterminer les trois autres, sauf dans les cas de  la connaissance des trois angles (on a alors seulement le rapport des longueurs des côtés).
-\subsection{Résolution des triangles rectangles}
+Un triangle est dï¿½fini par six ï¿½lï¿½ments: trois angles et trois cï¿½tï¿½s.\\
+Dans le cas gï¿½nï¿½ral , il suffit de connaï¿½tre trois de ces ï¿½lï¿½ments pour dï¿½terminer les trois autres, sauf dans les cas de  la connaissance des trois angles (on a alors seulement le rapport des longueurs des cï¿½tï¿½s).
+\subsection{Rï¿½solution des triangles rectangles}
 Principe.\\
-Dans le cas particulier du triangle rectangle un des angles est déjà connu par définition. Pour déterminer tous les autres éléments, il suffit donc de connaître:
+Dans le cas particulier du triangle rectangle un des angles est dï¿½jï¿½ connu par dï¿½finition. Pour dï¿½terminer tous les autres ï¿½lï¿½ments, il suffit donc de connaï¿½tre:
 \begin{itemize}
-\item soit un angle (non droit) et la longueur d'un côté,
-\item soit la longueur d'un côté de l'angle droit et celle de l'hypoténuse,
-\item soit la longueur des deux côtés de l'angle droit.
+\item soit un angle (non droit) et la longueur d'un cï¿½tï¿½,
+\item soit la longueur d'un cï¿½tï¿½ de l'angle droit et celle de l'hypotï¿½nuse,
+\item soit la longueur des deux cï¿½tï¿½s de l'angle droit.
 \end{itemize}
 \medskip
-Cette résolution des triangles rectangles est utilisée dans de nombreux cas pratiques tels que des problèmes de cartographie ou de navigation.\par
+Cette rï¿½solution des triangles rectangles est utilisï¿½e dans de nombreux cas pratiques tels que des problï¿½mes de cartographie ou de navigation.\par
 Relation fondamentale.\\
-On considère un triangle $ABC$ rectangle en $B$.\\
-On place un cercle trigonométrique de centre $A$ qui définit un petit triangle $ADE$ rectangle en $D$. \\
-On reconnaît alors une configuration de Thalès.
+On considï¿½re un triangle $ABC$ rectangle en $B$.\\
+On place un cercle trigonomï¿½trique de centre $A$ qui dï¿½finit un petit triangle $ADE$ rectangle en $D$. \\
+On reconnaï¿½t alors une configuration de Thalï¿½s.
 \begin{center}
 \psset{unit=0.9cm}
 \newrgbcolor{ttqqcc}{0.2 0 0.8}
@@ -701,9 +701,9 @@ On reconnaît alors une configuration de Thalès.
 \rput[bl](1.82,-0.4){\darkgray{$D$}}
 \end{pspicture*}
 \end{center}
-On peut donc écrire l'égalité des rapports de longueurs:
+On peut donc ï¿½crire l'ï¿½galitï¿½ des rapports de longueurs:
 \[\dfrac{AB}{AD}=\dfrac{AC}{AE}=\dfrac{BC}{DE}\quad \text{soit}\quad\dfrac{AB}{\cos\theta}=\dfrac{AC}{1}=\dfrac{BC}{\sin\theta}\]
-Les différentes égalités nous permettent d'obtenir:
+Les diffï¿½rentes ï¿½galitï¿½s nous permettent d'obtenir:
 \begin{align*}
  AB&=AC\cdot  \cos\theta\\
  BC&=AC\cdot \sin\theta\\
@@ -711,16 +711,16 @@ Les différentes égalités nous permettent d'obtenir:
 \end{align*}
 
 \begin{Prop}
-   Un côté $=$ \textcolor{blue}{hypothénuse} $\cdot$ \textbf{cosinus} de l'angle \textbf{adjacent}\\
-   Un côté $=$ \textcolor{blue}{hypothénuse} $\cdot$ \textbf{sinus} de l'angle \textbf{opposé}\\
-   Un côté $=$ autre côté $\cdot$ \textbf{tangente} de l'angle \textbf{opposé}
+   Un cï¿½tï¿½ $=$ \textcolor{blue}{hypothï¿½nuse} $\cdot$ \textbf{cosinus} de l'angle \textbf{adjacent}\\
+   Un cï¿½tï¿½ $=$ \textcolor{blue}{hypothï¿½nuse} $\cdot$ \textbf{sinus} de l'angle \textbf{opposï¿½}\\
+   Un cï¿½tï¿½ $=$ autre cï¿½tï¿½ $\cdot$ \textbf{tangente} de l'angle \textbf{opposï¿½}
 \end{Prop}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Résolution des triangles quelconques}
+\subsection{Rï¿½solution des triangles quelconques}
 
 Principe.\\
-Un triangle quelconque peut toujours être divisé en deux triangles rectangles; il suffit pour cela de tracer une de ses hauteurs.
+Un triangle quelconque peut toujours ï¿½tre divisï¿½ en deux triangles rectangles; il suffit pour cela de tracer une de ses hauteurs.
 \psset{unit=0.6}
 \begin{center}
 \newrgbcolor{qqzztt}{0 0.6 0.2}
@@ -751,7 +751,7 @@ Un triangle quelconque peut toujours être divisé en deux triangles rectangles; i
 \rput[bl](2.22,1.05){\ccttqq{$h$}}
 \end{pspicture*}
 \end{center}
-En partant des relations établies dans le triangle rectangle, on définit deux séries de formules pour les triangles quelconques:
+En partant des relations ï¿½tablies dans le triangle rectangle, on dï¿½finit deux sï¿½ries de formules pour les triangles quelconques:
 \begin{itemize}
 \item les formules aux sinus
 \item les formules aux cosinus
@@ -760,7 +760,7 @@ Si on note
 \begin{itemize}
 \item $A$, $B$ et $C$ les sommets du triangle quelconque
 \item $\alpha$, $\beta$ et $\gamma$ les angles en ces sommets
-\item $a$, $b$ et $c$ les longueurs des côtés opposés à ces angles,
+\item $a$, $b$ et $c$ les longueurs des cï¿½tï¿½s opposï¿½s ï¿½ ces angles,
 \end{itemize}
 alors on a:
 \begin{Prop}
@@ -772,7 +772,7 @@ alors on a:
   $c^2=a^2+b^2 -2 \cdot   a \cdot b \cdot \cos \gamma$
 \end{Prop}
 \begin{Rem}
-   Ces formules sont des extensions du théorème de Pythagore. Elles expriment que, si l'angle est inférieur à un angle droit, alors le segment opposé est inférieur à la somme des carrés des côtés.
+   Ces formules sont des extensions du thï¿½orï¿½me de Pythagore. Elles expriment que, si l'angle est infï¿½rieur ï¿½ un angle droit, alors le segment opposï¿½ est infï¿½rieur ï¿½ la somme des carrï¿½s des cï¿½tï¿½s.
 \end{Rem}
 
 \end{document}
