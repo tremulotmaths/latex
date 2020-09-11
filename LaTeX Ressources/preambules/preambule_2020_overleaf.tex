@@ -777,7 +777,8 @@ anchor=north west] at(0,-0.02)
 %___________________________
 %===    Exemple avec ou sans s et avec ou sans titre
 %------------------------------------------------------
-%
+%Exemples numérotés
+
 \newcounter{exemple}
 \NewEnviron{Exemple}[2][]{
 \smallskip
@@ -786,6 +787,16 @@ anchor=north west] at(0,-0.02)
 \BODY
 \smallskip
 }
+
+%Exemples non numérotés
+
+\NewEnviron{ExempleNonNum}[1][]{
+\smallskip
+\textbf{\large{Exemple#1~:}}\par
+\BODY
+\smallskip
+}
+
 
 %___________________________
 %===    Remarque avec ou sans s
