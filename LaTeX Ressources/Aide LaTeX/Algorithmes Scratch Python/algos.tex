@@ -29,6 +29,7 @@
 
 \usepackage[linesnumbered,french]{algorithm2e}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\codeone}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %% DEBUT DU DOCUMENT %%
@@ -43,6 +44,14 @@
 \end{center}
 \vspace*{0.2em}
 \end{module}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lrbox}{\codeone}
+\begin{lstlisting}[language=Python]
+print("Hello World!")
+\end{lstlisting}
+\end{lrbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{spacing}{1.2}
@@ -206,11 +215,41 @@ str(5)+"! = "+str(factorielle(5))
 \end{mybox}
 \end{center}
 
+Lorsque le code est à insérer dans un autre environnement (par exemple TikZ), cela peut poser problème.
+
+Voici un exemple de solution :
+
+Dans le préambule, on écrit :
+
+\verb~\newsavebox{\codeone}~ \%(le nom \verb~codeone~ est à choisir)
+
+On stocke le code dans une lrbox (déclaration globale utilisable dans tout le document) en dehors de l'autre environnement mais entre \verb~\begin{document}~
+et
+\verb~\end{document}~.
+
+\begin{verbatim}
+\begin{lrbox}{\codeone}
+\begin{lstlisting}[language=Python]
+print("Hello World!")
+\end{lstlisting}
+\end{lrbox}
+\end{verbatim}
+
+
+
+Puis on insère le code suivant à l'endroit voulu :
+\verb~\usebox{\codeone}~
+
+Et on obtient :
+
+\medskip
+
+\usebox{\codeone}
+
 
 \begin{center}
-\begin{minipage}{0.55\linewidth}
+\begin{minipage}{\linewidth}
 \begin{mybox}[colback=blue!10]{ALGO}
-
 
 \end{mybox}
 \end{minipage}
