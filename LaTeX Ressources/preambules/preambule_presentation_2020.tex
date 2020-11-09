@@ -1103,6 +1103,13 @@ anchor=north west] at(0,-0.02)
 \DeclareMathOperator{\Prob}{\mathbb{P}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%Rond entourant une lettre avec pour arguments la couleur de fond, puis la lettre
+\newcommand\rond[2][red!20]{\tikz[baseline]{\node[fill=#1,anchor=base,circle]{\bf #2};}}
+
+
+%Ecrire card en écriture normale :
+\newcommand{\card}{\text{Card}\xspace}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{bbding}
