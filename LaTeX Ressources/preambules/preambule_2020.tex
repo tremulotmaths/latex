@@ -1108,13 +1108,15 @@ anchor=north west] at(0,-0.02)
 
 %--------------------- PRESENTATION SECTIONS
 \usepackage{titlesec}
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{5}
 \makeatletter
 
 % couleurs section
 \definecolor{section@title@color}{cmyk}{1,0.2,0.3,0.1}
 \definecolor{subsection@title@color}{cmyk}{0,0.6,0.9,0}
 \definecolor{subsubsection@title@color}{cmyk}{1,0.2,0.3,0.1}
+\definecolor{paragraph@title@color}{cmyk}{0,0.6,0.9,0}
+\definecolor{subparagraph@title@color}{cmyk}{1,0.2,0.3,0.1}
 \definecolor{shadow@color}{cmyk}{.07,0,0,0.49}
 
 % fontes section
@@ -1126,23 +1128,35 @@ anchor=north west] at(0,-0.02)
 \newlength\decalnumsec
 \newlength\decalnumsubsec
 \newlength\decalnumsubsubsec
+\newlength\decalnumparagraph
+\newlength\decalnumsubparagraph
 \setlength{\decalnumsec}{-0.5em}
 \setlength{\decalnumsubsec}{-0.5em}
 \setlength{\decalnumsubsubsec}{-0.5em}
+\setlength{\decalnumparagraph}{-0.4em}
+\setlength{\decalnumsubparagraph}{-0.4em}
 \newlength\decalxtitlesec
 \newlength\decalxtitlesubsec
 \newlength\decalxtitlesubsubsec
+\newlength\decalxtitleparagraph
+\newlength\decalxtitlesubparagraph
 \setlength{\decalxtitlesec}{-2.45em}
 \setlength{\decalxtitlesubsec}{-1em}
 \setlength{\decalxtitlesubsubsec}{0.45em}
+\setlength{\decalxtitleparagraph}{1.45em}
+\setlength{\decalxtitlesubparagraph}{1.9em}
 
 % Espace entre le numéro de section et le titre
 \newlength\spacetitlesec
 \newlength\spacetitlesubsec
 \newlength\spacetitlesubsubsec
+\newlength\spacetitleparagraph
+\newlength\spacetitlesubparagraph
 \setlength{\spacetitlesec}{0.2em}
 \setlength{\spacetitlesubsec}{0.2em}
 \setlength{\spacetitlesubsubsec}{0.2em}
+\setlength{\spacetitleparagraph}{0.2em}
+\setlength{\spacetitlesubparagraph}{0.2em}
 
 %%%%%%%%%%%%% Titre de section
 
@@ -1217,6 +1231,56 @@ anchor=north west] at(0,-0.02)
 }
 {\spacetitlesubsubsec}
 {} 
+
+
+%%%%%%%%%%%%% Titre de paragraph
+
+\renewcommand{\theparagraph}{\alph{paragraph}}
+\titleformat{\paragraph}[block]
+{%
+	\hspace*{\decalxtitleparagraph}
+	\bfseries
+	\color{paragraph@title@color}
+	\sectiontitle@font
+}
+{
+	\raisebox{\decalnumparagraph}
+	{%
+	\begin{tikzpicture}
+	\node (numparagraph) {\sectiontitle@font\theparagraph};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numparagraph.north west)+(2pt,-2pt)$) -- ($(numparagraph.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numparagraph.south east)+(2pt,-2pt)$) -- ($(numparagraph.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=paragraph@title@color] (numparagraph.north west) -- ($(numparagraph.north east)+(1mm,0mm)$) -- (numparagraph.south east) -- ($(numparagraph.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numparagraph) {\sectiontitle@font\theparagraph};
+	\end{tikzpicture}
+	}
+}
+{\spacetitleparagraph}
+{} 
+
+%%%%%%%%%%%%% Titre de subparagraph
+
+\renewcommand{\thesubparagraph}{\roman{subparagraph}}
+\titleformat{\subparagraph}[block]
+{%
+	\hspace*{\decalxtitlesubparagraph}
+	\bfseries
+	\color{subparagraph@title@color}
+	\sectiontitle@font
+}
+{
+	\raisebox{\decalnumsubparagraph}
+	{%
+	\begin{tikzpicture}
+	\node (numsubparagraph) {\sectiontitle@font\thesubparagraph};
+	\fill[rounded corners=2pt,fill=shadow@color] ($(numsubparagraph.north west)+(2pt,-2pt)$) -- ($(numsubparagraph.north east)+(1mm,0mm)+(2pt,-2pt)$) -- ($(numsubparagraph.south east)+(2pt,-2pt)$) -- ($(numsubparagraph.south west)+(-1mm,0)+(2pt,-2pt)$) -- cycle;
+	\fill[rounded corners=2pt,fill=subparagraph@title@color] (numsubparagraph.north west) -- ($(numsubparagraph.north east)+(1mm,0mm)$) -- (numsubparagraph.south east) -- ($(numsubparagraph.south west)+(-1mm,0)$) -- cycle;
+	\node[white] at (numsubparagraph) {\sectiontitle@font\thesubparagraph};
+	\end{tikzpicture}
+	}
+}
+{\spacetitlesubparagraph}
+{} 
+
 
 \makeatother
 
