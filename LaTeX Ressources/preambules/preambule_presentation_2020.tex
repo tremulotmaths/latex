@@ -433,6 +433,19 @@ decorations.pathreplacing,patterns,positioning,decorations.text,shadows,trees}
 \usepackage{xstring}
 \usepackage{xkeyval}
 
+%___________________________
+%===    touches calculatrices
+%------------------------------------------------------
+
+\newcommand{\touche}[1]{\begin{pspicture}(0,0)(0.9,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(0.8,0.45)\rput[cc](0.4,
+0.225){#1}\end{pspicture}} %touche calculatrice
+\newcommand{\gtouche}[1]{\begin{pspicture}(0,0)(1.8,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(1.6,0.45)\rput[cc](0.8,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+\newcommand{\ggtouche}[1]{\begin{pspicture}(0,0)(2.4,0.4)\psframe[framearc=0.5,shadow=true,shadowcolor=gray!50](0,0)(2.4,0.45)\rput[cc](1.2,
+0.225){#1}\end{pspicture}} %grande touche calculatrice
+
+%\usepackage{tipfr}
+
 
 
 %%%%%%%%%Autres commandes
