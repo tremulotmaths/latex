@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{tikzpeople}
+\usetikzlibrary{shapes}
+
+\title{Essais \LaTeX{}}
+\author{Dominique TREMULOT}
+\date{August 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Tikzpeople}
+
+\begin{center}
+\begin{tikzpicture}
+\node[graduate,minimum size=1cm,xshift=-1.2cm]{};
+\node[graduate,female,mirrored,minimum size=1cm]{};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\node[name=a,shape=alice,minimum size=1cm,xshift=-5cm]{};
+\node[name=b,shape=bob,mirrored,minimum size=1cm]{};
+\node[ellipse callout, draw,yshift= .3cm,xshift=-2.5cm,callout absolute pointer={(a.mouth)},font=\tiny]{My name is Alice};
+\node[ellipse callout, draw, yshift=-.3cm,xshift=-1.5cm,callout absolute pointer={(b.mouth)},font=\tiny]{I'm Bob};
+\end{tikzpicture}
+\end{center}
+
+\end{document}
