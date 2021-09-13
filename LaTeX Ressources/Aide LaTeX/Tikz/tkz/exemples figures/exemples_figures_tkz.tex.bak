@@ -40,7 +40,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{spacing}{1.2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple1}
 \textbf{Exemple 1 :}
 
 \begin{center}
@@ -57,6 +57,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exemple2}
 \textbf{Exemple 2 :}
 
 \begin{center}
@@ -98,6 +99,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exemple3}
 \textbf{Exemple 3 :}
 
 \begin{center}
@@ -116,7 +118,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage\textbf{Exemple 4 :}
+\newpage
+\label{exemple4}
+\textbf{Exemple 4 :}
 
 \begin{center}
 \begin{tikzpicture}
@@ -239,6 +243,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exemple5}
 \textbf{Exemple 5 :}
 
 \begin{center}
@@ -276,6 +281,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newpage
 \bigskip
+\label{exemple6}
 \textbf{Exemple 6 :}
 
 \begin{center}
@@ -337,7 +343,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple7}
 \textbf{Exemple 7 :}
 
 \begin{center}
@@ -393,7 +399,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple8}
 \textbf{Exemple 8 : Section d'un cube}
 
 \begin{center}
@@ -431,7 +437,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple9}
 \textbf{Exemple 9 : Intersection deux droites dans l'espace avec un tétraèdre}
 
 \textbf{Utilisation des coordonnées barycentriques}
@@ -470,7 +476,9 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage\textbf{Exemple 10 : Avec des vecteurs}
+\newpage
+\label{exemple10}
+\textbf{Exemple 10 : Avec des vecteurs}
 
 
 \begin{center}
@@ -492,7 +500,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple11}
 \textbf{Exemple 11 :}
 
 
@@ -536,7 +544,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple12}
 \textbf{Exemple 12 :}
 
 
@@ -589,7 +597,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple13}
 \textbf{Exemple 13 : Droite d'Euler}
 
 \begin{center}
@@ -652,7 +660,7 @@ Il ne faut donc pas utiliser une image qui a été remplacée par R\dots
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple14}
 \textbf{Exemple 14 : quadrillage Seyes + somme vecteurs}
 
 Les commandes utilisées ici sont définies dans l'entête.
@@ -683,7 +691,7 @@ Les commandes utilisées ici sont définies dans l'entête.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple15}
 \textbf{Exemple 15 :}
 
 \begin{center}
@@ -709,7 +717,7 @@ Les commandes utilisées ici sont définies dans l'entête.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple16}
 \textbf{Exemple 16 :}
 
 \begin{center}
@@ -760,7 +768,7 @@ Les commandes utilisées ici sont définies dans l'entête.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple17}
 \textbf{Exemple 17 :}
 
 Voici l'histogramme de la série :
@@ -817,7 +825,7 @@ Voici l'histogramme de la série :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\label{exemple18}
 \textbf{Exemple 18 : Tangentes et effet loupe}
 
 % requires \usetikzlibrary{spy}
@@ -857,6 +865,7 @@ Voici l'histogramme de la série :
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\label{exemple19}
 \textbf{Exemple 19 :}
 
 \begin{center}
@@ -884,6 +893,7 @@ Voici l'histogramme de la série :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newpage
 \medskip
+\label{exemple20}
 \textbf{Exemple 20 :}
 
 
@@ -928,6 +938,7 @@ Voici l'histogramme de la série :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 %\medskip
+\label{exemple21}
 \textbf{Exemple 21 :}
 
 
@@ -956,9 +967,8 @@ Voici l'histogramme de la série :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newpage
 \medskip
+\label{exemple22}
 \textbf{Exemple 22 :}
-
-
 
 \begin{tikzpicture}[scale=1]
 \tkzDefPoint(0,0){O}
@@ -975,6 +985,7 @@ Voici l'histogramme de la série :
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \medskip
+\label{exemple23}
 \textbf{Exemple 23 : Projeté orthogonal}
 
 \begin{tikzpicture}
