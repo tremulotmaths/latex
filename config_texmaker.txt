@@ -1,0 +1,11 @@
+"/usr/local/texlive/2021/bin/x86_64-linux/latex" -interaction=nonstopmode --shell-escape %.tex
+
+"/usr/local/texlive/2021/bin/x86_64-linux/pdflatex" -synctex=1 -interaction=nonstopmode --shell-escape %.tex
+
+Autre possibilité : 
+Ajouter /usr/local/texlive/2021/bin/x86_64-linux au PATH
+Dans le fichier ~/.profile ou ~/.bashrc
+ajouter
+PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+enregistrer
+redémarrer le pc
