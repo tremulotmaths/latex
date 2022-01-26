@@ -1560,7 +1560,7 @@ breaklines=true,%passage à ligne automatique
 
 \newcommand{\verslesup}[1]{\textcolor{red}{\faPaperPlane\  Vers le supérieur \faPaperPlaneO\ : }#1}
 
-\newcommand{\inenglish}[1]{\includegraphics[scale=0.2]{english}\  In English \includegraphics[scale=0.2]{english}\ : #1}
+\newcommand{\inenglish}[1]{\raisebox{-2.5pt}{\includegraphics[scale=0.12]{english}}\  In English \raisebox{-2.5pt}{\includegraphics[scale=0.12]{english}}\ : #1}
 
 \newcommand{\voir}[1]{\textcolor{purple}{\faBook\ voir #1}}
 
