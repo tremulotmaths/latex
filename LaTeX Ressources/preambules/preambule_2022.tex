@@ -345,13 +345,27 @@ decorations.pathreplacing,patterns,positioning,decorations.text}
 %caractères spéciaux avec la commande \ding{230} par exemple
 \usepackage{pifont}
 
-
+\usepackage{framed}
+%permet d'avoir notamment une boîte constituée d'un trait vertical
+%avec l'environnement leftbar
+%redéfinition de leftbar
+\renewenvironment{leftbar}[1][\hsize]
+{%
+    \def\FrameCommand
+    {%
+        {\color{red}\vrule width 1.5pt}%
+        \hspace{0pt}%must no space.
+        \fboxsep=\FrameSep\colorbox{white}%
+    }%
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+}
+{\endMakeFramed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %autres symboles
 %\usepackage{marvosym}
-\usepackage{bclogo}
+\usepackage[tikz]{bclogo}
 \usepackage{tikzsymbols}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -803,12 +817,13 @@ anchor=north west] at(0,-0.02)
 
 \newcounter{exemple}
 \NewEnviron{Exemple}[2][]{
-\smallskip
 \refstepcounter{exemple}
+\begin{leftbar}
 \textbf{\large{Exemple#1~\theexemple~:~#2}}\par
 \BODY
-\smallskip
+\end{leftbar}
 }
+
 
 %Exemples non numérotés
 
