@@ -264,7 +264,7 @@ C'est\dots
 \draw(13.center)--(17.center);
 \draw(14.center)--(18.center);
 \draw(15.center)--(19.center);
-\draw[}](16.center)--(20.center);
+\draw(16.center)--(20.center);
 \end{tikzpicture}
 
 \end{Exercice}
@@ -370,10 +370,10 @@ C'est\dots
 \begin{tikzpicture}[scale=1,line cap=round,line join=round,x=1.0cm]
 \draw[>=stealth,->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
 \draw[{]-]},line width=3pt,color=red] (-2.5,0) -- (3,0);
-\foreach \x in {-5,...,5}
-\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt);
-\foreach \x in {-5,...,5}
-\draw (\x,-7pt) node[below,font=\bfseries] {\x};
+\foreach \x in {-5,...,5}{
+\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt);}
+\foreach \x in {-5,...,5}{
+\draw (\x,-7pt) node[below,font=\bfseries] {\x};}
 \end{tikzpicture}
 \end{center}
 
@@ -417,11 +417,11 @@ C'est\dots
 \begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
 \draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
 \draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
-\foreach \x in {-5,...,5}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\foreach \x in {-5,...,5}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
 \draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
-\foreach \y in {-5,...,5}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+\foreach \y in {-5,...,5}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};}
 %\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 \clip(-5.5,-5.5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-5.5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
@@ -438,8 +438,8 @@ C'est\dots
 \begin{tikzpicture}[scale=1,line cap=round,line join=round,>=stealth,x=0.2cm,y=1.0cm]
 \draw [color=gray!75, xstep=5,ystep=0.5] (80,-1) grid (150,4);
 \draw[->,line width=2pt,color=blue] (80,0) -- (150,0);
-\foreach \x in {90,100,110,120,130,140}
-\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\foreach \x in {90,100,110,120,130,140}{
+\draw[color=black,line width=1.5pt] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
 \draw [color=blue, line width=2pt](89,1)--(89,3);
 \draw [color=blue, line width=2pt](89,2)--(103,2);
 \draw [color=blue, line width=2pt](103,1)--(103,3)--(121,3)--(121,1)--cycle;
@@ -460,11 +460,11 @@ C'est\dots
 \clip(0,0) circle (2);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
 \draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
-\foreach \x in {-5,...,5}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\foreach \x in {-5,...,5}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
 \draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
-\foreach \y in {-5,...,5}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+\foreach \y in {-5,...,5}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};}
 %\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 \draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
 \end{tikzpicture}
@@ -481,11 +481,11 @@ C'est\dots
 \draw [color=gray!50, xstep=0.5,ystep=0.5] (-5.5,-5.5) grid (5.5,5.5);
 \draw [color=gray!, xstep=1,ystep=1,line width=1.5pt] (-5.5,-5.5) grid (5.5,5.5);
 \draw[->,line width=1.5pt,color=blue] (-5.5,0) -- (5.5,0);
-\foreach \x in {-5,...,5}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+\foreach \x in {-5,...,5}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
 \draw[->,line width=1.5pt,color=blue] (0,-5.5) -- (0,5.5);
-\foreach \y in {-5,...,5}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+\foreach \y in {-5,...,5}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};}
 %\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 \clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-5:5,line width=2pt,color=red] plot(\x,{-5+exp(\x)});
@@ -505,11 +505,11 @@ C'est\dots
 \draw [color=gray!50, xstep=5,ystep=5] (-55,-55) grid (55,55);
 \draw [color=gray!, xstep=10,ystep=10,line width=1.5pt] (-55,-55) grid (55,55);
 \draw[->,line width=1.5pt,color=blue] (-55,0) -- (55,0);
-\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,-55) -- (0,55);
-\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};}
 \draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 %\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-30:40,line width=2pt,color=red] plot(\x,{50*sin(50*\x)});
@@ -528,11 +528,11 @@ C'est\dots
 \draw [color=gray!50, xstep=5,ystep=5] (-55,-55) grid (55,55);
 \draw [color=gray!, xstep=10,ystep=10,line width=1.5pt] (-55,-55) grid (55,55);
 \draw[->,line width=1.5pt,color=blue] (-55,0) -- (55,0);
-\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\foreach \x in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,-55) -- (0,55);
-\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\foreach \y in {-55,-50,-45,-40,-35,-30,-25,-20,-15,-10,-5,5,10,15,20,25,30,35,40,45,50}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};}
 \draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 %\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-30:40,line width=2pt,color=red] plot(\x,{50*sin(50*\x)});
@@ -551,11 +551,11 @@ C'est\dots
 \draw [color=gray!50, xstep=25,ystep=5] (0,0) grid (510,105);
 \draw [color=gray!, xstep=50,ystep=10,line width=1.5pt] (0,0) grid (510,105);
 \draw[->,line width=1.5pt,color=blue] (-25,0) -- (510,0);
-\foreach \x in {50,100,150,200,250,300,350,400,450,500}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\foreach \x in {50,100,150,200,250,300,350,400,450,500}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,-5) -- (0,105);
-\foreach \y in {10,20,30,40,50,60,70,80,90,100}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\foreach \y in {10,20,30,40,50,60,70,80,90,100}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};}
 \draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 %\clip(-5,-5) rectangle (5.5,5.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=0:500,line width=2pt,color=red] plot(\x,{100/(\x+1)});
@@ -574,11 +574,11 @@ C'est\dots
 \draw [color=gray!50, xstep=25,ystep=5] (0,0) grid (1000,100);
 \draw [color=gray!, xstep=50,ystep=10,line width=1.5pt] (0,0) grid (1000,100);
 \draw[->,line width=1.5pt,color=blue] (0,0) -- (1000,0);
-\foreach \x in {0,50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};
+\foreach \x in {0,50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {\footnotesize $\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,0) -- (0,100);
-\foreach \y in {0,10,20,30,40,50,60,70,80,90}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};
+\foreach \y in {0,10,20,30,40,50,60,70,80,90}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {\footnotesize $\y$};}
 %\draw[color=black] (0pt,0pt) node[below left] {\footnotesize $0$};%%%%%%%%%%%marque 0 à l'origine, en bas, à gauche
 \clip(0,0) rectangle (1000,98);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=0:1000,line width=2pt,color=red] plot(\x,{89.5-8.9*ln(\x+0.3)});
@@ -593,10 +593,10 @@ C'est\dots
 
 \begin{center}
 \begin{tikzpicture}[scale=2,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
-\foreach \x in {-2,...,2}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};
-\foreach \y in {-1,...,2}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};
+\foreach \x in {-2,...,2}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};}
+\foreach \y in {-1,...,2}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};}
 \clip(-2.5,-1) rectangle (2.5,3);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=red] plot(\x,{(2-\x)*exp(\x)});
 \draw(1.5,2) node[below left] {\calig{C}};
@@ -630,10 +630,10 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \begin{tikzpicture}[scale=2,line cap=round,line join=round,>=stealth,x=1.0cm,y=1.0cm]
 \draw [color=gray, xstep=0.5,ystep=0.5,style=dashed] (-2.5,-1) grid (2.5,3);
 \draw [color=gray, xstep=1,ystep=1,line width=1.5pt] (-2.5,-1) grid (2.5,3);
-\foreach \x in {-2,...,2}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};
-\foreach \y in {-1,...,2}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};
+\foreach \x in {-2,...,2}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below right] {$\x$};}
+\foreach \y in {-1,...,2}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[above left] {$\y$};}
 \clip(-2.5,-1) rectangle (2.5,3);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=200,domain=-2.5:2.5,line width=2pt,color=red] plot(\x,{(2-\x)*exp(\x)});
 \draw(1.5,2) node[below left] {\calig{C}};
@@ -664,11 +664,11 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \draw [color=gray!50, xstep=0.5,ystep=0.5,dashed] (-4,-4.5) grid (8,6.5);
 \draw [color=gray!, xstep=1,ystep=1] (-4,-4.5) grid (8,6.5);
 \draw[->,line width=1.5pt,color=blue] (-4,0) -- (8,0);
-\foreach \x in {-4,...,7}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};
+\foreach \x in {-4,...,7}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,-4.5) -- (0,6.5);
-\foreach \y in {-4,...,5}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};
+\foreach \y in {-4,...,5}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};}
 \draw[color=black] (8,-3pt) node[below] {$x$};
 \draw[color=black] (-2pt,6) node[left] {$y$};
 %%%%%%%%%%%%%%%%%%%%%%Points
@@ -714,11 +714,11 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \draw [color=gray!50, xstep=0.5,ystep=0.5] (-3,-3) grid (8.5,8.5);
 \draw [color=gray, xstep=1.0,ystep=1.0] (-3,-3) grid (8.5,8.5);
 \draw[->,line width=1.5pt,color=blue] (-3,0) -- (8.5,0);
-\foreach \x in {-3,...,8}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};
+\foreach \x in {-3,...,8}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below] {$\x$};}
 \draw[->,line width=1.5pt,color=blue] (0,-3) -- (0,8.5);
-\foreach \y in {-3,...,8}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};
+\foreach \y in {-3,...,8}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left] {$\y$};}
 \clip(-3,-3) rectangle (8.5,8.5);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw[smooth,samples=2,domain=-5:5,line width=2pt,color=red] plot(\x,{-2*\x+5});
 \draw (1,3) node [above right,font=\bfseries] {A};
@@ -741,11 +741,11 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \begin{center}
 \begin{tikzpicture}[xscale=1000,yscale=10,line cap=round,line join=round,>=stealth]
 \draw[->,line width=1.5pt,color=blue] (0,0) -- (0.0101,0);
-\foreach \x in {0,0.002,0.004,0.006,0.008,0.01}
-\draw (\x,-0.2pt) node[below,font=\bfseries] {\x};
+\foreach \x in {0,0.002,0.004,0.006,0.008,0.01}{
+\draw (\x,-0.2pt) node[below,font=\bfseries] {\x};}
 \draw[->,line width=1.5pt,color=blue] (0,0) -- (0,1);
-\foreach \y in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
-\draw (-0.002pt,\y) node[left,font=\bfseries] {\y};
+\foreach \y in {0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}{
+\draw (-0.002pt,\y) node[left,font=\bfseries] {\y};}
 \clip(0,0) rectangle (0.0101,1);%%%%%%%%%%%%réduit la fenêtre d'affichage de ce qui suit
 \draw [color=gray, xstep=0.001,ystep=0.1] (0,0) grid (0.011,1);
 \draw[smooth,samples=200,domain=0:0.01,line width=2pt,color=red] plot(\x,{1-exp(-710*(\x))});
@@ -768,14 +768,16 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \begin{tikzpicture}[scale=0.6,>=stealth]
             \draw[gray] (-9,-4)grid(8,5);
             \draw[->,line width=1.5pt,color=blue] (-9,0)--(8,0)node[below] {$x$};
-            \foreach \x in {-8,-7,-6,-5,-4,-3,-2,-1,2,3,4,5,6,7}
-\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};
+            \foreach \x in {-8,-7,-6,-5,-4,-3,-2,-1,2,3,4,5,6,7}{
+\draw[color=black] (\x,2pt) -- (\x,-2pt) node[below,font=\bfseries] {\x};}
             \draw[->,line width=1.5pt,color=blue] (0,-4)--(0,5)node[left] {$y$};
-            \foreach \y in {-3,-2,-1,2,3,4}
-\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};
+            \foreach \y in {-3,-2,-1,2,3,4}{
+\draw[color=black] (2pt,\y) -- (-2pt,\y) node[left,font=\bfseries] {\y};}
             \coordinate (O) at (0,-2pt); \draw (O) node[below,font=\bfseries,color=blue] {O};
-            \coordinate (I) at (1,-2pt); \draw (I) node[below,font=\bfseries,color=blue] {I}; \foreach \x in {-9,...,7}  \draw[line width=0.7pt] (\x,-0.1)--(\x,0.1);
-            \coordinate (J) at (-2pt,1); \draw (J) node[left,font=\bfseries,color=blue] {J}; \foreach \x in {-3,...,4} \draw[line width=0.7pt] (-0.1,\x)--(0.1,\x);
+            \coordinate (I) at (1,-2pt); \draw (I) node[below,font=\bfseries,color=blue] {I}; 
+\foreach \x in {-9,...,7}{ \draw[line width=0.7pt] (\x,-0.1)--(\x,0.1);}
+            \coordinate (J) at (-2pt,1); \draw (J) node[left,font=\bfseries,color=blue] {J}; 
+\foreach \x in {-3,...,4}{ \draw[line width=0.7pt] (-0.1,\x)--(0.1,\x);}
             \draw[line width=1pt] plot[smooth=200,mark=+,mark options={scale =1.5}] coordinates{(-8,0)(-6,2)(-3,3.5)(-2,4)(-1,3)(0,-2)(2,-3)(4,-2)(5,-1)(7,0)} node[above right]{$\calig C_h$};
             \draw[dashed, line width=1pt] plot[smooth=200,mark=+,mark options={scale =1.5}] coordinates{(-8,4)(-6,2)(-1,3)(5,-1)(7,-3)} node[above right]{$\calig C_k$};
 \end{tikzpicture}
@@ -1640,27 +1642,27 @@ L'ordre des instructions est important pour le rendu souhaité !!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{Exercice}[]\label{exo39}
-Projeté orthogonal
-
-\begin{tikzpicture}
-\coordinate (A) at (0,0);
-\draw (A) circle (1pt) node[above] {$A$};
-\coordinate (B) at (5,3);
-\draw (B) circle (1pt) node[above] {$B$};
-\coordinate (C) at ($(A)!1.5!(B)$); %vect(AC) = 1.5\vect(AB)
-\coordinate (D) at ($(B)!1.5!(A)$); %vect(BD) = 1.5\vect(BA)
-\draw (C)--(D);
-
-%% pour les projetés orthogonaux
-\coordinate (E) at (2,0);
-\fill (E) circle (1pt);
-\draw (E) node[right] {\small $E$};
-\coordinate (F) at ($(A)!(E)!(B)$);
-\fill (F) circle (1pt);
-\draw[dashed] (E) -- (F) ;
-\end{tikzpicture}
-\end{Exercice}
+%\begin{Exercice}[]\label{exo39}
+%Projeté orthogonal
+%
+%\begin{tikzpicture}
+%\coordinate (A) at (0,0);
+%\draw (A) circle (1pt) node[above] {$A$};
+%\coordinate (B) at (5,3);
+%\draw (B) circle (1pt) node[above] {$B$};
+%\coordinate (C) at (7.5,4.5); %vect(AC) = 1.5\vect(AB)
+%\coordinate (D) at (-2.5,-1.5); %vect(BD) = 1.5\vect(BA)
+%\draw (C)--(D);
+%
+%%% pour les projetés orthogonaux
+%\coordinate (E) at (2,0);
+%\fill (E) circle (1pt);
+%\draw (E) node[right] {\small $E$};
+%\coordinate (F) at ($(A)!(E)!(B)$);
+%\fill (F) circle (1pt);
+%\draw[dashed] (E) -- (F) ;
+%\end{tikzpicture}
+%\end{Exercice}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1704,7 +1706,7 @@ Projeté orthogonal
             315/\frac{7\pi}{4},
             330/\frac{11\pi}{6}
             }
-                \draw (\x:0.85cm) node[fill=white] {$\xtext$};
+                {\draw (\x:0.85cm) node[fill=white] {$\xtext$};}
 
         \foreach \x/\xtext/\y in {
             % the coordinates for the first quadrant
@@ -1723,7 +1725,7 @@ Projeté orthogonal
             330/\frac{\sqrt{3}}{2}/-\frac{1}{2},
             315/\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
             300/\frac{1}{2}/-\frac{\sqrt{3}}{2}}
-                \draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};
+                {\draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};}
 
         % draw the horizontal and vertical coordinates
         % the placement is better this way
@@ -1770,7 +1772,7 @@ Projeté orthogonal
             315/\frac{7\pi}{4},
             330/\frac{11\pi}{6},
             360/2\pi}
-                \draw (\x:0.85cm) node[fill=white] {$\xtext$};
+                {\draw (\x:0.85cm) node[fill=white] {$\xtext$};}
 
         \foreach \x/\xtext/\y in {
             % the coordinates for the first quadrant
@@ -1789,7 +1791,7 @@ Projeté orthogonal
             330/\frac{\sqrt{3}}{2}/-\frac{1}{2},
             315/\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
             300/\frac{1}{2}/-\frac{\sqrt{3}}{2}}
-                \draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};
+               { \draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};}
 
         % draw the horizontal and vertical coordinates
         % the placement is better this way
@@ -1798,7 +1800,36 @@ Projeté orthogonal
               (0cm,-1.25cm) node[fill=white] {$(0,-1)$}
               (0cm,1.25cm)  node[fill=white] {$(0,1)$};
 \end{tikzpicture}
-\end{center}\end{Exercice}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) circle (2cm);
+\draw (0,3) -- (0,-3);
+\draw (-3,0) -- (3,0);
+% angle de 30°
+\pgfmathparse{2*cos(30)}\let\x\pgfmathresult
+\pgfmathparse{2*sin(30)}\let\y\pgfmathresult
+\draw (0,0) -- (\x,\y);
+\draw[->] (.4,0) arc (0:30:.4cm);
+\node[right] at (15:.4) {\tiny $\theta$};
+% angle de 150°
+\pgfmathparse{2*cos(150)}\let\x\pgfmathresult
+\pgfmathparse{2*sin(150)}\let\y\pgfmathresult
+\draw (0,0) -- (\x,\y);
+\draw[red,->] (.65,0) arc (0:150:.65cm);
+\node[red,above] at (75:.65) {\tiny $\pi - \theta$};
+%
+\pgfmathparse{.5*cos(150)}\let\x\pgfmathresult
+\pgfmathparse{.5*sin(150)}\let\y\pgfmathresult
+\draw[blue,->] (\x,\y) arc (150:180:.5cm);
+\node[left,blue] at (165:.5) {\tiny $\theta$};
+\end{tikzpicture}
+\end{center}
+
+
+
+\end{Exercice}
 
 
 

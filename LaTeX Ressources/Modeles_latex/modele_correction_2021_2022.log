@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.11.2)  15 MAY 2022 00:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.11.2)  23 JUN 2022 11:44
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
-**autres_exemples.tex
-(./autres_exemples.tex
+**modele_correction_2021_2022.tex
+(./modele_correction_2021_2022.tex
 LaTeX2e <2021-06-01> patch level 1
 L3 programming layer <2021-10-18>
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/report.cls
@@ -88,9 +88,6 @@ Normal \count register pool exhausted, switching to extended pool.
 \leftmarginFB=\dimen145
 \parindentFFN=\dimen146
 \FBfnindent=\dimen147
-)
-(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-french/french.ldf
-Language: french 2021/07/20 v3.5m French support from the babel system
 ))
 (/usr/local/texlive/2021/texmf-dist/tex/latex/carlisle/scalefnt.sty)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
@@ -2496,59 +2493,59 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
 \Hy@SectionHShift=\skip262
-) (./autres_exemples.aux)
-\openout1 = `autres_exemples.aux'.
+) (./modele_correction_2021_2022.aux)
+\openout1 = `modele_correction_2021_2022.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 92.
-LaTeX Font Info:    Trying to load font information for T3+cmr on input line 92
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 67.
+LaTeX Font Info:    Trying to load font information for T3+cmr on input line 67
 .
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 67.
 LaTeX Font Info:    Trying to load font information for FML+futm on input line 
-92.
+67.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 67.
 LaTeX Font Info:    Trying to load font information for FMS+futm on input line 
-92.
+67.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 67.
 LaTeX Font Info:    Trying to load font information for FMX+futm on input line 
-92.
+67.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/fourier/fmxfutm.fd
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -2556,10 +2553,10 @@ T3\textscriptg already defined.
 
 fontencoding T3 patched
 )
-LaTeX Info: Redefining \degres on input line 92.
-LaTeX Info: Redefining \up on input line 92.
-LaTeX Font Info:    Redeclaring math accent \widehat on input line 92.
-LaTeX Font Info:    Redeclaring math accent \widetilde on input line 92.
+LaTeX Info: Redefining \degres on input line 67.
+LaTeX Info: Redefining \up on input line 67.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 67.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 67.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count635
@@ -2584,7 +2581,7 @@ e
 ))
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 92.
+(lastpage)             ! on input line 67.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-d
 ictionary-french.trsl
@@ -2592,13 +2589,13 @@ File: translations-basic-dictionary-french.trsl (french translation file `trans
 lations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `french'. on input line 92.
+or `french'. on input line 67.
 
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.14).
 
 \c@lstlisting=\count641
-Package hyperref Info: Link coloring ON on input line 92.
+Package hyperref Info: Link coloring ON on input line 67.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -2611,57 +2608,95 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count642
 )
-LaTeX Info: Redefining \ref on input line 92.
-LaTeX Info: Redefining \pageref on input line 92.
-LaTeX Info: Redefining \nameref on input line 92.
- (./autres_exemples.out) (./autres_exemples.out)
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
+ (./modele_correction_2021_2022.out) (./modele_correction_2021_2022.out)
 \@outlinefile=\write7
-\openout7 = `autres_exemples.out'.
+\openout7 = `modele_correction_2021_2022.out'.
 
-
-(/usr/local/texlive/2021/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 116.
+(Font)              scaled to size 11.03998pt on input line 71.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 116.
+(Font)              scaled to size 8.27998pt on input line 71.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 116.
+(Font)              scaled to size 6.43999pt on input line 71.
 LaTeX Font Info:    Trying to load font information for FML+futmi on input line
- 116.
+ 71.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 116.
+(Font)              scaled to size 11.03998pt on input line 71.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 116.
+(Font)              scaled to size 8.27998pt on input line 71.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 116.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 116
-.
+(Font)              scaled to size 6.43999pt on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
+
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 116
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
+
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
-16.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 7
+1.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 11
-6.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 71
+.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [1
+)
+<logo_augustin_thierry.png, id=31, 454.69875pt x 416.55624pt>
+File: logo_augustin_thierry.png Graphic file (type png)
+<use logo_augustin_thierry.png>
+Package pdftex.def Info: logo_augustin_thierry.png  used on input line 71.
+(pdftex.def)             Requested size: 70.75163pt x 64.81343pt.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+LaTeX Font Info:    Trying to load font information for TS1+futs on input line 
+71.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fourier/ts1futs.fd
+File: ts1futs.fd 2003/09/14 Fontinst v1.801 font definitions for TS1/futs.
+)
+LaTeX Font Info:    Trying to load font information for T1+pzc on input line 71
+.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1pzc.fd
+File: t1pzc.fd 2020/03/25 font definitions for T1/pzc.
+)
+
+LaTeX Font Warning: Font shape `T1/pzc/b/n' undefined
+(Font)              using `T1/pzc/m/n' instead on input line 71.
+
+LaTeX Font Info:    Font shape `T1/pzc/m/n' in size <12> not available
+(Font)              Font shape `T1/pzc/m/it' tried instead on input line 71.
+LaTeX Font Info:    Font shape `T1/pzc/b/n' in size <20> not available
+(Font)              Font shape `T1/pzc/m/it' tried instead on input line 71.
+<logo_acad.png, id=33, 487.06969pt x 514.17094pt>
+File: logo_acad.png Graphic file (type png)
+<use logo_acad.png>
+Package pdftex.def Info: logo_acad.png  used on input line 71.
+(pdftex.def)             Requested size: 49.52592pt x 52.27527pt.
+
+Overfull \hbox (2.97774pt too wide) in paragraph at lines 71--71
+[][] 
+ []
+
+
+AED: lastpage setting LastPage
+[1
 Non-PDF special ignored!
 <special> header=pstricks.pro
 Non-PDF special ignored!
@@ -2699,57 +2734,33 @@ Non-PDF special ignored!
 <special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
 Non-PDF special ignored!
 <special> ps:0.8 setlinewidth 0 setgray
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </usr/lo
+cal/texlive/2021/texmf-dist/tex/latex/logo_augustin_thierry.png> </usr/local/te
+xlive/2021/texmf-dist/tex/latex/logo_acad.png>]
+(./modele_correction_2021_2022.aux)
 
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
-
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
-
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
-
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
-
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
-
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
-
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
-
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
-
-\openout3 = `autres_exemples.pgf-plot.gnuplot'.
-
-runsystem(gnuplot autres_exemples.pgf-plot.gnuplot)...executed.
-
-
-[2] [3] [4] [5] [6] 
-AED: lastpage setting LastPage
-[7] (./autres_exemples.aux)
-Package rerunfilecheck Info: File `autres_exemples.out' has not changed.
+Package rerunfilecheck Info: File `modele_correction_2021_2022.out' has not cha
+nged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 66866 strings out of 478579
- 1442430 string characters out of 5853457
- 2353941 words of memory out of 5000000
- 83329 multiletter control sequences out of 15000+600000
- 458552 words of font info for 91 fonts, out of 8000000 for 9000
+ 65925 strings out of 478579
+ 1423587 string characters out of 5853457
+ 2322228 words of memory out of 5000000
+ 82388 multiletter control sequences out of 15000+600000
+ 445490 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,17n,126p,759b,880s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 123i,18n,126p,771b,1355s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2021/texmf-dist/fonts/type1/public/fourier/fourier-mcl.pfb></usr/local/t
-exlive/2021/texmf-dist/fonts/type1/public/fourier/fourier-ml.pfb></usr/local/te
-xlive/2021/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/local/tex
-live/2021/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/20
-21/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2021/texm
-f-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on autres_exemples.pdf (7 pages, 79164 bytes).
+exlive/2021/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/
+2021/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2021/te
+xmf-dist/fonts/type1/urw/zapfchan/uzcmi8a.pfb>
+Output written on modele_correction_2021_2022.pdf (1 page, 306434 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 
