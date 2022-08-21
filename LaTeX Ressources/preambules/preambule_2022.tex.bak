@@ -7,7 +7,11 @@
 %a nécessité la mise à jour du package l3kernel
 %Ajout de la commande \pfr{} pour encadrer un résultat en rouge
 %Modification de \pv
-
+%%%%%%%%%%%%%%%%%%%%%%
+%Modification du 21/08/22
+%Ajout de l'environnement Encadre et modification des propriétés, définitions, etc.
+%Modification effectuée grâce à Rémi
+%%%%%%%%%%%%%%%%%%%%%
 
 %___________________________
 %===    Configurations 09.06.2016
@@ -74,17 +78,6 @@
 %___________________________
 %===    Packages trouvés grâce à Rémi. Thanks!!
 %------------------------------------------------------
-\usepackage{diagbox}%permet le partage de la première cellule d'un tableau
-%exemple : 
-%\begin{tabular}{|l|ccc|}
-%\hline
-%\diagbox{Time}{Day} & Mon & Tue & Wed \\
-%\hline
-%Morning & used & used & \\
-%Afternoon & & used & used \\
-%\hline
-%\end{tabular}
-%------------------------------------------
 \usepackage{fourier-orns} %% symboles notamment danger
 %exemples de symboles :
 %\eurologo
@@ -291,6 +284,48 @@
 \usepackage{arydshln}% permet des filets horizontaux ou verticaux en pointillés avec
 %pour les filets horizontaux \hdashline ou \cdashline qui s'utilisent comme \hline ou \cline
 % pour les filets verticaux les deux points :
+
+%-----------------------------------------------
+
+%augmenter l'espace au-dessus ou en-dessous d'une fraction
+\makeatletter
+\newcommand*\Strut[1][1]{%
+  \leavevmode
+  \vrule \@height #1\ht\strutbox
+         \@depth #1\dp\strutbox
+         \@width\z@
+}
+\newcommand*\TopStrut[1][1]{%
+  \leavevmode
+  \vrule \@height #1\ht\strutbox
+         \@depth \z@
+         \@width \z@
+}
+\newcommand*\BotStrut[1][1]{%
+  \leavevmode
+  \vrule \@height \z@
+         \@depth #1\dp\strutbox
+         \@width \z@
+}
+\makeatother
+
+%exemple
+%Résoudre: $  \dfrac{ \TopStrut 3 x -1} { \BotStrut x + 2} < 3$.
+
+%___________________________
+%===    Packages trouvés grâce à Rémi. Thanks!!
+%------------------------------------------------------
+\usepackage{diagbox}%permet le partage de la première cellule d'un tableau
+%exemple : 
+%\begin{tabular}{|l|ccc|}
+%\hline
+%\diagbox{Time}{Day} & Mon & Tue & Wed \\
+%\hline
+%Morning & used & used & \\
+%Afternoon & & used & used \\
+%\hline
+%\end{tabular}
+
 
 
 %___________________________
@@ -534,29 +569,33 @@ decorations.pathreplacing,patterns,positioning,decorations.text}
 
 \usepackage{environ}%pour pouvoir utiliser la commande \NewEnviron
 
+\usepackage{tcolorbox}
+%Options de tcolorbox pour les encadrés et autres propriétés
+\tcbuselibrary{many}
+\tcbset{drop fuzzy shadow,
+    enhanced,
+    attach boxed title to top left={
+        xshift=0.25cm,
+        yshift= -2.5mm,
+    },
+    top=4mm,
+    beforeafter skip=\baselineskip,
+}
+
+
 %___________________________
 %===    Propriété avec ou sans s et avec ou sans titre
 %------------------------------------------------------
 %
 \newcounter{prop}
 \NewEnviron{Prop}[2][]{
-\smallskip
 \refstepcounter{prop}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Propriété#1~\theprop~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backtheocolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Propriété#1~\theprop~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 %___________________________
 %===    Notation avec ou sans s et avec ou sans titre
@@ -564,23 +603,13 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{notation}
 \NewEnviron{Notation}[2][]{
-\smallskip
 \refstepcounter{notation}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=red,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Notation#1~\thenotation~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=red!50,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=red!50,colframe=gray!50,colbacktitle=red,title=\textbf{Notation#1~\thenotation~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 
 
@@ -590,23 +619,13 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{cons}
 \NewEnviron{Cons}[2][]{
-\smallskip
 \refstepcounter{cons}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Conséquence#1~\thecons~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backtheocolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Conséquence#1~\thecons~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 
 %___________________________
@@ -615,22 +634,11 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{cor}
 \NewEnviron{Cor}[1][]{
-\smallskip
 \refstepcounter{cor}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Corollaire~\thecor~:~#1}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backtheocolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Corollaire~\thecor~:~#1}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
 
@@ -640,29 +648,40 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{thm}
 \NewEnviron{Thm}[1][]{
-\smallskip
 \refstepcounter{thm}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Théorème~\thethm~:~#1}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backtheocolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Théorème~\thethm~:~#1}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
 
 %___________________________
-%===    Cadre arrondi coloré
+%===    Encadré avec possibilité de changer la couleur du fond du titre, de l'encadré, de l'intérieur de l'encadré facilement
 %------------------------------------------------------
 %
+
+\NewEnviron{Encadre}[4][]{
+\begin{tcolorbox}[colback=#1,colframe=#2,colbacktitle=#3,title=\textbf{#4}]
+\raggedright
+\BODY
+\end{tcolorbox}
+}
+
+%exemple
+%\begin{Encadre}[white]{gray!50}{blue!50}{Titre}
+%Essai avec le package tcolorbox.
+%
+%Tu peux changer la couleur du fond du titre, de l'encadré, de l'intérieur de l'encadré facilement.
+%\end{Encadre}
+
+
+%___________________________
+%===    Cadre arrondi coloré sans titre
+%------------------------------------------------------
+%
+
+
 \NewEnviron{CadreColor}{
 \medskip
 \begin{tikzpicture}[node distance=0 cm]
@@ -674,7 +693,7 @@ anchor=north west] at(0,-0.02)
 
 
 %___________________________
-%===    Cadre arrondi blanc
+%===    Cadre arrondi blanc sans titre
 %------------------------------------------------------
 %
 \NewEnviron{Cadre}{
@@ -695,23 +714,13 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{regle}
 \NewEnviron{Regle}[2][]{
-\smallskip
 \refstepcounter{regle}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Règle#1~\theregle~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backdeficolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backdeficolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Règle#1~\theregle~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 %___________________________
 %===    Vocabulaire avec ou sans titre
@@ -719,22 +728,11 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{vocab}
 \NewEnviron{Vocab}[1][]{
-\smallskip
 \refstepcounter{vocab}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Vocabulaire~\thevocab~:~#1}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backdeficolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backdeficolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Vocabulaire~\thevocab~:~#1}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
 
@@ -744,22 +742,11 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{defi}
 \NewEnviron{Defi}[2][]{
-\smallskip
 \refstepcounter{defi}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Définition#1~\thedefi~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backdeficolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backdeficolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Définition#1~\thedefi~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
 %___________________________
@@ -768,23 +755,13 @@ anchor=north west] at(0,-0.02)
 %
 \newcounter{methode}
 \NewEnviron{Methode}[2][]{
-\smallskip
 \refstepcounter{methode}
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,%rounded corners=5pt,
-anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Méthode#1~\themethode~:~#2}};
-\node[%draw,
-drop shadow,%color=deficolor,very thick,
-fill=backmethcolor,%rounded corners=5pt,
-anchor=north west] at(0,-0.02)
-{\black%\parbox
-\begin{minipage}{\columnwidth-12pt}%{
-\BODY%}
-\end{minipage}};
-\end{tikzpicture}
-\smallskip
+\begin{tcolorbox}[colback=backmethcolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Méthode#1~\themethode~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 
 %___________________________
@@ -871,40 +848,33 @@ anchor=north west] at(0,-0.02)
 %------------------------------------------------------
 %
 \newcounter{propcned}
-\NewEnviron{PropCNED}[2][]{\refstepcounter{propcned}
-\smallskip
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Propriété#1 \thepropcned ~:~#2}};
-\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
-{\black\parbox{\columnwidth-12pt}{\BODY}};
-\end{tikzpicture}
-\smallskip
+\NewEnviron{PropCNED}[2][]{
+\refstepcounter{propcned}
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Propriété#1~\thepropcned~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
+
 \newcounter{defcned}
-\NewEnviron{DefCNED}[2][]{\refstepcounter{defcned}
-\smallskip
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Définition#1 \thedefcned ~:~#2}};
-\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
-{\black\parbox{\columnwidth-12pt}{\BODY}};
-\end{tikzpicture}
-\smallskip
+\NewEnviron{DefCNED}[2][]{
+\refstepcounter{defcned}
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Définition#1~\thedefcned~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
 
 \newcounter{thmcned}
-\NewEnviron{ThmCNED}[2][]{\refstepcounter{thmcned}
-\smallskip
-\begin{tikzpicture}[node distance=0 cm]
-\node[fill=theocolor,rounded corners=5pt,anchor=south west] (theorem) at (0,0)
-{\textcolor{titlecolor}{\bfseries Théorème#1 \thethmcned ~:~#2}};
-\node[draw,drop shadow,color=theocolor,very thick,fill=backtheocolor,rounded corners=5pt,anchor=north west] at(0,-0.02)
-{\black\parbox{\columnwidth-12pt}{\BODY}};
-\end{tikzpicture}
-\smallskip
+\NewEnviron{ThmCNED}[2][]{
+\refstepcounter{thmcned}
+\begin{tcolorbox}[colback=backtheocolor,colframe=gray!50,colbacktitle=theocolor,title=\textbf{Théorème#1~\thethmcned~:~#2}]
+\raggedright
+\BODY
+\end{tcolorbox}
 }
+
 
 \newcounter{exemplecned}
 \NewEnviron{ExempleCNED}[2][]{\refstepcounter{exemplecned}
