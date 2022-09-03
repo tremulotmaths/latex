@@ -1,0 +1,6 @@
+Configuration TexMaker
+
+LaTeX : latex -interaction=nonstopmode --shell-escape %.tex
+PdfLaTeX : pdflatex -synctex=1 -interaction=nonstopmode --shell-escape %.tex
+XeLaTeX : xelatex -synctex=1 -interaction=nonstopmode --shell-escape %.tex
+
