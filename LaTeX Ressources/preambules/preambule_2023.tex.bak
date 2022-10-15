@@ -768,19 +768,40 @@ decorations.pathreplacing,patterns,positioning,decorations.text}
 %===    Redéfinition de la commande \chapter{•}
 %------------------------------------------------------
 %
+%----------- Head
+
+\tcbset{head/.style={
+	enhanced,
+	boxrule=1pt,
+	colback=red!75!black,
+	halign=flush center,
+	colframe=red!75!black,
+	bottom=9pt,
+	lifted shadow={1mm}{-2mm}{3mm}{0.1mm},
+	}
+}
+
+%-------------- TOC
+\tcbset{toc/.style={
+	enhanced,
+	boxrule=1pt,
+	colback=white,
+	top=-9pt,
+	colframe=red!75!black,
+	bottom=9pt,
+	lifted shadow={1mm}{-2mm}{3mm}{0.1mm},
+	}
+}
+
+
 \makeatletter
 
 \renewcommand{\@makechapterhead}[1]{
-\begin{tikzpicture}
-\node[fill=theocolor,rectangle,rounded corners=5pt]{%
-\begin{minipage}{\linewidth}
 \begin{center}
-\vspace*{9pt}
+\begin{tcolorbox}[head]
 \textcolor{titlecolor}{\Large \textsc{\textbf{Chapitre \thechapter \ : \ #1}}}
-\vspace*{9pt}
+\end{tcolorbox}
 \end{center}
-\end{minipage}
-};\end{tikzpicture}
 }
 
 \makeatother
