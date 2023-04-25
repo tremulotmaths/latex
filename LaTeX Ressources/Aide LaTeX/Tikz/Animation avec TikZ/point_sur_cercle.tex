@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{tikz,amssymb}
+\usepackage[paperwidth=10cm,paperheight=10cm,margin=0cm]{geometry}
+\setlength{\parindent}{0pt}
+\begin{document}
+\foreach\a in {-180,-170,...,180}
+{
+\begin{tikzpicture}[&gt;=latex]
+\draw[-&gt;] (-5,0) -- (5,0);
+\draw[-&gt;] (0,-5) -- (0,5);
+\draw (0,0) circle (4cm);
+\node[below left] at (0,0) {$O$};
+\node[below left,blue] at (-4,0) {$-\pi$};
+\node[above left,red] at (-4,0) {$\pi$};
+\node[below right] at (4,0) {0};
+\draw[-&gt;] (35:4.5) arc (35:75:4.5cm);
+\node[above right] at (55:4.5) {$+$};
+\ifnum\a&lt;-90
+\fill[blue] (\a:4) circle (2pt) node[below left] {$M$};
+\else
+\ifnum\a&lt;0
+\fill[blue] (\a:4) circle (2pt) node[below right] {$M$};
+\else
+\ifnum\a&lt;90
+\fill[red] (\a:4) circle (2pt) node[above right] {$M$};
+\else
+\fill[red] (\a:4) circle (2pt) node[above left] {$M$};
+\fi
+\fi
+\fi
+\end{tikzpicture}
+}
+\end{document}

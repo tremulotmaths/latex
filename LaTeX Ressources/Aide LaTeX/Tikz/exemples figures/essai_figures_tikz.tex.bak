@@ -1205,14 +1205,59 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \node[noeud] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$C_2$};
 \node[noeud] (Rab) at ({\NiveauC},{(2)*\InterFeuilles}) {$\overline{C_2}$};
 % Arcs (MODIFIABLES : Styles)
-\draw[fleche] (Ra)--(Raa);
-\draw[fleche] (Ra)--(Rab);
+\draw[fleche] (Ra)--(Raa) node [midway, above] {$\frac{7}{31}$};
+\draw[fleche] (Ra)--(Rab) node [midway, below] {$\frac{24}{31}$};
 %2ème lancer
 \node[noeud] (Rba) at ({\NiveauC},{(4)*\InterFeuilles}) {$C_2$};
 \node[noeud] (Rbb) at ({\NiveauC},{(6)*\InterFeuilles}) {$\overline{C_2}$};
 % Arcs (MODIFIABLES : Styles)
-\draw[fleche] (Rb)--(Rba);
-\draw[fleche] (Rb)--(Rbb);
+\draw[fleche] (Rb)--(Rba) node [midway, above] {$\frac{8}{31}$};
+\draw[fleche] (Rb)--(Rbb) node [midway, below] {$\frac{23}{31}$};
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Racine à Gauche, développement vers la droite
+\begin{tikzpicture}[xscale=0.6,yscale=0.35]
+% Styles (MODIFIABLES)
+\tikzstyle{fleche}=[-,color=blue]
+\tikzstyle{flecheissue}=[-,style=dotted,color=blue]
+\tikzstyle{noeud}=[fill=white]
+\tikzstyle{legende}=[fill=white,text=red]
+% Dimensions (MODIFIABLES)
+\def\DistanceInterNiveaux{3}
+\def\DistanceInterFeuilles{2}
+% Dimensions calculées (NON MODIFIABLES)
+\def\NiveauA{(0)*\DistanceInterNiveaux}
+\def\NiveauB{(1.6666666666666665)*\DistanceInterNiveaux}
+\def\NiveauC{(3)*\DistanceInterNiveaux}
+\def\NiveauD{(5)*\DistanceInterNiveaux}
+\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+%1er lancer
+\node[noeud] (R) at ({\NiveauA},{(3)*\InterFeuilles}) {};
+\node[noeud] (Ra) at ({\NiveauB},{(1)*\InterFeuilles}) {$A$};
+\node[noeud] (Rb) at ({\NiveauB},{(5)*\InterFeuilles}) {$B$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (R)--(Ra) node [midway, above] {$0,3$};
+\draw[fleche] (R)--(Rb) node [midway, below] {$0,7$};
+% Légende
+\node[legende] (Premier) at ({\NiveauB},{(-1)*\InterFeuilles}) {Fournisseur};
+% Légende
+\node[legende] (Deuxieme) at ({\NiveauC},{(-1)*\InterFeuilles}) {Défaut};
+%2ème lancer
+\node[noeud] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$D$};
+\node[noeud] (Rab) at ({\NiveauC},{(2)*\InterFeuilles}) {$\overline{D}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Ra)--(Raa) node [midway, above] {$0,02$};
+\draw[fleche] (Ra)--(Rab) node [midway, below] {$0,98$};
+%2ème lancer
+\node[noeud] (Rba) at ({\NiveauC},{(4)*\InterFeuilles}) {$D$};
+\node[noeud] (Rbb) at ({\NiveauC},{(6)*\InterFeuilles}) {$\overline{D}$};
+% Arcs (MODIFIABLES : Styles)
+\draw[fleche] (Rb)--(Rba) node [midway, above] {$0,03$};
+\draw[fleche] (Rb)--(Rbb) node [midway, below] {$0,97$};
 
 \end{tikzpicture}
 
