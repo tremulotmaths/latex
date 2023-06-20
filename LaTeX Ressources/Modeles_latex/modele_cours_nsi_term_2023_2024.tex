@@ -5,18 +5,18 @@
 \portrait
 %\paysage
 %\usepackage{cclicenses}
+\usepackage{tikzlings}
+\usepackage{tikzducks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%À modifier !!!!!!!!!!!!!!!!
-\newcommand{\classe}{Maths Euro Section}
-\newcommand{\titredoc}{\fontfamily{pzc}
-\bfseries\fontsize{30}{20}\selectfont{Our today's notes}\par
-\today
-}
-\newcommand{\auteurs}{The European section Team from 1ère}
+%%%%%%%%%%%%%À modifier !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\newcommand{\classe}{\tnsi}
+\newcommand{\nomchapitre}{...}
+\newcommand{\numseq}{...}
+\newcommand{\auteurs}{Auteurs : T.B. \& D.T.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fancyhf{}
-\rhead{ \textcolor{orange!90}{\bsc{\large \classe}}}
+\rhead{ \textcolor{orange!90}{\bsc{\large \classe - Séquence \numseq : \nomchapitre}}}
 \lhead{}
 \rfoot{\textcolor{blue}{Licence : \ccbyncsaeu}}
 
@@ -26,6 +26,7 @@
 \renewcommand {\footrule}{{\color{orange!70}\rule{\textwidth}{0.9pt}}}
 \pagestyle{fancy}
 %\tikzset{domaine/.style 2 args={domain=#1:#2}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[linesnumbered,french]{algorithm2e}
@@ -37,31 +38,38 @@
 \end{minipage}
 \end{Cadre}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
-\selectlanguage{english}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{Cadre}
+\begin{document}
+
+\begin{module}[colback=white]{\classe}
 \vspace*{1em}
 \begin{tabular}{m{0.15\linewidth}M{0.63\linewidth}R{0.15\linewidth}}
 \includegraphics[width=\linewidth]{logo_augustin_thierry}
 &
-\textcolor{blue}{
-\titredoc
-}
+\textcolor{blue}{\LARGE \bsc{\nomchapitre}}
 &
-\includegraphics[width=\linewidth]{logo_acad}
+\includegraphics[width=0.7\linewidth]{logo_acad}
 \end{tabular}
 \vspace*{0.2em}
-\end{Cadre}
+\end{module}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{spacing}{1.2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Historique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{...}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
