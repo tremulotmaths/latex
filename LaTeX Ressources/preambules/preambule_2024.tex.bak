@@ -1467,9 +1467,7 @@ title=#2,#1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Python %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\pearltrees}{\raisebox{-0.5em}{\includegraphics[scale=0.08]{pearltrees}}\,}
-
-\newcommand{\capytale}{\raisebox{-0.4em}{\includegraphics[scale=0.2]{capytale}}\,}
+\newcommand{\pearltrees}{\raisebox{-0.5em}{\includegraphics[scale=0.1]{pearltrees}}}
 
 %nécessite l'image correspondante
 \newcommand{\python}{\raisebox{-0.8em}{\includegraphics[scale=0.3]{python-logo}}}
