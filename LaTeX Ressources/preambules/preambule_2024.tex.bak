@@ -1467,7 +1467,9 @@ title=#2,#1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Python %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\pearltrees}{\raisebox{-0.5em}{\includegraphics[scale=0.1]{pearltrees}}}
+\newcommand{\pearltrees}{\raisebox{-0.5em}{\includegraphics[scale=0.08]{pearltrees}}\,}
+
+\newcommand{\capytale}{\raisebox{-0.4em}{\includegraphics[scale=0.2]{capytale}}\,}
 
 %nécessite l'image correspondante
 \newcommand{\python}{\raisebox{-0.8em}{\includegraphics[scale=0.3]{python-logo}}}
@@ -1731,6 +1733,8 @@ breaklines=true,%passage à ligne automatique
 \newcommand{\verslebac}[1]{\textcolor{blue}{\faUserGraduate\  Vers le BAC \faUserGraduate\  : }#1}
 
 \newcommand{\verslesup}[1]{\textcolor{blue}{\faPlaneDeparture\  Vers le supérieur \faPlaneDeparture\ : }#1}
+
+\newcommand{\versmathscomp}[1]{\textcolor{blue}{\faPlaneDeparture\  Vers l'option Maths complémentaires \faPlaneDeparture\ : }#1}
 
 \newcommand{\inenglish}[1]{\raisebox{-2.5pt}{\includegraphics[scale=0.12]{english}}\  In English \raisebox{-2.5pt}{\includegraphics[scale=0.12]{english}}\ : #1}
 
