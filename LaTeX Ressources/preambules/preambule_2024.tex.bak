@@ -111,6 +111,7 @@
 \newcommand{\seuro}{Euro Maths Seconde}
 \newcommand{\peuro}{Euro Maths Première}
 \newcommand{\teuro}{Euro Maths Terminale}
+\newcommand{\mes}{Maths dans l'Enseignement Scientifique}
 
 %___________________________
 %===    Réglages et Commandes Maths
@@ -1749,6 +1750,7 @@ breaklines=true,%passage à ligne automatique
 
 \newcommand{\activite}[2][]{\textcolor{purple}{\faBook\ Activité#1 d'introduction : Situation#1 #2}}
 
+\newcommand{\spreadsheet}{\raisebox{-0.5em}{\includegraphics[scale=0.2]{stats}}\,}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
