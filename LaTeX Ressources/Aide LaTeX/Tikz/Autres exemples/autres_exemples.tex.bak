@@ -375,6 +375,103 @@ Nécessite Gnuplot
 \end{tikzpicture}
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{exemple8}
+\textbf{Exemple 8 :}
+
+\begin{tikzpicture}
+\foreach \a/\b/\p/\c in
+{
+0/7.2/2/Agriculteurs, 7.2/18/3/Artisans,
+18/36/5/Cadres, 36/68.4/9/Intermédiaires,
+68.4/115.2/13/Employés, 15.2/158.4/12/Ouvriers,
+158.4/223.2/18/Retraités, 223.2/360/38/Inactifs
+}
+{
+\draw[fill=black!\p!blue!\p]
+(0,0) -- (\a:4.5) arc (\a:\b:4.5) -- cycle;
+\draw ({(\a+\b)/2}:4) node {\p\%};
+\draw ({(\a+\b)/2}:5.6) node {\c};
+}
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\label{exemple9}
+\textbf{Exemple 9 :}
+
+\begin{tikzpicture}
+\fill[color=blue!20](0,0)--(0:5)arc(0:10:5)--cycle;
+\fill[color=blue!40](0,0)--(10:5)arc(10:70:5)--cycle;
+\fill[color=blue!60](0,0)--(70:5)arc(70:120:5)--cycle;
+\fill[color=blue!80](0,0)--(120:5)arc(120:280:5)--cycle;
+\fill[color=blue!](0,0)--(280:5)arc(280:360:5)--cycle;
+%%%%%%%%%%%%
+\fill[color=red!](0:5)--(0:7)arc(0:90:7)--(90:5)arc(90:0:5);
+\fill[color=red!80](90:5)--(90:7)arc(90:120:7)--(120:5)arc(120:90:5);
+\fill[color=red!60](120:5)--(120:7)arc(120:280:7)--(280:5)arc(280:120:5);
+\fill[color=red!40](280:5)--(280:7)arc(280:360:7)--(360:5)arc(360:280:5);
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\label{exemple10}
+\textbf{Exemple 10 :}
+
+\begin{tikzpicture}
+\foreach \a/\b/\e/\n in %angle a, angle b, effectif e, node n
+{
+0/10/5/Node1, 
+10/70/20/Node2, 
+70/120/30/Node3, 
+120/280/50/Node4,
+280/360/40/Node5
+}
+{
+\fill[color=black!\e!blue!\e](0,0)--(\a:5)arc(\a:\b:5)--cycle;
+\draw ({(\a+\b)/2}:4) node {\e};
+\draw ({(\a+\b)/2}:6) node {\n};
+}
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\label{exemple11}
+\textbf{Exemple 11 :}
+
+\begin{tikzpicture}
+%Définitions des rayons
+\def\r{5} %rayon du premier disque
+\def\R{7} %rayon du deuxième disque
+%1ère série
+\foreach \a/\b/\e in %angle a, angle b, effectif e
+{
+0/10/5, %secteur angulaire entre 0° et 10°, effectif 5 affiché
+10/70/20, 
+70/120/30, 
+120/280/50,
+280/360/40
+}
+{
+\fill[color=black!\e!blue!\e](0,0)--(\a:\r)arc(\a:\b:\r)--cycle;
+\draw ({(\a+\b)/2}:0.75*\r) node {\e}; %effectif affiché
+}
+%%%%%%%%%%%%
+%2ème série
+\foreach \a/\b/\e in %angle a, angle b, effectif e
+{
+0/90/5, 
+90/120/20, 
+120/280/50,
+280/360/40
+}
+{
+\fill[color=black!\e!red!\e](\a:\r)--(\a:\R)arc(\a:\b:\R)--(\b:\r)arc(\b:\a:\r);
+\draw ({(\a+\b)/2}:0.9*\R) node {\e}; %effectif affiché
+}
+\end{tikzpicture}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
