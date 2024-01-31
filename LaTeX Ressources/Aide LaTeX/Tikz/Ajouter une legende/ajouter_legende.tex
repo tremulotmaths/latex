@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[legend pos=south east]
+   \addlegendimage{empty legend}
+   \addplot {sqrt(x)}; 
+   \addplot {ln(x)}; 
+
+   \addlegendentry{\hspace{-.6cm}\textbf{A title}}
+   \addlegendentry{$\sqrt{x}$}
+   \addlegendentry{$\ln{x}$}
+\end{axis}
+\end{tikzpicture}
+\end{document}
