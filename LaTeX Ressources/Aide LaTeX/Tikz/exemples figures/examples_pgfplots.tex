@@ -134,6 +134,42 @@ ylabel={Masse (en kg)},]
 \end{center}
 \end{center}
 
+\section*{Example \#6}\label{example6}
+
+\begin{center}
+%\pgfplotsset{scaled y ticks=false}
+\begin{tikzpicture}[>=stealth,scale=1]
+\begin{axis}[ymin=0,ymax=1700,ytick distance=200,xtick distance=40,xmin=0,xmax=340,grid,yscale=1.5,
+axis lines = center,
+axis line style = {->, line width = 2pt, color=blue},
+ticklabel style={/pgf/number format/.cd,%
+          scaled ticks = false,
+          set thousands separator={}},
+xlabel={Nbre de boîtiers},
+ylabel={Salaire (en \texteuro{})},
+x label style={at={(axis description cs:0.5,-0.05)},anchor=north},
+y label style={at={(axis description cs:-0.15,0.4)},rotate=90, anchor=south},
+]
+\addplot[samples=2,blue,domain=0:340,line width = 2pt]{1300} node[below left,pos=1] {$d_1$};
+\addplot[samples=2,black,domain=0:340,line width = 2pt]{900+2*x}node[below right,pos=0.4] {$d_2$};
+\addplot[samples=2,red,domain=0:340,line width = 2pt]{5*x}node[below right,pos=0.5] {$d_3$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section*{Example \#7}\label{example7}
+
+
+\section*{Example \#8}\label{example8}
+
+\section*{Example \#9}\label{example9}
+
+\section*{Example \#10}\label{example10}
+
+\section*{Example \#11}\label{example11}
+
+\section*{Example \#12}\label{example12}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{spacing}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
