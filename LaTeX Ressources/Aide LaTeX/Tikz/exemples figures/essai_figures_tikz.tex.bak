@@ -960,6 +960,8 @@ L'ordre des instructions est important pour le rendu souhaité !!
 \tikzstyle{fleche}=[-,color=blue]
 \tikzstyle{noeud}=[fill=white]
 \tikzstyle{feuille}=[fill=white]
+\end{enumerate}
+
 % Dimensions (MODIFIABLES)
 \def\DistanceInterNiveaux{3}
 \def\DistanceInterFeuilles{2}
